@@ -1,0 +1,13 @@
+[Unit]
+Description=Setup a secure tunnel to %I
+After=network.target
+
+[Service]
+Environment="LOCAL_ADDR=localhost"
+EnvironmentFile=/etc/default/secure-tunnel@%i
+ExecStart=/usr/bin/ssh -N -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -R ${LOCAL_PORT}:${LISTEN_ADDRESS}:${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_HOST}
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
