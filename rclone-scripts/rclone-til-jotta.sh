@@ -1,12 +1,13 @@
 #!/bin/bash
-# vim:ts=4:sw=4:si:ruler
+# vim:ts=4:sw=4:si:ruler:isfname-==
 
 # Simple locker example by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
 
 # Sett variabler
-PROGNAME=rsync-til-jotta
+PROGNAME=rclone-til-jotta
 LOCKDIR=/var/lock
 LOCKFILE=$LOCKDIR/$PROGNAME.lock
+LOGFILE=/data/tmp/rclone/rclone-to-jotta.log
 # AUTOCLEANUP=1 # her stopper det opp for meg første gang - denne er visst ikke i bruk :þ kanskje noe jeg la til som variabel først og så fant ut at var teit å ikke ha der. ok, men hvorfor 1 og ikke 0 eller 2? eller noe annet? 1 er true, 0 er false. ok
 
 # Trap gjør at den ikke vil avslutte plutselig med disse signalene, de vanlige, uten å fjerne låsefila
@@ -53,7 +54,8 @@ echo $$ > $LOCKFILE
 
 # Insert code here
 export TMPDIR=/data/tmp/rclone
-rclone -q sync /data jotta-crypt:
+# trur eg
+rclone -q sync --exclude-from /usr/local/etc/rclone-excludes /data jotta-crypt:
 
 # Clean up lock
 rm -f $LOCKFILE#!/bin/bash
