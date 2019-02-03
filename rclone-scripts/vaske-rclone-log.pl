@@ -9,10 +9,14 @@ use warnings;
 
 while (my $line = <STDIN>) {
     if ($line =~ /^.* ERROR : (.*?): Failed to copy.*JFS/) {
+        chomp($line);
         my $path = $1;
         my @dtmp = split('/', $path);
         my $filename = $dtmp[$#dtmp];
-        print "$path";
-        print "$filename\n\n";
+        my $fnlenght = length($filename);
+        my $pathlenght = length($path);
+
+#       print "[$pathlenght] $path\n";
+        print "[$fnlenght ] $filename\n";
     }
 }
