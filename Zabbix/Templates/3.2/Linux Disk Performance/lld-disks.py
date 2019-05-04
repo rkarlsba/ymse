@@ -5,7 +5,7 @@ import re
 
 if __name__ == "__main__":
     # filter out partitions
-    rx_sd = re.compile('^sd[a-z]+$')
+    rx_sd = re.compile('.*[a-z]$')
     # Iterate over all block devices, but ignore them if they are in the
     # skippable set
     skippable = ("sr", "loop", "ram")
