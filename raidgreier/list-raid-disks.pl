@@ -32,12 +32,24 @@ sub feilfeilfeil {
     exit(1);
 }
 
+sub help {
+    print "Usage: $0 <-h> <-n>
+
+    -h  Display this help
+    -n  Display only the disks involved, not their partitions\n";
+    exit(0);
+}
+
 my $no_partitions = 0;;
+my $help = 0;
+
 Getopt::Long::Configure('bundling');
 GetOptions (
-    "no-partitions" => \$no_partitions,
-    "N"             => \$no_partitions,
+    "no-partitions" => \$no_partitions, "n" => \$no_partitions,
+    "help"          => \$help,          "h" => \$help,
 ) or feilfeilfeil("Error in command line arguments");
+
+&help if ($help);
 
 my $mdstat_fn = '/proc/mdstat';
 open my $mdstat,"$mdstat_fn" || die "Can't open $mdstat_fn for reading: $!\n";
