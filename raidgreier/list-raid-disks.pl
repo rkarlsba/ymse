@@ -22,6 +22,7 @@
 
 use strict;
 use warnings;
+      use Getopt::Long;
 
 sub feilfeilfeil {
     my $s = shift;
@@ -30,6 +31,13 @@ sub feilfeilfeil {
     print STDERR "$s\n";
     exit(1);
 }
+
+my $nopartitions = 0;;
+Getopt::Long::Configure('bundling');
+GetOptions (
+    "nopartitions"  => \$nopartitions,
+    "N"             => \$nopartitions,
+) or feilfeilfeil("Error in command line arguments");
 
 my $mdstat_fn = '/proc/mdstat';
 open my $mdstat,"$mdstat_fn" || die "Can't open $mdstat_fn for reading: $!\n";
@@ -57,6 +65,7 @@ my @devfields = split(' ', $md_devs);
 for (my $i=4;$i<=$#devfields;$i++) {
     my $dev=$devfields[$i];
     $dev =~ s/\[\d+\]//;
+    $dev =~ s/\d//g if ($nopartitions);
     print "$dev ";
 }
 print "\n";
