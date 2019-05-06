@@ -32,11 +32,11 @@ sub feilfeilfeil {
     exit(1);
 }
 
-my $nopartitions = 0;;
+my $no_partitions = 0;;
 Getopt::Long::Configure('bundling');
 GetOptions (
-    "nopartitions"  => \$nopartitions,
-    "N"             => \$nopartitions,
+    "no-partitions" => \$no_partitions,
+    "N"             => \$no_partitions,
 ) or feilfeilfeil("Error in command line arguments");
 
 my $mdstat_fn = '/proc/mdstat';
@@ -65,7 +65,7 @@ my @devfields = split(' ', $md_devs);
 for (my $i=4;$i<=$#devfields;$i++) {
     my $dev=$devfields[$i];
     $dev =~ s/\[\d+\]//;
-    $dev =~ s/\d//g if ($nopartitions);
+    $dev =~ s/\d//g if ($no_partitions);
     print "$dev ";
 }
 print "\n";
