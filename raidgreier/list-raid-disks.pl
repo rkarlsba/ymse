@@ -28,35 +28,44 @@ sub feilfeilfeil {
     my $s = shift;
     $s = "Undefined error!" unless (defined($s));
     $s =~ s/[\n\r]+$//;
+    $s .= "\nPlease run with --help for more info";
     print STDERR "$s\n";
     exit(1);
 }
 
 sub help {
-    print "Usage: $0 <-h> <-n>
+    print "Usage: $0 <-h> <-n> <-S> <-F>
 
-    -h  Display this help
-    -n  Display only the disks involved, not their partitions\n";
+    --help -h           Display this help
+    --no-partitions -n  Display only the disks involved, not their partitions
+    --ignore-spares -S  Ignore spare drives
+    --ignore-failed -F  Ignore failed drives
+\n";
     exit(0);
 }
 
-my $no_partitions = 0;;
+my $no_partitions = 0;
+my $ignore_spares = 0;
+my $ignore_failed = 0;
 my $help = 0;
 my %devices;
 
 Getopt::Long::Configure('bundling');
 GetOptions (
     "no-partitions" => \$no_partitions, "n" => \$no_partitions,
+    "ignore-spares" => \$ignore_spares, "S" => \$ignore_spares,
+    "ignore-failed" => \$ignore_failed, "F" => \$ignore_failed,
     "help"          => \$help,          "h" => \$help,
 ) or feilfeilfeil("Error in command line arguments");
 
 &help if ($help);
 
 while (my $md = shift) {
+    $md =~ s/^\/dev\///;
     my $mdstat_fn = '/proc/mdstat';
     open my $mdstat_fd,"$mdstat_fn" || die "Can't open $mdstat_fn for reading: $!\n";
 
-    &feilfeilfeil("Need md device in syntax of 'md0' or similar (not with /dev/)") if (!defined($md) or ($md =~ /^\//));
+#   &feilfeilfeil("Need md device in syntax of 'md0' or similar (not with /dev/)") if (!defined($md) or ($md =~ /^\//));
     &feilfeilfeil("Devince '$md' is not a block device") unless (-b "/dev/$md");
     &feilfeilfeil("Devicee '$md' isn't named like a block device") unless ($md =~ /md/);
 
@@ -78,6 +87,8 @@ while (my $md = shift) {
     for (my $i=4;$i<=$#devfields;$i++) {
         my $dev=$devfields[$i];
         $dev =~ s/\[\d+\]//;
+        next if ($dev =~ m/\(S\)/ and $ignore_spares);
+        next if ($dev =~ m/\(F\)/ and $ignore_failed);
         $dev =~ s/\([SF]\)//;
         $dev =~ s/\d//g if ($no_partitions);
         # print "$dev ";
