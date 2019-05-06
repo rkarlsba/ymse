@@ -42,6 +42,7 @@ sub help {
 
 my $no_partitions = 0;;
 my $help = 0;
+my %devices;
 
 Getopt::Long::Configure('bundling');
 GetOptions (
@@ -51,34 +52,43 @@ GetOptions (
 
 &help if ($help);
 
-my $mdstat_fn = '/proc/mdstat';
-open my $mdstat,"$mdstat_fn" || die "Can't open $mdstat_fn for reading: $!\n";
+while (my $md = shift) {
+    my $mdstat_fn = '/proc/mdstat';
+    open my $mdstat_fd,"$mdstat_fn" || die "Can't open $mdstat_fn for reading: $!\n";
 
-my $md = shift;
-&feilfeilfeil("Need md device in syntax of 'md0' or similar (not with /dev/)") if (!defined($md) or ($md =~ /^\//));
-&feilfeilfeil("Devince '$md' is not a block device") unless (-b "/dev/$md");
-&feilfeilfeil("Devicee '$md' isn't named like a block device") unless ($md =~ /md/);
+    &feilfeilfeil("Need md device in syntax of 'md0' or similar (not with /dev/)") if (!defined($md) or ($md =~ /^\//));
+    &feilfeilfeil("Devince '$md' is not a block device") unless (-b "/dev/$md");
+    &feilfeilfeil("Devicee '$md' isn't named like a block device") unless ($md =~ /md/);
 
-my $found = 0;
-my ($md_devs,$md_blocks);
-while (!$found and my $line = <$mdstat>) {
-    if ($line =~ /^$md/) {
+    my $found = 0;
+    my ($md_devs,$md_blocks);
+    while (!$found and my $line = <$mdstat_fd>) {
+        if ($line =~ /^$md/) {
         $md_devs = $line;
-        $md_blocks = <$mdstat>;
+        $md_blocks = <$mdstat_fd>;
         $found = 1;
+        }
     }
+
+    &feilfeilfeil("Wierd - $md is a block device, but doesn't show up in $mdstat_fn") unless ($found);
+
+    chomp($md_devs);
+    my @devfields = split(' ', $md_devs);
+
+    for (my $i=4;$i<=$#devfields;$i++) {
+        my $dev=$devfields[$i];
+        $dev =~ s/\[\d+\]//;
+        $dev =~ s/\([SF]\)//;
+        $dev =~ s/\d//g if ($no_partitions);
+        # print "$dev ";
+        $devices{$dev}++;
+    }
+    close($mdstat_fd);
 }
 
-&feilfeilfeil("Wierd - $md is a block device, but doesn't show up in $mdstat_fn") unless ($found);
-
-chomp($md_devs);
-my @devfields = split(' ', $md_devs);
-
-for (my $i=4;$i<=$#devfields;$i++) {
-    my $dev=$devfields[$i];
-    $dev =~ s/\[\d+\]//;
-    $dev =~ s/\d//g if ($no_partitions);
-    print "$dev ";
+foreach my $somedev (sort keys %devices) {
+    print "$somedev ";
 }
 print "\n";
+
 exit(0);
