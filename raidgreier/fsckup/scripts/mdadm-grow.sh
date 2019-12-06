@@ -2,4 +2,4 @@
 
 echo "don't do this..."
 echo
-echo "mdadm --grow --size=10 /dev/md/raidtest:md-fsckup"
+echo "mdadm --grow --size=10 /dev/md/md-fsckup"
