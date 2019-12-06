@@ -1,1 +1,2 @@
-vgcreate vg-fsckup /dev/md/raidtest:md-fsckup
+#!/bin/bash
+vgcreate vg-fsckup /dev/md/md-fsckup
