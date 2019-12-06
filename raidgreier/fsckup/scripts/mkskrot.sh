@@ -5,7 +5,7 @@ if='/dev/urandom'
 dir='skrot'
 bs='256k'
 blockcount=64
-filecount=768
+filecount=384
 
 function die {
     print "$1" >&2
