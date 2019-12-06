@@ -26,3 +26,11 @@ is corrupt, and you might try running e2fsck with an alternate superblock:
     e2fsck -b 32768 <device>
 
 root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup#
+
+[Fri Dec  6 16:32:42 2019] md127: detected capacity change from 8580497408 to 10240
+[Fri Dec  6 16:32:42 2019] VFS: busy inodes on changed media or resized disk md127
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup/scripts# ls /fsckup/
+ls: reading directory '/fsckup/': Cannot allocate memory
+
+[Fri Dec  6 16:49:02 2019] EXT4-fs warning (device md127): dx_probe:746: inode #2: lblock 0: comm ls: error -12 reading directory block
