@@ -5,20 +5,20 @@ interface
 uses
   SysUtils, IniFiles, Main;
 
-  procedure LoadFromFile(FileName: string);   // Loads profile data from file
-  procedure SaveToFile(FileName: string);     // Saves profile data to file
-  function ByteArrToStr(data_in: array of byte; start: integer; length: integer): string; // convert byte array to string
+  procedure LoadFromFile(FileName: string);   {  Loads profile data from file }
+  procedure SaveToFile(FileName: string);     {  Saves profile data to file }
+  function ByteArrToStr(data_in: array of byte; start: integer; length: integer): string; {  convert byte array to string }
 
 implementation
 
-// Load profile
+{  Load profile }
 procedure LoadFromFile(FileName: string);
 var
   ProfileFile: TInifile;
 begin
   ProfileFile := TInifile.Create(FileName);
-  // Load from file
-  // Load basic settings
+  {  Load from file }
+  {  Load basic settings }
   MainForm.cbbBasLowBat.Text             := IntToStr(ProfileFile.Readinteger('Basic','LBP',10));
   MainForm.speBasCurrLim.Value           := ProfileFile.Readinteger('Basic','LC',10);
   MainForm.speBasAssist0CurrLim.Value    := ProfileFile.Readinteger('Basic','ALC0',10);
@@ -44,7 +44,7 @@ begin
   MainForm.cbbBasWheelDiam.ItemIndex     := ProfileFile.Readinteger('Basic','WD',10);
   MainForm.cbbBasSpdMtrType.ItemIndex    := ProfileFile.Readinteger('Basic','SMM',0);
   MainForm.speBasSpdMtrSig.Value         := ProfileFile.Readinteger('Basic','SMS',10);
-  // Load pedal assist settings
+  {  Load pedal assist settings }
   MainForm.cbbPASPedalSensType.ItemIndex := ProfileFile.Readinteger('Pedal Assist','PT',0);
   MainForm.cbbPASDesigAssist.ItemIndex   := ProfileFile.Readinteger('Pedal Assist','DA',0);
   MainForm.cbbPASSpdLim.ItemIndex        := ProfileFile.Readinteger('Pedal Assist','SL',0);
@@ -56,7 +56,7 @@ begin
   MainForm.spePASCurrDecay.Value         := ProfileFile.Readinteger('Pedal Assist','CD',10);
   MainForm.spePASStopDecay.Value         := ProfileFile.Readinteger('Pedal Assist','SD',10);
   MainForm.spePASKeepCurr.Value          := ProfileFile.Readinteger('Pedal Assist','KC',10);
-  // Load throttle handle settings
+  {  Load throttle handle settings }
   MainForm.speThrStartVolt.Value         := ProfileFile.Readinteger('Throttle Handle','SV',10);
   MainForm.speThrEndVolt.Value           := ProfileFile.Readinteger('Throttle Handle','EV',10);
   MainForm.cbbThrMode.ItemIndex          := ProfileFile.Readinteger('Throttle Handle','MODE',0);
@@ -64,17 +64,17 @@ begin
   MainForm.edThrSpeedLim.ItemIndex       := ProfileFile.Readinteger('Throttle Handle','SL',0);
   MainForm.speThrStartCurr.Value         := ProfileFile.Readinteger('Throttle Handle','SC',10);
 
-  ProfileFile.Destroy; // Close file
+  ProfileFile.Destroy; {  Close file }
 end;
 
-// Save profile
+{  Save profile }
 procedure SaveToFile(FileName: string);
 var
   ProfileFile: TInifile;
 begin
   ProfileFile := TInifile.Create(FileName);
-  // Save to file
-  // Save basic settings
+  {  Save to file }
+  {  Save basic settings }
   ProfileFile.WriteInteger('Basic','LBP',StrToInt(MainForm.cbbBasLowBat.Text));
   ProfileFile.WriteInteger('Basic','LC',MainForm.speBasCurrLim.Value);
   ProfileFile.WriteInteger('Basic','ALC0',MainForm.speBasAssist0CurrLim.Value);
@@ -100,7 +100,7 @@ begin
   ProfileFile.WriteInteger('Basic','WD',MainForm.cbbBasWheelDiam.ItemIndex);
   ProfileFile.WriteInteger('Basic','SMM',MainForm.cbbBasSpdMtrType.ItemIndex);
   ProfileFile.WriteInteger('Basic','SMS',MainForm.speBasSpdMtrSig.Value);
-  // Save pedal assist settings
+  {  Save pedal assist settings }
   ProfileFile.WriteInteger('Pedal Assist','PT',MainForm.cbbPASPedalSensType.ItemIndex);
   ProfileFile.WriteInteger('Pedal Assist','DA',MainForm.cbbPASDesigAssist.ItemIndex);
   ProfileFile.WriteInteger('Pedal Assist','SL',MainForm.cbbPASSpdLim.ItemIndex);
@@ -112,7 +112,7 @@ begin
   ProfileFile.WriteInteger('Pedal Assist','CD',MainForm.spePASCurrDecay.Value);
   ProfileFile.WriteInteger('Pedal Assist','SD',MainForm.spePASStopDecay.Value);
   ProfileFile.WriteInteger('Pedal Assist','KC',MainForm.spePASKeepCurr.Value);
-  // Save throttle handle settings
+  {  Save throttle handle settings }
   ProfileFile.WriteInteger('Throttle Handle','SV',MainForm.speThrStartVolt.Value);
   ProfileFile.WriteInteger('Throttle Handle','EV',MainForm.speThrEndVolt.Value);
   ProfileFile.WriteInteger('Throttle Handle','MODE',MainForm.cbbThrMode.ItemIndex);
@@ -120,28 +120,28 @@ begin
   ProfileFile.WriteInteger('Throttle Handle','SL',MainForm.edThrSpeedLim.ItemIndex);
   ProfileFile.WriteInteger('Throttle Handle','SC',MainForm.speThrStartCurr.Value);
 
-  ProfileFile.Destroy;  // Close file
+  ProfileFile.Destroy;  {  Close file }
 end;
 
-// extracts part of byte array as a string
-// if length = 0 then converts the whole array
+{  extracts part of byte array as a string }
+{  if length = 0 then converts the whole array }
 function ByteArrToStr(data_in: array of byte; start: integer; length: integer): string;
 var
-  i:  integer; // counter
+  i:  integer; {  counter }
 begin
-  if length = 0 then // used to convert the full array to string
+  if length = 0 then {  used to convert the full array to string }
   begin
     for i := 0 to (SizeOf(data_in) - start - 1) do
       Result := Result + Chr(data_in[i + start])
   end
-  else // partial conversion
+  else {  partial conversion }
   begin
     if length <= (SizeOf(data_in) - start) then
     begin
       for i := 0 to (length - 1) do
         Result := Result + Chr(data_in[i + start])
     end
-    else // convert the whole array if trying to convert more than available
+    else {  convert the whole array if trying to convert more than available }
       begin
         for i := 0 to (SizeOf(data_in) - start - 1) do
           Result := Result + Chr(data_in[i + start])
