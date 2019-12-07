@@ -9,4 +9,4 @@ link:
 	cc $(OPTS) $(LIBS) -o messup messup.o
 
 clean:
-	rm -f *.so core.* core messup
+	rm -f *.{o,so} core.* core messup
