@@ -14,8 +14,13 @@
 
 int checkprompt(const char *question, const char *rightanswer) {
     char *answer = readline(question);
-//  return (!strcmp(answer, rightanswer) == 0);
-    return (strcmp(answer, rightanswer) == 0);
+    int comp = (strcmp(answer, rightanswer) == 0);
+    free(answer);
+    return comp;
+}
+
+int blocktrash(off_t offset, uint64_t count) {
+    return 0;
 }
 
 int main(int argc, char **argv) {
