@@ -1,0 +1,36 @@
+# Just ran scripts/mdadm-grow.sh and dmesg can tell me
+
+[Fri Dec  6 16:09:15 2019] md127: detected capacity change from 8580497408 to 10240
+
+# Let's try to access the data
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup# df -h /fsckup/
+Filesystem                        Type  Size  Used Avail Use% Mounted on
+/dev/mapper/vg--fsckup-lv--fsckup ext4  7.9G  6.1G  1.8G  78% /fsckup
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup# umount /fsckup
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup# mount /fsckup
+mount: /fsckup: wrong fs type, bad option, bad superblock on /dev/mapper/vg--fsckup-lv--fsckup, missing codepage or helper program, or other error.
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup# fsck /dev/vg-fsckup/lv-fsckup
+fsck from util-linux 2.33.1
+e2fsck 1.44.5 (15-Dec-2018)
+fsck.ext4: Input/output error while trying to open /dev/mapper/vg--fsckup-lv--fsckup
+
+The superblock could not be read or does not describe a valid ext2/ext3/ext4
+filesystem.  If the device is valid and it really contains an ext2/ext3/ext4
+filesystem (and not swap or ufs or something else), then the superblock
+is corrupt, and you might try running e2fsck with an alternate superblock:
+    e2fsck -b 8193 <device>
+ or
+    e2fsck -b 32768 <device>
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup#
+
+[Fri Dec  6 16:32:42 2019] md127: detected capacity change from 8580497408 to 10240
+[Fri Dec  6 16:32:42 2019] VFS: busy inodes on changed media or resized disk md127
+
+root@raidtest:~/src/git/rkarlsba/ymse/raidgreier/fsckup/scripts# ls /fsckup/
+ls: reading directory '/fsckup/': Cannot allocate memory
+
+[Fri Dec  6 16:49:02 2019] EXT4-fs warning (device md127): dx_probe:746: inode #2: lblock 0: comm ls: error -12 reading directory block

@@ -1,0 +1,43 @@
+# cat /proc/mdstat
+Personalities : [raid6] [raid5] [raid4] [linear] [multipath] [raid0] [raid1] [raid10] 
+md127 : active raid5 sdb[1] sda[0] sdc[3]
+      16758784 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/3] [UUU]
+      
+unused devices: <none>
+
+# samme resultat med mdadm --detail /dev/md127
+
+# mdadm --detail /dev/md/raidtest:md-fsckup:
+/dev/md/raidtest:md-fsckup:
+           Version : 1.2
+     Creation Time : Fri Dec  6 14:03:52 2019
+        Raid Level : raid5
+        Array Size : 16758784 (15.98 GiB 17.16 GB)
+     Used Dev Size : 8379392 (7.99 GiB 8.58 GB)
+      Raid Devices : 3
+     Total Devices : 3
+       Persistence : Superblock is persistent
+
+       Update Time : Fri Dec  6 14:49:49 2019
+             State : clean 
+    Active Devices : 3
+   Working Devices : 3
+    Failed Devices : 0
+     Spare Devices : 0
+
+            Layout : left-symmetric
+        Chunk Size : 512K
+
+Consistency Policy : resync
+
+              Name : raidtest:md-fsckup  (local to host raidtest)
+              UUID : 0b6949f5:bdde5385:3737a0a1:68e40d84
+            Events : 24
+
+    Number   Major   Minor   RaidDevice State
+       0       8        0        0      active sync   /dev/sda
+       1       8       16        1      active sync   /dev/sdb
+       3       8       32        2      active sync   /dev/sdc
+
+# ls -l /dev/md/raidtest:md-fsckup
+lrwxrwxrwx 1 root root 8 Dec  6 14:49 /dev/md/raidtest:md-fsckup -> ../md127
