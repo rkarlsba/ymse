@@ -28,10 +28,36 @@ int checkprompt(const char *question, const char *rightanswer) {
     return comp;
 }
 
+// dfd as in destination fd, rfd as in random fd
 int blocktrash(int dfd, int rfd, off_t offset, size_t count) {
+    void *buf;
+    size_t br,bw;
+
     if (lseek(dfd, offset, SEEK_SET) != 0) {
         fprintf(stderr, "Error calling lseek(): %s\n", strerror(errno));
         exit(10);
+    }
+
+    buf=malloc(count+1);
+    if (buf == NULL) {
+        fprintf(stderr, "malloc(%ld) failed\n", count+1);
+        exit(11);
+    }
+
+    br = read(rfd, buf, count);
+    if (br != count) {
+        fprintf(stderr, "Read %ld out of %ld bytes, exiting\n", br, count);
+        exit(12);
+    }
+
+    bw = write(dfd, buf, count);
+    if (bw != count) {
+        char s[1024] = "";
+        if (bw > 0) {
+            sprintf(s, " (probably bust anyway)");
+        }
+        fprintf(stderr, "Read %ld out of %ld bytes, exiting%s\n", br, count, s);
+        exit(13);
     }
     return 0;
 }
@@ -75,13 +101,17 @@ int main(int argc, char **argv) {
         exit(5);
     }
 
-    /*
-    for (;;) {
-        blocktrash(dev_fd, rand_fd, off, cnt);
-    }
-    */
-
     printf("Doing nasty things with %s\n", devfilename);
+
+//    for (;;) {
+        blocktrash(dev_fd, rand_fd, off, cnt);
+//    }
+
+    close(dev_fd);
+    close(rand_fd);
+
+    printf("Done\n");
+
     exit(0);
 }
 
