@@ -31,7 +31,7 @@ implementation
 
 Uses Main;
 
-procedure ShowAbout; //procedure for creating and destroying the About window
+procedure ShowAbout; { procedure for creating and destroying the About window }
 begin
   with TAboutForm.Create(Application) do
     try
@@ -45,12 +45,12 @@ end;
 
 procedure TAboutForm.btnCloseKeyPress(Sender: TObject; var Key: Char);
 begin
-  if key=#27 then Close; // Close window if Esc is clicked
+  if key=#27 then Close; {  Close window if Esc is clicked }
 end;
 
 procedure TAboutForm.lbPenoffLinkClick(Sender: TObject);
 begin
-  ShellExecute(0, 'OPEN', PChar(lbPenoffLink.Caption), '', '', SW_SHOWNORMAL);  // Go to Penoff's website
+  ShellExecute(0, 'OPEN', PChar(lbPenoffLink.Caption), '', '', SW_SHOWNORMAL);  {  Go to Penoff's website }
 end;
 
 end.
