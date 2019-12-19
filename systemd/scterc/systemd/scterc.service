@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable ERC on all drives supporting it
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/enable-scterc-on-all-drives.sh
+
+[Install]
+WantedBy=multi-user.target
