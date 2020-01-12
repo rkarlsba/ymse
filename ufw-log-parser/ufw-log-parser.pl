@@ -5,6 +5,9 @@ use strict;
 use warnings;
 use Term::ANSIColor qw(:constants);
 
+# Globals
+my $debug = 2;
+
 # Denne vil ha mat fra dmesg med tidsstempel. Her er et eksempel på noe fra dmesg -T. {{{
 #
 # Se dmesg-T.txt for mer.
@@ -17,11 +20,38 @@ use Term::ANSIColor qw(:constants);
 while (my $line = <STDIN>) {
     chomp($line);
     if ($line =~ /^\[(.*?)\] (\[UFW.*?\]) (.*)/) {
+        my %packet = (
+            IN => undef,
+            OUT => undef,
+            MAC => undef,
+            SRC => undef,
+            DST => undef,
+            LEN => undef,
+            TOS => undef,
+            PREC => undef,
+            TTL => undef,
+            ID => undef,
+            DF => undef,
+            PROTO => undef,
+            SPT => undef,
+            DPT => undef,
+            WINDOW => undef,
+            RES => undef,
+            CWR => undef,
+            ECE => undef,
+            SYN => undef,
+            URGP => undef,
+        );
         my $timestamp = $1;
         my $ufwmsg = $2;
         my $stuff = $3;
         print "Got time " . BOLD . "$timestamp" . RESET . ", ufw says " .
             BOLD . "$ufwmsg" . RESET . " and stuff is " . BOLD . "$stuff" .
-            RESET . "\n";
+            RESET . "\n" if ($debug gt 1);
+
+        foreach my $k (keys %packet) {
+            print "$k\n";
+        }
+        exit;
     }
 }

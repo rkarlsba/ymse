@@ -1,5 +1,3 @@
-[Fri Jan 10 10:34:04 2020]
-[UFW BLOCK]
 IN=wlan0
 OUT=
 MAC=b8:27:eb:19:f3:0f:fc:83:99:54:4a:95:08:00
