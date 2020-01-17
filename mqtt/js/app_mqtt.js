@@ -2,7 +2,8 @@
 
 var mysql = require('mysql');
 
-//Create Connection
+// Create Connection
+// (yeah, I know I shouldn't post passwords on github, but this is for internal testing)
 var connection = mysql.createConnection({
     host: "localhost",
     user: "mqtt",
