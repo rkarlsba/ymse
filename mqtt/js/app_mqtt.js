@@ -1,6 +1,13 @@
+#!/usr/bin/node
 // vim:ts=4:sw=4:sts=4:et:ai
 //
-var PgClient = require('pg');
+//
+//
+// const { Client } = require('pg')
+// const client = new Client()
+// client.connect()
+
+const { PgClient } = require('pg')
 var format = require('pg-format');
 var mqtt = require('mqtt');
 
@@ -13,12 +20,12 @@ var options = {
     keepalive : 60
 };
 
-var pgclient = new PgClient({
+const pgclient = new PgClient({
     user: 'mqtt',
     host: 'localhost',
     database: 'mqtt',
     password: 'yaituaC1bengie0r',
-    port: 5432,
+    port: 5432
 });
 pgclient.connect();
 
