@@ -2,30 +2,19 @@
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 import paho.mqtt.client as mqtt
-import time
 
-mqtt_broker ="localhost" 
-topic="#"
+mqtt_broker = "localhost"
 
-def on_my_mqtt_message(mqtt_client, userdata, message):
-    print("message received " ,str(message.payload.decode("utf-8")))
-    print("message topic=",message.topic)
-    print("message qos=",message.qos)
-    print("message retain flag=",message.retain)
+def on_connect(mqttc, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
+    mqttc.subscribe("#")
 
-print("creating new instance")
-mqtt_client = mqtt.Client(mqtt_broker) #create new instance
-mqtt_client.on_mqtt_message=on_my_mqtt_message #attach function to callback
+def on_message(mqttc, userdata, msg):
+    print(msg.topic+" "+str(msg.payload))
 
-print("connecting to broker")
-mqtt_client.connect(mqtt_broker) #connect to broker
-mqtt_client.loop_start() #start the loop
+mqttc = mqtt.Client()
+mqttc.on_connect = on_connect
+mqttc.on_message = on_message
+mqttc.connect(mqtt_broker)
 
-print("Subscribing to topic",topic)
-ret = mqtt_client.subscribe(topic, 0)
-print("Return value: ",ret)
-# print("Publishing message to topic",topic)
-# mqtt_client.publish(topic,"OFF")
-
-time.sleep(30) # wait
-mqtt_client.loop_stop() #stop the loop
+mqttc.loop_forever()
