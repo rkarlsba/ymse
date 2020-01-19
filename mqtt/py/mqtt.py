@@ -8,7 +8,6 @@ from config import config
 mqtt_broker = "localhost"
 mqtt_clientid = "mqtt.karlsbakk.net"
 pg_connection = None
-pg_cursor = None
 
 def on_connect(mqttc, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -19,55 +18,54 @@ def on_connect(mqttc, userdata, flags, rc):
 # ----+--------------------+--------------+----------+------------+-------------------------------
 #   1 | mqtt.karlsbakk.net | test/kitchen | dev01,on |          1 | 2020-01-18 17:57:13.616925+01
 def on_message(mqttc, userdata, msg):
-    sql = "INSERT INTO mqtt(clientid, topic, message) values (\"{:s}\", \"{:s}\", \"{:s}\")".format(mqtt_clientid, msg.topic, msg.payload.decode('utf-8'))
+    sql = "INSERT INTO mqtt_messages(clientid, topic, message) values ('{:s}', '{:s}', '{:s}')".format(mqtt_clientid, msg.topic, msg.payload.decode('utf-8'))
     try:
         pg_cursor = pg_connection.cursor()
-        # pg_cursor.execute(sql)
+#       print("Trying", sql)
+        pg_cursor.execute(sql)
+        pg_connection.commit()
         pg_cursor.close()
-        print("Ran", sql)
+#       print("Ran", sql)
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        print("FEILFEILFEIL", error)
         exit(1)
 
-def pg_connect():
-    """ Connect to the PostgreSQL database server """
-    try:
-        # read connection parameters
-        params = config()
- 
-        # connect to the PostgreSQL server
-        print('Connecting to the PostgreSQL database...')
-        pg_connection = psycopg2.connect(**params)
-      
-        # create a cursor
-        pg_cursor = pg_connection.cursor()
-        
-        # execute a statement
-        print('PostgreSQL database version:')
-        pg_cursor.execute('SELECT version()')
- 
-        # display the PostgreSQL database server version
-        db_version = pg_cursor.fetchone()
-        print(db_version)
-       
-       # close the communication with the PostgreSQL
-        pg_cursor.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if pg_connection is not None:
-            pg_connection.close()
-            print('Database connection closed.')
- 
-def do_mqtt():
-    mqttc = mqtt.Client()
-    mqttc.on_connect = on_connect
-    mqttc.on_message = on_message
-    mqttc.connect(mqtt_broker)
+try:
+    # read connection parameters
+    params = config()
 
-    mqttc.loop_forever()
+    # connect to the PostgreSQL server
+    print('Connecting to the PostgreSQL database...')
+    pg_connection = psycopg2.connect(**params)
+  
+    # create a cursor
+#   pg_cursor = pg_connection.cursor()
+    
+    # execute a statement
+#   print('PostgreSQL database version:')
+#   pg_cursor.execute('SELECT version()')
+
+    # display the PostgreSQL database server version
+#   db_version = pg_cursor.fetchone()
+#   print(db_version)
+   
+   # close the communication with the PostgreSQL
+#  pg_cursor.close()
+except (Exception, psycopg2.DatabaseError) as error:
+    print(error)
+#   finally:
+#       if pg_connection is not None:
+#           pg_connection.close()
+#           print('Database connection closed.')
+ 
+mqttc = mqtt.Client()
+mqttc.on_connect = on_connect
+mqttc.on_message = on_message
+mqttc.connect(mqtt_broker)
+
+mqttc.loop_forever()
      
-if __name__ == '__main__':
-    pg_connect()
-    do_mqtt()
+# if __name__ == '__main__':
+#   pg_connect()
+#   do_mqtt()
 
