@@ -6,13 +6,21 @@ import psycopg2
 from config import config
 
 mqtt_broker = "localhost"
+mqtt_clientid = "mqtt.karlsbakk.net"
 
 def on_connect(mqttc, userdata, flags, rc):
     print("Connected with result code "+str(rc))
     mqttc.subscribe("#")
 
+# mqtt=> select * from mqtt_messages;
+#  id |      clientid      |    topic     | message  | is_enabled |             time
+# ----+--------------------+--------------+----------+------------+-------------------------------
+#   1 | mqtt.karlsbakk.net | test/kitchen | dev01,on |          1 | 2020-01-18 17:57:13.616925+01
 def on_message(mqttc, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    sql = "INSERT INTO mqtt(clientid, topic, message) values (\"{:s}\", \"{:s}\", \"{:s}\")".format(mqtt_clientid, msg.topic, msg.payload.decode('utf-8'))
+#   print("hello!!!")
+#   print(msg.topic+" "+str(msg.payload))
+    print(sql)
 
 def pg_connect():
     """ Connect to the PostgreSQL database server """
@@ -37,7 +45,7 @@ def pg_connect():
         print(db_version)
        
        # close the communication with the PostgreSQL
-        cur.close()
+       #cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
