@@ -1,0 +1,16 @@
+# vim:ft=systemd:isfname-==
+
+[Unit]
+Description=MQTT to PostgreSQL slurp
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=mqtt
+ExecStart=/home/mqtt/mqtt_to_pg/mqtt_to_pg.py
+
+[Install]
+WantedBy=multi-user.target
