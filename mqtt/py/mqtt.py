@@ -1,23 +1,5 @@
 #!/usr/bin/python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
-# {{{
-# import paho.mqtt.client as mqtt
-
-# Client(client_id=””, clean_session=True, userdata=None, protocol=MQTTv311, transport=”tcp”)
-
-# mqtt_broker ="mqtt.karlsbakk.net" 
-# mqtt_client = mqtt.Client("mqtt.karlsbakk.net")
-# mqtt_client.connect(mqtt_broker)
-# mqtt_client.subscribe("#")
-# 
-# mqtt_client.mqtt_on_message=on_message        #attach function to callback
-# 
-# def on_mqtt_message(mqtt_client, userdata, message):
-#     print("message received " ,str(message.payload.decode("utf-8")))
-#     print("message topic=",message.topic)
-#     print("message qos=",message.qos)
-#     print("message retain flag=",message.retain)
-# }}}
 
 import paho.mqtt.client as mqtt
 import time
