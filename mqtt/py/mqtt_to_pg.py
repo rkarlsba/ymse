@@ -3,7 +3,7 @@
 
 import paho.mqtt.client as mqtt
 import psycopg2
-from config import config
+from mqtt_to_pg_config import mqtt_to_pg_config
 
 mqtt_broker = "localhost"
 mqtt_clientid = "mqtt.karlsbakk.net"
@@ -32,7 +32,7 @@ def on_message(mqttc, userdata, msg):
 
 try:
     # read connection parameters
-    params = config()
+    params = mqtt_to_pg_config()
 
     # connect to the PostgreSQL server
     print('Connecting to the PostgreSQL database...')
