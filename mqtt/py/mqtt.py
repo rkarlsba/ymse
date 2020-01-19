@@ -7,6 +7,8 @@ from config import config
 
 mqtt_broker = "localhost"
 mqtt_clientid = "mqtt.karlsbakk.net"
+pg_connection = None
+pg_cursor = None
 
 def on_connect(mqttc, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -18,39 +20,43 @@ def on_connect(mqttc, userdata, flags, rc):
 #   1 | mqtt.karlsbakk.net | test/kitchen | dev01,on |          1 | 2020-01-18 17:57:13.616925+01
 def on_message(mqttc, userdata, msg):
     sql = "INSERT INTO mqtt(clientid, topic, message) values (\"{:s}\", \"{:s}\", \"{:s}\")".format(mqtt_clientid, msg.topic, msg.payload.decode('utf-8'))
-#   print("hello!!!")
-#   print(msg.topic+" "+str(msg.payload))
-    print(sql)
+    try:
+        pg_cursor = pg_connection.cursor()
+        # pg_cursor.execute(sql)
+        pg_cursor.close()
+        print("Ran", sql)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+        exit(1)
 
 def pg_connect():
     """ Connect to the PostgreSQL database server """
-    conn = None
     try:
         # read connection parameters
         params = config()
  
         # connect to the PostgreSQL server
         print('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(**params)
+        pg_connection = psycopg2.connect(**params)
       
         # create a cursor
-        cur = conn.cursor()
+        pg_cursor = pg_connection.cursor()
         
         # execute a statement
         print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+        pg_cursor.execute('SELECT version()')
  
         # display the PostgreSQL database server version
-        db_version = cur.fetchone()
+        db_version = pg_cursor.fetchone()
         print(db_version)
        
        # close the communication with the PostgreSQL
-       #cur.close()
+        pg_cursor.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:
-        if conn is not None:
-            conn.close()
+        if pg_connection is not None:
+            pg_connection.close()
             print('Database connection closed.')
  
 def do_mqtt():
