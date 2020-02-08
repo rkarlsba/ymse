@@ -1,0 +1,1 @@
+gcc -Wall -Wextra value.c config.c rfid.c rc522.c main.c -o rc522 -lbcm2835
