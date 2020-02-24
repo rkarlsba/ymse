@@ -91,4 +91,3 @@ while 1:
                 fan_status=0
             
     sleep(c_poll_delay)
-
