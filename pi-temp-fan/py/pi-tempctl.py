@@ -11,7 +11,7 @@ config_file = 'pi-tempctl.conf'
 c_temperaure_threashold = 45
 c_hysteresis_avoidance = 1
 c_fan_pin = 0;
-c_poll_rate = 1;
+c_poll_delay = 1;
 
 syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DAEMON)
 
@@ -25,10 +25,10 @@ for key in config['default']:
         c_hysteresis_avoidance = config['default']['hysteresis_avoidance'];
     elif key == 'fan_pin':
         c_fan_pin = config['default']['fan_pin'];
-    elif key == 'poll_rate':
-        c_poll_rate = config['default']['poll_rate'];
+    elif key == 'poll_delay':
+        c_poll_delay = config['default']['poll_delay'];
 
-syslog_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_rate {}".format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_rate);
+syslog_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_delay {}".format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_delay);
 syslog.syslog(syslog.LOG_DEBUG, syslog_message);
 
 
