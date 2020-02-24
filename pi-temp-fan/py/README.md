@@ -1,4 +1,4 @@
-# vim:ai:tw=100
+[comment]: vim:ai:tw=100
 
 pi-tempctl.py
 ==================
@@ -13,4 +13,3 @@ be set under the [default] section.
 | poll_rate             | Number of seconds to delay between each poll  | 45      |
 | temperaure_threashold | Temperature at which to turn on/off fan       | 45      |
 | hysteresis_avoidance  | Times to probe threshold before toggling fan3 | 1       |
-|-----------------------|-----------------------------------------------|---------|
