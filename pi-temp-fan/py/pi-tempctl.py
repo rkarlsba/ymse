@@ -9,6 +9,8 @@ import gpiozero
 
 # globals
 config_file = "pi-tempctl.conf"
+# FIXME searchpath should be an array etc
+searchpath = "/usr/local/etc"
 temperature_file = "/sys/class/thermal/thermal_zone0/temp";
 fan_status = 0
 probe_count = 0
@@ -44,7 +46,7 @@ syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DA
 
 # read config
 config = configparser.ConfigParser()
-config.read(config_file)
+config.read(searchpath + "/" + config_file)
 for key in config["default"]:
     if key == "temperaure_threashold":
         c_temperaure_threashold = config.getfloat("default","temperaure_threashold");
