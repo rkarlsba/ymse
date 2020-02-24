@@ -6,7 +6,8 @@ import syslog
 from time import sleep
 
 # globals
-config_file = 'pi-tempctl.conf'
+config_file = "pi-tempctl.conf"
+temperature_file = "/sys/class/thermal/thermal_zone0/temp";
 
 # defaults
 c_temperaure_threashold = 45
@@ -19,15 +20,15 @@ syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DA
 # read config
 config = configparser.ConfigParser()
 config.read(config_file)
-for key in config['default']:
-    if key == 'temperaure_threashold':
-        c_temperaure_threashold = config['default']['temperaure_threashold'];
-    elif key == 'hysteresis_avoidance':
-        c_hysteresis_avoidance = config['default']['hysteresis_avoidance'];
-    elif key == 'fan_pin':
-        c_fan_pin = config['default']['fan_pin'];
-    elif key == 'poll_delay':
-        c_poll_delay = config.getint['default']['poll_delay'];
+for key in config["default"]:
+    if key == "temperaure_threashold":
+        c_temperaure_threashold = config.getfloat("default","temperaure_threashold");
+    elif key == "hysteresis_avoidance":
+        c_hysteresis_avoidance = config.getint("default","hysteresis_avoidance");
+    elif key == "fan_pin":
+        c_fan_pin = config.getint("default","fan_pin");
+    elif key == "poll_delay":
+        c_poll_delay = config.getfloat("default","poll_delay");
 
 syslog_base_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_delay {}";
 syslog_message = syslog_base_message.format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_delay);
