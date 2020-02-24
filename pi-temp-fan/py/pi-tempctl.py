@@ -3,6 +3,7 @@
 
 import configparser
 import syslog
+from time import sleep
 
 # globals
 config_file = 'pi-tempctl.conf'
@@ -26,9 +27,14 @@ for key in config['default']:
     elif key == 'fan_pin':
         c_fan_pin = config['default']['fan_pin'];
     elif key == 'poll_delay':
-        c_poll_delay = config['default']['poll_delay'];
+        c_poll_delay = config.getint['default']['poll_delay'];
 
-syslog_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_delay {}".format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_delay);
+syslog_base_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_delay {}";
+syslog_message = syslog_base_message.format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_delay);
 syslog.syslog(syslog.LOG_DEBUG, syslog_message);
 
-
+count = 0
+while 1:
+    print("Test {0:03d} (sleep {1:f})".format(count,c_poll_delay))
+    count=count+1
+    sleep(c_poll_delay)
