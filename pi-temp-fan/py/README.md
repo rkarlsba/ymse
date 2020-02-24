@@ -1,5 +1,10 @@
 [comment]: vim:ai:tw=100
 
+[comment]: yellowpi: Raspberry Pi 4 Model B Rev 1.1
+[comment]: greenpi:  Raspberry Pi 3 Model B Rev 1.2
+[comment]: redpi:    Raspberry Pi 3 Model B Rev 1.2
+[comment]: bluepi:   Raspberry Pi 2 Model B Rev 1.1
+
 pi-tempctl.py
 ==================
 
