@@ -4,6 +4,7 @@
 import configparser
 import syslog
 from time import sleep
+import sys
 
 # globals
 config_file = "pi-tempctl.conf"
@@ -26,6 +27,14 @@ def gettemp():
     except (RuntimeError, TypeError, NameError):
         print("Some bloody error")
 
+def fanctl(status):
+    if status == 0:
+        print("Turn fan off")
+        syslog.syslog(syslog.LOG_INFO, "Fan off");
+    else:
+        print("Turn fan on")
+        syslog.syslog(syslog.LOG_INFO, "Fan on");
+
 syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DAEMON)
 
 # read config
@@ -47,15 +56,21 @@ syslog.syslog(syslog.LOG_DEBUG, syslog_message);
 
 while 1:
     temp = gettemp()
-    if (fan_status == 0 and temp > c_temperaure_threashold) or (fan_status == 1 and temp > c_temperaure_threashold):
-        probe_count=probe_count+1
-    if fan_status == 0 and probe_count >= c_probe_count:
-        print("Fan on")
-        probe_count=0
-    if fan_status == 1 and probe_count >= c_probe_count:
-        print("Fan off")
-        probe_count=0
-        
-    print("Test {0:03d} (sleep {1:f}). Temp is {2}".format(probe_count,c_poll_delay,temp))
+    if fan_status == 0: # fan status is off
+        if temp > c_temperaure_threashold:
+            probe_count+=1
+            if probe_count >= c_probe_count:
+                probe_count=0
+                fanctl(1)
+                fan_status=1
+    else: # fan status is on
+        if temp <= c_temperaure_threashold:
+            probe_count+=1
+            if probe_count >= c_probe_count:
+                probe_count=0
+                fanctl(0)
+                fan_status=0
+            
+    print("Test {0:03d} (sleep {1:f}). Temp is {2} and fan status is {3}".format(probe_count,c_poll_delay,temp,fan_status))
     sleep(c_poll_delay)
 
