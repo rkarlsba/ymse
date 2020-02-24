@@ -12,3 +12,4 @@ be set under the [default] section.
 | fan_pin               | Pin connected to fan (and driver)            | int   | 0       |
 | poll_delay            | Number of seconds to delay between each poll | float | 1       |
 | hysteresis_avoidance  | Times to probe threshold before toggling fan | int   | 1       |
+| debug_log             | Log to LOG_DEBUG every x probe               | int   | 0       |

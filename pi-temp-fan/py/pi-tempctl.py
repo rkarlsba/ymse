@@ -15,8 +15,9 @@ probe_count = 0
 # defaults
 c_temperaure_threashold = 45
 c_probe_count = 1
-c_fan_pin = 0;
-c_poll_delay = 1;
+c_fan_pin = 0
+c_poll_delay = 1
+c_debug_print = 0
 
 def gettemp():
     try:
@@ -49,13 +50,24 @@ for key in config["default"]:
         c_fan_pin = config.getint("default","fan_pin");
     elif key == "poll_delay":
         c_poll_delay = config.getfloat("default","poll_delay");
+    elif key == "debug_print":
+        c_debug_print = config.getint("default","debug_print");
 
-syslog_base_message = "DEBUG: Got temperaure_threashold {}, probe_count {}, fan_pin {} and poll_delay {}";
+syslog_base_message = "Daemon started with temperaure_threashold {}, probe_count {}, fan_pin {} and poll_delay {}";
 syslog_message = syslog_base_message.format(c_temperaure_threashold, c_probe_count, c_fan_pin, c_poll_delay);
-syslog.syslog(syslog.LOG_DEBUG, syslog_message);
+syslog.syslog(syslog.LOG_INFO, syslog_message);
 
+count=0
 while 1:
     temp = gettemp()
+    if c_debug_print > 0:
+        count+=1
+        if (count%c_debug_print) == 0:
+            syslog_base_message = "DEBUG: Temperature is {}, threshold is {}, fan_status is {} and poll_delay {}";
+            syslog_message = syslog_base_message.format(temp, c_temperaure_threashold, fan_status, c_poll_delay);
+            syslog.syslog(syslog.LOG_DEBUG, syslog_message);
+            count=0
+
     if fan_status == 0: # fan status is off
         if temp > c_temperaure_threashold:
             probe_count+=1
@@ -71,6 +83,5 @@ while 1:
                 fanctl(0)
                 fan_status=0
             
-    print("Test {0:03d} (sleep {1:f}). Temp is {2} and fan status is {3}".format(probe_count,c_poll_delay,temp,fan_status))
     sleep(c_poll_delay)
 
