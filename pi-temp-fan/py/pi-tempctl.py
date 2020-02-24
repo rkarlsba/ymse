@@ -23,8 +23,12 @@ for key in config['default']:
         c_temperaure_threashold = config['default']['temperaure_threashold'];
     elif key == 'hysteresis_avoidance':
         c_hysteresis_avoidance = config['default']['hysteresis_avoidance'];
+    elif key == 'fan_pin':
+        c_fan_pin = config['default']['fan_pin'];
+    elif key == 'poll_rate':
+        c_poll_rate = config['default']['poll_rate'];
 
-syslog_message = "DEBUG: Got temperaure_threashold {} and hysteresis_avoidance {}".format(c_temperaure_threashold, c_hysteresis_avoidance);
+syslog_message = "DEBUG: Got temperaure_threashold {}, hysteresis_avoidance {}, fan_pin {} and poll_rate {}".format(c_temperaure_threashold, c_hysteresis_avoidance, c_fan_pin, c_poll_rate);
 syslog.syslog(syslog.LOG_DEBUG, syslog_message);
 
 
