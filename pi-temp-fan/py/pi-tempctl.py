@@ -6,11 +6,13 @@ import syslog
 from time import sleep
 import sys
 import gpiozero
+import os.path
 
 # globals
 config_file = "pi-tempctl.conf"
-# FIXME searchpath should be an array etc
-searchpath = "/usr/local/etc"
+searchpath = ["/etc","/usr/local/etc"]
+for path in paths:
+    print(path)
 temperature_file = "/sys/class/thermal/thermal_zone0/temp";
 fan_status = 0
 probe_count = 0
@@ -46,18 +48,28 @@ syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DA
 
 # read config
 config = configparser.ConfigParser()
-config.read(searchpath + "/" + config_file)
-for key in config["default"]:
-    if key == "temperaure_threashold":
-        c_temperaure_threashold = config.getfloat("default","temperaure_threashold");
-    elif key == "probe_count":
-        c_probe_count = config.getint("default","probe_count");
-    elif key == "fan_pin":
-        c_fan_pin = config.getint("default","fan_pin");
-    elif key == "poll_delay":
-        c_poll_delay = config.getfloat("default","poll_delay");
-    elif key == "debug_print":
-        c_debug_print = config.getint("default","debug_print");
+have_config = 0
+
+for path in searchpath:
+    print(path)
+    filename = path + "/" + config_file
+    if path.exists(filename):
+        config.read(searchpath + "/" + config_file)
+        have_config = 1
+        break
+
+if have_config:
+    for key in config["default"]:
+        if key == "temperaure_threashold":
+            c_temperaure_threashold = config.getfloat("default","temperaure_threashold");
+        elif key == "probe_count":
+            c_probe_count = config.getint("default","probe_count");
+        elif key == "fan_pin":
+            c_fan_pin = config.getint("default","fan_pin");
+        elif key == "poll_delay":
+            c_poll_delay = config.getfloat("default","poll_delay");
+        elif key == "debug_print":
+            c_debug_print = config.getint("default","debug_print");
 
 # GPIO init
 FanPin = gpiozero.DigitalOutputDevice(c_fan_pin)
