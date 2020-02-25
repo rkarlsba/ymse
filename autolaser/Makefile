@@ -9,4 +9,4 @@ link:
 	cc $(OPTS) $(LIBS) -o fikse-autolaser-fil fikse-autolaser-fil.o
 
 clean:
-	rm -f *.{o,so} core.* core fikse-autolaser-fil ihjac1.new
+	rm -f *.o *.so core.* core fikse-autolaser-fil ihjac1.new
