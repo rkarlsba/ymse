@@ -1,5 +1,5 @@
 OPTS=-O2 -W -Wall
-LIBS=-lreadline
+LIBS=
 all: compile link
 
 compile:
