@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>809</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>200</width>
+    <height>200</height>
+   </size>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>VeroRoute</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="cursor">
+    <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>809</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuImport">
+     <property name="title">
+      <string>Import netlist</string>
+     </property>
+     <addaction name="actionImportTango"/>
+     <addaction name="actionImportOrcad"/>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionMerge"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="separator"/>
+    <addaction name="menuImport"/>
+    <addaction name="separator"/>
+    <addaction name="actionWrite_PDF"/>
+    <addaction name="actionWrite_PNG"/>
+    <addaction name="actionWrite_Gerber"/>
+    <addaction name="actionWrite_Gerber2"/>
+    <addaction name="separator"/>
+    <addaction name="actionClearRecent"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCopy"/>
+    <addaction name="separator"/>
+    <addaction name="actionGroup"/>
+    <addaction name="actionUngroup"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete"/>
+   </widget>
+   <widget class="QMenu" name="menuAdd">
+    <property name="title">
+     <string>Add</string>
+    </property>
+    <widget class="QMenu" name="menuCapacitor">
+     <property name="title">
+      <string>Capacitor</string>
+     </property>
+     <addaction name="actionCapCeramic"/>
+     <addaction name="actionCapFilm"/>
+     <addaction name="actionCapFilmWide"/>
+     <addaction name="actionCapElectro200"/>
+     <addaction name="actionCapElectro250"/>
+     <addaction name="actionCapElectro300"/>
+     <addaction name="actionCapElectro400"/>
+     <addaction name="actionCapElectro500"/>
+     <addaction name="actionCapElectro600"/>
+     <addaction name="actionCapElectro200NP"/>
+     <addaction name="actionCapElectro250NP"/>
+     <addaction name="actionCapElectro300NP"/>
+     <addaction name="actionCapElectro400NP"/>
+     <addaction name="actionCapElectro500NP"/>
+     <addaction name="actionCapElectro600NP"/>
+    </widget>
+    <widget class="QMenu" name="menuTrimpot">
+     <property name="title">
+      <string>Trim-pot</string>
+     </property>
+     <addaction name="actionTrimVertical"/>
+     <addaction name="actionTrimVerticalOffset"/>
+     <addaction name="actionTrimVerticalOffsetWide"/>
+     <addaction name="actionTrimFlat"/>
+     <addaction name="actionTrimFlatWide"/>
+    </widget>
+    <widget class="QMenu" name="menuSwitch">
+     <property name="title">
+      <string>Switch</string>
+     </property>
+     <addaction name="actionSwitchST"/>
+     <addaction name="actionSwitchDT"/>
+     <addaction name="actionSwitchST_DIP"/>
+    </widget>
+    <widget class="QMenu" name="menuConnector">
+     <property name="title">
+      <string>Connector</string>
+     </property>
+     <addaction name="actionStrip100"/>
+     <addaction name="actionBlock100"/>
+     <addaction name="actionBlock200"/>
+    </widget>
+    <addaction name="actionPad"/>
+    <addaction name="actionWire"/>
+    <addaction name="actionResistor"/>
+    <addaction name="actionInductor"/>
+    <addaction name="menuCapacitor"/>
+    <addaction name="menuTrimpot"/>
+    <addaction name="actionCrystal"/>
+    <addaction name="actionDiode"/>
+    <addaction name="actionLED"/>
+    <addaction name="actionTO92"/>
+    <addaction name="actionTO18"/>
+    <addaction name="actionTO39"/>
+    <addaction name="actionTO220"/>
+    <addaction name="actionDIP"/>
+    <addaction name="actionSIP"/>
+    <addaction name="menuConnector"/>
+    <addaction name="menuSwitch"/>
+    <addaction name="actionMarker"/>
+    <addaction name="separator"/>
+    <addaction name="actionTextBox"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionZoom_In"/>
+    <addaction name="actionZoom_Out"/>
+    <addaction name="separator"/>
+    <addaction name="actionCrop"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggleGrid"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggleText"/>
+    <addaction name="separator"/>
+    <addaction name="actionTogglePinLabels"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggleFlipH"/>
+    <addaction name="actionToggleFlipV"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Windows</string>
+    </property>
+    <addaction name="actionControlDlg"/>
+    <addaction name="actionTemplatesDlg"/>
+    <addaction name="actionInfoDlg"/>
+    <addaction name="actionRenderingDlg"/>
+    <addaction name="actionWireDlg"/>
+    <addaction name="actionBomDlg"/>
+    <addaction name="actionPinDlg"/>
+    <addaction name="actionCompDlg"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionSupport"/>
+    <addaction name="separator"/>
+    <addaction name="actionHotkeysDlg"/>
+    <addaction name="actionTutorial"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpdateCheck"/>
+   </widget>
+   <widget class="QMenu" name="menuLayers">
+    <property name="title">
+     <string>Layers</string>
+    </property>
+    <addaction name="actionAddLayer"/>
+    <addaction name="actionRemoveLayer"/>
+    <addaction name="separator"/>
+    <addaction name="actionSwitchLayer"/>
+    <addaction name="actionToggleVias"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuAdd"/>
+   <addaction name="menuView"/>
+   <addaction name="menuWindow"/>
+   <addaction name="menuLayers"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSwitchLayer"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="actionZoom_In"/>
+   <addaction name="actionZoom_Out"/>
+   <addaction name="separator"/>
+   <addaction name="actionToggleGrid"/>
+   <addaction name="actionToggleText"/>
+   <addaction name="actionTogglePinLabels"/>
+   <addaction name="actionToggleFlipH"/>
+   <addaction name="actionToggleFlipV"/>
+   <addaction name="separator"/>
+   <addaction name="actionFat"/>
+   <addaction name="actionThin"/>
+   <addaction name="actionCurved"/>
+   <addaction name="actionVeroV"/>
+   <addaction name="actionVeroH"/>
+   <addaction name="separator"/>
+   <addaction name="actionDiagsMin"/>
+   <addaction name="actionDiagsMax"/>
+   <addaction name="separator"/>
+   <addaction name="actionFill"/>
+   <addaction name="separator"/>
+   <addaction name="actionSelectArea"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="minimumSize">
+    <size>
+     <width>200</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomToolBarArea</set>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionEditor"/>
+   <addaction name="separator"/>
+   <addaction name="actionAddLine"/>
+   <addaction name="actionAddRect"/>
+   <addaction name="actionAddRoundedRect"/>
+   <addaction name="actionAddEllipse"/>
+   <addaction name="actionAddArc"/>
+   <addaction name="actionAddChord"/>
+  </widget>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+O</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="text">
+    <string>Save As</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+Shift+S</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionImportTango">
+   <property name="text">
+    <string>Protel1/Tango</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionImportOrcad">
+   <property name="text">
+    <string>OrCAD2</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionWrite_PDF">
+   <property name="text">
+    <string>Export as PDF</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionWrite_PNG">
+   <property name="text">
+    <string>Export as PNG</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/zoomin.png</normaloff>:/images/zoomin.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+=</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/zoomout.png</normaloff>:/images/zoomout.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionCrop">
+   <property name="text">
+    <string>Auto-Crop</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionToggleFlipH">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/fliph.png</normaloff>:/images/fliph.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip Horizontal</string>
+   </property>
+   <property name="toolTip">
+    <string>Flip Horizontal (On/Off)</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionToggleFlipV">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/flipv.png</normaloff>:/images/flipv.png</iconset>
+   </property>
+   <property name="text">
+    <string>Flip Vertical</string>
+   </property>
+   <property name="toolTip">
+    <string>Flip Vertical (On/Off)</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionToggleGrid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/grid.png</normaloff>:/images/grid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Grid</string>
+   </property>
+   <property name="toolTip">
+    <string>Grid (On/Off)</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionTogglePinLabels">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/pinlabels.png</normaloff>:/images/pinlabels.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pin Labels</string>
+   </property>
+   <property name="toolTip">
+    <string>Pin Labels (On/Off)</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/undo.png</normaloff>:/images/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/redo.png</normaloff>:/images/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy+Paste Selected Part(s) / Text</string>
+   </property>
+   <property name="shortcut">
+    <string>V</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionGroup">
+   <property name="text">
+    <string>Group Selected Parts</string>
+   </property>
+   <property name="shortcut">
+    <string>G</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionUngroup">
+   <property name="text">
+    <string>Ungroup Selected Parts</string>
+   </property>
+   <property name="shortcut">
+    <string>U</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionSelectAll">
+   <property name="text">
+    <string>Select All Parts</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete Selected Part(s) / Text</string>
+   </property>
+   <property name="shortcut">
+    <string>Backspace</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionWire">
+   <property name="text">
+    <string>Wire</string>
+   </property>
+  </action>
+  <action name="actionResistor">
+   <property name="text">
+    <string>Resistor</string>
+   </property>
+  </action>
+  <action name="actionCapCeramic">
+   <property name="text">
+    <string>Ceramic</string>
+   </property>
+  </action>
+  <action name="actionCapFilm">
+   <property name="text">
+    <string>Film</string>
+   </property>
+  </action>
+  <action name="actionCapElectro200NP">
+   <property name="text">
+    <string>Electrolytic NP (200 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro250NP">
+   <property name="text">
+    <string>Electrolytic NP (250 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro300NP">
+   <property name="text">
+    <string>Electrolytic NP (300 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro400NP">
+   <property name="text">
+    <string>Electrolytic NP (400 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro500NP">
+   <property name="text">
+    <string>Electrolytic NP (500 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro600NP">
+   <property name="text">
+    <string>Electrolytic NP (600 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro200">
+   <property name="text">
+    <string>Electrolytic (200 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro250">
+   <property name="text">
+    <string>Electrolytic (250 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro300">
+   <property name="text">
+    <string>Electrolytic (300 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro400">
+   <property name="text">
+    <string>Electrolytic (400 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro500">
+   <property name="text">
+    <string>Electrolytic (500 mil)</string>
+   </property>
+  </action>
+  <action name="actionCapElectro600">
+   <property name="text">
+    <string>Electrolytic (600 mil)</string>
+   </property>
+  </action>
+  <action name="actionTrimVertical">
+   <property name="text">
+    <string>Vertical</string>
+   </property>
+  </action>
+  <action name="actionTrimVerticalOffset">
+   <property name="text">
+    <string>Vertical Offset</string>
+   </property>
+  </action>
+  <action name="actionTrimFlat">
+   <property name="text">
+    <string>Flat</string>
+   </property>
+  </action>
+  <action name="actionCrystal">
+   <property name="text">
+    <string>Crystal</string>
+   </property>
+  </action>
+  <action name="actionDiode">
+   <property name="text">
+    <string>Diode</string>
+   </property>
+  </action>
+  <action name="actionLED">
+   <property name="text">
+    <string>LED</string>
+   </property>
+  </action>
+  <action name="actionTrimVerticalOffsetWide">
+   <property name="text">
+    <string>Vertical Offset (Wide Gap)</string>
+   </property>
+  </action>
+  <action name="actionTrimFlatWide">
+   <property name="text">
+    <string>Flat (Wide Gap)</string>
+   </property>
+  </action>
+  <action name="actionTO92">
+   <property name="text">
+    <string>TO-92</string>
+   </property>
+  </action>
+  <action name="actionTO18">
+   <property name="text">
+    <string>TO-18</string>
+   </property>
+  </action>
+  <action name="actionTO220">
+   <property name="text">
+    <string>TO-220</string>
+   </property>
+  </action>
+  <action name="actionDIP">
+   <property name="text">
+    <string>DIP</string>
+   </property>
+  </action>
+  <action name="actionSIP">
+   <property name="text">
+    <string>SIP</string>
+   </property>
+  </action>
+  <action name="actionSwitchST">
+   <property name="text">
+    <string>Single Throw</string>
+   </property>
+  </action>
+  <action name="actionSwitchDT">
+   <property name="text">
+    <string>Double Throw</string>
+   </property>
+  </action>
+  <action name="actionSwitchST_DIP">
+   <property name="text">
+    <string>Single Throw (DIP)</string>
+   </property>
+  </action>
+  <action name="actionMarker">
+   <property name="text">
+    <string>Marker</string>
+   </property>
+  </action>
+  <action name="actionControlDlg">
+   <property name="text">
+    <string>Control</string>
+   </property>
+  </action>
+  <action name="actionTemplatesDlg">
+   <property name="text">
+    <string>Parts / Templates</string>
+   </property>
+   <property name="iconText">
+    <string>Parts / Templates</string>
+   </property>
+   <property name="toolTip">
+    <string>Parts / Templates</string>
+   </property>
+  </action>
+  <action name="actionInfoDlg">
+   <property name="text">
+    <string>Info</string>
+   </property>
+  </action>
+  <action name="actionRenderingDlg">
+   <property name="text">
+    <string>Rendering Options</string>
+   </property>
+  </action>
+  <action name="actionBomDlg">
+   <property name="text">
+    <string>B.O.M.</string>
+   </property>
+  </action>
+  <action name="actionPinDlg">
+   <property name="text">
+    <string>Pin Labels</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionTutorial">
+   <property name="text">
+    <string>Tutorial</string>
+   </property>
+  </action>
+  <action name="actionSupport">
+   <property name="text">
+    <string>Support (link to forum)</string>
+   </property>
+  </action>
+  <action name="actionUpdateCheck">
+   <property name="text">
+    <string>Check for new version</string>
+   </property>
+  </action>
+  <action name="actionMerge">
+   <property name="text">
+    <string>Open (merge into current)</string>
+   </property>
+   <property name="toolTip">
+    <string>Ctrl+M</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionToggleText">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/text.png</normaloff>:/images/text.png</iconset>
+   </property>
+   <property name="text">
+    <string>Text Boxes</string>
+   </property>
+   <property name="toolTip">
+    <string>Text Boxes (On/Off)</string>
+   </property>
+  </action>
+  <action name="actionTextBox">
+   <property name="text">
+    <string>Text Box</string>
+   </property>
+   <property name="toolTip">
+    <string>Add Text Box</string>
+   </property>
+  </action>
+  <action name="actionTO39">
+   <property name="text">
+    <string>TO-39</string>
+   </property>
+  </action>
+  <action name="actionCapFilmWide">
+   <property name="text">
+    <string>Film (Wide)</string>
+   </property>
+  </action>
+  <action name="actionPad">
+   <property name="text">
+    <string>Pad</string>
+   </property>
+  </action>
+  <action name="actionStrip100">
+   <property name="text">
+    <string>Pin Strip (100 mil)</string>
+   </property>
+  </action>
+  <action name="actionBlock100">
+   <property name="text">
+    <string>Terminal Block (100 mil)</string>
+   </property>
+  </action>
+  <action name="actionBlock200">
+   <property name="text">
+    <string>Terminal Block (200 mil)</string>
+   </property>
+  </action>
+  <action name="actionInductor">
+   <property name="text">
+    <string>Inductor</string>
+   </property>
+  </action>
+  <action name="actionVeroV">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/verov.png</normaloff>:/images/verov.png</iconset>
+   </property>
+   <property name="text">
+    <string>VeroV</string>
+   </property>
+   <property name="toolTip">
+    <string>Vero track style (vertical strips)</string>
+   </property>
+  </action>
+  <action name="actionVeroH">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/veroh.png</normaloff>:/images/veroh.png</iconset>
+   </property>
+   <property name="text">
+    <string>VeroH</string>
+   </property>
+   <property name="toolTip">
+    <string>Vero track style (horizontal strips)</string>
+   </property>
+  </action>
+  <action name="actionFat">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/fat.png</normaloff>:/images/fat.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fat</string>
+   </property>
+   <property name="toolTip">
+    <string>Fat track style</string>
+   </property>
+  </action>
+  <action name="actionCurved">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/curved.png</normaloff>:/images/curved.png</iconset>
+   </property>
+   <property name="text">
+    <string>Curved</string>
+   </property>
+   <property name="toolTip">
+    <string>Curved track style</string>
+   </property>
+  </action>
+  <action name="actionDiagsMin">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/diagsmin.png</normaloff>:/images/diagsmin.png</iconset>
+   </property>
+   <property name="text">
+    <string>DiagsMin</string>
+   </property>
+   <property name="toolTip">
+    <string>Diagonals (min)</string>
+   </property>
+  </action>
+  <action name="actionDiagsMax">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/diagsmax.png</normaloff>:/images/diagsmax.png</iconset>
+   </property>
+   <property name="text">
+    <string>DiagsMax</string>
+   </property>
+   <property name="toolTip">
+    <string>Diagonals (max)</string>
+   </property>
+  </action>
+  <action name="actionFill">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/fill.png</normaloff>:/images/fill.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fill</string>
+   </property>
+   <property name="toolTip">
+    <string>Ground Fill using selected NodeId</string>
+   </property>
+  </action>
+  <action name="actionSelectArea">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/area.png</normaloff>:/images/area.png</iconset>
+   </property>
+   <property name="text">
+    <string>SelectArea</string>
+   </property>
+   <property name="toolTip">
+    <string>Select parts/tracks by area</string>
+   </property>
+  </action>
+  <action name="actionEditor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/editor.png</normaloff>:/images/editor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Editor</string>
+   </property>
+   <property name="toolTip">
+    <string>Component Editor</string>
+   </property>
+  </action>
+  <action name="actionAddLine">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addline.png</normaloff>:/images/addline.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddLine</string>
+   </property>
+   <property name="toolTip">
+    <string>Add line</string>
+   </property>
+  </action>
+  <action name="actionAddRect">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addrect.png</normaloff>:/images/addrect.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddRect</string>
+   </property>
+   <property name="toolTip">
+    <string>Add rectangle</string>
+   </property>
+  </action>
+  <action name="actionAddRoundedRect">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addroundedrect.png</normaloff>:/images/addroundedrect.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddRoundedRect</string>
+   </property>
+   <property name="toolTip">
+    <string>Add rounded rectangle</string>
+   </property>
+  </action>
+  <action name="actionAddEllipse">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addellipse.png</normaloff>:/images/addellipse.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddEllipse</string>
+   </property>
+   <property name="toolTip">
+    <string>Add ellipse</string>
+   </property>
+  </action>
+  <action name="actionAddArc">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addarc.png</normaloff>:/images/addarc.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddArc</string>
+   </property>
+   <property name="toolTip">
+    <string>Add arc</string>
+   </property>
+  </action>
+  <action name="actionCompDlg">
+   <property name="text">
+    <string>Component Definition</string>
+   </property>
+  </action>
+  <action name="actionAddChord">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/addchord.png</normaloff>:/images/addchord.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddChord</string>
+   </property>
+   <property name="toolTip">
+    <string>Add chord</string>
+   </property>
+  </action>
+  <action name="actionHotkeysDlg">
+   <property name="text">
+    <string>Key/Mouse Actions</string>
+   </property>
+  </action>
+  <action name="actionWireDlg">
+   <property name="text">
+    <string>Wire Options</string>
+   </property>
+  </action>
+  <action name="actionWrite_Gerber">
+   <property name="text">
+    <string>Export as Gerber (1-layer)</string>
+   </property>
+  </action>
+  <action name="actionWrite_Gerber2">
+   <property name="text">
+    <string>Export as Gerber (2-Layer)</string>
+   </property>
+  </action>
+  <action name="actionClearRecent">
+   <property name="text">
+    <string>Clear recent files list</string>
+   </property>
+  </action>
+  <action name="actionAddLayer">
+   <property name="text">
+    <string>Add Top Layer</string>
+   </property>
+  </action>
+  <action name="actionRemoveLayer">
+   <property name="text">
+    <string>Remove Top layer</string>
+   </property>
+  </action>
+  <action name="actionSwitchLayer">
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/layertop.png</normaloff>:/images/layertop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Switch Layer</string>
+   </property>
+   <property name="shortcut">
+    <string>L</string>
+   </property>
+   <property name="autoRepeat">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionThin">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="veroroute.qrc">
+     <normaloff>:/images/thin.png</normaloff>:/images/thin.png</iconset>
+   </property>
+   <property name="text">
+    <string>Thin</string>
+   </property>
+   <property name="toolTip">
+    <string>Thin track style</string>
+   </property>
+  </action>
+  <action name="actionToggleVias">
+   <property name="text">
+    <string>Toggle Vias</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="veroroute.qrc"/>
+ </resources>
+ <connections/>
+</ui>

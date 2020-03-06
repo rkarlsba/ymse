@@ -1,0 +1,38 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/bold.png</file>
+    <file>images/italic.png</file>
+    <file>images/underline.png</file>
+    <file>images/left.png</file>
+    <file>images/center.png</file>
+    <file>images/right.png</file>
+    <file>images/justify.png</file>
+    <file>images/grid.png</file>
+    <file>images/text.png</file>
+    <file>images/pinlabels.png</file>
+    <file>images/fliph.png</file>
+    <file>images/flipv.png</file>
+    <file>images/fat.png</file>
+    <file>images/thin.png</file>
+    <file>images/curved.png</file>
+    <file>images/verov.png</file>
+    <file>images/veroh.png</file>
+    <file>images/diagsmin.png</file>
+    <file>images/diagsmax.png</file>
+    <file>images/fill.png</file>
+    <file>images/area.png</file>
+    <file>images/undo.png</file>
+    <file>images/redo.png</file>
+    <file>images/zoomin.png</file>
+    <file>images/zoomout.png</file>
+    <file>images/layerbot.png</file>
+    <file>images/layertop.png</file>
+    <file>images/editor.png</file>
+    <file>images/addline.png</file>
+    <file>images/addrect.png</file>
+    <file>images/addroundedrect.png</file>
+    <file>images/addellipse.png</file>
+    <file>images/addarc.png</file>
+    <file>images/addchord.png</file>
+</qresource>
+</RCC>

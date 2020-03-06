@@ -1,0 +1,59 @@
+In order for VeroRoute to import a netlist produced by gEDA,
+the symbols used in the gEDA schematic must have attributes
+(such as footprint names and pin numbers) that are consistent
+with the conventions used in VeroRoute.
+
+
+1) What is in this folder?
+==========================
+
+The "veroroute_" folders contain the VeroRoute Symbols for gEDA.
+The file "veroroute-clib.scm" is the corresponding config file.
+
+
+2) Configuring gEDA with the VeroRoute symbols
+==============================================
+
+You will need to use the command line and have administrator privileges.
+The "veroroute_" folders must be copied to the location where gEDA keeps its symbols.
+So if the "veroroute_" folders are in "/home/alex/VeroRoute/Libraries/gEDA/"
+then you would do 
+
+sudo cp -rf /home/alex/VeroRoute/Libraries/gEDA/veroroute_* /usr/share/gEDA/sym/
+
+and then copy the config file as follows
+
+sudo cp /home/alex/VeroRoute/Libraries/gEDA/veroroute-clib.scm /usr/share/gEDA/gafrc.d/
+
+
+3) Exporting the netlist
+========================
+
+Once you have made a schematic using the VeroRoute Symbols, 
+you should export the netlist in Tango format (which is very
+similar to Protel 1 format) using the command line.
+So if the schematic is called "mycircuit.sch" you would type:
+
+gnetlist mycircuit.sch -g tango
+
+This will create the file "output.net" which can be imported into VeroRoute.
+
+
+4) Making your own symbols
+==========================
+
+There are a few things that you need to do to produce symbols that will export correctly.
+
+a) Give them a "refdes" attribute.
+   This will become the "Name" in VeroRoute.
+b) Give them a "device" attribute.
+   This will become the "Value" in VeroRoute.
+   Do not use the "value" attribute in gEDA.  Always use
+   the "device" attribute to represent value.
+c) Give them a "footprint" attribute that VeroRoute understands.
+   See the provided symbols for examples.
+d) Use pin numbers that match the VeroRoute pin numbers.
+   See the provided symbols for examples.
+
+You can add a "description" attribute if it helps you
+work with the symbol in gEDA but this will not be exported.
