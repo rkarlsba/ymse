@@ -115,25 +115,25 @@ QMAKE_INSTALL_FILE    = install -m 644
 QMAKE_INSTALL_PROGRAM = install -m 755
 
 unix {
-    target.path = $${PREFIX}/usr/bin/
+    target.path = $${PREFIX}/usr/local/bin/
     target.files = ../veroroute
 
-    desktopentry.path = $${PREFIX}/usr/share/applications
+    desktopentry.path = $${PREFIX}/usr/local/share/applications
     desktopentry.files = ../veroroute.desktop
 
-    pixmapA.path = $${PREFIX}/usr/share/pixmaps
+    pixmapA.path = $${PREFIX}/usr/local/share/pixmaps
     pixmapA.files = ../veroroute.png
 
-    pixmapB.path = $${PREFIX}/usr/share/veroroute
+    pixmapB.path = $${PREFIX}/usr/local/share/veroroute
     pixmapB.files = ../veroroute.png
 
-    tutorials.path = $${PREFIX}/usr/share/veroroute/tutorials
+    tutorials.path = $${PREFIX}/usr/local/share/veroroute/tutorials
     tutorials.files = ../tutorials/*
 
-    gedasymbols.path = $${PREFIX}/usr/share/gEDA/sym
+    gedasymbols.path = $${PREFIX}/usr/local/share/gEDA/sym
     gedasymbols.files = ../libraries/gEDA/veroroute_*
 
-    gedalib.path = $${PREFIX}/usr/share/gEDA/gafrc.d
+    gedalib.path = $${PREFIX}/usr/local/share/gEDA/gafrc.d
     gedalib.files = ../libraries/gEDA/veroroute-clib.scm
 
     INSTALLS += target desktopentry pixmapA pixmapB tutorials gedasymbols gedalib
