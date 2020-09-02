@@ -31,24 +31,44 @@ unused devices: <none>
 use strict;
 use warnings;
 
+sub syntax() {
+    print STDERR "Syntax: raidwatch.pl mdX\n";
+    print STDERR "\tFor instance raidwatch md1\n";
+    exit(1);
+}
+
+die "Doesn't work - sorry - tired";
+
 my $debug=1;
 my $mdstat_fn = "/proc/mdstat";
 my $raiddev;
 my $raiddevs=0;
+my $found=0;
+my $minutes;
 
 $mdstat_fn = "test-input.txt" if ($debug);
 
-while ($raiddev = shift) {
-    print("Got raid device '$raiddev'\n");
-    $raiddevs++;
-}
-die ("You need to specify a raid device\n") unless ($raiddevs > 0);
-die ("Useless device '$raiddev' given\n") unless ($raiddev =~ m/^\/dev\/md/);
-die ("Device '$raiddev' is not a block device\n") unless (-b $raiddev);
-warn ("Only one raid device supported so far. Ignoring all but the last.\n") if ($raiddevs > 1);
+&syntax() if ($#ARGV != 0);
+
+$raiddev = shift;
+
+die ("You need to specify a raid device\n") unless (defined($raiddev));
+die ("Device '$raiddev' is not a block device\n") unless (-b '/dev/' . $raiddev);
 
 open(my $mdstat, "<", $mdstat_fn) || die "Can't open file '$mdstat_fn' for reading: $!\n";
 
 while (my $line = <$mdstat>) {
+    if ($line =~ /^$raiddev/) {
+        $found++;
+    }
+    if ($found) {
+        # [>....................]  reshape =  0.1% (10313788/7813894144) finish=2571.3min speed=50579K/sec
+        if ($line =~ /\s+\w/) {
+            if ($line =~ /reshape\s+=\s+\d\.\d\%\s+\(\d+\/\d+\)\s+finish(\d\.\.)min/) {
+                $minutes = $2;
+                $hours=$minutes/60;
+                $days=$hours/24
+        }
+    }
     print "$line";
 }
