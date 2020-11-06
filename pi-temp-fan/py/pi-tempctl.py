@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai
 
+# Written around by Roy Sigurd Karlsbakk <roy@karlsbakk.net>. Licensed under AGPL v3.
+# See https://www.gnu.org/licenses/agpl-3.0.html for details.
+
 import configparser
 import syslog
 from time import sleep
