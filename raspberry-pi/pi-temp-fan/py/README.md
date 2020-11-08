@@ -18,3 +18,6 @@ be set under the [default] section.
 | poll_delay            | Number of seconds to delay between each poll | float | 1       |
 | hysteresis_avoidance  | Times to probe threshold before toggling fan | int   | 1       |
 | debug_log             | Log to LOG_DEBUG every x probe               | int   | 0       |
+
+Written around 2020 by Roy Sigurd Karlsbakk <roy@karlsbakk.net>. Licensed under AGPL v3.
+See [AGPL3](https://www.gnu.org/licenses/agpl-3.0.html) for details.
