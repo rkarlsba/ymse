@@ -6,7 +6,7 @@
 # Lincensed under GPL v2. See
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html for details.
 #
-#
+# apt install libdate-manip-perl
 
 use strict;
 use warnings;
