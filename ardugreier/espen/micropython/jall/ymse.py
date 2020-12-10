@@ -23,7 +23,7 @@ def getsystemp(unit):
     elif (unit == "R"):
         return tf+459.67
     else
-        return -4242424242424242
+        pass
 
 def systemp(unit="C"):
     temp = getsystemp(unit)
