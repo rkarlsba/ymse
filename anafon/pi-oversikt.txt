@@ -1,4 +1,5 @@
 ========== whitepi ==========
+Raspberry Pi 4 Model B Rev 1.1
 Controller DC:A6:32:3F:FC:E1 (public)
 	Name: whitepi
 	Alias: whitepi
@@ -15,7 +16,25 @@ Controller DC:A6:32:3F:FC:E1 (public)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
+========== crpi ==========
+Raspberry Pi 4 Model B Rev 1.1
+Controller DC:A6:32:23:D1:61 (public)
+	Name: crpi
+	Alias: crpi
+	Class: 0x00000000
+	Powered: yes
+	Discoverable: no
+	Pairable: yes
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	Modalias: usb:v1D6Bp0246d0532
+	Discovering: no
+
 ========== anafon ==========
+Raspberry Pi Zero W Rev 1.1
 Controller B8:27:EB:29:FE:1C (public)
         Name: anafon
         Alias: anafon
@@ -33,6 +52,7 @@ Controller B8:27:EB:29:FE:1C (public)
         Discovering: no
 
 ========== redpi ==========
+Raspberry Pi 3 Model B Rev 1.2
 Controller B8:27:EB:F5:69:96 (public)
 	Name: redpi
 	Alias: redpi
@@ -51,10 +71,28 @@ Controller B8:27:EB:F5:69:96 (public)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
-========== bluepi (pi3) ==========
+========== greenpi ==========
+Raspberry Pi 3 Model B Rev 1.2
+Controller B8:27:EB:E6:0C:F0 (public)
+	Name: greenpi
+	Alias: greenpi
+	Class: 0x00000000
+	Powered: yes
+	Discoverable: no
+	Pairable: yes
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	Modalias: usb:v1D6Bp0246d0532
+	Discovering: no
+
+========== bluepi ==========
+Raspberry Pi 2 Model B Rev 1.1
 Controller 00:1A:7D:DA:71:11 (public)
-        Name: blue-pi
-        Alias: blue-pi
+        Name: bluepi
+        Alias: bluepi
         Class: 0x00480000
         Powered: yes
         Discoverable: no
@@ -70,17 +108,3 @@ Controller 00:1A:7D:DA:71:11 (public)
         Modalias: usb:v1D6Bp0246d0532
         Discovering: no
 
-========== crpi (pi4) ==========
-	Name: crpi
-	Alias: crpi
-	Class: 0x00000000
-	Powered: yes
-	Discoverable: no
-	Pairable: yes
-	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
-	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
-	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
-	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
-	Modalias: usb:v1D6Bp0246d0532
-	Discovering: no
