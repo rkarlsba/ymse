@@ -7,12 +7,12 @@ Controller DC:A6:32:3F:FC:E1 (public)
 	Powered: yes
 	Discoverable: no
 	Pairable: yes
+	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
 	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
 	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
-	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
-	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
 	UUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
@@ -25,11 +25,11 @@ Controller DC:A6:32:23:D1:61 (public)
 	Powered: yes
 	Discoverable: no
 	Pairable: yes
-	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
 	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
@@ -42,12 +42,12 @@ Controller B8:27:EB:29:FE:1C (public)
         Powered: yes
         Discoverable: no
         Pairable: yes
+        UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
+        UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
         UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
         UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
-        UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-        UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
-        UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
         UUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)
+        UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
         Modalias: usb:v1D6Bp0246d0532
         Discovering: no
 
@@ -60,14 +60,14 @@ Controller B8:27:EB:F5:69:96 (public)
 	Powered: yes
 	Discoverable: no
 	Pairable: yes
-	UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)
-	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
-	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
 	UUID: Audio Source              (0000110a-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
 	UUID: Handsfree Audio Gateway   (0000111f-0000-1000-8000-00805f9b34fb)
+	UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
@@ -80,11 +80,11 @@ Controller B8:27:EB:E6:0C:F0 (public)
 	Powered: yes
 	Discoverable: no
 	Pairable: yes
-	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
 	UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+	UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
+	UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
 	Modalias: usb:v1D6Bp0246d0532
 	Discovering: no
 
@@ -97,14 +97,14 @@ Controller 00:1A:7D:DA:71:11 (public)
         Powered: yes
         Discoverable: no
         Pairable: yes
-        UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)
-        UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
         UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
-        UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
-        UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
         UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
         UUID: Audio Source              (0000110a-0000-1000-8000-00805f9b34fb)
+        UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
+        UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
         UUID: Handsfree Audio Gateway   (0000111f-0000-1000-8000-00805f9b34fb)
+        UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)
+        UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
         Modalias: usb:v1D6Bp0246d0532
         Discovering: no
 
