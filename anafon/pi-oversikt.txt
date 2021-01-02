@@ -38,15 +38,18 @@ Raspberry Pi Zero W Rev 1.1
 Controller B8:27:EB:29:FE:1C (public)
         Name: anafon
         Alias: anafon
-        Class: 0x00200000
+        Class: 0x00680000
         Powered: yes
         Discoverable: no
         Pairable: yes
         UUID: A/V Remote Control        (0000110e-0000-1000-8000-00805f9b34fb)
         UUID: A/V Remote Control Target (0000110c-0000-1000-8000-00805f9b34fb)
+        UUID: Audio Source              (0000110a-0000-1000-8000-00805f9b34fb)
         UUID: Generic Access Profile    (00001800-0000-1000-8000-00805f9b34fb)
         UUID: Generic Attribute Profile (00001801-0000-1000-8000-00805f9b34fb)
         UUID: Handsfree                 (0000111e-0000-1000-8000-00805f9b34fb)
+        UUID: Handsfree Audio Gateway   (0000111f-0000-1000-8000-00805f9b34fb)
+        UUID: Headset AG                (00001112-0000-1000-8000-00805f9b34fb)
         UUID: PnP Information           (00001200-0000-1000-8000-00805f9b34fb)
         Modalias: usb:v1D6Bp0246d0532
         Discovering: no
