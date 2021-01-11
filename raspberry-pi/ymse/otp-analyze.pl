@@ -27,28 +27,34 @@ if ($args == 0) {
     }
 } elsif ($args == 1) {
     my $bit = sprintf("%02d", $ARGV[0]);
-    printf("    10987654321098765432109876543210\n");
-    printf("$bit: % 32b\n", hex($otp{$bit}));
+    if ($bit == 17) {
+        printf("    10987654321098765432109876543210\n");
+        printf("$bit: % 32b\n", hex($otp{$bit}));
 
-    # Bit 1: sets the oscillator frequency to 19.2MHz
-    # Bit 3: enables pull ups on the SDIO pins
-    # Bit 19: enables GPIO bootmode
-    # Bit 20: sets the bank to check for GPIO bootmode
-    # Bit 21: enables booting from SD card
-    # Bit 22: sets the bank to boot from
-    # Bit 28: enables USB device booting
-    # Bit 29: enables USB host booting (ethernet and mass storage)
+        # Bit 1: sets the oscillator frequency to 19.2MHz
+        # Bit 3: enables pull ups on the SDIO pins
+        # Bit 19: enables GPIO bootmode
+        # Bit 20: sets the bank to check for GPIO bootmode
+        # Bit 21: enables booting from SD card
+        # Bit 22: sets the bank to boot from
+        # Bit 28: enables USB device booting
+        # Bit 29: enables USB host booting (ethernet and mass storage)
 
-    printf("\n");
+        printf("\n");
 
-    my $not = "";
-    $not = " not" unless (hex($otp{$bit}) & (1<<28));
-    printf("Machine is$not USB bootable\n");
+        my $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<28));
+        printf("Machine is$not USB bootable\n");
 
-    $not = "";
-    $not = " not" unless (hex($otp{$bit}) & (1<<29));
-    printf("Machine is$not network bootable\n");
-
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<29));
+        printf("Machine is$not network bootable\n");
+    } elsif ($bit == 28) {
+        printf("Serial number: %x (%d)\n", hex($otp{$bit}), hex($otp{$bit}));
+    } else {
+        printf("Dunno what to do with bit $bit\n");
+        exit(0);
+    }
 } elsif ($args == 2) {
     for (my $i=0; $i<32; $i++) {
         printf("Bit %02d: %08x\n", $i, 1<<$i);
