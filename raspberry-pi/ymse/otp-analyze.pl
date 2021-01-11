@@ -27,6 +27,8 @@ if ($args == 0) {
     }
 } elsif ($args == 1) {
     my $bit = sprintf("%02d", $ARGV[0]);
+
+    # https://www.raspberrypi.org/documentation/hardware/raspberrypi/otpbits.md
     if ($bit == 17) {
         printf("    10987654321098765432109876543210\n");
         printf("$bit: % 32b\n", hex($otp{$bit}));
@@ -43,6 +45,30 @@ if ($args == 0) {
         printf("\n");
 
         my $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<1));
+        printf("Oscillator frequency$not to 19.2MHz\n");
+
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<3));
+        printf("Pull ups on the SDIO pins$not enabled\n");
+
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<19));
+        printf("GPIO boot mode is$not enabled\n");
+
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<20));
+        printf("Bank is$not set to check GPIO bootmode\n");
+
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<21));
+        printf("Boot from SD card is$not enabled\n");
+
+        $not = "";
+        $not = " not" unless (hex($otp{$bit}) & (1<<22));
+        printf("Bank to boot from is set to %d\n", (hex($otp{$bit}) & (1<<22)) >> 22);
+
+        $not = "";
         $not = " not" unless (hex($otp{$bit}) & (1<<28));
         printf("Machine is$not USB bootable\n");
 
@@ -51,6 +77,8 @@ if ($args == 0) {
         printf("Machine is$not network bootable\n");
     } elsif ($bit == 28) {
         printf("Serial number: %x (%d)\n", hex($otp{$bit}), hex($otp{$bit}));
+    } elsif ($bit == 29) {
+        printf("Inverse serial number: %x (%d)\n", hex($otp{$bit}), hex($otp{$bit}));
     } else {
         printf("Dunno what to do with bit $bit\n");
         exit(0);
