@@ -21,7 +21,7 @@ my ($disf,$s);
 
 sub help {
     print<<EOT;
-Usage: zabbix_linux_distro_check.pl [--help | --distvers | --arch | --full ]
+Usage: zabbix_linux_distro_check.pl [--help | --distvers | --arch | --friendly ]
 
     --help        This helptext
 
@@ -30,7 +30,7 @@ These options are all mutually exclusive.
     --name        Report distro name
     --vers        Report the (major) distro version
     --arch        Report system architecture (x86, arm etc)
-    --full        Repot a full, human readable version with everything(?) relevant
+    --friendly    Repot a full, friendly, human readable version with everything(?) relevant
 
 Extras
 
@@ -50,7 +50,8 @@ GetOptions(
     'name'       => \$opts{name},
     'vers'       => \$opts{vers},
     'arch'       => \$opts{arch},
-    'full'       => \$opts{full},
+    'full|f'     => \$opts{friendly},
+    'friendly'   => \$opts{friendly},
 
     'scientific' => \$opts{scientific},
 );
@@ -113,7 +114,7 @@ if ($opts{vers}) {
     print "$distvers\n";
 } elsif ($opts{arch}) {
     print ("$arch\n");
-} elsif ($opts{full}) {
+} elsif ($opts{friendly}) {
     $distvers =~ s/["']//g;
     if ($distro eq "centos") {
         $hrdistro = "CentOS Linux";
