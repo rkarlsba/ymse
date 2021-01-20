@@ -13,6 +13,9 @@
 # with increased timeout. This job just batches the check in cron (run script
 # with --cron) and then reads this file to check the result when running the
 # script with the --local argument.
+#
+# The script can be run with the --direct argument to check directly or with the
+# --clean argument to remove the cache file. All checks will leave a cache file.
 
 # 2021-01-20
 # New script (nice)
