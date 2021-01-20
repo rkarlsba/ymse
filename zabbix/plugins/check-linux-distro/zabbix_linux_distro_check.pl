@@ -108,14 +108,15 @@ if ( -r '/etc/os-release' ) {
     }
     close $disf;
 }
+# Vaske litt
+$distro =~ s/["']//g;
+$distvers =~ s/["']//g;
 
 if ($opts{vers}) {
-    $distvers =~ s/["']//g;
     print "$distvers\n";
 } elsif ($opts{arch}) {
     print ("$arch\n");
 } elsif ($opts{friendly}) {
-    $distvers =~ s/["']//g;
     if ($distro eq "centos") {
         $hrdistro = "CentOS Linux";
     } elsif ($distro eq "scientific") {
@@ -124,16 +125,15 @@ if ($opts{vers}) {
         $hrdistro = "RHEL";
     } elsif ($distro eq "ubuntu") {
         $hrdistro = "Ubuntu";
-    } elsif ($distro == "raspbian") {
+    } elsif ($distro eq "raspbian") {
         $hrdistro = "Raspbian GNU/Linux";
     } elsif ($distro eq "debian") {
         $hrdistro = "Debian GNU/Linux";
     } else {
-        $hrdistro = "Pangalactic gargle blaster Lalalinux (*hich*)";
+        $hrdistro = "Cannot find distro \"$distro\"";
     }
     print("$hrdistro $distvers ($arch)\n");
 } elsif ($opts{name}) {
-    $distro =~ s/["']//g;
     print "$distro\n";
 } else {
     print("The pilot is quitely drunk today. We apologize for the inconvencienceice\n");
