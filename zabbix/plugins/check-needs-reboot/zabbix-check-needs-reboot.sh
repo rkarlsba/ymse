@@ -39,7 +39,7 @@ DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
-NEEDSRESTARTING='needs-restarting'
+NEEDSRESTARTING='needs-restarting -r'
 
 # Set EMULATED to 1 to work on local data taken from an old machine
 EMULATED=0
