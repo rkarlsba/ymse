@@ -32,6 +32,7 @@ export LANG=C
 PATH=$PATH:/usr/local/bin
 
 CHECKNAME='custom.needsreboot'
+TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBBOOTFILE='/var/run/reboot-required'
 DEBUG=0
@@ -42,7 +43,7 @@ NEEDSRESTARTING='needs-restarting'
 
 # Set EMULATED to 1 to work on local data taken from an old machine
 EMULATED=1
-EMUSCRIPT="./emu-needs-restarting.sh"
+EMUSCRIPT="./emu-needs-restarting.sh -r"
 [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
 function rootcheck {
@@ -52,6 +53,19 @@ function rootcheck {
         echo "Need to be root to run this check - sorry (EUID is $EUID)" >&2
         exit 1
     fi
+}
+
+function printhelp {
+    printf "Syntax:
+
+zabbix-check-needs-reboot.sh [ --direct | --cron | --local | --clean | --help ]
+
+--direct    Run directly, may take several seconds, but handy for testing
+--cron      Run from cron to set local cache (because of above delay)
+--local     Read the above cache and report
+--clean     Remove named cache (usually for testing)
+--help      This text\n"
+    exit 0
 }
 
 DISTRO=$( zabbix_linux_distro_check.pl )
@@ -65,23 +79,30 @@ case $DISTRO in
         elif [ "$1" == "--local" ]
         then
             mode="local"
-        elif [ "$1" == '--cron' ]
+        elif [ "$1" == "--cron" ]
         then
             mode="cron"
-        elif [ "$1" == '--clean' ]
+        elif [ "$1" == "--clean" ]
         then
             rm -f $OUTFILE
             exit 0
+        elif [ "$1" == "--help" ]
+        then
+            printhelp
         else
-            echo "Unknown mode \"$1\"" >&2
+            echo "Unknown mode \"$1\". Please see --help" >&2
             exit 3
         fi
 
         if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
-            $NEEDSRESTARTING -r 2>&1
+            $NEEDSRESTARTING >/dev/null 2>&1 
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
             echo $needs_restart > $OUTFILE
+            if [ $needs_restart == "YES" ]
+            then
+                $NEEDSRESTARTING 2>/dev/null | while read line ; do echo "$line" >> $OUTFILE ; done 
+            fi
         fi
         if [ $mode == "direct" -o "$mode" == "local" ]
         then

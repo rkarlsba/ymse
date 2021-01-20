@@ -51,3 +51,5 @@ else
 23040 : /usr/lib/systemd/systemd --user
 23043 : (sd-pam)"
 fi
+
+exit 1
