@@ -98,10 +98,16 @@ case $DISTRO in
         then
             $NEEDSRESTARTING >/dev/null 2>&1 
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
-            echo $needs_restart > $OUTFILE
+            echo -n $needs_restart > $OUTFILE
             if [ $needs_restart == "YES" ]
             then
-                $NEEDSRESTARTING 2>/dev/null | while read line ; do echo "$line" >> $OUTFILE ; done 
+                echo ": " >> $OUTFILE
+                count=0
+                $NEEDSRESTARTING 2>/dev/null | while read line ; do echo "$line" >> $OUTFILE ;count=$(( $count + 1 )); done
+                if [ $count -eq 0 ]
+                then
+                    echo "(for whatever reason)" >> $OUTFILE
+                fi
             fi
         fi
         if [ $mode == "direct" -o "$mode" == "local" ]
