@@ -1,0 +1,22 @@
+# vim:ts=2:sw=2:sts=2:et:ai:fdm=marker:tw=100
+
+- hosts: confsys-dev.intern.hioa.no
+  user: root
+  tasks:
+  - name: Add zabbix check script
+    copy:
+      src: zabbix-checkkernel.sh
+      dest: /usr/local/bin/zabbix-checkkernel.sh
+      backup: no
+      owner: root
+      group: root
+      mode: 0755
+  - name: Configure Zabbix agent
+    lineinfile:
+      dest: /etc/zabbix/zabbix_agentd.conf
+      line: 'UserParameter=custom.kernelversioncheck,/usr/local/bin/zabbix-checkkernel.sh'
+      state: present
+  - name: Restart zabbix-agent
+    service:
+      name: zabbix-agent
+      state: restarted
