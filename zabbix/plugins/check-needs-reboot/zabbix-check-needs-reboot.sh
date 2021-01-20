@@ -22,6 +22,10 @@
 # Added EMULATED which works like the original, but runs another script,
 # EMUSCRIPT to pick up the data, the script emulating the potential,
 # alternating stderr/stdout output.
+# - Emulation is only enabled on RHEL/CentOS, since Debian already deals with
+# this on its own. It'll need to be tested on a debian machine, though.
+# - I Should perhaps have had some getopt logic instead of all this
+# hardcoding
 
 # If server for some reason uses another locale, locally switch it to C for now
 export LANG=C 
@@ -34,10 +38,12 @@ DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
+NEEDSRESTARTING='needs-restarting'
 
 # Set EMULATED to 1 to work on local data taken from an old machine
 EMULATED=1
 EMUSCRIPT="./emu-needs-restarting.sh"
+[ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
 function rootcheck {
     # Here, we need to be root
@@ -73,7 +79,7 @@ case $DISTRO in
 
         if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
-            needs-restarting -r > /dev/null 2>&1
+            $NEEDSRESTARTING -r 2>&1
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
             echo $needs_restart > $OUTFILE
         fi
