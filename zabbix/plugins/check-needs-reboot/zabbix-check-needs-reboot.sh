@@ -24,9 +24,9 @@
 export LANG=C 
 PATH=$PATH:/usr/local/bin
 
-TMPFILE=$(mktemp /tmp/zabbix-needsreboot.XXXXX)
 CHECKNAME='custom.needsreboot'
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
+DEBBOOTFILE='/var/run/reboot-required'
 DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
@@ -41,35 +41,33 @@ function rootcheck {
     fi
 }
 
-if [ "$1" == "--direct" ]
-then
-    mode="direct"
-elif [ "$1" == "--local" ]
-then
-    mode="local"
-elif [ "$1" == '--cron' ]
-then
-    mode="cron"
-elif [ "$1" == '--clean' ]
-then
-    rm -f $OUTFILE
-    exit 0
-else
-    echo "Unknown mode \"$1\"" >&2
-    exit 3
-fi
-
 DISTRO=$( zabbix_linux_distro_check.pl )
 
 case $DISTRO in
     rhel|centos)
         # RHEL/Centos check
+        if [ "$1" == "--direct" ]
+        then
+            mode="direct"
+        elif [ "$1" == "--local" ]
+        then
+            mode="local"
+        elif [ "$1" == '--cron' ]
+        then
+            mode="cron"
+        elif [ "$1" == '--clean' ]
+        then
+            rm -f $OUTFILE
+            exit 0
+        else
+            echo "Unknown mode \"$1\"" >&2
+            exit 3
+        fi
 
         if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
             needs-restarting -r > /dev/null 2>&1
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
-#           echo $CHECKNAME $needs_restart > $OUTFILE
             echo $needs_restart > $OUTFILE
         fi
         if [ $mode == "direct" -o "$mode" == "local" ]
@@ -82,22 +80,21 @@ case $DISTRO in
             fi
         fi
         ;;
-    debian|ubuntu)
-        # Ignore --local and --cron on debuntu - it's fast
-        APT_SEC=$( apt-get -s upgrade | grep -ci ^inst.*security | tr -d '\n' )
-        APT_UPD=$( apt-get -s upgrade | grep -iPc '^Inst((?!security).)*$' | tr -d '\n' )
-        if [ $APT_SEC -gt 0 -o $APT_UPD -gt 0 ]
+    debian|ubuntu|raspbian)
+        # Ignore arguments on debuntu - it's sufficiently fast without it
+        if [ -f $DEBBOOTFILE ]
         then
-            apt-get --just-print upgrade > $TMPFILE
-            STATUS='WARNING'
-            EXIT=1
-            [ $DEBUG -gt 0 ] && echo "DEBUG[4]: Just set EXIT to $EXIT"
+            needs_restart="YES: "
+            if [ -r $DEBBOOTFILE -a ! -z $DEBBOOTFILE ]
+            then
+                needs_restart+=$( cat $DEBBOOTFILE )
+            else
+                needs_restart+="(for whatever reason)"
+            fi
         else
-            STATUS='OK'
-            EXIT=0
-            [ $DEBUG -gt 0 ] && echo "DEBUG[5]: Just set EXIT to $EXIT"
+            needs_restart="NO"
         fi
-        echo $CHECKNAME $STATUS
+        echo $needs_restart
         ;;
     *)
         # Dunno
@@ -106,8 +103,6 @@ case $DISTRO in
         [ $DEBUG -gt 0 ] && echo "DEBUG[6]: Just set EXIT to $EXIT"
         ;;
 esac
-
-rm -f $TMPFILE
 
 exit $EXIT
 
