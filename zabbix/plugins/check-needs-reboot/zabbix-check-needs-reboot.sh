@@ -42,7 +42,7 @@ STATUS='WARN'
 NEEDSRESTARTING='needs-restarting'
 
 # Set EMULATED to 1 to work on local data taken from an old machine
-EMULATED=1
+EMULATED=0
 EMUSCRIPT="./emu-needs-restarting.sh -r"
 [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
