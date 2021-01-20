@@ -67,7 +67,7 @@ case $DISTRO in
 
         if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
-            needs-restarting > /dev/null 2>&1
+            needs-restarting -r > /dev/null 2>&1
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
             echo $CHECKNAME $needs_restart > $OUTFILE
         fi
