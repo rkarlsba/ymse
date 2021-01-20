@@ -29,29 +29,31 @@ OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
 
-function yumcheck {
+function rootcheck {
     # Here, we need to be root
     if [ $EUID -ne 0 ]
     then
         echo "Need to be root to run this check - sorry (EUID is $EUID)" >&2
         exit 1
     fi
-
-    if ! $( which yum > /dev/null 2>&1 )
-    then
-        echo "Can't find yum - something is weird!"
-        exit 2
-    fi
 }
 
-if [ "$1" == "--local" ]
+if [ "$1" == "--direct" ]
 then
-    [ $DEBUG -gt 0 ] && echo "DEBUG[1]: Setting OPT_LOCAL is to 1, \$1 == '$1'"
-    OPT_LOCAL=1
+    mode="direct"
+elif [ "$1" == "--local" ]
+then
+    mode="local"
 elif [ "$1" == '--cron' ]
 then
-    [ $DEBUG -gt 0 ] && echo "DEBUG[2]: Setting OPT_CRON is to 1, \$1 == '$1'"
-    OPT_CRON=1
+    mode="cron"
+elif [ "$1" == '--clean' ]
+then
+    rm -f $OUTFILE
+    exit 0
+else
+    echo "Unknown mode \"$1\"" >&2
+    exit 3
 fi
 
 DISTRO=$( zabbix_linux_distro_check.pl )
@@ -60,39 +62,20 @@ case $DISTRO in
     rhel|centos)
         # RHEL/Centos check
 
-        if [ $OPT_LOCAL -eq 1 ]
+        if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
-            cat $OUTFILE > $TMPFILE
-        else # OPT_LOCAL is 0
-        fi
-
-        if [ $OPT_LOCAL -gt 0 ]
-        then
-        else
-            yumcheck
             needs-restarting > /dev/null 2>&1
-            needs_restart=$?
+            [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
+            echo $CHECKNAME $needs_restart > $OUTFILE
         fi
-        EXIT="$?"
-        [ $DEBUG -gt 0 ] && echo "DEBUG[3]: Just set EXIT to $EXIT"
-
-        if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
+        if [ $mode == "direct" -o "$mode" == "local" ]
         then
-            STATUS="FAIL"
-        elif [ "$EXIT" = "0" ]
-        then
-            STATUS='OK'
-        fi
-
-        if [ $OPT_CRON -gt 0 ]
-        then
-            [ $DEBUG -gt 0 ] && echo "DEBUG[7]: OPT_LOCAL is $OPT_LOCAL"
-            echo $CHECKNAME $STATUS > $OUTFILE
-            cat $TMPFILE > $OUTFILE
-        else
-            [ $DEBUG -gt 0 ] && echo "DEBUG[8]: OPT_LOCAL is $OPT_LOCAL"
-            echo $CHECKNAME $STATUS
-            cat $TMPFILE
+            if [ -r $OUTFILE ]
+            then
+                cat $OUTFILE
+            else
+                echo $CHECKNAME ERROR
+            fi
         fi
         ;;
     debian|ubuntu)
