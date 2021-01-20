@@ -69,7 +69,8 @@ case $DISTRO in
         then
             needs-restarting -r > /dev/null 2>&1
             [ $? -eq 0 ] && needs_restart="NO" || needs_restart="YES"
-            echo $CHECKNAME $needs_restart > $OUTFILE
+#           echo $CHECKNAME $needs_restart > $OUTFILE
+            echo $needs_restart > $OUTFILE
         fi
         if [ $mode == "direct" -o "$mode" == "local" ]
         then
