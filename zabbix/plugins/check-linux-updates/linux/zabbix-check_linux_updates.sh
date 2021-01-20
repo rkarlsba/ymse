@@ -61,11 +61,13 @@ case $DISTRO in
         if [ $OPT_CRON -gt 0 ]
         then
             [ $DEBUG -gt 0 ] && echo "DEBUG[7]: OPT_LOCAL is $OPT_LOCAL"
-            echo $CHECKNAME $STATUS > $OUTFILE
+            echo $STATUS > $OUTFILE
+#           echo $CHECKNAME $STATUS > $OUTFILE
 #           cat $TMPFILE > $OUTFILE
         else
             [ $DEBUG -gt 0 ] && echo "DEBUG[8]: OPT_LOCAL is $OPT_LOCAL"
-            echo $CHECKNAME $STATUS
+            echo $STATUS
+#           echo $CHECKNAME $STATUS
 #           cat $TMPFILE
         fi
         ;;
