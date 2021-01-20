@@ -43,7 +43,13 @@ case $DISTRO in
         then
             if [ $OPT_LOCAL -gt 0 ]
             then
-                cat $OUTFILE > $TMPFILE
+                if [ -r $OUTFILE ]
+                then
+                    cat $OUTFILE > $TMPFILE
+                else
+                    echo "WARN: Can't read results file '$OUTFILE'"
+                    exit 1
+                fi
             else
                 yum check-update > $TMPFILE 2>&1
             fi
