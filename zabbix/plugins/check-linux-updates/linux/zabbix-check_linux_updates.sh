@@ -62,11 +62,11 @@ case $DISTRO in
         then
             [ $DEBUG -gt 0 ] && echo "DEBUG[7]: OPT_LOCAL is $OPT_LOCAL"
             echo $CHECKNAME $STATUS > $OUTFILE
-            cat $TMPFILE > $OUTFILE
+#           cat $TMPFILE > $OUTFILE
         else
             [ $DEBUG -gt 0 ] && echo "DEBUG[8]: OPT_LOCAL is $OPT_LOCAL"
             echo $CHECKNAME $STATUS
-            cat $TMPFILE
+#           cat $TMPFILE
         fi
         ;;
     debian|ubuntu)
