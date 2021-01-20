@@ -37,7 +37,7 @@ case $DISTRO in
         # RHEL/Centos check
         if $( which yum > /dev/null 2>&1 )
         then
-            if [ $OPT_LOCAL -gt 1 ]
+            if [ $OPT_LOCAL -gt 0 ]
             then
                 cat $OUTFILE > $TMPFILE
             else
