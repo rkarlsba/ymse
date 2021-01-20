@@ -1,22 +1,29 @@
 #!/bin/bash
-# vim:ts=4:sw=4:et:ai:fdm=marker
+# vim:ts=4:sw=4:et:ai:fdm=marker:bg=dark
 
 # Written by Roy Sigurd Karlsbakk <roysk@oslomet.no> or <roy@karlsbakk.net> for
-# use with Zabbix.
+# use with Zabbix. This uses zabbix_linux_distro_check.pl found in this git
+# repo to lookup linux distro details. Written using zabbix-checkupdates.sh,
+# also in this git repo, as a basepoint
+#
+# The reason for this check (along with its brother, zabbix-checkupdates.sh), is
+# to allow for checks of yum-related stuff from zabbix. Since zabbix usually
+# times out after 10 seconds, a fresh yum cache will usually take longer than
+# this to fill up and the yum job will be interrupted. This may also be the case
+# with increased timeout. This job just batches the check in cron (run script
+# with --cron) and then reads this file to check the result when running the
+# script with the --local argument.
 
-# 2019-06-12:
-# Added multidistro support, calling custom script to find distro type
-
-echo Not finished >&2
-exit 1
+# 2021-01-20
+# New script (nice)
 
 # If server for some reason uses another locale, locally switch it to C for now
 export LANG=C 
 PATH=$PATH:/usr/local/bin
 
-TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
-CHECKNAME='custom.yumupdatescheck'
-OUTFILE='/var/run/zabbix/zabbix-yumupdatescheck'
+TMPFILE=$(mktemp /tmp/zabbix-needsreboot.XXXXX)
+CHECKNAME='custom.needsreboot'
+OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
