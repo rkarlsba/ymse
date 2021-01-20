@@ -29,7 +29,21 @@ OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
 
-# If --local is given, run a local check, that
+function yumcheck {
+    # Here, we need to be root
+    if [ $EUID -ne 0 ]
+    then
+        echo "Need to be root to run this check - sorry (EUID is $EUID)" >&2
+        exit 1
+    fi
+
+    if ! $( which yum > /dev/null 2>&1 )
+    then
+        echo "Can't find yum - something is weird!"
+        exit 2
+    fi
+}
+
 if [ "$1" == "--local" ]
 then
     [ $DEBUG -gt 0 ] && echo "DEBUG[1]: Setting OPT_LOCAL is to 1, \$1 == '$1'"
@@ -45,25 +59,31 @@ DISTRO=$( zabbix_linux_distro_check.pl )
 case $DISTRO in
     rhel|centos)
         # RHEL/Centos check
-        if $( which yum > /dev/null 2>&1 )
-        then
-            if [ $OPT_LOCAL -gt 0 ]
-            then
-                cat $OUTFILE > $TMPFILE
-            else
-                yum check-update > $TMPFILE 2>&1
-            fi
-            EXIT="$?"
-            [ $DEBUG -gt 0 ] && echo "DEBUG[3]: Just set EXIT to $EXIT"
 
-            if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
-            then
-                STATUS="FAIL"
-            elif [ "$EXIT" = "0" ]
-            then
-                STATUS='OK'
-            fi
+        if [ $OPT_LOCAL -eq 1 ]
+        then
+            cat $OUTFILE > $TMPFILE
+        else # OPT_LOCAL is 0
         fi
+
+        if [ $OPT_LOCAL -gt 0 ]
+        then
+        else
+            yumcheck
+            needs-restarting > /dev/null 2>&1
+            needs_restart=$?
+        fi
+        EXIT="$?"
+        [ $DEBUG -gt 0 ] && echo "DEBUG[3]: Just set EXIT to $EXIT"
+
+        if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
+        then
+            STATUS="FAIL"
+        elif [ "$EXIT" = "0" ]
+        then
+            STATUS='OK'
+        fi
+
         if [ $OPT_CRON -gt 0 ]
         then
             [ $DEBUG -gt 0 ] && echo "DEBUG[7]: OPT_LOCAL is $OPT_LOCAL"

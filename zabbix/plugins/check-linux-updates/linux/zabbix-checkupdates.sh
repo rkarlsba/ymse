@@ -28,6 +28,10 @@ elif [ "$1" == '--cron' ]
 then
     [ $DEBUG -gt 0 ] && echo "DEBUG[2]: Setting OPT_CRON is to 1, \$1 == '$1'"
     OPT_CRON=1
+elif [ "$1" == '--clean' ]
+then
+    rm -f $OUTFILE
+    exit 0
 fi
 
 DISTRO=$( zabbix_linux_distro_check.pl )
