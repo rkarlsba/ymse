@@ -19,6 +19,9 @@
 
 # 2021-01-20
 # New script (nice)
+# Added EMULATED which works like the original, but runs another script,
+# EMUSCRIPT to pick up the data, the script emulating the potential,
+# alternating stderr/stdout output.
 
 # If server for some reason uses another locale, locally switch it to C for now
 export LANG=C 
@@ -31,6 +34,10 @@ DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
+
+# Set EMULATED to 1 to work on local data taken from an old machine
+EMULATED=1
+EMUSCRIPT="./emu-needs-restarting.sh"
 
 function rootcheck {
     # Here, we need to be root
