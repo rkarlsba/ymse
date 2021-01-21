@@ -127,14 +127,14 @@ case $DISTRO in
             needs_restart="YES: "
             if [ -r $DEBBOOTFILE -a ! -z $DEBBOOTFILE ]
             then
-                needs_restart+=$( cat $DEBBOOTFILE )
+                needs_restart+=$( cat "$DEBBOOTFILE" )
             else
                 needs_restart+="(for whatever reason)"
             fi
         else
             needs_restart="NO"
         fi
-        echo $needs_restart
+        echo "$needs_restart"
         ;;
     *)
         # Dunno
