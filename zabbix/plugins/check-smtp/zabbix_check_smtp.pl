@@ -81,8 +81,8 @@ if (defined($o_ssl)) {
         exit(1);
     };
 }
-print $smtp->banner;
 $smtp->quit;
 
 print "1\n";
+print $smtp->banner;
 
