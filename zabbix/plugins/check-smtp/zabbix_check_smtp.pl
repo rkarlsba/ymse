@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use Net::SMTP;
 use Getopt::Long;
+use Sys::Hostname;
 
 # globals
 my $o_hostname;
@@ -12,8 +13,7 @@ my $o_port = undef;
 my $o_ssl = undef;
 my $o_timeout = 5;
 my $o_debug = 0;
-my $o_hello = `hostname -f`;
-chomp($o_hello);
+my $o_hello = hostname;
 
 sub help {
     my $exitcode = 0;
