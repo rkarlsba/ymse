@@ -56,29 +56,36 @@ my $use_ssl = 0;
 my $smtp;
 if (defined($o_ssl)) {
     if ($o_ssl eq "ssl" or $o_ssl eq "starttls") {
-        $smtp = Net::SMTP->new(
+        unless ($smtp = Net::SMTP->new(
             $o_hostname,
             Timeout => $o_timeout,
             Debug => $o_debug,
             Hello => $o_hello,
             SSL => $o_ssl,
-        ) or die "Can't connect to $o_hostname: $@";;
+        )) {
+            print "0\n";
+            exit(1);
+        };
     } else {
         print STDERR "ssl must be either ssl or starttls\n";
         exit(1);
     }
 } else {
-    $smtp = Net::SMTP->new(
+    unless ($smtp = Net::SMTP->new(
         $o_hostname,
         Timeout => $o_timeout,
         Debug => $o_debug,
         Hello => $o_hello,
-    ) or die "Can't connect to $o_hostname: $@";;
+    )) {
+        print "0\n";
+        exit(1);
+    };
 }
 unless ($smtp) {
     print STDERR "Error: ", $smtp->message();
     exit(1);
 }
-print $smtp->domain . "\n";
+#print $smtp->domain . "\n";
 $smtp->quit;
 
+print "1\n";
