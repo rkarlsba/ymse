@@ -81,11 +81,8 @@ if (defined($o_ssl)) {
         exit(1);
     };
 }
-unless ($smtp) {
-    print STDERR "Error: ", $smtp->message();
-    exit(1);
-}
-#print $smtp->domain . "\n";
+print $smtp->banner;
 $smtp->quit;
 
 print "1\n";
+
