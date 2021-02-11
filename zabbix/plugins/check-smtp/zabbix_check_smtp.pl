@@ -84,5 +84,5 @@ if (defined($o_ssl)) {
 $smtp->quit;
 
 print "1\n";
-print $smtp->banner;
+#print $smtp->banner;
 
