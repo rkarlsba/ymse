@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai
 
+# Written around by Roy Sigurd Karlsbakk <roy@karlsbakk.net>. Licensed under AGPL v3.
+# See https://www.gnu.org/licenses/agpl-3.0.html for details.
+
 import configparser
 import syslog
 from time import sleep
 import sys
 import gpiozero
+import os.path
 
 # globals
 config_file = "pi-tempctl.conf"
-
-# FIXME searchpath should be an array etc
-searchpath = "/usr/local/etc"
+searchpath = ["/etc","/usr/local/etc"]
+for path in paths:
+    print(path)
 temperature_file = "/sys/class/thermal/thermal_zone0/temp";
 fan_status = 0
 probe_count = 0
@@ -46,9 +50,18 @@ def fanctl(status):
 syslog.openlog("pi-tempctl.py", logoption=syslog.LOG_PID, facility=syslog.LOG_DAEMON)
 
 # read config
-try:
-    config = configparser.ConfigParser()
-    config.read(searchpath + "/" + config_file)
+config = configparser.ConfigParser()
+have_config = 0
+
+for path in searchpath:
+    print(path)
+    filename = path + "/" + config_file
+    if path.exists(filename):
+        config.read(searchpath + "/" + config_file)
+        have_config = 1
+        break
+
+if have_config:
     for key in config["default"]:
         if key == "temperaure_threashold":
             c_temperaure_threashold = config.getfloat("default","temperaure_threashold");
@@ -60,10 +73,6 @@ try:
             c_poll_delay = config.getfloat("default","poll_delay");
         elif key == "debug_print":
             c_debug_print = config.getint("default","debug_print");
-except:
-    syslog.syslog(syslog.LOG_INFO, "No config file specified, falling back to defaults");
-        
-    
 
 # GPIO init
 FanPin = gpiozero.DigitalOutputDevice(c_fan_pin)
