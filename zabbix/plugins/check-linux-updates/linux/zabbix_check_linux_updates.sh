@@ -14,7 +14,7 @@ PATH=$PATH:/usr/local/bin
 TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
 CHECKNAME='custom.yumupdatescheck'
 OUTFILE='/var/run/zabbix/zabbix-yumupdatescheck'
-DEBUG=0
+DEBUG=1
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
@@ -59,22 +59,34 @@ case $DISTRO in
             if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
             then
                 STATUS="FAIL"
-            elif [ "$EXIT" = "0" ]
+            elif [ "$EXIT" == "0" ]
             then
                 STATUS='OK'
+            else
+                STATUS=$STATUS
             fi
         fi
         if [ $OPT_CRON -gt 0 ]
         then
             [ $DEBUG -gt 0 ] && echo "DEBUG[7]: OPT_LOCAL is $OPT_LOCAL"
-            echo $STATUS > $OUTFILE
-#           echo $CHECKNAME $STATUS > $OUTFILE
-#           cat $TMPFILE > $OUTFILE
+            if [ "$STATUS" == "OK" ]
+            then
+                echo $STATUS > $OUTFILE
+            else
+                echo -n $STATUS > $OUTFILE
+                echo -n ": " > $OUTFILE
+                cat $TMPFILE >> $OUTFILE
+            fi
         else
             [ $DEBUG -gt 0 ] && echo "DEBUG[8]: OPT_LOCAL is $OPT_LOCAL"
-            echo $STATUS
-#           echo $CHECKNAME $STATUS
-#           cat $TMPFILE
+            if [ "$STATUS" == "OK" ]
+            then
+                echo $STATUS
+            else
+                echo -n $STATUS
+                echo -n ": "
+                cat $TMPFILE
+            fi
         fi
         ;;
     debian|ubuntu)
