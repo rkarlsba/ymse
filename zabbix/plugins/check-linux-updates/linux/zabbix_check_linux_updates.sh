@@ -14,7 +14,7 @@ PATH=$PATH:/usr/local/bin
 TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
 CHECKNAME='custom.yumupdatescheck'
 OUTFILE='/var/run/zabbix/zabbix-yumupdatescheck'
-DEBUG=1
+DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
@@ -39,32 +39,36 @@ DISTRO=$( zabbix_linux_distro_check.pl )
 case $DISTRO in
     rhel|centos)
         # RHEL/Centos check
-        if $( which yum > /dev/null 2>&1 )
+        if $( ! which yum > /dev/null 2>&1 )
         then
-            if [ $OPT_LOCAL -gt 0 ]
-            then
-                if [ -r $OUTFILE ]
-                then
-                    cat $OUTFILE > $TMPFILE
-                else
-                    echo "WARN: Can't read results file '$OUTFILE'"
-                    exit 1
-                fi
-            else
-                yum check-update > $TMPFILE 2>&1
-            fi
-            EXIT="$?"
-            [ $DEBUG -gt 0 ] && echo "DEBUG[3]: Just set EXIT to $EXIT"
+            echo "Can't find yum - giving up"
+            exit 1
+        fi
 
-            if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
+        if [ $OPT_LOCAL -gt 0 ]
+        then
+            if [ -r $OUTFILE ]
             then
-                STATUS="FAIL"
-            elif [ "$EXIT" == "0" ]
-            then
-                STATUS='OK'
+                cat $OUTFILE
+                exit 0
             else
-                STATUS=$STATUS
+                echo "WARN: Can't read results file '$OUTFILE'"
+                exit 1
             fi
+        else
+            yum check-update > $TMPFILE 2>&1
+        fi
+        EXIT="$?"
+        [ $DEBUG -gt 0 ] && echo "DEBUG[3]: Just set EXIT to $EXIT"
+
+        if $( egrep -q -i '^(Error|Cannot)' $TMPFILE )
+        then
+            STATUS="FAIL"
+        elif [ "$EXIT" == "0" ]
+        then
+            STATUS='OK'
+        else
+            STATUS="WARN [$EXIT]"
         fi
         if [ $OPT_CRON -gt 0 ]
         then
@@ -73,8 +77,7 @@ case $DISTRO in
             then
                 echo $STATUS > $OUTFILE
             else
-                echo -n $STATUS > $OUTFILE
-                echo -n ": " > $OUTFILE
+                echo -n "$STATUS: " > $OUTFILE
                 cat $TMPFILE >> $OUTFILE
             fi
         else
@@ -96,7 +99,7 @@ case $DISTRO in
         if [ $APT_SEC -gt 0 -o $APT_UPD -gt 0 ]
         then
             apt-get --just-print upgrade > $TMPFILE
-            STATUS='WARNING'
+            STATUS='WARN'
             EXIT=1
             [ $DEBUG -gt 0 ] && echo "DEBUG[4]: Just set EXIT to $EXIT"
         else
