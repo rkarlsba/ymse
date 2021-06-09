@@ -27,7 +27,6 @@ similar. I've added `/etc/logrotate.d/postgresql-backups` with the following
 contents
 
 ``
-# vim:ts=4:sw=4:sts=4:et:ai
 /var/lib/postgresql/backups/*.dump {
     daily
     rotate 10
