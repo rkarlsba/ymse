@@ -1,4 +1,4 @@
-[comment]: <> vim:tw=80
+[comment]: <> vim:tw=80:ts=4:sw=4:sts=4:et:ai
 # Simple PostgreSQL backup
 
 A simple PostgreSQL backup script meant to be used with logrotate.
@@ -26,17 +26,16 @@ logrotate, but using a separate file and running it as a user process should be
 similar. I've added `/etc/logrotate.d/postgresql-backups` with the following
 contents
 
-``
-/var/lib/postgresql/backups/*.dump {
-    daily
-    rotate 10
-    copytruncate
-    nocompress
-    notifempty
-    nocreate
-    su postgres postgres
-}
-``
+    # vim:ts=4:sw=4:sts=4:et:ai
+    /var/lib/postgresql/backups/*.dump {
+        daily
+        rotate 10
+        copytruncate
+        nocompress
+        notifempty
+        nocreate
+        su postgres postgres
+    }
 
 This will rotate the logs daily at the time given in cron on when logrotate is
 run. On my system, this is defined in /etc/crontab, trigging cron-daily at
