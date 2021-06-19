@@ -2,6 +2,9 @@
  * vim:ts=2:sw=2:sts=2:ai:ft=c:tw=80:wrap
  *
  * bitraf-printerroom-sensor.ino
+ *
+ * Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+ * Released under AGPL - see LICENSE for more info.
  * 
  * Use a DHT-22 and a CCS811 to monitor temperature, humidity, CO2 and VoC in
  * Bitraf's 3d printer room. Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
