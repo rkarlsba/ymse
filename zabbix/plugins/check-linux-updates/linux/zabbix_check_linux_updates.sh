@@ -14,7 +14,8 @@
 # If server for some reason uses another locale, locally switch it to C for now
 export LANG=C 
 PATH=$PATH:/usr/local/bin
-TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
+BASENAME=$( basename $0 .sh )
+TMPFILE=$(mktemp /tmp/$BASENAME.XXXXX)
 CHECKNAME='custom.yumupdatescheck'
 OUTFILE='/var/run/zabbix/zabbix-yumupdatescheck'
 DEBUG=0

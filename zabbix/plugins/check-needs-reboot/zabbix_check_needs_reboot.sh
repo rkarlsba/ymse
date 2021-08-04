@@ -32,7 +32,9 @@ export LANG=C
 PATH=$PATH:/usr/local/bin
 
 CHECKNAME='custom.needsreboot'
-TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
+BASENAME=$( basename $0 .sh )
+TMPFILE=$( mktemp /tmp/$BASENAME.XXXXX )
+
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBBOOTFILE='/var/run/reboot-required'
 DEBUG=0
@@ -45,6 +47,12 @@ NEEDSRESTARTING='needs-restarting -r'
 EMULATED=0
 EMUSCRIPT="./emu-needs-restarting.sh -r"
 [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
+
+function cleanup {
+    rm -f $TMPFILE
+}
+
+trap cleanup EXIT
 
 function rootcheck {
     # Here, we need to be root
