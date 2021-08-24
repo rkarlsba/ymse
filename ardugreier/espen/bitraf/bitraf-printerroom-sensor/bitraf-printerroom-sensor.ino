@@ -46,14 +46,14 @@ Adafruit_CCS811 ccs;
 
 DHT dht(DHTPIN, DHTTYPE);
 
-const char* ssid = "xxxxxxx";
-const char* password = "xxxxxxx";
+const char* ssid = "SKB_Langtid";
+const char* password = "Bymisjon2015";
 
-#define S                 1000
-#define MQTT_SERVER       "my.mqtt.server.local"
+#define SEC               1000
+#define MQTT_SERVER       "mqtt.karlsbakk.net"
 #define MQTT_PORT         1883
 #define MQTT_MAX_RETRIES  5
-#define SAMPLE_DELAY      10*S
+#define SAMPLE_DELAY      10*SEC
 #define CCS_TIMEOUT       10
 
 /*
@@ -110,13 +110,13 @@ void setup() {
     float temp = ccs.calculateTemperature();
     ccs.setTempOffset(temp - 25.0); // WTF?
   } else {
-    delay(3000);
+    delay(3*SEC);
     for (int i=0;;i++) {
       Serial.print(F("["));
       Serial.print(i);
       Serial.print(F("] "));
       Serial.println(F("Failed to start css811 sensor! Please check your wiring."));
-      delay(1000);
+      delay(1*SEC);
     }
   }
 
@@ -236,4 +236,3 @@ void MQTT_connect() {
   }
   Serial.println("MQTT Connected!");
 }
-
