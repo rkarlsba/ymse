@@ -5,7 +5,8 @@ PATH=$PATH:/snap/bin:/usr/local/bin
 
 # Variabler - se https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
 RESTIC_USER="bruker"
-RESTIC_REPOSITORY="sftp:$RESTIC_USER@restic.karlsbakk.net:restic-repo"
+RESTIC_SERVER="my.restic.server.com"
+RESTIC_REPOSITORY="sftp:$RESTIC_USER@$RESTIC_SERVER:restic-repo"
 RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
 RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
 RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
