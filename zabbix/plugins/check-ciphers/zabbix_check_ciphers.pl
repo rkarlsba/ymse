@@ -38,6 +38,7 @@ my $opt_help;
 my $opt_host;
 my $opt_ipv4;
 my $opt_ipv6;
+my $opt_nmap_path = "nmap";
 my $opt_port = 443;
 my $opt_quiet;
 my $opt_verbose;
@@ -46,12 +47,6 @@ my $daredevil = 1;
 # Egenkompilert nmap - den som ligger her fra før er hønngammal
 my $custom_nmap = '/opt/nmap/bin/nmap';
 my $nmap;
-
-if (defined($custom_nmap)) {
-    $nmap = $custom_nmap;
-} else {
-    $nmap = "nmap";
-}
 
 sub help {
     my $exitcode = 0;
@@ -67,6 +62,7 @@ Usage: zabbix_check_ciphers.pl [--help | --port <n> ] host
     --verbose | -v      Don't be brief or distinct, but rather spend the day explaining what may be going wrong or right and make sure you tell the user/admin every detail available because otherwise she or he might be unsure of what to do and will be walking around in distress and probably become a drug addict or worse before the day is over.
     --quiet | -q        STFU
     --port | -p <n>     Port to check ($opt_port)
+    --nmap-path | -N    Path to nmap if not in the current path
     -4                  Use IPv4 (automatic if Data::Validate::IP is installed)
     -6                  Use IPv6 (automatic if Data::Validate::IP is installed)
 
@@ -76,12 +72,13 @@ EOT
 
 Getopt::Long::Configure('bundling');
 GetOptions(
-    "verbose+"       => \$opt_verbose,  "v+" => \$opt_verbose,
-    "quiet+"         => \$opt_quiet,    "q" => \$opt_quiet,
-    "port=i"         => \$opt_port,     "p=i" => \$opt_port,
+    "verbose+"       => \$opt_verbose,   "v+" => \$opt_verbose,
+    "quiet+"         => \$opt_quiet,     "q" => \$opt_quiet,
+    "port=i"         => \$opt_port,      "p=i" => \$opt_port,
+    "nmap-path=s"    => \$opt_nmap_path, "N=s" => \$opt_nmap_path,
     "6"              => \$opt_ipv6,
     "4"              => \$opt_ipv4,
-    "help"           => \$opt_help,     "h" => \$opt_help,
+    "help"           => \$opt_help,      "h" => \$opt_help,
 ) or die "Invalid argument";
 
 if (($< == 0 or $> == 0) and not $daredevil) {
@@ -139,7 +136,7 @@ if ($have_data_validate_domain) {
 # }}}
 $ipv6 = "" unless (defined($ipv6));
 
-my $nmap_cmd = "$nmap $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
+my $nmap_cmd = "$opt_nmap_path $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
 print "$nmap_cmd\n" if (defined($opt_verbose) and $opt_verbose >= 2);
 open(my $nmap_output, "$nmap_cmd|") ||
     die("Can't run nmap command \"$nmap_cmd\"\n");
