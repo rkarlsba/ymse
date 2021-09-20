@@ -1,11 +1,25 @@
 #!/usr/bin/env perl
-# vim:ts=4:sw=4:sts=4:et:ai
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 use strict;
 use warnings;
 use Getopt::Long;
 use POSIX qw(uname);
 use Data::Validate::IP;
+use Data::Validate::Domain qw(is_domain);
+
+# Globals
+my %goodcerts = (
+    'TLSv1.2' => 1,
+    'TLSv1.3' => 1,
+);
+my %badcerts = (
+    'SSLv1' => 1,
+    'SSLv2' => 1,
+    'SSLv3' => 1,
+    'TLSv1.0' => 1,
+    'TLSv1.1' => 1,
+);
 
 # Opts
 my $opt_host;
@@ -14,6 +28,7 @@ my $opt_help;
 my $opt_verbose;
 my $daredevil = 1;
 
+# Egenkompilert nmap - den som ligger her fra før er hønngammal
 my $nmap = '/opt/nmap/bin/nmap';
 
 sub help {
@@ -52,46 +67,88 @@ $opt_host = shift;
 
 # Input validation
 my $ipv6 = "";
-if ($opt_host =~ /\\\//) {
-    print STDERR "Invalid characters in hostname\n";
-    exit(3);
-}
-if ($opt_host =~ /^[a-z0-9\-]+(\.[a-z0-9\-]+(\.[a-z0-9\-]+)?)?/i) {
-    print "Valid hostname \$opt_host\n" if ($opt_verbose);
-} elsif($opt_host =~ /^
-(
-([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|          # 1:2:3:4:5:6:7:8
-([0-9a-fA-F]{1,4}:){1,7}:|                         # 1::                              1:2:3:4:5:6:7::
-([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|         # 1::8             1:2:3:4:5:6::8  1:2:3:4:5:6::8
-([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|  # 1::7:8           1:2:3:4:5::7:8  1:2:3:4:5::8
-([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|  # 1::6:7:8         1:2:3:4::6:7:8  1:2:3:4::8
-([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|  # 1::5:6:7:8       1:2:3::5:6:7:8  1:2:3::8
-([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|  # 1::4:5:6:7:8     1:2::4:5:6:7:8  1:2::8
-[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|       # 1::3:4:5:6:7:8   1::3:4:5:6:7:8  1::8  
-:((:[0-9a-fA-F]{1,4}){1,7}|:)|                     # ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8 ::8       ::     
-fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|     # fe80::7:8%eth0   fe80::7:8%1     (link-local IPv6 addresses with zone index)
-::(ffff(:0{1,4}){0,1}:){0,1}
-((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}
-(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|          # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255  (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
-([0-9a-fA-F]{1,4}:){1,4}:
-((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}
-(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])           # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33 (IPv4-Embedded IPv6 Address)
-)
-/) {
-    print "Valid IPv6 address \$opt_host\n" if ($opt_verbose);
+if (is_ipv4($opt_host)) {
+    print "Valid IPv4 address \"$opt_host\"\n" if ($opt_verbose);
+} elsif (is_ipv6($opt_host)) {
+    print "Valid IPv6 address \"$opt_host\"\n" if ($opt_verbose);
     $ipv6 = "-6";
-} elsif ($opt_host =~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) {
-    print "Valid IPv4 address \$opt_host\n" if ($opt_verbose);
+} elsif (is_domain($opt_host)) {
+    print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
 } else {
     print "Invalid hostname \"$opt_host\"\n";
     exit(4);
 }
+# nmap-greier {{{
+#
 # nmap -sV --script ssl-enum-ciphers -p 443
-#my $nmap_cmd = "$nmap -sV --script ssl-enum-ciphers -p $opt_port $opt_host";
+# Trenger nok ikke -sV - fra manualen:
+#   Probe open ports to determine service/version info
+#
+# my $nmap_cmd = "$nmap $ipv6 -sV --script ssl-enum-ciphers -p $opt_port $opt_host";
+#
+# }}}
 my $nmap_cmd = "$nmap $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
 open(my $nmap_output, "$nmap_cmd|") ||
     die("Can't run nmap command \"$nmap_cmd\"\n");
 
+=output {{{
+
+PORT    STATE SERVICE
+443/tcp open  https
+| ssl-enum-ciphers:
+|   TLSv1.0:
+|     ciphers:
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+
+=cut }}}
+
+my $tls;
+my $warnmsg = undef;
+my $errmsg = undef;
+my @goodprotos = ();
+my @badprotos = ();
+my @unknownprotos = ();
+
 while (my $line = <$nmap_output>) {
-    print $line;
+    if ($line =~ /^\|   ((TLS|SSL)v\d+.\d+):/) {
+        $tls = $1;
+        if ($goodcerts{$tls}) {
+            push @goodprotos,$tls;
+            print "YEY! $tls!\n" if ($opt_verbose);
+        } elsif ($badcerts{$tls}) {
+            push @badprotos,$tls;
+            print "UH! $tls!\n" if ($opt_verbose);
+        } else {
+            push @unknownprotos,$tls;
+            print "UH? $tls!\n" if ($opt_verbose);
+        }
+        next;
+    }
+}
+
+if ($#badprotos > 0) {
+    $errmsg = "ERROR: Bad protocols: ";
+    foreach my $p (@badprotos) {
+        $errmsg .= "$p ";
+    }
+}
+
+if ($#unknownprotos > 0) {
+    $warnmsg = "WARNING: Unknown protocols: ";
+    foreach my $p (@unknownprotos) {
+        $warnmsg .= "$p ";
+    }
+}
+
+if (defined($errmsg) || defined($warnmsg)) {
+    print $errmsg if (defined($errmsg));
+    print $warnmsg if (defined($warnmsg));
+    print "\n";
+} else {
+    print "OK: Supported protocols: ";
+    foreach my $p (@goodprotos) {
+        print "$p ";
+    }
+    print "\n";
 }
