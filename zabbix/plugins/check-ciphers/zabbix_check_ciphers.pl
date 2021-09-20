@@ -44,8 +44,14 @@ my $opt_verbose;
 my $daredevil = 1;
 
 # Egenkompilert nmap - den som ligger her fra før er hønngammal
-my $nmap = '/opt/nmap/bin/nmap';
-#my $nmap = '/usr/bin/nmap';
+my $custom_nmap = '/opt/nmap/bin/nmap';
+my $nmap;
+
+if (defined($custom_nmap)) {
+    $nmap = $custom_nmap;
+} else {
+    $nmap = "nmap";
+}
 
 sub help {
     my $exitcode = 0;
@@ -132,6 +138,7 @@ if ($have_data_validate_domain) {
 #
 # }}}
 $ipv6 = "" unless (defined($ipv6));
+
 my $nmap_cmd = "$nmap $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
 print "$nmap_cmd\n" if (defined($opt_verbose) and $opt_verbose >= 2);
 open(my $nmap_output, "$nmap_cmd|") ||
