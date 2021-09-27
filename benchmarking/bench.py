@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-filecount = 300000
+# Simple benchmarking program ripped from https://unix.stackexchange.com/questions/28756/what-is-the-most-high-performance-linux-filesystem-for-storing-a-lot-of-small-fi/28792
+# 
+# Rewritten slightly to support macos and to run under python3 by Roy Sigurd Karlsbakk <roy@karlsbakk.net> in September 2021.
+
+filecount = 3_00_000
 filesize = 1024
 
 import random, time
@@ -16,7 +20,7 @@ elif platform == "darwin":
     flush = "purge"
 elif platform == "win32":
     # Windows...
-    print "I DON'T LIKE WINDOWS!!!!!!"
+    print("I DON'T LIKE WINDOWS!!!!!!")
     exit(1)
 
 # Most OSes should take the rest, now that windows is out of the way
