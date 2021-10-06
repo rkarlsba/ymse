@@ -49,8 +49,6 @@ my $api_auth = undef;
 #my $content_type = 'application/json';
 my $content_type = "application/json-rpc";
 
-my $api_auth_text = defined($api_auth) ? "\"$api_auth\"" : "null";
-
 my $login = {
     'jsonrpc' => '2.0',
     'method' => 'user.login',
@@ -59,7 +57,6 @@ my $login = {
         'password' => $api_password,
     },
     'id' => $api_id,
-    'auth' => $api_auth_text,
 };
 
 my $http_req = HTTP::Request->new('POST', $api_url);
