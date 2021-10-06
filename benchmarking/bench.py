@@ -23,7 +23,7 @@ elif platform == "win32":
     exit(1)
 
 # Most OSes should take the rest, now that windows is out of the way
-randfile = open("/dev/urandom", "r")
+randfile = open("/dev/urandom", "rb")
 
 print("\ncreate test folder:")
 starttime = time.time()
@@ -35,7 +35,7 @@ print("\ncreate files:")
 starttime = time.time()
 for i in range(filecount):
     rand = randfile.read(int(filesize * 0.5 + filesize * random.random()))
-    outfile = open("test/" + unicode(i), "w")
+    outfile = open("test/" + unicode(i), "wb")
     outfile.write(rand)
 print(time.time() - starttime)
 system(flush)
@@ -44,7 +44,7 @@ print("\nrewrite files:")
 starttime = time.time()
 for i in range(int(filecount / 10)):
     rand = randfile.read(int(filesize * 0.5 + filesize * random.random()))
-    outfile = open("test/" + unicode(int(random.random() * filecount)), "w")
+    outfile = open("test/" + unicode(int(random.random() * filecount)), "wb")
     outfile.write(rand)
 print(time.time() - starttime)
 system(flush)
@@ -52,16 +52,16 @@ system(flush)
 print("\nread linear:")
 starttime = time.time()
 for i in range(int(filecount / 10)):
-    infile = open("test/" + unicode(i), "r")
+    infile = open("test/" + unicode(i), "rb")
     outfile.write(infile.read());
 print(time.time() - starttime)
 system(flush)
 
 print("\nread random:")
 starttime = time.time()
-outfile = open("/dev/null", "w")
+outfile = open("/dev/null", "wb")
 for i in range(int(filecount / 10)):
-    infile = open("test/" + unicode(int(random.random() * filecount)), "r")
+    infile = open("test/" + unicode(int(random.random() * filecount)), "rb")
     outfile.write(infile.read());
 print(time.time() - starttime)
 system(flush)
