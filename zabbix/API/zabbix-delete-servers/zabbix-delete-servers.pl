@@ -29,6 +29,14 @@ use Mozilla::CA;
 # my $api_user = "someuser";
 # my $api_password = "somepass";
 # my $api_url = "https://zabbie.my.tld/zabbix/api_jsonrpc.php";
+#
+# If you want to do like I do, just create functions like this one to return
+# the data you want:
+#
+# sub get_api_url {
+#     return "https://zabbix.my.tld/zabbix/api_jsonrpc.php";
+# }
+#
 # }}}
 
 require "authstuff.pl";
