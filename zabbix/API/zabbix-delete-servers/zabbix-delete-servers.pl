@@ -39,7 +39,7 @@ use Mozilla::CA;
 #
 # }}}
 
-require "authstuff.pl";
+require "./authstuff.pl";
 
 my $api_user = &get_api_user;
 my $api_password = &get_api_password;
