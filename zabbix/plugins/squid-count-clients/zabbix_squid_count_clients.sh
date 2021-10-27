@@ -26,7 +26,7 @@ function error {
     exit 1
 }
 
-while getopts ":c:p:hd" arg
+while getopts "c:p:hd" arg
 do
     case $arg in
         c)
