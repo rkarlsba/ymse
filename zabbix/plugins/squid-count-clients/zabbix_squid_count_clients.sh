@@ -26,11 +26,14 @@ function error {
     exit 1
 }
 
-while getopts ":c:p:h" arg
+while getopts ":c:p:hd" arg
 do
     case $arg in
         c)
             COMMUNITY=${OPTARG}
+            ;;
+        d)
+            DEBUG=$(( $DEBUG + 1 ))
             ;;
         p)
             PORT=${OPTARG}
