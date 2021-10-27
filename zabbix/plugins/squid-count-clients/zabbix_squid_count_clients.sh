@@ -17,7 +17,7 @@
 COMMUNITY="public"
 PORT=3401
 HOST=""
-DEBUG=1
+DEBUG=0
 
 function error {
     echo -n "Usage: "
