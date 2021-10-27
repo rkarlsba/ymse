@@ -22,11 +22,11 @@ DEBUG=0
 function error {
     echo -n "Usage: "
     echo $1
-    echo "$0 [ -c community ] [ -p port ] hostname/ip"
+    echo "$0 [ -c community ] [ -p port ] -h hostname/ip"
     exit 1
 }
 
-while getopts "c:p:hd" arg
+while getopts ":c:p:h:d" arg
 do
     case $arg in
         c)
@@ -39,13 +39,10 @@ do
             PORT=${OPTARG}
             ;;
         h | *)
-            error
-            exit 0
+            HOST=${OPTARG}
             ;;
     esac
 done
-
-HOST=$1
 
 if [ "$HOST" = "" ]
 then
