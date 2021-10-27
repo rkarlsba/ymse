@@ -5,9 +5,19 @@ use strict;
 use warnings;
 use Getopt::Long;
 
-# my ss_tn {{{
-my $ss_tn =
-"State                 Recv-Q                  Send-Q                                               Local Address:Port                                                    Peer Address:Port                  Process
+my $dummy = 0;
+my $debug = 0;
+my $port = undef;
+my $total = 0;
+my $count_conns = 0;
+my $count_ips = 0;
+my $count = 0;
+
+my %ips;
+
+# my $ss_tn {{{
+my $ss_tn = <<EOT;
+State                 Recv-Q                  Send-Q                                               Local Address:Port                                                    Peer Address:Port                  Process
 ESTAB                 0                       0                                                   192.168.10.254:22                                                    84.213.115.180:58070
 ESTAB                 0                       0                                                   192.168.10.254:22                                                    84.213.115.180:33122
 ESTAB                 0                       0                                                   192.168.10.254:2049                                                   192.168.10.38:959
@@ -28,37 +38,58 @@ ESTAB                 0                       0                                 
 ESTAB                 0                       0                                        [2a01:79c:cebf:61e4:1::1]:8823                                      [2001:700:700:403::8:10d1]:55007
 ESTAB                 0                       0                                        [2a01:79c:cebf:61e4:1::1]:22                                        [2a01:79c:cebf:61e4:10::1]:60374
 ESTAB                 0                       0                                        [2a01:79c:cebf:61e4:1::1]:2049                                    [2a01:79c:cebf:61e4:300::84]:667"
+EOT
 # }}}
-# Prat {{{
-=begin
-
-Tell antall sesjoner åpent mot Squid
-
-# ss -tn
-ESTAB 0      0        [2001:700:700:1::89]:3128  [2001:700:700:200b::12]:34801
-ESTAB 0      0        [2001:700:700:1::89]:3128  [2001:700:702:2513::37]:58753
-ESTAB 0      0        [2001:700:700:1::89]:3128  [2001:700:700:200b::13]:58177
-ESTAB 0      0      [::ffff:158.36.161.89]:3128     [::ffff:10.252.3.19]:60567
-ESTAB 0      0        [2001:700:700:1::89]:3128   [2001:700:700:25::320]:56486
-ESTAB 0      0        [2001:700:700:1::89]:3128   [2001:700:700:25::320]:52272
-ESTAB 0      0      [::ffff:158.36.161.89]:3128     [::ffff:10.252.3.19]:60566
-
-=cut
-# }}}}
 
 my $ss;
-if ($^O eq "Darwin") {
-    ZZ
+if ($^O eq "darwin") {
+    $dummy = 1;
+}
+
+GetOptions(
+    'h' => sub { &help },   'help'   => sub { &help },
+    'd' => \$dummy,         'dummy' => \$dummy,
+    'i' => \$count_ips,     'ips' => \$count_ips,
+    't' => \$count_conns,   'total' => \$count_conns,
+    'D' => \$debug,         'debug' => \$debug,
+    'p=i' => \$port,        'port=i' => \$port,  
+) || die 'wtf?';
+
+if (defined($port)) {
+    die "Port must be numeric\n" unless ($port =~ /^\d+$/);
+    die "Port must be in the range of 1-65535\n" unless ($port >= 1 and $port <= 65535);
+}
+
+die "Please - either -i or -t\n" if ($count_ips and $count_conns);
+
+if ($dummy gt 0) {
+    open $ss,"ss.txt" || die "¿Qué?";
+} else {
     open my $ss,"ss -tn|" || die "Funker ikke!";
+}
 
 while (my $line = <$ss>) {
     my @cols = split(/\s+/,$line);
     next unless ($cols[0] eq "ESTAB");
-    next unless ($cols[3] =~ m/:3128$/);
+    if (defined($port)) {
+        next unless ($cols[3] =~ m/:$port$/);
+    }
+    print "DEBUG: $line\n" if ($debug);
     my $ip = $1 if ($cols[4] =~ /\[(.*?)\]/);
-    # Vaske IPV4-adresser - ::ffff:10.252.3.19 til 10.252.3.19
-    $ip =~ s/^::ffff://;
-    print "$ip\n";
+    if (defined($ip)) {
+        # Vaske IPV4-adresser - ::ffff:10.252.3.19 til 10.252.3.19
+        $ip =~ s/^::ffff://;
+        print "$ip\n" unless ($count_conns || $count_ips);
+        $ips{$ip}++;
+        $count++;
+    }
 }
 
 close $ss;
+
+if ($count_conns) {
+    print "$count\n";
+} elsif ($count_ips) {
+    my $ip_count = scalar keys %ips;
+    print "$ip_count\n";
+}
