@@ -65,7 +65,7 @@ die "Please - either -i or -t\n" if ($count_ips and $count_conns);
 if ($dummy gt 0) {
     open $ss,"ss.txt" || die "¿Qué?";
 } else {
-    open my $ss,"ss -tn|" || die "Funker ikke!";
+    open $ss,"ss -tn|" || die "Funker ikke!";
 }
 
 while (my $line = <$ss>) {
