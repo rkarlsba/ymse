@@ -6,8 +6,6 @@ use warnings;
 use Getopt::Long;
 use POSIX qw(uname);
 use Socket;
-#use Data::Validate::IP;
-#use Data::Validate::Domain qw(is_domain);
 
 my $have_data_validate_ip = eval {
   require Data::Validate::IP;
@@ -44,6 +42,7 @@ my $opt_port = 443;
 my $opt_quiet;
 my $opt_verbose;
 my $daredevil = 1;
+my $ip;
 
 # Egenkompilert nmap - den som ligger her fra før er hønngammal
 my $custom_nmap = '/opt/nmap/bin/nmap';
@@ -102,6 +101,7 @@ if ($opt_ipv4) {
     $ipv6 = "-6";
 }
 
+
 if (!defined($ipv6)) {
     if ($have_data_validate_ip) {
         print "opt_host er $opt_host\n" if (defined($opt_verbose) and ($opt_verbose > 1));
@@ -124,19 +124,35 @@ unless ($valid_ip) {
         if (is_domain($opt_host)) {
             print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
             # Fine, but we don't know if it's IPv4 or IPV6
-            print "calling gethostbyname($opt_host);\n" if (defined($opt_verbose) and $opt_verbose > 1);
-            my $packed_ip = gethostbyname($opt_host);
-            if (defined $packed_ip) {
-                my $ip_address = inet_ntoa($packed_ip);
-                if (is_ipv4($opt_host)) {
-                    $valid_ip++;
-                    print "Valid IPv4 address \"$opt_host\" [2]\n" if ($opt_verbose);
-                    $ipv6 = "";
+            my ( $err, @addrs ) = Socket::getaddrinfo( $opt_host, 0, { 'protocol' => Socket::IPPROTO_TCP, 'family' => Socket::AF_INET6 } );
+            unless ($err) {
+                for my $addr (@addrs) {
+                    my ( $err, $opt_host ) = Socket::getnameinfo($addr->{addr}, Socket::NI_NUMERICHOST);
+                    if ($err) {
+                        warn $err;
+                        next;
+                    }
+                    $ip = $opt_host;
+                    $ipv6 = "-6";
+                }
+            } else {
+                ($err, @addrs) = Socket::getaddrinfo($opt_host, 0, {'protocol' => Socket::IPPROTO_TCP, 'family' => Socket::AF_INET } );
+                if ($err) {
+                    print "Feil: $err\n";
+                } else {
+                    for my $addr (@addrs) {
+                        my ( $err, $opt_host ) = Socket::getnameinfo( $addr->{addr}, Socket::NI_NUMERICHOST );
+                        if ($err) {
+                            warn $err;
+                            next;
+                        }
+                        $ip = $opt_host;
+                    }
                 }
             }
-            # Hostname is valid, no IPv4 address, so we'll just gamble it's IPv6
-            $valid_ip++;
-            $ipv6 = "-6" unless (defined($ipv6));
+            if (!defined($ip)) {
+                print "Fant ikke IP for $opt_host\n";
+            }
         } else {
             print "Invalid hostname \"$opt_host\"\n";
             exit(4);
