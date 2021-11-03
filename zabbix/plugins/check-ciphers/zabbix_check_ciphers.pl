@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use Getopt::Long;
 use POSIX qw(uname);
+use Socket;
 #use Data::Validate::IP;
 #use Data::Validate::Domain qw(is_domain);
 
