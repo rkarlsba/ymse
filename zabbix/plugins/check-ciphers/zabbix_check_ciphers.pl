@@ -93,6 +93,7 @@ $opt_host = shift;
 
 # Input validation
 my $ipv6 = undef;
+my $valid_ip = 0;
 
 if ($opt_ipv4) {
     my $ipv6 = "";
@@ -102,11 +103,14 @@ if ($opt_ipv4) {
 
 if (!defined($ipv6)) {
     if ($have_data_validate_ip) {
+        print "opt_host er $opt_host\n" if (defined($opt_verbose) and ($opt_verbose > 1));
         if (is_ipv4($opt_host)) {
-            print "Valid IPv4 address \"$opt_host\"\n" if ($opt_verbose);
+            $valid_ip++;
+            print "Valid IPv4 address \"$opt_host\" [1]\n" if ($opt_verbose);
             $ipv6 = "";
         } elsif (is_ipv6($opt_host)) {
-            print "Valid IPv6 address \"$opt_host\"\n" if ($opt_verbose);
+            $valid_ip++;
+            print "Valid IPv6 address \"$opt_host\" [1]\n" if ($opt_verbose);
             $ipv6 = "-6";
         }
     }
@@ -114,15 +118,31 @@ if (!defined($ipv6)) {
     print STDERR "Library Data::Validate::IP not found - use -4 or -6\n" unless ($opt_quiet or $opt_ipv4 or $opt_ipv6);
 }
 
-if ($have_data_validate_domain) {
-    if (is_domain($opt_host)) {
-        print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
+unless ($valid_ip) {
+    if ($have_data_validate_domain) {
+        if (is_domain($opt_host)) {
+            print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
+            # Fine, but we don't know if it's IPv4 or IPV6
+            print "calling gethostbyname($opt_host);\n" if (defined($opt_verbose) and $opt_verbose > 1);
+            my $packed_ip = gethostbyname($opt_host);
+            if (defined $packed_ip) {
+                my $ip_address = inet_ntoa($packed_ip);
+                if (is_ipv4($opt_host)) {
+                    $valid_ip++;
+                    print "Valid IPv4 address \"$opt_host\" [2]\n" if ($opt_verbose);
+                    $ipv6 = "";
+                }
+            }
+            # Hostname is valid, no IPv4 address, so we'll just gamble it's IPv6
+            $valid_ip++;
+            $ipv6 = "-6" unless (defined($ipv6));
+        } else {
+            print "Invalid hostname \"$opt_host\"\n";
+            exit(4);
+        }
     } else {
-        print "Invalid hostname \"$opt_host\"\n";
-        exit(4);
+        print STDERR "Library Data::Validate::Domain not found\n" unless ($opt_quiet);
     }
-} else {
-    print STDERR "Library Data::Validate::Domain not found\n" unless ($opt_quiet);
 }
 
 # nmap-greier {{{
