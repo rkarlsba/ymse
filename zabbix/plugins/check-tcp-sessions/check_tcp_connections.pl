@@ -71,17 +71,21 @@ if ($dummy gt 0) {
 }
 
 while (my $line = <$ss>) {
+    my $ip = undef;
     my @cols = split(/\s+/,$line);
     next unless ($cols[0] eq "ESTAB");
     if (defined($port)) {
         next unless ($cols[3] =~ m/:$port$/);
     }
     print "DEBUG: $line\n" if ($debug);
-    my $ip = $1 if ($cols[4] =~ /\[(.*?)\]/);
+    $ip = $1 if ($cols[4] =~ /\[(.*?)\]/);
     unless (defined($ip)) {
         if ($cols[4] =~ /^(\d+\.\d+\.\d+\.\d+)\:/) {
             $ip = $1;
         }
+    }
+    if ($debug) {
+        print "An IP address: $ip\n";
     }
     if (defined($ip)) {
         # Vaske IPV4-adresser - ::ffff:10.252.3.19 til 10.252.3.19
