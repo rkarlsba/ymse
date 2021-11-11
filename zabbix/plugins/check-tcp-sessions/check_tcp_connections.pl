@@ -4,6 +4,7 @@
 use strict;
 use warnings;
 use Getopt::Long;
+#use Getopt::Mixed;
 
 my $dummy = 0;
 my $debug = 0;
@@ -51,7 +52,7 @@ GetOptions(
     'd' => \$dummy,         'dummy' => \$dummy,
     'i' => \$count_ips,     'ips' => \$count_ips,
     't' => \$count_conns,   'total' => \$count_conns,
-    'D' => \$debug,         'debug' => \$debug,
+    'D+' => \$debug,        'debug+' => \$debug,
     'p=i' => \$port,        'port=i' => \$port,  
 ) || die 'wtf?';
 
@@ -65,6 +66,7 @@ die "Please - either -i or -t\n" if ($count_ips and $count_conns);
 if ($dummy gt 0) {
     open $ss,"ss.txt" || die "¿Qué?";
 } else {
+    print "ok..., kjør \"ss -tn|\"\n" if ($debug gt 1);
     open $ss,"ss -tn|" || die "Funker ikke!";
 }
 
@@ -76,6 +78,11 @@ while (my $line = <$ss>) {
     }
     print "DEBUG: $line\n" if ($debug);
     my $ip = $1 if ($cols[4] =~ /\[(.*?)\]/);
+    unless (defined($ip)) {
+        if ($cols[4] =~ /^(\d+\.\d+\.\d+\.\d+)\:/) {
+            $ip = $1;
+        }
+    }
     if (defined($ip)) {
         # Vaske IPV4-adresser - ::ffff:10.252.3.19 til 10.252.3.19
         $ip =~ s/^::ffff://;
