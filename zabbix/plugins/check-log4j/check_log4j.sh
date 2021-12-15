@@ -19,6 +19,7 @@ USE_LOCATE=0
 DO_CHECK=1
 UPDATE_STATUS_FILE=0
 UPDATEDB=0
+ME=$( basename $0 )
 OS=$( uname )
 
 # This is called on exit
@@ -27,7 +28,7 @@ function cleanup() {
 }
 
 function helpme() {
-    echo "Syntax: $0 [--verbose | --cron | --local | --normal | --updatedb | --help ]
+    echo "Syntax: $ME [--verbose | --cron | --local | --normal | --updatedb | --help ]
 
 Flags:
   --verbose     Be verbose
