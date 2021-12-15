@@ -40,6 +40,7 @@ my $opt_ipv6;
 my $opt_nmap_path = "nmap";
 my $opt_port = 443;
 my $opt_quiet;
+my $opt_sudo;
 my $opt_verbose;
 my $daredevil = 1;
 my $ip;
@@ -72,13 +73,14 @@ EOT
 
 Getopt::Long::Configure('bundling');
 GetOptions(
-    "verbose+"       => \$opt_verbose,   "v+" => \$opt_verbose,
-    "quiet+"         => \$opt_quiet,     "q" => \$opt_quiet,
-    "port=i"         => \$opt_port,      "p=i" => \$opt_port,
-    "nmap-path=s"    => \$opt_nmap_path, "N=s" => \$opt_nmap_path,
-    "6"              => \$opt_ipv6,
-    "4"              => \$opt_ipv4,
-    "help"           => \$opt_help,      "h" => \$opt_help,
+    "verbose+"      => \$opt_verbose,   "v+" => \$opt_verbose,
+    "quiet+"        => \$opt_quiet,     "q" => \$opt_quiet,
+    "port=i"        => \$opt_port,      "p=i" => \$opt_port,
+    "nmap-path=s"   => \$opt_nmap_path, "N=s" => \$opt_nmap_path,
+    "sudo"          => \$opt_sudo,      "S" => \$opt_sudo,
+    "6"             => \$opt_ipv6,
+    "4"             => \$opt_ipv4,
+    "help"          => \$opt_help,      "h" => \$opt_help,
 ) or die "Invalid argument";
 
 if (($< == 0 or $> == 0) and not $daredevil) {
@@ -173,7 +175,10 @@ unless ($valid_ip) {
 # }}}
 $ipv6 = "" unless (defined($ipv6));
 
-my $nmap_cmd = "$opt_nmap_path $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
+my $sudo = "";
+$sudo = "sudo" if ($opt_sudo);
+
+my $nmap_cmd = "$sudo $opt_nmap_path $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
 print "$nmap_cmd\n" if (defined($opt_verbose) and $opt_verbose >= 2);
 open(my $nmap_output, "$nmap_cmd|") ||
     die("Can't run nmap command \"$nmap_cmd\"\n");
