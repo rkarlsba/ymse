@@ -5,8 +5,7 @@ use strict;
 use warnings;
 use Getopt::Long;
 use POSIX qw(uname);
-#use Data::Validate::IP;
-#use Data::Validate::Domain qw(is_domain);
+use Socket;
 
 my $have_data_validate_ip = eval {
   require Data::Validate::IP;
@@ -41,8 +40,10 @@ my $opt_ipv6;
 my $opt_nmap_path = "nmap";
 my $opt_port = 443;
 my $opt_quiet;
+my $opt_sudo;
 my $opt_verbose;
 my $daredevil = 1;
+my $ip;
 
 # Egenkompilert nmap - den som ligger her fra før er hønngammal
 my $custom_nmap = '/opt/nmap/bin/nmap';
@@ -72,13 +73,14 @@ EOT
 
 Getopt::Long::Configure('bundling');
 GetOptions(
-    "verbose+"       => \$opt_verbose,   "v+" => \$opt_verbose,
-    "quiet+"         => \$opt_quiet,     "q" => \$opt_quiet,
-    "port=i"         => \$opt_port,      "p=i" => \$opt_port,
-    "nmap-path=s"    => \$opt_nmap_path, "N=s" => \$opt_nmap_path,
-    "6"              => \$opt_ipv6,
-    "4"              => \$opt_ipv4,
-    "help"           => \$opt_help,      "h" => \$opt_help,
+    "verbose+"      => \$opt_verbose,   "v+" => \$opt_verbose,
+    "quiet+"        => \$opt_quiet,     "q" => \$opt_quiet,
+    "port=i"        => \$opt_port,      "p=i" => \$opt_port,
+    "nmap-path=s"   => \$opt_nmap_path, "N=s" => \$opt_nmap_path,
+    "sudo"          => \$opt_sudo,      "S" => \$opt_sudo,
+    "6"             => \$opt_ipv6,
+    "4"             => \$opt_ipv4,
+    "help"          => \$opt_help,      "h" => \$opt_help,
 ) or die "Invalid argument";
 
 if (($< == 0 or $> == 0) and not $daredevil) {
@@ -93,6 +95,7 @@ $opt_host = shift;
 
 # Input validation
 my $ipv6 = undef;
+my $valid_ip = 0;
 
 if ($opt_ipv4) {
     my $ipv6 = "";
@@ -100,13 +103,17 @@ if ($opt_ipv4) {
     $ipv6 = "-6";
 }
 
+
 if (!defined($ipv6)) {
     if ($have_data_validate_ip) {
+        print "opt_host er $opt_host\n" if (defined($opt_verbose) and ($opt_verbose > 1));
         if (is_ipv4($opt_host)) {
-            print "Valid IPv4 address \"$opt_host\"\n" if ($opt_verbose);
+            $valid_ip++;
+            print "Valid IPv4 address \"$opt_host\" [1]\n" if ($opt_verbose);
             $ipv6 = "";
         } elsif (is_ipv6($opt_host)) {
-            print "Valid IPv6 address \"$opt_host\"\n" if ($opt_verbose);
+            $valid_ip++;
+            print "Valid IPv6 address \"$opt_host\" [1]\n" if ($opt_verbose);
             $ipv6 = "-6";
         }
     }
@@ -114,15 +121,47 @@ if (!defined($ipv6)) {
     print STDERR "Library Data::Validate::IP not found - use -4 or -6\n" unless ($opt_quiet or $opt_ipv4 or $opt_ipv6);
 }
 
-if ($have_data_validate_domain) {
-    if (is_domain($opt_host)) {
-        print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
+unless ($valid_ip) {
+    if ($have_data_validate_domain) {
+        if (is_domain($opt_host)) {
+            print "Valid hostname \"$opt_host\"\n" if ($opt_verbose);
+            # Fine, but we don't know if it's IPv4 or IPV6
+            my ( $err, @addrs ) = Socket::getaddrinfo( $opt_host, 0, { 'protocol' => Socket::IPPROTO_TCP, 'family' => Socket::AF_INET6 } );
+            unless ($err) {
+                for my $addr (@addrs) {
+                    my ( $err, $opt_host ) = Socket::getnameinfo($addr->{addr}, Socket::NI_NUMERICHOST);
+                    if ($err) {
+                        warn $err;
+                        next;
+                    }
+                    $ip = $opt_host;
+                    $ipv6 = "-6";
+                }
+            } else {
+                ($err, @addrs) = Socket::getaddrinfo($opt_host, 0, {'protocol' => Socket::IPPROTO_TCP, 'family' => Socket::AF_INET } );
+                if ($err) {
+                    print "Feil: $err\n";
+                } else {
+                    for my $addr (@addrs) {
+                        my ( $err, $opt_host ) = Socket::getnameinfo( $addr->{addr}, Socket::NI_NUMERICHOST );
+                        if ($err) {
+                            warn $err;
+                            next;
+                        }
+                        $ip = $opt_host;
+                    }
+                }
+            }
+            if (!defined($ip)) {
+                print "Fant ikke IP for $opt_host\n";
+            }
+        } else {
+            print "Invalid hostname \"$opt_host\"\n";
+            exit(4);
+        }
     } else {
-        print "Invalid hostname \"$opt_host\"\n";
-        exit(4);
+        print STDERR "Library Data::Validate::Domain not found\n" unless ($opt_quiet);
     }
-} else {
-    print STDERR "Library Data::Validate::Domain not found\n" unless ($opt_quiet);
 }
 
 # nmap-greier {{{
@@ -136,7 +175,10 @@ if ($have_data_validate_domain) {
 # }}}
 $ipv6 = "" unless (defined($ipv6));
 
-my $nmap_cmd = "$opt_nmap_path $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
+my $sudo = "";
+$sudo = "sudo" if ($opt_sudo);
+
+my $nmap_cmd = "$sudo $opt_nmap_path $ipv6 --script ssl-enum-ciphers -p $opt_port $opt_host";
 print "$nmap_cmd\n" if (defined($opt_verbose) and $opt_verbose >= 2);
 open(my $nmap_output, "$nmap_cmd|") ||
     die("Can't run nmap command \"$nmap_cmd\"\n");

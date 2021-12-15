@@ -70,14 +70,14 @@ if ( -r '/etc/os-release' ) {
     }
     close $disf;
 } elsif ( -r '/etc/redhat-release' ) {
-# Red Hat Enterprise Linux Server release 7.6 (Maipo)
 # Red Hat Enterprise Linux Server release 6.10 (Santiago)
+# Red Hat Enterprise Linux Server release 7.6 (Maipo)
 # CentOS Linux release 7.6.1810 (Core)
-    open $disf,'/etc/redhat-release' || die "File /etc/lsb-release should be readable, but I cound't open it $!\n";
+    open $disf,'/etc/redhat-release' || die "File redhat-release should be readable, but I cound't open it $!\n";
     while ($s = <$disf>) {
         if ($s =~ /^(red hat).*?release (\d+\.\d+\.?(\d+)?)/i) {
             $distro = 'rhel';
-            $distvers = $1;
+            $distvers = $2;
             next;
         } elsif ($s =~ /^centos.*?release (\d+\.\d+\.?(\d+)?)\s*\(([a-zA-Z0-9\s]+)\)/i) {
             $distro = 'centos';
