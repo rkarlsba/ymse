@@ -31,7 +31,7 @@ fi
 if $( which locate > /dev/null 2>&1 )
 then
     # We need gnu locate, so we'll stick to checking if this is Linux or not
-    if [ '$OS' == 'Linux' ]
+    if [ "$OS" == "Linux" ]
     then
         USE_LOCATE=1
     fi
