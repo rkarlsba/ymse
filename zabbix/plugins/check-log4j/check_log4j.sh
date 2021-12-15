@@ -12,6 +12,8 @@ OUTFILE=$( mktemp $MKTMPTEMP )
 JARLIST=$( mktemp $MKTMPTEMP )
 QUIET=0
 HITS=0
+STATUS='OK'
+STATUSTEXT=''
 
 # Funksjon som kalles ved avslutning av skriptet.
 function cleanup() {
@@ -20,6 +22,15 @@ function cleanup() {
 
 # Kall funksjonen cleanup når skriptet avsluttes, med mindre det får en SIGKILL - den når aldri skriptet.
 trap cleanup EXIT
+
+if [ $UID -gt 0 ]
+then
+    if [ $QUIET -eq 0 ]
+    then
+        STATUS="WARNING"
+        STATUSTEXT="Running under a non-root user. This may not find all files. "
+    fi
+fi
 
 # Sjekk om vi har locate og bruk den hvis vi har den.
 if $( which locate > /dev/null 2>&1 )
@@ -38,7 +49,7 @@ else
         echo "Warning: command 'locate' not found. Falling back to 'find', which may" >&2
         echo "time out Zabbix checks." >&2
     fi
-    find / -iname '*.jar' -print > $JARLIST
+    find / -iname '*.jar' -print > $JARLIST 2>/dev/null
 fi
 
 while read line
@@ -56,7 +67,9 @@ then
     cat $OUTFILE
     exit 1
 else
-    echo "OK: log4j not found on this machine"
+    STATUSTEXT+="log4j not found on this machine."
+    echo "$STATUS: $STATUSTEXT"
 fi
 
 exit 0
+
