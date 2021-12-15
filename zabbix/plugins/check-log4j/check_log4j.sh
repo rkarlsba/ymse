@@ -12,16 +12,40 @@ QUIET=0
 CRON=0
 LOCAL=0
 HITS=0
+NORMAL=1
 STATUS='OK'
 STATUSTEXT=''
 USE_LOCATE=0
 DO_CHECK=1
 UPDATE_STATUS_FILE=0
+UPDATEDB=0
 OS=$( uname )
 
 # This is called on exit
 function cleanup() {
     rm -f $TMPOUTFILE $JARLIST
+}
+
+function helpme() {
+    echo "Syntax: $0 [--verbose | --cron | --local | --normal | --updatedb | --help ]
+
+Flags:
+  --verbose     Be verbose
+  --cron        Don't run a normal check, but log it to local files, to be run by cron
+  --local       Read results from an earlier check run with --cron
+  --updatedb    Run updatedb before the check. To be used with --cron or normal check
+  --normal      Run a normal check. This is the default.
+  --help        This help.
+
+Notes:
+    - Either --cron, --local or --normal can be given, they cannot be combined.
+      If neither is specified, --normal is assumed.
+    - The flag --updatedb requires the script to be run as root.
+    - Normal and cron checks should be run as root so that all files can be
+      examined.
+"
+
+    exit 0
 }
 
 # Call this function on exit (except if we get SIGKILL, then we won't see it)
@@ -45,11 +69,22 @@ do
             DO_CHECK=0
             LOCAL=1
             ;;
+        --updatedb)
+            UPDATEDB=1
+            ;;
+        --normal)
+            NORMAL=1
+            ;;
+        --help)
+            helpme
+            ;;
         *)
             echo "Invalid argument: $arg" >&2
             ;;
     esac
 done
+
+# Sanity check
 
 if [ $CRON -gt 0 ] && [ $LOCAL -gt 0 ]
 then
@@ -64,6 +99,11 @@ then
     then
         STATUS="WARNING"
         STATUSTEXT="Running under a non-root user. This may not find all files. "
+        if [ $UPDATEDB -gt 0 ]
+        then
+            STATUSTEXT+="--updatedb ignored "
+            UPDATEDB=0
+        fi
     fi
 
     # Check if we have locate
@@ -78,21 +118,33 @@ then
 
     if [ $USE_LOCATE -gt 0 ]
     then
+        if [ $UPDATEDB -gt 0 ]
+        then
+            updatedb
+        fi
         locate -r "\.jar$" > $JARLIST
     else
-        if [ $CRON -eq 0 ] && [ $QUIET -eq 0 ]
+        if [ $QUIET -eq 0 ]
         then
-            echo "Warning: command 'locate' not found. Falling back to 'find', which may" >&2
-            echo "time out Zabbix checks." >&2
+            if [ $UPDATEDB -gt 0 ]
+            then
+                echo "Ignoring --updatedb without locate" >&2
+            fi
+            if [ $CRON -eq 0 ]
+            then
+                echo "Warning: command 'locate' not found. Falling back to 'find', which may" >&2
+                echo "time out Zabbix checks." >&2
+            fi
         fi
         find / -iname '*.jar' -print > $JARLIST 2>/dev/null
     fi
 
     while read line
     do
-        HIT=`unzip -l "$line" 2>/dev/null | egrep -i "$REGEX"`
-        if [ -n "$HIT" ]; then
-            HITS=$( $HITS + 1 )
+        HIT=$( unzip -l "$line" 2>/dev/null | egrep -i "$REGEX" )
+        if [ -n "$HIT" ]
+        then
+            HITS=$(( $HITS + 1 ))
             echo -e "$line\n$HIT\n" >> $OUTFILE
         fi
     done < $JARLIST
@@ -100,6 +152,10 @@ fi
 
 if [ $LOCAL -gt 0 ]
 then
+    if [ $UPDATEDB -gt 0 ] && [ $QUIET -eq 0 ]
+    then
+        echo "--updatedb ignored on local checks" >&2
+    fi
     if [ -r $STATIC_STATUSFILE ]
     then
         cat $STATIC_STATUSFILE
