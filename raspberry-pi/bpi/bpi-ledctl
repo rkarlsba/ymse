@@ -1,0 +1,21 @@
+#!/bin/bash
+# vim:ts=4:sw=4:sts=4:et:ai
+
+led_trigger='/sys/class/leds/bananapi-m2-zero\:red\:pwr/trigger'
+led_brightness='/sys/class/leds/bananapi-m2-zero\:red\:pwr/brightness'
+led_invert='/sys/class/leds/bananapi-m2-zero\:red\:pwr/invert'
+
+case $1 in
+    enable)
+        echo heartbeat > $led_trigger
+        echo 1 > $led_invert
+        ;;
+    disable)
+        echo none > $led_trigger
+        echo 1 > $led_brightness
+        ;;
+    *)
+        echo "Syntax $0 <enable|disable>" >&2
+        exit 1
+        ;;
+esac

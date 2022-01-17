@@ -1,0 +1,31 @@
+Getting "Help->Check for new version" to work on Windows.
+=========================================================
+
+When VeroRoute checks for a new version, all it does is look at the page
+
+https://sourceforge.net/projects/veroroute/files/
+
+and searches that page for text with the Version number.
+That page has a secure "https" address.
+The Qt library that handles https relies on the OpenSSL DLLs, 
+and these are typically not included on MS Windows.
+
+The missing DLLs on MS Windows are called
+
+  libeay32.dll and ssleay32.dll
+
+and they need to be placed in the folder containing VeroRoute.
+
+The DLLs support strong encryption and there are restrictions on importing/exporting
+them in some countries.  Therefore I have not provided them with the release.
+You will have to download them yourself.  They are available in many places,
+for example from here...
+
+https://indy.fulgan.com/SSL/
+
+I tried version 1.0.2n of the DLLs and they worked fine.
+Note that you must use the appropriate DLLs for the version of VeroRoute that you have.
+Use the win32 DLLs for the 32-bit version of VeroRoute (even if you are on a 64-bit system)
+and the win64 version for the 64-bit version of VeroRoute.
+Note that the 64-bit DLLs still have the "32" in the filename, not "64".
+
