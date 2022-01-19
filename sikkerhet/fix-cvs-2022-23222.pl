@@ -19,6 +19,10 @@ my $errmsg = undef;
 
 my $kernel_filename = '/proc/sys/kernel/unprivileged_bpf_disabled';
 
+END {
+   close KFH;
+}
+
 sub help {
     print "fix-CVE-2022-23222.pl - a temporary fix for CVE-2022-23222 - the bug with all the two's\n";
     print "Syntax: fix-CVE-2022-23222.pl [--verbose] [--ddo-fix] [--value n]\n";
@@ -41,14 +45,16 @@ sub help {
 }
 
 sub disable_fix_unprivileged_bpf_disabled {
-    open($kfh, '>',$kernel_filename) || die ("Can't open $kernel_filename for writing $!\n");
+    open(KFH, '>',$kernel_filename) || die ("Can't open $kernel_filename for writing $!\n");
     # Try 2 first
-    if (print $kfh "2") {
-        print "fix_unprivileged_bpf_disabled set to 2" if ($verbose);
+    if (print KFH "2\n") {
+        close(KFH);
+        print "fix_unprivileged_bpf_disabled set to 2\n" if ($verbose);
         return 2;
     } else {
         print "Could not set fix_unprivileged_bpf_disabled to 2 - old kernel, perhaps?" if ($verbose);
-        if (print $kfh "1") {
+        if (print KFH "1\n") {
+            close(KFH);
             print "fix_unprivileged_bpf_disabled set to 2. A reboot is needed to reset this." if ($verbose);
             return 1;
         } else {
@@ -56,7 +62,7 @@ sub disable_fix_unprivileged_bpf_disabled {
             exit 2;
         }
     } 
-
+    close KFH;
 }
 
 Getopt::Long::Configure ("bundling");
@@ -132,11 +138,12 @@ if ($unprivileged_bpf_disabled == 0) {
 # Fix current value
 if ($do_fix gt 0) {
     if ($unprivileged_bpf_disabled == 0) {
-        disable_fix_unprivileged_bpf_disabled();
+        my $val = disable_fix_unprivileged_bpf_disabled();
+        print "OK: Security hole firmly disabled with a value $val\n" if ($verbose gt 0);
     } elsif ($unprivileged_bpf_disabled == 1) {
         print "OK: Security hole firmly closed and can't be opened without a reboot\n" if ($verbose gt 0);
     } elsif ($unprivileged_bpf_disabled == 2) {
         print "OK: Security hole closed, but can be open by setting keyname to 0\n" if ($verbose gt 0);
     }
 }
-
+0
