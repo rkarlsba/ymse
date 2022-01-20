@@ -32,7 +32,9 @@ export LANG=C
 PATH=$PATH:/usr/local/bin
 
 CHECKNAME='custom.needsreboot'
-TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
+BASENAME=$( basename $0 .sh )
+TMPFILE=$( mktemp /tmp/$BASENAME.XXXXX )
+
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBBOOTFILE='/var/run/reboot-required'
 DEBUG=0
@@ -44,7 +46,12 @@ NEEDSRESTARTING='needs-restarting -r'
 # Set EMULATED to 1 to work on local data taken from an old machine
 EMULATED=0
 EMUSCRIPT="./emu-needs-restarting.sh -r"
-[ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
+
+function cleanup {
+    rm -f $TMPFILE
+}
+
+trap cleanup EXIT
 
 function rootcheck {
     # Here, we need to be root
@@ -63,36 +70,62 @@ zabbix-check-needs-reboot.sh [ --direct | --cron | --local | --clean | --help ]
 --direct    Run directly, may take several seconds, but handy for testing
 --cron      Run from cron to set local cache (because of above delay)
 --local     Read the above cache and report
+--emulated  Emulate \"needs-restarting -r\" on older machines
 --clean     Remove named cache (usually for testing)
 --help      This text\n"
     exit 0
 }
 
 DISTRO=$( zabbix_linux_distro_check.pl )
+DISTRO_VERS=$( zabbix_linux_distro_check.pl --vers )
+FULL_DISTRO_NAME=$( zabbix_linux_distro_check.pl --friendly )
 
 case $DISTRO in
     rhel|centos)
         # RHEL/Centos check
-        if [ "$1" == "--direct" ]
+        # Just exit if running 6 or earlier
+        MAJOR_VERS=$( echo $DISTRO_VERS | cut -d. -f1 )
+        if [ $MAJOR_VERS -le 6 ]
         then
-            mode="direct"
-        elif [ "$1" == "--local" ]
-        then
-            mode="local"
-        elif [ "$1" == "--cron" ]
-        then
-            mode="cron"
-        elif [ "$1" == "--clean" ]
-        then
-            rm -f $OUTFILE
+            echo "NO: Ignoring $FULL_DISTRO_NAME"
             exit 0
-        elif [ "$1" == "--help" ]
-        then
-            printhelp
-        else
-            echo "Unknown mode \"$1\". Please see --help" >&2
-            exit 3
-        fi
+          fi
+
+
+        while true
+        do
+            arg=$1
+            if [ "$arg" == "" ]
+            then
+                break
+            fi
+            if [ "$arg" == "--direct" ]
+            then
+                mode="direct"
+            elif [ "$arg" == "--local" ]
+            then
+                mode="local"
+            elif [ "$arg" == "--cron" ]
+            then
+                mode="cron"
+            elif [ "$arg" == "--clean" ]
+            then
+                rm -f $OUTFILE
+                exit 0
+            elif [ "$arg" == "--help" ]
+            then
+                printhelp
+            elif [ "$1" == "--emulated" ]
+            then
+                EMULATED=1
+            else
+                echo "Unknown mode \"$arg\". Please see --help" >&2
+                exit 3
+            fi
+            shift
+        done
+
+        [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
         if [ "$mode" == "cron" -o "$mode" == "direct" ]
         then
@@ -106,7 +139,7 @@ case $DISTRO in
                 $NEEDSRESTARTING 2>/dev/null | while read line ; do echo "$line" >> $OUTFILE ;count=$(( $count + 1 )); done
                 if [ $count -eq 0 ]
                 then
-                    echo "(for whatever reason)" >> $OUTFILE
+                    echo '(for whatever reason (1))' >> $OUTFILE
                 fi
             fi
         fi
@@ -129,7 +162,7 @@ case $DISTRO in
             then
                 needs_restart+=$( cat "$DEBBOOTFILE" )
             else
-                needs_restart+="(for whatever reason)"
+                needs_restart+='(for whatever reason (2))'
             fi
         else
             needs_restart="NO"

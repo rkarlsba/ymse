@@ -70,20 +70,20 @@ if ( -r '/etc/os-release' ) {
     }
     close $disf;
 } elsif ( -r '/etc/redhat-release' ) {
-# Red Hat Enterprise Linux Server release 7.6 (Maipo)
 # Red Hat Enterprise Linux Server release 6.10 (Santiago)
+# Red Hat Enterprise Linux Server release 7.6 (Maipo)
 # CentOS Linux release 7.6.1810 (Core)
-    open $disf,'/etc/redhat-release' || die "File /etc/lsb-release should be readable, but I cound't open it $!\n";
+    open $disf,'/etc/redhat-release' || die "File redhat-release should be readable, but I cound't open it $!\n";
     while ($s = <$disf>) {
-        if ($s =~ /^(red hat).*?release (\d+\.\d+)/i) {
+        if ($s =~ /^(red hat).*?release (\d+\.\d+\.?(\d+)?)/i) {
             $distro = 'rhel';
-            $distvers = $1;
+            $distvers = $2;
             next;
-        } elsif ($s =~ /^centos.*?release (\d+\.\d+)/i) {
+        } elsif ($s =~ /^centos.*?release (\d+\.\d+\.?(\d+)?)\s*\(([a-zA-Z0-9\s]+)\)/i) {
             $distro = 'centos';
             $distvers = $1;
             next;
-        } elsif ($s =~ /^Scientific.*?release (\d+\.\d+)/i) {
+        } elsif ($s =~ /^Scientific.*?release (\d+\.\d+\.?(\d+)?)\s*\(([a-zA-Z0-9\s]+)\)/i) {
             if ($opts{scientific}) {
                 $distro = 'scientific';
                 $distvers = $1;
@@ -92,6 +92,16 @@ if ( -r '/etc/os-release' ) {
                 $distvers = $1;
             }
             next;
+            # AlmaLinux release 8.4 (Electric Cheetah)
+        } elsif ($s =~ /AlmaLinux\s+release\s+(\d+\.\d+\.?(\d+)?)\s*\(([a-zA-Z0-9\s]+)\)/) {
+            $distro = 'alma';
+            $distvers = $1;
+            $distnick = $2;
+            # Rocky Linux release 8.4 (Green Obsidian)
+        } elsif ($s =~ /Rocky\s+Linux\s+release\s+(\d+\.\d+\.?(\d+)?)\s*\(([a-zA-Z0-9\s]+)\)/) {
+            $distro = 'rocky';
+            $distvers = $1;
+            $distnick = $2;
         }
     }
     close $disf;
@@ -112,6 +122,9 @@ if ( -r '/etc/os-release' ) {
 $distro =~ s/["']//g;
 $distvers =~ s/["']//g;
 
+# Fjerne linux fra alma
+$distro =~ s/linux//i if ($distro =~ /^alma/i);
+
 if ($opts{vers}) {
     print "$distvers\n";
 } elsif ($opts{arch}) {
@@ -123,6 +136,10 @@ if ($opts{vers}) {
         $hrdistro = "Scientific Linux";
     } elsif ($distro eq "rhel") {
         $hrdistro = "RHEL";
+    } elsif ($distro eq "alma") {
+        $hrdistro = "AlmaLinux";
+    } elsif ($distro eq "rocky") {
+        $hrdistro = "Rocky";
     } elsif ($distro eq "ubuntu") {
         $hrdistro = "Ubuntu";
     } elsif ($distro eq "raspbian") {

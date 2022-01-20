@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# vim:ts=4:sw=4:sts=4:ts:ai
+# vim:ts=4:sw=4:sts=4:ts:ai:fdm=marker
 
 ###############################################################################
 # checkro.pl by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
@@ -30,6 +30,7 @@ my %fstypes = (
 # Give up if we're running on other OSes than these
 my %supported_oses = (
 	'linux' => 1,
+	'darwin' => 1,
 );
 
 # Globals
@@ -44,19 +45,13 @@ my $verbose_a = undef;
 
 # subs
 sub syntax {
-	my $s = undef;
-	local @ARGV = $_;
+	my $s = shift;
+	chomp($s);
 
-	if ($#ARGV > 1) {
-		$s  = $ARGV[1];
-	} elsif ($#ARGV > 2) {
-		printf STDERR "Internal error: help() should be called with none or one argument\n";
-		exit 2;
-	}
 	my $fst = "";
 	$fst .= "$_," for (keys %fstypes);
 	$fst =~ s/,$//;
-	print "Syntax: $s\n" if (defined($s));
+	print "Error: $s\n" if (defined($s));
 	print "$0 <args>\n";
 	print " [ --fstypes fs1,fs2,... ]     # Include these filesystem types\n";
 	print "    Currently set to '$fst'\n";
@@ -85,16 +80,45 @@ if (defined($fstypes_a)) {
 }
 &syntax if (defined($help_a));
 
+my ($dev,$mp,$fst,$opts);
+
 if ($^O eq "linux") {
 	# /dev/sda2 /boot/efi vfat rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
 	open my $mounts,"/proc/mounts" || exit 1;
 	while (my $line = <$mounts>) {
-		my ($dev,$mp,$fst,$opts) = split(/\s+/, $line);
+		($dev,$mp,$fst,$opts) = split(/\s+/, $line);
 		next unless ($fstypes{$fst});
 		my @optarr = split(/,/,$opts);
 		push @rofilesystems, "$dev on $mp" if (grep $_ eq "ro", @optarr );
 		print "Checking $fst filesystem $dev mounted on $mp\n" if (defined($verbose_a));
 		$fscount++;
+	}
+} elsif ($^O eq "darwin") {
+	open my $mounts,"mount|" || exit 1;
+	while (my $line = <$mounts>) {
+		chomp($line);
+		# /dev/disk1s1 on / (apfs, local, read-only, journaled)
+		# devfs on /dev (devfs, local, nobrowse) {{{
+		# /dev/disk1s2 on /System/Volumes/Data (apfs, local, journaled, nobrowse)
+		# /dev/disk1s5 on /private/var/vm (apfs, local, journaled, nobrowse)
+		# map auto_home on /System/Volumes/Data/home (autofs, automounted, nobrowse)
+		# /dev/disk1s4 on /Volumes/Recovery (apfs, local, journaled, nobrowse)
+		# /dev/disk2s1 on /Volumes/PrusaSlicer (hfs, local, nodev, nosuid, read-only, noowners, quarantine, mounted by roy)
+		#
+		# if ($line =~ m/(^[a-z0-9\/]+)\s+on\s+\(\w+)\s+(.*?)/) {
+		# }}}
+		if ($line =~ m/(^[a-zA-Z0-9\/]+|map auto_home)\son\s([a-zA-Z0-9\/]+)\s\((\w+), (.*?)\)/) {
+			($dev,$mp,$fst,$opts) = ($1,$2,$3,$4);
+			foreach my $opt (split(/,\s*/, $opts,)) {
+				if ($opt eq "read-only") {
+					$fscount++;
+					push @rofilesystems, "$dev on $mp";
+				}
+			}
+			#print "$dev on $mp is $fst with opts $opts\n";
+		} else {
+			print "This one failed the regex: $line\n";
+		}
 	}
 } else {
 	print STDERR "WTF?\n";

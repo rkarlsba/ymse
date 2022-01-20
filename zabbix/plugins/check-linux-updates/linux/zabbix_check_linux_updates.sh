@@ -7,17 +7,27 @@
 # 2019-06-12:
 # Added multidistro support, calling custom script to find distro type
 
+# 2021-07-14:
+# Added a cleanup function and a trap to it to clean up tmpfile(s) on exit or if
+# killed (except by SIGKILL, but that's impossible to deal with anyway(.
+
 # If server for some reason uses another locale, locally switch it to C for now
 export LANG=C 
 PATH=$PATH:/usr/local/bin
-
-TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
+BASENAME=$( basename $0 .sh )
+TMPFILE=$(mktemp /tmp/$BASENAME.XXXXX)
 CHECKNAME='custom.yumupdatescheck'
 OUTFILE='/var/run/zabbix/zabbix-yumupdatescheck'
 DEBUG=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
+
+function cleanup {
+    rm -f $TMPFILE
+}
+
+trap cleanup EXIT
 
 # If --local is given, run a local check, that
 if [ "$1" == "--local" ]
@@ -116,8 +126,6 @@ case $DISTRO in
         [ $DEBUG -gt 0 ] && echo "DEBUG[6]: Just set EXIT to $EXIT"
         ;;
 esac
-
-rm -f $TMPFILE
 
 exit $EXIT
 
