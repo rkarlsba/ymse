@@ -31,6 +31,8 @@ funker dette?
 }
 '''
 
+verbose=0
+
 try:
     # Create ZabbixAPI class instance
     zapi = ZabbixAPI(url=api_url, user=api_user, password=api_password)
@@ -38,15 +40,16 @@ try:
     # Get all monitored hosts
     allhosts = zapi.host.get(output='extend', selectInventory='extend')
 
-    #print(json.dumps(allhosts,indent=4))
+    # print(json.dumps(allhosts,indent=4))
 
-    #sys.exit()
+    # sys.exit()
 
     for host in allhosts:
-        if host['inventory']['os'] == '':
-            print("{} has no OS in its inventory".format(host['host']))
-        else:
-            print("{} has OS {}".format(host['host'], host['inventory']['os']))
+        if 'os' in host['inventory']:
+            if host['inventory']['os'] == '':
+                print("{} has no OS in its inventory".format(host['host']))
+            else:
+                print("{} has OS {}".format(host['host'], host['inventory']['os']))
         if 0 and host['host'] == "roysk.oslomet.no":
             print(json.dumps(host,indent=4))
 #           hlookup=zapi.host.get(output=['hostid'], selectInventory='extend', hostids=host['hostid'])
