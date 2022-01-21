@@ -150,7 +150,7 @@ case $DISTRO in
                 EXIT=0
             fi
         fi
-        if [ $mode == "direct" -o "$mode" == "local" ]
+        if [ "$mode" == "direct" -o "$mode" == "local" ]
         then
             if [ -r $OUTFILE ]
             then
