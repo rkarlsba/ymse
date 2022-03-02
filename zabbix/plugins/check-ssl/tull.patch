@@ -1,0 +1,45 @@
+diff --git a/zabbix/plugins/check-ssl/ssl_cert_check.sh b/zabbix/plugins/check-ssl/ssl_cert_check.sh
+index 8d1a241..765a08b 100755
+--- a/zabbix/plugins/check-ssl/ssl_cert_check.sh
++++ b/zabbix/plugins/check-ssl/ssl_cert_check.sh
+@@ -2,12 +2,20 @@
+ # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+ 
+ DEBUG=0
++DISPLAY_DATE=0
++
+ if [ $DEBUG -gt 0 ]
+ then
+     exec 2>>/tmp/my.log
+     set -x
+ fi
+ 
++if [ "$1" = "--date" ]
++then
++    DISPLAY_DATE=1
++    shift
++fi
++
+ f=$1
+ servername=$2
+ port=$3
+@@ -36,8 +44,18 @@ case $f in
+         if [ -n "$end_date" ]
+         then
+             end_date_seconds=`date '+%s' --date "$end_date"`
++            end_date_iso=`date '+%Y-%m-%d %H:%M:%S' --date "$end_date"`
+             now_seconds=`date '+%s'`
+-            echo "($end_date_seconds-$now_seconds)/24/3600" | bc
++            if [ "$DISPLAY_DATE" -gt 0 ]
++            then
++                echo "Expiry date: $end_date_iso"
++            else
++                echo "($end_date_seconds-$now_seconds)/24/3600" | bc
++            fi
++            if [ "$DEBUG" -gt 0 ]
++            then
++                echo "\$end_date_iso is $end_date_iso, \$end_date_seconds is $end_date_seconds and \$now_seconds is $now_seconds"
++            fi
+         fi
+         ;;
+ 
