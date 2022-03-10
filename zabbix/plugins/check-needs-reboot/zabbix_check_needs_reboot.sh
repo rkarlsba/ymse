@@ -38,6 +38,7 @@ TMPFILE=$( mktemp /tmp/$BASENAME.XXXXX )
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBBOOTFILE='/var/run/reboot-required'
 DEBUG=0
+QUIET=0
 OPT_LOCAL=0
 OPT_CRON=0
 STATUS='WARN'
@@ -102,6 +103,9 @@ case $DISTRO in
             if [ "$arg" == "--direct" ]
             then
                 mode="direct"
+            elif [ "$arg" == "--quiet" ]
+            then
+                QUIET=1
             elif [ "$arg" == "--local" ]
             then
                 mode="local"
@@ -115,7 +119,7 @@ case $DISTRO in
             elif [ "$arg" == "--help" ]
             then
                 printhelp
-            elif [ "$1" == "--emulated" ]
+            elif [ "$arg" == "--emulated" ]
             then
                 EMULATED=1
             else
@@ -134,6 +138,7 @@ case $DISTRO in
             echo -n $needs_restart > $OUTFILE
             if [ $needs_restart == "YES" ]
             then
+                EXIT=1
                 echo ": " >> $OUTFILE
                 count=0
                 $NEEDSRESTARTING 2>/dev/null | while read line ; do echo "$line" >> $OUTFILE ;count=$(( $count + 1 )); done
@@ -141,15 +146,17 @@ case $DISTRO in
                 then
                     echo '(for whatever reason (1))' >> $OUTFILE
                 fi
+            else
+                EXIT=0
             fi
         fi
-        if [ $mode == "direct" -o "$mode" == "local" ]
+        if [ "$mode" == "direct" -o "$mode" == "local" ]
         then
             if [ -r $OUTFILE ]
             then
-                cat $OUTFILE
+                [ $QUIET -gt 0 ] && cat $OUTFILE
             else
-                echo $CHECKNAME ERROR
+                [ $QUIET -gt 0 ] && echo $CHECKNAME ERROR
             fi
         fi
         ;;
@@ -157,6 +164,7 @@ case $DISTRO in
         # Ignore arguments on debuntu - it's sufficiently fast without it
         if [ -f $DEBBOOTFILE ]
         then
+            EXIT=1
             needs_restart="YES: "
             if [ -r $DEBBOOTFILE -a ! -z $DEBBOOTFILE ]
             then
@@ -165,13 +173,14 @@ case $DISTRO in
                 needs_restart+='(for whatever reason (2))'
             fi
         else
+            EXIT=0
             needs_restart="NO"
         fi
-        echo "$needs_restart"
+        [ $QUIET -gt 0 ] && cat echo "$needs_restart"
         ;;
     *)
         # Dunno
-        echo "Unknown distro '$DISTRO'"
+        echo "Unknown distro '$DISTRO'" >&2
         EXIT=1
         [ $DEBUG -gt 0 ] && echo "DEBUG[6]: Just set EXIT to $EXIT"
         ;;
