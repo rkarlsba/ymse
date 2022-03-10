@@ -11,6 +11,7 @@ Restart=always
 RestartSec=1
 User=mqtt
 ExecStart=/home/mqtt/mqtt_to_pg/mqtt_to_pg.py
+WorkingDirectory=/home/mqtt/mqtt_to_pg
 
 [Install]
 WantedBy=multi-user.target

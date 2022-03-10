@@ -18,7 +18,8 @@ def on_connect(mqttc, userdata, flags, rc):
 # ----+--------------------+--------------+----------+------------+-------------------------------
 #   1 | mqtt.karlsbakk.net | test/kitchen | dev01,on |          1 | 2020-01-18 17:57:13.616925+01
 def on_message(mqttc, userdata, msg):
-    sql = "INSERT INTO mqtt_messages(clientid, topic, message) values ('{:s}', '{:s}', '{:s}')".format(mqtt_clientid, msg.topic, msg.payload.decode('utf-8'))
+    sql = "INSERT INTO mqtt_messages(clientid, brokerid, topic, message) values ('{:s}', '{:s}', '{:s}', '{:s}')".format(mqtt_clientid, mqtt_brokerid, msg.topic, msg.payload.encode('unicode-escape').replace(b'"', b'\\"')).decode('utf-8')
+    print("SQL is ", sql)
     try:
         pg_cursor = pg_connection.cursor()
 #       print("Trying", sql)
