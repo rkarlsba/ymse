@@ -1,5 +1,20 @@
 #!/usr/bin/perl
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+#
+# Documentation {{{
+#
+# Made for use with zabbix or similar systems. Run with
+#
+# "check_fail2ban.pl --currently-banned ssh"d or similar
+#
+# Add to /etc/zabbix/zabbix_agent2.d/userparameter_fail2ban.conf or whatever and import 
+#
+# UserParameter=custom.fail2ban.currently_failed,/usr/bin/sudo /usr/local/bin/check_fail2ban.pl --currently-failed sshd
+# UserParameter=custom.fail2ban.total_failed,/usr/bin/sudo /usr/local/bin/check_fail2ban.pl --total-failed sshd
+# UserParameter=custom.fail2ban.currently_banned,/usr/bin/sudo /usr/local/bin/check_fail2ban.pl --currently-banned sshd
+# UserParameter=custom.fail2ban.total_banned,/usr/bin/sudo /usr/local/bin/check_fail2ban.pl --total-banned sshd
+#
+# }}}
 
 use strict;
 use warnings;
