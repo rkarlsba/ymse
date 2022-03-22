@@ -1,0 +1,68 @@
+# vim:ts=2:sw=2:sts=2:et:ai
+#
+# Ansible playbook for installing the fail2ban-client zabbix check
+
+- hosts: fail2ban
+  strategy: free
+  remote_user: root
+  vars:
+    ignoreips:
+    - 127.0.0.1
+    - ::1
+
+  tasks:
+  - name: Make sure fail2ban is installed
+    apt:
+      name: "fail2ban"
+      update_cache: yes
+      state: latest
+
+  - name: Add fail2ban ignores
+    ansible.builtin.command: fail2ban-client set sshd addignoreip {{ item }}
+    with_items:
+      "{{ ignoreips }}"
+
+  - name: Copy check script
+    ansible.builtin.copy:
+      src: check_fail2ban.pl
+      dest: /usr/local/bin/check_fail2ban.pl
+      force: yes
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Configure sudo access
+    ansible.builtin.blockinfile:
+      path: /etc/sudoers.d/01zabbix
+      create: yes
+      owner: root
+      group: root
+      mode: '0640'
+      block: |
+        # vim:ft=sudoers
+        Defaults:zabbix !requiretty
+        Cmnd_Alias FAIL2BAN = /usr/bin/fail2ban-client, /usr/local/bin/check_fail2ban.pl
+        Cmnd_Alias SMARTCTL = /usr/sbin/smartctl
+        Cmnd_Alias SMARTCTL_DISCOVERY = /etc/zabbix/scripts/smartctl-disks-discovery.pl
+        zabbix ALL= (ALL) NOPASSWD: FAIL2BAN, SMARTCTL, SMARTCTL_DISCOVERY
+        Defaults!FAIL2BAN !logfile, !syslog, !pam_session
+        Defaults!SMARTCTL !logfile, !syslog, !pam_session
+        Defaults!SMARTCTL_DISCOVERY !logfile, !syslog, !pam_session
+
+  - name: Configure zabbix agent
+    ansible.builtin.copy:
+      src: files/etc/zabbix/zabbix_agentd.d/userparameters_fail2ban.conf
+      dest: /etc/zabbix/zabbix_agentd.conf.d/userparameters_fail2ban.conf
+      force: no
+      owner: root
+      group: root
+      mode: '0644'
+    notify:
+    - restart zabbix-agent
+
+  handlers:
+    - name: restart zabbix-agent
+      service:
+        name: zabbix-agent
+        state: restarted
+
