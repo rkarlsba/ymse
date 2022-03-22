@@ -5,6 +5,8 @@
 # linuxconfig.org 
 # Please copy, share, redistribute and improve 
 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin"
+
 checkdomain() {
     whois $1 | egrep -q \
         '^% No match|^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
@@ -34,12 +36,6 @@ do
         for (( i=0;i<$ELEMENTS;i++))
         do
             checkdomain $1${DOMAINS[${i}]}
-#           whois $1${DOMAINS[${i}]} | egrep -q \
-#               '^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
-#           if [ $? -eq 0 ]
-#           then
-#               echo "$1${DOMAINS[${i}]} : available"
-#           fi
         done 
     fi
     shift 
