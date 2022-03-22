@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-03-21T21:03:38Z</date>
+    <groups>
+        <group>
+            <name>Linux servers</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template fail2ban</template>
+            <name>Template fail2ban</name>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>Fail2ban: Currently banned IPs</name>
+                    <key>custom.fail2ban.currently_banned</key>
+                </item>
+                <item>
+                    <name>Fail2ban: Currently failed logins</name>
+                    <key>custom.fail2ban.currently_failed</key>
+                </item>
+                <item>
+                    <name>Fail2ban: Total banned logins</name>
+                    <key>custom.fail2ban.total_banned</key>
+                </item>
+                <item>
+                    <name>Fail2ban: Total failed logins</name>
+                    <key>custom.fail2ban.total_failed</key>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
