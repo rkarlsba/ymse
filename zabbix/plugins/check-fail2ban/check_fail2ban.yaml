@@ -1,6 +1,8 @@
 # vim:ts=2:sw=2:sts=2:et:ai
 #
 # Ansible playbook for installing the fail2ban-client zabbix check
+# I'd suggest adding the zabbix server's IP(s) to ignoreips, since fail2ban can
+# be a bit touchy at times.
 
 - hosts: fail2ban
   strategy: free
