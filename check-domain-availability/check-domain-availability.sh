@@ -8,8 +8,9 @@
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin"
 
 checkdomain() {
-    whois $1 | egrep -q \
-        '^% No match|^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri'
+    whois $1 2>&1 | egrep -q \
+        '^% No match|^No match|^NOT FOUND|^Not fo|AVAILABLE|^No Data Fou|has not been regi|No entri' | \
+        egrep -v 'connect: Connection refused'
     if [ $? -eq 0 ]
     then
         echo "$1 : available"
