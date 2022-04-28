@@ -4,6 +4,8 @@
 # Set Error Recovery Control value to below values for read/write, respectively.
 # If the drive doesn't support setting these values, set the SCSI timeout for
 # that drive to 180 seconds, if this is enabled (by default, it's not)
+#
+# Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net> and licensed under AGPLv3
 
 ercval_read=70
 ercval_write=70
