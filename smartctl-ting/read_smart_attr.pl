@@ -11,8 +11,9 @@ my $opt_force = undef;
 my $opt_help = undef;
 my $opt_verbose = undef;
 
-my $program_name = $0;
+my $attr = undef;
 my $errcnt = 0;
+my $program_name = $0;
 
 # Subroutines
 sub help {
@@ -33,12 +34,13 @@ sub help {
 }
 
 sub num2dec {
-    my $attr = shift;
-    return $attr if ($attr =~ /^\d+$/0); # it's already decimal
-    if ($attr =~ /^0x([0-9a-z]+)$/) {
-        return hex($attr);
-    } elsif ($attr =~ /^0(\d+)$/) {
-        return oct($attr);
+    my $lattr = shift;
+    return undef unless (defined($opt_attr));
+    return $lattr if ($lattr =~ /^\d+$/0); # it's already decimal
+    if ($lattr =~ /^0x([0-9a-f]+)$/i) {
+        return hex($lattr);
+    } elsif ($lattr =~ /^0(\d+)$/) {
+        return oct($lattr);
     }
     return undef;
 }
@@ -53,17 +55,35 @@ GetOptions(
 ) or help("Invalid argument");
 
 &help if (defined($opt_help));
+&help("Error: We need an attribute") unless (defined($opt_attr));
+
+$attr = &num2dec($opt_attr);
+&help("Error: Invalid attribute - must be a number\n") unless (defined($attr));
 
 # 197 Current_Pending_Sector  0x0012   100   100   000    Old_age   Always       -       0
-
 while (my $dev = shift) {
     if ( -b $dev ) {
         my $cmd = "smartctl -A $dev";
-        
         print "Running command \"$cmd\"\n";
+        open my $smrt,"$cmd|";
+        if (defined($smrt) && ($smrt)) {
+            while (my $smrtline = <$smrt>) {
+                chomp($smrtline);
+                my @smrtarr = split(/\s+/, $smartline);
+                if ($smartarr[0] eq $attr) {
+                    my $attrname = $smartattr[1];
+                    $attrname =~ s/_//g;
+                    print
+            }
+        }
     } else {
         print STDERR "$dev is not a block device\n";
         $errcnt++;
     }
 }
-0
+
+if ($errcnt) {
+    print STDERR "$errcnt errors found. Please see above for details.\n";
+    exit $1;
+}
+exit 0;
