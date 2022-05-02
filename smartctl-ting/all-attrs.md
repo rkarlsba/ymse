@@ -9,7 +9,7 @@ S.M.A.R.T. attributes by vendor as well as the basic generic ones. Not sure why 
 
 Here's the list:
 
-| > | Generic HDD Ones |
+| id | Generic HDD codes |
 | > | ---------------- |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
