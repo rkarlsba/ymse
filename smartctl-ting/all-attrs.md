@@ -90,7 +90,7 @@ Here's the list:
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
 
-[glow red]== Vendor-specific attributes ==[/glow]
+## Vendor-specific attributes
 
 | id | **SmartMtron** |
 | BB | Total Erase Count |
