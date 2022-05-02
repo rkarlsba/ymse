@@ -9,8 +9,8 @@ S.M.A.R.T. attributes by vendor as well as the basic generic ones. Not sure why 
 
 Here's the list:
 
-| id | Generic HDD codes |
-| > | ---------------- |
+| id | **Generic HDD codes** |
+| -- | --------------------- |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
 | 03 | Spin-Up Time |
@@ -66,8 +66,9 @@ Here's the list:
 | FE | Free Fall Protection |
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
- |
-| [SmartSsd] – generic attributes for SSDs |
+
+| id | **SmartSsd** – generic attributes for SSDs |
+| -- | --------------------- |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
 | 03 | Spin-Up Time |
@@ -88,13 +89,13 @@ Here's the list:
 | C6 | Uncorrectable Sector Count |
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
- |
-| [glow | red]== Vendor-specific attributes ==[/glow] |
- |
-| [SmartMtron] |
+
+[glow red]== Vendor-specific attributes ==[/glow]
+
+| id | **SmartMtron** |
 | BB | Total Erase Count |
- |
-| [SmartIndlinx] |
+
+| id | **SmartIndlinx** |
 | 01 | Read Error Rate |
 | 09 | Power-On Hours |
 | 0C | Power Cycle Count |
@@ -115,9 +116,8 @@ Here's the list:
 | CF | Maximum Erase Count |
 | D0 | Average Erase Count |
 | D1 | Remaining Drive Life |
- |
-| [SmartJMicron60x] |
- |
+
+| id | **SmartJMicron60x** |
 | 09 | Power-On Hours |
 | 0C | Power Cycle Count |
 | C2 | Temperature |
@@ -126,9 +126,8 @@ Here's the list:
 | E9 | ECC Fail Record |
 | EA | Average Erase Count, Max Erase Count |
 | EB | Good Block Count, System Block Count |
- |
-| [SmartIntel] |
- |
+
+| id | **SmartIntel** |
 | 03 | Spin Up Time |
 | 04 | Start/Stop Count |
 | 05 | Re-Allocated Sector Count |
@@ -157,9 +156,8 @@ Here's the list:
 | C2 | Temperature |
 | C5 | Pending Sector Count |
 | EA | Thermal Throttle Status |
- |
-| [SmartSamsung] |
- |
+
+| id | **SmartSamsung** |
 | 05 | Reallocated Sector Count |
 | 09 | Power-on Hours |
 | 0C | Power-on Count |
@@ -190,9 +188,8 @@ Here's the list:
 | AE | Unexpected Power Loss Count |
 | B8 | Error Detection |
 | E9 | Normalized Media Wear-out |
- |
-| [SmartSandForce] |
- |
+
+| id | **SmartSandForce** |
 | 01 | Raw Read Error Rate |
 | 05 | Retired Block Count |
 | 09 | Power-on Hours |
@@ -221,9 +218,8 @@ Here's the list:
 | EB | SuperCap health |
 | F1 | Lifetime Writes from Host |
 | F2 | Lifetime Reads from Host |
- |
-| [SmartJMicron61x] |
- |
+
+| id | **SmartJMicron61x** |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
 | 03 | Spin-Up Time |
@@ -240,9 +236,8 @@ Here's the list:
 | C5 | Current Pending Sector Count |
 | AA | Bad Block Count |
 | AD | Erase Count |
- |
-| [SmartMicron] |
- |
+
+| id | **SmartMicron** |
 | 01 | Raw Read Error Rate |
 | 05 | Reallocated NAND Blocks |
 | 09 | Power On Hours |
@@ -282,9 +277,8 @@ Here's the list:
 | F6 | Total Host Sector Writes |
 | F7 | Host Program Page Count |
 | F8 | Background Program Page Count |
- |
-| [SmartMicronMU02] |
- |
+
+| id | **SmartMicronMU02** |
 | 01 | Raw Read Error Rate |
 | 05 | Reallocated Sectors Count |
 | 09 | Power-On Hours |
@@ -343,9 +337,8 @@ Here's the list:
 | F5 | Total TLC Write Count |
 | F6 | Total SLC Write Count |
 | F7 | RAID Recovery Count |
- |
-| [SmartOcz] |
- |
+
+| id | **SmartOcz** |
 | 01 | Raw Read Error Rate |
 | 03 | Spin Up Time |
 | 04 | Start Stop Count |
@@ -376,9 +369,8 @@ Here's the list:
 | FB | NAND Read Count |
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
- |
-| [SmartPlextor] |
- |
+
+| id | **SmartPlextor** |
 | 01 | Read Error Rate |
 | 05 | Reallocated Sectors Count |
 | 09 | Power-On Hours |
@@ -410,9 +402,8 @@ Here's the list:
 | BC | Command Time out |
 | C3 | ECC rate |
 | E9 | NAND GB written |
- |
-| [SmartSanDisk] |
- |
+
+| id | **SmartSanDisk** |
 | 05 | Retired Block Count |
 | 09 | Power On Hours |
 | 0C | Power Cycle Count |
@@ -425,9 +416,8 @@ Here's the list:
 | E8 | Remaining Life |
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
- |
-| [SmartOczVector] |
- |
+
+| id | **SmartOczVector** |
 | 05 | Accumulated Runtime Bad Blocks |
 | 09 | Power-On Hours Count |
 | 0C | Power Cycle Count |
@@ -463,9 +453,8 @@ Here's the list:
 | E6 | Write Throttling Activation Flag |
 | F9 | Total NAND Programming Count (pages) |
 | FB | Total NAND Read Count |
- |
-| [SmartCorsair] |
- |
+
+| id | **SmartCorsair** |
 | 01 | Raw Read Error Rate |
 | 05 | Retired Block Count |
 | 09 | Power On Hours |
@@ -480,9 +469,8 @@ Here's the list:
 | E7 | SSD Life Left |
 | F1 | Lifetime GB Written |
 | F2 | Lifetime GB Read |
- |
-| [SmartToshiba] |
- |
+
+| id | **SmartToshiba** |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
 | 03 | Spin-Up Time |
@@ -505,8 +493,8 @@ Here's the list:
 | C6 | Uncorrectable Sector Count |
 | F1 | Total Host Writes |
 | F2 | Total Host Reads |
-| > ||
-| > | *SmartSanDiskGb* |
+
+| id | **SmartSanDiskGb** |
 | 05 | Reallocated Block Count |
 | 09 | Power On Hours |
 | 0C | Power Cycle Count |
@@ -526,8 +514,8 @@ Here's the list:
 | E9 | Total GB Written To NAND |
 | F1 | Total GB Written |
 | F2 | Total GB Read |
-| > ||
-| > | [SmartKingston] |
+
+| id | **SmartKingston** |
 | 01 | Read Error Rate |
 | 02 | Throughput Performance |
 | 03 | Spin Up Time |
