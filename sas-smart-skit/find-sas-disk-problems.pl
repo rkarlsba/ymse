@@ -7,7 +7,7 @@
 use strict;
 use warnings;
 
-# Eksempal {{{
+# Example {{{
 #
 # ==================== /dev/sda ====================
 # smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
@@ -22,7 +22,6 @@ use warnings;
 # write:         0        0         0         0          0      35743.185           0
 #
 # Non-medium error count:        3
-#
 #
 # [GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
 #
