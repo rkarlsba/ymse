@@ -21,5 +21,5 @@ api_password = 'supersecretpassword'
 api_url = 'https://my-zabbix-box.oslometh.no/zabbix/api_jsonrpc.php';
 ```
 
-***[roy](mailto:roy@karlsbak.net)***
+***[roy](mailto:roy@karlsbakk.net)***
 
