@@ -1,4 +1,4 @@
-# vim:ts=4:sw=4:sts=4:et:ai:tw=80:ft=python
+# vim:ts=4:sw=4:sts=4:et:ai:tw=80
 #
 # This file should be saved as local_passwords.py and will, with that name, be
 # ignored by git by default. We really don't want authentication data in a
