@@ -9,11 +9,10 @@
 
 ercval_read=70
 ercval_write=70
-scsi_timeout=180
 verbose=1
 happyhappyjoyjoy=1 # Ignore all errors
 setscsitimeoutonerror=1
-scsitimeout=120
+scsi_timeout=180
 
 #for d in $( lsblk -d | awk '{ if ($1 != "NAME") { print $1 } }' )
 fail=""
@@ -25,8 +24,8 @@ do
         if [ "$setscsitimeoutonerror" -gt 0 ]
         then
             dev=$( readlink -f $d | sed 's/\/dev//' )
-            fail+="\t$d (setting scsi timeout to $scsitimeout on device)\n"
-            echo $scsitimeout > /sys/block/$dev/device/timeout
+            fail+="\t$d (setting scsi timeout to $scsi_timeout on device)\n"
+            echo $scsi_timeout > /sys/block/$dev/device/timeout
         else
             fail+="\t$d\n"
         fi
