@@ -2,11 +2,12 @@
 # vim:isfname-==:ts=4:sw=4:sts=4:et:ai
 
 # Simple rfc2136 DIY dyndns
+#
 # You'll need ddns setup in the zone on the DNS server and a key configured
 # there for the client (this one).
 #
 # Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net> and licensed under
-# GPLv4. See the LICENSE file for details.
+# GPLv3. See the LICENSE file for details.
 
 # Variables
 KEY="/path/to/ddns-key.my.domain.key"
