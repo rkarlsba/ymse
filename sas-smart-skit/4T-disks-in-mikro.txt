@@ -1,0 +1,761 @@
+==================== /dev/sda ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3716474487        0         0  3716474487          0     170154.272           0
+write:         0        0         0         0          0      35743.185           0
+
+Non-medium error count:        3
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdb ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1111510796        0         0  1111510796          0       4289.460           0
+write:         0        0         0         0          0       6368.751           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdc ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3187432678        0         0  3187432678          0      15251.325           0
+write:         0        0         0         0          0      13082.951           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdd ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   180086195        0         0  180086195          0      15082.982           0
+write:         0        0         0         0          0      16417.586           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sde ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2223614775        0         0  2223614775          0      15245.430           0
+write:         0        0         0         0          0      13304.142           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdf ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   392110565        0         0  392110565          0      16040.555           0
+write:         0        0         0         0          0       6906.296           0
+verify:  9495778        0         0   9495778          0          3.061           0
+
+Non-medium error count:       90
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdg ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   627968139        0         0  627968139          0      15289.518           0
+write:         0        0         0         0          0      13284.907           0
+
+Non-medium error count:        4
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdh ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   4294317838        0         0  4294317838          0      15092.733           0
+write:         0        0         0         0          0      14931.664           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdi ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3711302183        0         0  3711302183          0      16298.267           0
+write:         0        0         0         0          0       6938.325           0
+verify:  8032509        0         0   8032509          0          3.039           0
+
+Non-medium error count:      285
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdj ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   778379386        0         0  778379386          0      15059.725           0
+write:         0        0         0         0          0      11667.847           0
+
+Non-medium error count:       15
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdk ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2393686058        0         0  2393686058          0      15283.734           0
+write:         0        0         0         0          0      12900.521           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdl ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1580215748        0         0  1580215748          0      15079.583           0
+write:         0        0         0         0          0      11696.279           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdm ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1521616458        0         0  1521616458          0      15309.443           0
+write:         0        0         0         0          0      13155.380           0
+
+Non-medium error count:        4
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdn ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1979935955        0         0  1979935955          0      15121.142           0
+write:         0        0         0         0          0      12832.653           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdo ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1890693855       27         0  1890693882         27     561825.247           0
+write:         0        0         0         0          0     274268.491           0
+verify: 3852196780        0         0  3852196780          0       3956.182           0
+
+Non-medium error count:    12790
+
+==================== /dev/sdp ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3236280655        0         0  3236280655          0      15126.557           0
+write:         0        0         0         0          0      14058.821           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdq ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1767968645        2         0  1767968647          2     563629.638           0
+write:         0        0         0         0          0     265845.517           0
+verify: 2130224363        0         0  2130224363          0       3947.753           0
+
+Non-medium error count:     3327
+
+==================== /dev/sdr ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1010007223        0         0  1010007223          0      15098.506           0
+write:         0        0         0         0          0      13406.204           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sds ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3716251884        0         0  3716251884          0      15188.325           0
+write:         0        0         0         0          0      12096.236           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdt ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3886289485        0         0  3886289485          0       1450.527           0
+write:         0        0         0         0          0       2308.232           0
+verify: 1225986499        0         0  1225986499          0       3973.341           0
+
+Non-medium error count:    12898
+
+==================== /dev/sdu ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1548213289       88         0  1548213377         88      13739.072           0
+write:         0        0         0         0          0      22122.154           0
+
+Non-medium error count:      140
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdv ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3347515306        0         0  3347515306          0     556018.523           0
+write:         0        0         7         7          7     269312.240           0
+verify: 3724733286        0         0  3724733286          0       3874.684           0
+
+Non-medium error count:    12858
+
+==================== /dev/sdw ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2072969068        0         0  2072969068          0     562862.367           0
+write:         0        0         0         0          0     270228.941           0
+verify: 709206410        0         0  709206410          0       3964.897           0
+
+Non-medium error count:    12948
+
+==================== /dev/sdx ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1048988698        0         0  1048988698          0      10769.415           0
+write:         0        0         0         0          0      11574.167           0
+
+Non-medium error count:        5
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdy ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   27389571        0         0  27389571          0          9.895           0
+write:         0        0         0         0          0         25.106           0
+
+Non-medium error count:       13
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdz ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1135133529        0         0  1135133529          0     175361.576           0
+write:         0        0         0         0          0      35156.677           0
+
+Non-medium error count:        3
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdaa ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   4068062494        0         0  4068062494          0     170008.337           0
+write:         0        0         0         0          0      37002.698           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdab ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2042216111        0         0  2042216111          0     186020.893           0
+write:         0        0         0         0          0      16186.297           0
+verify: 62821736        0         0  62821736          0         21.003           0
+
+Non-medium error count:       39
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdac ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   513259653        0         0  513259653          0     169708.437           0
+write:         0        0         0         0          0      34233.394           0
+
+Non-medium error count:        3
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdad ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3142304744        0         0  3142304744          0     169827.641           0
+write:         0        0         0         0          0      32758.653           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdae ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1065565048        0         0  1065565048          0     170035.730           0
+write:         0        0         0         0          0      35977.541           0
+
+Non-medium error count:        4
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdaf ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   41805712        0         0  41805712          0     170018.555           0
+write:         0        0         0         0          0      35749.365           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdag ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3202075259        0         0  3202075259          0     169847.246           0
+write:         0        0         0         0          0      33818.942           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdah ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3912943842        0         0  3912943842          0     657862.876           0
+write:         0        0         1         1          2    1264878.422           1
+
+Non-medium error count:        7
+
+==================== /dev/sdai ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   4201127670        0         0  4201127670          0     170015.605           0
+write:         0        0         0         0          0      36337.817           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdaj ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2728313579        0         0  2728313579          0     186192.760           0
+write:         0        0         0         0          0      16187.971           0
+verify: 50025386        0         0  50025386          0         21.342           0
+
+Non-medium error count:      116
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdak ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2022038010        0         0  2022038010          0     175253.114           0
+write:         0        0         0         0          0      34531.124           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdal ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   802641279        0         0  802641279          0      58558.560           0
+write:         0        0         0         0          0      12636.883           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdam ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3592675993        0         0  3592675993          0     174941.563           0
+write:         0        0         0         0          0      35195.058           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdan ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3504925953       76         0  3504926029         76     571224.984           0
+write:         0        0         0         0          0     266987.398           0
+verify: 802749843        0         0  802749843          0       3913.028           0
+
+Non-medium error count:     3732
+
+==================== /dev/sdao ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   718766697        0         0  718766697          0     175563.072           0
+write:         0        0         0         0          0      31679.269           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdap ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2882375067        0         0  2882375067          0     175406.811           0
+write:         0        0         0         0          0      35365.443           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdaq ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2150608546        0         0  2150608546          0     175123.693           0
+write:         0        0         0         0          0      34971.187           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdar ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:      89559        0         0     89559          0          0.046           0
+write:         0        0         0         0          0          4.939           0
+
+Non-medium error count:        0
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdas ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1847127089        0         0  1847127089          0     175356.322           0
+write:         0        0         0         0          0      35166.021           0
+
+Non-medium error count:        3
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdat ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   3820911144        0         0  3820911144          0     174739.807           0
+write:         0        0         0         0          0      36916.346           0
+
+Non-medium error count:        2
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdau ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   2281100094        0         0  2281100094          0     175369.596           0
+write:         0        0         0         0          0      32557.431           0
+
+Non-medium error count:        1
+
+
+[GLTSD (Global Logging Target Save Disable) set. Enable Save with '-S on']
+==================== /dev/sdav ====================
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-5.10.0-12-amd64] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+Error counter log:
+          Errors Corrected by           Total   Correction     Gigabytes    Total
+              ECC          rereads/    errors   algorithm      processed    uncorrected
+          fast | delayed   rewrites  corrected  invocations   [10^9 bytes]  errors
+read:   1201364319        0         0  1201364319          0     452807.878           0
+write:         0        0         0         0          0     299224.023           0
+
+Non-medium error count:        4

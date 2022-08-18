@@ -1,0 +1,4 @@
+for fw in esp32-idf3-20200902-v1.13.bin esp32-idf3-20191220-v1.12.bin esp32-idf3-20190529-v1.11.bin esp32-idf3-20190125-v1.10.bin esp32-idf3-20180511-v1.9.4.bin 
+do
+	wget https://micropython.org/resources/firmware/$fw
+done

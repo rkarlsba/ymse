@@ -1,33 +1,91 @@
+#!/usr/bin/node
 // vim:ts=4:sw=4:sts=4:et:ai
+//
+//
+//
+// const { Client } = require('pg')
+// const client = new Client()
+// client.connect()
 
-var mysql = require('mysql');
+const { PgClient } = require('pg')
+var format = require('pg-format');
+var mqtt = require('mqtt');
 
-// Create Connection
-// (yeah, I know I shouldn't post passwords on github, but this is for internal testing)
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "mqtt",
-    password: "yaituaC1bengie0r",
-    database: "mqtt"
+var Topic = '#'; //subscribe to all topics
+var Broker_URL = 'mqtt://mqtt.karlsbakk.net';
+
+var options = {
+    clientId: 'MyMQTT',
+    port: 1883,
+    keepalive : 60
+};
+
+const pgclient = new PgClient({
+    user: 'mqtt',
+    host: 'localhost',
+    database: 'mqtt',
+    password: 'yaituaC1bengie0r',
+    port: 5432
+});
+pgclient.connect();
+
+var client = mqtt.connect(Broker_URL, options);
+client.on('connect', mqtt_connect);
+client.on('reconnect', mqtt_reconnect);
+client.on('error', mqtt_error);
+client.on('message', mqtt_messsageReceived);
+client.on('close', mqtt_close);
+
+function mqtt_connect() {
+    console.log("Connecting MQTT");
+    client.subscribe(Topic, mqtt_subscribe);
+}
+
+function mqtt_subscribe(err, granted) {
+    console.log("Subscribed to " + Topic);
+    if (err) {
+        console.log(err);
+    }
+}
+
+function mqtt_reconnect(err) {
+    console.log("Reconnect MQTT");
+    if (err) {
+        console.log(err);
+    }
+    client = mqtt.connect(Broker_URL, options);
+}
+
+function mqtt_error(err) {
+    console.log("Error!");
+    if (err) {
+        console.log(err);
+    }
+}
+
+function after_publish() {
+//do nothing
+}
+
+function mqtt_messsageReceived(topic, message, packet) {
+    console.log('Topic=' + topic + ' Message=' + message);
+}
+
+function mqtt_close() {
+    console.log("Close MQTT");
+}
+
+var clientID= "mqtt.karlsbakk.net";
+var topic = "test/kitchen";
+var message = "dev01,on";
+
+var sqltemplate = "INSERT INTO %s(%s,%s,%s) VALUES ('%s', '%s', '%s')";
+var sql = format(sqltemplate, 'mqtt_messages', 'clientid', 'topic', 'message', clientID, topic, message);
+
+console.log(sql);
+pgclient.query(sql, function (error, results) {
+    if (error) throw error;
+    console.log("1 record inserted");
+    pgclient.end();
 });
 
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Database Connected!");
-});
-
-
-//insert a row into the tbl_messages table
-connection.connect(function(err) {
-    var clientID= "client001";
-    var topic = "test/kitchen";
-    var message = "dev01,on";
-    var sql = "INSERT INTO ?? (??,??,??) VALUES (?,?,?)";
-    var params = ['mqtt_messages', 'clientid', 'topic', 'message', clientID, topic, message];
-    sql = mysql.format(sql, params);
-    connection.query(sql, function (error, results) {
-        if (error) throw error;
-        console.log("1 record inserted");
-    });
-});
