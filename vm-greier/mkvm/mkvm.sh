@@ -11,7 +11,7 @@
 #
 # Roy Sigurd Karlsbakk <roy@karlsbakk.net>, 2022
 #
-# Released under GPL v3
+# Released under GPL v3 - see LICENSE for details
 
 # 'Globals'
 TEMPLATE_VM='debian-bullseye-mal'
