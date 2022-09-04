@@ -17,34 +17,52 @@
 TEMPLATE_VM='debian-bullseye-mal'
 DOMAIN='karlsbakk.net'
 ORIGINAL="$TEMPLATE_VM.$DOMAIN"
+VM_IMG_DIR='/var/lib/libvirt/images'
+RUN_COUNT=0
 
 # Our loop
 for vm in $@
 do
     # 'Locals'
     vm_name="$vm.$DOMAIN"
-    vm_file="$vm_name-root1.qcow2"
+    vm_file="$VM_IMG_DIR/$vm_name-root1.qcow2"
 
     # Sanity check
     if $( echo "$vm_name" | perl -ne 'exit 1 unless (/^[a-z0-9\-\.]+/);' )
     then
-        echo "Illegal hostname: $vm_name, exiting"
+        echo "Illegal hostname: $vm_name, exiting" >&2
         exit 1
     fi
     if $( virsh domstate $ORIGINAL > /dev/null 2>&1 )
     then
-        echo "VM template $ORIGINAL seems to exist, exiting"
+        echo "VM template $ORIGINAL seems to exist, exiting" >&2
         exit 2
     fi
     if $( virsh domstate $vm_name > /dev/null 2>&1 )
     then
-        echo "VM $vm_name seems to exist, exiting"
+        echo "VM $vm_name seems to exist, exiting" >&2
         exit 3
     fi
+    if [ -f $vm_file ]
+    then
+        echo "New VM image $vm_file already exists, exiting" >&2
+        exit 4
+    fi
 
-    echo Cloning template VM $TEMPLATE_VM to new VM $vm_name
+    # Don't a
+    echo_cmd=''
+    if [ $UID -eq 0 ]
+    then
+        echo "Cloning template VM $TEMPLATE_VM to new VM $vm_name"
+    else
+        if [ $RUN_COUNT -eq 0 ]
+        then
+            echo "Not root, posting the create command(s) below:"
+        fi
+        echo_cmd='echo'
+    fi
+    $echo_cmd virt-clone --original $ORIGINAL --name $vm_name --file $vm_file
 
-    virt-clone --original $ORIGINAL --name $vm_name --file $vm_file
     if [ $_exitcode != 0 ]
     then
         echo 'Something terrible happened - exiting' >&2
