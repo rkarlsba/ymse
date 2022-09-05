@@ -46,9 +46,9 @@ try:
     # Get all monitored hosts
     allhosts = zapi.host.get(output='extend', selectInventory='extend')
 
-    print(json.dumps(allhosts,indent=4))
+    # print(json.dumps(allhosts,indent=4))
 
-    sys.exit()
+    # sys.exit()
 
     for host in allhosts:
         if 'os' in host['inventory']:

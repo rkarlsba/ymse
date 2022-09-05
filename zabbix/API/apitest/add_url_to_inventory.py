@@ -3,7 +3,13 @@
 
 from pyzabbix.api import ZabbixAPI
 import json
-from local_passwords import api_user, api_password, api_url
+
+try:
+    from local_passwords import api_user, api_password, api_url
+except:
+    print("File local_passwords.py does not exists. Please refer to the README file", file=sys.stderr)
+    print("and create the named file before running this again.", file=sys.stderr)
+    exit(1)
 
 # Create ZabbixAPI class instance
 zapi = ZabbixAPI(url=api_url, user=api_user, password=api_password)
