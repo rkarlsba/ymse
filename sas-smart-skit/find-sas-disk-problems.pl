@@ -27,7 +27,7 @@ use warnings;
 #
 # }}}
 
-my $filename = "4T-disks-in-mikro.txt"
+my $filename = "4T-disks-in-mikro.txt";
 my $found = 0;
 my $read = 0;
 my $write = 0;

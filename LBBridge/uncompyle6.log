@@ -1,0 +1,1821 @@
+
+# file LBBridge/bottle.pyc
+# --- This code section failed: ---
+
+ L.  14         0  LOAD_STR                 '\nBottle is a fast and simple micro-framework for small web applications. It\noffers request dispatching (Routes) with url parameter support, templates,\na built-in HTTP Server and adapters for many third party WSGI/HTTP-server and\ntemplate engines - all in a single file and with no dependencies other than the\nPython Standard Library.\n\nHomepage and documentation: http://bottlepy.org/\n\nCopyright (c) 2016, Marcel Hellkamp.\nLicense: MIT (see LICENSE for details)\n'
+                2  STORE_NAME               __doc__
+
+ L.  16         4  LOAD_CONST               0
+                6  LOAD_CONST               ('with_statement',)
+                8  IMPORT_NAME              __future__
+               10  IMPORT_FROM              with_statement
+               12  STORE_NAME               with_statement
+               14  POP_TOP          
+
+ L.  18        16  LOAD_STR                 'Marcel Hellkamp'
+               18  STORE_NAME               __author__
+
+ L.  19        20  LOAD_STR                 '0.12.19'
+               22  STORE_NAME               __version__
+
+ L.  20        24  LOAD_STR                 'MIT'
+               26  STORE_NAME               __license__
+
+ L.  24        28  LOAD_NAME                __name__
+               30  LOAD_STR                 '__main__'
+               32  COMPARE_OP               ==
+               34  POP_JUMP_IF_FALSE   202  'to 202'
+
+ L.  25        36  LOAD_CONST               0
+               38  LOAD_CONST               ('OptionParser',)
+               40  IMPORT_NAME              optparse
+               42  IMPORT_FROM              OptionParser
+               44  STORE_NAME               OptionParser
+               46  POP_TOP          
+
+ L.  26        48  LOAD_NAME                OptionParser
+               50  LOAD_STR                 'usage: %prog [options] package.module:app'
+               52  LOAD_CONST               ('usage',)
+               54  CALL_FUNCTION_KW_1     1  '1 total positional and keyword args'
+               56  STORE_NAME               _cmd_parser
+
+ L.  27        58  LOAD_NAME                _cmd_parser
+               60  LOAD_ATTR                add_option
+               62  STORE_NAME               _opt
+
+ L.  28        64  LOAD_NAME                _opt
+               66  LOAD_STR                 '--version'
+               68  LOAD_STR                 'store_true'
+               70  LOAD_STR                 'show version number.'
+               72  LOAD_CONST               ('action', 'help')
+               74  CALL_FUNCTION_KW_3     3  '3 total positional and keyword args'
+               76  POP_TOP          
+
+ L.  29        78  LOAD_NAME                _opt
+               80  LOAD_STR                 '-b'
+               82  LOAD_STR                 '--bind'
+               84  LOAD_STR                 'ADDRESS'
+               86  LOAD_STR                 'bind socket to ADDRESS.'
+               88  LOAD_CONST               ('metavar', 'help')
+               90  CALL_FUNCTION_KW_4     4  '4 total positional and keyword args'
+               92  POP_TOP          
+
+ L.  30        94  LOAD_NAME                _opt
+               96  LOAD_STR                 '-s'
+               98  LOAD_STR                 '--server'
+              100  LOAD_STR                 'wsgiref'
+              102  LOAD_STR                 'use SERVER as backend.'
+              104  LOAD_CONST               ('default', 'help')
+              106  CALL_FUNCTION_KW_4     4  '4 total positional and keyword args'
+              108  POP_TOP          
+
+ L.  31       110  LOAD_NAME                _opt
+              112  LOAD_STR                 '-p'
+              114  LOAD_STR                 '--plugin'
+              116  LOAD_STR                 'append'
+              118  LOAD_STR                 'install additional plugin/s.'
+              120  LOAD_CONST               ('action', 'help')
+              122  CALL_FUNCTION_KW_4     4  '4 total positional and keyword args'
+              124  POP_TOP          
+
+ L.  32       126  LOAD_NAME                _opt
+              128  LOAD_STR                 '--debug'
+              130  LOAD_STR                 'store_true'
+              132  LOAD_STR                 'start server in debug mode.'
+              134  LOAD_CONST               ('action', 'help')
+              136  CALL_FUNCTION_KW_3     3  '3 total positional and keyword args'
+              138  POP_TOP          
+
+ L.  33       140  LOAD_NAME                _opt
+              142  LOAD_STR                 '--reload'
+              144  LOAD_STR                 'store_true'
+              146  LOAD_STR                 'auto-reload on file changes.'
+              148  LOAD_CONST               ('action', 'help')
+              150  CALL_FUNCTION_KW_3     3  '3 total positional and keyword args'
+              152  POP_TOP          
+
+ L.  34       154  LOAD_NAME                _cmd_parser
+              156  LOAD_METHOD              parse_args
+              158  CALL_METHOD_0         0  '0 positional arguments'
+              160  UNPACK_SEQUENCE_2     2 
+              162  STORE_NAME               _cmd_options
+              164  STORE_NAME               _cmd_args
+
+ L.  35       166  LOAD_NAME                _cmd_options
+              168  LOAD_ATTR                server
+              170  POP_JUMP_IF_FALSE   202  'to 202'
+              172  LOAD_NAME                _cmd_options
+              174  LOAD_ATTR                server
+              176  LOAD_METHOD              startswith
+              178  LOAD_STR                 'gevent'
+              180  CALL_METHOD_1         1  '1 positional argument'
+              182  POP_JUMP_IF_FALSE   202  'to 202'
+
+ L.  36       184  LOAD_CONST               0
+              186  LOAD_CONST               None
+              188  IMPORT_NAME_ATTR         gevent.monkey
+              190  STORE_NAME               gevent
+
+ L.  36       192  LOAD_NAME                gevent
+              194  LOAD_ATTR                monkey
+              196  LOAD_METHOD              patch_all
+              198  CALL_METHOD_0         0  '0 positional arguments'
+              200  POP_TOP          
+            202_0  COME_FROM           182  '182'
+            202_1  COME_FROM           170  '170'
+            202_2  COME_FROM            34  '34'
+
+ L.  38       202  LOAD_CONST               0
+              204  LOAD_CONST               None
+              206  IMPORT_NAME              base64
+              208  STORE_NAME               base64
+              210  LOAD_CONST               0
+              212  LOAD_CONST               None
+              214  IMPORT_NAME              cgi
+              216  STORE_NAME               cgi
+              218  LOAD_CONST               0
+              220  LOAD_CONST               None
+              222  IMPORT_NAME_ATTR         email.utils
+              224  STORE_NAME               email
+              226  LOAD_CONST               0
+              228  LOAD_CONST               None
+              230  IMPORT_NAME              functools
+              232  STORE_NAME               functools
+              234  LOAD_CONST               0
+              236  LOAD_CONST               None
+              238  IMPORT_NAME              hmac
+              240  STORE_NAME               hmac
+              242  LOAD_CONST               0
+              244  LOAD_CONST               None
+              246  IMPORT_NAME              itertools
+              248  STORE_NAME               itertools
+              250  LOAD_CONST               0
+              252  LOAD_CONST               None
+              254  IMPORT_NAME              mimetypes
+              256  STORE_NAME               mimetypes
+              258  LOAD_CONST               0
+              260  LOAD_CONST               None
+              262  IMPORT_NAME              os
+              264  STORE_NAME               os
+              266  LOAD_CONST               0
+              268  LOAD_CONST               None
+              270  IMPORT_NAME              re
+              272  STORE_NAME               re
+              274  LOAD_CONST               0
+              276  LOAD_CONST               None
+              278  IMPORT_NAME              subprocess
+              280  STORE_NAME               subprocess
+              282  LOAD_CONST               0
+              284  LOAD_CONST               None
+              286  IMPORT_NAME              sys
+              288  STORE_NAME               sys
+              290  LOAD_CONST               0
+              292  LOAD_CONST               None
+              294  IMPORT_NAME              tempfile
+              296  STORE_NAME               tempfile
+              298  LOAD_CONST               0
+              300  LOAD_CONST               None
+              302  IMPORT_NAME              threading
+              304  STORE_NAME               threading
+              306  LOAD_CONST               0
+              308  LOAD_CONST               None
+              310  IMPORT_NAME              time
+              312  STORE_NAME               time
+              314  LOAD_CONST               0
+              316  LOAD_CONST               None
+              318  IMPORT_NAME              warnings
+              320  STORE_NAME               warnings
+              322  LOAD_CONST               0
+              324  LOAD_CONST               None
+              326  IMPORT_NAME              hashlib
+              328  STORE_NAME               hashlib
+
+ L.  41       330  LOAD_CONST               0
+              332  LOAD_CONST               ('date', 'datetime', 'timedelta')
+              334  IMPORT_NAME              datetime
+              336  IMPORT_FROM              date
+              338  STORE_NAME               datedate
+              340  IMPORT_FROM              datetime
+              342  STORE_NAME               datetime
+              344  IMPORT_FROM              timedelta
+              346  STORE_NAME               timedelta
+              348  POP_TOP          
+
+ L.  42       350  LOAD_CONST               0
+              352  LOAD_CONST               ('TemporaryFile',)
+              354  IMPORT_NAME              tempfile
+              356  IMPORT_FROM              TemporaryFile
+              358  STORE_NAME               TemporaryFile
+              360  POP_TOP          
+
+ L.  43       362  LOAD_CONST               0
+              364  LOAD_CONST               ('format_exc', 'print_exc')
+              366  IMPORT_NAME              traceback
+              368  IMPORT_FROM              format_exc
+              370  STORE_NAME               format_exc
+              372  IMPORT_FROM              print_exc
+              374  STORE_NAME               print_exc
+              376  POP_TOP          
+
+ L.  44       378  LOAD_CONST               0
+              380  LOAD_CONST               ('getargspec',)
+              382  IMPORT_NAME              inspect
+              384  IMPORT_FROM              getargspec
+              386  STORE_NAME               getargspec
+              388  POP_TOP          
+
+ L.  45       390  LOAD_CONST               0
+              392  LOAD_CONST               ('normalize',)
+              394  IMPORT_NAME              unicodedata
+              396  IMPORT_FROM              normalize
+              398  STORE_NAME               normalize
+              400  POP_TOP          
+
+ L.  48       402  SETUP_EXCEPT        424  'to 424'
+
+ L.  48       404  LOAD_CONST               0
+              406  LOAD_CONST               ('dumps', 'loads')
+              408  IMPORT_NAME              simplejson
+              410  IMPORT_FROM              dumps
+              412  STORE_NAME               json_dumps
+              414  IMPORT_FROM              loads
+              416  STORE_NAME               json_lds
+              418  POP_TOP          
+              420  POP_BLOCK        
+              422  JUMP_FORWARD        546  'to 546'
+            424_0  COME_FROM_EXCEPT    402  '402'
+
+ L.  49       424  DUP_TOP          
+              426  LOAD_NAME                ImportError
+              428  COMPARE_OP               exception-match
+          430_432  POP_JUMP_IF_FALSE   544  'to 544'
+              434  POP_TOP          
+              436  POP_TOP          
+              438  POP_TOP          
+
+ L.  50       440  SETUP_EXCEPT        462  'to 462'
+
+ L.  50       442  LOAD_CONST               0
+              444  LOAD_CONST               ('dumps', 'loads')
+              446  IMPORT_NAME              json
+              448  IMPORT_FROM              dumps
+              450  STORE_NAME               json_dumps
+              452  IMPORT_FROM              loads
+              454  STORE_NAME               json_lds
+              456  POP_TOP          
+              458  POP_BLOCK        
+              460  JUMP_FORWARD        540  'to 540'
+            462_0  COME_FROM_EXCEPT    440  '440'
+
+ L.  51       462  DUP_TOP          
+              464  LOAD_NAME                ImportError
+              466  COMPARE_OP               exception-match
+          468_470  POP_JUMP_IF_FALSE   538  'to 538'
+              472  POP_TOP          
+              474  POP_TOP          
+              476  POP_TOP          
+
+ L.  52       478  SETUP_EXCEPT        500  'to 500'
+
+ L.  52       480  LOAD_CONST               0
+              482  LOAD_CONST               ('dumps', 'loads')
+              484  IMPORT_NAME_ATTR         django.utils.simplejson
+              486  IMPORT_FROM              dumps
+              488  STORE_NAME               json_dumps
+              490  IMPORT_FROM              loads
+              492  STORE_NAME               json_lds
+              494  POP_TOP          
+              496  POP_BLOCK        
+              498  JUMP_FORWARD        534  'to 534'
+            500_0  COME_FROM_EXCEPT    478  '478'
+
+ L.  53       500  DUP_TOP          
+              502  LOAD_NAME                ImportError
+              504  COMPARE_OP               exception-match
+          506_508  POP_JUMP_IF_FALSE   532  'to 532'
+              510  POP_TOP          
+              512  POP_TOP          
+              514  POP_TOP          
+
+ L.  54       516  LOAD_CODE                <code_object json_dumps>
+              518  LOAD_STR                 'json_dumps'
+              520  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              522  STORE_NAME               json_dumps
+
+ L.  56       524  LOAD_NAME                json_dumps
+              526  STORE_NAME               json_lds
+              528  POP_EXCEPT       
+              530  JUMP_FORWARD        534  'to 534'
+            532_0  COME_FROM           506  '506'
+              532  END_FINALLY      
+            534_0  COME_FROM           530  '530'
+            534_1  COME_FROM           498  '498'
+              534  POP_EXCEPT       
+              536  JUMP_FORWARD        540  'to 540'
+            538_0  COME_FROM           468  '468'
+              538  END_FINALLY      
+            540_0  COME_FROM           536  '536'
+            540_1  COME_FROM           460  '460'
+              540  POP_EXCEPT       
+              542  JUMP_FORWARD        546  'to 546'
+            544_0  COME_FROM           430  '430'
+              544  END_FINALLY      
+            546_0  COME_FROM           542  '542'
+            546_1  COME_FROM           422  '422'
+
+ L.  63       546  LOAD_NAME                sys
+              548  LOAD_ATTR                version_info
+              550  STORE_NAME               py
+
+ L.  64       552  LOAD_NAME                py
+              554  LOAD_CONST               (3, 0, 0)
+              556  COMPARE_OP               >=
+              558  STORE_NAME               py3k
+
+ L.  65       560  LOAD_NAME                py
+              562  LOAD_CONST               (2, 6, 0)
+              564  COMPARE_OP               <
+              566  STORE_NAME               py25
+
+ L.  66       568  LOAD_CONST               (3, 1, 0)
+              570  LOAD_NAME                py
+              572  DUP_TOP          
+              574  ROT_THREE        
+              576  COMPARE_OP               <=
+          578_580  JUMP_IF_FALSE_OR_POP   588  'to 588'
+              582  LOAD_CONST               (3, 2, 0)
+              584  COMPARE_OP               <
+              586  JUMP_FORWARD        592  'to 592'
+            588_0  COME_FROM           578  '578'
+              588  ROT_TWO          
+              590  POP_TOP          
+            592_0  COME_FROM           586  '586'
+              592  STORE_NAME               py31
+
+ L.  69       594  LOAD_CODE                <code_object _e>
+              596  LOAD_STR                 '_e'
+              598  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              600  STORE_NAME               _e
+
+ L.  73       602  SETUP_EXCEPT        626  'to 626'
+
+ L.  74       604  LOAD_NAME                sys
+              606  LOAD_ATTR                stdout
+              608  LOAD_ATTR                write
+              610  LOAD_NAME                sys
+              612  LOAD_ATTR                stderr
+              614  LOAD_ATTR                write
+              616  ROT_TWO          
+              618  STORE_NAME               _stdout
+              620  STORE_NAME               _stderr
+              622  POP_BLOCK        
+              624  JUMP_FORWARD        664  'to 664'
+            626_0  COME_FROM_EXCEPT    602  '602'
+
+ L.  75       626  DUP_TOP          
+              628  LOAD_NAME                IOError
+              630  COMPARE_OP               exception-match
+          632_634  POP_JUMP_IF_FALSE   662  'to 662'
+              636  POP_TOP          
+              638  POP_TOP          
+              640  POP_TOP          
+
+ L.  76       642  LOAD_LAMBDA              '<code_object <lambda>>'
+              644  LOAD_STR                 '<lambda>'
+              646  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              648  STORE_NAME               _stdout
+
+ L.  77       650  LOAD_LAMBDA              '<code_object <lambda>>'
+              652  LOAD_STR                 '<lambda>'
+              654  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              656  STORE_NAME               _stderr
+              658  POP_EXCEPT       
+              660  JUMP_FORWARD        664  'to 664'
+            662_0  COME_FROM           632  '632'
+              662  END_FINALLY      
+            664_0  COME_FROM           660  '660'
+            664_1  COME_FROM           624  '624'
+
+ L.  80       664  LOAD_NAME                py3k
+          666_668  POP_JUMP_IF_FALSE   882  'to 882'
+
+ L.  81       670  LOAD_CONST               0
+              672  LOAD_CONST               None
+              674  IMPORT_NAME_ATTR         http.client
+              676  IMPORT_FROM              client
+              678  STORE_NAME               httplib
+              680  POP_TOP          
+
+ L.  82       682  LOAD_CONST               0
+              684  LOAD_CONST               None
+              686  IMPORT_NAME              _thread
+              688  STORE_NAME               thread
+
+ L.  83       690  LOAD_CONST               0
+              692  LOAD_CONST               ('urljoin', 'SplitResult')
+              694  IMPORT_NAME_ATTR         urllib.parse
+              696  IMPORT_FROM              urljoin
+              698  STORE_NAME               urljoin
+              700  IMPORT_FROM              SplitResult
+              702  STORE_NAME               UrlSplitResult
+              704  POP_TOP          
+
+ L.  84       706  LOAD_CONST               0
+              708  LOAD_CONST               ('urlencode', 'quote', 'unquote')
+              710  IMPORT_NAME_ATTR         urllib.parse
+              712  IMPORT_FROM              urlencode
+              714  STORE_NAME               urlencode
+              716  IMPORT_FROM              quote
+              718  STORE_NAME               urlquote
+              720  IMPORT_FROM              unquote
+              722  STORE_NAME               urlunquote
+              724  POP_TOP          
+
+ L.  85       726  LOAD_NAME                functools
+              728  LOAD_ATTR                partial
+              730  LOAD_NAME                urlunquote
+              732  LOAD_STR                 'latin1'
+              734  LOAD_CONST               ('encoding',)
+              736  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+              738  STORE_NAME               urlunquote
+
+ L.  86       740  LOAD_CONST               0
+              742  LOAD_CONST               ('SimpleCookie',)
+              744  IMPORT_NAME_ATTR         http.cookies
+              746  IMPORT_FROM              SimpleCookie
+              748  STORE_NAME               SimpleCookie
+              750  POP_TOP          
+
+ L.  87       752  LOAD_NAME                py
+              754  LOAD_CONST               (3, 3, 0)
+              756  COMPARE_OP               >=
+          758_760  POP_JUMP_IF_FALSE   788  'to 788'
+
+ L.  88       762  LOAD_CONST               0
+              764  LOAD_CONST               ('MutableMapping',)
+              766  IMPORT_NAME_ATTR         collections.abc
+              768  IMPORT_FROM              MutableMapping
+              770  STORE_NAME               DictMixin
+              772  POP_TOP          
+
+ L.  89       774  LOAD_CONST               0
+              776  LOAD_CONST               ('ModuleType',)
+              778  IMPORT_NAME              types
+              780  IMPORT_FROM              ModuleType
+              782  STORE_NAME               new_module
+              784  POP_TOP          
+              786  JUMP_FORWARD        812  'to 812'
+            788_0  COME_FROM           758  '758'
+
+ L.  91       788  LOAD_CONST               0
+              790  LOAD_CONST               ('MutableMapping',)
+              792  IMPORT_NAME              collections
+              794  IMPORT_FROM              MutableMapping
+              796  STORE_NAME               DictMixin
+              798  POP_TOP          
+
+ L.  92       800  LOAD_CONST               0
+              802  LOAD_CONST               ('new_module',)
+              804  IMPORT_NAME              imp
+              806  IMPORT_FROM              new_module
+              808  STORE_NAME               new_module
+              810  POP_TOP          
+            812_0  COME_FROM           786  '786'
+
+ L.  93       812  LOAD_CONST               0
+              814  LOAD_CONST               None
+              816  IMPORT_NAME              pickle
+              818  STORE_NAME               pickle
+
+ L.  94       820  LOAD_CONST               0
+              822  LOAD_CONST               ('BytesIO',)
+              824  IMPORT_NAME              io
+              826  IMPORT_FROM              BytesIO
+              828  STORE_NAME               BytesIO
+              830  POP_TOP          
+
+ L.  95       832  LOAD_CONST               0
+              834  LOAD_CONST               ('ConfigParser',)
+              836  IMPORT_NAME              configparser
+              838  IMPORT_FROM              ConfigParser
+              840  STORE_NAME               ConfigParser
+              842  POP_TOP          
+
+ L.  96       844  LOAD_NAME                str
+              846  STORE_NAME               basestring
+
+ L.  97       848  LOAD_NAME                str
+              850  STORE_NAME               unicode
+
+ L.  98       852  LOAD_LAMBDA              '<code_object <lambda>>'
+              854  LOAD_STR                 '<lambda>'
+              856  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              858  STORE_NAME               json_loads
+
+ L.  99       860  LOAD_LAMBDA              '<code_object <lambda>>'
+              862  LOAD_STR                 '<lambda>'
+              864  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              866  STORE_NAME               callable
+
+ L. 100       868  LOAD_NAME                map
+              870  STORE_NAME               imap
+
+ L. 101       872  LOAD_CODE                <code_object _raise>
+              874  LOAD_STR                 '_raise'
+              876  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+              878  STORE_NAME               _raise
+              880  JUMP_FORWARD       1086  'to 1086'
+            882_0  COME_FROM           666  '666'
+
+ L. 103       882  LOAD_CONST               0
+              884  LOAD_CONST               None
+              886  IMPORT_NAME              httplib
+              888  STORE_NAME               httplib
+
+ L. 104       890  LOAD_CONST               0
+              892  LOAD_CONST               None
+              894  IMPORT_NAME              thread
+              896  STORE_NAME               thread
+
+ L. 105       898  LOAD_CONST               0
+              900  LOAD_CONST               ('urljoin', 'SplitResult')
+              902  IMPORT_NAME              urlparse
+              904  IMPORT_FROM              urljoin
+              906  STORE_NAME               urljoin
+              908  IMPORT_FROM              SplitResult
+              910  STORE_NAME               UrlSplitResult
+              912  POP_TOP          
+
+ L. 106       914  LOAD_CONST               0
+              916  LOAD_CONST               ('urlencode', 'quote', 'unquote')
+              918  IMPORT_NAME              urllib
+              920  IMPORT_FROM              urlencode
+              922  STORE_NAME               urlencode
+              924  IMPORT_FROM              quote
+              926  STORE_NAME               urlquote
+              928  IMPORT_FROM              unquote
+              930  STORE_NAME               urlunquote
+              932  POP_TOP          
+
+ L. 107       934  LOAD_CONST               0
+              936  LOAD_CONST               ('SimpleCookie',)
+              938  IMPORT_NAME              Cookie
+              940  IMPORT_FROM              SimpleCookie
+              942  STORE_NAME               SimpleCookie
+              944  POP_TOP          
+
+ L. 108       946  LOAD_CONST               0
+              948  LOAD_CONST               ('imap',)
+              950  IMPORT_NAME              itertools
+              952  IMPORT_FROM              imap
+              954  STORE_NAME               imap
+              956  POP_TOP          
+
+ L. 109       958  LOAD_CONST               0
+              960  LOAD_CONST               None
+              962  IMPORT_NAME              cPickle
+              964  STORE_NAME               pickle
+
+ L. 110       966  LOAD_CONST               0
+              968  LOAD_CONST               ('new_module',)
+              970  IMPORT_NAME              imp
+              972  IMPORT_FROM              new_module
+              974  STORE_NAME               new_module
+              976  POP_TOP          
+
+ L. 111       978  LOAD_CONST               0
+              980  LOAD_CONST               ('StringIO',)
+              982  IMPORT_NAME              StringIO
+              984  IMPORT_FROM              StringIO
+              986  STORE_NAME               BytesIO
+              988  POP_TOP          
+
+ L. 112       990  LOAD_CONST               0
+              992  LOAD_CONST               ('SafeConfigParser',)
+              994  IMPORT_NAME              ConfigParser
+              996  IMPORT_FROM              SafeConfigParser
+              998  STORE_NAME               ConfigParser
+             1000  POP_TOP          
+
+ L. 113      1002  LOAD_NAME                py25
+         1004_1006  POP_JUMP_IF_FALSE  1050  'to 1050'
+
+ L. 114      1008  LOAD_STR                 'Python 2.5 support may be dropped in future versions of Bottle.'
+             1010  STORE_NAME               msg
+
+ L. 115      1012  LOAD_NAME                warnings
+             1014  LOAD_METHOD              warn
+             1016  LOAD_NAME                msg
+             1018  LOAD_NAME                DeprecationWarning
+             1020  CALL_METHOD_2         2  '2 positional arguments'
+             1022  POP_TOP          
+
+ L. 116      1024  LOAD_CONST               0
+             1026  LOAD_CONST               ('DictMixin',)
+             1028  IMPORT_NAME              UserDict
+             1030  IMPORT_FROM              DictMixin
+             1032  STORE_NAME               DictMixin
+             1034  POP_TOP          
+
+ L. 117      1036  LOAD_CODE                <code_object next>
+             1038  LOAD_STR                 'next'
+             1040  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1042  STORE_NAME               next
+
+ L. 118      1044  LOAD_NAME                str
+             1046  STORE_NAME               bytes
+             1048  JUMP_FORWARD       1062  'to 1062'
+           1050_0  COME_FROM          1004  '1004'
+
+ L. 120      1050  LOAD_CONST               0
+             1052  LOAD_CONST               ('MutableMapping',)
+             1054  IMPORT_NAME              collections
+             1056  IMPORT_FROM              MutableMapping
+             1058  STORE_NAME               DictMixin
+             1060  POP_TOP          
+           1062_0  COME_FROM          1048  '1048'
+
+ L. 121      1062  LOAD_NAME                unicode
+             1064  STORE_NAME               unicode
+
+ L. 122      1066  LOAD_NAME                json_lds
+             1068  STORE_NAME               json_loads
+
+ L. 123      1070  LOAD_NAME                eval
+             1072  LOAD_NAME                compile
+             1074  LOAD_STR                 'def _raise(*a): raise a[0], a[1], a[2]'
+             1076  LOAD_STR                 '<py3fix>'
+             1078  LOAD_STR                 'exec'
+             1080  CALL_FUNCTION_3       3  '3 positional arguments'
+             1082  CALL_FUNCTION_1       1  '1 positional argument'
+             1084  POP_TOP          
+           1086_0  COME_FROM           880  '880'
+
+ L. 126  1086_1088  LOAD_CONST               ('utf8',)
+             1090  LOAD_CODE                <code_object tob>
+             1092  LOAD_STR                 'tob'
+             1094  MAKE_FUNCTION_1          'default'
+             1096  STORE_NAME               tob
+
+ L. 128  1098_1100  LOAD_CONST               ('utf8', 'strict')
+             1102  LOAD_CODE                <code_object touni>
+             1104  LOAD_STR                 'touni'
+             1106  MAKE_FUNCTION_1          'default'
+             1108  STORE_NAME               touni
+
+ L. 130      1110  LOAD_NAME                py3k
+         1112_1114  POP_JUMP_IF_FALSE  1120  'to 1120'
+             1116  LOAD_NAME                touni
+             1118  JUMP_FORWARD       1122  'to 1122'
+           1120_0  COME_FROM          1112  '1112'
+             1120  LOAD_NAME                tob
+           1122_0  COME_FROM          1118  '1118'
+             1122  STORE_NAME               tonat
+
+ L. 134      1124  LOAD_NAME                py31
+         1126_1128  POP_JUMP_IF_FALSE  1158  'to 1158'
+
+ L. 135      1130  LOAD_CONST               0
+             1132  LOAD_CONST               ('TextIOWrapper',)
+             1134  IMPORT_NAME              io
+             1136  IMPORT_FROM              TextIOWrapper
+             1138  STORE_NAME               TextIOWrapper
+             1140  POP_TOP          
+
+ L. 136      1142  LOAD_BUILD_CLASS 
+             1144  LOAD_CODE                <code_object NCTextIOWrapper>
+             1146  LOAD_STR                 'NCTextIOWrapper'
+             1148  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1150  LOAD_STR                 'NCTextIOWrapper'
+             1152  LOAD_NAME                TextIOWrapper
+             1154  CALL_FUNCTION_3       3  '3 positional arguments'
+             1156  STORE_NAME               NCTextIOWrapper
+           1158_0  COME_FROM          1126  '1126'
+
+ L. 141      1158  LOAD_CODE                <code_object update_wrapper>
+             1160  LOAD_STR                 'update_wrapper'
+             1162  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1164  STORE_NAME               update_wrapper
+
+ L. 150  1166_1168  LOAD_CONST               (False,)
+             1170  LOAD_CODE                <code_object depr>
+             1172  LOAD_STR                 'depr'
+             1174  MAKE_FUNCTION_1          'default'
+             1176  STORE_NAME               depr
+
+ L. 153      1178  LOAD_CODE                <code_object makelist>
+             1180  LOAD_STR                 'makelist'
+             1182  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1184  STORE_NAME               makelist
+
+ L. 159      1186  LOAD_BUILD_CLASS 
+             1188  LOAD_CODE                <code_object DictProperty>
+             1190  LOAD_STR                 'DictProperty'
+             1192  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1194  LOAD_STR                 'DictProperty'
+             1196  LOAD_NAME                object
+             1198  CALL_FUNCTION_3       3  '3 positional arguments'
+             1200  STORE_NAME               DictProperty
+
+ L. 184      1202  LOAD_BUILD_CLASS 
+             1204  LOAD_CODE                <code_object cached_property>
+             1206  LOAD_STR                 'cached_property'
+             1208  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1210  LOAD_STR                 'cached_property'
+             1212  LOAD_NAME                object
+             1214  CALL_FUNCTION_3       3  '3 positional arguments'
+             1216  STORE_NAME               cached_property
+
+ L. 199      1218  LOAD_BUILD_CLASS 
+             1220  LOAD_CODE                <code_object lazy_attribute>
+             1222  LOAD_STR                 'lazy_attribute'
+             1224  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1226  LOAD_STR                 'lazy_attribute'
+             1228  LOAD_NAME                object
+             1230  CALL_FUNCTION_3       3  '3 positional arguments'
+             1232  STORE_NAME               lazy_attribute
+
+ L. 220      1234  LOAD_BUILD_CLASS 
+             1236  LOAD_CODE                <code_object BottleException>
+             1238  LOAD_STR                 'BottleException'
+             1240  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1242  LOAD_STR                 'BottleException'
+             1244  LOAD_NAME                Exception
+             1246  CALL_FUNCTION_3       3  '3 positional arguments'
+             1248  STORE_NAME               BottleException
+
+ L. 234      1250  LOAD_BUILD_CLASS 
+             1252  LOAD_CODE                <code_object RouteError>
+             1254  LOAD_STR                 'RouteError'
+             1256  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1258  LOAD_STR                 'RouteError'
+             1260  LOAD_NAME                BottleException
+             1262  CALL_FUNCTION_3       3  '3 positional arguments'
+             1264  STORE_NAME               RouteError
+
+ L. 238      1266  LOAD_BUILD_CLASS 
+             1268  LOAD_CODE                <code_object RouteReset>
+             1270  LOAD_STR                 'RouteReset'
+             1272  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1274  LOAD_STR                 'RouteReset'
+             1276  LOAD_NAME                BottleException
+             1278  CALL_FUNCTION_3       3  '3 positional arguments'
+             1280  STORE_NAME               RouteReset
+
+ L. 242      1282  LOAD_BUILD_CLASS 
+             1284  LOAD_CODE                <code_object RouterUnknownModeError>
+             1286  LOAD_STR                 'RouterUnknownModeError'
+             1288  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1290  LOAD_STR                 'RouterUnknownModeError'
+             1292  LOAD_NAME                RouteError
+             1294  CALL_FUNCTION_3       3  '3 positional arguments'
+             1296  STORE_NAME               RouterUnknownModeError
+
+ L. 245      1298  LOAD_BUILD_CLASS 
+             1300  LOAD_CODE                <code_object RouteSyntaxError>
+             1302  LOAD_STR                 'RouteSyntaxError'
+             1304  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1306  LOAD_STR                 'RouteSyntaxError'
+             1308  LOAD_NAME                RouteError
+             1310  CALL_FUNCTION_3       3  '3 positional arguments'
+             1312  STORE_NAME               RouteSyntaxError
+
+ L. 249      1314  LOAD_BUILD_CLASS 
+             1316  LOAD_CODE                <code_object RouteBuildError>
+             1318  LOAD_STR                 'RouteBuildError'
+             1320  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1322  LOAD_STR                 'RouteBuildError'
+             1324  LOAD_NAME                RouteError
+             1326  CALL_FUNCTION_3       3  '3 positional arguments'
+             1328  STORE_NAME               RouteBuildError
+
+ L. 253      1330  LOAD_CODE                <code_object _re_flatten>
+             1332  LOAD_STR                 '_re_flatten'
+             1334  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1336  STORE_NAME               _re_flatten
+
+ L. 261      1338  LOAD_BUILD_CLASS 
+             1340  LOAD_CODE                <code_object Router>
+             1342  LOAD_STR                 'Router'
+             1344  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1346  LOAD_STR                 'Router'
+             1348  LOAD_NAME                object
+             1350  CALL_FUNCTION_3       3  '3 positional arguments'
+             1352  STORE_NAME               Router
+
+ L. 461      1354  LOAD_BUILD_CLASS 
+             1356  LOAD_CODE                <code_object Route>
+             1358  LOAD_STR                 'Route'
+             1360  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1362  LOAD_STR                 'Route'
+             1364  LOAD_NAME                object
+             1366  CALL_FUNCTION_3       3  '3 positional arguments'
+             1368  STORE_NAME               Route
+
+ L. 580      1370  LOAD_BUILD_CLASS 
+             1372  LOAD_CODE                <code_object Bottle>
+             1374  LOAD_STR                 'Bottle'
+             1376  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1378  LOAD_STR                 'Bottle'
+             1380  LOAD_NAME                object
+             1382  CALL_FUNCTION_3       3  '3 positional arguments'
+             1384  STORE_NAME               Bottle
+
+ L. 996      1386  LOAD_BUILD_CLASS 
+             1388  LOAD_CODE                <code_object BaseRequest>
+             1390  LOAD_STR                 'BaseRequest'
+             1392  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1394  LOAD_STR                 'BaseRequest'
+             1396  LOAD_NAME                object
+             1398  CALL_FUNCTION_3       3  '3 positional arguments'
+             1400  STORE_NAME               BaseRequest
+
+ L.1407      1402  LOAD_CODE                <code_object _hkey>
+             1404  LOAD_STR                 '_hkey'
+             1406  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1408  STORE_NAME               _hkey
+
+ L.1413      1410  LOAD_CODE                <code_object _hval>
+             1412  LOAD_STR                 '_hval'
+             1414  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1416  STORE_NAME               _hval
+
+ L.1421      1418  LOAD_BUILD_CLASS 
+             1420  LOAD_CODE                <code_object HeaderProperty>
+             1422  LOAD_STR                 'HeaderProperty'
+             1424  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1426  LOAD_STR                 'HeaderProperty'
+             1428  LOAD_NAME                object
+             1430  CALL_FUNCTION_3       3  '3 positional arguments'
+             1432  STORE_NAME               HeaderProperty
+
+ L.1439      1434  LOAD_BUILD_CLASS 
+             1436  LOAD_CODE                <code_object BaseResponse>
+             1438  LOAD_STR                 'BaseResponse'
+             1440  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1442  LOAD_STR                 'BaseResponse'
+             1444  LOAD_NAME                object
+             1446  CALL_FUNCTION_3       3  '3 positional arguments'
+             1448  STORE_NAME               BaseResponse
+
+ L.1665  1450_1452  LOAD_CONST               (None,)
+             1454  LOAD_CODE                <code_object local_property>
+             1456  LOAD_STR                 'local_property'
+             1458  MAKE_FUNCTION_1          'default'
+             1460  STORE_NAME               local_property
+
+ L.1677      1462  LOAD_BUILD_CLASS 
+             1464  LOAD_CODE                <code_object LocalRequest>
+             1466  LOAD_STR                 'LocalRequest'
+             1468  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1470  LOAD_STR                 'LocalRequest'
+             1472  LOAD_NAME                BaseRequest
+             1474  CALL_FUNCTION_3       3  '3 positional arguments'
+             1476  STORE_NAME               LocalRequest
+
+ L.1687      1478  LOAD_BUILD_CLASS 
+             1480  LOAD_CODE                <code_object LocalResponse>
+             1482  LOAD_STR                 'LocalResponse'
+             1484  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1486  LOAD_STR                 'LocalResponse'
+             1488  LOAD_NAME                BaseResponse
+             1490  CALL_FUNCTION_3       3  '3 positional arguments'
+             1492  STORE_NAME               LocalResponse
+
+ L.1701      1494  LOAD_NAME                BaseRequest
+             1496  STORE_NAME               Request
+
+ L.1702      1498  LOAD_NAME                BaseResponse
+             1500  STORE_NAME               Response
+
+ L.1705      1502  LOAD_BUILD_CLASS 
+             1504  LOAD_CODE                <code_object HTTPResponse>
+             1506  LOAD_STR                 'HTTPResponse'
+             1508  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1510  LOAD_STR                 'HTTPResponse'
+             1512  LOAD_NAME                Response
+             1514  LOAD_NAME                BottleException
+             1516  CALL_FUNCTION_4       4  '4 positional arguments'
+             1518  STORE_NAME               HTTPResponse
+
+ L.1717      1520  LOAD_BUILD_CLASS 
+             1522  LOAD_CODE                <code_object HTTPError>
+             1524  LOAD_STR                 'HTTPError'
+             1526  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1528  LOAD_STR                 'HTTPError'
+             1530  LOAD_NAME                HTTPResponse
+             1532  CALL_FUNCTION_3       3  '3 positional arguments'
+             1534  STORE_NAME               HTTPError
+
+ L.1733      1536  LOAD_BUILD_CLASS 
+             1538  LOAD_CODE                <code_object PluginError>
+             1540  LOAD_STR                 'PluginError'
+             1542  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1544  LOAD_STR                 'PluginError'
+             1546  LOAD_NAME                BottleException
+             1548  CALL_FUNCTION_3       3  '3 positional arguments'
+             1550  STORE_NAME               PluginError
+
+ L.1736      1552  LOAD_BUILD_CLASS 
+             1554  LOAD_CODE                <code_object JSONPlugin>
+             1556  LOAD_STR                 'JSONPlugin'
+             1558  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1560  LOAD_STR                 'JSONPlugin'
+             1562  LOAD_NAME                object
+             1564  CALL_FUNCTION_3       3  '3 positional arguments'
+             1566  STORE_NAME               JSONPlugin
+
+ L.1766      1568  LOAD_BUILD_CLASS 
+             1570  LOAD_CODE                <code_object TemplatePlugin>
+             1572  LOAD_STR                 'TemplatePlugin'
+             1574  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1576  LOAD_STR                 'TemplatePlugin'
+             1578  LOAD_NAME                object
+             1580  CALL_FUNCTION_3       3  '3 positional arguments'
+             1582  STORE_NAME               TemplatePlugin
+
+ L.1785      1584  LOAD_BUILD_CLASS 
+             1586  LOAD_CODE                <code_object _ImportRedirect>
+             1588  LOAD_STR                 '_ImportRedirect'
+             1590  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1592  LOAD_STR                 '_ImportRedirect'
+             1594  LOAD_NAME                object
+             1596  CALL_FUNCTION_3       3  '3 positional arguments'
+             1598  STORE_NAME               _ImportRedirect
+
+ L.1821      1600  LOAD_BUILD_CLASS 
+             1602  LOAD_CODE                <code_object MultiDict>
+             1604  LOAD_STR                 'MultiDict'
+             1606  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1608  LOAD_STR                 'MultiDict'
+             1610  LOAD_NAME                DictMixin
+             1612  CALL_FUNCTION_3       3  '3 positional arguments'
+             1614  STORE_NAME               MultiDict
+
+ L.1894      1616  LOAD_BUILD_CLASS 
+             1618  LOAD_CODE                <code_object FormsDict>
+             1620  LOAD_STR                 'FormsDict'
+             1622  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1624  LOAD_STR                 'FormsDict'
+             1626  LOAD_NAME                MultiDict
+             1628  CALL_FUNCTION_3       3  '3 positional arguments'
+             1630  STORE_NAME               FormsDict
+
+ L.1940      1632  LOAD_BUILD_CLASS 
+             1634  LOAD_CODE                <code_object HeaderDict>
+             1636  LOAD_STR                 'HeaderDict'
+             1638  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1640  LOAD_STR                 'HeaderDict'
+             1642  LOAD_NAME                MultiDict
+             1644  CALL_FUNCTION_3       3  '3 positional arguments'
+             1646  STORE_NAME               HeaderDict
+
+ L.1963      1648  LOAD_BUILD_CLASS 
+             1650  LOAD_CODE                <code_object WSGIHeaderDict>
+             1652  LOAD_STR                 'WSGIHeaderDict'
+             1654  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1656  LOAD_STR                 'WSGIHeaderDict'
+             1658  LOAD_NAME                DictMixin
+             1660  CALL_FUNCTION_3       3  '3 positional arguments'
+             1662  STORE_NAME               WSGIHeaderDict
+
+ L.2013      1664  LOAD_BUILD_CLASS 
+             1666  LOAD_CODE                <code_object ConfigDict>
+             1668  LOAD_STR                 'ConfigDict'
+             1670  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1672  LOAD_STR                 'ConfigDict'
+             1674  LOAD_NAME                dict
+             1676  CALL_FUNCTION_3       3  '3 positional arguments'
+             1678  STORE_NAME               ConfigDict
+
+ L.2218      1680  LOAD_BUILD_CLASS 
+             1682  LOAD_CODE                <code_object AppStack>
+             1684  LOAD_STR                 'AppStack'
+             1686  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1688  LOAD_STR                 'AppStack'
+             1690  LOAD_NAME                list
+             1692  CALL_FUNCTION_3       3  '3 positional arguments'
+             1694  STORE_NAME               AppStack
+
+ L.2233      1696  LOAD_BUILD_CLASS 
+             1698  LOAD_CODE                <code_object WSGIFileWrapper>
+             1700  LOAD_STR                 'WSGIFileWrapper'
+             1702  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1704  LOAD_STR                 'WSGIFileWrapper'
+             1706  LOAD_NAME                object
+             1708  CALL_FUNCTION_3       3  '3 positional arguments'
+             1710  STORE_NAME               WSGIFileWrapper
+
+ L.2248      1712  LOAD_BUILD_CLASS 
+             1714  LOAD_CODE                <code_object _closeiter>
+             1716  LOAD_STR                 '_closeiter'
+             1718  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1720  LOAD_STR                 '_closeiter'
+             1722  LOAD_NAME                object
+             1724  CALL_FUNCTION_3       3  '3 positional arguments'
+             1726  STORE_NAME               _closeiter
+
+ L.2264      1728  LOAD_BUILD_CLASS 
+             1730  LOAD_CODE                <code_object ResourceManager>
+             1732  LOAD_STR                 'ResourceManager'
+             1734  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1736  LOAD_STR                 'ResourceManager'
+             1738  LOAD_NAME                object
+             1740  CALL_FUNCTION_3       3  '3 positional arguments'
+             1742  STORE_NAME               ResourceManager
+
+ L.2350      1744  LOAD_BUILD_CLASS 
+             1746  LOAD_CODE                <code_object FileUpload>
+             1748  LOAD_STR                 'FileUpload'
+             1750  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1752  LOAD_STR                 'FileUpload'
+             1754  LOAD_NAME                object
+             1756  CALL_FUNCTION_3       3  '3 positional arguments'
+             1758  STORE_NAME               FileUpload
+
+ L.2426  1760_1762  LOAD_CONST               (500, 'Unknown Error.')
+             1764  LOAD_CODE                <code_object abort>
+             1766  LOAD_STR                 'abort'
+             1768  MAKE_FUNCTION_1          'default'
+             1770  STORE_NAME               abort
+
+ L.2431  1772_1774  LOAD_CONST               (None,)
+             1776  LOAD_CODE                <code_object redirect>
+             1778  LOAD_STR                 'redirect'
+             1780  MAKE_FUNCTION_1          'default'
+             1782  STORE_NAME               redirect
+
+ L.2443  1784_1786  LOAD_CONST               (1048576,)
+             1788  LOAD_CODE                <code_object _file_iter_range>
+             1790  LOAD_STR                 '_file_iter_range'
+             1792  MAKE_FUNCTION_1          'default'
+             1794  STORE_NAME               _file_iter_range
+
+ L.2453  1796_1798  LOAD_CONST               ('auto', False, 'UTF-8')
+             1800  LOAD_CODE                <code_object static_file>
+             1802  LOAD_STR                 'static_file'
+             1804  MAKE_FUNCTION_1          'default'
+             1806  STORE_NAME               static_file
+
+ L.2534  1808_1810  LOAD_CONST               (True,)
+             1812  LOAD_CODE                <code_object debug>
+             1814  LOAD_STR                 'debug'
+             1816  MAKE_FUNCTION_1          'default'
+             1818  STORE_NAME               debug
+
+ L.2541      1820  LOAD_CODE                <code_object http_date>
+             1822  LOAD_STR                 'http_date'
+             1824  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1826  STORE_NAME               http_date
+
+ L.2550      1828  LOAD_CODE                <code_object parse_date>
+             1830  LOAD_STR                 'parse_date'
+             1832  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1834  STORE_NAME               parse_date
+
+ L.2558      1836  LOAD_CODE                <code_object parse_auth>
+             1838  LOAD_STR                 'parse_auth'
+             1840  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1842  STORE_NAME               parse_auth
+
+ L.2568  1844_1846  LOAD_CONST               (0,)
+             1848  LOAD_CODE                <code_object parse_range_header>
+             1850  LOAD_STR                 'parse_range_header'
+             1852  MAKE_FUNCTION_1          'default'
+             1854  STORE_NAME               parse_range_header
+
+ L.2586      1856  LOAD_CODE                <code_object _parse_qsl>
+             1858  LOAD_STR                 '_parse_qsl'
+             1860  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1862  STORE_NAME               _parse_qsl
+
+ L.2597      1864  LOAD_CODE                <code_object _lscmp>
+             1866  LOAD_STR                 '_lscmp'
+             1868  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1870  STORE_NAME               _lscmp
+
+ L.2603      1872  LOAD_CODE                <code_object cookie_encode>
+             1874  LOAD_STR                 'cookie_encode'
+             1876  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1878  STORE_NAME               cookie_encode
+
+ L.2610      1880  LOAD_CODE                <code_object cookie_decode>
+             1882  LOAD_STR                 'cookie_decode'
+             1884  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1886  STORE_NAME               cookie_decode
+
+ L.2620      1888  LOAD_CODE                <code_object cookie_is_encoded>
+             1890  LOAD_STR                 'cookie_is_encoded'
+             1892  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1894  STORE_NAME               cookie_is_encoded
+
+ L.2625      1896  LOAD_CODE                <code_object html_escape>
+             1898  LOAD_STR                 'html_escape'
+             1900  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1902  STORE_NAME               html_escape
+
+ L.2631      1904  LOAD_CODE                <code_object html_quote>
+             1906  LOAD_STR                 'html_quote'
+             1908  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1910  STORE_NAME               html_quote
+
+ L.2637      1912  LOAD_CODE                <code_object yieldroutes>
+             1914  LOAD_STR                 'yieldroutes'
+             1916  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1918  STORE_NAME               yieldroutes
+
+ L.2657  1920_1922  LOAD_CONST               (1,)
+             1924  LOAD_CODE                <code_object path_shift>
+             1926  LOAD_STR                 'path_shift'
+             1928  MAKE_FUNCTION_1          'default'
+             1930  STORE_NAME               path_shift
+
+ L.2688  1932_1934  LOAD_CONST               ('private', 'Access denied')
+             1936  LOAD_CODE                <code_object auth_basic>
+             1938  LOAD_STR                 'auth_basic'
+             1940  MAKE_FUNCTION_1          'default'
+             1942  STORE_NAME               auth_basic
+
+ L.2706      1944  LOAD_CODE                <code_object make_default_app_wrapper>
+             1946  LOAD_STR                 'make_default_app_wrapper'
+             1948  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             1950  STORE_NAME               make_default_app_wrapper
+
+ L.2713      1952  LOAD_NAME                make_default_app_wrapper
+             1954  LOAD_STR                 'route'
+             1956  CALL_FUNCTION_1       1  '1 positional argument'
+             1958  STORE_NAME               route
+
+ L.2714      1960  LOAD_NAME                make_default_app_wrapper
+             1962  LOAD_STR                 'get'
+             1964  CALL_FUNCTION_1       1  '1 positional argument'
+             1966  STORE_NAME               get
+
+ L.2715      1968  LOAD_NAME                make_default_app_wrapper
+             1970  LOAD_STR                 'post'
+             1972  CALL_FUNCTION_1       1  '1 positional argument'
+             1974  STORE_NAME               post
+
+ L.2716      1976  LOAD_NAME                make_default_app_wrapper
+             1978  LOAD_STR                 'put'
+             1980  CALL_FUNCTION_1       1  '1 positional argument'
+             1982  STORE_NAME               put
+
+ L.2717      1984  LOAD_NAME                make_default_app_wrapper
+             1986  LOAD_STR                 'delete'
+             1988  CALL_FUNCTION_1       1  '1 positional argument'
+             1990  STORE_NAME               delete
+
+ L.2718      1992  LOAD_NAME                make_default_app_wrapper
+             1994  LOAD_STR                 'error'
+             1996  CALL_FUNCTION_1       1  '1 positional argument'
+             1998  STORE_NAME               error
+
+ L.2719      2000  LOAD_NAME                make_default_app_wrapper
+             2002  LOAD_STR                 'mount'
+             2004  CALL_FUNCTION_1       1  '1 positional argument'
+             2006  STORE_NAME               mount
+
+ L.2720      2008  LOAD_NAME                make_default_app_wrapper
+             2010  LOAD_STR                 'hook'
+             2012  CALL_FUNCTION_1       1  '1 positional argument'
+             2014  STORE_NAME               hook
+
+ L.2721      2016  LOAD_NAME                make_default_app_wrapper
+             2018  LOAD_STR                 'install'
+             2020  CALL_FUNCTION_1       1  '1 positional argument'
+             2022  STORE_NAME               install
+
+ L.2722      2024  LOAD_NAME                make_default_app_wrapper
+             2026  LOAD_STR                 'uninstall'
+             2028  CALL_FUNCTION_1       1  '1 positional argument'
+             2030  STORE_NAME               uninstall
+
+ L.2723      2032  LOAD_NAME                make_default_app_wrapper
+             2034  LOAD_STR                 'get_url'
+             2036  CALL_FUNCTION_1       1  '1 positional argument'
+             2038  STORE_NAME               url
+
+ L.2736      2040  LOAD_BUILD_CLASS 
+             2042  LOAD_CODE                <code_object ServerAdapter>
+             2044  LOAD_STR                 'ServerAdapter'
+             2046  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2048  LOAD_STR                 'ServerAdapter'
+             2050  LOAD_NAME                object
+             2052  CALL_FUNCTION_3       3  '3 positional arguments'
+             2054  STORE_NAME               ServerAdapter
+
+ L.2751      2056  LOAD_BUILD_CLASS 
+             2058  LOAD_CODE                <code_object CGIServer>
+             2060  LOAD_STR                 'CGIServer'
+             2062  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2064  LOAD_STR                 'CGIServer'
+             2066  LOAD_NAME                ServerAdapter
+             2068  CALL_FUNCTION_3       3  '3 positional arguments'
+             2070  STORE_NAME               CGIServer
+
+ L.2761      2072  LOAD_BUILD_CLASS 
+             2074  LOAD_CODE                <code_object FlupFCGIServer>
+             2076  LOAD_STR                 'FlupFCGIServer'
+             2078  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2080  LOAD_STR                 'FlupFCGIServer'
+             2082  LOAD_NAME                ServerAdapter
+             2084  CALL_FUNCTION_3       3  '3 positional arguments'
+             2086  STORE_NAME               FlupFCGIServer
+
+ L.2768      2088  LOAD_BUILD_CLASS 
+             2090  LOAD_CODE                <code_object WSGIRefServer>
+             2092  LOAD_STR                 'WSGIRefServer'
+             2094  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2096  LOAD_STR                 'WSGIRefServer'
+             2098  LOAD_NAME                ServerAdapter
+             2100  CALL_FUNCTION_3       3  '3 positional arguments'
+             2102  STORE_NAME               WSGIRefServer
+
+ L.2793      2104  LOAD_BUILD_CLASS 
+             2106  LOAD_CODE                <code_object CherryPyServer>
+             2108  LOAD_STR                 'CherryPyServer'
+             2110  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2112  LOAD_STR                 'CherryPyServer'
+             2114  LOAD_NAME                ServerAdapter
+             2116  CALL_FUNCTION_3       3  '3 positional arguments'
+             2118  STORE_NAME               CherryPyServer
+
+ L.2818      2120  LOAD_BUILD_CLASS 
+             2122  LOAD_CODE                <code_object WaitressServer>
+             2124  LOAD_STR                 'WaitressServer'
+             2126  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2128  LOAD_STR                 'WaitressServer'
+             2130  LOAD_NAME                ServerAdapter
+             2132  CALL_FUNCTION_3       3  '3 positional arguments'
+             2134  STORE_NAME               WaitressServer
+
+ L.2824      2136  LOAD_BUILD_CLASS 
+             2138  LOAD_CODE                <code_object PasteServer>
+             2140  LOAD_STR                 'PasteServer'
+             2142  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2144  LOAD_STR                 'PasteServer'
+             2146  LOAD_NAME                ServerAdapter
+             2148  CALL_FUNCTION_3       3  '3 positional arguments'
+             2150  STORE_NAME               PasteServer
+
+ L.2833      2152  LOAD_BUILD_CLASS 
+             2154  LOAD_CODE                <code_object MeinheldServer>
+             2156  LOAD_STR                 'MeinheldServer'
+             2158  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2160  LOAD_STR                 'MeinheldServer'
+             2162  LOAD_NAME                ServerAdapter
+             2164  CALL_FUNCTION_3       3  '3 positional arguments'
+             2166  STORE_NAME               MeinheldServer
+
+ L.2840      2168  LOAD_BUILD_CLASS 
+             2170  LOAD_CODE                <code_object FapwsServer>
+             2172  LOAD_STR                 'FapwsServer'
+             2174  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2176  LOAD_STR                 'FapwsServer'
+             2178  LOAD_NAME                ServerAdapter
+             2180  CALL_FUNCTION_3       3  '3 positional arguments'
+             2182  STORE_NAME               FapwsServer
+
+ L.2862      2184  LOAD_BUILD_CLASS 
+             2186  LOAD_CODE                <code_object TornadoServer>
+             2188  LOAD_STR                 'TornadoServer'
+             2190  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2192  LOAD_STR                 'TornadoServer'
+             2194  LOAD_NAME                ServerAdapter
+             2196  CALL_FUNCTION_3       3  '3 positional arguments'
+             2198  STORE_NAME               TornadoServer
+
+ L.2872      2200  LOAD_BUILD_CLASS 
+             2202  LOAD_CODE                <code_object AppEngineServer>
+             2204  LOAD_STR                 'AppEngineServer'
+             2206  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2208  LOAD_STR                 'AppEngineServer'
+             2210  LOAD_NAME                ServerAdapter
+             2212  CALL_FUNCTION_3       3  '3 positional arguments'
+             2214  STORE_NAME               AppEngineServer
+
+ L.2885      2216  LOAD_BUILD_CLASS 
+             2218  LOAD_CODE                <code_object TwistedServer>
+             2220  LOAD_STR                 'TwistedServer'
+             2222  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2224  LOAD_STR                 'TwistedServer'
+             2226  LOAD_NAME                ServerAdapter
+             2228  CALL_FUNCTION_3       3  '3 positional arguments'
+             2230  STORE_NAME               TwistedServer
+
+ L.2899      2232  LOAD_BUILD_CLASS 
+             2234  LOAD_CODE                <code_object DieselServer>
+             2236  LOAD_STR                 'DieselServer'
+             2238  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2240  LOAD_STR                 'DieselServer'
+             2242  LOAD_NAME                ServerAdapter
+             2244  CALL_FUNCTION_3       3  '3 positional arguments'
+             2246  STORE_NAME               DieselServer
+
+ L.2907      2248  LOAD_BUILD_CLASS 
+             2250  LOAD_CODE                <code_object GeventServer>
+             2252  LOAD_STR                 'GeventServer'
+             2254  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2256  LOAD_STR                 'GeventServer'
+             2258  LOAD_NAME                ServerAdapter
+             2260  CALL_FUNCTION_3       3  '3 positional arguments'
+             2262  STORE_NAME               GeventServer
+
+ L.2931      2264  LOAD_BUILD_CLASS 
+             2266  LOAD_CODE                <code_object GeventSocketIOServer>
+             2268  LOAD_STR                 'GeventSocketIOServer'
+             2270  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2272  LOAD_STR                 'GeventSocketIOServer'
+             2274  LOAD_NAME                ServerAdapter
+             2276  CALL_FUNCTION_3       3  '3 positional arguments'
+             2278  STORE_NAME               GeventSocketIOServer
+
+ L.2938      2280  LOAD_BUILD_CLASS 
+         2282_2284  LOAD_CODE                <code_object GunicornServer>
+         2286_2288  LOAD_STR                 'GunicornServer'
+             2290  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2292_2294  LOAD_STR                 'GunicornServer'
+             2296  LOAD_NAME                ServerAdapter
+             2298  CALL_FUNCTION_3       3  '3 positional arguments'
+             2300  STORE_NAME               GunicornServer
+
+ L.2956      2302  LOAD_BUILD_CLASS 
+         2304_2306  LOAD_CODE                <code_object EventletServer>
+         2308_2310  LOAD_STR                 'EventletServer'
+             2312  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2314_2316  LOAD_STR                 'EventletServer'
+             2318  LOAD_NAME                ServerAdapter
+             2320  CALL_FUNCTION_3       3  '3 positional arguments'
+             2322  STORE_NAME               EventletServer
+
+ L.2968      2324  LOAD_BUILD_CLASS 
+         2326_2328  LOAD_CODE                <code_object RocketServer>
+         2330_2332  LOAD_STR                 'RocketServer'
+             2334  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2336_2338  LOAD_STR                 'RocketServer'
+             2340  LOAD_NAME                ServerAdapter
+             2342  CALL_FUNCTION_3       3  '3 positional arguments'
+             2344  STORE_NAME               RocketServer
+
+ L.2976      2346  LOAD_BUILD_CLASS 
+         2348_2350  LOAD_CODE                <code_object BjoernServer>
+         2352_2354  LOAD_STR                 'BjoernServer'
+             2356  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2358_2360  LOAD_STR                 'BjoernServer'
+             2362  LOAD_NAME                ServerAdapter
+             2364  CALL_FUNCTION_3       3  '3 positional arguments'
+             2366  STORE_NAME               BjoernServer
+
+ L.2983      2368  LOAD_BUILD_CLASS 
+         2370_2372  LOAD_CODE                <code_object AutoServer>
+         2374_2376  LOAD_STR                 'AutoServer'
+             2378  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2380_2382  LOAD_STR                 'AutoServer'
+             2384  LOAD_NAME                ServerAdapter
+             2386  CALL_FUNCTION_3       3  '3 positional arguments'
+             2388  STORE_NAME               AutoServer
+
+ L.2994      2390  LOAD_NAME                CGIServer
+
+ L.2995      2392  LOAD_NAME                FlupFCGIServer
+
+ L.2996      2394  LOAD_NAME                WSGIRefServer
+
+ L.2997      2396  LOAD_NAME                WaitressServer
+
+ L.2998      2398  LOAD_NAME                CherryPyServer
+
+ L.2999      2400  LOAD_NAME                PasteServer
+
+ L.3000      2402  LOAD_NAME                FapwsServer
+
+ L.3001      2404  LOAD_NAME                TornadoServer
+
+ L.3002      2406  LOAD_NAME                AppEngineServer
+
+ L.3003      2408  LOAD_NAME                TwistedServer
+
+ L.3004      2410  LOAD_NAME                DieselServer
+
+ L.3005      2412  LOAD_NAME                MeinheldServer
+
+ L.3006      2414  LOAD_NAME                GunicornServer
+
+ L.3007      2416  LOAD_NAME                EventletServer
+
+ L.3008      2418  LOAD_NAME                GeventServer
+
+ L.3009      2420  LOAD_NAME                GeventSocketIOServer
+
+ L.3010      2422  LOAD_NAME                RocketServer
+
+ L.3011      2424  LOAD_NAME                BjoernServer
+
+ L.3012      2426  LOAD_NAME                AutoServer
+         2428_2430  LOAD_CONST               ('cgi', 'flup', 'wsgiref', 'waitress', 'cherrypy', 'paste', 'fapws3', 'tornado', 'gae', 'twisted', 'diesel', 'meinheld', 'gunicorn', 'eventlet', 'gevent', 'geventSocketIO', 'rocket', 'bjoern', 'auto')
+             2432  BUILD_CONST_KEY_MAP_19    19 
+             2434  STORE_NAME               server_names
+
+ L.3025  2436_2438  LOAD_CODE                <code_object load>
+         2440_2442  LOAD_STR                 'load'
+             2444  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2446  STORE_NAME               load
+
+ L.3045  2448_2450  LOAD_CODE                <code_object load_app>
+         2452_2454  LOAD_STR                 'load_app'
+             2456  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2458  STORE_NAME               load_app
+
+ L.3058      2460  LOAD_NAME                debug
+             2462  STORE_NAME               _debug
+
+ L.3061  2464_2466  LOAD_CONST               (None, 'wsgiref', '127.0.0.1', 8080, 1, False, False, None, None)
+         2468_2470  LOAD_CODE                <code_object run>
+         2472_2474  LOAD_STR                 'run'
+             2476  MAKE_FUNCTION_1          'default'
+             2478  STORE_NAME               run
+
+ L.3151      2480  LOAD_BUILD_CLASS 
+         2482_2484  LOAD_CODE                <code_object FileCheckerThread>
+         2486_2488  LOAD_STR                 'FileCheckerThread'
+             2490  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2492_2494  LOAD_STR                 'FileCheckerThread'
+             2496  LOAD_NAME                threading
+             2498  LOAD_ATTR                Thread
+             2500  CALL_FUNCTION_3       3  '3 positional arguments'
+             2502  STORE_NAME               FileCheckerThread
+
+ L.3200      2504  LOAD_BUILD_CLASS 
+         2506_2508  LOAD_CODE                <code_object TemplateError>
+         2510_2512  LOAD_STR                 'TemplateError'
+             2514  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2516_2518  LOAD_STR                 'TemplateError'
+             2520  LOAD_NAME                HTTPError
+             2522  CALL_FUNCTION_3       3  '3 positional arguments'
+             2524  STORE_NAME               TemplateError
+
+ L.3205      2526  LOAD_BUILD_CLASS 
+         2528_2530  LOAD_CODE                <code_object BaseTemplate>
+         2532_2534  LOAD_STR                 'BaseTemplate'
+             2536  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2538_2540  LOAD_STR                 'BaseTemplate'
+             2542  LOAD_NAME                object
+             2544  CALL_FUNCTION_3       3  '3 positional arguments'
+             2546  STORE_NAME               BaseTemplate
+
+ L.3284      2548  LOAD_BUILD_CLASS 
+         2550_2552  LOAD_CODE                <code_object MakoTemplate>
+         2554_2556  LOAD_STR                 'MakoTemplate'
+             2558  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2560_2562  LOAD_STR                 'MakoTemplate'
+             2564  LOAD_NAME                BaseTemplate
+             2566  CALL_FUNCTION_3       3  '3 positional arguments'
+             2568  STORE_NAME               MakoTemplate
+
+ L.3303      2570  LOAD_BUILD_CLASS 
+         2572_2574  LOAD_CODE                <code_object CheetahTemplate>
+         2576_2578  LOAD_STR                 'CheetahTemplate'
+             2580  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2582_2584  LOAD_STR                 'CheetahTemplate'
+             2586  LOAD_NAME                BaseTemplate
+             2588  CALL_FUNCTION_3       3  '3 positional arguments'
+             2590  STORE_NAME               CheetahTemplate
+
+ L.3323      2592  LOAD_BUILD_CLASS 
+         2594_2596  LOAD_CODE                <code_object Jinja2Template>
+         2598_2600  LOAD_STR                 'Jinja2Template'
+             2602  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2604_2606  LOAD_STR                 'Jinja2Template'
+             2608  LOAD_NAME                BaseTemplate
+             2610  CALL_FUNCTION_3       3  '3 positional arguments'
+             2612  STORE_NAME               Jinja2Template
+
+ L.3351      2614  LOAD_BUILD_CLASS 
+         2616_2618  LOAD_CODE                <code_object SimpleTemplate>
+         2620_2622  LOAD_STR                 'SimpleTemplate'
+             2624  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2626_2628  LOAD_STR                 'SimpleTemplate'
+             2630  LOAD_NAME                BaseTemplate
+             2632  CALL_FUNCTION_3       3  '3 positional arguments'
+             2634  STORE_NAME               SimpleTemplate
+
+ L.3423      2636  LOAD_BUILD_CLASS 
+         2638_2640  LOAD_CODE                <code_object StplSyntaxError>
+         2642_2644  LOAD_STR                 'StplSyntaxError'
+             2646  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2648_2650  LOAD_STR                 'StplSyntaxError'
+             2652  LOAD_NAME                TemplateError
+             2654  CALL_FUNCTION_3       3  '3 positional arguments'
+             2656  STORE_NAME               StplSyntaxError
+
+ L.3426      2658  LOAD_BUILD_CLASS 
+         2660_2662  LOAD_CODE                <code_object StplParser>
+         2664_2666  LOAD_STR                 'StplParser'
+             2668  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+         2670_2672  LOAD_STR                 'StplParser'
+             2674  LOAD_NAME                object
+             2676  CALL_FUNCTION_3       3  '3 positional arguments'
+             2678  STORE_NAME               StplParser
+
+ L.3607  2680_2682  LOAD_CODE                <code_object template>
+         2684_2686  LOAD_STR                 'template'
+             2688  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2690  STORE_NAME               template
+
+ L.3632      2692  LOAD_NAME                functools
+             2694  LOAD_ATTR                partial
+             2696  LOAD_NAME                template
+             2698  LOAD_NAME                MakoTemplate
+         2700_2702  LOAD_CONST               ('template_adapter',)
+             2704  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2706  STORE_NAME               mako_template
+
+ L.3633      2708  LOAD_NAME                functools
+             2710  LOAD_ATTR                partial
+             2712  LOAD_NAME                template
+             2714  LOAD_NAME                CheetahTemplate
+         2716_2718  LOAD_CONST               ('template_adapter',)
+             2720  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2722  STORE_NAME               cheetah_template
+
+ L.3634      2724  LOAD_NAME                functools
+             2726  LOAD_ATTR                partial
+             2728  LOAD_NAME                template
+             2730  LOAD_NAME                Jinja2Template
+         2732_2734  LOAD_CONST               ('template_adapter',)
+             2736  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2738  STORE_NAME               jinja2_template
+
+ L.3637  2740_2742  LOAD_CODE                <code_object view>
+         2744_2746  LOAD_STR                 'view'
+             2748  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2750  STORE_NAME               view
+
+ L.3661      2752  LOAD_NAME                functools
+             2754  LOAD_ATTR                partial
+             2756  LOAD_NAME                view
+             2758  LOAD_NAME                MakoTemplate
+         2760_2762  LOAD_CONST               ('template_adapter',)
+             2764  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2766  STORE_NAME               mako_view
+
+ L.3662      2768  LOAD_NAME                functools
+             2770  LOAD_ATTR                partial
+             2772  LOAD_NAME                view
+             2774  LOAD_NAME                CheetahTemplate
+         2776_2778  LOAD_CONST               ('template_adapter',)
+             2780  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2782  STORE_NAME               cheetah_view
+
+ L.3663      2784  LOAD_NAME                functools
+             2786  LOAD_ATTR                partial
+             2788  LOAD_NAME                view
+             2790  LOAD_NAME                Jinja2Template
+         2792_2794  LOAD_CONST               ('template_adapter',)
+             2796  CALL_FUNCTION_KW_2     2  '2 total positional and keyword args'
+             2798  STORE_NAME               jinja2_view
+
+ L.3675  2800_2802  LOAD_STR                 './'
+         2804_2806  LOAD_STR                 './views/'
+             2808  BUILD_LIST_2          2 
+             2810  STORE_NAME               TEMPLATE_PATH
+
+ L.3676      2812  BUILD_MAP_0           0 
+             2814  STORE_NAME               TEMPLATES
+
+ L.3677      2816  LOAD_CONST               False
+             2818  STORE_GLOBAL             DEBUG
+
+ L.3678      2820  LOAD_CONST               False
+             2822  STORE_GLOBAL             NORUN
+
+ L.3681      2824  LOAD_NAME                httplib
+             2826  LOAD_ATTR                responses
+             2828  STORE_NAME               HTTP_CODES
+
+ L.3682  2830_2832  LOAD_STR                 "I'm a teapot"
+             2834  LOAD_NAME                HTTP_CODES
+         2836_2838  LOAD_CONST               418
+             2840  STORE_SUBSCR     
+
+ L.3683  2842_2844  LOAD_STR                 'Unprocessable Entity'
+             2846  LOAD_NAME                HTTP_CODES
+         2848_2850  LOAD_CONST               422
+             2852  STORE_SUBSCR     
+
+ L.3684  2854_2856  LOAD_STR                 'Precondition Required'
+             2858  LOAD_NAME                HTTP_CODES
+         2860_2862  LOAD_CONST               428
+             2864  STORE_SUBSCR     
+
+ L.3685  2866_2868  LOAD_STR                 'Too Many Requests'
+             2870  LOAD_NAME                HTTP_CODES
+         2872_2874  LOAD_CONST               429
+             2876  STORE_SUBSCR     
+
+ L.3686  2878_2880  LOAD_STR                 'Request Header Fields Too Large'
+             2882  LOAD_NAME                HTTP_CODES
+         2884_2886  LOAD_CONST               431
+             2888  STORE_SUBSCR     
+
+ L.3687  2890_2892  LOAD_STR                 'Network Authentication Required'
+             2894  LOAD_NAME                HTTP_CODES
+         2896_2898  LOAD_CONST               511
+             2900  STORE_SUBSCR     
+
+ L.3688      2902  LOAD_NAME                dict
+         2904_2906  LOAD_GENEXPR             '<code_object <genexpr>>'
+         2908_2910  LOAD_STR                 '<genexpr>'
+             2912  MAKE_FUNCTION_0          'Neither defaults, keyword-only args, annotations, nor closures'
+             2914  LOAD_NAME                HTTP_CODES
+             2916  LOAD_METHOD              items
+             2918  CALL_METHOD_0         0  '0 positional arguments'
+             2920  GET_ITER         
+             2922  CALL_FUNCTION_1       1  '1 positional argument'
+             2924  CALL_FUNCTION_1       1  '1 positional argument'
+             2926  STORE_NAME               _HTTP_STATUS_LINES
+
+ L.3724  2928_2930  LOAD_STR                 '\n%%try:\n    %%from %s import DEBUG, HTTP_CODES, request, touni\n    <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">\n    <html>\n        <head>\n            <title>Error: {{e.status}}</title>\n            <style type="text/css">\n              html {background-color: #eee; font-family: sans;}\n              body {background-color: #fff; border: 1px solid #ddd;\n                    padding: 15px; margin: 15px;}\n              pre {background-color: #eee; border: 1px solid #ddd; padding: 5px;}\n            </style>\n        </head>\n        <body>\n            <h1>Error: {{e.status}}</h1>\n            <p>Sorry, the requested URL <tt>{{repr(request.url)}}</tt>\n               caused an error:</p>\n            <pre>{{e.body}}</pre>\n            %%if DEBUG and e.exception:\n              <h2>Exception:</h2>\n              <pre>{{repr(e.exception)}}</pre>\n            %%end\n            %%if DEBUG and e.traceback:\n              <h2>Traceback:</h2>\n              <pre>{{e.traceback}}</pre>\n            %%end\n        </body>\n    </html>\n%%except ImportError:\n    <b>ImportError:</b> Could not generate the error page. Please add bottle to\n    the import path.\n%%end\n'
+             2932  LOAD_NAME                __name__
+             2934  BINARY_MODULO    
+             2936  STORE_NAME               ERROR_PAGE_TEMPLATE
+
+ L.3729      2938  LOAD_NAME                LocalRequest
+             2940  CALL_FUNCTION_0       0  '0 positional arguments'
+         2942_2944  STORE_NAME               request
+
+ L.3733      2946  LOAD_NAME                LocalResponse
+             2948  CALL_FUNCTION_0       0  '0 positional arguments'
+         2950_2952  STORE_NAME               response
+
+ L.3736      2954  LOAD_NAME                threading
+         2956_2958  LOAD_METHOD              local
+             2960  CALL_METHOD_0         0  '0 positional arguments'
+         2962_2964  STORE_NAME               local
+
+ L.3740      2966  LOAD_NAME                AppStack
+             2968  CALL_FUNCTION_0       0  '0 positional arguments'
+             2970  DUP_TOP          
+         2972_2974  STORE_NAME               app
+         2976_2978  STORE_NAME               default_app
+
+ L.3741  2980_2982  LOAD_NAME                app
+         2984_2986  LOAD_METHOD              push
+             2988  CALL_METHOD_0         0  '0 positional arguments'
+             2990  POP_TOP          
+
+ L.3745      2992  LOAD_NAME                _ImportRedirect
+             2994  LOAD_NAME                __name__
+             2996  LOAD_STR                 '__main__'
+             2998  COMPARE_OP               ==
+         3000_3002  POP_JUMP_IF_FALSE  3010  'to 3010'
+         3004_3006  LOAD_STR                 'bottle.ext'
+             3008  JUMP_FORWARD       3018  'to 3018'
+           3010_0  COME_FROM          3000  '3000'
+             3010  LOAD_NAME                __name__
+         3012_3014  LOAD_STR                 '.ext'
+             3016  BINARY_ADD       
+           3018_0  COME_FROM          3008  '3008'
+         3018_3020  LOAD_STR                 'bottle_%s'
+             3022  CALL_FUNCTION_2       2  '2 positional arguments'
+         3024_3026  LOAD_ATTR                module
+         3028_3030  STORE_NAME               ext
+
+ L.3747      3032  LOAD_NAME                __name__
+             3034  LOAD_STR                 '__main__'
+             3036  COMPARE_OP               ==
+         3038_3040  POP_JUMP_IF_FALSE  3374  'to 3374'
+
+ L.3748      3042  LOAD_NAME                _cmd_options
+             3044  LOAD_NAME                _cmd_args
+             3046  LOAD_NAME                _cmd_parser
+             3048  ROT_THREE        
+             3050  ROT_TWO          
+         3052_3054  STORE_NAME               opt
+         3056_3058  STORE_NAME               args
+         3060_3062  STORE_NAME               parser
+
+ L.3749  3064_3066  LOAD_NAME                opt
+         3068_3070  LOAD_ATTR                version
+         3072_3074  POP_JUMP_IF_FALSE  3102  'to 3102'
+
+ L.3750      3076  LOAD_NAME                _stdout
+         3078_3080  LOAD_STR                 'Bottle %s\n'
+             3082  LOAD_NAME                __version__
+             3084  BINARY_MODULO    
+             3086  CALL_FUNCTION_1       1  '1 positional argument'
+             3088  POP_TOP          
+
+ L.3751      3090  LOAD_NAME                sys
+         3092_3094  LOAD_METHOD              exit
+             3096  LOAD_CONST               0
+             3098  CALL_METHOD_1         1  '1 positional argument'
+             3100  POP_TOP          
+           3102_0  COME_FROM          3072  '3072'
+
+ L.3752  3102_3104  LOAD_NAME                args
+         3106_3108  POP_JUMP_IF_TRUE   3144  'to 3144'
+
+ L.3753  3110_3112  LOAD_NAME                parser
+         3114_3116  LOAD_METHOD              print_help
+             3118  CALL_METHOD_0         0  '0 positional arguments'
+             3120  POP_TOP          
+
+ L.3754      3122  LOAD_NAME                _stderr
+         3124_3126  LOAD_STR                 '\nError: No application specified.\n'
+             3128  CALL_FUNCTION_1       1  '1 positional argument'
+             3130  POP_TOP          
+
+ L.3755      3132  LOAD_NAME                sys
+         3134_3136  LOAD_METHOD              exit
+             3138  LOAD_CONST               1
+             3140  CALL_METHOD_1         1  '1 positional argument'
+             3142  POP_TOP          
+           3144_0  COME_FROM          3106  '3106'
+
+ L.3757      3144  LOAD_NAME                sys
+         3146_3148  LOAD_ATTR                path
+         3150_3152  LOAD_METHOD              insert
+             3154  LOAD_CONST               0
+         3156_3158  LOAD_STR                 '.'
+             3160  CALL_METHOD_2         2  '2 positional arguments'
+             3162  POP_TOP          
+
+ L.3758      3164  LOAD_NAME                sys
+         3166_3168  LOAD_ATTR                modules
+         3170_3172  LOAD_METHOD              setdefault
+         3174_3176  LOAD_STR                 'bottle'
+             3178  LOAD_NAME                sys
+         3180_3182  LOAD_ATTR                modules
+             3184  LOAD_STR                 '__main__'
+             3186  BINARY_SUBSCR    
+             3188  CALL_METHOD_2         2  '2 positional arguments'
+             3190  POP_TOP          
+
+ L.3760  3192_3194  LOAD_NAME                opt
+         3196_3198  LOAD_ATTR                bind
+         3200_3202  JUMP_IF_TRUE_OR_POP  3208  'to 3208'
+         3204_3206  LOAD_STR                 'localhost'
+           3208_0  COME_FROM          3200  '3200'
+         3208_3210  LOAD_CONST               8080
+             3212  ROT_TWO          
+         3214_3216  STORE_NAME               host
+         3218_3220  STORE_NAME               port
+
+ L.3761  3222_3224  LOAD_STR                 ':'
+         3226_3228  LOAD_NAME                host
+             3230  COMPARE_OP               in
+         3232_3234  POP_JUMP_IF_FALSE  3296  'to 3296'
+         3236_3238  LOAD_NAME                host
+         3240_3242  LOAD_METHOD              rfind
+         3244_3246  LOAD_STR                 ']'
+             3248  CALL_METHOD_1         1  '1 positional argument'
+         3250_3252  LOAD_NAME                host
+         3254_3256  LOAD_METHOD              rfind
+         3258_3260  LOAD_STR                 ':'
+             3262  CALL_METHOD_1         1  '1 positional argument'
+             3264  COMPARE_OP               <
+         3266_3268  POP_JUMP_IF_FALSE  3296  'to 3296'
+
+ L.3762  3270_3272  LOAD_NAME                host
+         3274_3276  LOAD_METHOD              rsplit
+         3278_3280  LOAD_STR                 ':'
+             3282  LOAD_CONST               1
+             3284  CALL_METHOD_2         2  '2 positional arguments'
+             3286  UNPACK_SEQUENCE_2     2 
+         3288_3290  STORE_NAME               host
+         3292_3294  STORE_NAME               port
+           3296_0  COME_FROM          3266  '3266'
+           3296_1  COME_FROM          3232  '3232'
+
+ L.3763  3296_3298  LOAD_NAME                host
+         3300_3302  LOAD_METHOD              strip
+         3304_3306  LOAD_STR                 '[]'
+             3308  CALL_METHOD_1         1  '1 positional argument'
+         3310_3312  STORE_NAME               host
+
+ L.3765      3314  LOAD_NAME                run
+         3316_3318  LOAD_NAME                args
+             3320  LOAD_CONST               0
+             3322  BINARY_SUBSCR    
+         3324_3326  LOAD_NAME                host
+         3328_3330  LOAD_NAME                int
+         3332_3334  LOAD_NAME                port
+             3336  CALL_FUNCTION_1       1  '1 positional argument'
+         3338_3340  LOAD_NAME                opt
+             3342  LOAD_ATTR                server
+
+ L.3766  3344_3346  LOAD_NAME                opt
+         3348_3350  LOAD_ATTR                reload
+         3352_3354  LOAD_NAME                opt
+         3356_3358  LOAD_ATTR                plugin
+         3360_3362  LOAD_NAME                opt
+             3364  LOAD_ATTR                debug
+         3366_3368  LOAD_CONST               ('host', 'port', 'server', 'reloader', 'plugins', 'debug')
+             3370  CALL_FUNCTION_KW_7     7  '7 total positional and keyword args'
+             3372  POP_TOP          
+           3374_0  COME_FROM          3038  '3038'
+
+Parse error at or near `POP_BLOCK' instruction at offset 496
+
