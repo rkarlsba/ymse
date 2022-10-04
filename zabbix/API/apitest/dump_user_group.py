@@ -21,11 +21,7 @@ try:
 
     # Get all users
     allusers = json.dumps(zapi.user.get(output='extend'))
-    print('allusers is of type ', type(allusers))
     print(allusers)
-
-    allusers_j = json.loads(allusers)
-    pprint(allusers_j)
 
     zapi.user.logout()
 except ZabbixAPIException as e:
