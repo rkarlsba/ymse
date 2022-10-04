@@ -28,14 +28,14 @@ do
     vm_file="$VM_IMG_DIR/$vm_name-root1.qcow2"
 
     # Sanity check
-    if $( echo "$vm_name" | perl -ne 'exit 1 unless (/^[a-z0-9\-\.]+/);' )
+    if $( echo -n "$vm_name" | tr '[A-Z]' '[a-z]' | grep -Pvq '^[a-z0-9\.\-]+$' )
     then
         echo "Illegal hostname: $vm_name, exiting" >&2
         exit 1
     fi
-    if $( virsh domstate $ORIGINAL > /dev/null 2>&1 )
+    if ! $( virsh domstate $ORIGINAL > /dev/null 2>&1 )
     then
-        echo "VM template $ORIGINAL seems to exist, exiting" >&2
+        echo "VM template $ORIGINAL doesn't seem to exist, exiting" >&2
         exit 2
     fi
     if $( virsh domstate $vm_name > /dev/null 2>&1 )
@@ -62,7 +62,7 @@ do
         echo_cmd='echo'
     fi
     $echo_cmd virt-clone --original $ORIGINAL --name $vm_name --file $vm_file
-
+    _exitcode=$?
     if [ $_exitcode != 0 ]
     then
         echo 'Something terrible happened - exiting' >&2
