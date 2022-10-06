@@ -36,5 +36,9 @@ except:
     exit(1)
 ```
 
+So far, this only uses api\_user etc for the api access. No API writing has been
+added yet. I guess add a few warnings before doing anything that might be
+destructive ;)
+
 ***[roy](mailto:roy@karlsbakk.net)***
 

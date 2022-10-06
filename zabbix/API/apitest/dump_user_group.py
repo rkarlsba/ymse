@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-from pyzabbix.api import ZabbixAPI, ZabbixAPIException
 import json
 import sys
 from pprint import pprint
 import traceback
 import logging
 
-# Globals
-verbose = 0
+try:
+    from pyzabbix.api import ZabbixAPI, ZabbixAPIException
+except:
+    print("You'll need ZabbixAPI and its friends to make any use of these tools", file=sys.stderr)
+    exit(1)
 
 try:
     from local_passwords import *
@@ -17,6 +19,9 @@ except:
     print("File local_passwords.py does not exists. Please refer to the README.md file", file=sys.stderr)
     print("and create the named file before running this again.", file=sys.stderr)
     exit(1)
+
+# Globals
+verbose = 0
 
 try:
     # Create ZabbixAPI class instance
