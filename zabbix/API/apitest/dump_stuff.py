@@ -32,12 +32,13 @@ try:
         01  action
         02  alert
         03  apiinfo
+        03  application
         04  auditlog
         05  authentication
         06  autoregistration
         07  configuration       <-- only 'export' and 'import' methods
-        08  correlation
-        09  dashboard
+        08  correlation         <-- Empty on 5.0
+        09  dashboard           <-- Imported
         10  dhost
         11  dservice
         12  dcheck
@@ -67,7 +68,7 @@ try:
         36  report
         37  role
         38  script
-        39  service             <-- Tomt på 5.x
+        39  service             <-- Empty on 5.0
         40  settings
         41  sla
         42  task
@@ -85,6 +86,12 @@ try:
         54  valuemap
         55  httptest            <-- web scenarios - märklich - ser ut til at det ligger 259 av disse der - littegranne mange, kanskje?
         '''
+        # Get application (03)
+        application = json.dumps(zapi.application.get(output='extend'))
+        with open('data/application.json', 'w') as f:
+            print(application, file=f)
+        f.close;
+
         # Get all dashboards (09)
         dashboard = json.dumps(zapi.dashboard.get(output='extend'))
         with open('data/dashboard.json', 'w') as f:
