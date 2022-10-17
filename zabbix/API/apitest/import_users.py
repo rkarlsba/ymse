@@ -86,13 +86,42 @@ try:
         54  valuemap
         55  httptest            <-- web scenarios - märklich - ser ut til at det ligger 259 av disse der - littegranne mange, kanskje?
  }}}    '''
-        # Get all usergroups (52)
-        with open('data/imptest/usergroup.json', 'r') as usergroups:
+        # Get all usergroups in dump (52)
+        '''
+[
+    {
+        "usrgrpid": "7",
+        "name": "Zabbix administrators",
+        "gui_access": "0",
+        "users_status": "0",
+        "debug_mode": "0"
+    },
+    {
+        "usrgrpid": "9",
+        "name": "Disabled",
+        "gui_access": "0",
+        "users_status": "1",
+        "debug_mode": "0"
+    },
+    {
+        "usrgrpid": "12",
+        "name": "No access to the frontend",
+        "gui_access": "3",
+        "users_status": "0",
+        "debug_mode": "0"
+        '''
+        with open('data/imptest/usergroup.json', 'r') as usergroups_f:
             # Print the type of data variable
-            print("Type:", type(usergroups))
-        usergroups.close;
+            # print("Type:", type(usergroups))
+            usergroups_data = json.load(usergroups_f)
+# hostgroup = json.dumps(zapi.hostgroup.get(output='extend'))
+            for usergroup in usergroups_data:
+                # zapi.hostgroup.create(usergroup)
+                print(usergroup['name'])
+        usergroups_f.close;
 
 #         # Get all users (50)
+# eh
 #         user = json.dumps(zapi.user.get(output='extend'))
 #         with open('data/imptest/user.json', 'r') as usergroups:
 #             print(user, file=f)
