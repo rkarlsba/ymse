@@ -110,14 +110,14 @@ try:
         "users_status": "0",
         "debug_mode": "0"
         '''
-        with open('data/imptest/usergroup.json', 'r') as usergroups_f:
+        with open('data/usergroup.json', 'r') as usergroups_f:
             # Print the type of data variable
             # print("Type:", type(usergroups))
             usergroups_data = json.load(usergroups_f)
-# hostgroup = json.dumps(zapi.hostgroup.get(output='extend'))
-            for usergroup in usergroups_data:
-                # zapi.hostgroup.create(usergroup)
-                print(usergroup['name'])
+            print(zapi.hostgroup.create(usergroups_data))
+#           for usergroup in usergroups_data:
+#               # zapi.hostgroup.create(usergroup)
+#               print(usergroup['name'])
         usergroups_f.close;
 
 #         # Get all users (50)

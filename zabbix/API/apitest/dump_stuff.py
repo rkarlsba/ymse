@@ -135,7 +135,8 @@ try:
         f.close;
 
         # Get all usergroups (52)
-        usergroup = json.dumps(zapi.usergroup.get(output='extend'))
+        #usergroup = json.dumps(zapi.usergroup.get(output='extend'))
+        usergroup = json.dumps(zapi.usergroup.get())
         with open('data/usergroup.json', 'w') as f:
             print(usergroup, file=f)
         f.close;
