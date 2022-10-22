@@ -1,0 +1,44 @@
+ 158.36.144.254  e4:fc:82:e6:38:08   4283  256980  Juniper Networks
+ 158.36.144.253  94:bf:94:3d:60:1c   1602   96120  Juniper Networks
+ 192.168.10.1    50:eb:f6:5c:15:55      1      60  Unknown vendor
+ 192.168.49.1    ac:9b:0a:e7:1a:99      1      60  Sony Corporation
+ 158.36.144.195  bc:e9:2f:a5:08:50      5     300  HP Inc.
+ 158.36.144.162  72:5c:fc:7b:3f:0f     27    1134  Unknown vendor
+ 192.168.80.1    80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 192.168.97.1    50:eb:f6:5c:15:55      1      60  Unknown vendor
+ 192.168.122.1   b0:5c:da:38:9c:cf      1      60  HP Inc.
+ 192.168.122.1   50:65:f3:43:83:02      1      60  Hewlett Packard
+ 192.168.124.1   70:85:c2:02:9b:5b      1      60  ASRock Incorporation
+ 158.36.144.133  70:85:c2:02:9b:5b     29    1740  ASRock Incorporation
+ 192.168.151.1   50:eb:f6:5c:11:80      1      60  Unknown vendor
+ 192.168.231.1   ec:8e:b5:75:ff:23      1      60  Hewlett Packard
+ 172.16.0.1      50:eb:f6:5c:11:80      1      60  Unknown vendor
+ 172.16.0.1      50:65:f3:43:83:02      1      60  Hewlett Packard
+ 158.36.144.170  80:e8:2c:ed:55:28     22    1320  Hewlett Packard
+ 158.36.144.212  10:65:30:58:54:65      7     420  Dell Inc.
+ 0.0.0.0         10:65:30:58:54:65      4     240  Dell Inc.
+ 158.36.144.239  be:0f:44:c9:e1:88     28    1680  Unknown vendor
+ 158.36.144.182  b8:27:eb:b9:e0:f6     12     720  Raspberry Pi Foundation
+ 158.36.144.178  00:15:5d:90:c4:0c     24    1440  Microsoft Corporation
+ 158.36.144.169  b0:5c:da:38:97:e5     30    1800  HP Inc.
+ 158.36.144.166  42:a7:f9:a2:8a:da     11     660  Unknown vendor
+ 158.36.144.193  00:15:5d:90:c3:05      4     240  Microsoft Corporation
+ 172.16.197.1    50:eb:f6:5c:11:80      1      60  Unknown vendor
+ 172.16.238.1    80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 172.16.239.1    80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 158.36.144.138  b0:5c:da:38:9c:cf     27    1620  HP Inc.
+ 172.17.0.1      b0:5c:da:38:9c:cf      1      60  HP Inc.
+ 172.17.0.1      e0:d5:5e:20:51:da      1      60  GIGA-BYTE TECHNOLOGY CO.,LTD.
+ 172.17.0.1      80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 172.17.0.1      70:5a:0f:40:de:46      1      60  Hewlett Packard
+ 158.36.144.147  6c:02:e0:b8:1e:b7      5     300  HP Inc.
+ 158.36.144.191  00:e0:4c:68:58:43      8     480  REALTEK SEMICONDUCTOR CORP.
+ 158.36.144.250  ac:9b:0a:e7:1a:99      1      60  Sony Corporation
+ 158.36.144.141  50:eb:f6:5c:15:55      1      60  Unknown vendor
+ 172.19.0.1      80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 158.36.144.192  c8:5a:cf:0a:fb:4d      4     240  Unknown vendor
+ 158.36.144.183  a0:ce:c8:64:11:42      2     120  CE LINK LIMITED
+ 172.28.0.1      80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 172.29.0.1      80:e8:2c:ed:55:28      1      60  Hewlett Packard
+ 158.36.144.190  e4:e7:49:43:fe:dc      3     180  Hewlett Packard
+ 158.36.144.197  00:15:5d:90:c6:02     14     840  Microsoft Corporation
