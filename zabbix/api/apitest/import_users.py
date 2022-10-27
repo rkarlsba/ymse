@@ -10,7 +10,7 @@ import logging
 try:
     from pyzabbix.api import ZabbixAPI, ZabbixAPIException
 except:
-    print("You'll need ZabbixAPI and its friends to make any use of these tools", file=sys.stderr)
+    print("You'll need ZabbixAPI and its friends to make any use of these tools [1]", file=sys.stderr)
     exit(1)
 
 try:
@@ -25,9 +25,10 @@ verbose = 0
 
 try:
     # Create ZabbixAPI class instance
-    zapi = ZabbixAPI(url=api_url, user=api_user, password=api_password)
+    zapi = ZabbixAPI(url=api_dst_url, user=api_dst_user, password=api_dst_password)
 
     try:
+        # Objektliste {{{
         '''
         01  action
         02  alert
@@ -85,66 +86,58 @@ try:
         53  usermacro           <-- ??
         54  valuemap
         55  httptest            <-- web scenarios - märklich - ser ut til at det ligger 259 av disse der - littegranne mange, kanskje?
-        '''
-        # Get application (03)
-        application = json.dumps(zapi.application.get(output='extend'))
-        with open('data/application.json', 'w') as f:
-            print(application, file=f)
-        f.close;
-
-        # Get all dashboards (09)
-        dashboard = json.dumps(zapi.dashboard.get(output='extend'))
-        with open('data/dashboard.json', 'w') as f:
-            print(dashboard, file=f)
-        f.close;
-
-        # Get all hosts (20)
-        host = json.dumps(zapi.host.get(output='extend'))
-        with open('data/host.json', 'w') as f:
-            print(host, file=f)
-        f.close;
-
-        # Get all hostgroups (21)
-        hostgroup = json.dumps(zapi.hostgroup.get(output='extend'))
-        with open('data/hostgroup.json', 'w') as f:
-            print(hostgroup, file=f)
-        f.close;
-
-        # Get all hostinterfaces (22)
-        hostinterface = json.dumps(zapi.hostinterface.get(output='extend'))
-        with open('data/hostinterface.json', 'w') as f:
-            print(hostinterface, file=f)
-        f.close;
-
-        # Get all hostprototypes (23)
-        hostprototype = json.dumps(zapi.hostprototype.get(output='extend'))
-        with open('data/hostprototype.json', 'w') as f:
-            print(hostprototype, file=f)
-        f.close;
-
-        # # Get all services (39)
-        # service = json.dumps(zapi.service.get(output='extend'))
-        # with open('data/service.json', 'w') as f:
-        #     print(service, file=f)
-        # f.close;
-
-        # Get all users (50)
-        user = json.dumps(zapi.user.get(output='extend'))
-        with open('data/user.json', 'w') as f:
-            print(user, file=f)
-        f.close;
-
+ }}}    '''
         # Get all usergroups (52)
-        usergroup = json.dumps(zapi.usergroup.get(output='extend'))
-        with open('data/usergroup.json', 'w') as f:
-            print(usergroup, file=f)
-        f.close;
+        with open('data/imptest/usergroup.json', 'r') as jsonfile:
+            # Print the type of data variable
+            usergroups = json.load(jsonfile)
+        jsonfile.close;
+        for ug in usergroups:
+            # drit
+            print(ug)
 
-        # Get all httptest (55) - web scenarias
-        httptest = json.dumps(zapi.httptest.get(output='extend'))
-        with open('data/httptest.json', 'w') as f:
-            print(httptest, file=f)
-        f.close;
+#        print(usergroups)
+        # Get all usergroups in dump (52) {{{
+        '''
+[
+    {
+        "usrgrpid": "7",
+        "name": "Zabbix administrators",
+        "gui_access": "0",
+        "users_status": "0",
+        "debug_mode": "0"
+    },
+    {
+        "usrgrpid": "9",
+        "name": "Disabled",
+        "gui_access": "0",
+        "users_status": "1",
+        "debug_mode": "0"
+    },
+    {
+        "usrgrpid": "12",
+        "name": "No access to the frontend",
+        "gui_access": "3",
+        "users_status": "0",
+        "debug_mode": "0"
+        '''
+        # }}}
+        with open('data/usergroup.json', 'r') as usergroups_f:
+            # Print the type of data variable
+            # print("Type:", type(usergroups))
+            usergroups_data = json.load(usergroups_f)
+            print(zapi.hostgroup.create(usergroups_data))
+#           for usergroup in usergroups_data:
+#               # zapi.hostgroup.create(usergroup)
+#               print(usergroup['name'])
+        usergroups_f.close;
+
+#         # Get all users (50)
+# eh
+#         user = json.dumps(zapi.user.get(output='extend'))
+#         with open('data/imptest/user.json', 'r') as usergroups:
+#             print(user, file=f)
+#         f.close;
 
     except Exception as e:
         print("Something wierd happened: $?\n", file=sys.stderr);
