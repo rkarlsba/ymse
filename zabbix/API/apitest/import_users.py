@@ -87,10 +87,15 @@ try:
         55  httptest            <-- web scenarios - märklich - ser ut til at det ligger 259 av disse der - littegranne mange, kanskje?
  }}}    '''
         # Get all usergroups (52)
-        with open('data/imptest/usergroup.json', 'r') as usergroups:
+        with open('data/imptest/usergroup.json', 'r') as jsonfile:
             # Print the type of data variable
-            print("Type:", type(usergroups))
-        usergroups.close;
+            usergroups = json.load(jsonfile)
+        jsonfile.close;
+        for ug in usergroups:
+            # drit
+            print(ug)
+
+#        print(usergroups)
 
 #         # Get all users (50)
 #         user = json.dumps(zapi.user.get(output='extend'))
