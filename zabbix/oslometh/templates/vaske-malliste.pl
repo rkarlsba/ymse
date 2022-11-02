@@ -1,5 +1,8 @@
-#!/usr/bin/bash
+#!/usr/bin/perl
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+
+use strict;
+use warnings;
 
 =begin {{{
 Name	Hosts	Applications	Items	Triggers	Graphs	Screens	Discovery	Web	Linked templates	Linked to templates	Tags
@@ -12,8 +15,17 @@ Prosesstellekilling	Hosts	Applications	Items 5	Triggers	Graphs	Screens	Discovery
 Raritan EMX SNMP environmental probe	Hosts 3	Applications 3	Items 13	Triggers 5	Graphs	Screens	Discovery	Web	Template Module Generic SNMPv2		
 Template Adobe sync log monitorering	Hosts 1	Applications 1	Items 5	Triggers 1	Graphs	Screens	Discovery	Web			
 Template App Apache by HTTP	Hosts 6	Applications 2	Items 22	Triggers 5	Graphs 3	Screens 1	Discovery 1	Web			
-=cut {{{
+=cut }}}
 
-while (<>) {
-	print;
+open(my $inf,"malliste.csv") || die "$!";
+
+while (<$inf>) {
+    chomp();
+    s/\s*Applications.*//;
+    #print "$_\n";
+    my ($name,$hosts) = split(/\t/);
+    next if ($name eq 'Name' and $hosts eq 'Hosts');
+    $hosts = 0 if ($hosts eq 'Hosts');
+    $hosts =~ s/Hosts //;
+    print("$name\t$hosts\n");
 }
