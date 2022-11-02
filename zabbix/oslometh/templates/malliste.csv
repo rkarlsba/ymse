@@ -1,0 +1,147 @@
+Name	Hosts	Applications	Items	Triggers	Graphs	Screens	Discovery	Web	Linked templates	Linked to templates	Tags
+Infopi	Hosts 24	Applications 11	Items 55	Triggers 34	Graphs 7	Screens	Discovery 2	Web	Template OS Linux		
+JKS certificate expiry check	Hosts	Applications 1	Items 1	Triggers 2	Graphs	Screens	Discovery	Web			
+LLD SNMP - DELL CMC	Hosts 2	Applications 6	Items 27	Triggers 16	Graphs	Screens	Discovery 3	Web			
+OS Linux - OsloMet custom	Hosts	Applications 2	Items 8	Triggers 8	Graphs	Screens 1	Discovery 2	Web			
+PostgreSQL	Hosts 9	Applications 2	Items 40	Triggers 11	Graphs 8	Screens 2	Discovery 1	Web			
+Prosesstellekilling	Hosts	Applications	Items 5	Triggers	Graphs	Screens	Discovery	Web			
+Raritan EMX SNMP environmental probe	Hosts 3	Applications 3	Items 13	Triggers 5	Graphs	Screens	Discovery	Web	Template Module Generic SNMPv2		
+Template Adobe sync log monitorering	Hosts 1	Applications 1	Items 5	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Apache by HTTP	Hosts 6	Applications 2	Items 22	Triggers 5	Graphs 3	Screens 1	Discovery 1	Web			
+Template App Apache Tomcat JMX	Hosts 2	Applications 5	Items 32	Triggers 5	Graphs 4	Screens	Discovery	Web			
+Template App DNS Service	Hosts 6	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Elasticsearch Cluster by HTTP	Hosts 6	Applications 2	Items 23	Triggers 12	Graphs 1	Screens	Discovery 1	Web			
+Template App Etcd by HTTP	Hosts	Applications 2	Items 38	Triggers 12	Graphs 7	Screens	Discovery 2	Web			
+Template App EZproxy	Hosts 1	Applications 1	Items 16	Triggers	Graphs 4	Screens	Discovery	Web			
+Template App FTP Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Galera Cluster	Hosts 10	Applications 1	Items 24	Triggers 4	Graphs 1	Screens	Discovery	Web			
+Template App Generic Java JMX	Hosts	Applications 8	Items 55	Triggers 26	Graphs 11	Screens	Discovery	Web			
+Template App HAProxy by HTTP	Hosts 18	Applications 2	Items 6	Triggers 4	Graphs	Screens 3	Discovery 6	Web			
+Template App HTTP Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App HTTPS Service	Hosts 2	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App IMAP Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Keepalived	Hosts 28	Applications 1	Items 4	Triggers 12	Graphs	Screens	Discovery	Web			
+Template App LDAP Service	Hosts 3	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Nginx by HTTP	Hosts 2	Applications 2	Items 13	Triggers 5	Graphs 3	Screens 1	Discovery	Web		Template App Nginx by HTTPS	
+Template App Nginx by HTTPS	Hosts 2	Applications 2	Items 13	Triggers 5	Graphs 3	Screens	Discovery	Web	Template App Nginx by HTTP		
+Template App Nginx by Zabbix agent	Hosts	Applications 2	Items 17	Triggers 6	Graphs 4	Screens 1	Discovery	Web			
+Template App NNTP Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App NTP Service	Hosts 6	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App POP Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Redis Sentinel	Hosts 9	Applications 1	Items 2	Triggers 1	Graphs	Screens	Discovery 2	Web			Application: Redis Sentinel
+Template App Redis Server	Hosts 9	Applications 1	Items 2	Triggers 1	Graphs	Screens	Discovery 3	Web			Application: Redis Server
+Template App SMTP Service	Hosts 2	Applications 1	Items 4	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Squid client count	Hosts	Applications	Items 1	Triggers	Graphs	Screens	Discovery	Web		Template App Squid SNMP	
+Template App Squid Proxy Service	Hosts 2	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Squid SNMP	Hosts 1	Applications 1	Items 55	Triggers 7	Graphs 8	Screens	Discovery	Web	Template App Squid client count		
+Template App SSH Service	Hosts 5	Applications 1	Items 2	Triggers 3	Graphs 1	Screens	Discovery	Web			
+Template App Telnet Service	Hosts	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template App Zabbix Agent	Hosts	Applications 1	Items 3	Triggers 3	Graphs	Screens	Discovery	Web		Template OS AIX, Template OS FreeBSD, Template OS HP-UX, Template OS Linux, Template OS Mac OS X, Template OS OpenBSD, Template OS Solaris, Template OS Windows	
+Template App Zabbix Proxy	Hosts	Applications 1	Items 31	Triggers 23	Graphs 4	Screens 1	Discovery	Web			
+Template App Zabbix Server	Hosts 3	Applications 1	Items 42	Triggers 31	Graphs 6	Screens 1	Discovery	Web			
+Template DB MySQL	Hosts	Applications 1	Items 14	Triggers 1	Graphs 2	Screens 1	Discovery	Web			
+Template DFO driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template EduVPN antall brukere innlogget	Hosts 3	Applications 1	Items 3	Triggers 6	Graphs 3	Screens	Discovery	Web			
+Template Feide Driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template Feide ldap-external-check	Hosts 1	Applications	Items 1	Triggers	Graphs	Screens	Discovery	Web			
+Template Generic Webtest - HTTP	Hosts 21	Applications 1	Items	Triggers 2	Graphs	Screens	Discovery	Web 1			
+Template Generic Webtest - HTTP - For Postgres cluster nodes STATUS	Hosts 16	Applications 1	Items	Triggers 1	Graphs	Screens	Discovery	Web 1			
+Template Generic Webtest - HTTPS	Hosts 104	Applications 2	Items 5	Triggers 9	Graphs	Screens	Discovery	Web 2	Template HTTPS crypto protocol check, Template SSL Certificate Check		
+Template GlusterFS disks	Hosts 7	Applications 2	Items 1	Triggers	Graphs	Screens	Discovery 2	Web			
+Template HTTPS crypto protocol check	Hosts	Applications	Items 1	Triggers 2	Graphs	Screens	Discovery	Web		Template Generic Webtest - HTTPS	
+Template Inspera driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template Linux Ymse	Hosts	Applications	Items 1	Triggers	Graphs	Screens	Discovery	Web		Template OS Linux	
+Template Module Brocade_Foundry Performance SNMPv2	Hosts	Applications 2	Items 2	Triggers 2	Graphs 2	Screens	Discovery	Web		Template Net Brocade_Foundry Nonstackable SNMPv2, Template Net Brocade_Foundry Stackable SNMPv2	
+Template Module Cisco CISCO-ENVMON-MIB SNMPv2	Hosts	Applications 3	Items	Triggers	Graphs	Screens	Discovery 3	Web		Template Net Cisco IOS prior to 12.0_3_T SNMPv2, Template Net Cisco IOS SNMPv2, Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	
+Template Module Cisco CISCO-MEMORY-POOL-MIB SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Cisco IOS prior to 12.0_3_T SNMPv2, Template Net Cisco IOS SNMPv2, Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	
+Template Module Cisco CISCO-PROCESS-MIB IOS versions 12.0_3_T-12.2_3.5 SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	
+Template Module Cisco CISCO-PROCESS-MIB SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Cisco IOS SNMPv2	
+Template Module Cisco Inventory SNMPv2	Hosts	Applications 1	Items 3	Triggers 1	Graphs	Screens	Discovery 1	Web		Template Net Cisco IOS prior to 12.0_3_T SNMPv2, Template Net Cisco IOS SNMPv2, Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	
+Template Module Cisco OLD-CISCO-CPU-MIB SNMPv2	Hosts	Applications 1	Items 1	Triggers 1	Graphs 1	Screens	Discovery	Web		Template Net Cisco IOS prior to 12.0_3_T SNMPv2	
+Template Module EtherLike-MIB SNMPv1	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Network Generic Device SNMPv1	
+Template Module EtherLike-MIB SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Alcatel Timetra TiMOS SNMPv2, Template Net Arista SNMPv2, Template Net Cisco IOS SNMPv2, Template Net D-Link DES_DGS Switch SNMPv2, Template Net Dell Force S-Series SNMPv2, Template Net Extreme EXOS SNMPv2, Template Net HP Comware HH3C SNMPv2, Template Net HP Enterprise Switch SNMPv2, Template Net Huawei VRP SNMPv2, Template Net Juniper SNMPv2, Template Net Network Generic Device SNMPv2, Template Net QTech QSW SNMPv2, Template OS Linux SNMPv2	
+Template Module Generic SNMPv1	Hosts	Applications 2	Items 11	Triggers 5	Graphs	Screens	Discovery	Web	Template Module ICMP Ping	Template Net Network Generic Device SNMPv1, Template Net Ubiquiti AirOS SNMPv1, Template Server IBM IMM SNMPv1	
+Template Module Generic SNMPv2	Hosts 5	Applications 2	Items 11	Triggers 5	Graphs	Screens	Discovery	Web	Template Module ICMP Ping	Raritan EMX SNMP environmental probe, Template Net Alcatel Timetra TiMOS SNMPv2, Template Net Arista SNMPv2, Template Net Brocade FC SNMPv2, Template Net Brocade_Foundry Nonstackable SNMPv2, Template Net Brocade_Foundry Stackable SNMPv2, Template Net Cisco IOS prior to 12.0_3_T SNMPv2, Template Net Cisco IOS SNMPv2, Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2, Template Net D-Link DES 7200 SNMPv2, Template Net D-Link DES_DGS Switch SNMPv2, Template Net Dell Force S-Series SNMPv2, Template Net Extreme EXOS SNMPv2, Template Net HP Comware HH3C SNMPv2, Template Net HP Enterprise Switch SNMPv2, Template Net Huawei VRP SNMPv2, Template Net Intel_Qlogic Infiniband SNMPv2, Template Net Juniper SNMPv2, Template Net Mellanox SNMPv2, Template Net Mikrotik SNMPv2, Template Net Netgear Fastpath SNMPv2, Template Net Network Generic Device SNMPv2, Template Net QTech QSW SNMPv2, Template Net TP-LINK SNMPv2, Template OS Linux SNMPv2, Template OS Windows SNMPv2, Template Server Dell iDRAC SNMPv2, Template Server HP iLO SNMPv2, Template Server IBM IMM SNMPv2, Template Server Supermicro Aten SNMPv2, Vertiv Geist SNMP environmental probe	
+Template Module HOST-RESOURCES-MIB SNMPv1	Hosts	Applications 4	Items	Triggers	Graphs	Screens	Discovery 3	Web			
+Template Module HOST-RESOURCES-MIB SNMPv2	Hosts	Applications 4	Items	Triggers	Graphs	Screens	Discovery 3	Web		Template Net Mellanox SNMPv2, Template OS Linux SNMPv2, Template OS Windows SNMPv2	
+Template Module ICMP Ping	Hosts 31	Applications 1	Items 3	Triggers 3	Graphs	Screens	Discovery	Web		Template Module Generic SNMPv1, Template Module Generic SNMPv2, Template OS Linux, Template OS Windows	
+Template Module ICMP Ping IPv4	Hosts 1	Applications 1	Items 4	Triggers 3	Graphs	Screens	Discovery	Web			
+Template Module Interfaces Simple SNMPv1	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Network Generic Device SNMPv1, Template Net Ubiquiti AirOS SNMPv1	
+Template Module Interfaces Simple SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Network Generic Device SNMPv2, Template Net TP-LINK SNMPv2	
+Template Module Interfaces SNMPv1	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web			
+Template Module Interfaces SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template Net Alcatel Timetra TiMOS SNMPv2, Template Net Arista SNMPv2, Template Net Brocade FC SNMPv2, Template Net Brocade_Foundry Nonstackable SNMPv2, Template Net Brocade_Foundry Stackable SNMPv2, Template Net Cisco IOS SNMPv2, Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2, Template Net D-Link DES 7200 SNMPv2, Template Net D-Link DES_DGS Switch SNMPv2, Template Net Dell Force S-Series SNMPv2, Template Net Extreme EXOS SNMPv2, Template Net HP Comware HH3C SNMPv2, Template Net HP Enterprise Switch SNMPv2, Template Net Huawei VRP SNMPv2, Template Net Intel_Qlogic Infiniband SNMPv2, Template Net Juniper SNMPv2, Template Net Mellanox SNMPv2, Template Net Mikrotik SNMPv2, Template Net Netgear Fastpath SNMPv2, Template Net QTech QSW SNMPv2, Template OS Linux SNMPv2	
+Template Module Interfaces Windows SNMPv2	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web		Template OS Windows SNMPv2	
+Template Navnmatching	Hosts 1	Applications 1	Items 1	Triggers 5	Graphs	Screens	Discovery	Web			
+Template Net Alcatel Timetra TiMOS SNMPv2	Hosts	Applications 8	Items 17	Triggers 7	Graphs 2	Screens	Discovery 5	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Arista SNMPv2	Hosts	Applications 11	Items 11	Triggers 5	Graphs	Screens	Discovery 9	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Brocade FC SNMPv2	Hosts	Applications 9	Items 16	Triggers 11	Graphs 2	Screens	Discovery 4	Web	Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Brocade_Foundry Nonstackable SNMPv2	Hosts	Applications 9	Items 15	Triggers 9	Graphs 2	Screens	Discovery 5	Web	Template Module Brocade_Foundry Performance SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Brocade_Foundry Stackable SNMPv2	Hosts	Applications 9	Items 14	Triggers 8	Graphs 2	Screens	Discovery 6	Web	Template Module Brocade_Foundry Performance SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Cisco IOS prior to 12.0_3_T SNMPv2	Hosts	Applications 8	Items 15	Triggers 7	Graphs 1	Screens	Discovery 5	Web	Template Module Cisco CISCO-ENVMON-MIB SNMPv2, Template Module Cisco CISCO-MEMORY-POOL-MIB SNMPv2, Template Module Cisco Inventory SNMPv2, Template Module Cisco OLD-CISCO-CPU-MIB SNMPv2, Template Module Generic SNMPv2		
+Template Net Cisco IOS SNMPv2	Hosts	Applications 9	Items 14	Triggers 6	Graphs	Screens	Discovery 8	Web	Template Module Cisco CISCO-ENVMON-MIB SNMPv2, Template Module Cisco CISCO-MEMORY-POOL-MIB SNMPv2, Template Module Cisco CISCO-PROCESS-MIB SNMPv2, Template Module Cisco Inventory SNMPv2, Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	Hosts	Applications 9	Items 14	Triggers 6	Graphs	Screens	Discovery 7	Web	Template Module Cisco CISCO-ENVMON-MIB SNMPv2, Template Module Cisco CISCO-MEMORY-POOL-MIB SNMPv2, Template Module Cisco CISCO-PROCESS-MIB IOS versions 12.0_3_T-12.2_3.5 SNMPv2, Template Module Cisco Inventory SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net D-Link DES 7200 SNMPv2	Hosts	Applications 9	Items 16	Triggers 7	Graphs 1	Screens	Discovery 5	Web	Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net D-Link DES_DGS Switch SNMPv2	Hosts	Applications 9	Items 16	Triggers 8	Graphs 1	Screens	Discovery 6	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Dell Force S-Series SNMPv2	Hosts	Applications 9	Items 11	Triggers 5	Graphs	Screens	Discovery 6	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Extreme EXOS SNMPv2	Hosts	Applications 9	Items 19	Triggers 11	Graphs 1	Screens	Discovery 5	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net HP Comware HH3C SNMPv2	Hosts	Applications 9	Items 11	Triggers 5	Graphs	Screens	Discovery 7	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net HP Enterprise Switch SNMPv2	Hosts	Applications 9	Items 14	Triggers 8	Graphs 1	Screens	Discovery 8	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Huawei VRP SNMPv2	Hosts	Applications 8	Items 11	Triggers 5	Graphs	Screens	Discovery 5	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Intel_Qlogic Infiniband SNMPv2	Hosts	Applications 7	Items 13	Triggers 6	Graphs	Screens	Discovery 5	Web	Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Juniper SNMPv2	Hosts	Applications 9	Items 15	Triggers 7	Graphs	Screens	Discovery 6	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Mellanox SNMPv2	Hosts	Applications 11	Items 11	Triggers 5	Graphs	Screens	Discovery 8	Web	Template Module Generic SNMPv2, Template Module HOST-RESOURCES-MIB SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Mikrotik SNMPv2	Hosts	Applications 8	Items 19	Triggers 11	Graphs 1	Screens	Discovery 4	Web	Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Netgear Fastpath SNMPv2	Hosts	Applications 9	Items 18	Triggers 8	Graphs 2	Screens	Discovery 4	Web	Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net Network Generic Device SNMPv1	Hosts	Applications 3	Items 11	Triggers 5	Graphs	Screens	Discovery 2	Web	Template Module EtherLike-MIB SNMPv1, Template Module Generic SNMPv1, Template Module Interfaces Simple SNMPv1		
+Template Net Network Generic Device SNMPv2	Hosts	Applications 3	Items 11	Triggers 5	Graphs	Screens	Discovery 2	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces Simple SNMPv2		
+Template Net QTech QSW SNMPv2	Hosts	Applications 6	Items 20	Triggers 9	Graphs 2	Screens	Discovery 2	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module Interfaces SNMPv2		
+Template Net TP-LINK SNMPv2	Hosts	Applications 6	Items 15	Triggers 7	Graphs	Screens	Discovery 3	Web	Template Module Generic SNMPv2, Template Module Interfaces Simple SNMPv2		
+Template Net Ubiquiti AirOS SNMPv1	Hosts	Applications 6	Items 17	Triggers 8	Graphs 2	Screens	Discovery 1	Web	Template Module Generic SNMPv1, Template Module Interfaces Simple SNMPv1		
+Template OpenVPN prosess monitoring	Hosts 3	Applications 2	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template OS - Windows - Event 2072	Hosts 4	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template OS - Windows events PCI DSS	Hosts 2	Applications 1	Items 34	Triggers	Graphs	Screens	Discovery	Web			
+Template OS AIX	Hosts	Applications 11	Items 42	Triggers 12	Graphs 4	Screens 1	Discovery 2	Web	Template App Zabbix Agent		
+Template OS Debian linux	Hosts 66	Applications 11	Items 55	Triggers 34	Graphs 7	Screens	Discovery 2	Web	Template OS Linux		
+Template OS FreeBSD	Hosts	Applications 10	Items 29	Triggers 14	Graphs 5	Screens 1	Discovery 2	Web	Template App Zabbix Agent		
+Template OS HP-UX	Hosts	Applications 10	Items 17	Triggers 8	Graphs 3	Screens 1	Discovery 2	Web	Template App Zabbix Agent		
+Template OS Linux	Hosts 234	Applications 11	Items 55	Triggers 34	Graphs 7	Screens 1	Discovery 2	Web	Template App Zabbix Agent, Template Linux Ymse, Template Module ICMP Ping	Infopi, Template OS Debian linux	
+Template OS Linux pwapi.service	Hosts 2	Applications 2	Items 1	Triggers 2	Graphs	Screens	Discovery	Web			
+Template OS Linux pwproxy	Hosts 2	Applications 1	Items 1	Triggers 2	Graphs	Screens	Discovery	Web			
+Template OS Linux SNMPv2	Hosts	Applications 7	Items 11	Triggers 5	Graphs	Screens	Discovery 5	Web	Template Module EtherLike-MIB SNMPv2, Template Module Generic SNMPv2, Template Module HOST-RESOURCES-MIB SNMPv2, Template Module Interfaces SNMPv2		
+Template OS Linux wsapi.service	Hosts 2	Applications 2	Items 1	Triggers 2	Graphs	Screens	Discovery	Web			
+Template OS Linux wsapi.service - test	Hosts 2	Applications 2	Items 1	Triggers 2	Graphs	Screens	Discovery	Web			
+Template OS Mac OS X	Hosts	Applications 10	Items 19	Triggers 11	Graphs 3	Screens 1	Discovery 1	Web	Template App Zabbix Agent		
+Template OS OpenBSD	Hosts	Applications 10	Items 29	Triggers 14	Graphs 5	Screens 1	Discovery 2	Web	Template App Zabbix Agent		
+Template OS Solaris	Hosts	Applications 10	Items 27	Triggers 14	Graphs 5	Screens 1	Discovery 2	Web	Template App Zabbix Agent		
+Template OS Windows	Hosts 130	Applications 11	Items 24	Triggers 13	Graphs 3	Screens 1	Discovery 4	Web	Template App Zabbix Agent, Template Module ICMP Ping		
+Template OS Windows - Service mal for enkelt service eller applikasjon	Hosts	Applications 1	Items 3	Triggers 3	Graphs	Screens	Discovery	Web			
+Template OS Windows - Services uten varsling	Hosts	Applications 1	Items	Triggers	Graphs	Screens	Discovery 1	Web			
+Template OS Windows SNMPv2	Hosts	Applications 7	Items 11	Triggers 5	Graphs	Screens	Discovery 4	Web	Template Module Generic SNMPv2, Template Module HOST-RESOURCES-MIB SNMPv2, Template Module Interfaces Windows SNMPv2		
+Template Process Test mongod	Hosts	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template Process Test mysqld	Hosts	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template Process Test postgres	Hosts 2	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template radius servers	Hosts 2	Applications 1	Items 2	Triggers 1	Graphs	Screens	Discovery	Web			
+Template radsecproxy servers	Hosts 2	Applications 1	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template RDP monitorering	Hosts 2	Applications 1	Items 6	Triggers 2	Graphs 7	Screens 1	Discovery	Web			
+Template Server Dell iDRAC SNMPv2	Hosts 33	Applications 9	Items 16	Triggers 10	Graphs	Screens	Discovery 8	Web	Template Module Generic SNMPv2		
+Template Server HP iLO SNMPv2	Hosts	Applications 9	Items 15	Triggers 8	Graphs	Screens	Discovery 12	Web	Template Module Generic SNMPv2		
+Template Server IBM IMM SNMPv1	Hosts	Applications 7	Items 14	Triggers 9	Graphs	Screens	Discovery 6	Web	Template Module Generic SNMPv1		
+Template Server IBM IMM SNMPv2	Hosts	Applications 7	Items 14	Triggers 9	Graphs	Screens	Discovery 6	Web	Template Module Generic SNMPv2		
+Template Server Intel SR1530 IPMI	Hosts	Applications 3	Items 8	Triggers 11	Graphs 2	Screens	Discovery	Web			
+Template Server Intel SR1630 IPMI	Hosts	Applications 3	Items 11	Triggers 21	Graphs 2	Screens	Discovery	Web			
+Template Server Supermicro Aten SNMPv2	Hosts	Applications 4	Items 11	Triggers 5	Graphs	Screens	Discovery 2	Web	Template Module Generic SNMPv2		
+Template Service Chronyd	Hosts 4	Applications 1	Items 15	Triggers 1	Graphs	Screens	Discovery	Web			
+Template Sikt Driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template SNMPv1 UPS Powerware 9355	Hosts 1	Applications 5	Items 38	Triggers 14	Graphs 7	Screens	Discovery	Web			
+Template SNMPv2 ISO UPS	Hosts 1	Applications 1	Items 12	Triggers 6	Graphs	Screens	Discovery	Web			
+Template SSL Certificate Check	Hosts 7	Applications 1	Items 4	Triggers 4	Graphs	Screens	Discovery	Web 1		Template Generic Webtest - HTTPS	
+Template SSL certificate copy check	Hosts 84	Applications 1	Items 2	Triggers 2	Graphs	Screens	Discovery	Web			
+Template SSL certificate copy check-OLDER VERSION--DONT USE	Hosts	Applications	Items	Triggers	Graphs	Screens	Discovery	Web			
+Template syslog-ng	Hosts	Applications 2	Items 3	Triggers 3	Graphs	Screens	Discovery	Web			
+Template Teamviewer driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+Template VM VMware	Hosts	Applications 3	Items 3	Triggers	Graphs	Screens	Discovery 3	Web			
+Template VM VMware Guest	Hosts 2	Applications 8	Items 19	Triggers	Graphs	Screens	Discovery 3	Web			
+Template VM VMware Hypervisor	Hosts	Applications 6	Items 21	Triggers	Graphs	Screens	Discovery 1	Web			
+Template Zoom driftsmeldinger	Hosts 1	Applications	Items 1	Triggers 1	Graphs	Screens	Discovery	Web			
+vCenter_SNMP-VMWARE_VCSA_6.7	Hosts	Applications 4	Items 6	Triggers 4	Graphs	Screens	Discovery 4	Web			
+Vertiv Geist SNMP environmental probe	Hosts 22	Applications 3	Items 14	Triggers 5	Graphs	Screens	Discovery	Web	Template Module Generic SNMPv2		
