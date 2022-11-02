@@ -1,0 +1,146 @@
+Infopi	24
+JKS certificate expiry check	0
+LLD SNMP - DELL CMC	2
+OS Linux - OsloMet custom	0
+PostgreSQL	9
+Prosesstellekilling	0
+Raritan EMX SNMP environmental probe	3
+Template Adobe sync log monitorering	1
+Template App Apache by HTTP	6
+Template App Apache Tomcat JMX	2
+Template App DNS Service	6
+Template App Elasticsearch Cluster by HTTP	6
+Template App Etcd by HTTP	0
+Template App EZproxy	1
+Template App FTP Service	0
+Template App Galera Cluster	10
+Template App Generic Java JMX	0
+Template App HAProxy by HTTP	18
+Template App HTTP Service	0
+Template App HTTPS Service	2
+Template App IMAP Service	0
+Template App Keepalived	28
+Template App LDAP Service	3
+Template App Nginx by HTTP	2
+Template App Nginx by HTTPS	2
+Template App Nginx by Zabbix agent	0
+Template App NNTP Service	0
+Template App NTP Service	6
+Template App POP Service	0
+Template App Redis Sentinel	9
+Template App Redis Server	9
+Template App SMTP Service	2
+Template App Squid client count	0
+Template App Squid Proxy Service	2
+Template App Squid SNMP	1
+Template App SSH Service	5
+Template App Telnet Service	0
+Template App Zabbix Agent	0
+Template App Zabbix Proxy	0
+Template App Zabbix Server	3
+Template DB MySQL	0
+Template DFO driftsmeldinger	1
+Template EduVPN antall brukere innlogget	3
+Template Feide Driftsmeldinger	1
+Template Feide ldap-external-check	1
+Template Generic Webtest - HTTP	21
+Template Generic Webtest - HTTP - For Postgres cluster nodes STATUS	16
+Template Generic Webtest - HTTPS	104
+Template GlusterFS disks	7
+Template HTTPS crypto protocol check	0
+Template Inspera driftsmeldinger	1
+Template Linux Ymse	0
+Template Module Brocade_Foundry Performance SNMPv2	0
+Template Module Cisco CISCO-ENVMON-MIB SNMPv2	0
+Template Module Cisco CISCO-MEMORY-POOL-MIB SNMPv2	0
+Template Module Cisco CISCO-PROCESS-MIB IOS versions 12.0_3_T-12.2_3.5 SNMPv2	0
+Template Module Cisco CISCO-PROCESS-MIB SNMPv2	0
+Template Module Cisco Inventory SNMPv2	0
+Template Module Cisco OLD-CISCO-CPU-MIB SNMPv2	0
+Template Module EtherLike-MIB SNMPv1	0
+Template Module EtherLike-MIB SNMPv2	0
+Template Module Generic SNMPv1	0
+Template Module Generic SNMPv2	5
+Template Module HOST-RESOURCES-MIB SNMPv1	0
+Template Module HOST-RESOURCES-MIB SNMPv2	0
+Template Module ICMP Ping	31
+Template Module ICMP Ping IPv4	1
+Template Module Interfaces Simple SNMPv1	0
+Template Module Interfaces Simple SNMPv2	0
+Template Module Interfaces SNMPv1	0
+Template Module Interfaces SNMPv2	0
+Template Module Interfaces Windows SNMPv2	0
+Template Navnmatching	1
+Template Net Alcatel Timetra TiMOS SNMPv2	0
+Template Net Arista SNMPv2	0
+Template Net Brocade FC SNMPv2	0
+Template Net Brocade_Foundry Nonstackable SNMPv2	0
+Template Net Brocade_Foundry Stackable SNMPv2	0
+Template Net Cisco IOS prior to 12.0_3_T SNMPv2	0
+Template Net Cisco IOS SNMPv2	0
+Template Net Cisco IOS versions 12.0_3_T-12.2_3.5 SNMPv2	0
+Template Net D-Link DES 7200 SNMPv2	0
+Template Net D-Link DES_DGS Switch SNMPv2	0
+Template Net Dell Force S-Series SNMPv2	0
+Template Net Extreme EXOS SNMPv2	0
+Template Net HP Comware HH3C SNMPv2	0
+Template Net HP Enterprise Switch SNMPv2	0
+Template Net Huawei VRP SNMPv2	0
+Template Net Intel_Qlogic Infiniband SNMPv2	0
+Template Net Juniper SNMPv2	0
+Template Net Mellanox SNMPv2	0
+Template Net Mikrotik SNMPv2	0
+Template Net Netgear Fastpath SNMPv2	0
+Template Net Network Generic Device SNMPv1	0
+Template Net Network Generic Device SNMPv2	0
+Template Net QTech QSW SNMPv2	0
+Template Net TP-LINK SNMPv2	0
+Template Net Ubiquiti AirOS SNMPv1	0
+Template OpenVPN prosess monitoring	3
+Template OS - Windows - Event 2072	4
+Template OS - Windows events PCI DSS	2
+Template OS AIX	0
+Template OS Debian linux	66
+Template OS FreeBSD	0
+Template OS HP-UX	0
+Template OS Linux	234
+Template OS Linux pwapi.service	2
+Template OS Linux pwproxy	2
+Template OS Linux SNMPv2	0
+Template OS Linux wsapi.service	2
+Template OS Linux wsapi.service - test	2
+Template OS Mac OS X	0
+Template OS OpenBSD	0
+Template OS Solaris	0
+Template OS Windows	130
+Template OS Windows - Service mal for enkelt service eller applikasjon	0
+Template OS Windows - Services uten varsling	0
+Template OS Windows SNMPv2	0
+Template Process Test mongod	0
+Template Process Test mysqld	0
+Template Process Test postgres	2
+Template radius servers	2
+Template radsecproxy servers	2
+Template RDP monitorering	2
+Template Server Dell iDRAC SNMPv2	33
+Template Server HP iLO SNMPv2	0
+Template Server IBM IMM SNMPv1	0
+Template Server IBM IMM SNMPv2	0
+Template Server Intel SR1530 IPMI	0
+Template Server Intel SR1630 IPMI	0
+Template Server Supermicro Aten SNMPv2	0
+Template Service Chronyd	4
+Template Sikt Driftsmeldinger	1
+Template SNMPv1 UPS Powerware 9355	1
+Template SNMPv2 ISO UPS	1
+Template SSL Certificate Check	7
+Template SSL certificate copy check	84
+Template SSL certificate copy check-OLDER VERSION--DONT USE	0
+Template syslog-ng	0
+Template Teamviewer driftsmeldinger	1
+Template VM VMware	0
+Template VM VMware Guest	2
+Template VM VMware Hypervisor	0
+Template Zoom driftsmeldinger	1
+vCenter_SNMP-VMWARE_VCSA_6.7	0
+Vertiv Geist SNMP environmental probe	22
