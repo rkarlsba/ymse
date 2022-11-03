@@ -1,0 +1,1063 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-03T19:52:43Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>LLD SNMP - DELL CMC</template>
+            <name>LLD SNMP - DELL CMC</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Chassis Status</name>
+                </application>
+                <application>
+                    <name>CMC Power Reading</name>
+                </application>
+                <application>
+                    <name>CMC Server State</name>
+                </application>
+                <application>
+                    <name>Power Supply</name>
+                </application>
+                <application>
+                    <name>System Info</name>
+                </application>
+                <application>
+                    <name>Temperatures</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>CMC Access URL</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.7.0</snmp_oid>
+                    <key>cmc_acessurl</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Asset Tag</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.1.1.8.0</snmp_oid>
+                    <key>cmc_assettag</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <inventory_link>ASSET_TAG</inventory_link>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Overall CMC Blade Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.7.0</snmp_oid>
+                    <key>cmc_bladestatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <description>This attribute defines the Blade subsystem health status&#13;
+being monitored by the chassis management card.</description>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>CMC Blade Status Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Chassis Location</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.9.0</snmp_oid>
+                    <key>cmc_chassislocation</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC CPU Temprature</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.11.0</snmp_oid>
+                    <key>cmc_cputemp</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>C</units>
+                    <applications>
+                        <application>
+                            <name>Temperatures</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&gt;50</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}&lt;47</recovery_expression>
+                            <name>CMC CPU temprature is over 50C</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Data Center</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.15.0</snmp_oid>
+                    <key>cmc_datacenter</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Fan Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.6.0</snmp_oid>
+                    <key>cmc_fanstatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <description>This attribute defines the Fan subsystem health status&#13;
+being monitored by the chassis management card.</description>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>CMC Fan Status Error</name>
+                            <priority>HIGH</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC  Controller 1 Firmware Version</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.2.1.0</snmp_oid>
+                    <key>cmc_firmwareversion1</key>
+                    <delay>600</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{change(0)}&lt;0</expression>
+                            <name>Firmware version has changed on CMC Controller 1</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC  Controller 2 Firmware Version</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.2.3.0</snmp_oid>
+                    <key>cmc_firmwareversion2</key>
+                    <delay>600</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{change(0)}&lt;0</expression>
+                            <name>Firmware version has changed on CMC Controller 2</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Health Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.9.0</snmp_oid>
+                    <key>cmc_healthstatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>CMC Health Status Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>iKVM Firmware version</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.2.2.0</snmp_oid>
+                    <key>cmc_ikvmfirmwareversion</key>
+                    <delay>600</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{change(0)}&lt;0</expression>
+                            <name>iKVM Firmware version has changed</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>iKVM Subsystem Health Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.3.0</snmp_oid>
+                    <key>cmc_ikvmstatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>iKVM Subsystem Health Status error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Last Redundancy Status Change</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.3.4.0</snmp_oid>
+                    <key>cmc_LastRedundancyStatusChange</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <units>uptime</units>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>0.01</params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <expression>{change(0)}&lt;0</expression>
+                            <name>CMC Redundancy Failover on {HOST.NAME}</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Manufacturer</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.1.1.4.0</snmp_oid>
+                    <key>cmc_manufacturer</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Name</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.10.0</snmp_oid>
+                    <key>cmc_name</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Power Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.5.0</snmp_oid>
+                    <key>cmc_powerstatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <description>This attribute defines the power subsystem health status&#13;
+being monitored by the chassis management card.</description>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>CMC Chassis Power Status Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CMC Redundancy Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.4.0</snmp_oid>
+                    <key>cmc_RedundancyStatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>CMC Redundancy Lost</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>System Service Tag</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.11.0</snmp_oid>
+                    <key>cmc_servicetag</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <inventory_link>SERIALNO_A</inventory_link>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Slot</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.1.1.13.0</snmp_oid>
+                    <key>cmc_slot</key>
+                    <delay>600</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>System Model</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.19.0</snmp_oid>
+                    <key>cmc_SystemModel</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Temprature</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.11.0</snmp_oid>
+                    <key>cmc_temp</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>C</units>
+                    <applications>
+                        <application>
+                            <name>Temperatures</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&gt;50</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}&lt;47</recovery_expression>
+                            <name>CMC System temprature is over 50C</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Chassis size in Units (U)</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.1.1.22.0</snmp_oid>
+                    <key>cmc_units</key>
+                    <delay>86400</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>CMC Version</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.1.1.14.0</snmp_oid>
+                    <key>cmc_version</key>
+                    <delay>600</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>CHAR</value_type>
+                    <applications>
+                        <application>
+                            <name>System Info</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Chassis FrontPanel Temprature</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.10.0</snmp_oid>
+                    <key>frontpaneltemp</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>C</units>
+                    <applications>
+                        <application>
+                            <name>Temperatures</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Overall System Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.674.10892.2.2.1.0</snmp_oid>
+                    <key>GlobalSystemStatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>Overall System Status Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Overall Temprature Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.8.0</snmp_oid>
+                    <key>GlobalTemprature</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                        <application>
+                            <name>Temperatures</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>Overall Temprature Status Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>IOM Subsystem Status</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.3.1.2.0</snmp_oid>
+                    <key>IOMSubsystemStatus</key>
+                    <delay>60</delay>
+                    <history>30d</history>
+                    <trends>180d</trends>
+                    <applications>
+                        <application>
+                            <name>Chassis Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Dell Open Manage System Status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(0)}&lt;&gt;3</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{last(0)}=3</recovery_expression>
+                            <name>IOM Subsystem Status error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>CMC Server Enumeration</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},SNMPv2-SMI::enterprises.674.10892.2.5.1.1.1]</snmp_oid>
+                    <key>CMCBlade</key>
+                    <delay>7200</delay>
+                    <status>DISABLED</status>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Server Model</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.5.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>drsServerModel.[&quot;{#SNMPVALUE}&quot;]</key>
+                            <delay>7200</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>CMC Server State</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Server Monitoring Capable</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.5.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>drsServerMonitoringCapable.[&quot;{#SNMPVALUE}&quot;]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <applications>
+                                <application>
+                                    <name>CMC Server State</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>DellMonitoringCapable</name>
+                            </valuemap>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}=4</expression>
+                                    <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                                    <recovery_expression>{last(1m)}=3</recovery_expression>
+                                    <name>Server has been powered off  in chassis</name>
+                                    <status>DISABLED</status>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Server Service Tag</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.5.1.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>drsServerServiceTag.[&quot;{#SNMPVALUE}&quot;]</key>
+                            <delay>7200</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>CMC Server State</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Server Slot Name</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.5.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>drsServerSlotName.[&quot;{#SNMPVALUE}&quot;]</key>
+                            <delay>86400</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>CMC Server State</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Server Slot Number</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.5.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>drsServerSlotNumber.[&quot;{#SNMPVALUE}&quot;]</key>
+                            <delay>7200</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>CMC Server State</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{LLD SNMP - DELL CMC:drsServerMonitoringCapable.[&quot;{#SNMPVALUE}&quot;].last()}=1 and {LLD SNMP - DELL CMC:drsServerModel.[&quot;{#SNMPVALUE}&quot;].change(0)}&lt;0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{LLD SNMP - DELL CMC:drsServerMonitoringCapable.[&quot;{#SNMPVALUE}&quot;].last(1m)}=3 or {LLD SNMP - DELL CMC:drsServerMonitoringCapable.[&quot;{#SNMPVALUE}&quot;].last(1m)}=1 or {LLD SNMP - DELL CMC:drsServerMonitoringCapable.[&quot;{#SNMPVALUE}&quot;].last(1m)}=4</recovery_expression>
+                            <name>Server has been removed in chassis</name>
+                            <status>DISABLED</status>
+                            <priority>HIGH</priority>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Power CMC Power Enumeration</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},SNMPv2-SMI::enterprises.674.10892.2.4.1.1.1]</snmp_oid>
+                    <key>CMCPower</key>
+                    <delay>7200</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>CMC System Input Current Reading</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.14.{#SNMPINDEX}</snmp_oid>
+                            <key>drsAmpsReading.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>A</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Idle Power</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.3.{#SNMPINDEX}</snmp_oid>
+                            <key>drsIdlePower.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Energy Consumption</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>drsKWhCumulative.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>Wh</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Input Power Cap</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.4.{#SNMPINDEX}</snmp_oid>
+                            <key>drsMaxPowerSpecification.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Potential Power</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.2.{#SNMPINDEX}</snmp_oid>
+                            <key>drsPotentialPower.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Power Surplus</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.5.{#SNMPINDEX}</snmp_oid>
+                            <key>drsPowerSurplus.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC Minimum System Power</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>drsWattsMinUsage.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC Peak System Power</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>drsWattsPeakUsage.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CMC System Input Power</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.1.1.13.{#SNMPINDEX}</snmp_oid>
+                            <key>drsWattsReading.[{#SNMPINDEX}]</key>
+                            <delay>60</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>CMC Power Reading</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{LLD SNMP - DELL CMC:drsWattsPeakUsage.[{#SNMPINDEX}].last()}/{LLD SNMP - DELL CMC:drsPotentialPower.[{#SNMPINDEX}].last()}&gt;0.95</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{LLD SNMP - DELL CMC:drsWattsPeakUsage.[{#SNMPINDEX}].last()}/{LLD SNMP - DELL CMC:drsPotentialPower.[{#SNMPINDEX}].last()}&gt;0.8</recovery_expression>
+                            <name>Chassis Power Consumption is over 95%</name>
+                            <priority>HIGH</priority>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Power Supply Enumeration</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#SNMPVALUE},SNMPv2-SMI::enterprises.674.10892.2.4.2.1.2.1]</snmp_oid>
+                    <key>PowerSupplies</key>
+                    <delay>7200</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Power Supply {#SNMPINDEX} Input Amps</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.2.1.6.1.{#SNMPINDEX}</snmp_oid>
+                            <key>PowerSupplyInputAmps.[{#SNMPINDEX}]</key>
+                            <delay>90</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>A</units>
+                            <applications>
+                                <application>
+                                    <name>Power Supply</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Power Supply {#SNMPINDEX} Input Voltage</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.2.1.5.1.{#SNMPINDEX}</snmp_oid>
+                            <key>PowerSupplyInputVoltage.[{#SNMPINDEX}]</key>
+                            <delay>90</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>V</units>
+                            <applications>
+                                <application>
+                                    <name>Power Supply</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Power Supply {#SNMPINDEX} Input Watts</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.2.1.7.1.{#SNMPINDEX}</snmp_oid>
+                            <key>PowerSupplyInputWatts.[{#SNMPINDEX}]</key>
+                            <delay>90</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <value_type>FLOAT</value_type>
+                            <units>W</units>
+                            <applications>
+                                <application>
+                                    <name>Power Supply</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Power Supply {#SNMPINDEX} Location</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.2.1.3.1.{#SNMPINDEX}</snmp_oid>
+                            <key>PowerSupplyLocation.[{#SNMPINDEX}]</key>
+                            <delay>7200</delay>
+                            <history>30d</history>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>Power Supply</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Power Supply {#SNMPINDEX} Monitoring Capable</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>SNMPv2-SMI::enterprises.674.10892.2.4.2.1.4.1.{#SNMPINDEX}</snmp_oid>
+                            <key>PowerSupplyMonCap.[{#SNMPINDEX}]</key>
+                            <delay>90</delay>
+                            <history>30d</history>
+                            <trends>180d</trends>
+                            <applications>
+                                <application>
+                                    <name>Power Supply</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>DellPSUMonitoringCapable</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{LLD SNMP - DELL CMC:PowerSupplyInputVoltage.[{#SNMPINDEX}].last()}=0 or {LLD SNMP - DELL CMC:PowerSupplyMonCap.[{#SNMPINDEX}].last()}&lt;3</expression>
+                            <name>Power Supply in slot {#SNMPINDEX} has no input power or PSU is missing.</name>
+                            <priority>HIGH</priority>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{LLD SNMP - DELL CMC:frontpaneltemp.last(0)}&gt;40</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>{LLD SNMP - DELL CMC:GlobalTemprature.last(0)}&lt;39</recovery_expression>
+            <name>Chassis FrontPanel temprature is over 40C</name>
+            <priority>HIGH</priority>
+        </trigger>
+    </triggers>
+    <value_maps>
+        <value_map>
+            <name>DellMonitoringCapable</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>absent</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>none</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>basic</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>off</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>Dell Open Manage System Status</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Other</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Unknown</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>OK</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>NonCritical</newvalue>
+                </mapping>
+                <mapping>
+                    <value>5</value>
+                    <newvalue>Critical</newvalue>
+                </mapping>
+                <mapping>
+                    <value>6</value>
+                    <newvalue>NonRecoverable</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>DellPSUMonitoringCapable</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>absent</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>none</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>basic</newvalue>
+                </mapping>
+                <mapping>
+                    <value>4</value>
+                    <newvalue>off</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
