@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-04T12:23:14Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+        <group>
+            <name>Web servers</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Generic Webtest - HTTP</template>
+            <name>Template Generic Webtest - HTTP</name>
+            <groups>
+                <group>
+                    <name>Web servers</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>WEB</name>
+                </application>
+            </applications>
+            <httptests>
+                <httptest>
+                    <name>Websjekk HTTP</name>
+                    <application>
+                        <name>WEB</name>
+                    </application>
+                    <steps>
+                        <step>
+                            <name>Websjekk HTTP</name>
+                            <url>http://{HOST.NAME}</url>
+                            <timeout>60s</timeout>
+                            <status_codes>200-299,300-399</status_codes>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$PORT}</macro>
+                    <value>443</value>
+                </macro>
+            </macros>
+        </template>
+        <template>
+            <template>Template Generic Webtest - HTTP - For Postgres cluster nodes STATUS</template>
+            <name>Template Generic Webtest - HTTP - For Postgres cluster nodes STATUS</name>
+            <description>Test postgres clusster nodes for status on port 9200</description>
+            <groups>
+                <group>
+                    <name>Web servers</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>WEB</name>
+                </application>
+            </applications>
+            <httptests>
+                <httptest>
+                    <name>Websjekk HTTP</name>
+                    <application>
+                        <name>WEB</name>
+                    </application>
+                    <steps>
+                        <step>
+                            <name>Websjekk HTTP</name>
+                            <url>http://{HOST.NAME}:{$PORT}</url>
+                            <retrieve_mode>HEADERS</retrieve_mode>
+                            <status_codes>200-299</status_codes>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$PORT}</macro>
+                    <value>9200</value>
+                </macro>
+            </macros>
+        </template>
+        <template>
+            <template>Template Generic Webtest - HTTPS</template>
+            <name>Template Generic Webtest - HTTPS</name>
+            <templates>
+                <template>
+                    <name>Template HTTPS crypto protocol check</name>
+                </template>
+                <template>
+                    <name>Template SSL Certificate Check</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>WEB</name>
+                </application>
+            </applications>
+            <httptests>
+                <httptest>
+                    <name>Websjekk HTTPS</name>
+                    <application>
+                        <name>WEB</name>
+                    </application>
+                    <steps>
+                        <step>
+                            <name>Websjekk HTTPS</name>
+                            <url>https://{HOST.NAME}</url>
+                            <timeout>45s</timeout>
+                            <status_codes>200-299,300-399</status_codes>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$PORT}</macro>
+                    <value>9200</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTP - For Postgres cluster nodes STATUS:web.test.fail[Websjekk HTTP].last(#3)}&gt;0</expression>
+            <name>Server Status Check</name>
+            <priority>WARNING</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTP:web.test.fail[Websjekk HTTP].last(#3)}&gt;0</expression>
+            <name>Web sjekk fail: HTTP</name>
+            <priority>WARNING</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTPS:web.test.fail[Websjekk HTTPS].last()}&lt;&gt;0</expression>
+            <name>Web sjekk fail: HTTPS</name>
+            <status>DISABLED</status>
+            <priority>AVERAGE</priority>
+            <description>Umiddelbar varsling</description>
+        </trigger>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTPS:web.test.fail[Websjekk HTTPS].min(3m)}&lt;&gt;0</expression>
+            <name>Web sjekk fail: HTTPS - gammel</name>
+            <status>DISABLED</status>
+            <priority>AVERAGE</priority>
+            <description>3 minutter forsinkelse på varsling&#13;
+&#13;
+Umiddelbar varsling:&#13;
+{Template Generic Webtest - HTTPS:web.test.fail[Websjekk HTTPS].last()}&lt;&gt;0</description>
+        </trigger>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTP:web.test.error[Websjekk HTTP].strlen()}&gt;0 and &#13;
+{Template Generic Webtest - HTTP:web.test.fail[Websjekk HTTP].min(3m)}&gt;0</expression>
+            <name>Web sjekk fail HTTP: {ITEM.VALUE}</name>
+            <status>DISABLED</status>
+            <priority>WARNING</priority>
+            <description>3 minutter forsinkelse og med feilkode</description>
+        </trigger>
+        <trigger>
+            <expression>{Template Generic Webtest - HTTPS:web.test.error[Websjekk HTTPS].strlen()}&gt;0 and &#13;
+{Template Generic Webtest - HTTPS:web.test.fail[Websjekk HTTPS].min(3m)}&gt;0</expression>
+            <name>Web sjekk fail HTTPS: {ITEM.VALUE}</name>
+            <priority>AVERAGE</priority>
+            <description>3 minutter forsinkelse på varsling og med feilkode</description>
+        </trigger>
+    </triggers>
+</zabbix_export>

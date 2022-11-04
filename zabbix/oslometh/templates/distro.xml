@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-02T18:26:50Z</date>
+    <groups>
+        <group>
+            <name>Templates/Operating systems</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>OS Linux - OsloMet custom</template>
+            <name>OS Linux - OsloMet custom</name>
+            <groups>
+                <group>
+                    <name>Templates/Operating systems</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Filesystems</name>
+                </application>
+                <application>
+                    <name>OS</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Linux distro architecture</name>
+                    <key>custom.distro.arch</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Linux distro friendly name</name>
+                    <key>custom.distro.friendlyname</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Linux distro name</name>
+                    <key>custom.distro.name</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Linux distro version</name>
+                    <key>custom.distro.version</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Linux filesystem read-only check</name>
+                    <key>custom.fsrocheck</key>
+                    <delay>60s</delay>
+                    <history>7d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Filesystems</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(120)}=1</expression>
+                            <name>Linux filesystem read-only - nodata check</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>{str(&quot;WARNING&quot;)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(&quot;OK&quot;)}=1</recovery_expression>
+                            <name>Linux filesystem read-only check</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Linux kernel update check</name>
+                    <key>custom.kernelversioncheck</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <status>DISABLED</status>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(7200)}=1</expression>
+                            <name>Linux kernel update - nodata check</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>{str(&quot;WARNING&quot;)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(&quot;OK&quot;)}=1</recovery_expression>
+                            <name>Linux kernel update check</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>System reboot required</name>
+                    <key>custom.rebootcheck</key>
+                    <delay>5m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(YES)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(NO)}=1</recovery_expression>
+                            <name>System reboot required</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Linux packages upgrade check</name>
+                    <key>custom.yumupdatescheck</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>OS</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>LTRIM</type>
+                            <params>custom.yumupdatescheck </params>
+                        </step>
+                    </preprocessing>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(43200)}=1</expression>
+                            <name>Linux package update - nodata check</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                        <trigger>
+                            <expression>{str(&quot;OK&quot;)}=0</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(&quot;OK&quot;)}=1</recovery_expression>
+                            <name>Linux package update check</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Network interface discovery</name>
+                    <key>net.if.discovery</key>
+                    <delay>1h</delay>
+                    <status>DISABLED</status>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#IFNAME}</macro>
+                                <value>@Network interfaces for discovery</value>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>Discovery of network interfaces as defined in global regular expression &quot;Network interfaces for discovery&quot;.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Incoming network traffic on {#IFNAME}</name>
+                            <key>net.if.in[{#IFNAME}]</key>
+                            <history>1w</history>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Outgoing network traffic on {#IFNAME}</name>
+                            <key>net.if.out[{#IFNAME}]</key>
+                            <history>1w</history>
+                            <units>bps</units>
+                            <preprocessing>
+                                <step>
+                                    <type>CHANGE_PER_SECOND</type>
+                                    <params/>
+                                </step>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>8</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Network traffic on {#IFNAME}</name>
+                            <ymin_type_1>FIXED</ymin_type_1>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00AA00</color>
+                                    <item>
+                                        <host>OS Linux - OsloMet custom</host>
+                                        <key>net.if.in[{#IFNAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>3333FF</color>
+                                    <item>
+                                        <host>OS Linux - OsloMet custom</host>
+                                        <key>net.if.out[{#IFNAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Mounted filesystem discovery</name>
+                    <key>vfs.fs.discovery</key>
+                    <delay>1h</delay>
+                    <status>DISABLED</status>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#FSTYPE}</macro>
+                                <value>@File systems for discovery</value>
+                                <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#FSNAME}</macro>
+                                <value>@Filesystems to ignore by mountpoint</value>
+                                <operator>NOT_MATCHES_REGEX</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <description>Discovery of file systems of different types as defined in global regular expression &quot;File systems for discovery&quot;.</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Free inodes on {#FSNAME} (percentage)</name>
+                            <key>vfs.fs.inode[{#FSNAME},pfree]</key>
+                            <history>1w</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Filesystems</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last(0)}&lt;20</expression>
+                                    <name>Free inodes is less than 20% on volume {#FSNAME}</name>
+                                    <priority>WARNING</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Free disk space on {#FSNAME}</name>
+                            <key>vfs.fs.size[{#FSNAME},free]</key>
+                            <history>1w</history>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>Filesystems</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last(0)}&lt;{$LOW_SPACE:&quot;{#FSNAME}&quot;}</expression>
+                                    <name>Free disk space is less than {$LOW_SPACE:&quot;{#FSNAME}&quot;} on volume {#FSNAME}</name>
+                                    <status>DISABLED</status>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Free disk space on {#FSNAME} (percentage)</name>
+                            <key>vfs.fs.size[{#FSNAME},pfree]</key>
+                            <history>1w</history>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>Filesystems</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last(0)}&lt;{$LOW_SPACE_PR:&quot;{#FSNAME}&quot;}</expression>
+                                    <name>Free disk space is less than {$LOW_SPACE_PR:&quot;{#FSNAME}&quot;}% on volume {#FSNAME}</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Total disk space on {#FSNAME}</name>
+                            <key>vfs.fs.size[{#FSNAME},total]</key>
+                            <delay>1h</delay>
+                            <history>1w</history>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>Filesystems</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Used disk space on {#FSNAME}</name>
+                            <key>vfs.fs.size[{#FSNAME},used]</key>
+                            <history>1w</history>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>Filesystems</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Disk space usage {#FSNAME}</name>
+                            <width>600</width>
+                            <height>340</height>
+                            <show_work_period>NO</show_work_period>
+                            <show_triggers>NO</show_triggers>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>C80000</color>
+                                    <type>GRAPH_SUM</type>
+                                    <item>
+                                        <host>OS Linux - OsloMet custom</host>
+                                        <key>vfs.fs.size[{#FSNAME},total]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>00C800</color>
+                                    <item>
+                                        <host>OS Linux - OsloMet custom</host>
+                                        <key>vfs.fs.size[{#FSNAME},free]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$DISK_IO_MAX_PST}</macro>
+                    <value>20</value>
+                </macro>
+                <macro>
+                    <macro>{$DISK_IO_SAMPLETIME}</macro>
+                    <value>5m</value>
+                </macro>
+                <macro>
+                    <macro>{$LINUX_KERNEL_UPDATE_MAX_TIME}</macro>
+                    <value>7d</value>
+                </macro>
+                <macro>
+                    <macro>{$LINUX_MAX_UPTIME}</macro>
+                    <value>7776000</value>
+                    <description>7776000 er (60*60*24)=86400*90=90 dager.</description>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE}</macro>
+                    <value>2G</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE:&quot;/&quot;}</macro>
+                    <value>500M</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE:&quot;/boot&quot;}</macro>
+                    <value>10M</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE:&quot;/data&quot;}</macro>
+                    <value>10G</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE:&quot;/var&quot;}</macro>
+                    <value>10G</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE_PR}</macro>
+                    <value>10</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE_PR:&quot;/&quot;}</macro>
+                    <value>15</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE_PR:&quot;/boot&quot;}</macro>
+                    <value>15</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE_PR:&quot;/data&quot;}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$LOW_SPACE_PR:&quot;/var&quot;}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$MAX_NUMBER_OF_PROCESSES}</macro>
+                    <value>500</value>
+                </macro>
+                <macro>
+                    <macro>{$MAX_NUMBER_OF_RUNNING_PROCESSES}</macro>
+                    <value>30</value>
+                </macro>
+                <macro>
+                    <macro>{$MIN_FREE_SWAP_SPACE}</macro>
+                    <value>50</value>
+                </macro>
+                <macro>
+                    <macro>{$MIN_MEM_AVAIL}</macro>
+                    <value>20M</value>
+                </macro>
+            </macros>
+            <screens>
+                <screen>
+                    <name>System performance</name>
+                    <hsize>2</hsize>
+                    <vsize>3</vsize>
+                </screen>
+            </screens>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{OS Linux - OsloMet custom:custom.fsrocheck.nodata(120)}=1 or&#13;
+{OS Linux - OsloMet custom:custom.kernelversioncheck.nodata(7200)}=1 or&#13;
+{OS Linux - OsloMet custom:custom.yumupdatescheck.nodata(43200)}=1</expression>
+            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+            <recovery_expression>{OS Linux - OsloMet custom:custom.fsrocheck.nodata(120)}=0 and&#13;
+{OS Linux - OsloMet custom:custom.kernelversioncheck.nodata(120)}=0 and&#13;
+{OS Linux - OsloMet custom:custom.yumupdatescheck.nodata(120)}=0</recovery_expression>
+            <name>General nodata check</name>
+            <status>DISABLED</status>
+            <priority>INFO</priority>
+        </trigger>
+    </triggers>
+</zabbix_export>
