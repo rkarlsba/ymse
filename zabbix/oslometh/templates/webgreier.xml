@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2022-11-04T12:23:14Z</date>
+    <date>2022-11-04T12:27:42Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -127,6 +127,277 @@
                     <value>9200</value>
                 </macro>
             </macros>
+        </template>
+        <template>
+            <template>Template HTTPS crypto protocol check</template>
+            <name>Template HTTPS crypto protocol check</name>
+            <groups>
+                <group>
+                    <name>Web servers</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>SSL/TLS check</name>
+                    <type>EXTERNAL</type>
+                    <key>zabbix_check_ciphers.pl[&quot;--sudo&quot;,&quot;--nmap-path&quot;,&quot;/opt/nmap/bin/nmap&quot;,{HOST.CONN}]</key>
+                    <delay>15m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(&quot;ERROR&quot;)}</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(&quot;OK&quot;)}</recovery_expression>
+                            <name>SSL/TLS protocol check</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>{str(&quot;WARNING&quot;)}</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(&quot;OK&quot;)}</recovery_expression>
+                            <name>SSL/TLS protocol check</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$CHECKTEXT}</macro>
+                </macro>
+                <macro>
+                    <macro>{$DAYSLEFT}</macro>
+                    <value>-d</value>
+                </macro>
+                <macro>
+                    <macro>{$ISSUER}</macro>
+                    <value>-i</value>
+                </macro>
+                <macro>
+                    <macro>{$SSL_PORT}</macro>
+                    <value>443</value>
+                </macro>
+            </macros>
+        </template>
+        <template>
+            <template>Template SSL Certificate Check</template>
+            <name>Template SSL Certificate Check</name>
+            <groups>
+                <group>
+                    <name>Web servers</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>SSL</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Days Left</name>
+                    <type>EXTERNAL</type>
+                    <key>ssl_cert_check.sh[{$DAYSLEFT},{HOST.NAME},{$SSL_PORT}]</key>
+                    <delay>10m</delay>
+                    <history>7d</history>
+                    <value_type>FLOAT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSL</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;5</expression>
+                            <name>Certificate lifetime is 5 days or less</name>
+                            <priority>AVERAGE</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Certificate lifetime is one day or less</name>
+                                    <expression>{Template SSL Certificate Check:ssl_cert_check.sh[{$DAYSLEFT},{HOST.NAME},{$SSL_PORT}].last()}&lt;=1</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&lt;=10</expression>
+                            <name>Certificate lifetime is 10 days or less</name>
+                            <priority>AVERAGE</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>Certificate lifetime is 5 days or less</name>
+                                    <expression>{Template SSL Certificate Check:ssl_cert_check.sh[{$DAYSLEFT},{HOST.NAME},{$SSL_PORT}].last()}&lt;5</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&lt;=1</expression>
+                            <name>Certificate lifetime is one day or less</name>
+                            <priority>HIGH</priority>
+                            <dependencies>
+                                <dependency>
+                                    <name>The certificate is expired!</name>
+                                    <expression>{Template SSL Certificate Check:ssl_cert_check.sh[{$DAYSLEFT},{HOST.NAME},{$SSL_PORT}].last()}&lt;=0</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&lt;=0</expression>
+                            <name>The certificate is expired!</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Certification expiry (epoch)</name>
+                    <type>EXTERNAL</type>
+                    <key>ssl_cert_check.sh[{$EXPIRY_EPOCH},{HOST.NAME},{$SSL_PORT}]</key>
+                    <delay>10m</delay>
+                    <history>30d</history>
+                    <value_type>FLOAT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSL</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Certification expiry (ISO)</name>
+                    <type>EXTERNAL</type>
+                    <key>ssl_cert_check.sh[{$EXPIRY_ISO},{HOST.NAME},{$SSL_PORT}]</key>
+                    <delay>10m</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSL</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Issuer</name>
+                    <type>EXTERNAL</type>
+                    <key>ssl_cert_check.sh[{$ISSUER},{HOST.NAME},{$SSL_PORT}]</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSL</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <httptests>
+                <httptest>
+                    <name>Enkel sjekk av https://{HOST.NAME}:{$PORT}</name>
+                    <application>
+                        <name>SSL</name>
+                    </application>
+                    <delay>60</delay>
+                    <attempts>3</attempts>
+                    <agent>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36</agent>
+                    <status>DISABLED</status>
+                    <steps>
+                        <step>
+                            <name>Site Check</name>
+                            <url>{$WEBHOST}</url>
+                            <timeout>15</timeout>
+                            <status_codes>200</status_codes>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$CHECKTEXT}</macro>
+                </macro>
+                <macro>
+                    <macro>{$DAYSLEFT}</macro>
+                    <value>-d</value>
+                </macro>
+                <macro>
+                    <macro>{$EXPIRY_EPOCH}</macro>
+                    <value>-e</value>
+                </macro>
+                <macro>
+                    <macro>{$EXPIRY_ISO}</macro>
+                    <value>-I</value>
+                </macro>
+                <macro>
+                    <macro>{$ISSUER}</macro>
+                    <value>-i</value>
+                </macro>
+                <macro>
+                    <macro>{$SSL_PORT}</macro>
+                    <value>443</value>
+                </macro>
+            </macros>
+        </template>
+        <template>
+            <template>Template SSL certificate copy check</template>
+            <name>Template SSL certificate copy check</name>
+            <description>Sjekk av SSL sertifikat kopiering.&#13;
+Filer:&#13;
+/etc/zabbix/zabbix_agentd.d/sslcopycheck.conf - Inneholder Userparameter custom.sslcopycheck&#13;
+&#13;
+/usr/local/bin/zabbix_sslcopycheck.sh - Skriver ut innholdet av /var/run/zabbix/zabbix-sslcopycheck&#13;
+/var/run/zabbix/zabbix-sslupdated - Inneholder tidsstempel for siste oppdatering&#13;
+&#13;
+/usr/local/bin/zabbix_sslcopycheck_cron.sh - Kjøres av cron for resultatet av kopieringen til /var/run/zabbix/zabbix-sslcopycheck og /var/run/zabbix/zabbix-sslupdated - Inneholder tidsstempel for siste oppdatering</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>SSLCOPYCHECK</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>SSL copy check {HOST.DNS}</name>
+                    <key>custom.sslcopycheckhostdns[&quot;{HOST.DNS}&quot;]</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSLCOPYCHECK</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{iregexp(&quot;Error&quot;)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{regexp(&quot;OK&quot;)}=1</recovery_expression>
+                            <name>Certificate Bundle file is emty on  {HOST.DNS}</name>
+                            <priority>AVERAGE</priority>
+                            <description>Feilen viser at nye bundle filen til sertifikatet er tom. Filen ligger under /opt/om-cets/&quot;VHOST&quot;/. Tor Øyvind kan informeres om denne feilen.</description>
+                        </trigger>
+                        <trigger>
+                            <expression>{regexp(&quot;Restarting&quot;)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{regexp(&quot;OK&quot;)}=1</recovery_expression>
+                            <name>New SSL Certificate installed {HOST.DNS}</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>SSL last updated {HOST.DNS}</name>
+                    <key>custom.sslupdatedhostdns[&quot;{HOST.DNS}&quot;]</key>
+                    <delay>1h</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>SSLCOPYCHECK</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
         </template>
     </templates>
     <triggers>
