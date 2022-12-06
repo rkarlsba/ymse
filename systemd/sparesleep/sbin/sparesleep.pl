@@ -20,6 +20,8 @@ md3 : active raid1 sdg1[3] sdm1[2]
 
 my $debug = 0;
 my $mdstat_fn = '/proc/mdstat';
+my $md_apm_min = 1;
+my $md_apm_max = 255;
 
 if ($debug gt 0) {
     $mdstat_fn = '../mdstat-test.txt';
@@ -63,11 +65,11 @@ while (my $line = <$mdstat>) {
     print "Disks:\t" . join(' ', @disks) . "\n" if ($debug gt 1);
     print "Spares:\t" . join(' ', @spares) . "\n" if ($debug gt 1);
     foreach my $disk (@disks) {
-        my $cmd = "hdparm -B 255 /dev/$disk";
+        my $cmd = "hdparm -B $md_apm_max /dev/$disk";
         print "$cmd\n";
     }
     foreach my $spare (@spares) {
-        my $cmd = "hdparm -B noe? /dev/$spare";
+        my $cmd = "hdparm -B $md_apm_min /dev/$spare";
         print "$cmd\n";
         # system($cmd); 
         #
