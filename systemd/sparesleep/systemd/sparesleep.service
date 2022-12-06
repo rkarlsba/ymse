@@ -1,0 +1,9 @@
+[Unit]
+Description=Spin down spare disks when not in use
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/sparesleep.pl
+
+[Install]
+WantedBy=multi-user.target
