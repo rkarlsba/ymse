@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use Data::Dumper;
 
 =pod
 Personalities : [raid1] [linear] [multipath] [raid0] [raid6] [raid5] [raid4] [raid10]
@@ -29,12 +30,24 @@ while (my $line = <$mdstat>) {
     my @elements = split(/ /, $line);
     my $md = $elements[0];
     my @disks;
+    my @spares;
     for (my $i = 4 ; ; $i++) {
         if ($elements[$i]) {
-            push @disks,$elements[$i];
+            my $d = $elements[$i];
+            $d =~ s/\[\d+\]//;
+            if ($d =~ /\(S\)/) {
+                $d =~ s/\(S\)//;
+                push @spares,$d;
+            } else {
+                push @disks,$d;
+            }
         } else {
             last;
         }
     }
-    print "$md: $#disks found\n";
+    print "$md:\n";
+    print "Disks:\t" . join(' ', @disks) . "\n";
+    print "Spares:\t" . join(' ', @spares) . "\n";
+    # print Dumper(@disks);
+    # print Dumper(@spares);
 }
