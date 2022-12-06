@@ -62,6 +62,10 @@ while (my $line = <$mdstat>) {
     print "$md:\n" if ($debug gt 1);
     print "Disks:\t" . join(' ', @disks) . "\n" if ($debug gt 1);
     print "Spares:\t" . join(' ', @spares) . "\n" if ($debug gt 1);
+    foreach my $disk (@disks) {
+        my $cmd = "hdparm -B 255 /dev/$disk";
+        print "$cmd\n";
+    }
     foreach my $spare (@spares) {
         my $cmd = "hdparm -B noe? /dev/$spare";
         print "$cmd\n";
