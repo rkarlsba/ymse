@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use Data::Dumper;
 
 # eksempel på /proc/mdstat - åpne opp med zo og lukk med zc {{{
 =pod
@@ -24,12 +25,24 @@ if ($debug gt 0) {
     $mdstat_fn = '../mdstat-test.txt';
 }
 
+my $md;
+if ($#ARGV gt -1) {
+    if ($#ARGV eq 0) {
+        $md = $ARGV[0];
+    } else  {
+        die "Syntax: $0 [mdX]";
+    }
+}
+
 open my $mdstat,"cat $mdstat_fn|" || die "kan ikke lese $mdstat_fn";
 while (my $line = <$mdstat>) {
     chomp($line);
     next unless ($line =~ /^md[0-9]/);
     my @elements = split(/ /, $line);
-    my $md = $elements[0];
+    my $this_md = $elements[0];
+    if (defined($md)) {
+        next unless ($this_md eq $md);
+    }
     my @disks;
     my @spares;
     for (my $i = 4 ; ; $i++) {
