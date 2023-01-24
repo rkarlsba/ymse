@@ -6,8 +6,8 @@ Endra komma til CR
 
 	:%s/,/\r/g
 
-[comment]: <> # https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
-[comment]: <> https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
+[comment]: <> (# https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json)
+[comment]: <> (https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json)
 
 [comment]: <> (This is a comment, it will not be included)
 
