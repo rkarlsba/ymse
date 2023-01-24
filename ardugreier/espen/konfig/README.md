@@ -1,4 +1,6 @@
-[//]: # vim:ts=4:sw=4:sts=4:et:ai
+<!--
+vim:ts=4:sw=4:sts=4:et:ai
+-->
 # Dette var lista fra Arduino-konfigen
 
 	https://arduino.esp8266.com/stable/package_esp8266com_index.json,https://github.com/ambiot/amb1_arduino/raw/master/Arduino_package/package_realtek.com_ameba1_index.json,https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json,https://raw.githubusercontent.com/Lauszus/Sanguino/master/package_lauszus_sanguino_index.json,https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
