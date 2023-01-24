@@ -4,7 +4,7 @@
 
 Endra komma til CR
 
-	: %s/,/\r/g
+	:%s/,/\r/g
 
-# https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
-https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
+[//]: # # https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
+[//]: # https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
