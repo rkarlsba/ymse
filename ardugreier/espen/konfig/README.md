@@ -8,3 +8,7 @@ Endra komma til CR
 
 [//]: # # https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
 [//]: # https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json
+
+[comment]: <> (This is a comment, it will not be included)
+
+[//]: <> (This is also a comment.)
