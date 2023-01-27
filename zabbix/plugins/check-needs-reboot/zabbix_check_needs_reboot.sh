@@ -96,16 +96,19 @@ case $DISTRO in
         while true
         do
             arg=$1
+            echo "arg1 er $1"
             if [ "$arg" == "" ]
             then
                 break
             fi
+            if [ "$arg:0:2" = "--" ]
+            then
+                mode=${arg:2}
+            fi
             case $arg in
-                "--direct")
                 "--quiet")
                     QUIET=1
-                "--local")
-                "--help")
+                    ;;
                 "--emulated")
                     EMULATED=1
                     mode=${arg:2}
@@ -113,6 +116,9 @@ case $DISTRO in
                 "--clean")
                     rm -f $OUTFILE
                     exit 0
+                    ;;
+                "--direct"|"--local"|"--help")
+                    # Just ignore these - mode is set above
                     ;;
                 *)
                     echo "Unknown mode \"$arg\". Please see --help" >&2
@@ -122,7 +128,6 @@ case $DISTRO in
             echo mode is $mode
             shift
         done
-        exit 1
 
         [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
