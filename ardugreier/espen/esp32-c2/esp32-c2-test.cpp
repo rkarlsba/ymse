@@ -25,7 +25,7 @@ void wifiOnDisconnect(){
     WiFi.begin(STA_SSID, STA_PASS);
 }
 
-void wifiConnectedLoop(){
+void wifiConnectedLoop() {
   //lets check the time
   const int NTP_PACKET_SIZE = 48;
   byte ntpPacketBuffer[NTP_PACKET_SIZE];

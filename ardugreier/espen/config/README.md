@@ -29,5 +29,7 @@ Then you just run
 This'll download the packages in the list and put them under the packages/
 directory. If this directory doesn't exist, it's created for you.
 
+Chip id is [found here](chip_id.txt) and flash id can be [found here](flash_id.txt).
+
 [//]: # (# https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json)
 [//]: # (https://github.com/rkarlsba/ymse/blob/master/ardugreier/espen/konfig/packages/package_esp32_custom_index.json)
