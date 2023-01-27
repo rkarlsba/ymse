@@ -1,0 +1,14 @@
+; vim:isfname-==:ft=systemd
+
+[Unit]
+Description=Banana pi LED control
+; Wants=network-online.target
+; After=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/sbin/bpi-ledctl
+
+[Install]
+WantedBy=multi-user.target
