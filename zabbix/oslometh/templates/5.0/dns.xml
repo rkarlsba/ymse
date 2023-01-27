@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-02T13:26:17Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template App DNS Service</template>
+            <name>Template App DNS Service</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>DNS</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>DNS query for {$CHECKDOMAIN}</name>
+                    <type>EXTERNAL</type>
+                    <key>dns-check.sh[&quot;{$CHECKDOMAIN}&quot;,&quot;{HOST.IP}&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>DNS</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(&quot;OK&quot;)}=0</expression>
+                            <name>DNS query</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$CHECKDOMAIN}</macro>
+                    <value>oslomet.no</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>

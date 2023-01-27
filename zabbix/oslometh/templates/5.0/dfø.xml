@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-02T09:29:46Z</date>
+    <groups>
+        <group>
+            <name>Driftsmeldinger</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template DFO driftsmeldinger</template>
+            <name>Template DFO driftsmeldinger</name>
+            <description>DFØ driftstatus</description>
+            <groups>
+                <group>
+                    <name>Driftsmeldinger</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <name>dfo-driftsmeldinger</name>
+                    <type>EXTERNAL</type>
+                    <key>dfo-driftsmeldinger.py</key>
+                    <delay>10m</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <triggers>
+                        <trigger>
+                            <expression>{str(CRITICAL)}=1</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>{str(CRITICAL)}=0</recovery_expression>
+                            <name>DFO driftsmelding</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>

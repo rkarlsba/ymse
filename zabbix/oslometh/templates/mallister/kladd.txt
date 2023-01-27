@@ -1,0 +1,17 @@
+Apache by HTTP
+Apache Tomcat by JMX
+Etcd by HTTP
+FTP Service
+Generic Java JMX
+HTTP Service
+HTTPS Service
+IMAP Service
+Nginx by HTTP
+Nginx Plus by HTTP
+Nginx by Zabbix agent
+NTP Service
+Squid SNMP
+Linux by Zabbix agent
+DNS Service
+Elasticsearch Cluster by HTTP
+HAProxy by HTTP

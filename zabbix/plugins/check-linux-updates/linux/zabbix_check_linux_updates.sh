@@ -102,7 +102,7 @@ case $DISTRO in
             fi
         fi
         ;;
-    debian|ubuntu)
+    debian|ubuntu|raspbian)
         # Ignore --local and --cron on debuntu - it's fast
         APT_SEC=$( apt-get -s upgrade | grep -ci ^inst.*security | tr -d '\n' )
         APT_UPD=$( apt-get -s upgrade | grep -iPc '^Inst((?!security).)*$' | tr -d '\n' )

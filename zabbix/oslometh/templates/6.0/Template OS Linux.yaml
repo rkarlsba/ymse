@@ -1,0 +1,1324 @@
+zabbix_export:
+  version: '6.0'
+  date: '2022-08-23T14:48:04Z'
+  groups:
+    -
+      uuid: 846977d1dfed4968bc5f8bdb363285bc
+      name: 'Templates/Operating systems'
+  templates:
+    -
+      uuid: edc9f0a5a5d54797bf68e37364743831
+      template: 'Template OS Linux'
+      name: 'Template OS Linux'
+      templates:
+        -
+          name: 'Template App Zabbix Agent'
+        -
+          name: 'Template Linux Ymse'
+        -
+          name: 'Template Module ICMP Ping'
+      groups:
+        -
+          name: 'Templates/Operating systems'
+      items:
+        -
+          uuid: 2c3e9da6cb4a4d8d8674d265a1320d7f
+          name: 'Linux distro architecture'
+          key: custom.distro.arch
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: 53993203f2374fef97dfa87811ca55c9
+          name: 'Linux distro friendly name'
+          key: custom.distro.friendlyname
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: 78791ba6007b49f98aee46ecbbc7159a
+          name: 'Linux distro name'
+          key: custom.distro.name
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: 695f67d7a9e04a6ba076597f929e2147
+          name: 'Linux distro version'
+          key: custom.distro.version
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: a22ba6b5509540f788125f94c0c7c351
+          name: 'Linux filesystem read-only check'
+          key: custom.fsrocheck
+          delay: 60s
+          history: 7d
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: Filesystems
+          triggers:
+            -
+              uuid: de80eb6222c341ffa5d46634baa88b2b
+              expression: 'nodata(/Template OS Linux/custom.fsrocheck,120s)=1'
+              name: 'Linux filesystem read-only - nodata check'
+              priority: INFO
+              manual_close: 'YES'
+            -
+              uuid: 2dcc8e7557674e53afc637fb453b42d4
+              expression: 'find(/Template OS Linux/custom.fsrocheck,,"like","WARNING")=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/Template OS Linux/custom.fsrocheck,,"like","OK")=1'
+              name: 'Linux filesystem read-only check'
+              priority: AVERAGE
+        -
+          uuid: 7cdd7d3cbd524c4fb0fbc84236f27b62
+          name: 'Linux kernel update check'
+          key: custom.kernelversioncheck
+          delay: 1h
+          trends: '0'
+          status: DISABLED
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: 5f17c652a3534d00930705a64e7b1483
+              expression: 'nodata(/Template OS Linux/custom.kernelversioncheck,7200s)=1'
+              name: 'Linux kernel update - nodata check'
+              priority: INFO
+              manual_close: 'YES'
+            -
+              uuid: 3447806b92fc44dbb3e15f8251194288
+              expression: 'find(/Template OS Linux/custom.kernelversioncheck,,"like","WARNING")=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/Template OS Linux/custom.kernelversioncheck,,"like","OK")=1'
+              name: 'Linux kernel update check'
+              priority: WARNING
+        -
+          uuid: df41a45b64fa48e5b92d59eaf18497de
+          name: 'System reboot required'
+          key: custom.rebootcheck
+          delay: 5m
+          trends: '0'
+          value_type: TEXT
+          tags:
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: 9c2d0e74ec5442718f2e2ea7e0d11a32
+              expression: 'find(/Template OS Linux/custom.rebootcheck,,"like","YES")=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/Template OS Linux/custom.rebootcheck,,"like","NO")=1'
+              name: 'System reboot required'
+        -
+          uuid: 94ab7cc2ff5b4edf8e6c3a35b44e0036
+          name: 'System reboot required'
+          type: DEPENDENT
+          key: custom.rebootcheck.3dager
+          delay: '0'
+          description: 'Bruker custom.rebootcheck og lager en numerisk item som brukes til trigger delay'
+          preprocessing:
+            -
+              type: REGEX
+              parameters:
+                - ^(YES)
+                - '1'
+              error_handler: CUSTOM_VALUE
+              error_handler_params: '0'
+          master_item:
+            key: custom.rebootcheck
+          tags:
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: c98920b9165a43ca8806dfc3d8f4f44d
+          name: 'Linux packages upgrade check'
+          key: custom.yumupdatescheck
+          delay: 1h
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: LTRIM
+              parameters:
+                - 'custom.yumupdatescheck '
+          tags:
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: 432ce208caeb42f8a2c08c6073fa1e7b
+              expression: 'find(/Template OS Linux/custom.yumupdatescheck,,"like","OK")=0'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/Template OS Linux/custom.yumupdatescheck,,"like","OK")=1'
+              name: 'Linux packages upgrade check'
+              status: DISABLED
+              priority: WARNING
+            -
+              uuid: 83c4addc6a7843e7b2880a0b4d76f1eb
+              expression: 'find(/Template OS Linux/custom.yumupdatescheck,7d,"like","OK")=0'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/Template OS Linux/custom.yumupdatescheck,,"like","OK")=1'
+              name: 'Linux packages upgrade check - 7 dager'
+              priority: WARNING
+            -
+              uuid: 44f695d99bbc47f19079d67647e1d66a
+              expression: 'nodata(/Template OS Linux/custom.yumupdatescheck,43200s)=1'
+              name: 'Linux package update - nodata check'
+              priority: INFO
+              manual_close: 'YES'
+        -
+          uuid: 6f0d30b413f746f1857c142a7d4ab2dc
+          name: 'Maximum number of opened files'
+          key: kernel.maxfiles
+          delay: 1h
+          history: 1w
+          description: 'It could be increased by using sysctrl utility or modifying file /etc/sysctl.conf.'
+          tags:
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: d56828a661f9498a99cfb645cd8f30fa
+              expression: 'last(/Template OS Linux/kernel.maxfiles)<1024'
+              name: 'Configured max number of opened files is too low on {HOST.NAME}'
+              priority: INFO
+        -
+          uuid: 679313e0039c461a8f34badfb9390545
+          name: 'Maximum number of processes'
+          key: kernel.maxproc
+          delay: 1h
+          history: 1w
+          description: 'It could be increased by using sysctrl utility or modifying file /etc/sysctl.conf.'
+          tags:
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: b9c6644db41a49fbaf84b22c30f72dc4
+              expression: 'last(/Template OS Linux/kernel.maxproc)<256'
+              name: 'Configured max number of processes is too low on {HOST.NAME}'
+              priority: INFO
+        -
+          uuid: 2bb3314953be4cd290cce97926ad6276
+          name: 'Number of running processes'
+          key: 'proc.num[,,run]'
+          history: 1w
+          description: 'Number of processes in running state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+          triggers:
+            -
+              uuid: db6973efddc441e5aa51c65dc1944a13
+              expression: 'avg(/Template OS Linux/proc.num[,,run],5m)>{$MAX_NUMBER_OF_RUNNING_PROCESSES}'
+              name: 'Too many processes running on {HOST.NAME}'
+              priority: WARNING
+        -
+          uuid: 2a555f0290a24ee29f5fb0efb04f6861
+          name: 'Number of httpd processes'
+          key: 'proc.num[httpd]'
+          history: 1w
+          description: 'Total number of smbd processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+        -
+          uuid: a56916daf7c04c44b066399b7dbd3baa
+          name: 'Number of php-fpm processes'
+          key: 'proc.num[php-fpm]'
+          history: 1w
+          description: 'Total number of smbd processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+        -
+          uuid: a72d55e4a6894a8fa8ab28cb8f988c25
+          name: 'Number of smbd processes'
+          key: 'proc.num[smbd]'
+          history: 1w
+          description: 'Total number of smbd processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+        -
+          uuid: 5fdd8462989340659114e6295936068a
+          name: 'Number of sshd processes'
+          key: 'proc.num[sshd]'
+          history: 1w
+          description: 'Total number of sshd processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+        -
+          uuid: 27e69392b6234cffaae3f8c203f92759
+          name: 'Number of xymonlaunch processes'
+          key: 'proc.num[xymonlaunch]'
+          history: 1w
+          description: 'Total number of smbd processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+        -
+          uuid: 160ccce412104e75be08bcedd30c8d29
+          name: 'Number of processes'
+          key: 'proc.num[]'
+          history: 1w
+          description: 'Total number of processes in any state.'
+          tags:
+            -
+              tag: Application
+              value: Processes
+          triggers:
+            -
+              uuid: 8fd5f13d86724242ba1520ff97709fbe
+              expression: 'avg(/Template OS Linux/proc.num[],5m)>{$MAX_NUMBER_OF_PROCESSES}'
+              name: 'Too many processes on {HOST.NAME}'
+              priority: WARNING
+        -
+          uuid: dbe46edd97724bb6bcad126dcfc21098
+          name: 'Host boot time'
+          key: system.boottime
+          delay: 10m
+          history: 1w
+          units: unixtime
+          tags:
+            -
+              tag: Application
+              value: General
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: 4cead1ac32c142958f93fe4c1b17b0f8
+          name: 'Interrupts per second'
+          key: system.cpu.intr
+          history: 1w
+          units: ips
+          preprocessing:
+            -
+              type: CHANGE_PER_SECOND
+              parameters:
+                - ''
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 1cd6d414685a4ccbacf2b0d35b15c815
+          name: 'Processor load (1 min average per core)'
+          key: 'system.cpu.load[percpu,avg1]'
+          history: 1w
+          value_type: FLOAT
+          description: 'The processor load is calculated as system CPU load divided by number of CPU cores.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+          triggers:
+            -
+              uuid: ffca72fa219d48428809d6d832526cfb
+              expression: 'avg(/Template OS Linux/system.cpu.load[percpu,avg1],5m)>{$MAX_PROCESSOR_LOAD}'
+              name: 'Processor load is too high on {HOST.NAME}'
+              priority: WARNING
+        -
+          uuid: 8cf7c02cf20e461e8cd2ece183a3549e
+          name: 'Processor load (5 min average per core)'
+          key: 'system.cpu.load[percpu,avg5]'
+          history: 1w
+          value_type: FLOAT
+          description: 'The processor load is calculated as system CPU load divided by number of CPU cores.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: a8aa7983c18f4788855ff8cd9ec4c926
+          name: 'Processor load (15 min average per core)'
+          key: 'system.cpu.load[percpu,avg15]'
+          history: 1w
+          value_type: FLOAT
+          description: 'The processor load is calculated as system CPU load divided by number of CPU cores.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 4e9dc5be89a04b53a3c51bfa757f24c1
+          name: 'Context switches per second'
+          key: system.cpu.switches
+          history: 1w
+          units: sps
+          preprocessing:
+            -
+              type: CHANGE_PER_SECOND
+              parameters:
+                - ''
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: b508c78f5713493e995a27b94a456506
+          name: 'CPU guest time'
+          key: 'system.cpu.util[,guest]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time spent running a virtual CPU for guest operating systems'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 01909ba9992b4bec9ab2d78e48fa520e
+          name: 'CPU guest nice time'
+          key: 'system.cpu.util[,guest_nice]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time spent running a niced guest (virtual CPU for guest operating systems)'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 3f2ae412e35e4e77913c42bcb4ffbde2
+          name: 'CPU idle time'
+          key: 'system.cpu.util[,idle]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time the CPU has spent doing nothing.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: e2e95d5be1084c9c86543d4096047b03
+          name: 'CPU interrupt time'
+          key: 'system.cpu.util[,interrupt]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The amount of time the CPU has been servicing hardware interrupts.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 46c5c8d4c6a54730a2e2f787a20c5b96
+          name: 'CPU iowait time'
+          key: 'system.cpu.util[,iowait]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'Amount of time the CPU has been waiting for I/O to complete.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+          triggers:
+            -
+              uuid: d40d0d0576bd4aacb5b117f95f623dd4
+              expression: 'avg(/Template OS Linux/system.cpu.util[,iowait],{$DISK_IO_SAMPLETIME})>{$DISK_IO_MAX_PST}'
+              name: 'Disk I/O is overloaded on {HOST.NAME}'
+              priority: WARNING
+              description: 'OS spends significant time waiting for I/O (input/output) operations. It could be indicator of performance issues with storage system.'
+        -
+          uuid: 33c3075263ca4eff8ca6e2482e109986
+          name: 'CPU nice time'
+          key: 'system.cpu.util[,nice]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time the CPU has spent running users'' processes that have been niced.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 685a286f36b84e1d835f660b045b9798
+          name: 'CPU softirq time'
+          key: 'system.cpu.util[,softirq]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The amount of time the CPU has been servicing software interrupts.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: fe3b012c9c0c4a948053ab21f8c9eea0
+          name: 'CPU steal time'
+          key: 'system.cpu.util[,steal]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The amount of CPU ''stolen'' from this virtual machine by the hypervisor for other tasks (such as running another virtual machine).'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 1128787dc4fa4b97af14f048f00c373e
+          name: 'CPU system time'
+          key: 'system.cpu.util[,system]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time the CPU has spent running the kernel and its processes.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: c8122476f16649ef950a23fe9f6c1e38
+          name: 'CPU user time'
+          key: 'system.cpu.util[,user]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          description: 'The time the CPU has spent running users'' processes that are not niced.'
+          tags:
+            -
+              tag: Application
+              value: CPU
+            -
+              tag: Application
+              value: Performance
+        -
+          uuid: 9e656b572c3840fc9289df61b8011bd6
+          name: 'Host name'
+          key: system.hostname
+          delay: 1h
+          history: 1w
+          trends: '0'
+          value_type: CHAR
+          description: 'System host name.'
+          inventory_link: NAME
+          tags:
+            -
+              tag: Application
+              value: General
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: 5f1c31b67601425c90fb98f4992317d7
+              expression: '(last(/Template OS Linux/system.hostname,#1)<>last(/Template OS Linux/system.hostname,#2))>0'
+              recovery_mode: NONE
+              name: 'Hostname was changed on {HOST.NAME}'
+              priority: WARNING
+              manual_close: 'YES'
+        -
+          uuid: b8a5f879099f4f33adc12e83097bf2c9
+          name: 'Host local time'
+          key: system.localtime
+          history: 1w
+          units: unixtime
+          tags:
+            -
+              tag: Application
+              value: General
+            -
+              tag: Application
+              value: OS
+        -
+          uuid: 25164c261b274ea786dd87524196929b
+          name: 'Free swap space'
+          key: 'system.swap.size[,free]'
+          history: 1w
+          units: B
+          tags:
+            -
+              tag: Application
+              value: Memory
+        -
+          uuid: c42386b5947247e3a73bcdbffda72b30
+          name: 'Free swap space in %'
+          key: 'system.swap.size[,pfree]'
+          history: 1w
+          value_type: FLOAT
+          units: '%'
+          tags:
+            -
+              tag: Application
+              value: Memory
+          triggers:
+            -
+              uuid: 1f4b85bb006949f18f73f0bd3f23291e
+              expression: 'last(/Template OS Linux/system.swap.size[,pfree])<{$MIN_FREE_SWAP_SPACE}'
+              name: 'Lack of free swap space on {HOST.NAME}'
+              priority: WARNING
+              description: 'It probably means that the systems requires more physical memory.'
+        -
+          uuid: 4801328922504974a936f6585a0c696c
+          name: 'Total swap space'
+          key: 'system.swap.size[,total]'
+          delay: 1h
+          history: 1w
+          units: B
+          tags:
+            -
+              tag: Application
+              value: Memory
+        -
+          uuid: e87dcaa3544e453dbc78a762627fe974
+          name: 'System information'
+          key: system.uname
+          delay: 1h
+          history: 1w
+          trends: '0'
+          value_type: CHAR
+          description: 'The information as normally returned by ''uname -a''.'
+          inventory_link: OS
+          tags:
+            -
+              tag: Application
+              value: General
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: fa85891b0e6947f58e42dae3d212234e
+              expression: '(last(/Template OS Linux/system.uname,#1)<>last(/Template OS Linux/system.uname,#2))>0'
+              name: 'Host information was changed on {HOST.NAME}'
+              priority: INFO
+        -
+          uuid: 22214fa5dd054ff2b2d059693d454cb0
+          name: 'System uptime'
+          key: system.uptime
+          delay: 10m
+          history: 1w
+          units: uptime
+          tags:
+            -
+              tag: Application
+              value: General
+            -
+              tag: Application
+              value: OS
+          triggers:
+            -
+              uuid: 3d7a71d5591b4b8d821be705a6450d2b
+              expression: 'last(/Template OS Linux/system.uptime)>{$LINUX_MAX_UPTIME}'
+              name: '{HOST.NAME} has been running for over {$LINUX_MAX_UPTIME} without a reboot'
+              priority: WARNING
+              description: 'Se {$LINUX_MAX_UPTIME}'
+            -
+              uuid: 517678f9284c43429c67bd81d5090c54
+              expression: 'change(/Template OS Linux/system.uptime)<0'
+              name: '{HOST.NAME} has just been restarted'
+              priority: INFO
+        -
+          uuid: 455f53504e424fd08c91b1c64354c1d1
+          name: 'Number of logged in users'
+          key: system.users.num
+          history: 1w
+          description: 'Number of users who are currently logged in.'
+          tags:
+            -
+              tag: Application
+              value: OS
+            -
+              tag: Application
+              value: Security
+        -
+          uuid: f37e2658e2764108aea57bf3277618d3
+          name: 'Checksum of /etc/passwd'
+          key: 'vfs.file.cksum[/etc/passwd]'
+          delay: 1h
+          history: 1w
+          tags:
+            -
+              tag: Application
+              value: Security
+          triggers:
+            -
+              uuid: abc4e5489e8e4fad83868d5eab177963
+              expression: '(last(/Template OS Linux/vfs.file.cksum[/etc/passwd],#1)<>last(/Template OS Linux/vfs.file.cksum[/etc/passwd],#2))>0'
+              name: '/etc/passwd has been changed on {HOST.NAME}'
+              priority: WARNING
+        -
+          uuid: 810895f7d5cd48c397e5eb4421fdcbb0
+          name: 'Checksum of /etc/ssh/ssh_host_ecdsa_key.pub'
+          key: 'vfs.file.cksum[/etc/ssh/ssh_host_ecdsa_key.pub]'
+          delay: 15m
+          history: 1w
+          tags:
+            -
+              tag: Application
+              value: Security
+          triggers:
+            -
+              uuid: 361cad11e8984b89a76c34697501c26d
+              expression: '(last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_ecdsa_key.pub],#1)<>last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_ecdsa_key.pub],#2))>0'
+              name: '/etc/ssh/ssh_host_ecdsa_key.pub has been changed on {HOST.NAME}'
+              priority: AVERAGE
+        -
+          uuid: bf2bec4183354fbbb216f61e0c5c178d
+          name: 'Checksum of /etc/ssh/ssh_host_ed25519_key.pub'
+          key: 'vfs.file.cksum[/etc/ssh/ssh_host_ed25519_key.pub]'
+          delay: 15m
+          history: 1w
+          tags:
+            -
+              tag: Application
+              value: Security
+          triggers:
+            -
+              uuid: 09ea3ae7adc84ff4ba2e11e686001174
+              expression: '(last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_ed25519_key.pub],#1)<>last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_ed25519_key.pub],#2))>0'
+              name: '/etc/ssh/ssh_host_ed25519_key.pub has been changed on {HOST.NAME}'
+              priority: AVERAGE
+        -
+          uuid: f0795622b3c84e9f835c409bad6148a1
+          name: 'Checksum of /etc/ssh/ssh_host_rsa_key.pub'
+          key: 'vfs.file.cksum[/etc/ssh/ssh_host_rsa_key.pub]'
+          delay: 15m
+          history: 1w
+          tags:
+            -
+              tag: Application
+              value: Security
+          triggers:
+            -
+              uuid: 0e510e3d44a44946bb7b3b9a6535410c
+              expression: '(last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_rsa_key.pub],#1)<>last(/Template OS Linux/vfs.file.cksum[/etc/ssh/ssh_host_rsa_key.pub],#2))>0'
+              name: '/etc/ssh/ssh_host_rsa_key.pub has been changed on {HOST.NAME}'
+              priority: AVERAGE
+        -
+          uuid: 21e695f785f9449696dfd4c0266866c2
+          name: 'Available memory'
+          key: 'vm.memory.size[available]'
+          history: 1w
+          units: B
+          description: 'Available memory is defined as free+cached+buffers memory.'
+          tags:
+            -
+              tag: Application
+              value: Memory
+          triggers:
+            -
+              uuid: 665ff6ad9eea4e71b20f90940af6a58b
+              expression: 'last(/Template OS Linux/vm.memory.size[available])<{$MIN_MEM_AVAIL}'
+              name: 'Lack of available memory on server {HOST.NAME}'
+              priority: AVERAGE
+        -
+          uuid: 29d122c53a1c471e9b5e7f083cd94a93
+          name: 'Total memory'
+          key: 'vm.memory.size[total]'
+          delay: 1h
+          history: 1w
+          units: B
+          tags:
+            -
+              tag: Application
+              value: Memory
+      discovery_rules:
+        -
+          uuid: b61ebb5701344b7c84d2b86217e954bd
+          name: 'Network interface discovery'
+          key: net.if.discovery
+          delay: 1h
+          filter:
+            conditions:
+              -
+                macro: '{#IFNAME}'
+                value: '@Network interfaces for discovery'
+                formulaid: A
+          description: 'Discovery of network interfaces as defined in global regular expression "Network interfaces for discovery".'
+          item_prototypes:
+            -
+              uuid: 9dfcdcb258004c769b9c1d730f5552ac
+              name: 'Incoming network traffic on {#IFNAME}'
+              key: 'net.if.in[{#IFNAME}]'
+              history: 1w
+              units: bps
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '8'
+              tags:
+                -
+                  tag: Application
+                  value: 'Network interfaces'
+            -
+              uuid: 0c3dd4e928de40eea133d2e376961f9b
+              name: 'Outgoing network traffic on {#IFNAME}'
+              key: 'net.if.out[{#IFNAME}]'
+              history: 1w
+              units: bps
+              preprocessing:
+                -
+                  type: CHANGE_PER_SECOND
+                  parameters:
+                    - ''
+                -
+                  type: MULTIPLIER
+                  parameters:
+                    - '8'
+              tags:
+                -
+                  tag: Application
+                  value: 'Network interfaces'
+          graph_prototypes:
+            -
+              uuid: aa9f75260fc74786aed342426869c276
+              name: 'Network traffic on {#IFNAME}'
+              ymin_type_1: FIXED
+              graph_items:
+                -
+                  drawtype: GRADIENT_LINE
+                  color: 00AA00
+                  item:
+                    host: 'Template OS Linux'
+                    key: 'net.if.in[{#IFNAME}]'
+                -
+                  sortorder: '1'
+                  drawtype: GRADIENT_LINE
+                  color: 3333FF
+                  item:
+                    host: 'Template OS Linux'
+                    key: 'net.if.out[{#IFNAME}]'
+        -
+          uuid: d99e64a41e6b4e57bb9126f761e235fe
+          name: 'Mounted filesystem discovery'
+          key: vfs.fs.discovery
+          delay: 1h
+          filter:
+            conditions:
+              -
+                macro: '{#FSTYPE}'
+                value: '@File systems for discovery'
+                formulaid: B
+              -
+                macro: '{#FSNAME}'
+                value: '@Filesystems to ignore by mountpoint'
+                operator: NOT_MATCHES_REGEX
+                formulaid: A
+          description: 'Discovery of file systems of different types as defined in global regular expression "File systems for discovery".'
+          item_prototypes:
+            -
+              uuid: 3fd5f0e4403f411986ed98dc911f9f5d
+              name: 'Free inodes on {#FSNAME} (percentage)'
+              key: 'vfs.fs.inode[{#FSNAME},pfree]'
+              history: 1w
+              value_type: FLOAT
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Filesystems
+              trigger_prototypes:
+                -
+                  uuid: d364415d4f754401b8413d0971f06100
+                  expression: 'last(/Template OS Linux/vfs.fs.inode[{#FSNAME},pfree])<20'
+                  name: 'Free inodes is less than 20% on volume {#FSNAME}'
+                  priority: WARNING
+            -
+              uuid: 8d0f848e29ef482c9ff4329fbbe47dab
+              name: 'Free disk space on {#FSNAME}'
+              key: 'vfs.fs.size[{#FSNAME},free]'
+              history: 1w
+              units: B
+              tags:
+                -
+                  tag: Application
+                  value: Filesystems
+              trigger_prototypes:
+                -
+                  uuid: 666da8a679ba40cea6db18dd6bbed03c
+                  expression: 'last(/Template OS Linux/vfs.fs.size[{#FSNAME},free])<{$LOW_SPACE:"{#FSNAME}"}'
+                  name: 'Free disk space is less than {$LOW_SPACE:"{#FSNAME}"} on volume {#FSNAME}'
+                  status: DISABLED
+                  priority: AVERAGE
+            -
+              uuid: 959519ac683e49579cd63bdbd22b2748
+              name: 'Free disk space on {#FSNAME} (percentage)'
+              key: 'vfs.fs.size[{#FSNAME},pfree]'
+              history: 1w
+              value_type: FLOAT
+              units: '%'
+              tags:
+                -
+                  tag: Application
+                  value: Filesystems
+              trigger_prototypes:
+                -
+                  uuid: 4277bb241c2643ea88bed5106a5ffb31
+                  expression: 'last(/Template OS Linux/vfs.fs.size[{#FSNAME},pfree])<{$LOW_SPACE_PR:"{#FSNAME}"}'
+                  name: 'Free disk space is less than {$LOW_SPACE_PR:"{#FSNAME}"}% on volume {#FSNAME}'
+                  priority: AVERAGE
+            -
+              uuid: 244717e2a2814e7b9ef511e15874678a
+              name: 'Total disk space on {#FSNAME}'
+              key: 'vfs.fs.size[{#FSNAME},total]'
+              delay: 1h
+              history: 1w
+              units: B
+              tags:
+                -
+                  tag: Application
+                  value: Filesystems
+            -
+              uuid: 0f1c38fb55b74deabae4db657534be2b
+              name: 'Used disk space on {#FSNAME}'
+              key: 'vfs.fs.size[{#FSNAME},used]'
+              history: 1w
+              units: B
+              tags:
+                -
+                  tag: Application
+                  value: Filesystems
+          graph_prototypes:
+            -
+              uuid: b15c43ed55564882aff4432bcea20d07
+              name: 'Disk space usage {#FSNAME}'
+              width: '600'
+              height: '340'
+              show_work_period: 'NO'
+              show_triggers: 'NO'
+              graph_items:
+                -
+                  sortorder: '1'
+                  color: C80000
+                  type: GRAPH_SUM
+                  item:
+                    host: 'Template OS Linux'
+                    key: 'vfs.fs.size[{#FSNAME},total]'
+                -
+                  sortorder: '2'
+                  color: 00C800
+                  item:
+                    host: 'Template OS Linux'
+                    key: 'vfs.fs.size[{#FSNAME},free]'
+      macros:
+        -
+          macro: '{$DISK_IO_MAX_PST}'
+          value: '25'
+        -
+          macro: '{$DISK_IO_SAMPLETIME}'
+          value: 5m
+        -
+          macro: '{$LINUX_KERNEL_UPDATE_MAX_TIME}'
+          value: 7d
+        -
+          macro: '{$LINUX_MAX_UPTIME}'
+          value: 120d
+          description: '7776000 er (60*60*24)=86400*90=90 dager.'
+        -
+          macro: '{$LOW_SPACE}'
+          value: 2G
+        -
+          macro: '{$LOW_SPACE:"/"}'
+          value: 500M
+        -
+          macro: '{$LOW_SPACE:"/boot"}'
+          value: 10M
+        -
+          macro: '{$LOW_SPACE:"/data"}'
+          value: 10G
+        -
+          macro: '{$LOW_SPACE:"/var"}'
+          value: 10G
+        -
+          macro: '{$LOW_SPACE_PR}'
+          value: '10'
+        -
+          macro: '{$LOW_SPACE_PR:"/"}'
+          value: '15'
+        -
+          macro: '{$LOW_SPACE_PR:"/boot"}'
+          value: '15'
+        -
+          macro: '{$LOW_SPACE_PR:"/data"}'
+          value: '5'
+        -
+          macro: '{$LOW_SPACE_PR:"/var"}'
+          value: '5'
+        -
+          macro: '{$MAX_NUMBER_OF_PROCESSES}'
+          value: '500'
+        -
+          macro: '{$MAX_NUMBER_OF_RUNNING_PROCESSES}'
+          value: '30'
+        -
+          macro: '{$MIN_FREE_SWAP_SPACE}'
+          value: '40'
+        -
+          macro: '{$MIN_MEM_AVAIL}'
+          value: 20M
+      dashboards:
+        -
+          uuid: facf223bf2dd4fcaa11d3cdacdcb032a
+          name: 'System performance'
+          pages:
+            -
+              widgets:
+                -
+                  type: GRAPH_CLASSIC
+                  x: '12'
+                  'y': '5'
+                  width: '12'
+                  height: '7'
+                  fields:
+                    -
+                      type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template OS Linux'
+                        name: 'Swap usage'
+                -
+                  type: GRAPH_CLASSIC
+                  'y': '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: source_type
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemid
+                      value:
+                        host: 'Template OS Linux'
+                        key: 'proc.num[]'
+                -
+                  type: GRAPH_CLASSIC
+                  x: '12'
+                  'y': '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    -
+                      type: INTEGER
+                      name: source_type
+                      value: '1'
+                    -
+                      type: ITEM
+                      name: itemid
+                      value:
+                        host: 'Template OS Linux'
+                        key: 'proc.num[,,run]'
+                -
+                  type: GRAPH_CLASSIC
+                  width: '12'
+                  height: '5'
+                  fields:
+                    -
+                      type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template OS Linux'
+                        name: 'CPU load'
+                -
+                  type: GRAPH_CLASSIC
+                  x: '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    -
+                      type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template OS Linux'
+                        name: 'CPU utilization'
+                -
+                  type: GRAPH_CLASSIC
+                  'y': '5'
+                  width: '12'
+                  height: '7'
+                  fields:
+                    -
+                      type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template OS Linux'
+                        name: 'Memory usage'
+  triggers:
+    -
+      uuid: 56d565b3bbf747b4a02a5154bf48b5d0
+      expression: |
+        nodata(/Template OS Linux/custom.fsrocheck,120s)=1 or
+        nodata(/Template OS Linux/custom.kernelversioncheck,7200s)=1 or
+        nodata(/Template OS Linux/custom.yumupdatescheck,43200s)=1
+      recovery_mode: RECOVERY_EXPRESSION
+      recovery_expression: |
+        nodata(/Template OS Linux/custom.fsrocheck,120s)=0 and
+        nodata(/Template OS Linux/custom.kernelversioncheck,120s)=0 and
+        nodata(/Template OS Linux/custom.yumupdatescheck,120s)=0
+      name: 'General nodata check'
+      status: DISABLED
+      priority: INFO
+    -
+      uuid: 3a9a1a43aceb43e88fc4783d105c4fd6
+      expression: |
+        last(/Template OS Linux/system.hostname)<>
+        last(/Template OS Linux/agent.hostname)
+      name: 'Host name not same as Zabbix agent and/or Zabbix DB name'
+      status: DISABLED
+      manual_close: 'YES'
+    -
+      uuid: 67e720fe4a304c4f8763d50ed817757f
+      expression: 'min(/Template OS Linux/custom.rebootcheck.3dager,3d)>0 and find(/Template OS Linux/custom.rebootcheck,,"like","YES")=1'
+      recovery_mode: RECOVERY_EXPRESSION
+      recovery_expression: 'find(/Template OS Linux/custom.rebootcheck,,"like","NO")=1'
+      name: 'System reboot required - 3 dager'
+      priority: WARNING
+      description: 'Venter på reboot. 3 dagers forsinkelse på varsling i Zabbix'
+    -
+      uuid: 61416fc042ca49cdabb5866263cb51c7
+      expression: '(avg(/Template OS Linux/proc.num[],5m)-avg(/Template OS Linux/proc.num[smbd],5m))>{$MAX_NUMBER_OF_PROCESSES}'
+      name: 'Too many non-smb processes on {HOST.NAME}'
+      priority: WARNING
+  graphs:
+    -
+      uuid: b3df089f2510423499ebf9233b1ddb38
+      name: 'CPU jumps'
+      graph_items:
+        -
+          color: '009900'
+          item:
+            host: 'Template OS Linux'
+            key: system.cpu.switches
+        -
+          sortorder: '1'
+          color: '000099'
+          item:
+            host: 'Template OS Linux'
+            key: system.cpu.intr
+    -
+      uuid: ddbadd2946274c3abb1da2973b847a10
+      name: 'CPU load'
+      ymin_type_1: FIXED
+      graph_items:
+        -
+          color: '009900'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.load[percpu,avg1]'
+        -
+          sortorder: '1'
+          color: '000099'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.load[percpu,avg5]'
+        -
+          sortorder: '2'
+          color: '990000'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.load[percpu,avg15]'
+    -
+      uuid: 909f5eb8e42f41b992deab2316a0a83b
+      name: 'CPU utilization'
+      show_triggers: 'NO'
+      type: STACKED
+      ymin_type_1: FIXED
+      ymax_type_1: FIXED
+      graph_items:
+        -
+          color: F230E0
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,guest_nice]'
+        -
+          sortorder: '1'
+          color: 5CCD18
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,guest]'
+        -
+          sortorder: '2'
+          drawtype: FILLED_REGION
+          color: FF5555
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,steal]'
+        -
+          sortorder: '3'
+          drawtype: FILLED_REGION
+          color: 55FF55
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,softirq]'
+        -
+          sortorder: '4'
+          drawtype: FILLED_REGION
+          color: '009999'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,interrupt]'
+        -
+          sortorder: '5'
+          drawtype: FILLED_REGION
+          color: '990099'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,nice]'
+        -
+          sortorder: '6'
+          drawtype: FILLED_REGION
+          color: '999900'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,iowait]'
+        -
+          sortorder: '7'
+          drawtype: FILLED_REGION
+          color: '990000'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,system]'
+        -
+          sortorder: '8'
+          drawtype: FILLED_REGION
+          color: '000099'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,user]'
+        -
+          sortorder: '9'
+          drawtype: FILLED_REGION
+          color: '009900'
+          item:
+            host: 'Template OS Linux'
+            key: 'system.cpu.util[,idle]'
+    -
+      uuid: 63962d90e11e4ed0992dbc6aed212cde
+      name: 'Memory usage'
+      ymin_type_1: FIXED
+      ymax_type_1: ITEM
+      ymax_item_1:
+        host: 'Template OS Linux'
+        key: 'vm.memory.size[total]'
+      graph_items:
+        -
+          drawtype: GRADIENT_LINE
+          color: 00C800
+          item:
+            host: 'Template OS Linux'
+            key: 'vm.memory.size[available]'
+    -
+      uuid: 6cdb8e0be1884a79b3bf35b00f4288e8
+      name: 'Number of processes'
+      graph_items:
+        -
+          color: F63100
+          item:
+            host: 'Template OS Linux'
+            key: 'proc.num[]'
+    -
+      uuid: 824e84bf33da46278d3f707d76661085
+      name: 'Number of smbd processes'
+      graph_items:
+        -
+          color: 199C0D
+          item:
+            host: 'Template OS Linux'
+            key: 'proc.num[smbd]'
+    -
+      uuid: 229091297b684721b676add922834065
+      name: 'Swap usage'
+      width: '600'
+      height: '340'
+      show_work_period: 'NO'
+      show_triggers: 'NO'
+      graph_items:
+        -
+          sortorder: '1'
+          color: AA0000
+          type: GRAPH_SUM
+          item:
+            host: 'Template OS Linux'
+            key: 'system.swap.size[,total]'
+        -
+          sortorder: '2'
+          color: 00AA00
+          item:
+            host: 'Template OS Linux'
+            key: 'system.swap.size[,free]'

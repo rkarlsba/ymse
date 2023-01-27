@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-11-02T14:46:41Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template App Keepalived</template>
+            <name>Template App Keepalived</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Keepalived</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Keepalived: has master IP</name>
+                    <key>ka.master.ip</key>
+                    <applications>
+                        <application>
+                            <name>Keepalived</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>Keepalived host status</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{prev()}=2 and {last()}=1</expression>
+                            <name>Keepalived: state change from BACKUP to MASTER</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>{prev()}=1 and {last()}=2</expression>
+                            <name>Keepalived: state change from MASTER to BACKUP</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Keepalived: is master</name>
+                    <key>proc.num[ipvs_syncmaster]</key>
+                    <delay>60</delay>
+                    <history>1d</history>
+                    <applications>
+                        <application>
+                            <name>Keepalived</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{prev()}=0 and {last()}=1</expression>
+                            <name>Keepalived: state change from BACKUP to MASTER</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                        <trigger>
+                            <expression>{prev()}=1 and {last()}=0</expression>
+                            <name>Keepalived: state change from MASTER to BACKUP</name>
+                            <priority>WARNING</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Keepalived: process count</name>
+                    <key>proc.num[keepalived]</key>
+                    <delay>60</delay>
+                    <history>1d</history>
+                    <applications>
+                        <application>
+                            <name>Keepalived</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Keepalived: is IP router</name>
+                    <key>vfs.file.regmatch[/proc/sys/net/ipv4/ip_forward,^1$,,,]</key>
+                    <delay>60</delay>
+                    <history>1d</history>
+                    <applications>
+                        <application>
+                            <name>Keepalived</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template App Keepalived:ka.master.ip.prev()}=2 and {Template App Keepalived:vfs.file.regmatch[/proc/sys/net/ipv4/ip_forward,^1$,,,].last()}=0</expression>
+            <name>Keepalived: state is BACKUP but it's not a router</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:proc.num[ipvs_syncmaster].last()}=0 and {Template App Keepalived:vfs.file.regmatch[/proc/sys/net/ipv4/ip_forward,^1$,,,].last()}=0</expression>
+            <name>Keepalived: state is BACKUP but it's not a router</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:ka.master.ip.prev()}=2 and {Template App Keepalived:proc.num[keepalived].last()}&lt;2</expression>
+            <name>Keepalived: state is BACKUP but it's stopped</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:proc.num[ipvs_syncmaster].last()}=0 and {Template App Keepalived:proc.num[keepalived].last()}&lt;2</expression>
+            <name>Keepalived: state is BACKUP but it's stopped</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:ka.master.ip.prev()}=1 and {Template App Keepalived:vfs.file.regmatch[/proc/sys/net/ipv4/ip_forward,^1$,,,].last()}=0</expression>
+            <name>Keepalived: state is MASTER but it's not a router</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:proc.num[ipvs_syncmaster].last()}=1 and {Template App Keepalived:vfs.file.regmatch[/proc/sys/net/ipv4/ip_forward,^1$,,,].last()}=0</expression>
+            <name>Keepalived: state is MASTER but it's not a router</name>
+            <priority>DISASTER</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:ka.master.ip.prev()}=1 and {Template App Keepalived:proc.num[keepalived].last()}&lt;2</expression>
+            <name>Keepalived: state is MASTER but it's stopped</name>
+            <priority>HIGH</priority>
+        </trigger>
+        <trigger>
+            <expression>{Template App Keepalived:proc.num[ipvs_syncmaster].last()}=1 and {Template App Keepalived:proc.num[keepalived].last()}&lt;2</expression>
+            <name>Keepalived: state is MASTER but it's stopped</name>
+            <priority>DISASTER</priority>
+        </trigger>
+    </triggers>
+    <value_maps>
+        <value_map>
+            <name>Keepalived host status</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Unknown</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Master</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>Backup</newvalue>
+                </mapping>
+                <mapping>
+                    <value>3</value>
+                    <newvalue>Fault</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>

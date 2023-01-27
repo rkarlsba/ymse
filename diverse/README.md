@@ -1,0 +1,39 @@
+[//]: # vim:textwidth=80
+# Testdata i teststat.txt
+
+Laga et raid på 10 disker, slengte til to spares
+
+	Personalities : [raid1] [raid6] [raid5] [raid4] [linear] [multipath] [raid0] [raid10]
+	md2 : active raid6 sdaa[11](S) sdab[10](S) sdz[9] sdy[8] sdx[7] sdw[6] sdv[5] sdu[4] sdt[3] sds[2] sdr[1] sdq[0]
+	      67035136 blocks super 1.2 level 6, 512k chunk, algorithm 2 [10/10] [UUUUUUUUUU]
+
+	md0 : active raid1 sdas1[4] sdar1[3]
+	      33536000 blocks super 1.2 [2/2] [UU]
+
+	md127 : active raid1 sdh[1] sdg[0]
+	      16759808 blocks super 1.2 [2/2] [UU]
+
+	md1 : active raid5 sdp[4] sdo[2] sdn[1] sdm[0]
+	      25138176 blocks super 1.2 level 5, 512k chunk, algorithm 2 [4/4] [UUUU]
+
+	unused devices: <none>
+
+Så en "mdadm --fail /dev/md2 /dev/sdz".
+
+Personalities : [raid1] [raid6] [raid5] [raid4] [linear] [multipath] [raid0] [raid10]
+md2 : active raid6 sdaa[11] sdab[10](S) sdz[9](F) sdy[8] sdx[7] sdw[6] sdv[5] sdu[4] sdt[3] sds[2] sdr[1] sdq[0]
+      67035136 blocks super 1.2 level 6, 512k chunk, algorithm 2 [10/9] [UUUUUUUUU_]
+      [>....................]  recovery =  2.8% (237580/8379392) finish=2.2min speed=59395K/sec
+
+md0 : active raid1 sdas1[4] sdar1[3]
+      33536000 blocks super 1.2 [2/2] [UU]
+
+md127 : active raid1 sdh[1] sdg[0]
+      16759808 blocks super 1.2 [2/2] [UU]
+
+md1 : active raid5 sdp[4] sdo[2] sdn[1] sdm[0]
+      25138176 blocks super 1.2 level 5, 512k chunk, algorithm 2 [4/4] [UUUU]
+
+unused devices: <none>
+
+

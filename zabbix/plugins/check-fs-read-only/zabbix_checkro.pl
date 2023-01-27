@@ -88,6 +88,7 @@ if ($^O eq "linux") {
 	while (my $line = <$mounts>) {
 		($dev,$mp,$fst,$opts) = split(/\s+/, $line);
 		next unless ($fstypes{$fst});
+		next if ($mp =~ /^\/var\/snap\//);
 		my @optarr = split(/,/,$opts);
 		push @rofilesystems, "$dev on $mp" if (grep $_ eq "ro", @optarr );
 		print "Checking $fst filesystem $dev mounted on $mp\n" if (defined($verbose_a));
@@ -108,7 +109,7 @@ if ($^O eq "linux") {
 		# if ($line =~ m/(^[a-z0-9\/]+)\s+on\s+\(\w+)\s+(.*?)/) {
 		# }}}
 		if ($line =~ m/(^[a-zA-Z0-9\/]+|map auto_home)\son\s([a-zA-Z0-9\/]+)\s\((\w+), (.*?)\)/) {
-			($dev,$mp,$fst,$opts) = ($1,$2,$3,$4);
+			print "mp er $mp\n";
 			foreach my $opt (split(/,\s*/, $opts,)) {
 				if ($opt eq "read-only") {
 					$fscount++;
