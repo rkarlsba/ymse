@@ -100,34 +100,29 @@ case $DISTRO in
             then
                 break
             fi
-            if [ "$arg" == "--direct" ]
-            then
-                mode="direct"
-            elif [ "$arg" == "--quiet" ]
-            then
-                QUIET=1
-            elif [ "$arg" == "--local" ]
-            then
-                mode="local"
-            elif [ "$arg" == "--cron" ]
-            then
-                mode="cron"
-            elif [ "$arg" == "--clean" ]
-            then
-                rm -f $OUTFILE
-                exit 0
-            elif [ "$arg" == "--help" ]
-            then
-                printhelp
-            elif [ "$arg" == "--emulated" ]
-            then
-                EMULATED=1
-            else
-                echo "Unknown mode \"$arg\". Please see --help" >&2
-                exit 3
-            fi
+            case $arg in
+                "--direct")
+                "--quiet")
+                    QUIET=1
+                "--local")
+                "--help")
+                "--emulated")
+                    EMULATED=1
+                    mode=${arg:2}
+                    ;;
+                "--clean")
+                    rm -f $OUTFILE
+                    exit 0
+                    ;;
+                *)
+                    echo "Unknown mode \"$arg\". Please see --help" >&2
+                    exit 3
+                    ;;
+            esac
+            echo mode is $mode
             shift
         done
+        exit 1
 
         [ "$EMULATED" -gt 0 ] && NEEDSRESTARTING="$EMUSCRIPT"
 
