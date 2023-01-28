@@ -77,9 +77,28 @@ zabbix-check-needs-reboot.sh [ --direct | --cron | --local | --clean | --help ]
     exit 0
 }
 
-DISTRO=$( zabbix_linux_distro_check.pl )
-DISTRO_VERS=$( zabbix_linux_distro_check.pl --vers )
-FULL_DISTRO_NAME=$( zabbix_linux_distro_check.pl --friendly )
+linux_distro_check='zabbix_linux_distro_check.pl'
+
+# Sanity check
+OS=$( uname -s )
+case $OS in
+    Linux)
+        linux_distro_check_cmd=$( which $linux_distro_check )
+        if [ $? -ne 0 ]
+        then
+            echo "Can't find distro check tool '$linux_distro_check': $!"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Sorry, operating system $OS isn't supported by this check"
+        exit 2
+        ;;
+esac
+
+DISTRO=$( $linux_distro_check_cmd )
+DISTRO_VERS=$( $linux_distro_check_cmd --vers )
+FULL_DISTRO_NAME=$( $linux_distro_check_cmd --friendly )
 
 case $DISTRO in
     rhel|centos)
