@@ -11,7 +11,7 @@ reader = SimpleMFRC522()
 try:
     id, text = reader.read()
     print(f"ID:\t{id}\t{hex(id)}")
-    print("Text:\t", text)
+    print(f"Text:\t'{text}' [{len(text)}]", )
 finally:
     GPIO.cleanup()
 
