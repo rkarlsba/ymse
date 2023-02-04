@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/CMakeFiles/bootloader
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/CMakeFiles/bootloader.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/CMakeFiles/bootloader-complete.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

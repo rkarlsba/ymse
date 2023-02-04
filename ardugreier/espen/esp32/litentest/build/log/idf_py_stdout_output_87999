@@ -1,0 +1,5 @@
+[1/4] cd /Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/esp-idf/esptool_py && /Users/roy/.espressif/python_env/idf5.1_py3.10_env/bin/python /Users/roy/src/git/espressif/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/partition_table/partition-table.bin /Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/litentest.bin
+litentest.bin binary size 0xb8a80 bytes. Smallest app partition is 0x100000 bytes. 0x47580 bytes (28%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] cd /Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader/esp-idf/esptool_py && /Users/roy/.espressif/python_env/idf5.1_py3.10_env/bin/python /Users/roy/src/git/espressif/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader/bootloader.bin
+Bootloader binary size 0x6720 bytes. 0x8e0 bytes (8%) free.

@@ -1,0 +1,25 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/Users/roy/src/git/espressif/esp-idf/components/bootloader/subproject",
+    "build_dir":          "/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/build/bootloader",
+    "config_file":        "/Users/roy/src/git/rkarlsba/ymse/ardugreier/espen/esp32/litentest/sdkconfig",
+    "config_defaults":    "",
+    "bootloader_elf":     "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "v5.1-dev-2884-g8a7f6af625",
+    "target":             "esp32",
+    "rev":                "0",
+    "min_rev":            "0",
+    "max_rev":            "399",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/Users/roy/src/git/espressif/esp-idf/components/efuse/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/esp_common/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/esp_hw_support/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/esp_system/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/freertos/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/hal/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/log/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/newlib/Kconfig;/Users/roy/src/git/espressif/esp-idf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/Users/roy/src/git/espressif/esp-idf/components/bootloader/Kconfig.projbuild;/Users/roy/src/git/espressif/esp-idf/components/esp_app_format/Kconfig.projbuild;/Users/roy/src/git/espressif/esp-idf/components/esp_rom/Kconfig.projbuild;/Users/roy/src/git/espressif/esp-idf/components/esptool_py/Kconfig.projbuild;/Users/roy/src/git/espressif/esp-idf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp_app_format", "esp_common", "esp_hw_support", "esp_rom", "esp_system", "esptool_py", "freertos", "hal", "log", "main", "micro-ecc", "newlib", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/Users/roy/src/git/espressif/esp-idf/components/bootloader", "/Users/roy/src/git/espressif/esp-idf/components/bootloader_support", "/Users/roy/src/git/espressif/esp-idf/components/efuse", "/Users/roy/src/git/espressif/esp-idf/components/esp_app_format", "/Users/roy/src/git/espressif/esp-idf/components/esp_common", "/Users/roy/src/git/espressif/esp-idf/components/esp_hw_support", "/Users/roy/src/git/espressif/esp-idf/components/esp_rom", "/Users/roy/src/git/espressif/esp-idf/components/esp_system", "/Users/roy/src/git/espressif/esp-idf/components/esptool_py", "/Users/roy/src/git/espressif/esp-idf/components/freertos", "/Users/roy/src/git/espressif/esp-idf/components/hal", "/Users/roy/src/git/espressif/esp-idf/components/log", "/Users/roy/src/git/espressif/esp-idf/components/bootloader/subproject/main", "/Users/roy/src/git/espressif/esp-idf/components/bootloader/subproject/components/micro-ecc", "/Users/roy/src/git/espressif/esp-idf/components/newlib", "/Users/roy/src/git/espressif/esp-idf/components/partition_table", "/Users/roy/src/git/espressif/esp-idf/components/soc", "/Users/roy/src/git/espressif/esp-idf/components/spi_flash", "/Users/roy/src/git/espressif/esp-idf/components/xtensa", "" ],
+    "debug_prefix_map_gdbinit": ""
+}
