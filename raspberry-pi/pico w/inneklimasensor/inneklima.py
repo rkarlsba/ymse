@@ -2,13 +2,19 @@
 import utime
 from machine import Pin, I2C
 import network
-from umqtt.simple import MQTTClient
 import ubinascii
 import gc
+
+# secrets.py should contain something like this:
+# wifi_auth = {
+#     'ssid': 'mylilnetvork',
+#     'pw': 'supasekret'
+# }
 
 # These are local
 from secrets import wifi_auth
 import ahtx0
+from umqtt_simple import MQTTClient
 
 # Server names etc
 mqtt_server = 'mqtt.karlsbakk.net'
@@ -19,7 +25,10 @@ topic_pub = b'hello'
 # Connect to the network
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
-wlan.config(pm = 0xa11140) # Diable powersave mode
+# The MH-Z19 CO2 sensor will eat far too much power for this to be
+# run off battery anyway, so just disable powersave mode to avoid
+# any potential issues there.
+wlan.config(pm = 0xa11140)
 wlan.connect(wifi_auth["ssid"], wifi_auth["pw"])
 
 max_wait = 10
