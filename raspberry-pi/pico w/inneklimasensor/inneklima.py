@@ -5,6 +5,9 @@ import network
 import ubinascii
 import gc
 
+# import ahtx0
+from umqtt.simple import MQTTClient
+
 # secrets.py should contain something like this:
 # wifi_auth = {
 #     'ssid': 'mylilnetvork',
@@ -13,8 +16,6 @@ import gc
 
 # These are local
 from secrets import wifi_auth
-import ahtx0
-from umqtt_simple import MQTTClient
 
 # Server names etc
 mqtt_server = 'mqtt.karlsbakk.net'
@@ -58,3 +59,5 @@ while True:
     print("\nTemperature: %0.2f C" % sensor.temperature)
     print("Humidity: %0.2f %%" % sensor.relative_humidity)
     utime.sleep(5)
+    
+
