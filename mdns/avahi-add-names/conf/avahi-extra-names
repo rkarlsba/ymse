@@ -1,0 +1,15 @@
+# vim:ft=sh
+
+# Copy this file to /etc/default and change its contents to your likings
+
+# Which NIC to use to lookup IP address
+# EXTRA_MDNS_NIC='eth0'    # If wired
+EXTRA_MDNS_NIC='wlan0'     # Or if on wifi
+
+# Names to be added to mDNS
+EXTRA_MDNS_NAMES='test42.local moretest.local'
+
+# Set this to 1 or 42 or something nice to actully make some change, not just
+# brag about it.
+EXTRA_MDNS_NAMES_DOIT=0
+
