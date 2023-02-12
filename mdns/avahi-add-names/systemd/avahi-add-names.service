@@ -1,0 +1,10 @@
+; vim:isfname-==
+[Unit]
+Description=Add some mDNS names
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/avahi-add-names.sh
+
+[Install]
+WantedBy=multi-user.target

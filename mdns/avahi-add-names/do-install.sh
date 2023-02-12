@@ -1,20 +1,31 @@
 #!/bin/bash
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-SRC_SCRIPT='bin/
+SERVICE='avahi-add-names.service'
+
+SRC_SCRIPT='bin/avahi-add-names.sh'
+SRC_CONFIG='conf/avahi-add-names'
+SRC_SERVICE='systemd/$SERVICE'
+
 DST_SCRIPT='/usr/local/sbin/avahi-add-names.sh'
-CONFIG='/etc/default/avahi-add-names'
+DST_CONFIG='/etc/default/avahi-add-names'
+DST_SERVICE='/etc/systemd/system/$SERVICE'
 
-if [ -f $SCRIPT ]
+if [ -f $DST_SCRIPT ]
 then
-	mv -f $SCRIPT $SCRIPT.bk
+    mv -f $DST_SCRIPT $DST_SCRIPT.bk
+fi
+cp -f $SRC_SCRIPT $DST_SCRIPT
+
+if [ -f $DST_CONFIG ]
+then
+    cp $SRC_CONFIG $DST_CONFIG.new
+else
+    cp $SRC_CONFIG $DST_CONFIG
 fi
 
-├── bin
-│   └── avahi-add-names.sh
-├── conf
-│   └── avahi-extra-names
-├── do-install.sh
-├── Makefile
-└── README.md
+cp -f $SRC_SERVICE $DST_SERVICE
+systemctl enable $SERVICE
+systemctl start $SERVICE
 
-2 directories, 5 files
+echo "All hopefully installed"
