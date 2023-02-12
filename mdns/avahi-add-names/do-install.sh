@@ -1,15 +1,15 @@
 #!/bin/bash
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-SERVICE='avahi-add-names.service'
+SERVICE="avahi-add-names.service"
 
-SRC_SCRIPT='bin/avahi-add-names.sh'
-SRC_CONFIG='conf/avahi-add-names'
-SRC_SERVICE='systemd/$SERVICE'
+SRC_SCRIPT="bin/avahi-add-names.sh"
+SRC_CONFIG="conf/avahi-add-names"
+SRC_SERVICE="systemd/$SERVICE"
 
-DST_SCRIPT='/usr/local/sbin/avahi-add-names.sh'
-DST_CONFIG='/etc/default/avahi-add-names'
-DST_SERVICE='/etc/systemd/system/$SERVICE'
+DST_SCRIPT="/usr/local/sbin/avahi-add-names.sh"
+DST_CONFIG="/etc/default/avahi-add-names"
+DST_SERVICE="/etc/systemd/system/$SERVICE"
 
 if [ -f $DST_SCRIPT ]
 then
