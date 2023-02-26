@@ -1,0 +1,10 @@
+# memstress TODO
+# vim:ft=txt:tw=80
+
+* 2011-03-13 Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+
+The code should be rewritten to multithreaded code. On most SMP systems today, a
+processor has local memory, but can access another processor's memory. Rewriting
+this to multithreaded will allow for faster and possibly more relevant testing.
+An ugly work-around is to start multiple jobs of the current code.
+
