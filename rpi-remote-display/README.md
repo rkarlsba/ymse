@@ -1,0 +1,1 @@
+[https://pierre-couy.dev/tinkering/2023/03/turning-rpi-into-external-monitor-driver.html](artikkel)
