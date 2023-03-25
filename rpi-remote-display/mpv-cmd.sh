@@ -1,4 +1,6 @@
+#!/bin/bash
 # vim:ts=4:sw=4:sts=4:et:ai
+
 mpv \
 	-vo=gpu \
 	--gpu-context=drm \
