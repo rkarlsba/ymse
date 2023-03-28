@@ -63,7 +63,6 @@ else
     else
         echo -n "OK: "
         cat $f_time | perl -ne 'if (/(\d+\.\d+)user (\d+\.\d+)system (\d+\:\d+\.\d+)elapsed/) { print "Time spent in DNS request: User $1, System $2, Elapsed $3\n"; }'
-        echo $?
     fi
 fi
 
