@@ -23,5 +23,8 @@ esac
 # Slett gammel flash
 esptool.py -p $USB_DEVICE erase_flash --flash_size detect
 
-# Skriv ny
-esptool.py -p $USB_DEVICE write_flash --flash_size detect 0x0 WLED_0.14.0-b1_ESP8266.bin
+# Legg inn bootloader
+esptool.py -p $USB_DEVICE write_flash --flash_size detect 0x0 esp32_bootloader_v4.bin
+
+# Legg inn firmware
+esptool.py -p $USB_DEVICE write_flash --flash_size detect 0x10000 WLED_0.14.0-b1_ESP32.bin

@@ -5,6 +5,7 @@
 # Released under AGPLv3
 
 max_timeout=5
+noserver=0
 
 syntax() {
     echo "Syntax: $0 <zone> <server>" >&2
@@ -13,10 +14,18 @@ syntax() {
     exit 1
 }
 
-[ $# -eq 2 ] || syntax
+if [ $# -ne 1 ] && [ $# -ne 2 ]
+then
+    syntax
+fi
 
 zone=$1
 server=$2
+
+if [ "$server"="" ]
+then
+    noserver=1
+fi
 
 f_stdout=$( mktemp -q )
 f_stderr=$( mktemp -q )
