@@ -46,7 +46,6 @@ if [ $bashtime -gt 0 ]
 then
     command timeout $max_timeout host $zone $server > $f_stdout 2> $f_stderr
 else
-    echo "command timeout $max_timeout time -o $f_time host $zone $server "
     command timeout $max_timeout time -o $f_time host $zone $server > $f_stdout 2> $f_stderr
 fi
 exitcode=$?
