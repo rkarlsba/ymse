@@ -6,8 +6,11 @@ use warnings;
 
 my $debug = 0; # set to 0 for a normal run
 my $fn = '/proc/mdstat';
+$fn = 'mdstat.txt' if ($debug);
 my $dev = shift;
+my $curdev = '';
 my $found=0;
+my @devs;
 
 sub debprint {
     my $s = shift;
@@ -17,8 +20,6 @@ sub debprint {
 
 die("Syntax: $0 mdX\n") unless (defined($dev));
 warn("Is '$dev' really an md device?\n") unless ($dev =~ /^md\d+$/);
-
-$fn = 'mdstat.txt' if ($debug);
 
 die("This must be run on Linux\n") if ($^O ne "linux" and not $debug);
 
@@ -30,7 +31,10 @@ debprint("Looking for '$dev' in the haystack…\n");
 while (my $line = <$mdstat>) {
     chomp($line);
     debprint("Looking for line '$line'\n");
-    if ($line =~ /^${dev}\s/) {
+    if ($line =~ /^(md\d+)\s/) {
+        $curdev = $1;
+    }
+    if ($dev eq $curdev) {
         $found=1;
     }
     if ($found) {

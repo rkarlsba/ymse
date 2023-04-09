@@ -1,5 +1,7 @@
-md5 : active raid1 sdn[0]
+Personalities : [raid1] [raid10] [raid6] [raid5] [raid4] [linear] [multipath] [raid0]
+md5 : active raid1 sdq[1] sdn[0]
       117154240 blocks super 1.2 [2/1] [U_]
+      [===>.................]  recovery = 15.9% (18657984/117154240) finish=33.7min speed=48570K/sec
       bitmap: 1/1 pages [4KB], 65536KB chunk
 
 md2 : active raid10 sdj[7](S) sdm[5] sdl[4] sdk[3] sdh[2] sdg[1] sdc[0]
@@ -12,7 +14,7 @@ md4 : active raid1 sdd[1] sda[0]
 
 md127 : active raid10 sdf[2] sdp[1] sdo[0]
       17578195968 blocks super 1.2 512K chunks 2 near-copies [3/3] [UUU]
-      [===================>.]  reshape = 95.9% (16859061632/17578195968) finish=452.9min speed=26458K/sec
+      [===================>.]  reshape = 96.5% (16970697472/17578195968) finish=482.5min speed=20980K/sec
       bitmap: 34/99 pages [136KB], 131072KB chunk
 
 md3 : active raid1 sdb5[4] sdi1[2]
