@@ -20,7 +20,7 @@ warn("Is '$dev' really an md device?\n") unless ($dev =~ /^md\d+$/);
 
 $fn = 'mdstat.txt' if ($debug);
 
-die("This must be run on Linux\n") if ($^O ne "Linux" and not $debug);
+die("This must be run on Linux\n") if ($^O ne "linux" and not $debug);
 
 open(my $mdstat, "<", $fn) ||
     die("Failed to open file '$fn': $!\n");
