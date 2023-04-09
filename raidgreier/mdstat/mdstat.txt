@@ -1,0 +1,22 @@
+md5 : active raid1 sdn[0]
+      117154240 blocks super 1.2 [2/1] [U_]
+      bitmap: 1/1 pages [4KB], 65536KB chunk
+
+md2 : active raid10 sdj[7](S) sdm[5] sdl[4] sdk[3] sdh[2] sdg[1] sdc[0]
+      5860147200 blocks super 1.2 512K chunks 2 near-copies [6/6] [UUUUUU]
+      bitmap: 3/44 pages [12KB], 65536KB chunk
+
+md4 : active raid1 sdd[1] sda[0]
+      1953382464 blocks super 1.2 [2/2] [UU]
+      bitmap: 0/15 pages [0KB], 65536KB chunk
+
+md127 : active raid10 sdf[2] sdp[1] sdo[0]
+      17578195968 blocks super 1.2 512K chunks 2 near-copies [3/3] [UUU]
+      [===================>.]  reshape = 95.9% (16859061632/17578195968) finish=452.9min speed=26458K/sec
+      bitmap: 34/99 pages [136KB], 131072KB chunk
+
+md3 : active raid1 sdb5[4] sdi1[2]
+      116176768 blocks super 1.2 [2/2] [UU]
+      bitmap: 1/1 pages [4KB], 65536KB chunk
+
+unused devices: <none>
