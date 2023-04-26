@@ -49,6 +49,7 @@ try:
                 # jævlafaenspythonræl! 
 
                 # og så er det bare å kjøre zapi_dst.host.create
+                # https://www.zabbix.com/documentation/current/en/manual/api/reference/host/create
 
             hostcount+=1
             if (hostcount >= testdumpcount):
