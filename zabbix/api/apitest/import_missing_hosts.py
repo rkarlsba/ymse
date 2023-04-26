@@ -26,18 +26,34 @@ except IOError:
 
 missing_hosts = missing_hosts_data.replace('\n', ' ').split(' ')
 missing_hosts.remove('')
-# print(f"Missing hosts [{len(missing_hosts)}]: {missing_hosts}")
-# sys.exit()
 
 try:
     # Create ZabbixAPI class instance
     zapi_src = ZabbixAPI(url=api_src_url, user=api_src_user, password=api_src_password)
+    hostcount=0
+    testdumpcount=1
 
     # Get all monitored hosts
     allhosts = zapi_src.host.get(output='extend', selectInventory='extend')
     for host in allhosts:
         if host['host'] in missing_hosts:
-            print(host['host'])
+            print(f"===== {host['host']} =====")
+            print(json.dumps(host, indent=4))
+
+            hostinterfaces = zapi_src.hostinterface.get(output='extend', hostids=host['hostid'])
+            for hostint in hostinterfaces:
+                hostint_json = json.dumps(hostint)
+                for key,val in hostint_json.values():
+                    key.pop('interfaceid', None)
+                print(json.dumps(hostint_json, indent=4))
+                # jævlafaenspythonræl! 
+
+                # og så er det bare å kjøre zapi_dst.host.create
+
+            hostcount+=1
+            if (hostcount >= testdumpcount):
+                sys.exit()
+
 
     # print(json.dumps(allhosts,indent=4))
 #         if 0 and host['host'] == "roysk.oslomet.no":
