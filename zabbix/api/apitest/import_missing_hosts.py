@@ -6,6 +6,13 @@ import json
 import sys
 from pprint import pprint
 
+# Globals
+debug = 1
+
+def debprint(s):
+    if debug:
+        print(f"[DEBUG] {s}")
+
 # Read local_passwords.py
 try:
     from local_passwords import *
@@ -35,21 +42,23 @@ try:
 
     # Get all monitored hosts
     allhosts = zapi_src.host.get(output='extend', selectInventory='extend')
+    debprint(f"allhosts is of type {type(allhosts)}")
     for host in allhosts:
+        debprint(f"host is of type {type(host)}")
         if host['host'] in missing_hosts:
             print(f"===== {host['host']} =====")
             print(json.dumps(host, indent=4))
 
             hostinterfaces = zapi_src.hostinterface.get(output='extend', hostids=host['hostid'])
+            debprint(f"hostinterfaces is of type {type(hostinterfaces)}") # list
             for hostint in hostinterfaces:
-                hostint_json = json.dumps(hostint)
-                for key,val in hostint_json.values():
-                    key.pop('interfaceid', None)
-                print(json.dumps(hostint_json, indent=4))
-                # jævlafaenspythonræl! 
+                debprint(f"hostint is of type {type(hostint)}") # dict
+                del hostint["interfaceid"];
+                del hostint["hostid"];
+                print(json.dumps(hostint, indent=4))
 
-                # og så er det bare å kjøre zapi_dst.host.create
-                # https://www.zabbix.com/documentation/current/en/manual/api/reference/host/create
+# og så er det bare å kjøre zapi_dst.host.create
+# https://www.zabbix.com/documentation/current/en/manual/api/reference/host/create
 
             hostcount+=1
             if (hostcount >= testdumpcount):
