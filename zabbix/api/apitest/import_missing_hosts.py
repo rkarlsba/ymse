@@ -7,7 +7,9 @@ import sys
 from pprint import pprint
 
 # Globals
-debug = 1
+debug = 0
+maxhosts = -1
+cleanup = 0
 
 def debprint(s):
     if debug:
@@ -23,6 +25,7 @@ except:
 ##
 
 missing_hosts_fn = "mangler.txt"
+debprint("# vim:ft=json")
 
 try:
     missing_hosts_fd = open(missing_hosts_fn, "r")
@@ -38,7 +41,6 @@ try:
     # Create ZabbixAPI class instance
     zapi_src = ZabbixAPI(url=api_src_url, user=api_src_user, password=api_src_password)
     hostcount=0
-    testdumpcount=1
 
     # Get all monitored hosts
     allhosts = zapi_src.host.get(output='extend', selectInventory='extend')
@@ -46,22 +48,25 @@ try:
     for host in allhosts:
         debprint(f"host is of type {type(host)}")
         if host['host'] in missing_hosts:
-            print(f"===== {host['host']} =====")
-            print(json.dumps(host, indent=4))
+            debprint(f" ===== {host['host']} =====")
 
             hostinterfaces = zapi_src.hostinterface.get(output='extend', hostids=host['hostid'])
             debprint(f"hostinterfaces is of type {type(hostinterfaces)}") # list
+            if cleanup:
+                del host["hostid"];
+            print(json.dumps(host, indent=4))
             for hostint in hostinterfaces:
                 debprint(f"hostint is of type {type(hostint)}") # dict
-                del hostint["interfaceid"];
-                del hostint["hostid"];
+                if cleanup:
+                    del hostint["interfaceid"];
+                    del hostint["hostid"];
                 print(json.dumps(hostint, indent=4))
 
 # og så er det bare å kjøre zapi_dst.host.create
 # https://www.zabbix.com/documentation/current/en/manual/api/reference/host/create
 
             hostcount+=1
-            if (hostcount >= testdumpcount):
+            if (maxhosts > 0 and hostcount >= maxhosts):
                 sys.exit()
 
 
