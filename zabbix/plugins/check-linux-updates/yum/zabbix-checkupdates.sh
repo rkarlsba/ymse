@@ -16,7 +16,7 @@ fi
 
 TMPFILE=$(mktemp /tmp/zabbix-checkupdates.XXXXX)
 CHECKNAME='custom.yumupdatescheck'
-OUTFILE='/var/run/zabbix-yumupdatescheck'
+OUTFILE='/var/tmp/zabbix-yumupdatescheck'
 
 STATUS='WARN'
 
@@ -30,6 +30,7 @@ then
     then
         STATUS="FAIL"
     elif [ "$EXIT" = "0" ]
+    then
         STATUS='OK'
     fi
 fi
