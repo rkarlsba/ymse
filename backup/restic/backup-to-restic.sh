@@ -94,6 +94,15 @@ function exit_msg {
 }
 
 # Sanity checks
+restic_cmd=$( which restic )
+exitcode=$?
+if [ $exitcode -ne 0 ]
+then
+    echo "Missing restic command - please apt/yum/something install it first" >&2
+    echo "and probably run a restic self-update as well" >&2
+    exit $exitcode
+fi
+
 if [ ! -f "$RESTIC_PASSWORD_FILE" ]
 then
     echo "ERROR: Need password file" >&2
@@ -162,7 +171,7 @@ verbose "Starting backup of " . $( hostname )
 verbose $( date "+%d. %B %Y at %H:%M:%S" )
 verbose "-------------------------------------------------------------------------------"
 
-if [ -x $RESTIC_PRE_EXEC_JOB ]
+if [ -x "$RESTIC_PRE_EXEC_JOB" ]
 then
     verbose "Running pre-exec job $RESTIC_PRE_EXEC_JOB"
     bash -c "$RESTIC_PRE_EXEC_JOB"
@@ -178,7 +187,7 @@ fi
 
 restic $RESTIC_VERBOSE backup $RESTIC_ONE_FILESYSTEM $RESTIC_EXCLUDE $RESTIC_BACKUP_DIRS
 
-if [ -x $RESTIC_POST_EXEC_JOB ]
+if [ -x "$RESTIC_POST_EXEC_JOB" ]
 then
     verbose "Running post-exec job $RESTIC_POST_EXEC_JOB"
     bash -c "$RESTIC_POST_EXEC_JOB"
