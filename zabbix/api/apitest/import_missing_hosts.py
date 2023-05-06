@@ -9,7 +9,7 @@ from pprint import pprint
 # Globals
 debug = 0
 maxhosts = -1
-cleanup = 0
+cleanup_before_create = 0
 
 def debprint(s):
     if debug:
@@ -24,7 +24,8 @@ except:
     exit(1)
 ##
 
-missing_hosts_fn = "mangler.txt"
+#missing_hosts_fn = "mangler.txt"
+missing_hosts_fn = "mangler2.txt"
 debprint("# vim:ft=json")
 
 try:
@@ -52,12 +53,12 @@ try:
 
             hostinterfaces = zapi_src.hostinterface.get(output='extend', hostids=host['hostid'])
             debprint(f"hostinterfaces is of type {type(hostinterfaces)}") # list
-            if cleanup:
+            if cleanup_before_create:
                 del host["hostid"];
             print(json.dumps(host, indent=4))
             for hostint in hostinterfaces:
                 debprint(f"hostint is of type {type(hostint)}") # dict
-                if cleanup:
+                if cleanup_before_create:
                     del hostint["interfaceid"];
                     del hostint["hostid"];
                 print(json.dumps(hostint, indent=4))
