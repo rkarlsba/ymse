@@ -37,6 +37,7 @@ TMPFILE=$( mktemp /tmp/$BASENAME.XXXXX )
 
 OUTFILE='/var/run/zabbix/zabbix-needsreboot'
 DEBBOOTFILE='/var/run/reboot-required'
+DEBBOOTREASONFILE='/var/run/reboot-required.pkgs'
 DEBUG=0
 QUIET=0
 OPT_LOCAL=0
@@ -87,12 +88,12 @@ case $OS in
         if [ $? -ne 0 ]
         then
             echo "Can't find distro check tool '$linux_distro_check': $!"
-            exit 1
+            exit 2
         fi
         ;;
     *)
         echo "Sorry, operating system $OS isn't supported by this check"
-        exit 2
+        exit 3
         ;;
 esac
 
@@ -141,7 +142,7 @@ case $DISTRO in
                     ;;
                 *)
                     echo "Unknown mode \"$arg\". Please see --help" >&2
-                    exit 3
+                    exit 4
                     ;;
             esac
             echo mode is $mode
@@ -173,9 +174,9 @@ case $DISTRO in
         then
             if [ -r $OUTFILE ]
             then
-                [ $QUIET -gt 0 ] && cat $OUTFILE
+                [ $QUIET -gt 0 ] || cat $OUTFILE
             else
-                [ $QUIET -gt 0 ] && echo $CHECKNAME ERROR
+                [ $QUIET -gt 0 ] || echo $CHECKNAME ERROR
             fi
         fi
         ;;
@@ -185,9 +186,10 @@ case $DISTRO in
         then
             EXIT=1
             needs_restart="YES: "
-            if [ -r $DEBBOOTFILE -a ! -z $DEBBOOTFILE ]
+            if [ -r $DEBBOOTREASONFILE -a ! -z $DEBBOOTREASONFILE ]
             then
-                needs_restart+=$( cat "$DEBBOOTFILE" )
+                needs_restart+=$( printf "The following packages needs replenishing\n\r" )
+                needs_restart+=$( cat "$DEBBOOTREASONFILE" )
             else
                 needs_restart+='(for whatever reason (2))'
             fi
@@ -195,7 +197,7 @@ case $DISTRO in
             EXIT=0
             needs_restart="NO"
         fi
-        [ $QUIET -gt 0 ] && cat echo "$needs_restart"
+        [ $QUIET -gt 0 ] || echo "$needs_restart"
         ;;
     *)
         # Dunno
