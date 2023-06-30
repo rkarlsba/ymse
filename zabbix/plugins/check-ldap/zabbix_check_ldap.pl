@@ -15,7 +15,7 @@ use warnings;
 use Getopt::Long;
 
 # Globals
-my $ldap_cmd_tmpl = 'ldapsearch -LLL -H %s -s base -b "%s" -x 2>&1';
+my $ldap_cmd_tmpl = 'ldapsearch -LLL -H %s -s base -b "%s" -o nettimeout=1 -x 2>&1';
 my $verbose = 0;
 
 # Opts
