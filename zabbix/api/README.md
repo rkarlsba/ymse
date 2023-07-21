@@ -10,7 +10,7 @@ zabbix. Below follows example content of this file. Please note that the file
 is added to .gitignore to avoid passwords to spread on github. Please remove
 it from .gitignore if you want to add it, typically for an in-house git repo.
 
-```
+```python
 api_user = api_src_user = 'zabbix-api-user'
 api_password = api_src_password = 'supersecret'
 api_url = api_src_url = 'https://zabbix.my.tld/zabbix/api_jsonrpc.php';
