@@ -1,13 +1,17 @@
 #!/bin/bash
 
 homedir='/data/ymse/rtl_433'
+
 #protocols='DEFAULT'
 protocols='ALL'
 #protocols='{1..10} {12,15}'
+
 verbose='1'
-logging='-F log -F kv -F json:rtl_433.json'
-sample_rate='-s 2048k'
-config='/etc/rtl_433.conf'
+mqtt_server="mqtt.my.tld"
+mqtt="-F mqtt://$mqtt_server:1883,retain=0"
+logging="$mqtt -F log -F kv -F json:rtl_433.json"
+sample_rate="-s 2048k"
+config="/etc/rtl_433.conf"
 exclude_from_all='10[67]'
 
 arg=''
