@@ -29,6 +29,9 @@ do
             systemctl disable $s
             systemctl mask $s
             ;;
+        'status'
+            systemctl status $s
+            ;;
         *)
             die "Syntax: $0 [ enable | disable ]"
             ;;
