@@ -29,7 +29,7 @@ do
             systemctl disable $s
             systemctl mask $s
             ;;
-        'status'
+        'status')
             systemctl status $s
             ;;
         *)
