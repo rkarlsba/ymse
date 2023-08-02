@@ -1,5 +1,10 @@
 #!/bin/bash
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+#
+# Disable or enable RedHat Insights - by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+# At the time of writing, 2023-08-02, written to disable the whole crap since it leads
+# to very funny memory leaks not detectable anywhere.
+#
 
 INSIGHTS="insights-client-boot.service insights-client-results.path insights-client.timer"
 MODE='nada'
