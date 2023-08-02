@@ -2,22 +2,29 @@
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 INSIGHTS="insights-client-boot.service insights-client-results.path insights-client.timer"
-DISABLE=1
+MODE='nada'
 
-if [ "$#" -gt 0 ] && [ "$1" = "--enable" ]
-then
-    DISABLE=0
-fi
+die() {
+    echo "$*" 1>&2 
+    exit 1
+}
 
-for i in $INSIGHTS
+MODE="$1"
+for s in $INSIGHTS
 do
-    if [ "$DISABLE" -eq 0 ]
-    then
-        echo "enabling $i"
-        systemctl unmask $i
-        systemctl enable $i
-    else
-        systemctl disable $i
-        systemctl mask $i
-    fi
+    case "$MODE" in
+        'enable')
+            echo "Enabling $s"
+            systemctl unmask $s
+            systemctl enable $s
+            ;;
+        'disable')
+            echo "Disabling $s"
+            systemctl disable $s
+            systemctl mask $s
+            ;;
+        *)
+            die "Syntax: $0 [ enable | disable ]"
+            ;;
+    esac
 done
