@@ -35,9 +35,9 @@ root@smilla:~# ssh -p 8822 localhost
 # Variables
 LISTEN_ADDRESS="localhost"
 LOCAL_PORT="22"
-REMOTE_PORT="9222"
-REMOTE_USER="remoteuser"
-REMOTE_HOST="remotehost"
+REMOTE_PORT="9444"
+REMOTE_USER="gilean"
+REMOTE_HOST="smilla.karlsbakk.net"
 SSH_FLAGS="-v -o ServerAliveInterval=20 -o ServerAliveCountMax=5 -o ExitOnForwardFailure=yes -n -N -R $REMOTE_PORT:$LISTEN_ADDRESS:$LOCAL_PORT $REMOTE_USER@$REMOTE_HOST"
 SSH_CMD="/usr/bin/ssh"
 

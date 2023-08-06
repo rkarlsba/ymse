@@ -57,20 +57,24 @@ fi
 # This should have been with getopts, but hell, this works too
 for op in $@
 do
-    if [ "$op"="-v" ]
+    if [ "$op" = "-v" -o "$op" = "--verbose" ]
     then
         VERBOSE=1
+        echo "[$op] Be very verbose!"
         shift
-    elif [ "$op"="--one-file-system" -o "$op"="--one-filesystem" -o "$op"="-O" ]
+    elif [ "$op" = "--one-file-system" -o "$op" = "--one-filesystem" -o "$op" = "-O" ]
     then
         ONE_FILESYSTEM=1
+        echo "[$op] One filesystem"
         shift
-    elif [ "$op"="--no-pre-exec" ]
+    elif [ "$op" = "--no-pre-exec" ]
     then
         RESTIC_PRE_EXEC_JOB=""
-    elif [ "$op"="--no-post-exec" ]
+        echo "[$op] No pre-exec"
+    elif [ "$op" = "--no-post-exec" ]
     then
         RESTIC_POST_EXEC_JOB=""
+        echo "[$op] No post-exec"
     fi
 done
 
@@ -190,7 +194,7 @@ restic $RESTIC_VERBOSE backup $RESTIC_ONE_FILESYSTEM $RESTIC_EXCLUDE $RESTIC_BAC
 if [ -x "$RESTIC_POST_EXEC_JOB" ]
 then
     verbose "Running post-exec job $RESTIC_POST_EXEC_JOB"
-    bash -c "$RESTIC_POST_EXEC_JOB"
+    bash -c "$RESTIC_POST_EXEC_JOB $RESTIC_VERBOSE"
 else
     verbose "Could not find post-exec-job - ignoring it"
 fi
