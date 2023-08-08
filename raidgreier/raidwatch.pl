@@ -39,7 +39,7 @@ sub syntax() {
 
 #die "Doesn't work - sorry - tired";
 
-my $debug=1;
+my $debug=0;
 my $mdstat_fn = "/proc/mdstat";
 my $raiddev;
 my $raiddevs=0;
