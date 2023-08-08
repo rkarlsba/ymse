@@ -44,9 +44,9 @@ my $mdstat_fn = "/proc/mdstat";
 my $raiddev;
 my $raiddevs=0;
 my $found=0;
-my $minutes;
+my ($minutes,$hours,$days);
 
-$mdstat_fn = "test-input.txt" if ($debug);
+$mdstat_fn = "mdstat-test.txt" if ($debug);
 
 &syntax() if ($#ARGV != 0);
 
@@ -68,6 +68,7 @@ while (my $line = <$mdstat>) {
                 $minutes = $2;
                 $hours=$minutes/60;
                 $days=$hours/24
+            }
         }
     }
     print "$line";
