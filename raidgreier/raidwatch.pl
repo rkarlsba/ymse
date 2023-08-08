@@ -53,23 +53,25 @@ $mdstat_fn = "mdstat-test.txt" if ($debug);
 $raiddev = shift;
 
 die ("You need to specify a raid device\n") unless (defined($raiddev));
-die ("Device '$raiddev' is not a block device\n") unless (-b '/dev/' . $raiddev);
+die ("Device '$raiddev' is not a block device\n") if ($debug eq 0 and not -b '/dev/' . $raiddev);
 
 open(my $mdstat, "<", $mdstat_fn) || die "Can't open file '$mdstat_fn' for reading: $!\n";
 
 while (my $line = <$mdstat>) {
     if ($line =~ /^$raiddev/) {
-        $found++;
+        $found = 1;
     }
     if ($found) {
         # [>....................]  reshape =  0.1% (10313788/7813894144) finish=2571.3min speed=50579K/sec
         if ($line =~ /\s+\w/) {
+            print "$line";
             if ($line =~ /reshape\s+=\s+\d\.\d\%\s+\(\d+\/\d+\)\s+finish(\d\.\.)min/) {
                 $minutes = $2;
                 $hours=$minutes/60;
                 $days=$hours/24
             }
+        } else {
+            $found = 0;
         }
     }
-    print "$line";
 }
