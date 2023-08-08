@@ -37,7 +37,7 @@ sub syntax() {
     exit(1);
 }
 
-die "Doesn't work - sorry - tired";
+#die "Doesn't work - sorry - tired";
 
 my $debug=1;
 my $mdstat_fn = "/proc/mdstat";

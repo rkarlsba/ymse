@@ -1,15 +1,23 @@
-Personalities : [raid1] [raid6] [raid5] [raid4] [linear] [multipath] [raid0] [raid10]                                                                                                                                                        │·············
-md0 : active raid6 sdb[6] sdl[13] sdi[8] sda[2] sdn[9] sdp[14] sdd[5] sdk[10] sdf[7] sdo[16] sdg[0] sde[15] sdc[3] sdm[19] sdj[18](S) sdh[17] sdq[1] sds[4]
-      109394518016 blocks super 1.2 level 6, 512k chunk, algorithm 2 [17/17] [UUUUUUUUUUUUUUUUU]
-      [>....................]  reshape =  0.1% (10313788/7813894144) finish=2571.3min speed=50579K/sec
-      bitmap: 1/59 pages [4KB], 65536KB chunk
+Personalities : [raid1] [raid10] [linear] [multipath] [raid0] [raid6] [raid5] [raid4]
+md0 : active raid1 sdi5[4] sdk1[2]
+      116176768 blocks super 1.2 [2/2] [UU]
+      bitmap: 1/1 pages [4KB], 65536KB chunk
 
-md2 : active raid1 sdr5[0] sdt5[1]
-      195379200 blocks super 1.2 [2/2] [UU]
-      bitmap: 0/2 pages [0KB], 65536KB chunk
+md2 : active (auto-read-only) raid1 sda[1] sdh[0]
+      117154240 blocks super 1.2 [2/2] [UU]
+      bitmap: 0/1 pages [0KB], 65536KB chunk
 
-md1 : active raid1 sdr1[0] sdt1[1]
-      781116416 blocks super 1.2 [2/2] [UU]
-      bitmap: 3/6 pages [12KB], 65536KB chunk
+md3 : active raid10 sdb[7] sdc[2] sdm[6] sdd[1] sdl[5] sdj[4]
+      5860147200 blocks super 1.2 512K chunks 2 near-copies [6/6] [UUUUUU]
+      bitmap: 0/44 pages [0KB], 65536KB chunk
+
+md4 : active raid10 sdp[2] sdq[0] sdo[1]
+      26367293952 blocks super 1.2 512K chunks 2 near-copies [3/3] [UUU]
+      [>....................]  check =  0.0% (392704/26367293952) finish=5594.9min speed=78540K/sec
+      bitmap: 4/99 pages [16KB], 131072KB chunk
+
+md1 : active raid1 sdf[0] sdg[1]
+      1000072512 blocks super 1.2 [2/2] [UU]
+      bitmap: 4/8 pages [16KB], 65536KB chunk
 
 unused devices: <none>
