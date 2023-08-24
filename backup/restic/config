@@ -1,0 +1,12 @@
+# vim:ft=sh
+
+# This one goes to /etc/default/restic
+
+# Variabler - se https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+export RESTIC_REPOSITORY="sftp:restic:restic-repo"
+export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
+
+export RESTIC_KEEP_DAILY=14
+export RESTIC_KEEP_WEEKLY=5
+export RESTIC_KEEP_MONTHLY=3
+export RESTIC_KEEP_YEARLY=0
