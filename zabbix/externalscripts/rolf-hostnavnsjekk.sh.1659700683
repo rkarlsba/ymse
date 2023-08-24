@@ -1,0 +1,508 @@
+#!/bin/bash
+POSITIONAL_ARGS=()
+
+
+# i zabbix:
+# rolf-hostnavnsjekk.sh["conn={HOST.CONN}","ip={HOST.IP}","dns={HOST.DNS}","host={HOST.HOST}","conn1={HOST.CONN1}","ip1={HOST.IP1}","dns1={HOST.DNS1}","host1={HOST.HOST1}","conn2={HOST.CONN2}","ip2={HOST.IP2}","dns2={HOST.DNS2}","host2={HOST.HOST2}","conn3={HOST.CONN3}","ip3={HOST.IP3}","dns3={HOST.DNS3}","host3={HOST.HOST3}","conn4={HOST.CONN4}","ip4={HOST.IP4}","dns4={HOST.DNS4}","host4={HOST.HOST4}","conn5={HOST.CONN5}","ip5={HOST.IP5}","dns5={HOST.DNS5}","host5={HOST.HOST5}","conn6={HOST.CONN6}","ip6={HOST.IP6}","dns6={HOST.DNS6}","host6={HOST.HOST6}","conn7={HOST.CONN7}","ip7={HOST.IP7}","dns7={HOST.DNS7}","host7={HOST.HOST7}","conn8={HOST.CONN8}","ip8={HOST.IP8}","dns8={HOST.DNS8}","host8={HOST.HOST8}","conn9={HOST.CONN9}","ip9={HOST.IP9}","dns9={HOST.DNS9}","host9={HOST.HOST9}"]
+# rolf-hostnavnsjekk.sh["conn={HOST.CONN}","ip={HOST.IP}","dns={HOST.DNS}","host={HOST.HOST}","conn1={HOST.CONN1}","ip1={HOST.IP1}","dns1={HOST.DNS1}","host1={HOST.HOST1}","conn2={HOST.CONN2}","ip2={HOST.IP2}","dns2={HOST.DNS2}","host2={HOST.HOST2}","conn3={HOST.CONN3}","ip3={HOST.IP3}","dns3={HOST.DNS3}","host3={HOST.HOST3}","conn4={HOST.CONN4}","ip4={HOST.IP4}","dns4={HOST.DNS4}","host4={HOST.HOST4}","conn5={HOST.CONN5}","ip5={HOST.IP5}","dns5={HOST.DNS5}","host5={HOST.HOST5}","conn6={HOST.CONN6}","ip6={HOST.IP6}","dns6={HOST.DNS6}","host6={HOST.HOST6}","conn7={HOST.CONN7}","ip7={HOST.IP7}","dns7={HOST.DNS7}","host7={HOST.HOST7}","conn8={HOST.CONN8}","ip8={HOST.IP8}","dns8={HOST.DNS8}","host8={HOST.HOST8}","conn9={HOST.CONN9}","ip9={HOST.IP9}","dns9={HOST.DNS9}","host9={HOST.HOST9}","hostid={HOST.ID}"]
+
+
+#    {HOST.ID}
+#        {HOSTGROUP.ID}
+#	    {MAP.ID}
+
+#    {HOST.IP} (or its deprecated version {IPADDRESS})
+#	        {HOST.PORT}
+		
+
+#    {HOST.HOST} (or its deprecated version {HOSTNAME})
+#    {HOST.NAME}
+#    {HOST.CONN[1-9]}
+#    {HOST.DNS}
+#    {HOST.IP} (or its deprecated version {IPADDRESS})
+
+	    
+
+# alternative dns server:
+# --dnsserver 2001:700:700:1::21
+
+#  rolf-hostnavnsjekk.sh["-c","{HOST.CONN}","-p","{HOST.PORT}","-i","{HOST.IP}","-d","{HOST.DNS}","-h","{HOST.HOST}"]
+
+# gammel: rolf-hostnavnsjekk.sh["-i","{HOST.IP}","-d","{HOST.DNS}","-c","{HOST.CONN}","-h","{HOST.HOST}"]
+
+
+# defaults
+dnsserver="2001:700:700:1::21 +timeout=0 +retry=0"
+
+for i in "" {1..9};
+do
+	eval "port$i=10050"
+#	eval "conn$i=10050"
+done
+domains="oslomet.no|hioa.no|hio.no"
+verbose=0
+
+test_all=0
+test_ok=0
+test_error=0
+test_fail=0
+test_warning=0
+test_critical=0
+info_critical=""
+info_warning=""
+info_error=""
+info_ok=""
+info_fail=""
+
+exitcode=0
+
+# annet rabbel
+# fjern det før = eksempel $b = "-abc=123", da blir ${b#*=} til 123
+# ${i#*=}
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+	conn*|port*|host*|ip*|dns*)
+		#eval ${1##-}
+		# stygg, men enkel. Bare eval når den matcher
+		echo "$1" | egrep -q "[a-z][0-9]*=[a-zA-Z0-9\.]*" && eval $1
+		shift
+		;;
+    --verbose|-v)
+	    verbose=1
+	    shift
+	    ;;
+    --help|-h)
+	    echo "Usage: $0 with arguments:"
+	    echo "conn<1-9>=		{HOST.CONN<1-9>} default connect for host. Is one of HOST.DNS or HOST.IP"
+	    echo "port<1-9>=		{HOST.PORT<1-9>} what port is zabbix_agent on"
+	    echo "host<1-9>=		{HOST.HOST<1-9>}"
+	    echo "dns<1-9>=		{HOST.DNS<1-9>}"
+	    echo "ip<1-9>=		{HOST.IP<1-9>}"
+	    echo ""
+	    echo "          <1-9> can also be nothing ex $0 conn={HOST.CONN} conn1={HOST.CONN1} ip1={HOST.IP1}"
+	    echo ""
+	    echo "-ns|--dnsserver 	use dns server for lookups"
+	    echo "--domains 		what domains are included"
+	    echo "-h|--help 		this info"
+	    echo "-v|--verbose 		show variables"
+	    shift
+	    ;;
+    -*|--*)
+      echo "Unknown option $1 use --help for info"
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+
+# test $# -eq 1 && test -z $z_connect && z_connect=$1
+
+# FUNCTIONS
+function eq() { [ 1 = "$(printf %s\\0 "$@" | sort -uz | tr -cd \\0 | wc -c)" ] ; }
+
+# sjekker om det er ip argument: 0 betyr hostnavn, 1 for ipv4 eller ipv6
+function isip() { ipcalc -s -c $1 && echo 1 || echo 0 ; }
+function isip4() { ipcalc -s -4 -c $1 && echo 1 || echo 0 ; }
+function isip6() { ipcalc -s -6 -c $1 && echo 1 || echo 0 ; }
+
+function add_critical() { info_critical="$info_critical $*"; let test_critical+=1; }
+function add_fail() { info_fail="$info_fail $*"; let test_fail+=1; }
+function add_warning() { info_warning="$info_warning $*"; let test_warning+=1; }
+function add_info() { info_info="$info_info $*"; }
+
+function returninfo()
+{
+info=""
+test -n "$info_critical" && info="CRITICAL:$info_critical "
+test -n "$info_fail" && info="${info}FAIL:$info_fail "
+test -n "$info_error" && info="${info}ERROR:$info_error "
+test -n "$info_warning" && info="${info}WARNING:$info_warning"
+test -n "$info_info" && info="${info}INFO:$info_info"
+let test_all="${test_ok}+${test_critical}+${test_fail}+${test_error}+${test_warning}"
+info="$info / tests ok${test_ok} c${test_critical} f${test_fail} e${test_error} w${test_warning} tot${test_all}"
+test $test_critical -gt 0 && echo $info && exit 1
+test $test_fail -gt 0 && echo $info && exit 1
+test $test_error -gt 0 && echo $info && exit 1
+test $test_warning -gt 0 && echo $info && exit 1
+echo "OK $info" 
+exit 0
+}
+
+# bare header
+#test $header -eq 1 && test $csv -eq 0 && exit 0
+
+
+# VERBOSE
+if [ $verbose -eq 1 ];
+then
+	echo ""
+	echo "###### VERBOSE ######"
+	echo "nr conn:port (dns/ip) host"
+	echo -n " "
+	for i in "" {1..9};
+	do
+
+		echo $i:  $(eval echo "\$conn$i:\$port$i \(\$dns$i/\$ip$i\) \$host$i")
+	# echo $conn $conn{1..9}
+	done
+	echo ""
+fi
+
+# quit hvis ingen conn er satt
+echo $conn$conn{1..9} | grep ^$ && echo "No server to connect to. Try $0 --help" && exit 1
+
+
+
+# ip=$(isip $z_connect )
+# ip4=$(isip4 $z_connect)
+# ip6=$(isip6 $z_connect)
+
+# echo "ip: $ip ipv4: $ip4 ipv6: $ip6 z_connect: $z_connect"
+
+
+#echo "FILE EXTENSION  = ${EXTENSION}"
+#echo "SEARCH PATH     = ${SEARCHPATH}"
+#echo "DEFAULT         = ${DEFAULT}"
+#echo "Number files in SEARCH PATH with EXTENSION:" $(ls -1 "${SEARCHPATH}"/*."${EXTENSION}" | wc -l)
+
+# server=$z_connect
+# args="-p $port"
+# add=""
+# notrunhost="adgang-com-1.ada.hioa.no|adgang-com-7.ada.hioa.no"
+
+# echo "# working on $1"
+
+if false;
+then
+
+let -i t=0
+let -i timeout=1
+while (! 2> /dev/null > /dev/tcp/$server/$port ) || [[ $t -lt $timeout ]]
+do
+	  sleep 1
+	    t=$(($t + 1))
+    done
+    if [[ $t -ge $timeout ]]
+    then
+	      echo timeout
+	      exit 1
+    fi
+
+fi
+
+function v()
+{ 
+	echo $*
+	$*
+}
+
+
+
+# Fingerprint alle zabbix interfacer på maskinen:
+for interface in "" {1..9};
+do
+	i_conn_dns=""
+	i_conn_ip=""
+	i_conn=$(eval echo "\$conn$interface")
+	i_port=$(eval echo "\$port$interface")
+	i_host=$(eval echo "\$host$interface")
+	i_ip=$(eval echo "\$ip$interface")
+	i_dns=$(eval echo "\$dns$interface")
+	server=$i_conn
+
+	t=0  # internal var for timeout. Hvis 1, skipp resten av zabbix_get commandoer for samme host. 0 = ingen timeout, 1 = timeout(skips test)
+
+
+	if [ \! -z $i_conn ];
+	then
+		if [ -z $i_host ];
+		then
+			add_fail "Fikk ikke host=$i_host fra zabbix sjekken. $0 --help for info."
+#			info_fail="$info_fail Fikk ikke host=$i_host fra zabbix sjekken. $0 --help for info."
+#			let test_fail+=1
+			returninfo
+#			exit 1
+		fi
+
+		test "$i_conn" == "$i_ip" && i_conn_dns=0
+		test "$i_conn" == "$i_ip" && i_conn_ip=1
+		test "$i_conn" == "$i_dns" && i_conn_dns=1
+		test "$i_conn" == "$i_dns" && i_conn_ip=0
+
+		# echo "$i $i_conn"
+		args=" -p $i_port"
+		domain=$(echo $i_host | sed s/^[^\.]*\.//gi )
+
+
+		i_system_hostname=$(timeout 2s zabbix_get -s $i_conn $args -k system.hostname 2>&1)
+		RET=$?
+		if [ $RET -ne 0 ]
+		then
+#		test $RET -ne 0 && echo "FAIL no agent connection: zabbix_get -s $i_conn $args -k system.hostname exit $RET: $i_system_hostname" && exit 1
+			add_fail "no agent connection: zabbix_get -s $i_conn $args -k system.hostname exit $RET: ${i_system_hostname}."
+#			info_fail="$info_fail no agent connection: zabbix_get -s $i_conn $args -k system.hostname exit $RET: ${i_system_hostname}."
+#			let test_fail+=1
+			returninfo
+		fi
+		let test_ok+=1
+		echo $i_system_hostname | egrep -q "$domain|$domains|^$" || add="$add (added domain .$domain)"
+		echo $i_system_hostname | egrep -q "$domain|$domains|^$" || server=$i_system_hostname.$domain
+
+#		eq "${i_host,,}" "${i_system_hostname,,}" && let test_ok+=1 
+#		eq "${i_host,,}" "${i_system_hostname,,}" || let test_critical+=1 
+#		eq "${i_host,,}" "${i_system_hostname,,}" || info_critical="$info_critical (rename $i_host i zabbix til ${i_system_hostname}?)"
+
+		eq "${i_host,,}" "${i_system_hostname,,}" && let test_ok+=1 || add_critical "(rename $i_host i zabbix til ${i_system_hostname}?)"
+
+# FINGERPRINTING
+
+		# hent en egenkomponert md5 av macaddresse og hostname for hver av connectene. Noe som ligner UUID for maskinen
+		lasthost=""
+		checksum_hostlist=$(
+		  for h in $i_conn $i_host $i_ip $i_dns
+		  do
+			  t=0  
+		          echo -n "$h " ; ( for a in agent.hostname system.hw.macaddr system.hostname ; do test $t -eq 0 && lasthost=$h ; test $t -eq 0 && timeout 2s zabbix_get -s $h $args -k $a 2>&1 ; test $? -eq 124 && t=1 ; done) | md5sum | awk '{print $1}'
+			  test $t -eq 1 &&  add_warning "zabbix_get TIMEOUT on $lasthost" ;
+		  done
+		)
+		uniqness_lc=$(printf "$checksum_hostlist" | awk '{print $2}' | sort | uniq -c | wc -l | awk '{print $1}')
+
+				  #info_warning="$info_warning zabbix_get TIMEOUT on $lasthost"
+				  #let test_warning+=1
+
+		if [ \! "x$uniqness_lc" ==  "x1" ];
+		then
+			add_critical "$i_host interface($interface) ip/dns/navn treffer ikke samme server $(printf "${checksum_hostlist,,}" | sort | uniq -c | awk '{print $2}' | xargs)."
+#			let test_critical+=1
+#			info_critical="$info_critical $i_host interface($interface) ip/dns/navn treffer ikke samme server $(printf "${checksum_hostlist,,}" | sort | uniq -c | awk '{print $2}' | xargs)."
+			returninfo
+			exit 1
+		fi
+		let test_ok+=1
+
+# TEST CONN resolves to SERVER NAME
+		i_conn_ipv4=""
+		i_conn_ptr4=""
+		i_conn_ipv6=""
+		i_conn_ptr6=""
+		if [ $(isip4 $i_conn) -eq 1 ];
+		then
+			i_conn_ipv4=$i_conn
+			i_conn_ptr4=$(dig -x $i_conn @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+			info_info="$info_info i_conn_ptr4=$i_conn_ptr4"
+			eq "${i_host,,}" "${i_conn_ptr4,,}" && let test_ok+=1 || add_warning "Host $i_host PTR for $i_conn er ${i_conn_ptr4}." 
+		fi
+                if [ $(isip6 $i_conn) -eq 1 ];
+                then
+			i_conn_ipv6=$i_conn
+			i_conn_ptr6=$(dig -x $i_conn @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+			info_info="$info_info i_conn_ptr6=$i_conn_ptr6"
+			eq "${i_host,,}" "${i_conn_ptr6,,}" && let test_ok+=1 || add_warning "Host $i_host PTR for $i_conn er ${i_conn_ptr4}." 
+
+                fi
+
+
+#		echo i_conn $i_conn
+#		echo isip4 $(isip4 $i_conn)  - ptr: $i_conn_ptr4
+#		echo isip6 $(isip6 $i_conn)  - ptr: $i_conn_ptr6
+
+		# hvis vi dealer med dns:
+		if [ \! -z $i_dns ]
+		then
+
+			#eq "${i_host,,}" "${i_dns,,}" || info_warning="$info_warning Host $i_host forskjellig fra interface DNS ${i_dns}."
+			eq "${i_host,,}" "${i_dns,,}" && let test_ok+=1 || add_warning "Host $i_host forskjellig fra interface DNS ${i_dns}." 
+			i_dns_ipv4_dig=$(dig A $i_dns @$dnsserver +short | xargs)
+			i_dns_ipv6_dig=$(dig AAAA $i_dns @$dnsserver +short | xargs)
+
+			# echo $ipv4dns
+
+			i_dns_ipv4=$(echo $i_dns_ipv4_dig|awk '{print $NF}' | xargs)
+			i_dns_ipv6=$(echo $i_dns_ipv6_dig|awk '{print $NF}' | xargs)
+			if [ $(isip $i_dns_ipv4 ) -eq 1 ];
+			then
+				# info_info="$info_info i_dns_ipv4=$i_dns_ipv4_dig"
+				add_info "i_dns_ipv4=$i_dns_ipv4_dig"
+				i_dns_ptr4all=$(dig -x $i_dns_ipv4 @$dnsserver +short | sed s/\.$//gi | xargs )
+				i_dns_ptr4=$(dig -x $i_dns_ipv4 @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+				# info_info="$info_info i_dns_ptr4=$i_dns_ptr4"
+				add_info "i_dns_ptr4=$i_dns_ptr4"
+
+
+				eq "${i_host,,}" "${i_dns_ptr4,,}" && let test_ok+=1 || add_warning "PTR($i_dns_ptr4) av dns er ikke $i_dns"
+#		                eq "${i_host,,}" "${i_dns_ptr4,,}" || let test_warning+=1
+#				eq "${i_dns,,}" "${i_dns_ptr4,,}" || info_warning="$info_warning PTR($i_dns_ptr4) av dns er ikke $i_dns"
+
+			fi
+
+			if [ $(isip $i_dns_ipv4 ) -eq 1 ];
+			then
+				# info_info="$info_info i_dns_ipv6=$i_dns_ipv6_dig"
+				add_info "i_dns_ipv6=$i_dns_ipv6_dig"
+				i_dns_ptr6all=$(dig -x $i_dns_ipv6 @$dnsserver +short | sed s/\.$//gi | xargs )
+				i_dns_ptr6=$(dig -x $i_dns_ipv6 @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+				# info_info="$info_info i_dns_ptr6=$i_dns_ptr6"
+				add_info "i_dns_ptr6=$i_dns_ptr6"
+			fi
+
+		fi
+		
+
+#		test $(isip4 $i_conn) -eq 1 && eq "${i_host,,}" "${i_conn_ptr4,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && echo "OK: HOSTNAME equals DNS and PTR reverse record for both IPV4 and IPV6 $add" || echo "CRITICAL: ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6 $add"
+	
+		       
+#		if [ "$i_conn" == "$i_dns" ];
+#		then
+#			eq "$i_conn"	
+#		fi
+
+# teste og critical ved dns avvik?
+
+
+
+# HOSTNAME 
+#system_hostname=$(timeout 3s zabbix_get -s $server $args -k "system.hostname" 2>&1 )
+#RET=$?
+#test $RET -ne 0 && echo "$server,-2,zabbix_get -k system.hostname exit $RET: $system_hostname" && exit 1
+
+#agentn=$(timeout 3s zabbix_get -s $server $args -k "agent.hostname" 2>&1)
+#RET=$?
+#test $RET -ne 0 && echo "$server,-3,zabbix_get -k agent.hostname exit $RET: $agentn" && exit 1
+# hostshort=$(zabbix_get -s $server $args -k "system.hostname[shorthost]")
+
+
+#hostn=$system_hostname
+#echo $system_hostname | egrep -q "$domain|$domains|^$" || add="$add (added domain .$domain)"
+#echo $system_hostname | egrep -q "$domain|$domains|^$" || hostn=$system_hostname.$domain
+
+# v dig A $server @$dnsserver +short | xargs
+#ipv4dns=$(dig A $server @$dnsserver +short | xargs)
+#ipv6dns=$(dig AAAA $server @$dnsserver +short | xargs)
+
+# echo $ipv4dns
+
+#ipv4=$(echo $ipv4dns|awk '{print $NF}' | xargs )
+#ipv6=$(echo $ipv6dns|awk '{print $NF}' | xargs)
+
+#ptr4all=$(dig -x $ipv4 @$dnsserver +short | sed s/\.$//gi | xargs )
+#ptr6all=$(dig -x $ipv6 @$dnsserver +short | sed s/\.$//gi | xargs )
+
+#ptr4=$(dig -x $ipv4 @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+#ptr6=$(dig -x $ipv6 @$dnsserver +short | sed s/\.$//gi | grep -v ".arpa$" | xargs )
+
+#echo $ipv6 $ipv4
+
+# CRITICAL: ZABBIX:confsys-dev.oslomet.no HOSTNAME[confsys-dev.oslomet.no] AGENT[confsys-dev.oslomet.no] has ipv4 158.36.68.96/96.64.68.36.158.in-addr.arpa confsys-dev.oslomet.no, ipv6 2001:700:700:2002::96/confsys-dev.oslomet.no
+
+#eq "${server,,}" "${ptr4,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && echo "OK: HOSTNAME equals DNS and PTR reverse record for both IPV4 and IPV6 $add" || echo "CRITICAL: ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6 $add"
+
+
+	fi
+
+
+done
+
+
+returninfo
+
+#echo "ENDLOOP"
+# echo $z_connect $z_name $z_ip $z_dns
+
+#echo "$1,$equals,$equals4,$equals6,$server,$hostn,$agentn,$system_hostname,$domain,$ipv4,$ptr4,$ipv4dns,$ptr4all,$ipv6,$ptr6,$ipv6dns,$ptr6all"
+#echo $server | egrep -q "$notrunhost" && echo "$1,-1,STOPPING HOST FROM RUNNING"
+#echo $server | egrep -q "$notrunhost" && exit 1
+
+# echo domain $domain
+
+
+#echo "HEI"
+#for h in $z_connect $z_name $z_ip $z_dns
+#do
+
+#	if [ $(isip $h) -eq 0 ]; 
+#	then
+#		dnssjekk=$(timeout 3s host "$h" 2>&1 )
+#		RET=$?
+#		test $RET -ne 0 && test $csv -eq 1 && echo "$server,-1,dnssjekk(host) exit $RET: $dnssjekk" && exit 1
+#		test $RET -ne 0 && critical=1 && info="$info $server dnssjekk(host) exit $RET: $dnssjekk" && exitcode=1
+#	fi
+#done
+
+#if [ $critical -ne 0 ];
+#then
+#	echo "CRITICAL: $info"
+#	test $exitcode -ne 0 && exit $exitcode
+#fi
+
+
+# echo "ER VI HER"
+
+# hostn=$(zabbix_get -s $server $args -k "system.hostname")
+# echo $hostn
+
+
+# v zabbix_get -s $server $args -k "net.dns.record[$dns,$server,AAAA]"
+# v zabbix_get -s $server $args -k "net.dns.record[$dns,$server,A]"
+
+
+
+# echo server $server
+# echo ipv4 ptr $ptr4 
+# echo ipv6 ptr $ptr6 
+# echo hostn $hostn 
+# echo agentn $agentn
+
+
+#noipv4=0
+#noipv6=0
+#equals="-"
+#equals4="-"
+#equals6="-"
+# 
+# eq "${server,,}" "${ptr4,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && equals=1 || equals=0
+# if [ -z "$ptr4" -a -z "$ipv4" ]
+# then
+# 	noipv4=1
+# 	eq "${server,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && equals6=1 || equals6=0
+# fi
+# if [ -z "$ptr6" -a -z "$ipv6" ]
+# then
+# 	eq "${server,,}" "${ptr4,,}" "${hostn,,}" "${agentn,,}" && equals4=1 || equals4=0
+# 	noipv6=1
+# fi
+# 
+# 
+# if [ "x$2" == "x-csv" ];
+# then
+# 	echo "$1,0,-,$equals,$equals4,$equals6,$server,$hostn,$agentn,$system_hostname,$domain,$ipv4,$ptr4,$ipv4dns,$ptr4all,$ipv6,$ptr6,$ipv6dns,$ptr6all"
+# 
+# elif [ -z "$ptr4" -a -z "$ipv4" ]
+# then
+# 	
+# 	echo "NO IPV4: $ipv4/$ptr4"
+# 	eq "${server,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && echo "WARN: HOSTNAME equals DNS and PTR reverse record for IPV6 [no ipv4] $add" || echo "CRITICAL: ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6 $add"
+# elif [ -z "$ptr6" -a -z "$ipv6" ]
+# then
+# 	echo "NO IPV6: $ipv6/$ptr6"
+# 	eq "${server,,}" "${ptr4,,}" "${hostn,,}" "${agentn,,}"	&& echo "WARN: HOSTNAME equals DNS and PTR reverse record for IPV4 [no ipv6] $add" || echo "CRITICAL: ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6 $add"
+# else
+# 
+# eq "${server,,}" "${ptr4,,}" "${ptr6,,}" "${hostn,,}" "${agentn,,}" && echo "OK: HOSTNAME equals DNS and PTR reverse record for both IPV4 and IPV6 $add" || echo "CRITICAL: ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6 $add"
+# 
+# fi
+# 
+# # real upper and lowercase:
+# if [ "x$2" == "x-v" ];
+# then
+# 	echo "ZABBIX:$server HOSTNAME[$hostn] AGENT[$agentn] has ipv4 $ipv4/$ptr4, ipv6 $ipv6/$ptr6"
+# fi
+# # only lowercase:
+# # echo "ZABBIX:${server,,} HOSTNAME[${hostn,,}] AGENT[${agentn,,}] has ipv4 ${ipv4,,}/${ptr4,,}, ipv6 ${ipv6,,}/${ptr6,,}"
+# 
