@@ -1,1 +1,0 @@
-../ymse/checkmyip.sh
