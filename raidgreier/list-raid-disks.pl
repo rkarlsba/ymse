@@ -34,7 +34,7 @@ sub feilfeilfeil {
 }
 
 sub help {
-    print "Usage: $0 <-h> <-n> <-S> <-F>
+    print "Usage: $0 <-h> <-n> <-S> <-F> disk1 [disk2 [...] ]
 
     --help -h           Display this help
     --no-partitions -n  Display only the disks involved, not their partitions
