@@ -2,7 +2,8 @@
 
 # This one goes to /etc/default/restic
 
-# Variabler - se https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+# Variables - for details, please see
+# https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
 export RESTIC_REPOSITORY="sftp:restic:restic-repo"
 export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
 
