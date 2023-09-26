@@ -26,22 +26,23 @@
 # Don't think we'll need this path specifically
 # PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
 
-# Variables - see https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+# Variables - see https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables {{{
 # for details. These are basically the ones you need and is meant as a skeleton. Do not change
 # these in this file, better set them in the restic config file, typically /etc/default/restic
-export RESTIC_REPOSITORY="sftp:restic:restic-repo"
-export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
-
-RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
-RESTIC_EXCLUDE=""
-RESTIC_VERBOSE=""
-RESTIC_ONE_FILESYSTEM=""
-RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
-RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
-RESTIC_BACKUP_DIRS="/"
-ONE_FILESYSTEM=0
-RETCODE=0
-VERBOSE=0
+# export RESTIC_REPOSITORY="sftp:restic:restic-repo"
+# export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
+# 
+# RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
+# RESTIC_EXCLUDE=""
+# RESTIC_VERBOSE=""
+# RESTIC_ONE_FILESYSTEM=""
+# RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
+# RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
+# RESTIC_BACKUP_DIRS="/"
+# ONE_FILESYSTEM=0
+# RETCODE=0
+# VERBOSE=0
+# }}}
 OS=$( uname -s )
 RESTIC_CONFIG="/etc/default/restic"
 
