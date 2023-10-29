@@ -53,15 +53,19 @@ then
 	case $fmt in
 		'c'|'custom')
 			fmt_arg='--format=custom'
+			dump_ext='.dump'
 			;;
 		'p'|'plain')
 			fmt_arg='--format=plain'
+			dump_ext='.sql'
 			;;
 		'd'|'directory')
 			fmt_arg='--format=directory'
+			dump_ext=''
 			;;
 		't'|'tar')
 			fmt_arg='--format=tar'
+			dump_ext='.tar'
 			;;
 		*)
 			echo "Given format '$fmt' is unknown - exiting" >&2
@@ -107,7 +111,7 @@ databases=`echo '\\l' | psql | egrep -v '^\(|^-|^\s*Name.*Owner|List of database
 # dump databases
 for db in $databases
 do
-    dst_file="$dst/$db.dump"
+    dst_file="$dst/$db$dump_ext"
 	[ $verbose -gt 0 ] && echo -n "Dumping database $db to $dst_file..."
 	pg_dump $fmt_arg $db > $dst_file || exit 1
 	[ $verbose -gt 0 ] && echo
