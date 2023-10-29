@@ -18,37 +18,37 @@ sub human_readable {
     my $num = shift;
     my $rn;
 
-    if ($num < 1000) {
+    if ($num < 10**3) {
         return $num;
-    } if ($num < 1000000) {
-        $rn = round($num/1000);
+    } if ($num < 10**6) {
+        $rn = round($num/10**3);
         return "${rn}k";
-    } elsif ($num < 1000000) {
-        $rn = round($num/1000000);
+    } elsif ($num < 10**9) {
+        $rn = round($num/10**6);
         return "${rn}M";
-    } elsif ($num < 1000000000) {
-        $rn = round($num/1000000000);
+    } elsif ($num < 10**12) {
+        $rn = round($num/10**9);
         return "${rn}G";
-    } elsif ($num < 1000000000000000) {
-        $rn = round($num/1000000000);
+    } elsif ($num < 10**15) {
+        $rn = round($num/10**12);
         return "${rn}T";
-    } elsif ($num < 1000000000000000000) {
-        $rn = round($num/1000000000000);
+    } elsif ($num < 10**18) {
+        $rn = round($num/10**15);
         return "${rn}P";
-    } elsif ($num < 1000000000000000000) {
-        $rn = round($num/1000000000000000000);
+    } elsif ($num < 10**21) {
+        $rn = round($num/10**18);
         return "${rn}E";
-    } elsif ($num < 1000000000000000000000) {
-        $rn = round($num/1000000000000000000000);
+    } elsif ($num < 10**24) {
+        $rn = round($num/10**21);
         return "${rn}Z";
-    } elsif ($num < 1000000000000000000000000) {
-        $rn = round($num/1000000000000000000000000);
+    } elsif ($num < 10**27) {
+        $rn = round($num/10**24);
         return "${rn}Y";
-    } elsif ($num < 1000000000000000000000000000) {
-        $rn = round($num/1000000000000000000000000000);
+    } elsif ($num < 10**30) {
+        $rn = round($num/10**27);
         return "${rn}R";
-    } elsif ($num < 1000000000000000000000000000000) {
-        $rn = round($num/1000000000000000000000000000000);
+    } elsif ($num < 10**33) {
+        $rn = round($num/10**30);
         return "${rn}Q";
     }
     return "WTF?";
