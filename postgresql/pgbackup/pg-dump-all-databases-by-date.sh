@@ -52,62 +52,58 @@ fi
 #              However, the tar format does not support compression. Also, when using tar format the relative order of table data items cannot be changed during restore.
 # }}}
 
-if [ "$1" = "-f" ]
-then
-	shift
-	fmt=$1
-	shift
-	case $fmt in
-		'c'|'custom')
-			fmt_arg='--format=custom'
-			dump_ext='.dump'
+# Change to getopt
+while getopts "F:d:vfr" o; do
+    case "${o}" in
+        F)
+            case ${OPTARG} in
+				'c'|'custom')
+					fmt_arg='--format=custom'
+					dump_ext='.dump'
+					;;
+				'p'|'plain')
+					fmt_arg='--format=plain'
+					dump_ext='.sql'
+					;;
+				'd'|'directory')
+					fmt_arg='--format=directory'
+					dump_ext=''
+					;;
+				't'|'tar')
+					fmt_arg='--format=tar'
+					dump_ext='.tar'
+					;;
+				*)
+					echo "Given format '$fmt' is unknown - exiting" >&2
+					exit 1
+					;;
+			esac
+            ;;
+        d)
+			dst=${OPTARG}
+            ;;
+		f)
+			force=$(( $force + 1 ))
 			;;
-		'p'|'plain')
-			fmt_arg='--format=plain'
-			dump_ext='.sql'
+		r)
+			rotate=$(( $rotate + 1 ))
 			;;
-		'd'|'directory')
-			fmt_arg='--format=directory'
-			dump_ext=''
+		v)
+			verbose=$(( $verbose + 1 ))
 			;;
-		't'|'tar')
-			fmt_arg='--format=tar'
-			dump_ext='.tar'
-			;;
-		*)
-			echo "Given format '$fmt' is unknown - exiting" >&2
-			exit 1
-			;;
-	esac
-fi
-if [ "$1" = "-d" ]
-then
-	shift
-	dst=$1
-	shift
-fi
-if [ "$1" = "-v" ]
-then
-	shift
-	verbose=1
-fi
-if [ "$1" = "-f" ]
-then
-	shift
-	force=1
-fi
-if [ "$1" = "-r" ]
-then
-	shift
-	rotate=$1
-	shift
-fi
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
 if [ $rotate -gt 0 ]
 then
 	echo "WARN: Backup rotation not implemented" >&2
 fi
 
-[ -d $dst ] || mkdir -p $dst
+[ -d $dst ] || mkdir -p $dst || exit 2
 
 databases=`echo '\\l' | psql | egrep -v '^\(|^-|^\s*Name.*Owner|List of databases'  | \
 	awk '{ print $1 }'| egrep -v '^$|^\||template[01]'`
@@ -116,7 +112,7 @@ databases=`echo '\\l' | psql | egrep -v '^\(|^-|^\s*Name.*Owner|List of database
 for db in $databases
 do
     dst_file="$dst/$db$dump_ext"
-	[ $verbose -gt 0 ] && echo -n "Dumping database $db to $dst_file..."
+	[ $verbose -gt 0 ] && echo -n "Dumping database $db to $dst_file"
 	if [ -f $dst_file ]
 	then
 		if [ $force -eq 0 ]
