@@ -1,0 +1,17 @@
+#!/bin/bash
+
+match1='* ALPN, server accepted to use h2'
+match2='* ALPN, server accepted h2'
+
+if $( curl -vso /dev/null $1 2>&1 | fgrep -q "$match1" )
+then
+	echo 'PROBLEM: Server supports HTTP/2 (1)'
+	exit 1
+elif $( curl -vso /dev/null $1 2>&1 | fgrep -q "$match2" )
+then
+	echo 'PROBLEM: Server supports HTTP/2 (2)'
+	exit 1
+else
+	echo 'OK: Server does not support HTTP/2'
+	exit 0
+fi

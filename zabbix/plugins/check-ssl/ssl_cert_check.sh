@@ -65,11 +65,19 @@ case $f in
             echo $issuer
         fi
         ;;
+    -m)
+        echo "Not implemented" >&2
+        exit 1
+        echo -n | openssl s_client -connect google.com:443 -servername ibm.com | openssl x509 -noout -text | grep DNS
+        ;;
     *)
-        echo "usage: $0 [-i|-d|-e|-I] hostname port sni"
-        echo "    -i Show Issuer"
-        echo "    -d Show valid days remaining"
-        echo "    -e Show expiry date in epoch format (seconds after 1970-01-01 00:00:00)"
-        echo "    -I Show expiry date in ISO format (YYYY-MM-DD hh:mm:ss)"
+        cat <<EOT
+Usage: $0 [-i|-d|-e|-I] hostname port sni
+    -i  Show Issuer
+    -d  Show valid days remaining
+    -e  Show expiry date in epoch format (seconds after 1970-01-01 00:00:00)
+    -I  Show expiry date in ISO format (YYYY-MM-DD hh:mm:ss)
+    -m  Check if certificate is valid for given hostname
+EOT
         ;;
 esac
