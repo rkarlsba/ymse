@@ -1,30 +1,7 @@
 #!/bin/bash
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-# Documentation {{{
-#
-# Set ssh user, hostname and port in $HOME/.ssh/config - it should look
-# something like this (without the initial #). See man ssh_config(5) for more
-# details.
-# 
-# host restic
-# 	Hostname restic.my.tld
-##	AddressFamily inet
-##	Port 3422
-# 	User mysshusername
-#
-# The exclude file referred to below must exist if you're not using
-# --one-file-system. It should include at least these four lines (without #)
-#
-# /proc
-# /sys
-# /dev
-# /run
-#
-# }}}
-
-# Don't think we'll need this path specifically
-# PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
+# Please see the README.md for documentation
 
 # Variables - see https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables {{{
 # for details. These are basically the ones you need and is meant as a skeleton. Do not change

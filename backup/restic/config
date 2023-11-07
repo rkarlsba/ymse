@@ -23,9 +23,9 @@ RETCODE=0
 VERBOSE=0
 
 # Backup rotation - see https://restic.readthedocs.io/en/stable/060_forget.html
-KEEP_WIITHIN='14d'
-KEEP_WEEKLY='5'
-KEEP_MONTHLY='3'
-KEEP_YEARLY='0'
-PRUNE='--prune'
+RESTIC_KEEP_WIITHIN='14d'
+RESTIC_KEEP_WEEKLY='5'
+RESTIC_KEEP_MONTHLY='3'
+RESTIC_KEEP_YEARLY='0'
+RESTIC_PRUNE='--prune'
 
