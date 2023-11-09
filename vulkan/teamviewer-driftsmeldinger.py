@@ -1,1 +1,0 @@
-../../privat/jobb/oslomet/zabbix/externalscripts/teamviewer-driftsmeldinger.py
