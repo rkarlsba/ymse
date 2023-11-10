@@ -21,7 +21,15 @@ my $liste;
 # 192.168.122.1   b0:5c:da:38:9c:cf      1      60  HP Inc.
 # }}}
 
-open($liste, $maskinliste) || die ("wtf? $!\n");
+print("\$#ARGV is $#ARGV and \$ARGV[0] is $ARGV[0]\n");
+if ($#ARGV > 0 and $ARGV[0] eq '-') {
+    $liste  = *STDIN || die ("wtf? $!\n");
+    print("Read from stdin...\n");
+} else {
+    open($liste, $maskinliste) || die ("wtf? $!\n");
+    print("open $maskinliste...\n");
+}
+
 while (<$liste>) {
     chomp();
     if (/^\s+(\d+\.\d+\.\d+\.\d+)\s+([0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2})\s+(\d+)\s+(\d+)\s+(.*)/) {
