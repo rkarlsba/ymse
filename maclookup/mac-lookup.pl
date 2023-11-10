@@ -6,8 +6,9 @@ use warnings;
 
 my $maskinliste = "roysk.txt";
 my $ouiliste = "oui.txt";
-my ($ip,$mac,$count,$len,$vendor,$pvendor);
-my $liste;
+my ($ip,$mac,$macprefix,$count,$len,$vendor,$pvendor) = undef;
+my @mac = undef;
+my $liste = undef;
 
 # {{{
 # 158.36.144.254  e4:fc:82:e6:38:08   4283  256980  Juniper Networks
@@ -21,23 +22,34 @@ my $liste;
 # 192.168.122.1   b0:5c:da:38:9c:cf      1      60  HP Inc.
 # }}}
 
-print("\$#ARGV is $#ARGV and \$ARGV[0] is $ARGV[0]\n");
-if ($#ARGV > 0 and $ARGV[0] eq '-') {
-    $liste  = *STDIN || die ("wtf? $!\n");
+my $args = @ARGV;
+if ($args > 0 and $ARGV[0] eq '-') {
+    $liste = *STDIN;
+    # || die ("wtf? $!\n");
     print("Read from stdin...\n");
 } else {
     open($liste, $maskinliste) || die ("wtf? $!\n");
     print("open $maskinliste...\n");
 }
 
-while (<$liste>) {
-    chomp();
-    if (/^\s+(\d+\.\d+\.\d+\.\d+)\s+([0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2}[\:\-][0-9a-z]{2})\s+(\d+)\s+(\d+)\s+(.*)/) {
-        ($ip,$mac,$count,$len,$vendor) = ($1,$2,$3,$4,$5);
+while (my $line = <$liste>) {
+    chomp($line);
+    $line = lc(<$line>);
+    if ($line =~ /^\s*(\d+\.\d+\.\d+\.\d+)\s+([0-9a-f]{2})[\:\-]?([0-9a-f]{2})[\:\-]?([0-9a-f]{2})[\:\-]?([0-9a-f]{2})[\:\-]?([0-9a-f]{2})[\:\-]?([0-9a-f]{2})\s+(\d+)\s+(\d+)\s+(.*)/) {
+        ($ip,$count,$len,$vendor) = ($1,$8,$9,$10,$11);
+        @mac = ($2,$3,$4,$5,$6,$7);
+    } elsif ($line =~ (/([0-9a-f]{2})[\:\-]([0-9a-f]{2})[\:\-]([0-9a-f]{2})[\:\-]([0-9a-f]{2})[\:\-]([0-9a-f]{2})[\:\-]([0-9a-f]{2})/)) {
+        @mac = ($1,$2,$3,$4,$5,$6);
+    } else {
+        print("Doesn't match anything: '$line'\n");
+        next;
     }
-    my $macprefix = $mac;
-    #$macprefix =~ s/([0-9a-z]{2})\:([0-9a-z]{2})\:([0-9a-z]{2}.*/)/$1$2$3/);
-    $macprefix =~ s/://g;
-    my $macpre = uc(substr($macprefix, 0, 6));
-    print "$ip\t$mac\t$count\t$len\t$vendor\t($macprefix - $macpre)\n";
+    # MAC address is defined at this point
+    $mac = join(':', @mac);
+    $macprefix = join(':', @mac[0..2]);
+    if (defined($ip)) {
+        print "$ip\t$mac\t$count\t$len\t$vendor\t($macprefix)\n";
+    } else {
+        print "$mac\t$vendor\n";
+    }
 }
