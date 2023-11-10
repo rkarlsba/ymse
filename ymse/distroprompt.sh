@@ -84,6 +84,6 @@ case $distro_type in
         ;;
 esac
 
-distroprompt="[$distro_type$distro_version]"
+distroprompt="$distro_type$distro_version $PS1"
 echo $distroprompt
 exit 0
