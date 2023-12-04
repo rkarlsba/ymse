@@ -66,8 +66,8 @@ then
     exit 1
 fi
 
-distro_type=$( awk -F= '/^ID/ { print $2 }' $version_file | sed 's/"//g' )
-distro_version=$( awk -F= '/^VERSION_ID/ { print $2 }' $version_file | sed 's/"//g' | sed 's/\..*//g')
+distro_type=$( awk -F= '/^\<ID\>/ { print $2 }' $version_file | sed 's/"//g' )
+distro_version=$( awk -F= '/^\<VERSION_ID\>/ { print $2 }' $version_file | sed 's/"//g' | sed 's/\..*//g')
 
 case $distro_type in
     'rhel')
@@ -84,6 +84,15 @@ case $distro_type in
         ;;
 esac
 
-distroprompt="$distro_type$distro_version $PS1"
+distronameandversion="$distro_type$distro_version"
+distronameandversioncoloured="\e[0;31m$distronameandversion\e[m"
+
+if [[ "$TERM" =~ 256color ]]
+then
+    distroprompt="$distronameandversioncoloured $PS1"
+else
+    distroprompt="$distronameandversion $PS1"
+fi
+
 echo $distroprompt
 exit 0

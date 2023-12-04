@@ -20,6 +20,7 @@
 # RETCODE=0
 # VERBOSE=0
 # }}}
+
 OS=$( uname -s )
 RESTIC_CONFIG="/etc/default/restic"
 
