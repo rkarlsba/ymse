@@ -1,0 +1,8 @@
+#!/usr/bin/env perl
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+
+use strict;
+use warnings;
+
+while (my $mac = shift) {
+}
