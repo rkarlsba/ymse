@@ -43,13 +43,13 @@
 # og av og til /boot/efi. Skriptet inneholder derfor variabler for dette slik at
 # disse kan ekskluderes for å unngå falske positiver.
 #
-# Merk at dette skriptet ser på maskinen globalt, mens zabbix-lld-rocheck.pl er
-# der for å legge til såkalt "low level discovery" for filsystemene som ikke er
-# ekskludert, og vil vise read-only-status direkte for filsystemet i stedet for
-# vertsmaskinen, som dette gjør. Bruk heller nevnte skript enn dette, med mindre
-# du har spesielle behov.
+# Merk at dette skriptet ser på maskinen globalt, mens zabbix_check_fs_ro_lld.pl
+# er der for å legge til såkalt "low level discovery" for filsystemene som ikke
+# er ekskludert, og vil vise read-only-status direkte for filsystemet i stedet
+# for vertsmaskinen, som dette gjør. Bruk heller nevnte skript enn dette, med
+# mindre du har spesielle behov.
 #
-# Roy Sigurd Karlsbakk <roysk@hioa.no> <roy@karlsbakk.net>
+# Roy Sigurd Karlsbakk <roysk@oslomet.no> <roy@karlsbakk.net>
 #
 # }}}
 
