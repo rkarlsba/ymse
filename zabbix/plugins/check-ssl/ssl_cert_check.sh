@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 DEBUG=0
@@ -28,15 +28,15 @@ fi
 
 case $f in
     -d|-e|-I)
-        end_date=`openssl s_client -servername $servername -host $host -port $port -showcerts $starttls -prexit </dev/null 2>/dev/null |
-            sed -n '/BEGIN CERTIFICATE/,/END CERT/p' |
+        end_date=$( openssl s_client -servername $servername -host $host -port $port -showcerts $starttls -prexit </dev/null 2>/dev/null |
+            sed -n '/BEGIN CERTIFICATE/,/END CERT/p' 2>/dev/null |
             openssl x509 -text 2>/dev/null |
-            sed -n 's/ *Not After : *//p'`
+            sed -n 's/ *Not After : *//p' 2>/dev/null )
 
         if [ -n "$end_date" ]
         then
-            end_date_seconds=`date '+%s' --date "$end_date"`
-            now_seconds=`date '+%s'`
+            end_date_seconds=$( date '+%s' --date "$end_date" )
+            now_seconds=$( date '+%s' )
 
             case $f in
                 -d)
@@ -51,19 +51,21 @@ case $f in
                     echo $end_date_iso
                     ;;
             esac
+            exit 0
         fi
         ;;
     -i)
-        issue_dn=`openssl s_client -servername $servername -host $host -port $port -showcerts $starttls -prexit </dev/null 2>/dev/null |
-            sed -n '/BEGIN CERTIFICATE/,/END CERT/p' |
+        issue_dn=$( openssl s_client -servername $servername -host $host -port $port -showcerts $starttls -prexit </dev/null 2>/dev/null |
+            sed -n '/BEGIN CERTIFICATE/,/END CERT/p' 2>/dev/null |
             openssl x509 -text 2>/dev/null |
-            sed -n 's/ *Issuer: *//p'`
+            sed -n 's/ *Issuer: *//p' 2>/dev/null )
 
         if [ -n "$issue_dn" ]
         then
-            issuer=`echo $issue_dn | sed -n 's/.*CN=*//p'`
+            issuer=$( echo $issue_dn | sed -n 's/.*CN=*//p' 2>/dev/null )
             echo $issuer
         fi
+        exit 0
         ;;
     -m)
         echo "Not implemented" >&2
