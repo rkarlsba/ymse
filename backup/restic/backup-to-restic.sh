@@ -115,7 +115,7 @@ else
     RESTIC_VERBOSE='--quiet'
 fi
 
-if [ $ONE_FILESYSTEM -gt 0 ]
+if [ $RESTIC_ONE_FILESYSTEM -gt 0 ]
 then
     RESTIC_ONE_FILESYSTEM='--one-file-system'
 fi
