@@ -10,7 +10,7 @@ Make a list of files and their apparent contents with
 find /data/empetre/ -type f -exec file {} \; > /data/empetre/filetypes.txt &`
 ```
 
-Read a list of files and check their extension, if it's in a set of supported
-ones, 
+Now, read the list of files and check their extension and if it's in a set of
+supported ones, check if ''file'' 
 
 Written in a cold and snowy winter in Oslo, Norway, by [mailto:roy@karlsbakk.net](Roy Sigurd Karlsbakk) in the bloody year of 2024
