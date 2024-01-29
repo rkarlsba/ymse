@@ -1,6 +1,6 @@
-<!--
+<!---
 vim:ts=4:sw=4:sts=4:et:ai
--->
+--->
 # Extracting the Arduino config
 
 In Preferences, you'll find a field with "Additional boards manager URLs",
