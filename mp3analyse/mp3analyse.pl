@@ -47,13 +47,23 @@ use File::Basename;
 
 my %extensions;
 my %descriptions;
+my @files;
 my @good_ext = ("mp3", "flac", "m4a", "wma", "m4p", "wav", "aif", "ogg", "m4b", "mp4", "mts", "aiff", "webm", "mov", "flv");
 my $filetypes_fn = "filetypes.txt";
 my $debug = 1;
 
-#sub is_zeroed {
-#    local $fn = shift;
-#}
+sub is_zeroed {
+    my $lfn = shift;
+    local $/;
+    my $br;
+
+    open(my $lfh, "<", $lfn) ||
+        die "Can't open file \"$lfn\": $!";
+    my $filecontents = <$lfh>;
+    close($lfh);
+
+    return ($filecontents =~ m/^\x00+$/);
+}
 
 open(my $fh, "<", $filetypes_fn) ||
     die "Can't open file \"$filetypes_fn\": $!";
@@ -66,15 +76,14 @@ while (my $s = <$fh>) {
         $fn = $1;
         $desc = $2;
 
-        #($bn, $dir, $ext) = fileparse($fn);
-        #($bn, $dir, $ext) = fileparse($fn,'\..*');
         ($bn, $dir, $ext) = fileparse($fn, qr/\.[^.]*/);
         $ext = lc($ext);
         $ext =~ s/^\.//;
         next unless (grep( /^$ext$/, @good_ext));
         next unless ($desc eq "data");
         print("Found \"$bn\" and ext \"$ext\"\n") if ($debug gt 1);
-        print("$fn\n") if ($debug gt 0);
+        push @files,$fn;
+        print("$fn\n") if ($debug gt 1);
         $descriptions{$desc}++;
         $extensions{$ext}++;
     }
@@ -82,6 +91,7 @@ while (my $s = <$fh>) {
 
 close($fh);
 
+# Debug shite {{{
 if ($debug gt 1) {
     foreach my $ext (sort { $extensions{$b} <=> $extensions{$a} } keys %extensions) {
         print "$ext: $extensions{$ext}\n"
@@ -93,4 +103,9 @@ if ($debug gt 1) {
         print "$desc $descriptions{$desc}\n"
     }
 }
+# }}}
 
+foreach my $fn (@files) {
+    my $z = is_zeroed($fn) ? "Z" : "-";
+    print "[$z] $fn\n";
+}
