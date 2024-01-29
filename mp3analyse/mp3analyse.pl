@@ -46,26 +46,14 @@ use warnings;
 use File::Basename;
 
 my %extensions;
+my %descriptions;
 my @good_ext = ("mp3", "flac", "m4a", "wma", "m4p", "wav", "aif", "ogg", "m4b", "mp4", "mts", "aiff", "webm", "mov", "flv");
-my %good_ext = (
-    "mp3" => 1,
-    "flac" => 1,
-	"m4a" => 1,
-	"wma" => 1,
-	"m4p" => 1,
-	"wav" => 1,
-	"aif" => 1,
-	"ogg" => 1,
-	"m4b" => 1,
-	"mp4" => 1,
-	"mts" => 1,
-	"aiff" => 1,
-	"webm" => 1,
-	"mov" => 1,
-	"flv" => 1
-);
 my $filetypes_fn = "filetypes.txt";
 my $debug = 1;
+
+#sub is_zeroed {
+#    local $fn = shift;
+#}
 
 open(my $fh, "<", $filetypes_fn) ||
     die "Can't open file \"$filetypes_fn\": $!";
@@ -84,17 +72,25 @@ while (my $s = <$fh>) {
         $ext = lc($ext);
         $ext =~ s/^\.//;
         next unless (grep( /^$ext$/, @good_ext));
+        next unless ($desc eq "data");
         print("Found \"$bn\" and ext \"$ext\"\n") if ($debug gt 1);
+        print("$fn\n") if ($debug gt 0);
+        $descriptions{$desc}++;
         $extensions{$ext}++;
     }
 }
 
 close($fh);
 
-# foreach my $name (sort { $planets{$a} <=> $planets{$b} } keys %planets) {
 if ($debug gt 1) {
     foreach my $ext (sort { $extensions{$b} <=> $extensions{$a} } keys %extensions) {
         print "$ext: $extensions{$ext}\n"
+    }
+}
+
+if ($debug gt 1) {
+    foreach my $desc (sort { $descriptions{$b} <=> $descriptions{$a} } keys %descriptions) {
+        print "$desc $descriptions{$desc}\n"
     }
 }
 
