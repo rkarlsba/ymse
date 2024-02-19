@@ -13,6 +13,9 @@
 #   names starting with ata-. If others are needed, it shouldn't be hard, but
 #   I don't need them.
 #
+# The code could be more beautiful and currently only supports drivenames
+# starting with ata-, but it works™
+#
 # }}}
 # /dev/disk/by-id {{{
 #
@@ -30,20 +33,6 @@
 # ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V-part2@	 --> /dev/sdg2
 # ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V@	 --> /dev/sdg
 #
-# wwn-0x5000c500e00acb54@	 --> /dev/sdc
-# wwn-0x5000c500e00ce554@	 --> /dev/sdd
-# wwn-0x5000c500e53d3ede@	 --> /dev/sda
-# wwn-0x5000c500e53dcfa0@	 --> /dev/sde
-# wwn-0x50015178f35b25e4-part1@	 --> /dev/sdf1
-# wwn-0x50015178f35b25e4-part2@	 --> /dev/sdf2
-# wwn-0x50015178f35b25e4@	 --> /dev/sdf
-# wwn-0x50015178f35b307a-part1@	 --> /dev/sdb1
-# wwn-0x50015178f35b307a-part2@	 --> /dev/sdb2
-# wwn-0x50015178f35b307a@	 --> /dev/sdb
-# wwn-0x5002538d40914a96-part1@	 --> /dev/sdg1
-# wwn-0x5002538d40914a96-part2@	 --> /dev/sdg2
-# wwn-0x5002538d40914a96@	 --> /dev/sdg
-# 
 # }}}
 
 use warnings;
