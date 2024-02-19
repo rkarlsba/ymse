@@ -11,8 +11,15 @@
 #include <iwlib.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <sys/ioctl.h>
 
 int main(int argc, char *argv[]) {
     int s;
+    struct iwreq wrq;
+    if (iw_get_ext(skfd, ifname, SIOCGIWRATE, &wrq) >= 0) {
+        printf("yey\n");
+    }
+//   17400 ioctl(3, SIOCGIWRATE, 0x7e949f58) = 0
+//   17400 ioctl(3, SIOCGIWPOWER, 0x7e949f58) = 0
 
 }
