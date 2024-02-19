@@ -1,10 +1,79 @@
 #!/usr/bin/perl
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
+# Changelog {{{
+#
+# Version 1.6
+# Changed by Roy Sigurd Karlsbakk <roy@karlsbakk.net> 2024
+#
+# Added addressing disks by /dev/disk/by-id to avoid errors hanging on old
+# device names (typical Linux issue). This only takes into account device names
+# starting with ata-. If others are needed, it shouldn't be hard, but I don't
+# need them.
+#
+# }}}
+# /dev/disk/by-id {{{
+#
+# ata-INTEL_SSDSC2CT120A3_BTMP302002XW120BGN-part1@	 --> /dev/sdf1
+# ata-INTEL_SSDSC2CT120A3_BTMP302002XW120BGN-part2@	 --> /dev/sdf2
+# ata-INTEL_SSDSC2CT120A3_BTMP302002XW120BGN@	 --> /dev/sdf
+# ata-INTEL_SSDSC2CT120A3_BTMP30210007120BGN-part1@	 --> /dev/sdb1
+# ata-INTEL_SSDSC2CT120A3_BTMP30210007120BGN-part2@	 --> /dev/sdb2
+# ata-INTEL_SSDSC2CT120A3_BTMP30210007120BGN@	 --> /dev/sdb
+# ata-ST16000NM001G-2KK103_WL20KC89@	 --> /dev/sdc
+# ata-ST16000NM001G-2KK103_WL20KPMP@	 --> /dev/sdd
+# ata-ST16000NM001G-2KK103_ZL2PQKRQ@	 --> /dev/sde
+# ata-ST16000NM001G-2KK103_ZL2PS47V@	 --> /dev/sda
+# ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V-part1@	 --> /dev/sdg1
+# ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V-part2@	 --> /dev/sdg2
+# ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V@	 --> /dev/sdg
+# dm-name-arkiv-arkiv@	 --> /dev/dm-1
+# dm-name-arkiv-hdswap1@	 --> /dev/dm-5
+# dm-name-arkiv-hdswap2@	 --> /dev/dm-7
+# dm-name-arkiv-hdswap3@	 --> /dev/dm-8
+# dm-name-arkiv-quotatest@	 --> /dev/dm-9
+# dm-name-arkiv-tmp@	 --> /dev/dm-3
+# dm-name-sys-kvm_ssd@	 --> /dev/dm-6
+# dm-name-sys-lvswap1@	 --> /dev/dm-2
+# dm-name-sys-lvswap2@	 --> /dev/dm-4
+# dm-name-sys-root@	 --> /dev/dm-0
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36f3QRbocaVc1EyB7zf2Tv1DEExF6xjzKnt@	 --> /dev/dm-7
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fbJOYDQvbISVdnWozKz51cOyfwUhp7VsN@	 --> /dev/dm-8
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fbxSBg5CUyTCxjLBWcu97XhxGJGcSJmUC@	 --> /dev/dm-9
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36flNZUsLSs9Nj8WLbRiA4sVuOFIVT8uiq0@	 --> /dev/dm-5
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fo8xomvW7UawBmq8eLVTsopa3u9PDqi0L@	 --> /dev/dm-1
+# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fvGe23eu6EeRA65DWwpt7sSPOyYMRWQJi@	 --> /dev/dm-3
+# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzH215lZeJD9pnZdBAmyRiMKk3IGWt6vG1q@	 --> /dev/dm-2
+# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHDY6zoe8HIvAbYflYldB4b7cDNJ3CGJLE@	 --> /dev/dm-0
+# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHTJIFm34rTtOUC24w46zO7ZkzIZ01Y987@	 --> /dev/dm-4
+# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHhyLFmTB133vtSuxlCF1x2Hfe3h87WcUA@	 --> /dev/dm-6
+# lvm-pv-uuid-qcDj9I-OKVG-v06s-grux-3KuV-9Ml0-jy4Q3l@	 --> /dev/md2
+# lvm-pv-uuid-z8Q1KS-yuMS-H41Y-QNnL-gJQm-D7Sz-Sl5pR2@	 --> /dev/md1
+# md-name-smilla:2@	 --> /dev/md2
+# md-uuid-78eb5f4a:5f60e14d:9bff8ba9:d9cefac7@	 --> /dev/md1
+# md-uuid-9f4a7586:256a1549:afb588c5:1bca6271@	 --> /dev/md2
+# usb-PiKVM_CD-ROM_Drive_CAFEBABE-0:0@	 --> /dev/sr0
+# wwn-0x5000c500e00acb54@	 --> /dev/sdc
+# wwn-0x5000c500e00ce554@	 --> /dev/sdd
+# wwn-0x5000c500e53d3ede@	 --> /dev/sda
+# wwn-0x5000c500e53dcfa0@	 --> /dev/sde
+# wwn-0x50015178f35b25e4-part1@	 --> /dev/sdf1
+# wwn-0x50015178f35b25e4-part2@	 --> /dev/sdf2
+# wwn-0x50015178f35b25e4@	 --> /dev/sdf
+# wwn-0x50015178f35b307a-part1@	 --> /dev/sdb1
+# wwn-0x50015178f35b307a-part2@	 --> /dev/sdb2
+# wwn-0x50015178f35b307a@	 --> /dev/sdb
+# wwn-0x5002538d40914a96-part1@	 --> /dev/sdg1
+# wwn-0x5002538d40914a96-part2@	 --> /dev/sdg2
+# wwn-0x5002538d40914a96@	 --> /dev/sdg
+# 
+# }}}
+
 use warnings;
 use strict;
+use Getopt::Long;
 
-my $VERSION = 1.5;
+my $VERSION = 1.6;
 
 #add path if needed into $smartctl_cmd
 my $smartctl_cmd = "/usr/sbin/smartctl";
@@ -15,15 +84,59 @@ my @input_disks;
 my @global_serials;
 my @smart_disks;
 
-#must be run as root
-#if ( $UID -ne 0 ) {
-#    print STDERR "This must be run as root!\n";
-#    exit(1);
-#}
+# Option flags
+my $opt_help = 0;
+my $opt_debug = 0;
+my $opt_by_id = 0;
+my $opt_by_path = 0;
+my $opt_by_uuid = 0;
+
+my $helpstr = <<EOL;
+Usage: $0 [ -i | -p | -u | -D | -h ]
+
+    -i | --by-id    Get device names from /dev/disk/by-id
+    -p | --by-path  Get device names from /dev/disk/by-path (not implemented)
+    -u | --by-uuid  Get device names from /dev/disk/by-uuid (not implemented)
+EOL
+
+sub help {
+    my $err = shift;
+    if (defined($err)) {
+        print STDERR "ERROR: $err\n$helpstr\n";
+        exit 1;
+    } else {
+        print "$helpstr\n";
+        exit 0;
+    }
+}
+
+# Must be run as root
+if ($< ne 0) {
+    print STDERR "This must be run as root!\n";
+    exit(1);
+}
+
+# Get and parse options
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "h" => \$opt_help,      "help"  => \$opt_help,
+    "D" => \$opt_debug,     "debug" => \$opt_debug,
+    "i" => \$opt_by_id,     "by-id" => \$opt_by_id,
+    "p" => \$opt_by_path,   "by-path" => \$opt_by_path,
+    "u" => \$opt_by_uuid,   "by-uuid" => \$opt_by_uuid,
+);
+
+&help if ($opt_help);
+
+# Sanity check
+if ($opt_by_path or $opt_by_uuid) {
+    &help('Option not supported');
+}
+
 
 # by providing additional positional arguments you can add disks that are hardly discovered otherwise.
 # for example to force discovery of the following disks provide '/dev/sda_-d_sat+megaraid,00 /dev/sda_-d_sat+megaraid,01' as arguments
-if (@ARGV>0) {
+if (@ARGV > 0) {
     foreach my $disk_line (@ARGV) {
         $disk_line =~ s/_/ /g;
         my ($disk_name) = $disk_line =~ /(\/(.+?))(?:$|\s)/;

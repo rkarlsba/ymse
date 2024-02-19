@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# vim:ts=4:sw=4:sws=4:et:fdm=marker
+# vim:ts=4:sw=4:sts=4:et:fdm=marker
 
 use Getopt::Long;
 use POSIX qw(uname);
