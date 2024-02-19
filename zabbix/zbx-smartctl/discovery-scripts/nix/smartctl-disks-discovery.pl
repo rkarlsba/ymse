@@ -1,8 +1,9 @@
 #!/usr/bin/perl
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+
 use warnings;
 use strict;
 
-#must be run as root
 my $VERSION = 1.5;
 
 #add path if needed into $smartctl_cmd
@@ -13,6 +14,12 @@ my $nvme_cmd = "/usr/sbin/nvme";
 my @input_disks;
 my @global_serials;
 my @smart_disks;
+
+#must be run as root
+#if ( $UID -ne 0 ) {
+#    print STDERR "This must be run as root!\n";
+#    exit(1);
+#}
 
 # by providing additional positional arguments you can add disks that are hardly discovered otherwise.
 # for example to force discovery of the following disks provide '/dev/sda_-d_sat+megaraid,00 /dev/sda_-d_sat+megaraid,01' as arguments
