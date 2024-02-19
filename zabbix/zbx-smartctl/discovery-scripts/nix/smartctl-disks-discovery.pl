@@ -236,7 +236,7 @@ sub get_diskname_by_id {
     my $reldiskname = "../../$basediskname";
     if (opendir(my $dh, $devpath)) {
         while (my $devlinkfile = readdir($dh)) {
-            next unless ($devlinkfile =~ /^(ata-.*)/);
+            next unless ($devlinkfile =~ /^((ata|scsi|usb)-.*)/);
             next if ($devlinkfile =~ /-part[0-9]/);
             my $linktarget = readlink("$devpath/$devlinkfile");
             if ($linktarget eq $reldiskname) {
