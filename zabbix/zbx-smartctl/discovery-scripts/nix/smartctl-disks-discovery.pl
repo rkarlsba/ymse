@@ -6,10 +6,12 @@
 # Version 1.6
 # Changed by Roy Sigurd Karlsbakk <roy@karlsbakk.net> 2024
 #
-# Added addressing disks by /dev/disk/by-id to avoid errors hanging on old
-# device names (typical Linux issue). This only takes into account device names
-# starting with ata-. If others are needed, it shouldn't be hard, but I don't
-# need them.
+# - Added check to see if we're actually running as root
+#
+# - Added addressing disks by /dev/disk/by-id to avoid errors hanging on old
+#   device names (typical Linux issue). This only takes into account device
+#   names starting with ata-. If others are needed, it shouldn't be hard, but
+#   I don't need them.
 #
 # }}}
 # /dev/disk/by-id {{{
@@ -27,32 +29,7 @@
 # ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V-part1@	 --> /dev/sdg1
 # ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V-part2@	 --> /dev/sdg2
 # ata-Samsung_SSD_850_EVO_500GB_S21JNXBGC22428V@	 --> /dev/sdg
-# dm-name-arkiv-arkiv@	 --> /dev/dm-1
-# dm-name-arkiv-hdswap1@	 --> /dev/dm-5
-# dm-name-arkiv-hdswap2@	 --> /dev/dm-7
-# dm-name-arkiv-hdswap3@	 --> /dev/dm-8
-# dm-name-arkiv-quotatest@	 --> /dev/dm-9
-# dm-name-arkiv-tmp@	 --> /dev/dm-3
-# dm-name-sys-kvm_ssd@	 --> /dev/dm-6
-# dm-name-sys-lvswap1@	 --> /dev/dm-2
-# dm-name-sys-lvswap2@	 --> /dev/dm-4
-# dm-name-sys-root@	 --> /dev/dm-0
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36f3QRbocaVc1EyB7zf2Tv1DEExF6xjzKnt@	 --> /dev/dm-7
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fbJOYDQvbISVdnWozKz51cOyfwUhp7VsN@	 --> /dev/dm-8
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fbxSBg5CUyTCxjLBWcu97XhxGJGcSJmUC@	 --> /dev/dm-9
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36flNZUsLSs9Nj8WLbRiA4sVuOFIVT8uiq0@	 --> /dev/dm-5
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fo8xomvW7UawBmq8eLVTsopa3u9PDqi0L@	 --> /dev/dm-1
-# dm-uuid-LVM-m5NdZlG5rdefhkyZLZ31CPPdPJCSr36fvGe23eu6EeRA65DWwpt7sSPOyYMRWQJi@	 --> /dev/dm-3
-# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzH215lZeJD9pnZdBAmyRiMKk3IGWt6vG1q@	 --> /dev/dm-2
-# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHDY6zoe8HIvAbYflYldB4b7cDNJ3CGJLE@	 --> /dev/dm-0
-# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHTJIFm34rTtOUC24w46zO7ZkzIZ01Y987@	 --> /dev/dm-4
-# dm-uuid-LVM-wKTTX7ab7C1a8to5Tl3n0oWvFKGeXqzHhyLFmTB133vtSuxlCF1x2Hfe3h87WcUA@	 --> /dev/dm-6
-# lvm-pv-uuid-qcDj9I-OKVG-v06s-grux-3KuV-9Ml0-jy4Q3l@	 --> /dev/md2
-# lvm-pv-uuid-z8Q1KS-yuMS-H41Y-QNnL-gJQm-D7Sz-Sl5pR2@	 --> /dev/md1
-# md-name-smilla:2@	 --> /dev/md2
-# md-uuid-78eb5f4a:5f60e14d:9bff8ba9:d9cefac7@	 --> /dev/md1
-# md-uuid-9f4a7586:256a1549:afb588c5:1bca6271@	 --> /dev/md2
-# usb-PiKVM_CD-ROM_Drive_CAFEBABE-0:0@	 --> /dev/sr0
+#
 # wwn-0x5000c500e00acb54@	 --> /dev/sdc
 # wwn-0x5000c500e00ce554@	 --> /dev/sdd
 # wwn-0x5000c500e53d3ede@	 --> /dev/sda
@@ -72,6 +49,8 @@
 use warnings;
 use strict;
 use Getopt::Long;
+use Data::Dumper;
+use File::Basename;
 
 my $VERSION = 1.6;
 
@@ -92,7 +71,10 @@ my $opt_by_path = 0;
 my $opt_by_uuid = 0;
 
 my $helpstr = <<EOL;
-Usage: $0 [ -i | -p | -u | -D | -h ]
+Usage: $0 [ -i | -p | -u | -d | -h ]
+
+    -h | --help     This help
+    -d | --debug    Enable debugging (multiple -d asks for even more)
 
     -i | --by-id    Get device names from /dev/disk/by-id
     -p | --by-path  Get device names from /dev/disk/by-path (not implemented)
@@ -119,11 +101,11 @@ if ($< ne 0) {
 # Get and parse options
 Getopt::Long::Configure('bundling');
 GetOptions(
-    "h" => \$opt_help,      "help"  => \$opt_help,
-    "D" => \$opt_debug,     "debug" => \$opt_debug,
-    "i" => \$opt_by_id,     "by-id" => \$opt_by_id,
-    "p" => \$opt_by_path,   "by-path" => \$opt_by_path,
-    "u" => \$opt_by_uuid,   "by-uuid" => \$opt_by_uuid,
+    "h" =>  \$opt_help,     "help"  => \$opt_help,
+    "d+" => \$opt_debug,    "debug+" => \$opt_debug,
+    "i" =>  \$opt_by_id,    "by-id" => \$opt_by_id,
+    "p" =>  \$opt_by_path,  "by-path" => \$opt_by_path,
+    "u" =>  \$opt_by_uuid,  "by-uuid" => \$opt_by_uuid,
 );
 
 &help if ($opt_help);
@@ -158,7 +140,6 @@ if (@ARGV > 0) {
 
 
 if ( $^O eq 'darwin' ) {    # if MAC OSX (limited support, consider to use smartctl --scan-open)
-
     while ( glob('/dev/disk*') ) {
         if ( $_ =~ /\/(disk+[0-9])$/ ) { 
             push @input_disks,
@@ -168,8 +149,7 @@ if ( $^O eq 'darwin' ) {    # if MAC OSX (limited support, consider to use smart
               };
         }
     }
-}
-else {
+} else {
     foreach my $line (@{[
         `$smartctl_cmd --scan-open`,
         `$smartctl_cmd --scan-open -dnvme`
@@ -259,6 +239,29 @@ foreach my $disk (@input_disks) {
 
 json_discovery( \@smart_disks );
 
+# ata-ST16000NM001G-2KK103_WL20KPMP@	 --> /dev/sdd
+sub get_diskname_by_id {
+    my $diskname = shift;
+    my $devpath = '/dev/disk/by-id';
+    my $basediskname = basename($diskname);
+    my $reldiskname = "../../$basediskname";
+    if (opendir(my $dh, $devpath)) {
+        while (my $devlinkfile = readdir($dh)) {
+            next unless ($devlinkfile =~ /^(ata-.*)/);
+            next if ($devlinkfile =~ /-part[0-9]/);
+            my $linktarget = readlink("$devpath/$devlinkfile");
+            if ($linktarget eq $reldiskname) {
+                $diskname = "$devpath/$devlinkfile";
+            }
+        }
+        closedir $dh;
+    } else { 
+        warn "Can't open directory $devpath: $!";
+    }
+    readdir
+    return $diskname;
+}
+
 sub get_smart_disks {
     my $disk = shift;
     my @disks;
@@ -267,6 +270,10 @@ sub get_smart_disks {
 
     chomp( $disk->{disk_name} );
     chomp( $disk->{disk_args} );
+
+    if ($opt_by_id) {
+        $disk->{disk_name} = get_diskname_by_id($disk->{disk_name});
+    }
     
     $disk->{disk_cmd} = $disk->{disk_name};
     if (length($disk->{disk_args}) > 0){
