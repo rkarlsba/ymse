@@ -6,11 +6,11 @@
 # https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
 export RESTIC_REPOSITORY="sftp:restic:restic-repo"
 export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
+export RESTIC_COMPRESSION="auto"
 
 RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
 RESTIC_EXCLUDE=""
 RESTIC_VERBOSE=""
-RESTIC_COMPRESSION="auto"
 RESTIC_ONE_FILESYSTEM=1
 RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
 RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
