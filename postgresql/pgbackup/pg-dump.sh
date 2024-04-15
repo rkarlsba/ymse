@@ -3,7 +3,7 @@
 
 # Make a backup if the given database(s) to file/dir.
 # Syntax:
-#   dbdump.sh [-f plain|custom|directory|tar ] db1 [ db2 [ db3 [ ... ]]]
+#   pg-dump.sh db1 [ db2 [ db3 [ ... ]]]
 
 # Please exit on errors ;)
 set -e
@@ -29,7 +29,6 @@ while getopts ${optstr} opt
 do
     case ${opt} in
         f)
-            echo "Option -f was triggered, Argument: ${OPTARG}"
             dumpformat=${OPTARG}
             ;;
         :)
@@ -42,6 +41,7 @@ do
             ;;
     esac
 done
+shift $( expr $OPTIND - 1 )
 
 # Sanity check
 case $dumpformat in
@@ -70,5 +70,5 @@ esac
 for db in $@
 do
     filename=$db-$datestr$ext
-    pg_dump --format=$dumpformat --jobs=$dumpjobs > $filename
+    pg_dump --format=$dumpformat --jobs=$dumpjobs $db > $filename
 done
