@@ -4,3 +4,5 @@
 /run
 /var/cache/apt
 /var/lib/lxcfs
+/var/cache/apt/archives
+/home/*/.cache
