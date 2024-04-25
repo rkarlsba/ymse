@@ -8,6 +8,8 @@ export RESTIC_REPOSITORY="sftp:restic:restic-repo"
 export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
 export RESTIC_COMPRESSION="auto"
 
+PROGNAME=restic-backup
+
 RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
 RESTIC_EXCLUDE=""
 RESTIC_VERBOSE=""
