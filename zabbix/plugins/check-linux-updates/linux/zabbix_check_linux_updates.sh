@@ -103,9 +103,10 @@ case $DISTRO in
         fi
         ;;
     debian|ubuntu|raspbian)
-        # Ignore --local and --cron on debuntu - it's fast
-        APT_SEC=$( apt-get -s upgrade | grep -ci ^inst.*security | tr -d '\n' )
-        APT_UPD=$( apt-get -s upgrade | grep -iPc '^Inst((?!security).)*$' | tr -d '\n' )
+        # Ignore --local and --cron on debuntu - it's fast(ish)
+        apt-get -s upgrade > $CACHEFILE
+        APT_SEC=$( cat $CACHEFILE | grep -ci ^inst.*security | tr -d '\n' )
+        APT_UPD=$( cat $CACHEFILE | grep -iPc '^Inst((?!security).)*$' | tr -d '\n' )
         if [ $APT_SEC -gt 0 -o $APT_UPD -gt 0 ]
         then
             apt-get --just-print upgrade > $TMPFILE
