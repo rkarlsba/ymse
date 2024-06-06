@@ -12,8 +12,18 @@ force=0
 function show_help {
     [ $# -gt 0 ] && echo $@
     echo <<EOT
-Syntax: $0 [-xz|-gz|-bz2|-h]
+Syntax: $0 [ -b | -g | -x ] [ -h ] [ -f ]
+
+Having
+    -b      == Compress backups with bzip2
+    -g      == Compress backups with gzip
+    -x      == Compress backups with xz
+
+    -h / -? == Show this help
+
+    -f      == Forcibly overwrite old backup files with the same name as new ones
 EOT
+    exit 0
 }
 
 # Parse arguments first
@@ -65,5 +75,5 @@ do
             continue
         fi
     fi
-    echo "$mxdbdump $db | $comp > $backuptarget/$db.sql$ext"
+    $mxdbdump --databases $db | $comp > $backuptarget/$db.sql$ext
 done
