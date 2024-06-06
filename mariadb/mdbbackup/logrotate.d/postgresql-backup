@@ -1,0 +1,15 @@
+# vim:ts=4:sw=4:sts=4:et:ai
+/var/backups/mariadb/*.sql.gz
+/var/backups/mariadb/*.sql.xz
+/var/backups/mariadb/*.sql.bz2
+/var/backups/mariadb/*.sql
+{
+    daily
+    rotate 14
+    copytruncate
+    nocompress
+    notifempty
+    nocreate
+    su postgres postgres
+}
+# logrotate.conf
