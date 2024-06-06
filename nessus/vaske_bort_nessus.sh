@@ -42,6 +42,40 @@ EOT
 }
 
 # }}}
+# function file_is_empty {{{
+
+function file_is_empty {
+    filename=$1
+
+    if [ -f $filename -a ! -s $filename ]
+    then
+        echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
+        return 1
+    fi
+    return 0
+}
+
+# }}}
+# function show_help {{{
+
+function show_help {
+    [ $# -gt 0 ] && echo $@
+    echo <<EOT
+Syntax: $0 [ -b | -g | -x ] [ -h ] [ -f ]
+
+Having
+    -b      == Compress backups with bzip2
+    -g      == Compress backups with gzip
+    -x      == Compress backups with xz
+
+    -h / -? == Show this help
+
+    -f      == Forcibly overwrite old backup files with the same name as new ones
+EOT
+    exit 0
+}
+
+# }}}
 # Global Variables {{{
 
 #dir='/var/log/httpd'
@@ -85,7 +119,10 @@ fi
 # Resten {{{
 
 cd $dir
-ls $files | wc -l
+for f in $files
+do
+    perl -ne "print unless /$nessus/;" -i $f
+    if (-z
 sed -i $files "s/$nessus//"
 
 # }}}
