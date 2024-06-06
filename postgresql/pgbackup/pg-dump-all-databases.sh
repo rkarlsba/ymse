@@ -5,10 +5,12 @@
 # Released under BSD-3-Clause-Attribution - See LICENSE for details.
 
 verbose=0
+verbarg=''
 
 if [ "$1" = "-v" ]
 then
     verbose=1
+	verbarg='-v'
 fi
 
 export LC_ALL=C
@@ -31,7 +33,7 @@ for db in $databases
 do
     dst_file="$dst/$db.dump"
     [ $verbose -gt 0 ] && echo -n "Dumping database $db to $dst_file..."
-    pg_dump --format=custom $db > $dst_file || exit 1
+    pg-dump -f $dumpformat --format=custom -c $compression $db > $dst_file || exit 1
     [ $verbose -gt 0 ] && echo
 done
 

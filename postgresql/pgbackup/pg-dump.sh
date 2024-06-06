@@ -10,24 +10,10 @@ die() {
     exit 1
 }
 
-# Backup directory
-backupdir="$HOME/backups"
-
-# Please exit on errors ;)
-set -e
-
-# Date format, here as used in filename 'zabbix-2023-10-03_13-15-15.dump'
-datefmt='%Y-%m-%d_%H-%M-%S'
-
-# The actual date string output by date(1)
-datestr=$( date +$datefmt )
-
-# Parallel dump jobs - don't use more than you have cores, preferably less. Only
-# supported by directory format. See pg_dump(1) for details.
-dumpjobs=8
+source "pg-dump.conf"
 
 # Dump format is either plain (SQL), custom (compressed native postgres
-# format), directory or tar. See pg_dump(1) for details.
+# format), tar. Directory format not supported. See pg_dump(1) for details.
 dumpformat='custom'
 compression='none'
 compcmd='cat'
@@ -65,28 +51,6 @@ done
 shift $( expr $OPTIND - 1 )
 
 # Sanity check
-case $dumpformat in
-    p|plain)
-        ext='.sql'
-        dumpjobs=1
-        ;;
-    c|custom)
-        ext='.dump'
-        dumpjobs=1
-        ;;
-    d|directory)
-        ext=''
-        ;;
-    t|tar)
-        ext='.tar'
-        dumpjobs=1
-        ;;
-    *)
-        echo "Dump format '$dumpformat' is unknown - giving up" >&2
-        exit 1
-        ;;
-esac
-
 case $compression in
     gz)
         ext2=".gz"
@@ -109,6 +73,42 @@ case $compression in
         exit 1
         ;;
 esac
+
+case $dumpformat in
+    p|plain)
+        ext='.sql'
+        dumpjobs=1
+        ;;
+    c|custom)
+        ext='.dump'
+        dumpjobs=1
+        ;;
+    t|tar)
+        ext='.tar'
+        dumpjobs=1
+        ;;
+    d|directory)
+        echo "Directory dump format not supported" >&2
+        exit 1
+        ;;
+    *)
+        echo "Dump format '$dumpformat' is unknown - giving up" >&2
+        exit 1
+        ;;
+esac
+
+if [ "$compression" != "none" ]
+then
+    case $dumpformat in
+        p|plain|t|tar)
+            ;;
+        *)
+            echo "Dump format $dumpformat is incompatible with compression - disabling compression" >&2
+            compression='none'
+            ;;
+    esac
+fi
+
 
 # Main code
 for db in $@
