@@ -28,9 +28,9 @@ dir='/var/log/httpd'
 files='*_log*'
 nessus='(\[client |^)(158\.36\.68\.|2001:700:700:2002::)79'
 debug=0
+dry_run=0
 verbose=0
 optstr=":dhv?"
-remove_empty_files=1
 TRUE=0
 FALSE=1
 
@@ -44,13 +44,10 @@ function show_help {
 Syntax: $0 [ -b | -g | -x ] [ -h ] [ -f ]
 
 Having
-    -b      == Compress backups with bzip2
-    -g      == Compress backups with gzip
-    -x      == Compress backups with xz
-
+    -v      == Be verbose
+    -d      == Enable debugging
+    -D      == Dry run - just simulate - don't remove files - implies verbose
     -h / -? == Show this help
-
-    -f      == Forcibly overwrite old backup files with the same name as new ones
 EOT
     exit 0
 }
@@ -77,12 +74,8 @@ function file_is_open {
     [ $# -eq 1 ] || return $FALSE
     filename=$1
 
-    if [ -f "$filename" -a ! -s "$filename" ]
-    then
-        [ $verbose -gt 0 ] && echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
-        return $TRUE
-    fi
-    return $FALSE
+    fuser -s $filename 
+    return $?
 }
 
 # }}}
@@ -94,6 +87,10 @@ do
     case ${opt} in
         'd')
             debug=1
+            ;;
+        'D')
+            dry_run=1
+            verbose=1
             ;;
         'h'|'?')
             show_help
@@ -124,8 +121,18 @@ do
     perl -ne "print unless /$nessus/;" -i $f
     if file_is_empty $f
     then
-        if [ $remove_empty_files -gt 0 ]
+        [ $verbose -gt 0 ] && echo "File $f is empty"
+        if file_is_open $f
         then
+            [ $verbose -gt 0 ] && echo "File $f is open"
+            continue
+        fi
+        [ $verbose -gt 0 ] && echo "File $f is not open"
+        if [ $dry_run -gt 0 ]
+        then
+            [ $verbose -gt 0 ] && echo "*NOT* removing file $f because of dry run"
+        else
+            [ $verbose -gt 0 ] && echo "Removing file $f"
             rm -f $f
         fi
     fi
