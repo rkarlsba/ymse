@@ -22,6 +22,21 @@
 # gml/                ssl_request_log         synopsis.oslomet.no-error_log-20240512   synopsis.oslomet.no-ssl_access_log-20240526
 # 
 # }}}
+# Global Variables {{{
+
+#dir='/var/log/httpd'
+dir='/var/log/httpd/test'
+files='*_log*'
+nessus='\[client (158\.36\.68\.|2001:700:700:2002::)79'
+debug=0
+verbose=0
+optstr=":dhv?"
+remove_empty_files=1
+TRUE=0
+FALSE=1
+
+# }}}
+
 # function show_help {{{
 
 function show_help {
@@ -45,48 +60,34 @@ EOT
 # function file_is_empty {{{
 
 function file_is_empty {
+    [ $# -eq 1 ] || return $FALSE
     filename=$1
 
     if [ -f $filename -a ! -s $filename ]
     then
-        echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
-        return 1
+        [ $verbose -gt 0 ] && echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
+        return $TRUE
     fi
-    return 0
+    return $FALSE
 }
 
 # }}}
-# function show_help {{{
+# function file_is_open {{{
 
-function show_help {
-    [ $# -gt 0 ] && echo $@
-    echo <<EOT
-Syntax: $0 [ -b | -g | -x ] [ -h ] [ -f ]
+function file_is_open {
+    [ $# -eq 1 ] || return $FALSE
+    filename=$1
 
-Having
-    -b      == Compress backups with bzip2
-    -g      == Compress backups with gzip
-    -x      == Compress backups with xz
-
-    -h / -? == Show this help
-
-    -f      == Forcibly overwrite old backup files with the same name as new ones
-EOT
-    exit 0
+    if [ -f "$filename" -a ! -s "$filename" ]
+    then
+        [ $verbose -gt 0 ] && echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
+        return $TRUE
+    fi
+    return $FALSE
 }
 
 # }}}
-# Global Variables {{{
 
-#dir='/var/log/httpd'
-dir='/var/log/httpd/test'
-files='*_log*'
-nessus='\[client (158\.36\.68\.|2001:700:700:2002::)79'
-debug=0
-verbose=0
-optstr=":dhv?"
-
-# }}}
 # getopts {{{
 
 while getopts ${optstr} opt
@@ -116,13 +117,18 @@ then
 fi
 
 # }}}
-# Resten {{{
+# Hovedprogrammet {{{
 
 cd $dir
 for f in $files
 do
     perl -ne "print unless /$nessus/;" -i $f
-    if (-z
-sed -i $files "s/$nessus//"
-
+    if file_is_empty $f
+    then
+        if [ $remove_empty_files -gt 0 ]
+        then
+            rm -f $f
+        fi
+    fi
+done
 # }}}

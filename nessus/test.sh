@@ -12,6 +12,8 @@
 # Global Variables {{{
 
 verbose=0
+TRUE=0
+FALSE=1
 
 # }}}
 # function file_is_empty {{{
@@ -22,9 +24,9 @@ function file_is_empty {
     if [ -f $filename -a ! -s $filename ]
     then
         [ $verbose -gt 0 ] && echo "File $filename exists, seems to be an ordinary file and is zero bytes long"
-        return 1
+        return $TRUE
     fi
-    return 0
+    return $FALSE
 }
 
 # }}}
