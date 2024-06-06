@@ -27,7 +27,7 @@
 #dir='/var/log/httpd'
 dir='/var/log/httpd/test'
 files='*_log*'
-nessus='\[client (158\.36\.68\.|2001:700:700:2002::)79'
+nessus='(\[client |^)(158\.36\.68\.|2001:700:700:2002::)79'
 debug=0
 verbose=0
 optstr=":dhv?"
