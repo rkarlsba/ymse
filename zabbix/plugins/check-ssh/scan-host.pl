@@ -46,3 +46,35 @@
 # |_      zlib@openssh.com
 #
 # }}}
+
+my %good_kex_algorithms = (
+    'curve25519-sha256'                     => 1,
+    'curve25519-sha256@libssh.org'          => 1,
+    'ecdh-sha2-nistp256'                    => 1,
+    'ecdh-sha2-nistp384'                    => 1,
+    'ecdh-sha2-nistp521'                    => 1,
+    'diffie-hellman-group16-sha512'         => 1,
+    'diffie-hellman-group15-sha512'         => 1,
+    'diffie-hellman-group14-sha256'         => 1,
+    'diffie-hellman-group-exchange-sha256'  => 1,
+);
+my %good_server_host_key_algorithms = (
+    'ssh-ed25519'                           => 1,
+    'ecdsa-sha2-nistp256'                   => 1,
+    'ecdsa-sha2-nistp384'                   => 1,
+    'ecdsa-sha2-nistp521'                   => 1,
+    'rsa-sha2-512'                          => 1,
+    'rsa-sha2-256'                          => 1,
+    'ssh-rsa-sha256@ssh.com'                => 1,
+);
+my %good_encryption_algorithms = ();
+my %good_mac_algorithms = ();
+my %good_compression_algorithms = ();
+
+my %bad_kex_algorithms = ();
+my %bad_server_host_key_algorithms = ();
+my %bad_encryption_algorithms = ();
+my %bad_mac_algorithms = ();
+my %bad_compression_algorithms = ();
+
+
