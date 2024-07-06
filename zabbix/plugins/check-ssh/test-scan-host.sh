@@ -10,5 +10,8 @@ outfile="$outdir/algos_${host}.txt"
 
 if [ -f $outfile ]
 then
+    printf "Output file '%s' already exists - giving up\n" "${outfile}"
+    exit 1
+fi
 
 nmap -p ${port} --script ssh2-enum-algos --script-args="ssh.user=${username}" ${host} > $outfile
