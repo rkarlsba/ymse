@@ -1,0 +1,36 @@
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:10 CEST
+Stats: 0:00:00 elapsed; 0 hosts completed (0 up), 1 undergoing Ping Scan
+Ping Scan Timing: About 100.00% done; ETC: 19:10 (0:00:00 remaining)
+Nmap scan report for admin01.oslomet.no (2001:700:700:2000::1c)
+Host is up (0.030s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|       sntrup761x25519-sha512@openssh.com
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       kex-strict-s-v00@openssh.com
+|   server_host_key_algorithms: (3)
+|       ssh-ed25519
+|       rsa-sha2-512
+|       rsa-sha2-256
+|   encryption_algorithms: (6)
+|       chacha20-poly1305@openssh.com
+|       aes256-gcm@openssh.com
+|       aes128-gcm@openssh.com
+|       aes256-ctr
+|       aes192-ctr
+|       aes128-ctr
+|   mac_algorithms: (3)
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       umac-128-etm@openssh.com
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.23 seconds
