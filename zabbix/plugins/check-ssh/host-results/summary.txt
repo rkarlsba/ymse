@@ -1,0 +1,215 @@
+=================================== adm.TLD1 ===================================
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:10 CEST
+Stats: 0:00:00 elapsed; 0 hosts completed (0 up), 1 undergoing Ping Scan
+Ping Scan Timing: About 100.00% done; ETC: 19:10 (0:00:00 remaining)
+Nmap scan report for admin01.oslomet.no (2001:700:700:2000::1c)
+Host is up (0.030s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|       sntrup761x25519-sha512@openssh.com
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       kex-strict-s-v00@openssh.com
+|   server_host_key_algorithms: (3)
+|       ssh-ed25519
+|       rsa-sha2-512
+|       rsa-sha2-256
+|   encryption_algorithms: (6)
+|       chacha20-poly1305@openssh.com
+|       aes256-gcm@openssh.com
+|       aes128-gcm@openssh.com
+|       aes256-ctr
+|       aes192-ctr
+|       aes128-ctr
+|   mac_algorithms: (3)
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       umac-128-etm@openssh.com
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.23 seconds
+
+=================================== homesrv.TLD2 ===================================
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:02 CEST
+Nmap scan report for smilla.karlsbakk.net (51.175.182.52)
+Host is up (0.0070s latency).
+Other addresses for smilla.karlsbakk.net (not scanned): 2a01:79c:cebe:d8d0:1::1
+rDNS record for 51.175.182.52: 52.51-175-182.customer.lyse.net
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (11)
+|       sntrup761x25519-sha512@openssh.com
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       ecdh-sha2-nistp256
+|       ecdh-sha2-nistp384
+|       ecdh-sha2-nistp521
+|       diffie-hellman-group-exchange-sha256
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       diffie-hellman-group14-sha256
+|       kex-strict-s-v00@openssh.com
+|   server_host_key_algorithms: (4)
+|       rsa-sha2-512
+|       rsa-sha2-256
+|       ecdsa-sha2-nistp256
+|       ssh-ed25519
+|   encryption_algorithms: (6)
+|       chacha20-poly1305@openssh.com
+|       aes128-ctr
+|       aes192-ctr
+|       aes256-ctr
+|       aes128-gcm@openssh.com
+|       aes256-gcm@openssh.com
+|   mac_algorithms: (10)
+|       umac-64-etm@openssh.com
+|       umac-128-etm@openssh.com
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       hmac-sha1-etm@openssh.com
+|       umac-64@openssh.com
+|       umac-128@openssh.com
+|       hmac-sha2-256
+|       hmac-sha2-512
+|       hmac-sha1
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.28 seconds
+
+=================================== ssh.TLD1 ===================================
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:01 CEST
+Nmap scan report for ssh.oslomet.no (158.36.161.227)
+Host is up (0.045s latency).
+Other addresses for ssh.oslomet.no (not scanned): 2001:700:700:1::227
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (7)
+|       diffie-hellman-group-exchange-sha256
+|       sntrup761x25519-sha512@openssh.com
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       kex-strict-s-v00@openssh.com
+|   server_host_key_algorithms: (3)
+|       ssh-ed25519
+|       rsa-sha2-512
+|       rsa-sha2-256
+|   encryption_algorithms: (5)
+|       aes256-gcm@openssh.com
+|       aes128-gcm@openssh.com
+|       aes256-ctr
+|       aes192-ctr
+|       aes128-ctr
+|   mac_algorithms: (3)
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       umac-128-etm@openssh.com
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
+
+=================================== sw2.TLD1 ===================================
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:05 CEST
+Nmap scan report for sg26-x153-sw2.oslomet.no (2001:700:712:f026:153::2)
+Host is up (0.026s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       ecdh-sha2-nistp256
+|       ecdh-sha2-nistp384
+|       ecdh-sha2-nistp521
+|       diffie-hellman-group-exchange-sha256
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       diffie-hellman-group14-sha256
+|       diffie-hellman-group14-sha1
+|   server_host_key_algorithms: (5)
+|       ssh-rsa
+|       rsa-sha2-512
+|       rsa-sha2-256
+|       ecdsa-sha2-nistp256
+|       ssh-ed25519
+|   encryption_algorithms: (2)
+|       aes256-ctr
+|       aes192-ctr
+|   mac_algorithms: (10)
+|       umac-64-etm@openssh.com
+|       umac-128-etm@openssh.com
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       hmac-sha1-etm@openssh.com
+|       umac-64@openssh.com
+|       umac-128@openssh.com
+|       hmac-sha2-256
+|       hmac-sha2-512
+|       hmac-sha1
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.27 seconds
+
+=================================== u804.TLD2 ===================================
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:50 CEST
+Nmap scan report for u804.karlsbakk.net (192.168.10.190)
+Host is up (0.13s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (4)
+|       diffie-hellman-group-exchange-sha256
+|       diffie-hellman-group-exchange-sha1
+|       diffie-hellman-group14-sha1
+|       diffie-hellman-group1-sha1
+|   server_host_key_algorithms: (2)
+|       ssh-rsa
+|       ssh-dss
+|   encryption_algorithms: (13)
+|       aes128-cbc
+|       3des-cbc
+|       blowfish-cbc
+|       cast128-cbc
+|       arcfour128
+|       arcfour256
+|       arcfour
+|       aes192-cbc
+|       aes256-cbc
+|       rijndael-cbc@lysator.liu.se
+|       aes128-ctr
+|       aes192-ctr
+|       aes256-ctr
+|   mac_algorithms: (7)
+|       hmac-md5
+|       hmac-sha1
+|       umac-64@openssh.com
+|       hmac-ripemd160
+|       hmac-ripemd160@openssh.com
+|       hmac-sha1-96
+|       hmac-md5-96
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.27 seconds
+
