@@ -1,6 +1,13 @@
 #!/usr/bin/perl
+# Docs etc {{{
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 #
+# SSH encryption version check by Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+#
+# See README.md for more docs and LICENSE.md for the license (which apparently
+# is AGPLv3).
+#
+# }}}
 # Sample output {{{
 #
 # PORT   STATE SERVICE
@@ -46,7 +53,15 @@
 # |_      zlib@openssh.com
 #
 # }}}
+# Libs etc {{{
 
+use strict;
+use warnings;
+
+# }}}
+# Globals {{{
+
+# The good {{{
 my %good_kex_algorithms = (
     'curve25519-sha256'                     => 1,
     'curve25519-sha256@libssh.org'          => 1,
@@ -71,10 +86,26 @@ my %good_encryption_algorithms = ();
 my %good_mac_algorithms = ();
 my %good_compression_algorithms = ();
 
+# }}}
+# The bad {{{
+
 my %bad_kex_algorithms = ();
-my %bad_server_host_key_algorithms = ();
+my %bad_server_host_key_algorithms = (
+    'ssh-rsa'                               => 1,
+    'ssh-dsa'                               => 1,
+);
 my %bad_encryption_algorithms = ();
 my %bad_mac_algorithms = ();
 my %bad_compression_algorithms = ();
 
+# }}}
+# And the ugly? {{{
 
+my @unknown_kex_algorithms = undef;
+my @unknown_server_host_key_algorithms = undef;
+my @unknown_encryption_algorithms = undef;
+my @unknown_mac_algorithms = undef;
+my @unknown_compression_algorithms = undef;
+
+# }}}
+# }}}
