@@ -192,6 +192,7 @@ verbose "-----------------------------------------------------------------------
 
 if [ -x "$RESTIC_PRE_EXEC_JOB" ]
 then
+    export VERBOSE
     verbose "Running pre-exec job $RESTIC_PRE_EXEC_JOB"
     bash -c "$RESTIC_PRE_EXEC_JOB"
     RETCODE=$?

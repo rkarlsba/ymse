@@ -117,5 +117,5 @@ do
     pg_dump --format=$dumpformat --jobs=$dumpjobs $db | $compcmd > $filename
 done
 
-./dump_globals.sh
+pg-dump-globals.sh
 
