@@ -124,3 +124,5 @@ do
 	pg_dump $fmt_arg $db > $dst_file || exit 1
 	[ $verbose -gt 0 ] && echo
 done
+
+./dump_globals.sh

@@ -116,3 +116,6 @@ do
     filename=$db-$datestr$ext$ext2
     pg_dump --format=$dumpformat --jobs=$dumpjobs $db | $compcmd > $filename
 done
+
+./dump_globals.sh
+

@@ -37,3 +37,4 @@ do
     [ $verbose -gt 0 ] && echo
 done
 
+./dump_globals.sh
