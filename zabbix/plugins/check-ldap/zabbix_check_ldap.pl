@@ -23,6 +23,7 @@ my $opt_basedn = undef;
 my $opt_help = undef;
 my $opt_ipv4 = undef;
 my $opt_ipv6 = undef;
+my $opt_pwfile = undef;
 my $opt_quiet = undef;
 my $opt_test = undef;
 my $opt_url = undef;
@@ -56,6 +57,7 @@ GetOptions(
     "6"         => \$opt_ipv6,
     "4"         => \$opt_ipv4,
     "help"      => \$opt_help,
+    "pwfile"    => \$opt_pwfile,
     "test"      => \$opt_test,
     "url=s"     => \$opt_url,       "u=s" => \$opt_url,
     "basedn=s"  => \$opt_basedn,    "b=s" => \$opt_basedn,
@@ -77,9 +79,9 @@ if (defined($opt_test)) {
     # }}}
     $opt_url="ldaps://openldap-prod01.oslomet.no";
     $opt_basedn="ou=tilsatt,ou=oslomet,dc=oslomet,dc=no";
-    $opt_ipv4 = undef;
     $opt_ipv6 = 1;
     $opt_verbose = 1;
+    $opt_pwfile = '.ldappasswd';
 } else {
     &help("Need base URL") unless (defined($opt_url));
     &help("Need base Base DN") unless (defined($opt_basedn));
