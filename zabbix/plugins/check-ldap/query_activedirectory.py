@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # requires python-ldap (usually pip install python-ldap)
@@ -106,13 +107,14 @@ if __name__ == "__main__":
     
     # the function returns a generator, so it won't fetch anything yet
     response = query_activedirectory(
-        uri="ldap://yourserver.domain.local:389",
-        bindDN="cn=yourname,OU=folder,OU=folder,DC=domain,DC=local",
-        bindPW="your_password",
-        baseDN="OU=folder,OU=folder,DC=domain,DC=local",
-        filterstr="&(objectClass=user)(!(objectClass=computer))(memberOf:1.2.840.113556.1.4.1941:=CN=cool_group,OU=folder,OU=folder,DC=domain,DC=local)",
+        uri="ldaps://openldap-prod01.oslomet.no",
+        bindDN="UID=roysk,OU=tilsatt,OU=oslomet,DC=oslomet,DC=no",
+        bindPW="Medarbeideravgift1",
+        baseDN="OU=tilsatt,OU=oslomet,DC=oslomet,DC=no",
+        #filterstr="&(objectClass=user)(!(objectClass=computer))(memberOf:1.2.840.113556.1.4.1941:=CN=cool_group,OU=folder,OU=folder,DC=domain,DC=local)",
                        # 1.2.840.113556.1.4.1941 = LDAP_MATCHING_RULE_IN_CHAIN
                        # see also https://docs.microsoft.com/pt-br/windows/desktop/ADSI/search-filter-syntax
+        filterstr="&(objectClass=user)(!(objectClass=computer))",
         attrlist=["userPrincipalName", "givenName"],  # None to fetch all attributes
         timeout=-1,    # wait indefinitely
         pagesize=250   # this is an internal parameter that says how many records do you want to fetch per request

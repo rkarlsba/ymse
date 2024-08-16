@@ -1,1 +1,3 @@
-example.txt
+.ldap_passwd*
+.ldappas*
+.passw*

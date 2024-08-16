@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # ldapsearch -y $HOME/x123 -z 10000 -o ldif-wrap=no -x -W -H ldaps://openldap-prod01.oslomet.no -b "ou=tilsatt,ou=oslomet,dc=oslomet,dc=no" -D "uid=roysk,ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
 # Globals
 ldap_uri="ldaps://openldap-prod01.oslomet.no"
