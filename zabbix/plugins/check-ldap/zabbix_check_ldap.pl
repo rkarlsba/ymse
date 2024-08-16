@@ -17,6 +17,7 @@ use Getopt::Long;
 # Globals
 my $ldap_cmd_tmpl = 'ldapsearch -LLL -H %s -s base -b "%s" -o nettimeout=1 -x 2>&1';
 my $verbose = 0;
+password_file = ".ldap_passwd"
 
 # Opts
 my $opt_basedn = undef;
@@ -117,6 +118,28 @@ if ($ldap_fd) {
 }
 close($ldap_fd);
 my $exitcode = ($? >> 8);
+
+func get_user_pass(password_file):
+    try:
+        f=open(password_file,"r")
+        lines=f.readlines()
+        for line in lines:
+            line = re.sub(r"[\r\n]", "", line)
+            auth_tokens = line.split(':')
+        f.close()
+
+        print(f"{auth_token[0]}:{auth_token[0]}")
+
+    except Exception as e:
+        logging.error(traceback.format_exc())
+
+
+
+
+
+
+
+
 print "command returned $exitcode\n" if ($verbose);
 
 if ($exitcode == 0) {
