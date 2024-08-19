@@ -22,18 +22,20 @@ def list_of_strings(arg):
 # Globals {{{
 
 # User globals
-base_dn = ''
-user_dn = ''
+base_dn = None
+user_dn = None
 nodes = ()
-cluster = ''
+cluster = None
 debug = False
 port = 636
 uri = 'ldaps://'
-username = ''
-password = ''
-password_file = ''
+username = None
+password = None
+password_file = None
+node_max_attempts = 1
 node_attempts = 0
 node_successes = 0
+cluster_max_attempts = 5
 cluster_attempts = 0
 cluster_successes = 0
 cluster_delay = 1       # Second(s)
@@ -105,10 +107,10 @@ def probe_node(node):
 # probe_cluster(cluster) {{{
 
 # Sjekke om node svarer
-def probe_cluster(cluster, attempts = 5):
+def probe_cluster(cluster, cluster_max_attempts):
     ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
     user_dn = f"uid={username},{base_dn}"
-    for i in range(1, attempts):
+    for i in range(1, cluster_max_attempts):
         try:
             cluster_attempts += 1
             server_uri = f"{uri}{ldap_cluster}:{port}"
@@ -130,12 +132,21 @@ def probe_cluster(cluster, attempts = 5):
             pass
 
         except ldap.SERVER_DOWN:
-            print("Can't connect to server - someone plugged the plug?")
+            print("Can't connect to server - someone yanked the plug?")
             pass
 
         except Exception as e:
             logging.error(traceback.format_exc())
             pass
+
+# }}}
+# error(errstr) {{{
+
+def error(errstr):
+    print(f"[ERROR] {errstr}", file=sys.stderr)
+    logging.error(f"[INFO] Internal error - check the logs for the zabbix-check-ldap-auth.py check: {errstr}")
+    print(f"[INFO] Internal error - check the logs for the zabbix-check-ldap-auth.py check")
+    exit(1)
 
 # }}}
 
@@ -170,16 +181,23 @@ if __name__ == "__main__":
         user_dn = base_dn
     if args.nodes:
         nodes = args.nodes
+    if args.cluster:
+        cluster = args.cluster
     if args.password:
         password = args.password
         print(f'Password is {password}')
+    if args.password_file:
+        error("FIXME: Har ikke laga ferdig denne ennå")
+
+
+    # We're going to check for *either* the status of the nodes in a cluster or
+    # the status of the cluster, not boths - that'll be two different checks!
+    if len(nodes) > 0 and cluster is not None:
+        error(f"It seems you have defined both nodes (to {nodes}) and a cluster name (to {cluster}). This is not how we do things with this plugin. Either you define a cluster name to check the cluster, or you define the nodes in a cluster. The reason is simply that you want separate triggers for the two. If a node dies, it's bad news, right, but it's not a big deal so far as not all the nodes stop answering.")
 
     if not builtinhelp and args.help:
         argparser.print_help()
         sys.exit(0)
-
-    print(f"buhbye - btw, nodes i {nodes}")
-    sys.exit(0)
 
     # Så resten
     # username,password = getpwtok()
