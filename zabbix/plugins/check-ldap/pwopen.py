@@ -130,11 +130,10 @@ if __name__ == "__main__":
 
     # ldapsearch -y $HOME/x123 -z 10000 -o ldif-wrap=no -x -W -H ldaps://openldap-prod01.oslomet.no -b "ou=tilsatt,ou=oslomet,dc=oslomet,dc=no" -D "uid=roysk,ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
     # Globals
-    tmpauth = getpwtok()
-
-    ldap_uri="ldaps://openldap-prod01.oslomet.no"
+    ldapuser,ldappass = getpwtok()
+    #ldap_uri="ldaps://openldap-prod01.oslomet.no"
     #ldap_bindDN="uid=tmpauth[0],ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
-    ldap_bindDN=f"uid={tmpauth[0]},ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
+    #ldap_bindDN=f"uid={tmpauth[0]},ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
     ldap_baseDN="ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
     # Junk {{{
 
@@ -144,31 +143,35 @@ if __name__ == "__main__":
     ldap_filterstr="&(objectClass=user)(!(objectClass=computer))"
     ldap_attrlist=["userPrincipalName", "givenName"]    # None to fetch all attributes
     ldap_timeout=-1                                     # wait indefinitely
-    ldap_pagesize=250                                   # this is an internal parameter that says how many records do you want to fetch per request
+    ldap_pagesize=200                                   # this is an internal parameter that says how many records do you want to fetch per request
                                                         # it doesn't change the result, since pages are fetched as needed
                                                         # by default, the max number of records allowed by AD is 1000
                                                         # so if you request more than 1000 records, it will return 1000
                                                         # At OsloMeth, it's max 250.
-    # the function returns a generator, so it won't fetch anything yet
-    # def query_activedirectory(uri, bindDN, bindPW, baseDN, filterstr='(objectClass=*)', attrlist=None, timeout=-1, pagesize=250, decodeBytes=True):
-    # print(f"Kjør den query_activedirectory() med bruker '{ldap_bindDN}' og passord '{tmpauth[1]}'")
-    # sys.exit(0)
+
     response = query_activedirectory(
         uri=ldap_uri,
         bindDN=ldap_bindDN,
         bindPW=tmpauth[1],
         baseDN=ldap_baseDN,
-    #   filterstr=ldap_filterstr,
-        filterstr='(objectClass=*)',
+#       filterstr=ldap_filterstr,
+#       filterstr='(objectClass=*)(cn="roysk")',
+#       filterstr="(&(objectClass=user)(uid=*r*))",
+#       filterstr="(sAMAccountName=*roy*)",
+#       filterstr=f"(sAMAccountName=*roy*)",
+        filterstr=f"(&(objectClass=user)(uid=*roy*))",
+#       filterstr="(&(objectCategory=person)(objectClass=user)(!cn=roysk))",
         attrlist=ldap_attrlist,
         timeout=-1,
-        pagesize=250,
+        pagesize=ldap_pagesize,
         decodeBytes=True
     )
 
+    count=0
     # fetch and display the results
     for dn, attrs in response:
-        print(dn)
-        print(attrs)
+        count += 1
+        print(f"[{count:03d}] [DN] {dn}\t[ATTRS] {attrs}")
 
 
+    print(f"Count is {count}")
