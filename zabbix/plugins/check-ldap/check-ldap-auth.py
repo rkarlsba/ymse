@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# See README.md for details
+
 import ldap
 import logging
 import re
@@ -13,16 +15,12 @@ username = ''
 password = ''
 uri = 'ldaps://'
 port = 636
-servers = (
+ldap_nodes = (
         'openldap-prod01.oslomet.no',
         'openldap-prod02.oslomet.no',
-        'openldap-stage01.oslomet.no',
-        'openldap-stage02.oslomet.no',
-        'ldap-c-dev.oslomet.no',
-        'ldap-d-dev.oslomet.no',
-        'ldap-e.oslomet.no'
-        'ldap-f.oslomet.no'
-#       'openldap.oslomet.no',
+)
+ldap_clusters = (
+        'openldap.oslomet.no',
 )
 base_dn = 'ou=tilsatt,ou=oslomet,dc=oslomet,dc=no'
 
@@ -48,8 +46,8 @@ def authenticate():
     username,password = getpwtok()
     user_dn = f"uid={username},{base_dn}"
     successes = 0
-    attempts = len(servers)
-    for server_name in servers:
+    attempts = len(ldap_nodes)
+    for server_name in ldap_nodes:
         try:
             server_uri = f"{uri}{server_name}:{port}"
             print(server_uri)
