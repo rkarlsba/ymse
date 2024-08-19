@@ -4,7 +4,6 @@
 
 # Libraries {{{
 
-import argparse
 import ldap
 import logging
 import os
@@ -13,39 +12,26 @@ import sys
 import traceback
 
 # }}}
-# Functions {{{
-
-def list_of_strings(arg):
-    return arg.split(',')
-
-# }}}
 # Globals {{{
 
 # User globals
-base_dn = ''
-user_dn = ''
-nodes = ()
-cluster = ''
-debug = False
-port = 636
-uri = 'ldaps://'
+password_file = "~/.ldap_passwd"
 username = ''
 password = ''
-password_file = ''
+debug = False
 node_attempts = 0
 node_successes = 0
 cluster_attempts = 0
 cluster_successes = 0
 cluster_delay = 1       # Second(s)
-ldap_nodes = ()
-#ldap_nodes = (
-#        'openldap-prod01.oslomet.no',
-#        'openldap-prod02.oslomet.no'
-#)
-#ldap_cluster = 'ldap.oslomet.no'
-#base_dn = 'ou=tilsatt,ou=oslomet,dc=oslomet,dc=no'
-
-builtinhelp = False
+uri = 'ldaps://'
+port = 636
+ldap_nodes = (
+        'openldap-prod01.oslomet.no',
+        'openldap-prod02.oslomet.no'
+)
+ldap_cluster = 'ldap.oslomet.no'
+base_dn = 'ou=tilsatt,ou=oslomet,dc=oslomet,dc=no'
 
 # }}}
 # Functions {{{
@@ -143,46 +129,7 @@ def probe_cluster(cluster, attempts = 5):
 # Main {{{
 
 if __name__ == "__main__":
-    # Først argparse
-    argparser = argparse.ArgumentParser(add_help=builtinhelp)
-
-    argparser.add_argument("-B", "--base-DN", type=str, help="BaseDN")
-    argparser.add_argument("-s", "--user-DN", type=str, help="UserDN if not the same as BaseDN")
-    argparser.add_argument("-n", "--nodes", type=list_of_strings, help="Add one or more node for checking, typically --nodes node1,node2,node3 etc, with IPs or node names")
-    argparser.add_argument("-c", "--cluster", type=str, help="Add cluster for checking (only one)")
-    argparser.add_argument("-d", "--debug", type=bool, help=f"Enable debugging (default {debug})")
-    argparser.add_argument("-p", "--port", type=int, help=f"Typically 636 for LDAPS or 389 for LDAP, default {port}")
-    argparser.add_argument("-u", "--uri", type=str, help=f"Typically LDAPS or LDAP, default {uri}")
-    argparser.add_argument("-U", "--user", type=str, help="Username")
-    argparser.add_argument("-P", "--password", type=str, help="Passsword")
-    argparser.add_argument("-F", "--password-file", type=str, help="Path to passsword file with user:s3Cr3t")
-
-    if not builtinhelp:
-        argparser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")
-
-    args = argparser.parse_args()
-
-    if args.base_DN:
-        base_dn = args.base_DN
-    if args.user_DN:
-        user_dn = args.user_DN
-    else:
-        user_dn = base_dn
-    if args.nodes:
-        nodes = args.nodes
-    if args.password:
-        password = args.password
-        print(f'Password is {password}')
-
-    if not builtinhelp and args.help:
-        argparser.print_help()
-        sys.exit(0)
-
-    print(f"buhbye - btw, nodes i {nodes}")
-    sys.exit(0)
-
-    # Så resten
-    # username,password = getpwtok()
+    username,password = getpwtok()
     node_successes = 0
     node_count = len(ldap_nodes)
     for node in ldap_nodes:
