@@ -1,3 +1,11 @@
+/*
+ * Honestly stolen from https://github.com/garyexplains/examples by
+ * Roy Sigurd Karlsbakk <roy@karlsbakk.net>
+ *
+ * 2024-08-27: Ported to be used on regular linux
+ *
+ * roy
+ */
 #include <stdio.h>
 #if PICO_RP2350 || PICO_RP2040
 # include "pico/stdlib.h"
