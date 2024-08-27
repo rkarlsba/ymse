@@ -17,13 +17,16 @@ use Getopt::Long;
 # Globals
 my $ldap_cmd_tmpl = 'ldapsearch -LLL -H %s -s base -b "%s" -o nettimeout=1 -x 2>&1';
 my $verbose = 0;
+password_file = ".ldap_passwd"
 
 # Opts
 my $opt_basedn = undef;
 my $opt_help = undef;
 my $opt_ipv4 = undef;
 my $opt_ipv6 = undef;
+my $opt_pwfile = undef;
 my $opt_quiet = undef;
+my $opt_test = undef;
 my $opt_url = undef;
 my $opt_verbose = undef;
 my $opt_daredevil = undef;
@@ -55,17 +58,38 @@ GetOptions(
     "6"         => \$opt_ipv6,
     "4"         => \$opt_ipv4,
     "help"      => \$opt_help,
+    "pwfile"    => \$opt_pwfile,
+    "test"      => \$opt_test,
     "url=s"     => \$opt_url,       "u=s" => \$opt_url,
     "basedn=s"  => \$opt_basedn,    "b=s" => \$opt_basedn,
     "daredevil" => \$opt_daredevil,
 ) or die "Invalid argument";
 
 &help if ($opt_help);
-&help("Need base URL") unless (defined($opt_url));
-&help("Need base Base DN") unless (defined($opt_basedn));
-&help("Can't use both IPv4 and IPv6") if (defined($opt_ipv4) and defined($opt_ipv6));
-warn("WARNING: IP stack choice (-4/-6) not implemented\n") if (defined($opt_ipv4) or defined($opt_ipv6));
-$verbose=$opt_verbose if (defined($opt_verbose));
+if (defined($opt_test)) {
+    # test-cmd {{{
+    #
+    # ldapsearch -z 10000 \
+    #   -o ldif-wrap=no -y ~/.ldappass \
+    #   -x \
+    #   -W \
+    #   -H ldaps://openldap-prod01.oslomet.no \
+    #   -b "ou=tilsatt,ou=oslomet,dc=oslomet,dc=no" \
+    #   -D "uid=roysk,ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
+    #
+    # }}}
+    $opt_url="ldaps://openldap-prod01.oslomet.no";
+    $opt_basedn="ou=tilsatt,ou=oslomet,dc=oslomet,dc=no";
+    $opt_ipv6 = 1;
+    $opt_verbose = 1;
+    $opt_pwfile = '.ldappasswd';
+} else {
+    &help("Need base URL") unless (defined($opt_url));
+    &help("Need base Base DN") unless (defined($opt_basedn));
+    &help("Can't use both IPv4 and IPv6") if (defined($opt_ipv4) and defined($opt_ipv6));
+    warn("WARNING: IP stack choice (-4/-6) not implemented\n") if (defined($opt_ipv4) or defined($opt_ipv6));
+    $verbose=$opt_verbose if (defined($opt_verbose));
+}
 
 if (($< == 0 or $> == 0) and not $opt_daredevil) {
     print STDERR "Won't run as root\n";
@@ -96,6 +120,28 @@ if ($ldap_fd) {
 }
 close($ldap_fd);
 my $exitcode = ($? >> 8);
+
+func get_user_pass(password_file):
+    try:
+        f=open(password_file,"r")
+        lines=f.readlines()
+        for line in lines:
+            line = re.sub(r"[\r\n]", "", line)
+            auth_tokens = line.split(':')
+        f.close()
+
+        print(f"{auth_token[0]}:{auth_token[0]}")
+
+    except Exception as e:
+        logging.error(traceback.format_exc())
+
+
+
+
+
+
+
+
 print "command returned $exitcode\n" if ($verbose);
 
 if ($exitcode == 0) {

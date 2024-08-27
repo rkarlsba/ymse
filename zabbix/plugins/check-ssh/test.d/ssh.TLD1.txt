@@ -1,0 +1,35 @@
+Starting Nmap 7.95 ( https://nmap.org ) at 2024-07-06 19:01 CEST
+Nmap scan report for ssh.oslomet.no (158.36.161.227)
+Host is up (0.045s latency).
+Other addresses for ssh.oslomet.no (not scanned): 2001:700:700:1::227
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (7)
+|       diffie-hellman-group-exchange-sha256
+|       sntrup761x25519-sha512@openssh.com
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       kex-strict-s-v00@openssh.com
+|   server_host_key_algorithms: (3)
+|       ssh-ed25519
+|       rsa-sha2-512
+|       rsa-sha2-256
+|   encryption_algorithms: (5)
+|       aes256-gcm@openssh.com
+|       aes128-gcm@openssh.com
+|       aes256-ctr
+|       aes192-ctr
+|       aes128-ctr
+|   mac_algorithms: (3)
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       umac-128-etm@openssh.com
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+
+Nmap done: 1 IP address (1 host up) scanned in 0.22 seconds
