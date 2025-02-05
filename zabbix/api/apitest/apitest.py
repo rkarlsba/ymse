@@ -41,12 +41,15 @@ verbose=0
 
 try:
     # Create ZabbixAPI class instance
-    zapi = ZabbixAPI(url=api_url, user=api_user, password=api_password)
+    zapi = ZabbixAPI(server=api_url)
+    zapi.login(user=api_user, password=api_password)
 
     # Get all monitored hosts
-    allhosts = zapi.host.get(output='extend', selectInventory='extend')
+    #allhosts = zapi.host.get(output='extend', selectInventory='extend')
+    allhostgroups = zapi.hostgroup.get(output='extend', selectInventory='extend')
 
-    print(json.dumps(allhosts,indent=4))
+    #print(json.dumps(allhosts,indent=4))
+    print(json.dumps(allhostgroups,indent=4))
 
     sys.exit()
 
@@ -72,5 +75,5 @@ try:
 
     zapi.user.logout()
 except ZabbixAPIException as e:
-    print("Some Zabbix API error: {}".format(d))
+    print("Some Zabbix API error: {}".format(e))
 
