@@ -16,7 +16,6 @@ except:
 
 # Globals
 verbose=0
-hostgroupname=''
 builtinhelp=1
 hostgroup=None
 
@@ -26,6 +25,7 @@ if __name__ == "__main__":
     argparser = argparse.ArgumentParser(add_help=builtinhelp)
 
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup", required=True)
+    argparser.add_argument("-v", "--verbose", action='store_true', help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
     argparser.add_argument("-S", "--server", type=str, help=f"Zabbix Server URL, for instance https://my.zabbixsrv.tld/zabbix/api_jsonrpc.php")
     argparser.add_argument("-U", "--user", type=str, help="Username")
     argparser.add_argument("-P", "--password", type=str, help="Passsword")
@@ -46,18 +46,17 @@ if __name__ == "__main__":
         # Login to Zabbix
         zapi.login(user=api_user, password=api_password)
 
-        # json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
-        json_filter = { "name": args.hostgroup }
-        # print(json.dumps(json_filter,indent=4))
-        hostgroup = zapi.hostgroup.get(filter=json_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        hostgroup_filter = { "name": args.hostgroup }
+        hostgroup = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
 
-        #exit()
-        #print("hostgroup[0][\"hosts\"] is of type ",end="")
-        #print(type(hostgroup[0]["hosts"]))
-        #print(json.dumps(hostgroup[0]["hosts"],indent=4))
-        # newlist = sorted(list_to_be_sorted, key=lambda d: d['name'])
+        host_filter = { }
+        all_hosts = zapi.host.get()
+
+        print(json.dumps(all_hosts,indent=4))
+        exit
+
         for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
-            print(json.dumps(host,indent=4))
+            print(host["host"])
 
 #       for host in allhosts:
 #           if 'os' in host['inventory']:
