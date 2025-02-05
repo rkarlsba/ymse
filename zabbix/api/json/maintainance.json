@@ -3,11 +3,344 @@
     "name": "Maintenance",
     "hosts": [
         {
+            "hostid": "13538",
+            "host": "pgsql03-stage.oslomet.no"
+        },
+        {
+            "hostid": "13471",
+            "host": "otrz.oslomet.no"
+        },
+        {
             "hostid": "13534",
             "host": "testlinux01.oslomet.no"
+        },
+        {
+            "hostid": "13530",
+            "host": "puppet8.oslomet.no"
+        },
+        {
+            "hostid": "13374",
+            "host": "p46-einfra-kiosk1.oslomet.no"
+        },
+        {
+            "hostid": "13584",
+            "host": "openvox-stage02.oslomet.no"
+        },
+        {
+            "hostid": "13385",
+            "host": "client-proxy01.oslomet.no"
+        },
+        {
+            "hostid": "13354",
+            "host": "wazuh.oslomet.no"
+        },
+        {
+            "hostid": "13355",
+            "host": "deister-1.ada.hioa.no"
+        },
+        {
+            "hostid": "13472",
+            "host": "dbbackup01.oslomet.no"
+        },
+        {
+            "hostid": "13383",
+            "host": "journals-staging.oslomet.no"
+        },
+        {
+            "hostid": "13540",
+            "host": "pgsql01.oslomet.no"
+        },
+        {
+            "hostid": "13429",
+            "host": "ansattkatalogpy-stage01.oslomet.no"
+        },
+        {
+            "hostid": "13551",
+            "host": "RedHat Insights API-RHN"
+        },
+        {
+            "hostid": "13027",
+            "host": "rdsh12.ada.hioa.no"
+        },
+        {
+            "hostid": "13386",
+            "host": "client-proxy02.oslomet.no"
+        },
+        {
+            "hostid": "13351",
+            "host": "pybas-stage.oslomet.no"
+        },
+        {
+            "hostid": "13541",
+            "host": "pgsql03.oslomet.no"
+        },
+        {
+            "hostid": "13388",
+            "host": "nexus-stage.oslomet.no"
+        },
+        {
+            "hostid": "13400",
+            "host": "sws01-stage.oslomet.no"
+        },
+        {
+            "hostid": "13349",
+            "host": "lucy02.oslomet.no"
+        },
+        {
+            "hostid": "13401",
+            "host": "sws01.oslomet.no"
+        },
+        {
+            "hostid": "13539",
+            "host": "pgsql01-stage.oslomet.no"
+        },
+        {
+            "hostid": "13233",
+            "host": "ks-rhel.oslomet.no"
+        },
+        {
+            "hostid": "13378",
+            "host": "lists01.oslomet.no"
+        },
+        {
+            "hostid": "13279",
+            "host": "kickstart-rh9.oslomet.no"
+        },
+        {
+            "hostid": "13181",
+            "host": "vmhmime01.oslomet.no"
+        },
+        {
+            "hostid": "13452",
+            "host": "glusterfs1-stage.oslomet.no"
+        },
+        {
+            "hostid": "13445",
+            "host": "nms01.oslomet.no"
+        },
+        {
+            "hostid": "12631",
+            "host": "deister.ada.hioa.no"
+        },
+        {
+            "hostid": "13298",
+            "host": "tospraktesten.oslomet.no"
+        },
+        {
+            "hostid": "13455",
+            "host": "glusterfs3-stage.oslomet.no"
+        },
+        {
+            "hostid": "13454",
+            "host": "glusterfs2-stage.oslomet.no"
+        },
+        {
+            "hostid": "12695",
+            "host": "ezproxy-dev.oslomet.no"
+        },
+        {
+            "hostid": "13496",
+            "host": "piadmin-archive.oslomet.no"
+        },
+        {
+            "hostid": "13297",
+            "host": "tolkautprove.oslomet.no"
+        },
+        {
+            "hostid": "13505",
+            "host": "repoproxy-prod01.oslomet.no"
+        },
+        {
+            "hostid": "12597",
+            "host": "bibin.oslomet.no"
+        },
+        {
+            "hostid": "12753",
+            "host": "irns1-idrac.oslomet.no - gammel"
+        },
+        {
+            "hostid": "13499",
+            "host": "v000023-4.ada.hioa.no"
+        },
+        {
+            "hostid": "12650",
+            "host": "elk-cor02-stage.oslomet.no"
+        },
+        {
+            "hostid": "13543",
+            "host": "pgsql02.oslomet.no"
+        },
+        {
+            "hostid": "13571",
+            "host": "kernelspeedtest.oslomet.no"
+        },
+        {
+            "hostid": "13460",
+            "host": "zabbix7-dev.oslomet.no"
+        },
+        {
+            "hostid": "13500",
+            "host": "frontend-maler-prod01.oslomet.no"
+        },
+        {
+            "hostid": "12861",
+            "host": "ns1-idrac.intern.oslomet.no - gammel"
+        },
+        {
+            "hostid": "12639",
+            "host": "drift01.ada.hioa.no"
+        },
+        {
+            "hostid": "12995",
+            "host": "psql01-stage.oslomet.no"
+        },
+        {
+            "hostid": "13286",
+            "host": "kickstart-rh8.oslomet.no"
+        },
+        {
+            "hostid": "12796",
+            "host": "lsbmon.ada.hioa.no"
+        },
+        {
+            "hostid": "12772",
+            "host": "ldap-c-dev.oslomet.no"
+        },
+        {
+            "hostid": "13502",
+            "host": "audit-prod01.oslomet.no"
+        },
+        {
+            "hostid": "13564",
+            "host": "pgsql04-stage.oslomet.no"
+        },
+        {
+            "hostid": "13542",
+            "host": "pgsql02-stage.oslomet.no"
+        },
+        {
+            "hostid": "13565",
+            "host": "pgsql04.oslomet.no"
+        },
+        {
+            "hostid": "13113",
+            "host": "student.oslomet.no"
+        },
+        {
+            "hostid": "13136",
+            "host": "tofaktor.oslomet.no"
+        },
+        {
+            "hostid": "13581",
+            "host": "journals-prod.oslomet.no"
+        },
+        {
+            "hostid": "13182",
+            "host": "vmhmime02.oslomet.no"
         },
         {
             "hostid": "13501",
             "host": "test-mecm-bbf.ada.hioa.no"
         },
+        {
+            "hostid": "12622",
+            "host": "cws-stage.oslomet.no"
+        },
+        {
+            "hostid": "12635",
+            "host": "dhcpd1.oslomet.no"
+        },
+        {
+            "hostid": "12719",
+            "host": "glusterfs03.oslomet.no"
+        },
+        {
+            "hostid": "12718",
+            "host": "glusterfs03-dev.oslomet.no"
+        },
+        {
+            "hostid": "12717",
+            "host": "glusterfs02.oslomet.no"
+        },
+        {
+            "hostid": "12740",
+            "host": "iam-bridge01.ada.hioa.no"
+        },
+        {
+            "hostid": "12716",
+            "host": "glusterfs02-dev.oslomet.no"
+        },
+        {
+            "hostid": "12715",
+            "host": "glusterfs01.oslomet.no"
+        },
+        {
+            "hostid": "12714",
+            "host": "glusterfs01-dev.oslomet.no"
+        },
+        {
+            "hostid": "13042",
+            "host": "redis01-stage.oslomet.no"
+        },
+        {
+            "hostid": "13142",
+            "host": "uni-stage.oslomet.no"
+        },
+        {
+            "hostid": "12765",
+            "host": "kontaktskjema-stage.oslomet.no"
+        },
+        {
+            "hostid": "12758",
+            "host": "journals-stage.oslomet.no"
+        },
+        {
+            "hostid": "13001",
+            "host": "puppet7.oslomet.no"
+        },
+        {
+            "hostid": "13044",
+            "host": "redis02-prod.oslomet.no"
+        },
+        {
+            "hostid": "12712",
+            "host": "gl-runner-1.oslomet.no"
+        },
+        {
+            "hostid": "12616",
+            "host": "confsys.oslomet.no"
+        },
+        {
+            "hostid": "13045",
+            "host": "redis02-stage.oslomet.no"
+        },
+        {
+            "hostid": "13048",
+            "host": "redis03-stage.oslomet.no"
+        },
+        {
+            "hostid": "13041",
+            "host": "redis01-prod.oslomet.no"
+        },
+        {
+            "hostid": "13127",
+            "host": "testwin02.ada.hioa.no"
+        },
+        {
+            "hostid": "12991",
+            "host": "psql-ha01-stage.oslomet.no"
+        },
+        {
+            "hostid": "12844",
+            "host": "myprint-dev.ada.hioa.no"
+        },
+        {
+            "hostid": "12841",
+            "host": "munki.oslomet.no"
+        },
+        {
+            "hostid": "13033",
+            "host": "rdwa02.ada.hioa.no"
+        }
+    ]
 }
