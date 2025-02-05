@@ -53,14 +53,16 @@ if __name__ == "__main__":
 
         # Get all hostgroups
         json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
-        # {"name": "Maintenance"}
-        # print(json_filter)
-        # sys.exit()
-        # hostgroup = zapi.hostgroup.get(output='extend', with_monitored_hosts=1, filter=json_filter)
-        hostgroup = zapi.hostgroup.get(output='extend', with_monitored_hosts=1, filter={"name": args.hostgroup})
-        #allhostgroups = zapi.hostgroup.get(output='extend', )
+        # hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output='extend')
+
+        hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        # allhosts = zapi.host.get(output=['hostid', 'name'], selectHosts=['hostid', 'host'])
 
         # Print the object
+        # hostgroup_id = hostgroup[0].groupid
+        # hostgroup_txt = json.dumps(hostgroup,indent=4);
+        # print(f"{hostgroup_txt}")
+        # print("{hostgroupid}")
         print(json.dumps(hostgroup,indent=4))
 
 #       for host in allhosts:
