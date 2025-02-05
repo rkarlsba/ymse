@@ -49,26 +49,15 @@ if __name__ == "__main__":
         # json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
         json_filter = { "name": args.hostgroup }
         # print(json.dumps(json_filter,indent=4))
-        #hostgroup = zapi.hostgroup.get()
-        #print(f"Denne: '{args.hostgroup}'")
-        #print(json.dumps(json_filter,indent=4))
-        # hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output='extend')
-        # hostgroup = zapi.hostgroup.get(filter={"name": "Maintenance"}, output='extend')
         hostgroup = zapi.hostgroup.get(filter=json_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
-        # print(f"{args.hostgroup}\nMaintenance")
 
-        # hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
-        # hostgroup = zapi.hostgroup.get(filter=json_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
-        # hostgroup = zapi.hostgroup.get(output=['hostid', 'name'], selectHosts=['hostid', 'host'])
-
-        # Print the object
-        # hostgroup_id = hostgroup[0].groupid
-        # hostgroup_txt = json.dumps(hostgroup,indent=4);
-        # print(f"{hostgroup_txt}")
-        # print("{hostgroupid}")
-        #groupid_name = hostgroup[0].name
-        print(json.dumps(hostgroup[0],indent=4))
-        #print(json.dumps(hostgroup[0].hosts,indent=4))
+        #exit()
+        #print("hostgroup[0][\"hosts\"] is of type ",end="")
+        #print(type(hostgroup[0]["hosts"]))
+        #print(json.dumps(hostgroup[0]["hosts"],indent=4))
+        # newlist = sorted(list_to_be_sorted, key=lambda d: d['name'])
+        for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
+            print(json.dumps(host,indent=4))
 
 #       for host in allhosts:
 #           if 'os' in host['inventory']:
