@@ -17,7 +17,8 @@ except:
 # Globals
 verbose=0
 hostgroupname=''
-
+builtinhelp=1
+hostgroup=None
 
 if __name__ == "__main__":
     # <argparse>
@@ -39,16 +40,28 @@ if __name__ == "__main__":
         print("We need a hostgroup");
         exit(1)
 
+    hostgroup = args.hostgroup
+
     # </argparse>
 
     try:
         # Create ZabbixAPI class instance
-        zapi = ZabbixAPI(url=api_url, user=api_user, password=api_password)
+        zapi = ZabbixAPI(server=api_url)
 
-        # Get all monitored hosts
-        allhosts = zapi.host.get(output='extend', selectInventory='extend')
+        # Login to Zabbix
+        zapi.login(user=api_user, password=api_password)
 
-        print(json.dumps(allhosts,indent=4))
+        # Get all hostgroups
+        json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
+        # {"name": "Maintenance"}
+        # print(json_filter)
+        # sys.exit()
+        # hostgroup = zapi.hostgroup.get(output='extend', with_monitored_hosts=1, filter=json_filter)
+        hostgroup = zapi.hostgroup.get(output='extend', with_monitored_hosts=1, filter={"name": args.hostgroup})
+        #allhostgroups = zapi.hostgroup.get(output='extend', )
+
+        # Print the object
+        print(json.dumps(hostgroup,indent=4))
 
 #       for host in allhosts:
 #           if 'os' in host['inventory']:
