@@ -51,12 +51,20 @@ if __name__ == "__main__":
         # Login to Zabbix
         zapi.login(user=api_user, password=api_password)
 
-        # Get all hostgroups
-        json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
+        # json_filter = '{"name": "' + f"{args.hostgroup}" + '"}'
+        json_filter = { "name": args.hostgroup }
+        # print(json.dumps(json_filter,indent=4))
+        #hostgroup = zapi.hostgroup.get()
+        #print(f"Denne: '{args.hostgroup}'")
+        #print(json.dumps(json_filter,indent=4))
         # hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output='extend')
+        # hostgroup = zapi.hostgroup.get(filter={"name": "Maintenance"}, output='extend')
+        hostgroup = zapi.hostgroup.get(filter=json_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        # print(f"{args.hostgroup}\nMaintenance")
 
-        hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
-        # allhosts = zapi.host.get(output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        # hostgroup = zapi.hostgroup.get(filter={"name": args.hostgroup}, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        # hostgroup = zapi.hostgroup.get(filter=json_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        # hostgroup = zapi.hostgroup.get(output=['hostid', 'name'], selectHosts=['hostid', 'host'])
 
         # Print the object
         # hostgroup_id = hostgroup[0].groupid
