@@ -71,7 +71,9 @@ if __name__ == "__main__":
         # hostgroup_txt = json.dumps(hostgroup,indent=4);
         # print(f"{hostgroup_txt}")
         # print("{hostgroupid}")
-        print(json.dumps(hostgroup,indent=4))
+        #groupid_name = hostgroup[0].name
+        print(json.dumps(hostgroup[0],indent=4))
+        #print(json.dumps(hostgroup[0].hosts,indent=4))
 
 #       for host in allhosts:
 #           if 'os' in host['inventory']:
