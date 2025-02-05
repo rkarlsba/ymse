@@ -2,6 +2,9 @@
 
 # This one goes to /etc/default/restic
 
+# We need a good path - it's lost sometimes
+export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
+
 # Variables - for details, please see
 # https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
 export RESTIC_REPOSITORY="sftp:restic:restic-repo"
@@ -13,7 +16,7 @@ PROGNAME=restic-backup
 RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
 RESTIC_EXCLUDE=""
 RESTIC_VERBOSE=""
-RESTIC_ONE_FILESYSTEM=1
+RESTIC_ONE_FILESYSTEM="1"
 RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
 RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
 
@@ -21,14 +24,14 @@ RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
 # VMs and backup those backups and make sure to retention them regularly.
 RESTIC_BACKUP_DIRS="/some/dir"
 RESTIC_CMD="restic --verbose backup --exclude-file $RESTIC_EXCLUDE_FILE $RESTIC_BACKUP_DIRS"
-ONE_FILESYSTEM=0
-RETCODE=0
-VERBOSE=0
+ONE_FILESYSTEM="0"
+RETCODE="0"
+VERBOSE="0"
 
 # Backup rotation - see https://restic.readthedocs.io/en/stable/060_forget.html
-RESTIC_KEEP_WIITHIN='14d'
-RESTIC_KEEP_WEEKLY='5'
-RESTIC_KEEP_MONTHLY='3'
-RESTIC_KEEP_YEARLY='0'
-RESTIC_PRUNE='--prune'
+RESTIC_KEEP_WIITHIN="14d"
+RESTIC_KEEP_WEEKLY="5"
+RESTIC_KEEP_MONTHLY="3"
+RESTIC_KEEP_YEARLY="0"
+RESTIC_PRUNE="--prune"
 
