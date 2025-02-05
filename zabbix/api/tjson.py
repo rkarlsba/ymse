@@ -21,8 +21,6 @@ if __name__ == "__main__":
     }
 
     gruppe = json_filter["name"]
-    print("gruppe")
-    sys.exit()
 
     print(json.dumps(json_filter,indent=4))
     print(json.dumps(jsontest,indent=4))
