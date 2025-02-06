@@ -2,7 +2,9 @@
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 import argparse
+import io
 import json
+import pandas as pd
 from pyzabbix.api import ZabbixAPI, ZabbixAPIException
 import sys
 
@@ -67,31 +69,37 @@ if __name__ == "__main__":
         #print(json.dumps(hostgroup,indent=4))
         #print(json.dumps(all_hosts,indent=4))
 
+        count=0
         for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
             status=''
+            count += 1
             if host["status"] == "1":
                 status='\tDISABLED'
-            if args.html:
-                print("Zabbix hostgroup report for {args.hostgroup}")
-                print(f"<html><head><title>{header}</title></head>")
-                print(f"<body>")
-            elif args.csv:
+            elif args.csv or args.html:
                 if firstline == 0:
-                    print('hostid,hostname,disabled')
+                    csv = "hostid,hostname,disabled\n"
                     firstline=1
-                print(f'{host["hostid"]},{host["host"]},{host["status"]}')
+                csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
             else:
                 print(host["host"]+status)
+                if count == len(hostgroup[0]["hosts"]):
+                    print(f"\nFound a total of {count} hosts in hostgroup")
 
-#       for host in allhosts:
-#           if 'os' in host['inventory']:
-#               if host['inventory']['os'] == '':
-#                   print("{} has no OS in its inventory".format(host['host']))
-#               else:
-#                   print("{} has OS {}".format(host['host'], host['inventory']['os']))
-#           if 0 and host['host'] == "roysk.oslomet.no":
-#               print(json.dumps(host,indent=4))
-#               print(json.dumps(hlookup[0]['inventory'],indent=4))
+        if args.csv:
+            print(csv)
+        elif args.html:
+            title = "Zabbix report for hostgroup"
+            html = f"""<html>
+    <head>
+        <title>{title} {args.hostgroup}</title>
+    </head>
+    <body>
+        <h1>{title} <b>{args.hostgroup}</b></h1>
+        <hr width="60%">\n"""
+            csvbuf = io.StringIO(csv)
+            htmlobj = pd.read_csv(csvbuf)
+            html += htmlobj.to_html(index=False)
+            print(html)
 
         zapi.user.logout()
     except ZabbixAPIException as e:
