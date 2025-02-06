@@ -22,7 +22,6 @@ if __name__ == "__main__":
     builtinhelp=1
     hostgroup=None
     zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
-    # zabbix_host_url = zabbix_host_base_url+str(host)
     firstline=0
 
     # Argparse
@@ -79,7 +78,13 @@ if __name__ == "__main__":
                 if firstline == 0:
                     csv = "hostid,hostname,disabled\n"
                     firstline=1
-                csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
+                if args.html:
+                    zabbix_host_url = zabbix_host_base_url+str(host["hostid"])
+                    csvl = f'{host["hostid"]},<a href="{zabbix_host_url}">{host["host"]}</a>,{host["status"]}\n'
+                    print(csvl)
+                    csv += csvl
+                else:
+                    csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
             else:
                 print(host["host"]+status)
                 if count == len(hostgroup[0]["hosts"]):
@@ -99,6 +104,8 @@ if __name__ == "__main__":
             csvbuf = io.StringIO(csv)
             htmlobj = pd.read_csv(csvbuf)
             html += htmlobj.to_html(index=False)
+            html = html.replace('&lt;', '<')
+            html = html.replace('&gt;', '>')
             print(html)
 
         zapi.user.logout()
