@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # Globals
     verbose=0
     builtinhelp=1
-    hostgroup=None
+    hostgroup_list=None
     zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
     firstline=0
 
@@ -58,8 +58,6 @@ if __name__ == "__main__":
         print("HTML and CSV output are not supported for the hostgroup or host lists")
         sys.exit(1)
 
-    hostgroup = args.hostgroup
-
     # Main code
     try:
         # Create ZabbixAPI class instance
@@ -72,30 +70,31 @@ if __name__ == "__main__":
             hostgroup_filter = { }
         else:
             hostgroup_filter = { "name": args.hostgroup }
-        hostgroup = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name', 'status'], selectHosts=['hostid', 'host', 'status'])
+        hostgroup_list = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name', 'status'], selectHosts=['hostid', 'host', 'status'])
 
         host_filter = { }
-        all_hosts = zapi.host.get()
+        host_list = zapi.host.get(filter=host_filter, output=['hostid', 'host', 'status'], selectHosts=['hostid', 'host', 'status'], selectGroups='extend')
+        #host_list = zapi.host.get()
 
         if (args.hostlist):
-            #print(json.dumps(all_hosts,indent=4))
-            #for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
-            for h in sorted(all_hosts, key=lambda d: d["host"].lower()):
+            print(json.dumps(host_list,indent=4))
+            #for host in sorted(hostgroup_list[0]["hosts"], key=lambda d: d["host"].lower()):
+            for h in sorted(host_list, key=lambda d: d["host"].lower()):
                 print(h["host"])
             sys.exit(0)
 
-        #print(json.dumps(hostgroup[0],indent=4))
-        #print(json.dumps(all_hosts,indent=4))
+        #print(json.dumps(hostgroup_list[0],indent=4))
+        #print(json.dumps(host_list,indent=4))
 
         if args.hostgrouplist:
-            for hg in hostgroup:
+            for hg in hostgroup_list:
                 print(hg["name"])
-                #print(json.dumps(hostgroup[0]["name"],indent=4))
+                #print(json.dumps(hostgroup_list[0]["name"],indent=4))
                 #print(json.dumps(hg,indent=4))
             sys.exit(0)
 
         count=0
-        for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
+        for host in sorted(hostgroup_list[0]["hosts"], key=lambda d: d["host"].lower()):
             status=''
             count += 1
             if host["status"] == "1":
@@ -112,7 +111,7 @@ if __name__ == "__main__":
                     csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
             else:
                 print(host["host"]+status)
-                if count == len(hostgroup[0]["hosts"]):
+                if count == len(hostgroup_list[0]["hosts"]):
                     print(f"\nFound a total of {count} hosts in hostgroup")
 
         if args.csv:
