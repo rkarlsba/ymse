@@ -28,7 +28,7 @@ if __name__ == "__main__":
     argparser = argparse.ArgumentParser(add_help=builtinhelp)
 
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup")
-    argparser.add_argument("-l", "--list", action='store_true', help="List all hostgroups")
+    argparser.add_argument("-O", "--hostgrouplist", action='store_true', help="List all hostgroups")
     argparser.add_argument("-L", "--html", action='store_true', help="Output HTML")
     argparser.add_argument("-C", "--csv", action='store_true', help="Output CSV")
     argparser.add_argument("-v", "--verbose", action='store_true', help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
@@ -45,8 +45,16 @@ if __name__ == "__main__":
         print("Doh! Can't output both HTML and CSV at the same time")
         sys.exit(1)
         
-    if args.hostgroup is None and args.list is None:
-        print("We need either --list or --hostgroup <somegroup> to do something useful")
+    if args.hostgroup is None and args.hostgrouplist is None:
+        print("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful")
+        sys.exit(1)
+
+    if args.hostgroup is not None and args.hostgrouplist:
+        print("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful, not both!")
+        sys.exit(1)
+
+    if args.hostgrouplist and (args.html or args.csv):
+        print("HTML and CSV output is not supported for the hostgroup list")
         sys.exit(1)
 
     hostgroup = args.hostgroup
@@ -59,14 +67,24 @@ if __name__ == "__main__":
         # Login to Zabbix
         zapi.login(user=api_user, password=api_password)
 
-        hostgroup_filter = { "name": args.hostgroup }
+        if args.hostgrouplist:
+            hostgroup_filter = { }
+        else:
+            hostgroup_filter = { "name": args.hostgroup }
         hostgroup = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name', 'status'], selectHosts=['hostid', 'host', 'status'])
 
         host_filter = { }
         all_hosts = zapi.host.get()
 
-        #print(json.dumps(hostgroup,indent=4))
+        #print(json.dumps(hostgroup[0],indent=4))
         #print(json.dumps(all_hosts,indent=4))
+
+        if args.hostgrouplist:
+            for hg in hostgroup:
+                print(hg["name"])
+                #print(json.dumps(hostgroup[0]["name"],indent=4))
+                #print(json.dumps(hg,indent=4))
+            sys.exit(0)
 
         count=0
         for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
@@ -74,7 +92,7 @@ if __name__ == "__main__":
             count += 1
             if host["status"] == "1":
                 status='\tDISABLED'
-            elif args.csv or args.html:
+            if args.csv or args.html:
                 if firstline == 0:
                     csv = "hostid,hostname,disabled\n"
                     firstline=1
