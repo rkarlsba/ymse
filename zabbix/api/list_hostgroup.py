@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup")
     argparser.add_argument("-O", "--hostgrouplist", action='store_true', help="List all hostgroups")
+    argparser.add_argument("-o", "--hostlist", action='store_true', help="List all hosts")
     argparser.add_argument("-L", "--html", action='store_true', help="Output HTML")
     argparser.add_argument("-C", "--csv", action='store_true', help="Output CSV")
     argparser.add_argument("-v", "--verbose", action='store_true', help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
@@ -49,12 +50,12 @@ if __name__ == "__main__":
         print("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful")
         sys.exit(1)
 
-    if args.hostgroup is not None and args.hostgrouplist:
-        print("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful, not both!")
+    if args.hostgroup is not None and (args.hostgrouplist or args.hostlist):
+        print("We need either --hostgrouplist, --hostlist or --hostgroup <somegroup> to do something useful, not two of tme!")
         sys.exit(1)
 
-    if args.hostgrouplist and (args.html or args.csv):
-        print("HTML and CSV output is not supported for the hostgroup list")
+    if (args.hostgrouplist or args.hostlist) and (args.html or args.csv):
+        print("HTML and CSV output are not supported for the hostgroup or host lists")
         sys.exit(1)
 
     hostgroup = args.hostgroup
@@ -75,6 +76,13 @@ if __name__ == "__main__":
 
         host_filter = { }
         all_hosts = zapi.host.get()
+
+        if (args.hostlist):
+            #print(json.dumps(all_hosts,indent=4))
+            #for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
+            for h in sorted(all_hosts, key=lambda d: d["host"].lower()):
+                print(h["host"])
+            sys.exit(0)
 
         #print(json.dumps(hostgroup[0],indent=4))
         #print(json.dumps(all_hosts,indent=4))
