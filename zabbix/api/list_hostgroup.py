@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/opt/python_venv/bin/python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 import argparse
@@ -14,14 +14,15 @@ except:
     print("and create the named file before running this again.", file=sys.stderr)
     exit(1)
 
-# Globals
-verbose=0
-builtinhelp=1
-hostgroup=None
-
 if __name__ == "__main__":
-    # <argparse>
+    # Globals
+    verbose=0
+    builtinhelp=1
+    hostgroup=None
+    zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
+    # zabbix_host_url = zabbix_host_base_url+str(host)
 
+    # Argparse
     argparser = argparse.ArgumentParser(add_help=builtinhelp)
 
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup", required=True)
@@ -37,8 +38,7 @@ if __name__ == "__main__":
 
     hostgroup = args.hostgroup
 
-    # </argparse>
-
+    # Main code
     try:
         # Create ZabbixAPI class instance
         zapi = ZabbixAPI(server=api_url)
@@ -47,13 +47,13 @@ if __name__ == "__main__":
         zapi.login(user=api_user, password=api_password)
 
         hostgroup_filter = { "name": args.hostgroup }
-        hostgroup = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name'], selectHosts=['hostid', 'host'])
+        hostgroup = zapi.hostgroup.get(filter=hostgroup_filter, output=['hostid', 'name', 'status'], selectHosts=['hostid', 'host', 'status'])
 
         host_filter = { }
         all_hosts = zapi.host.get()
 
-        print(json.dumps(all_hosts,indent=4))
-        exit
+        print(json.dumps(hostgroup,indent=4))
+        #print(json.dumps(all_hosts,indent=4))
 
         for host in sorted(hostgroup[0]["hosts"], key=lambda d: d["host"].lower()):
             print(host["host"])
