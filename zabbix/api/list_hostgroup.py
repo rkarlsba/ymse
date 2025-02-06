@@ -81,7 +81,6 @@ if __name__ == "__main__":
                 if args.html:
                     zabbix_host_url = zabbix_host_base_url+str(host["hostid"])
                     csvl = f'{host["hostid"]},<a href="{zabbix_host_url}">{host["host"]}</a>,{host["status"]}\n'
-                    print(csvl)
                     csv += csvl
                 else:
                     csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
@@ -103,7 +102,7 @@ if __name__ == "__main__":
         <hr width="60%">\n"""
             csvbuf = io.StringIO(csv)
             htmlobj = pd.read_csv(csvbuf)
-            html += htmlobj.to_html(index=False)
+            html += htmlobj.to_html(index=False, justify="left")
             html = html.replace('&lt;', '<')
             html = html.replace('&gt;', '>')
             print(html)
