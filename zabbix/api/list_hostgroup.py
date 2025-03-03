@@ -15,6 +15,7 @@ hostgroup_list=None
 zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
 firstline=0
 global_debug=0
+csv_separator='\t'
 
 def die(s: str, exitcode: int = 1) -> None:
     print(s, file=sys.stderr)
@@ -38,8 +39,9 @@ if __name__ == "__main__":
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup")
     argparser.add_argument("-O", "--hostgrouplist", action='store_true', help="List all hostgroups")
     argparser.add_argument("-o", "--hostlist", action='store_true', help="List all hosts")
-    argparser.add_argument("-L", "--html", action='store_true', help="Output HTML")
-    argparser.add_argument("-C", "--csv", action='store_true', help="Output CSV")
+    argparser.add_argument("-L", "--html", action='store_true', help="Output HTML (not implemented)")
+    argparser.add_argument("-C", "--csv", action='store_false', help="Output CSV (default)")
+    argparser.add_argument("-s", "--separator", type=str, help="CSV separator (default is tab, as in \\t) ir just 0x09 - currently hardcoded as tab")
     argparser.add_argument("-v", "--verbose", action='count', default=0, help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
     argparser.add_argument("-d", "--debug", action='store_true', help="Enable debugging")
     argparser.add_argument("-S", "--server", type=str, help=f"Zabbix Server URL, for instance https://my.zabbixsrv.tld/zabbix/api_jsonrpc.php (not implemented)")
@@ -66,8 +68,11 @@ if __name__ == "__main__":
     if args.hostgrouplist and args.hostlist:
         die("A wee glitch in the matrix - please use either hostgrouplist or hostlist")
 
-    elif args.html or args.csv:
+    elif args.html and args.csv:
         die("Can't output HTML and CSV at the same time")
+
+    if args.csv:
+        print("CSV, jo, digg!")
 
 # Gammelt {{{
         
