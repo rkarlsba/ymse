@@ -22,7 +22,7 @@ def die(s: str, exitcode: int = 1) -> None:
     sys.exit(exitcode)
 
 def debprint(s: str, debuglevel: int = 1) -> None:
-    if debuglevel < global_debug:
+    if debuglevel > global_debug:
         return
     print(f"\033[3m{s}\033[0m")
 
@@ -106,6 +106,7 @@ if __name__ == "__main__":
         if (args.hostlist):
             for h in sorted(host_list, key=lambda d: d["host"].lower()):
                 print(h["host"])
+                debprint(h["groups"])
             sys.exit(0)
 
         if args.hostgrouplist:
