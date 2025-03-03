@@ -8,22 +8,30 @@ import pandas as pd
 from pyzabbix.api import ZabbixAPI, ZabbixAPIException
 import sys
 
+# Globals
+verbose=0
+builtinhelp=1
+hostgroup_list=None
+zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
+firstline=0
+global_debug=0
+
+def die(s: str, exitcode: int = 1) -> None:
+    print(s, file=sys.stderr)
+    sys.exit(exitcode)
+
+def debprint(s: str, debuglevel: int = 1) -> None:
+    if debuglevel < global_debug:
+        return
+    print(f"\033[3m{s}\033[0m")
+
 try:
     from local_passwords import api_user, api_password, api_url
 
 except:
-    print("File local_passwords.py does not exists. Please refer to the README file", file=sys.stderr)
-    print("and create the named file before running this again.", file=sys.stderr)
-    exit(1)
+    die("File local_passwords.py does not exists. Please refer to the README file\nand create the named file before running this again.")
 
 if __name__ == "__main__":
-    # Globals
-    verbose=0
-    builtinhelp=1
-    hostgroup_list=None
-    zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
-    firstline=0
-
     # Argparse
     argparser = argparse.ArgumentParser(add_help=builtinhelp)
 
@@ -32,7 +40,8 @@ if __name__ == "__main__":
     argparser.add_argument("-o", "--hostlist", action='store_true', help="List all hosts")
     argparser.add_argument("-L", "--html", action='store_true', help="Output HTML")
     argparser.add_argument("-C", "--csv", action='store_true', help="Output CSV")
-    argparser.add_argument("-v", "--verbose", action='store_true', help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
+    argparser.add_argument("-v", "--verbose", action='count', default=0, help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
+    argparser.add_argument("-d", "--debug", action='store_true', help="Enable debugging")
     argparser.add_argument("-S", "--server", type=str, help=f"Zabbix Server URL, for instance https://my.zabbixsrv.tld/zabbix/api_jsonrpc.php (not implemented)")
     argparser.add_argument("-U", "--user", type=str, help="Username (not implemented)")
     argparser.add_argument("-P", "--password", type=str, help="Passsword (not implemented)")
@@ -42,21 +51,35 @@ if __name__ == "__main__":
 
     args = argparser.parse_args()
 
+    if args.debug:
+        global_debug+=1
+
     if args.html and args.csv:
-        print("Doh! Can't output both HTML and CSV at the same time")
-        sys.exit(1)
-        
-    if args.hostgroup is None and args.hostgrouplist is None:
-        print("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful")
-        sys.exit(1)
+        die("Doh! Can't output both HTML and CSV at the same time")
+
+    if args.hostgroup is None and not args.hostgrouplist and not args.hostlist:
+        die("[1] We need either --hostgroup <hostgroup>, --hostgrouplist or --hostlist")
 
     if args.hostgroup is not None and (args.hostgrouplist or args.hostlist):
-        print("We need either --hostgrouplist, --hostlist or --hostgroup <somegroup> to do something useful, not two of tme!")
-        sys.exit(1)
+        die("[2] We need either --hostgroup <hostgroup>, --hostgrouplist or --hostlist")
 
-    if (args.hostgrouplist or args.hostlist) and (args.html or args.csv):
-        print("HTML and CSV output are not supported for the hostgroup or host lists")
-        sys.exit(1)
+    if args.hostgrouplist and args.hostlist:
+        die("A wee glitch in the matrix - please use either hostgrouplist or hostlist")
+
+    elif args.html or args.csv:
+        die("Can't output HTML and CSV at the same time")
+
+# Gammelt {{{
+        
+#   if args.hostgroup is None and not args.hostgrouplist:
+#       die("We need either --hostgrouplist or --hostgroup <somegroup> to do something useful")
+
+#   if args.hostgroup is None and not (args.hostgrouplist or args.hostlist):
+#       die("We need either --hostgrouplist, --hostlist or --hostgroup <somegroup> to do something useful, not two of tme!")
+
+#   if (args.hostgrouplist or args.hostlist) and (args.html or args.csv):
+#       die("HTML and CSV output are not supported for the hostgroup or host lists")
+# }}}
 
     # Main code
     try:
@@ -74,23 +97,15 @@ if __name__ == "__main__":
 
         host_filter = { }
         host_list = zapi.host.get(filter=host_filter, output=['hostid', 'host', 'status'], selectHosts=['hostid', 'host', 'status'], selectGroups='extend')
-        #host_list = zapi.host.get()
 
         if (args.hostlist):
-            print(json.dumps(host_list,indent=4))
-            #for host in sorted(hostgroup_list[0]["hosts"], key=lambda d: d["host"].lower()):
             for h in sorted(host_list, key=lambda d: d["host"].lower()):
                 print(h["host"])
             sys.exit(0)
 
-        #print(json.dumps(hostgroup_list[0],indent=4))
-        #print(json.dumps(host_list,indent=4))
-
         if args.hostgrouplist:
             for hg in hostgroup_list:
                 print(hg["name"])
-                #print(json.dumps(hostgroup_list[0]["name"],indent=4))
-                #print(json.dumps(hg,indent=4))
             sys.exit(0)
 
         count=0
@@ -112,7 +127,7 @@ if __name__ == "__main__":
             else:
                 print(host["host"]+status)
                 if count == len(hostgroup_list[0]["hosts"]):
-                    print(f"\nFound a total of {count} hosts in hostgroup")
+                    print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
 
         if args.csv:
             print(csv)
