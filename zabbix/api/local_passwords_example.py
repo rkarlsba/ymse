@@ -10,12 +10,12 @@ api_url = 'https://zabbix.my.tld/zabbix/api_jsonrpc.php';
 api_user = 'zabbix-api-user'
 api_password = 'supersecret'
 
-# User used for migration - source part
+# User used for migration - source part - not implemented
 api_src_url = 'https://zabbix.my.tld/zabbix/api_jsonrpc.php';
 api_src_user = 'zabbix-api-user'
 api_src_password = 'supersecret'
 
-# User used for migration - destination part
+# User used for migration - destination part - not implemented
 api_dst_url = 'https://zabbix.my.tld/zabbix/api_jsonrpc.php';
 api_dst_user = 'zabbix-api-user'
 api_dst_password = 'supersecret'
