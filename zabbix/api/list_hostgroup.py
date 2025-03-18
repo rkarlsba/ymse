@@ -7,6 +7,7 @@ import json
 import pandas as pd
 from pyzabbix.api import ZabbixAPI, ZabbixAPIException
 import sys
+#from rich import print as pprint
 
 # Globals
 verbose=0
@@ -71,9 +72,6 @@ if __name__ == "__main__":
     elif args.html and args.csv:
         die("Can't output HTML and CSV at the same time")
 
-    if args.csv:
-        print("CSV, jo, digg!")
-
 # Gammelt {{{
         
 #   if args.hostgroup is None and not args.hostgrouplist:
@@ -103,10 +101,13 @@ if __name__ == "__main__":
         host_filter = { }
         host_list = zapi.host.get(filter=host_filter, output=['hostid', 'host', 'status'], selectHosts=['hostid', 'host', 'status'], selectGroups='extend')
 
+        csv = None
         if (args.hostlist):
             for h in sorted(host_list, key=lambda d: d["host"].lower()):
-                print(h["host"])
-                debprint(h["groups"])
+                print(h["host"]+": ", end='')
+                debprint(json.dumps(h["groups"], indent=4))
+                mygroups = [g.get("name") for g in h["groups"]]
+                print(",".join(mygroups))
             sys.exit(0)
 
         if args.hostgrouplist:
@@ -136,7 +137,11 @@ if __name__ == "__main__":
                     print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
 
         if args.csv:
-            print(csv)
+            print(f"# Maskiner i hostgroup **'{args.hostgroup}:'**")
+            if (csv is None):
+                print("(tomt)")
+            else:
+                print(csv, end='')
         elif args.html:
             title = "Zabbix report for hostgroup"
             html = f"""<html>
@@ -152,6 +157,8 @@ if __name__ == "__main__":
             html = html.replace('&lt;', '<')
             html = html.replace('&gt;', '>')
             print(html)
+        else:
+            print("Her er'e no' muffens…")
 
         zapi.user.logout()
     except ZabbixAPIException as e:
