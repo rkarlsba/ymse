@@ -20,7 +20,8 @@ On client:
     chmod +x /usr/local/sbin/pygtail.py
     chmod +x /usr/local/sbin/zabbix_postfix.sh
     
-    cp zabbix_postfix /etc/sudoers.d/
+    # This one is probably not necessary
+    cp zabbix_postfix.sudoers /etc/sudoers.d/
     chmod 440 /etc/sudoers.d/zabbix_postfix
     
     # Zabbix agent config dir may change, see https://github.com/rafael747/zabbix-postfix/issues/3#issuecomment-623629611
