@@ -15,4 +15,11 @@ info. It can probably be used for other purposes as well.
 | LICENSE.md        | The GPLv3 license under which this all is licensed        |
 | tygge-kalender.py | Main program - see below (or source) for more info        |
 
+### Examples
 
+./tygge-kalender.py -d 2023-01-01 -f Bitraf.ics -T form resin -v
+./tygge-kalender.py -d 2023-01-01 -f Bitraf.ics -T laser 
+
+## Note
+
+There is no calendar file in here. Connect to Bitraf's calendar or use your own to get some data with with to use it. 
