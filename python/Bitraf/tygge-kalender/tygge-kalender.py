@@ -36,10 +36,10 @@ def main():
             description='Tygge en Bitraf-kalkulator',
             epilog='Så får vi se…',
     )
-    parser.add_argument('-f', '--filename', required=True)          # Give filename
-    parser.add_argument('-d', '--date')                             # Date from which to list, give in the format of yyyy-mm-dd
-    parser.add_argument('-v', '--verbose', action='store_true')     # Be verbose (print every event found matching the keywords)
-    parser.add_argument('-T', '--keywords', nargs='+')              # List keywords to search for
+    parser.add_argument('-f', '--filename', required=True)              # Give filename
+    parser.add_argument('-d', '--date')                                 # Date from which to list, give in the format of yyyy-mm-dd
+    parser.add_argument('-v', '--verbose', action='count', default=0)   # Be verbose (print every event found matching the keywords)
+    parser.add_argument('-T', '--keywords', nargs='+')                  # List keywords to search for
 
     args = parser.parse_args()
 
@@ -47,7 +47,7 @@ def main():
         keywords = args.keywords
 
     if args.verbose:
-        verbose+=1
+        verbose=args.verbose
 
     if (args.date):
         try:
@@ -82,6 +82,9 @@ def main():
         # Duration as hours and minutes
         hours, remainder = divmod(duration.total_seconds(), 3600)
         minutes = remainder // 60
+        if verbose > 1:
+            print(f"hours is {hours}, remainder is {remainder}, minutes is {minutes}")
+
         duration_str = f"{int(hours)}h {int(minutes)}m"
         if verbose:
             print(f"{date_str} {start_time_str}-{end_time_str} ({duration_str}) - {summary}")
