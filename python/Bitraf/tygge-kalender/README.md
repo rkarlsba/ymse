@@ -5,8 +5,8 @@ vim:ts=4:sw=4:sts=4:et:ai:fdm=marker:tw=120
 
 ## Small script to chew the Bitraf calendar (or other .ics file)
 
-I wrote this with good help from [Perplexity](https://www.perplexity.ai/) to parse the Bitraf calendar to extract some
-info from a calendar. It can probably be used for other purposes as well.
+I wrote this with good help from [perplexity](https://www.perplexity.ai/) to parse the Bitraf calendar to extract some
+info. It can probably be used for other purposes as well.
 
 ### Files
 | File              | What's in it                                              |

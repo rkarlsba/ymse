@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-# Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net> with the handsome help from (Perplexity.
+# Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net> with the handsome help from Perplexity.
 # Licensed under GPLv3. See LICENSE.md details or README.md for more info about this script.
 
 from datetime import datetime, timedelta
