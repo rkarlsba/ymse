@@ -28,6 +28,7 @@ def main():
     # To be overridden by options below
     start_date = datetime.strptime('0001-01-01', "%Y-%m-%d")
     keywords = ['laser', 'resin', 'form']
+    verbose = False
 
     # Parse arguments
     parser = argparse.ArgumentParser(
@@ -37,13 +38,16 @@ def main():
     )
     parser.add_argument('-f', '--filename', required=True)          # Give filename
     parser.add_argument('-d', '--date')                             # Date from which to list, give in the format of yyyy-mm-dd
-    parser.add_argument('-v', '--verbose', action='store_true')     # Be verbose (currently not in use)
+    parser.add_argument('-v', '--verbose', action='store_true')     # Be verbose (print every event found matching the keywords)
     parser.add_argument('-T', '--keywords', nargs='+')              # List keywords to search for
 
     args = parser.parse_args()
 
     if args.keywords:
         keywords = args.keywords
+
+    if args.verbose:
+        verbose+=1
 
     if (args.date):
         try:
@@ -79,12 +83,13 @@ def main():
         hours, remainder = divmod(duration.total_seconds(), 3600)
         minutes = remainder // 60
         duration_str = f"{int(hours)}h {int(minutes)}m"
-        print(f"{date_str} {start_time_str}-{end_time_str} ({duration_str}) - {summary}")
+        if verbose:
+            print(f"{date_str} {start_time_str}-{end_time_str} ({duration_str}) - {summary}")
 
     total_events = len(events)
     total_hours, remainder = divmod(total_duration.total_seconds(), 3600)
     total_minutes = remainder // 60
-    print(f"\nTotal events: {total_events}")
+    print(f"Total events: {total_events}")
     print(f"Total time spent: {int(total_hours)}h {int(total_minutes)}m")
 
 if __name__ == "__main__":
