@@ -8,16 +8,17 @@ open(my $fh, '<', $fn)
 my $found=0;
 while (my $line = readline($fh)) {
     chomp($line);
+    next if ($line =~ /^\s*#.*/);
     if ($found) {
         if ($line =~ /^```$/) {
             $found=0;
-            continue;
+            print("\n");
+            next;
         } else {
             print("$line\n");
         }
     } elsif ($line =~ /^```sh$/) {
         $found=1;
-        print("$line\n");
     }
 }
 
