@@ -16,8 +16,8 @@ while i < len(lines):
         i += 1  # Move to the next line if not a ```
 
 
-    line = lines[i]
-    if line.startswith(r'```shell$'):
+#   line = lines[i]
+    if line.startswith(r'```sh$'):
         i += 1  # Skip the ```sh line
         # Print lines until a line with only ```
         while i < len(lines) and lines[i].strip() != "```":
