@@ -47,7 +47,6 @@ def parse_http_status(response):
 def get_final_status(ip, host, path, family, context, max_redirects=5):
     curr_host = host
     curr_path = path
-    verbose = 0
     redirects = 0
 
     while redirects <= max_redirects:
@@ -124,6 +123,7 @@ def main():
     ipv6_ok_count = 0
     ipv4_err_count = 0
     ipv6_err_count = 0
+    verbose = 0
 
     parser = argparse.ArgumentParser(description='HTTPS client that probes all DNS addresses (IPv4/IPv6) and confirms HTTP 200')
     parser.add_argument('host', help='The target HTTPS server (e.g., www.example.com)')
