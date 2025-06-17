@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
+#!/usr/bin/env python3
 import argparse
 import http.client
 import ssl
@@ -8,8 +9,13 @@ import certifi
 import socket
 import sys
 
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/114.0.0.0 Safari/537.36"
+)
+
 def get_ip_addresses(host):
-    """Return a list of (family, IP) tuples for all A and AAAA records."""
     try:
         infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
     except socket.gaierror as e:
@@ -30,6 +36,7 @@ def get_final_status(ip, host, path, context, family, max_redirects=5):
     curr_host = host
     curr_path = path
     while redirects <= max_redirects:
+        # Use server_hostname for SNI
         try:
             conn = http.client.HTTPSConnection(
                 host=ip,
@@ -37,26 +44,32 @@ def get_final_status(ip, host, path, context, family, max_redirects=5):
                 context=context,
                 timeout=5,
                 source_address=None,
-                # Use the original hostname for SNI and Host header
+                server_hostname=curr_host if hasattr(http.client.HTTPSConnection, 'server_hostname') else None
             )
-            conn.set_tunnel(curr_host, 443)
-        except Exception as e:
-            return None, f"Connection error: {e}"
-
+        except TypeError:
+            # For Python versions that don't accept server_hostname in constructor
+            conn = http.client.HTTPSConnection(
+                host=ip,
+                port=443,
+                context=context,
+                timeout=5,
+                source_address=None
+            )
+        headers = {
+            'Host': curr_host,
+            'User-Agent': USER_AGENT
+        }
         try:
-            conn.request("GET", curr_path, headers={'Host': curr_host})
+            conn.request("GET", curr_path, headers=headers)
             response = conn.getresponse()
         except Exception as e:
             conn.close()
             return None, f"Request error: {e}"
-
-        # Handle 301/302 redirects
         if response.status in (301, 302):
             location = response.getheader('Location')
             if not location:
                 conn.close()
                 return None, "Redirect with no Location header"
-            # Parse new host and path
             if location.startswith('https://'):
                 location = location[8:]
                 split = location.find('/')
@@ -69,7 +82,6 @@ def get_final_status(ip, host, path, context, family, max_redirects=5):
             elif location.startswith('/'):
                 curr_path = location
             else:
-                # Relative path
                 curr_path = '/' + location
             redirects += 1
             conn.close()
