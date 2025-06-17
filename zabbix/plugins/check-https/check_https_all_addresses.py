@@ -119,6 +119,7 @@ def get_final_status(ip, host, path, family, context, max_redirects=5):
 def main():
     ok_count = 0
     err_count = 0
+    ignore_cert = 0
     ipv4_ok_count = 0
     ipv6_ok_count = 0
     ipv4_err_count = 0
@@ -127,13 +128,19 @@ def main():
     parser = argparse.ArgumentParser(description='HTTPS client that probes all DNS addresses (IPv4/IPv6) and confirms HTTP 200')
     parser.add_argument('host', help='The target HTTPS server (e.g., www.example.com)')
     parser.add_argument('--path', default='/', help='Path to request (default: /)')
+    parser.add_argument('-i', '--insecure', action='store_true', help='Ignore invalid HTTPS certificates')
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Be verbose (more -v\'s for even more verbosity)')
     args = parser.parse_args()
 
-    if (args.verbose is not None):
+    if (args.verbose):
         verbose = args.verbose
+    if (args.insecure):
+        ignore_cert = 1
 
     context = ssl.create_default_context(cafile=certifi.where())
+    if (ignore_cert):
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
     addresses = get_ip_addresses(args.host)
     if not addresses:
         print(f"No IP addresses found for {args.host}")
@@ -178,7 +185,7 @@ def main():
     else:
         status = 'ERROR'
 
-    print(f"{status}: HTTPS check for {args.host} complete with {ok_count} (IPv4: {ipv4_ok_count}, IPv6: {ipv6_ok_count}) successes and {err_count} (IPv4: {ipv4_err_count}, IPv6: {ipv6_err_count})")
+    print(f"{status}: HTTPS check for {args.host} complete with {ok_count} (IPv4: {ipv4_ok_count}, IPv6: {ipv6_ok_count}) successes and {err_count} (IPv4: {ipv4_err_count}, IPv6: {ipv6_err_count}) failures")
 
 if __name__ == '__main__':
     main()
