@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-#!/usr/bin/env python3
 import argparse
-import http.client
+import socket
 import ssl
 import certifi
-import socket
 import sys
+import re
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -31,64 +30,81 @@ def get_ip_addresses(host):
             seen.add((family, ip))
     return addresses
 
-def get_final_status(ip, host, path, context, family, max_redirects=5):
-    redirects = 0
+def parse_http_status(response):
+    # Extract HTTP status code from response bytes
+    match = re.match(r"HTTP/\d+\.\d+\s+(\d+)", response)
+    if match:
+        return int(match.group(1))
+    return None
+
+def get_final_status(ip, host, path, family, context, max_redirects=5):
     curr_host = host
     curr_path = path
+    redirects = 0
     while redirects <= max_redirects:
-        # Use server_hostname for SNI
         try:
-            conn = http.client.HTTPSConnection(
-                host=ip,
-                port=443,
-                context=context,
-                timeout=5,
-                source_address=None,
-                server_hostname=curr_host if hasattr(http.client.HTTPSConnection, 'server_hostname') else None
-            )
-        except TypeError:
-            # For Python versions that don't accept server_hostname in constructor
-            conn = http.client.HTTPSConnection(
-                host=ip,
-                port=443,
-                context=context,
-                timeout=5,
-                source_address=None
-            )
-        headers = {
-            'Host': curr_host,
-            'User-Agent': USER_AGENT
-        }
-        try:
-            conn.request("GET", curr_path, headers=headers)
-            response = conn.getresponse()
+            # Create socket for the correct family (IPv4/IPv6)
+            sock = socket.socket(family, socket.SOCK_STREAM)
+            sock.settimeout(5)
+            sock.connect((ip, 443))
+            # Wrap with SSL, set SNI
+            ssock = context.wrap_socket(sock, server_hostname=curr_host)
         except Exception as e:
-            conn.close()
+            return None, f"Connection error: {e}"
+
+        # Send HTTP request
+        request = (
+            f"GET {curr_path} HTTP/1.1\r\n"
+            f"Host: {curr_host}\r\n"
+            f"User-Agent: {USER_AGENT}\r\n"
+            "Connection: close\r\n"
+            "\r\n"
+        )
+        try:
+            ssock.sendall(request.encode())
+            response = b""
+            while True:
+                chunk = ssock.recv(4096)
+                if not chunk:
+                    break
+                response += chunk
+            ssock.close()
+        except Exception as e:
             return None, f"Request error: {e}"
-        if response.status in (301, 302):
-            location = response.getheader('Location')
-            if not location:
-                conn.close()
-                return None, "Redirect with no Location header"
-            if location.startswith('https://'):
-                location = location[8:]
-                split = location.find('/')
-                if split == -1:
-                    curr_host = location
-                    curr_path = '/'
+
+        # Decode HTTP status and handle redirects
+        try:
+            header_text = response.decode(errors="replace").split("\r\n\r\n", 1)[0]
+            lines = header_text.split("\r\n")
+            status_line = lines[0]
+            status = parse_http_status(status_line)
+            if status in (301, 302):
+                location = None
+                for line in lines[1:]:
+                    if line.lower().startswith("location:"):
+                        location = line.split(":", 1)[1].strip()
+                        break
+                if not location:
+                    return None, "Redirect with no Location header"
+                # Parse new host and path
+                if location.startswith('https://'):
+                    location = location[8:]
+                    split = location.find('/')
+                    if split == -1:
+                        curr_host = location
+                        curr_path = '/'
+                    else:
+                        curr_host = location[:split]
+                        curr_path = location[split:]
+                elif location.startswith('/'):
+                    curr_path = location
                 else:
-                    curr_host = location[:split]
-                    curr_path = location[split:]
-            elif location.startswith('/'):
-                curr_path = location
-            else:
-                curr_path = '/' + location
-            redirects += 1
-            conn.close()
-            continue
-        status = response.status
-        conn.close()
-        return status, None
+                    curr_path = '/' + location
+                redirects += 1
+                continue
+            return status, None
+        except Exception as e:
+            return None, f"Parse error: {e}"
     return None, "Too many redirects"
 
 def main():
@@ -106,7 +122,7 @@ def main():
     for family, ip in addresses:
         famstr = "IPv4" if family == socket.AF_INET else "IPv6"
         try:
-            status, err = get_final_status(ip, args.host, args.path, context, family)
+            status, err = get_final_status(ip, args.host, args.path, family, context)
             if status == 200:
                 print(f"{args.host} ({ip}, {famstr}) returned HTTP 200 OK")
             elif status is not None:
