@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
+#!/usr/bin/env python3
 import argparse
 import http.client
 import ssl
 import certifi
+import sys
 
-def get_response(host, path, context, max_redirects=5):
+def get_final_status(host, path, context, max_redirects=5):
     redirects = 0
     while redirects <= max_redirects:
         conn = http.client.HTTPSConnection(host, context=context)
@@ -16,7 +18,8 @@ def get_response(host, path, context, max_redirects=5):
         if response.status in (301, 302):
             location = response.getheader('Location')
             if not location:
-                raise RuntimeError("Redirect status but no Location header")
+                conn.close()
+                return None
             # Parse new host and path
             if location.startswith('https://'):
                 location = location[8:]
@@ -35,23 +38,22 @@ def get_response(host, path, context, max_redirects=5):
             redirects += 1
             conn.close()
             continue
-        # Not a redirect, return response
-        body = response.read().decode()
+        # Not a redirect, return status
+        status = response.status
         conn.close()
-        return response.status, response.reason, body
-    raise RuntimeError("Too many redirects")
+        return status
+    return None
 
 def main():
-    parser = argparse.ArgumentParser(description='HTTPS client with redirect support')
+    parser = argparse.ArgumentParser(description='HTTPS client that confirms HTTP 200')
     parser.add_argument('host', help='The target HTTPS server (e.g., www.example.com)')
     parser.add_argument('--path', default='/', help='Path to request (default: /)')
     args = parser.parse_args()
 
     context = ssl.create_default_context(cafile=certifi.where())
-    status, reason, body = get_response(args.host, args.path, context)
-    print("Status:", status)
-    print("Reason:", reason)
-    #print("Body:", body)
+    status = get_final_status(args.host, args.path, context)
+    if status == 200:
+        print(f"{args.host} returned HTTP 200 OK")
 
 if __name__ == '__main__':
     main()
