@@ -1,5 +1,8 @@
+#!/usr/bin/env python
+
 import argparse
 import http.client
+import sys
 
 def main():
     parser = argparse.ArgumentParser(description='HTTPS checker for all addresses')
@@ -16,6 +19,7 @@ def main():
     print("Body:", response.read().decode())
 
     conn.close()
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
