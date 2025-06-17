@@ -2,7 +2,6 @@
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 import json
-import json
 import sys
 from pprint import pprint
 import traceback
