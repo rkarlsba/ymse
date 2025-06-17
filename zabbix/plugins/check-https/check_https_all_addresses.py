@@ -15,7 +15,7 @@ import certifi
 import sys
 import re
 
-USER_AGENT = (
+user_agent = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/114.0.0.0 Safari/537.36"
@@ -65,7 +65,7 @@ def get_final_status(ip, host, path, family, context, max_redirects=5):
         request = (
             f"GET {curr_path} HTTP/1.1\r\n"
             f"Host: {curr_host}\r\n"
-            f"User-Agent: {USER_AGENT}\r\n"
+            f"User-Agent: {user_agent}\r\n"
             "Connection: close\r\n"
             "\r\n"
         )
