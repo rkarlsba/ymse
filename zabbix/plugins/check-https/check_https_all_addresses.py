@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker:tw=100
+
+# check_https_all_addresses.py
+# A simple HTTPS checker that instead of just checking the first IP address returned from a lookup,
+# it checks them all.
+#
+# Written by Roy Sigurd Karlsbakk <roy@karlsbakk.net> with a whealthy bit of help from Perplexity
+# AI.
 
 import argparse
 import socket
@@ -40,7 +47,9 @@ def parse_http_status(response):
 def get_final_status(ip, host, path, family, context, max_redirects=5):
     curr_host = host
     curr_path = path
+    verbose = 0
     redirects = 0
+
     while redirects <= max_redirects:
         try:
             # Create socket for the correct family (IPv4/IPv6)
@@ -108,10 +117,21 @@ def get_final_status(ip, host, path, family, context, max_redirects=5):
     return None, "Too many redirects"
 
 def main():
+    ok_count = 0
+    err_count = 0
+    ipv4_ok_count = 0
+    ipv6_ok_count = 0
+    ipv4_err_count = 0
+    ipv6_err_count = 0
+
     parser = argparse.ArgumentParser(description='HTTPS client that probes all DNS addresses (IPv4/IPv6) and confirms HTTP 200')
     parser.add_argument('host', help='The target HTTPS server (e.g., www.example.com)')
     parser.add_argument('--path', default='/', help='Path to request (default: /)')
+    parser.add_argument('-v', '--verbose', action='count', default=0, help='Be verbose (more -v\'s for even more verbosity)')
     args = parser.parse_args()
+
+    if (args.verbose is not None):
+        verbose = args.verbose
 
     context = ssl.create_default_context(cafile=certifi.where())
     addresses = get_ip_addresses(args.host)
@@ -124,13 +144,41 @@ def main():
         try:
             status, err = get_final_status(ip, args.host, args.path, family, context)
             if status == 200:
-                print(f"{args.host} ({ip}, {famstr}) returned HTTP 200 OK")
+                ok_count += 1
+                if famstr == "IPv4":
+                    ipv4_ok_count +=1 
+                else:
+                    ipv6_ok_count +=1 
+                if (verbose):
+                    print(f"{args.host} ({ip}, {famstr}) returned HTTP 200 OK")
             elif status is not None:
-                print(f"{args.host} ({ip}, {famstr}) returned HTTP {status}")
+                err_count += 1
+                if famstr == "IPv4":
+                    ipv4_err_count +=1 
+                else:
+                    ipv6_err_count +=1 
+                if (verbose):
+                    print(f"{args.host} ({ip}, {famstr}) returned HTTP {status}")
             else:
-                print(f"{args.host} ({ip}, {famstr}) failed: {err}")
+                err_count += 1
+                if famstr == "IPv4":
+                    ipv4_err_count +=1 
+                else:
+                    ipv6_err_count +=1 
+                if (verbose):
+                    print(f"{args.host} ({ip}, {famstr}) failed: {err}")
         except Exception as e:
-            print(f"{args.host} ({ip}, {famstr}) failed: {e}")
+            if (verbose):
+                print(f"{args.host} ({ip}, {famstr}) failed: {e}")
+
+    if err_count == 0 and ok_count > 0:
+        status = 'OK'
+    elif err_count > 0 and ok_count > 0:
+        status = 'WARN'
+    else:
+        status = 'ERROR'
+
+    print(f"{status}: HTTPS check for {args.host} complete with {ok_count} (IPv4: {ipv4_ok_count}, IPv6: {ipv6_ok_count}) successes and {err_count} (IPv4: {ipv4_err_count}, IPv6: {ipv6_err_count})")
 
 if __name__ == '__main__':
     main()
