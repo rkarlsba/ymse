@@ -44,12 +44,15 @@ def parse_http_status(response):
         return int(match.group(1))
     return None
 
-def get_final_status(ip, host, path, family, context, max_redirects=5):
+def get_final_status(ip, host, path, family, context, max_redirects=5, show_redirects=0,
+                     verbose=0):
     curr_host = host
     curr_path = path
     redirects = 0
 
     while redirects <= max_redirects:
+        if verbose:
+            print(f"[1] [{redirects}] {ip} {host} {path}")
         try:
             # Create socket for the correct family (IPv4/IPv6)
             sock = socket.socket(family, socket.SOCK_STREAM)
@@ -109,10 +112,14 @@ def get_final_status(ip, host, path, family, context, max_redirects=5):
                 else:
                     curr_path = '/' + location
                 redirects += 1
+                if show_redirects:
+                    print(f'REDIRECT[{redirects}] to {location}')
                 continue
             return status, None
         except Exception as e:
             return None, f"Parse error: {e}"
+    if verbose:
+        print(f"[2] [{redirects}] {ip} {host} {path}")
     return None, "Too many redirects"
 
 def main():
@@ -123,6 +130,7 @@ def main():
     ipv6_ok_count = 0
     ipv4_err_count = 0
     ipv6_err_count = 0
+    show_redirects = 0
     verbose = 0
 
     parser = argparse.ArgumentParser(description='HTTPS client that probes all DNS addresses (IPv4/IPv6) and confirms HTTP 200')
@@ -130,12 +138,15 @@ def main():
     parser.add_argument('--path', default='/', help='Path to request (default: /)')
     parser.add_argument('-i', '--insecure', action='store_true', help='Ignore invalid HTTPS certificates')
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Be verbose (more -v\'s for even more verbosity)')
+    parser.add_argument('-r', '--show-redirects', action='store_true', default=0, help='Show redirects')
     args = parser.parse_args()
 
     if (args.verbose):
         verbose = args.verbose
     if (args.insecure):
         ignore_cert = 1
+    if (args.insecure):
+        show_redirects = 1
 
     context = ssl.create_default_context(cafile=certifi.where())
     if (ignore_cert):
@@ -149,7 +160,10 @@ def main():
     for family, ip in addresses:
         famstr = "IPv4" if family == socket.AF_INET else "IPv6"
         try:
-            status, err = get_final_status(ip, args.host, args.path, family, context)
+            status, err = get_final_status(ip, args.host, args.path, family, context, 5,
+                                           show_redirects, verbose)
+            if verbose:
+                print(f"STATUS/ERR: [{status}] '{err}'")
             if status == 200:
                 ok_count += 1
                 if famstr == "IPv4":
