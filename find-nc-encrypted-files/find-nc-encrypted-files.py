@@ -31,7 +31,7 @@ def find_nc_encrypted_files(path, oce):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Search for files encrypted by nextcloud')
     parser.add_argument('path', type=str, help='Which path to start looking for files')
-    parser.add_argument('oc-encrypted', type=str, help='Only find files encryped by Owncloud/Nextcloud')
+    parser.add_argument('-e', '--oc-encrypted', action='store_true', help='Only find files encryped by Owncloud/Nextcloud')
     args = parser.parse_args()
 
     find_nc_encrypted_files(args.path)
