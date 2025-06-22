@@ -11,7 +11,8 @@ def find_nc_encrypted_files(path):
 
     for dirpath, dirnames, filenames in os.walk(path):
         for filename in filenames:
-            print(os.path.join(dirpath, filename))
+            if filename.startswith(signature):
+                print(os.path.join(dirpath, filename))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Search for files encrypted by nextcloud')
