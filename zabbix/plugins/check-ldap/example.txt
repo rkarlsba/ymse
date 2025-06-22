@@ -1,0 +1,15 @@
+# ldapsearch -LLL -H ldaps://ldap.oslomet.no -s base -b "dc=oslomet,dc=no" -x
+dn: dc=oslomet,dc=no
+dc: oslomet
+eduOrgLegalName:: T3Nsb01ldCDigJMgU3RvcmJ5dW5pdmVyc2l0ZXRldA==
+norEduOrgNIN: NO997058925
+norEduOrgSchemaVersion: 2.0
+o:: T3Nsb01ldCDigJMgU3RvcmJ5dW5pdmVyc2l0ZXRldA==
+mail: post@oslomet.no
+norEduOrgUniqueIdentifier: 00000215
+telephoneNumber: +47 67235000
+postalAddress: Postboks 4 St. Olavs plass$N-0130 Oslo
+objectClass: top
+objectClass: organization
+objectClass: eduOrg
+objectClass: norEduOrg

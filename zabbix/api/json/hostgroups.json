@@ -1,0 +1,849 @@
+[
+    {
+        "groupid": "102",
+        "name": "All HAProxy servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "e1d90d6766254513983b578319466cfa"
+    },
+    {
+        "groupid": "2",
+        "name": "Linux servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "dc579cd7a1a34222933f24f52a68bcd8"
+    },
+    {
+        "groupid": "4",
+        "name": "Zabbix servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6f6799aa69e844b4b3918f779f2abf08"
+    },
+    {
+        "groupid": "5",
+        "name": "Discovered hosts",
+        "internal": "1",
+        "flags": "0",
+        "uuid": "f2481361f99448eea617b7b1d4765566"
+    },
+    {
+        "groupid": "6",
+        "name": "Virtual machines",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "137f19e6e2dc4219b33553b812627bc2"
+    },
+    {
+        "groupid": "7",
+        "name": "Hypervisors",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "1b837a3c078647049a0c00c61b4d57b5"
+    },
+    {
+        "groupid": "8",
+        "name": "Templates/Modules",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "57b7ae836ca64446ba2c296389c009b7"
+    },
+    {
+        "groupid": "9",
+        "name": "Templates/Network devices",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "36bff6c29af64692839d077febfc7079"
+    },
+    {
+        "groupid": "10",
+        "name": "Templates/Operating systems",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "846977d1dfed4968bc5f8bdb363285bc"
+    },
+    {
+        "groupid": "11",
+        "name": "Templates/Server hardware",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "e960332b3f6c46a1956486d4f3f99fce"
+    },
+    {
+        "groupid": "12",
+        "name": "Templates/Applications",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a571c0d144b14fd4a87a9d9b2aa9fcd6"
+    },
+    {
+        "groupid": "13",
+        "name": "Templates/Databases",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "748ad4d098d447d492bb935c907f652f"
+    },
+    {
+        "groupid": "14",
+        "name": "Templates/Virtualization",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "02e4df4f20b848e79267641790f241da"
+    },
+    {
+        "groupid": "15",
+        "name": "Templates/Telephony",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "1d12408342854fd5a4436dd6d5d1bd4a"
+    },
+    {
+        "groupid": "16",
+        "name": "Templates/SAN",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "7c2cb727f85b492d88cd56e17127c64d"
+    },
+    {
+        "groupid": "17",
+        "name": "Templates/Video surveillance",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "d37f71c7e3f7469bab645852a69a2018"
+    },
+    {
+        "groupid": "18",
+        "name": "Templates/Power",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "3dcd5bbe90534f9e8eb5c2d53756af63"
+    },
+    {
+        "groupid": "19",
+        "name": "APN PROD",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "b0a88dadfaf24caba92340f13346b6cc"
+    },
+    {
+        "groupid": "20",
+        "name": "APN STAGE",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "aa5344875e214f48889cd66fa9bb161d"
+    },
+    {
+        "groupid": "21",
+        "name": "Blade-Chassis",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "5514ae50a2324974a125cc1a9b5de66d"
+    },
+    {
+        "groupid": "23",
+        "name": "Database-servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "37a1d96454114e7590db87cafa0ad366"
+    },
+    {
+        "groupid": "24",
+        "name": "DNS servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "8cb02e0989a54415984d6a664ebaa9c7"
+    },
+    {
+        "groupid": "25",
+        "name": "Domain Controllers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "af426779abda4c62b3621de5fa6f9ba5"
+    },
+    {
+        "groupid": "26",
+        "name": "Driftsmeldinger",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "f80fdcef764e467baf69f43f4ef199e1"
+    },
+    {
+        "groupid": "27",
+        "name": "Eksterne tjenester",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "17dd0f0a849044d9abf1d20eadc427a4"
+    },
+    {
+        "groupid": "28",
+        "name": "ElasticSearch Cluster Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "039547412f26415489ab979d15d16765"
+    },
+    {
+        "groupid": "29",
+        "name": "ElasticSearch Cluster Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "4516befa7f6248daa8114949f87b159c"
+    },
+    {
+        "groupid": "30",
+        "name": "ElasticSearch HAProxy Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "b97829cff73f4787842adee9167f7cfd"
+    },
+    {
+        "groupid": "31",
+        "name": "ElasticSearch HAProxy Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "696bab3f1a6044d995cf50de6b39b743"
+    },
+    {
+        "groupid": "32",
+        "name": "Environmental sensors",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "bbae43291362422da1668c62ffc6c924"
+    },
+    {
+        "groupid": "33",
+        "name": "External / agentless servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "c152b1ff00494d1f8866fa9196d69d9c"
+    },
+    {
+        "groupid": "34",
+        "name": "EZproxy servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "b6bf31eaeb5f4367897a5310e46c9f26"
+    },
+    {
+        "groupid": "35",
+        "name": "f5.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "cfb42e33a59549dea597315be537ed2b"
+    },
+    {
+        "groupid": "36",
+        "name": "File servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "24086065b2e24c15aae9bf7da2ae178a"
+    },
+    {
+        "groupid": "37",
+        "name": "Infopi",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "46021fc19f1c4bde981f3db1939af71a"
+    },
+    {
+        "groupid": "38",
+        "name": "kontor.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "be5d24ceda3b4f609614e58e48a77969"
+    },
+    {
+        "groupid": "39",
+        "name": "Liferay Frontend Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "315410a92a954ed2a363ee60e590bae0"
+    },
+    {
+        "groupid": "40",
+        "name": "Liferay Frontend Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "fcca4abc83454b2dad20a7a5f9aec4b5"
+    },
+    {
+        "groupid": "41",
+        "name": "Linux-debian",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "270861d4c62f425293e4df99fd994d69"
+    },
+    {
+        "groupid": "42",
+        "name": "Linux clients",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "acc1a7f7d9b14560a50a92736df4e77f"
+    },
+    {
+        "groupid": "43",
+        "name": "Linux test servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6a25064dc8ad44aabddebdacecc84ddb"
+    },
+    {
+        "groupid": "44",
+        "name": "Maintenance",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "10d0de28911c4f66863b9c8783f8148a"
+    },
+    {
+        "groupid": "45",
+        "name": "Maintenance TKD",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a5cd000e4105436eb49ee43161e2510c"
+    },
+    {
+        "groupid": "46",
+        "name": "MariaDB Galera Cluster",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "9d4adbac7215420eab31f49f1923b0ca"
+    },
+    {
+        "groupid": "47",
+        "name": "MariaDB Galera Cluster Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "35edfb9a87ca44dbb846cc1305afcb5b"
+    },
+    {
+        "groupid": "48",
+        "name": "MariaDB HAProxy Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "54ced931560e4a1591ca4dc4d8768e54"
+    },
+    {
+        "groupid": "49",
+        "name": "MariaDB HAProxy Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0de09e7470404fbf9f1165d5c8ee99ac"
+    },
+    {
+        "groupid": "50",
+        "name": "MFAReset",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0369b015acef483db6692bb436909b5d"
+    },
+    {
+        "groupid": "51",
+        "name": "MFAReset HAProxy",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "f53a285f1bf04ed79eb2b8dae42983c0"
+    },
+    {
+        "groupid": "52",
+        "name": "MFAReset HAProxy Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "8977494c47514469bc0c1d6a9c9a58c2"
+    },
+    {
+        "groupid": "53",
+        "name": "MFAReset STAGE",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "9603c907edc54d1b8620d6e815e9c8b1"
+    },
+    {
+        "groupid": "54",
+        "name": "Misc",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "74248c725e004f9fa04df4e35b249a19"
+    },
+    {
+        "groupid": "55",
+        "name": "NAT44",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "936e96cfedb646399fcd92af2f5d1fed"
+    },
+    {
+        "groupid": "56",
+        "name": "Navnmatching Group",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "91eb00a9df3c4c3cb31c2811570f7c44"
+    },
+    {
+        "groupid": "57",
+        "name": "Ny www-stage.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6fa27bd8f875439ca3a004bc7daa3369"
+    },
+    {
+        "groupid": "58",
+        "name": "On-prem IAM tjenester",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "d402fd0717b1498f980297fe78ce2b7d"
+    },
+    {
+        "groupid": "59",
+        "name": "Passord",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "b92c6598571341bcbbe4cd66c554f2f7"
+    },
+    {
+        "groupid": "60",
+        "name": "Physical machines",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "fc7154814a4447bd8c5fdbbe472d69ac"
+    },
+    {
+        "groupid": "61",
+        "name": "Postgres Cluster Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "2015129f39c643f6b7da7afe7f9707c3"
+    },
+    {
+        "groupid": "62",
+        "name": "Postgres Cluster Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "cb1a81667964436ea004cac20e2bdc2a"
+    },
+    {
+        "groupid": "63",
+        "name": "Postgres HAProxy Prod",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "cfee04c1469448a38b157ef556eb1ff8"
+    },
+    {
+        "groupid": "64",
+        "name": "Postgres HAProxy Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "8ae558cff81f43e89dc481912b201083"
+    },
+    {
+        "groupid": "65",
+        "name": "Prioritet-1-high",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "9ac0090f699d4b60aaa1c941e408d430"
+    },
+    {
+        "groupid": "66",
+        "name": "Prioritet-2-medium",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a57a73322bc4444ea2d3d3e7c275bb02"
+    },
+    {
+        "groupid": "67",
+        "name": "Prioritet-3-low",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "d3950a806a2e4e9e8738196df532704a"
+    },
+    {
+        "groupid": "68",
+        "name": "Radius servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "58892ab9d6f3432d8e888b38a3012a4d"
+    },
+    {
+        "groupid": "69",
+        "name": "RDSH",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "c959c4c1dc7441dea859ddd601123421"
+    },
+    {
+        "groupid": "70",
+        "name": "Redis Cluster",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "16be82ba224f4b038cc0da7f1cf6055e"
+    },
+    {
+        "groupid": "71",
+        "name": "Redis Cluster Stage",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0d4c8e68ab8a4b13984789e4c970fc12"
+    },
+    {
+        "groupid": "72",
+        "name": "Skype",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a00b774e8ee6487386f4c14c2b4c55ce"
+    },
+    {
+        "groupid": "73",
+        "name": "solr.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "15e5369d11bb45d489489238a70806ea"
+    },
+    {
+        "groupid": "74",
+        "name": "SSH servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "59444d15ebde42328f4e8a8e073282bc"
+    },
+    {
+        "groupid": "75",
+        "name": "TKD CS gruppe",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "f8e32255cecf461b90f6986afd35ac8b"
+    },
+    {
+        "groupid": "76",
+        "name": "UPS",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0e60ac85bc3941e2a1d66a048ff164da"
+    },
+    {
+        "groupid": "77",
+        "name": "Vedlikehold - Daglig - 02.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "5fe3fd17bda247749d811991d2e791d9"
+    },
+    {
+        "groupid": "78",
+        "name": "Vedlikehold - Daglig - 03.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0bf7c8e6319a4dedb96de5853a64183f"
+    },
+    {
+        "groupid": "127",
+        "name": "https varsel PRI-1",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "ce64941bdfd44eefb2e4d1d7de0a1684"
+    },
+    {
+        "groupid": "80",
+        "name": "Vedlikehold - Daglig - 04.30",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "3b45a7ce459c4b5cb4927ba09338d346"
+    },
+    {
+        "groupid": "93",
+        "name": "Infrastructure",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "cba4f4cee5c643e698be8da68fa1234e"
+    },
+    {
+        "groupid": "81",
+        "name": "Vedlikehold - Daglig - 05.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "7d94a1e5d8ab47b18287d9c48353a951"
+    },
+    {
+        "groupid": "82",
+        "name": "Vedlikehold - Daglig - 22.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a8d26307d74140ad9eb3f0446cac5172"
+    },
+    {
+        "groupid": "83",
+        "name": "Vedlikehold - Midlertidig gruppe",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "94645bde43a84eb49aacfae1c107eb8e"
+    },
+    {
+        "groupid": "84",
+        "name": "Vedlikehold - Onsdag - 05.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "3320239c95324db98d447a45289e3026"
+    },
+    {
+        "groupid": "85",
+        "name": "Virtual IP - VIP",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "520411457261468f86343ff5fb49054a"
+    },
+    {
+        "groupid": "86",
+        "name": "VM Hosts",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "1df110ae7fe74a47a8ddb619fee05d8c"
+    },
+    {
+        "groupid": "87",
+        "name": "VPN",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "eaef8590a83740749b6591921835bf08"
+    },
+    {
+        "groupid": "88",
+        "name": "Web servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "c16895d408aa40f381edd67e713b4b92"
+    },
+    {
+        "groupid": "89",
+        "name": "Windows servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6b54fd28ab94497eb0d362b83a8c0717"
+    },
+    {
+        "groupid": "90",
+        "name": "www.hioa.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "020d47043a334e278cbdc39c32cf306a"
+    },
+    {
+        "groupid": "91",
+        "name": "www.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "9ffb8297673b429ea2de79ab2d6db1e1"
+    },
+    {
+        "groupid": "92",
+        "name": "www.stage.oslomet.no",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "eaf8646e26884852a84c19a66bc41e5a"
+    },
+    {
+        "groupid": "94",
+        "name": "Vedlikehold - Daglig - 00.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6c9ab784402e49939e2c850126065d54"
+    },
+    {
+        "groupid": "95",
+        "name": "Vedlikehold - Daglig - 10.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "bf75fb1b947848929d4400832a5c66a4"
+    },
+    {
+        "groupid": "96",
+        "name": "Vedlikehold - Fredag - 05.00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "1e69d924382c42bfb6a3903c9db85fc8"
+    },
+    {
+        "groupid": "103",
+        "name": "Elasticsearch med Kibana Cluster - PROD",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "e999fa659469434ca704c90346f44854"
+    },
+    {
+        "groupid": "104",
+        "name": "Elasticsearch med Kibana Cluster - STAGE",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "8a4ae430c03a4b049c25718d7398dcab"
+    },
+    {
+        "groupid": "105",
+        "name": "Felles HAProxy",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "74f13b2939d64fac9e3ef79be6ea94b6"
+    },
+    {
+        "groupid": "106",
+        "name": "Microsoft MSSQL database servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "e074de2f52774d7e9660a2b160233e9f"
+    },
+    {
+        "groupid": "107",
+        "name": "Proxmox-servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "32412d9bff4242ac9c8374f6fe8cee10"
+    },
+    {
+        "groupid": "108",
+        "name": "UB servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "e9ee3919abc14357b6894bccda3141b8"
+    },
+    {
+        "groupid": "110",
+        "name": "PostgreSQL by Zabbix agent 2",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "7a4e1cddd16442098aae5b5ec8786544"
+    },
+    {
+        "groupid": "1",
+        "name": "Templates",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "7df96b18c230490a9a0a9e2307226338"
+    },
+    {
+        "groupid": "99",
+        "name": "Azure",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "3a580f142203477f9f0bc30898f63f53"
+    },
+    {
+        "groupid": "98",
+        "name": "MacOS",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "0a5b7edb55b742c68bfa8af868b679cf"
+    },
+    {
+        "groupid": "97",
+        "name": "Nutanix",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "bb88c75c573c41be96c7d85804e7a9fe"
+    },
+    {
+        "groupid": "109",
+        "name": "Mime",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "44b2d29642014756b06d845fbcfe37f6"
+    },
+    {
+        "groupid": "112",
+        "name": "Developement",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "cac0a0547c71403095c46cd98760529a"
+    },
+    {
+        "groupid": "100",
+        "name": "Templates/Services",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "eb327027c5af4cacbd57d030624aaf49"
+    },
+    {
+        "groupid": "101",
+        "name": "Mail servere",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "617221f6460549429aec4803b51b9656"
+    },
+    {
+        "groupid": "113",
+        "name": "Minnekr\u00f8ll",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "063dd7ca7def40dea62ba0ba5fba6518"
+    },
+    {
+        "groupid": "114",
+        "name": "OOB",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "30833f26816045ffb227d7e41644d898"
+    },
+    {
+        "groupid": "115",
+        "name": "ISC-DHCPD servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "355d60f58bce402186da69e204a99d66"
+    },
+    {
+        "groupid": "116",
+        "name": "CCTV",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "4465bedb56794ab7903f71032e8977a0"
+    },
+    {
+        "groupid": "117",
+        "name": "vhost",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "45a416d026234c3e98274f30272df52c"
+    },
+    {
+        "groupid": "79",
+        "name": "Vedlikehold - Daglig - 04.00-06:00",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "6c340dbef2d742138c36e73279fe8084"
+    },
+    {
+        "groupid": "119",
+        "name": "studio-wg",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "578cf29dbcf3453c833077a9df5812ce"
+    },
+    {
+        "groupid": "120",
+        "name": "Template RDP",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "189355a22413414495ff3f9687452e4b"
+    },
+    {
+        "groupid": "121",
+        "name": "Windows RDP Servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "88b9021d9c0e4a1e82525e472142b315"
+    },
+    {
+        "groupid": "122",
+        "name": "Print",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "1eff971781394981b6cd9d40abaa2fe2"
+    },
+    {
+        "groupid": "124",
+        "name": "Windows servers/Print servers",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "4abdcb611ddd4091a3bb327aae6888f4"
+    },
+    {
+        "groupid": "125",
+        "name": "Windows RDP Servers - minus Mime",
+        "internal": "0",
+        "flags": "0",
+        "uuid": "a169dc555b0d475894e31e1df3233446"
+    }
+]
