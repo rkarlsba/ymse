@@ -205,8 +205,6 @@ def main():
                 else:
                     ipv6_err_count +=1
                 if verbose:
-                    print(f"{args.host} ({ip}, {famstr}) returned HTTP {status}")
-                else:
                     print(f"{args.host} ({ip}, {famstr}) failed: HTTP {status}", file=sys.stderr)
             else:
                 err_count += 1
@@ -214,14 +212,16 @@ def main():
                     ipv4_err_count +=1
                 else:
                     ipv6_err_count +=1
-                print(f"{args.host} ({ip}, {famstr}) failed: {err}", file=sys.stderr)
+                if verbose:
+                    print(f"{args.host} ({ip}, {famstr}) failed: {err}", file=sys.stderr)
         except Exception as e:
             err_count += 1
             if famstr == "IPv4":
                 ipv4_err_count +=1
             else:
                 ipv6_err_count +=1
-            print(f"{args.host} ({ip}, {famstr}) failed: {e}", file=sys.stderr)
+            if verbose:
+                print(f"{args.host} ({ip}, {famstr}) failed: {e}", file=sys.stderr)
 
     if err_count == 0 and ok_count > 0:
         status = 'OK'
