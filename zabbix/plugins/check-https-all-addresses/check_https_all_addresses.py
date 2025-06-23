@@ -21,9 +21,9 @@ user_agent = (
     "Chrome/114.0.0.0 Safari/537.36"
 )
 
-def get_ip_addresses(host):
+def get_ip_addresses(host, port):
     try:
-        infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
+        infos = socket.getaddrinfo(host, port, proto=socket.IPPROTO_TCP)
     except socket.gaierror as e:
         print(f"DNS lookup failed for {host}: {e}", file=sys.stderr)
         return []
@@ -44,7 +44,7 @@ def parse_http_status(response):
         return int(match.group(1))
     return None
 
-def get_final_status(ip, host, path, family, context, max_redirects=5, show_redirects=0,
+def get_final_status(ip, port, host, path, family, context, max_redirects=5, show_redirects=0,
                      verbose=0):
     curr_host = host
     curr_path = path
@@ -57,7 +57,9 @@ def get_final_status(ip, host, path, family, context, max_redirects=5, show_redi
             # Create socket for the correct family (IPv4/IPv6)
             sock = socket.socket(family, socket.SOCK_STREAM)
             sock.settimeout(5)
-            sock.connect((ip, 443))
+            if show_redirects and verbose:
+                print(f'Connect to {ip}:{port}')
+            sock.connect((ip, port))
             # Wrap with SSL, set SNI
             ssock = context.wrap_socket(sock, server_hostname=curr_host)
         except Exception as e:
@@ -94,6 +96,9 @@ def get_final_status(ip, host, path, family, context, max_redirects=5, show_redi
                 for line in lines[1:]:
                     if line.lower().startswith("location:"):
                         location = line.split(":", 1)[1].strip()
+                        redirects += 1
+                        if show_redirects:
+                            print(f'REDIRECT[{redirects}] to {location}')
                         break
                 if not location:
                     return None, "Redirect with no Location header"
@@ -111,9 +116,6 @@ def get_final_status(ip, host, path, family, context, max_redirects=5, show_redi
                     curr_path = location
                 else:
                     curr_path = '/' + location
-                redirects += 1
-                if show_redirects:
-                    print(f'REDIRECT[{redirects}] to {location}')
                 continue
             return status, None
         except Exception as e:
@@ -132,10 +134,12 @@ def main():
     ipv6_err_count = 0
     show_redirects = 0
     verbose = 0
+    port = 443
 
     parser = argparse.ArgumentParser(description='HTTPS client that probes all DNS addresses (IPv4/IPv6) and confirms HTTP 200')
     parser.add_argument('host', help='The target HTTPS server (e.g., www.example.com)')
-    parser.add_argument('--path', default='/', help='Path to request (default: /)')
+    parser.add_argument('-p', '--path', default='/', help='Path to request (default: /)')
+    parser.add_argument('-P', '--port', type=int, default=port, help=f'HTTPS port chosen (default {port})')
     parser.add_argument('-i', '--insecure', action='store_true', help='Ignore invalid HTTPS certificates')
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Be verbose (more -v\'s for even more verbosity)')
     parser.add_argument('-r', '--show-redirects', action='store_true', default=0, help='Show redirects')
@@ -147,12 +151,14 @@ def main():
         ignore_cert = 1
     if (args.insecure):
         show_redirects = 1
+    if (args.port):
+        port = args.port
 
     context = ssl.create_default_context(cafile=certifi.where())
     if (ignore_cert):
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
-    addresses = get_ip_addresses(args.host)
+    addresses = get_ip_addresses(args.host, port)
     if not addresses:
         print(f"No IP addresses found for {args.host}")
         sys.exit(1)
@@ -160,7 +166,7 @@ def main():
     for family, ip in addresses:
         famstr = "IPv4" if family == socket.AF_INET else "IPv6"
         try:
-            status, err = get_final_status(ip, args.host, args.path, family, context, 5,
+            status, err = get_final_status(ip, port, args.host, args.path, family, context, 5,
                                            show_redirects, verbose)
             if verbose:
                 print(f"STATUS/ERR: [{status}] '{err}'")
