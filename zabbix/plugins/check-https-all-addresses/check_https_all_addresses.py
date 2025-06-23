@@ -14,6 +14,7 @@ import ssl
 import certifi
 import sys
 import re
+from urllib.parse import urlparse  # <-- Added for proper URL parsing
 
 user_agent = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -105,17 +106,13 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
                 if show_redirects:
                     print(f'REDIRECT[{redirects}] to {location}')
 
-                # Parse new host and path
-                if location.startswith('https://'):
-                    # Absolute URL with https
-                    location = location[8:]
-                    split = location.find('/')
-                    if split == -1:
-                        new_host = location
-                        new_path = '/'
-                    else:
-                        new_host = location[:split]
-                        new_path = location[split:]
+                # --- Properly parse the Location header using urlparse ---
+                parsed = urlparse(location)
+                if parsed.scheme == 'https':
+                    new_host = parsed.hostname
+                    new_path = parsed.path or '/'
+                    if parsed.query:
+                        new_path += '?' + parsed.query
                     if new_host != curr_host:
                         if verbose:
                             print(f"Host changed: {curr_host} → {new_host}")
@@ -134,7 +131,7 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
                             print(f"Resolved new IP: {curr_ip} ({famstr})")
                         curr_host = new_host
                     curr_path = new_path
-                elif location.startswith('http://'):
+                elif parsed.scheme == 'http':
                     # Absolute URL with http (not supported in this script)
                     return None, "Redirected to HTTP, not HTTPS"
                 elif location.startswith('/'):
