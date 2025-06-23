@@ -48,18 +48,20 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
                      verbose=0):
     curr_host = host
     curr_path = path
+    curr_ip = ip
+    curr_family = family
     redirects = 0
 
     while redirects <= max_redirects:
         if verbose:
-            print(f"[1] [{redirects}] {ip} {host} {path}")
+            print(f"[1] [{redirects}] {curr_ip} {curr_host} {curr_path}")
         try:
             # Create socket for the correct family (IPv4/IPv6)
-            sock = socket.socket(family, socket.SOCK_STREAM)
+            sock = socket.socket(curr_family, socket.SOCK_STREAM)
             sock.settimeout(5)
             if show_redirects and verbose:
-                print(f'Connect to {ip}:{port}')
-            sock.connect((ip, port))
+                print(f'Connect to {curr_ip}:{port}')
+            sock.connect((curr_ip, port))
             # Wrap with SSL, set SNI
             ssock = context.wrap_socket(sock, server_hostname=curr_host)
         except Exception as e:
@@ -91,37 +93,57 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
             lines = header_text.split("\r\n")
             status_line = lines[0]
             status = parse_http_status(status_line)
-            if status in (301, 302):
+            if status in (301, 302, 303, 307, 308):
                 location = None
                 for line in lines[1:]:
                     if line.lower().startswith("location:"):
                         location = line.split(":", 1)[1].strip()
-                        redirects += 1
-                        if show_redirects:
-                            print(f'REDIRECT[{redirects}] to {location}')
                         break
                 if not location:
                     return None, "Redirect with no Location header"
+                redirects += 1
+                if show_redirects:
+                    print(f'REDIRECT[{redirects}] to {location}')
+
                 # Parse new host and path
                 if location.startswith('https://'):
+                    # Absolute URL with https
                     location = location[8:]
                     split = location.find('/')
                     if split == -1:
-                        curr_host = location
-                        curr_path = '/'
+                        new_host = location
+                        new_path = '/'
                     else:
-                        curr_host = location[:split]
-                        curr_path = location[split:]
+                        new_host = location[:split]
+                        new_path = location[split:]
+                    if new_host != curr_host:
+                        if verbose:
+                            print(f"Host changed: {curr_host} → {new_host}")
+                        # Re-resolve new host for updated IP and family
+                        new_addresses = get_ip_addresses(new_host, port)
+                        if not new_addresses:
+                            return None, f"DNS lookup failed for redirect host {new_host}"
+                        curr_family, curr_ip = new_addresses[0]
+                        if verbose:
+                            famstr = "IPv4" if curr_family == socket.AF_INET else "IPv6"
+                            print(f"Resolved new IP: {curr_ip} ({famstr})")
+                        curr_host = new_host
+                    curr_path = new_path
+                elif location.startswith('http://'):
+                    # Absolute URL with http (not supported in this script)
+                    return None, "Redirected to HTTP, not HTTPS"
                 elif location.startswith('/'):
+                    # Relative path
                     curr_path = location
                 else:
+                    # Other relative path
                     curr_path = '/' + location
                 continue
             return status, None
         except Exception as e:
             return None, f"Parse error: {e}"
     if verbose:
-        print(f"[2] [{redirects}] {ip} {host} {path}")
+        print(f"[2] [{redirects}] {curr_ip} {curr_host} {curr_path}")
     return None, "Too many redirects"
 
 def main():
@@ -149,7 +171,7 @@ def main():
         verbose = args.verbose
     if (args.insecure):
         ignore_cert = 1
-    if (args.insecure):
+    if (args.show_redirects):
         show_redirects = 1
     if (args.port):
         port = args.port
@@ -173,25 +195,25 @@ def main():
             if status == 200:
                 ok_count += 1
                 if famstr == "IPv4":
-                    ipv4_ok_count +=1 
+                    ipv4_ok_count +=1
                 else:
-                    ipv6_ok_count +=1 
+                    ipv6_ok_count +=1
                 if (verbose):
                     print(f"{args.host} ({ip}, {famstr}) returned HTTP 200 OK")
             elif status is not None:
                 err_count += 1
                 if famstr == "IPv4":
-                    ipv4_err_count +=1 
+                    ipv4_err_count +=1
                 else:
-                    ipv6_err_count +=1 
+                    ipv6_err_count +=1
                 if (verbose):
                     print(f"{args.host} ({ip}, {famstr}) returned HTTP {status}")
             else:
                 err_count += 1
                 if famstr == "IPv4":
-                    ipv4_err_count +=1 
+                    ipv4_err_count +=1
                 else:
-                    ipv6_err_count +=1 
+                    ipv6_err_count +=1
                 if (verbose):
                     print(f"{args.host} ({ip}, {famstr}) failed: {err}")
         except Exception as e:
