@@ -58,7 +58,7 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
         try:
             # Create socket for the correct family (IPv4/IPv6)
             sock = socket.socket(curr_family, socket.SOCK_STREAM)
-            sock.settimeout(5)
+            sock.settimeout(10)  # Increased timeout for IPv6
             if show_redirects and verbose:
                 print(f'Connect to {curr_ip}:{port}')
             sock.connect((curr_ip, port))
@@ -123,7 +123,12 @@ def get_final_status(ip, port, host, path, family, context, max_redirects=5, sho
                         new_addresses = get_ip_addresses(new_host, port)
                         if not new_addresses:
                             return None, f"DNS lookup failed for redirect host {new_host}"
-                        curr_family, curr_ip = new_addresses[0]
+                        # Select first address matching current family if available
+                        family_match = [addr for addr in new_addresses if addr[0] == curr_family]
+                        if family_match:
+                            curr_family, curr_ip = family_match[0]
+                        else:
+                            curr_family, curr_ip = new_addresses[0]
                         if verbose:
                             famstr = "IPv4" if curr_family == socket.AF_INET else "IPv6"
                             print(f"Resolved new IP: {curr_ip} ({famstr})")
@@ -164,25 +169,21 @@ def main():
     parser.add_argument('-P', '--port', type=int, default=port, help=f'HTTPS port chosen (default {port})')
     parser.add_argument('-i', '--insecure', action='store_true', help='Ignore invalid HTTPS certificates')
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Be verbose (more -v\'s for even more verbosity)')
-    parser.add_argument('-r', '--show-redirects', action='store_true', default=0, help='Show redirects')
+    parser.add_argument('-r', '--show-redirects', action='store_true', help='Show redirects')
     args = parser.parse_args()
 
-    if (args.verbose):
-        verbose = args.verbose
-    if (args.insecure):
-        ignore_cert = 1
-    if (args.show_redirects):
-        show_redirects = 1
-    if (args.port):
-        port = args.port
+    verbose = args.verbose
+    ignore_cert = args.insecure
+    show_redirects = args.show_redirects
+    port = args.port
 
     context = ssl.create_default_context(cafile=certifi.where())
-    if (ignore_cert):
+    if ignore_cert:
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
     addresses = get_ip_addresses(args.host, port)
     if not addresses:
-        print(f"No IP addresses found for {args.host}")
+        print(f"No IP addresses found for {args.host}", file=sys.stderr)
         sys.exit(1)
 
     for family, ip in addresses:
@@ -198,7 +199,7 @@ def main():
                     ipv4_ok_count +=1
                 else:
                     ipv6_ok_count +=1
-                if (verbose):
+                if verbose:
                     print(f"{args.host} ({ip}, {famstr}) returned HTTP 200 OK")
             elif status is not None:
                 err_count += 1
@@ -206,19 +207,24 @@ def main():
                     ipv4_err_count +=1
                 else:
                     ipv6_err_count +=1
-                if (verbose):
+                if verbose:
                     print(f"{args.host} ({ip}, {famstr}) returned HTTP {status}")
+                else:
+                    print(f"{args.host} ({ip}, {famstr}) failed: HTTP {status}", file=sys.stderr)
             else:
                 err_count += 1
                 if famstr == "IPv4":
                     ipv4_err_count +=1
                 else:
                     ipv6_err_count +=1
-                if (verbose):
-                    print(f"{args.host} ({ip}, {famstr}) failed: {err}")
+                print(f"{args.host} ({ip}, {famstr}) failed: {err}", file=sys.stderr)
         except Exception as e:
-            if (verbose):
-                print(f"{args.host} ({ip}, {famstr}) failed: {e}")
+            err_count += 1
+            if famstr == "IPv4":
+                ipv4_err_count +=1
+            else:
+                ipv6_err_count +=1
+            print(f"{args.host} ({ip}, {famstr}) failed: {e}", file=sys.stderr)
 
     if err_count == 0 and ok_count > 0:
         status = 'OK'
