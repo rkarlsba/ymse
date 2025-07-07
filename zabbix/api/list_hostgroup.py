@@ -1,5 +1,6 @@
-#!/opt/python_venv/bin/python3
+#!/usr/bin/env python3
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
+# #!/opt/python_venv/bin/python3
 
 import argparse
 import io

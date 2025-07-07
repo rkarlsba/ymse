@@ -2,6 +2,7 @@
 # vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
 # Slik ser det ut i fila vi les frå {{{
+#
 # sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
 # proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
 # devtmpfs /dev devtmpfs rw,nosuid,size=929356k,nr_inodes=232339,mode=755 0 0
@@ -34,6 +35,7 @@
 # /dev/mapper/vgstudfelles-lvstudfelles /data ext4 rw,relatime,data=ordered,jqfmt=vfsv0,usrjquota=aquota.user 0 0
 # tmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=187996k,mode=700 0 0
 # /dev/loop0 /root/x ext4 ro,relatime,data=ordered 0 0
+#
 # }}}
 # Dokumentasjon {{{
 #
