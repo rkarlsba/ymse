@@ -21,8 +21,8 @@ PGBIN="psql"
 PGSQL_HOST="localhost"
 PGSQL_PORT="5432"
 PGSQL_DATABASE="postgres"
-PGSQL_USERNAME="dbuser"
-export PGPASSWORD="dbpass"
+PGSQL_USERNAME="pguser"
+export PGPASSWORD="pgpass"
 HEADER_FILE=$( mktemp )
 CONTENT_FILE=$( mktemp )
 
@@ -32,7 +32,7 @@ then
     printf "Command '$PGBIN' doesn't exist.\r\n" >> $CONTENT_FILE
 else
 # We perform a simple query that should return a few results
-    VALUE=$( $PGBIN -t -h $PGSQL_HOST -U $PGSQL_USERNAME -p $PGSQL_PORT -c"select pg_is_in_recovery()" $PGSQL_DATABASE 2> /dev/null )
+    VALUE=$( $PGBIN -t -h $PGSQL_HOST -U $PGSQL_USERNAME -p $PGSQL_PORT -c"select pg_is_in_recovery()" $PGSQL_DATABASE | sed 's/ //g' 2> /dev/null )
 
 # psql returns 0 to the shell if it finished normally, 1 if a fatal error of
 # its own occurs (e.g. out of memory, file not found), 2 if the connection to
@@ -55,7 +55,7 @@ else
             printf "HTTP/1.1 503 Service Unavailable\r\n" >> $HEADER_FILE
             case "$EXITCODE" in
                 0)
-                    printf "Unknown value returned from db, but good exitcode from psql, weird!\r\n" >> $CONTENT_FILE
+                    printf "Unknown value returned from db ('$VALUE'), but good exitcode from psql, weird!\r\n" >> $CONTENT_FILE
                     ;;
                 1)
                     printf "Fatal error: OOM, file not found, some god's wrath\r\n" >> $CONTENT_FILE
@@ -70,6 +70,7 @@ else
                     printf "This *really* shouldn't be return by psql ($EXITCODE)\r\n" >> $CONTENT_FILE
                     ;;
             esac
+            ;;
     esac
 fi
 
