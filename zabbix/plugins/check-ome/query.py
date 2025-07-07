@@ -7,7 +7,7 @@ import logging
 import sys
 import json
 
-from zabbix_auth import *
+from zabbix_auth import ome_host, ome_user, ome_pass
 
 # Disable SSL warnings (optional)
 requests.packages.urllib3.disable_warnings()
@@ -30,6 +30,28 @@ def setup_logging(verbosity):
         logging.getLogger("urllib3").propagate = True
         logging.debug("HTTP debug level enabled")
 
+def authenticate():
+    """Authenticate to OME and return X-Auth-Token header."""
+    session_url = f"{ome_host}/api/SessionService/Sessions"
+    session_data = {
+        "UserName": ome_user,
+        "Password": ome_pass
+    }
+    logging.debug(f"Authenticating to {session_url}")
+    try:
+        resp = requests.post(session_url, json=session_data, verify=False)
+    except Exception as e:
+        logging.error(f"Connection error: {e}")
+        sys.exit(1)
+    if resp.status_code != 201:
+        logging.error(f"Authentication failed: {resp.status_code} {resp.text}")
+        sys.exit(1)
+    x_auth_token = resp.headers.get('X-Auth-Token')
+    if not x_auth_token:
+        logging.error("Failed to retrieve X-Auth-Token from authentication response.")
+        sys.exit(1)
+    return {'X-Auth-Token': x_auth_token}
+
 def main():
     parser = argparse.ArgumentParser(description="Query Dell OME API endpoint and print JSON response")
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Increase output verbosity (repeat for more)')
@@ -38,30 +60,25 @@ def main():
 
     setup_logging(args.verbose)
 
-    # Step 1: Authenticate
-    session_url = f"{ome_host}/api/SessionService/Sessions"
-    session_data = {
-        "UserName": ome_user,
-        "Password": ome_pass
-    }
-
-    logging.debug(f"Authenticating to {session_url}")
-    session = requests.post(session_url, json=session_data, verify=False)
-    if session.status_code != 201:
-        logging.error(f"Authentication failed: {session.status_code}")
-        sys.exit(1)
-
-    cookies = session.cookies
+    headers = authenticate()
 
     # Step 2: Query the specified endpoint
     full_url = f"{ome_host}{args.endpoint}"
     logging.debug(f"Querying endpoint: {full_url}")
-    response = requests.get(full_url, cookies=cookies, verify=False)
+    try:
+        response = requests.get(full_url, headers=headers, verify=False)
+    except Exception as e:
+        logging.error(f"Connection error: {e}")
+        sys.exit(1)
 
     if response.status_code == 200:
-        print(json.dumps(response.json(), indent=2))
+        try:
+            print(json.dumps(response.json(), indent=2))
+        except Exception as e:
+            logging.error(f"Failed to parse JSON response: {e}")
+            print(response.text)
     else:
-        logging.error(f"Failed to fetch data: {response.status_code}")
+        logging.error(f"Failed to fetch  {response.status_code} {response.text}")
         sys.exit(1)
 
 if __name__ == "__main__":

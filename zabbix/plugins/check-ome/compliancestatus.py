@@ -55,7 +55,7 @@ def authenticate():
 def main():
     parser = argparse.ArgumentParser(description="Query Dell OME API endpoint and print JSON response")
     parser.add_argument('-v', '--verbose', action='count', default=0, help='Increase output verbosity (repeat for more)')
-    parser.add_argument('endpoint', metavar='endpoint', help='OME API endpoint to query (e.g., /api/AlertService/Alerts)')
+    # parser.add_argument('endpoint', metavar='endpoint', help='OME API endpoint to query (e.g., /api/AlertService/Alerts)')
     args = parser.parse_args()
 
     setup_logging(args.verbose)
@@ -63,7 +63,9 @@ def main():
     headers = authenticate()
 
     # Step 2: Query the specified endpoint
-    full_url = f"{ome_host}{args.endpoint}"
+    #full_url = f"{ome_host}{args.endpoint}"
+    Id=8
+    full_url = f"{ome_host}/api/UpdateService/ComplianceStatuses?$filter=DeviceId eq {Id}"
     logging.debug(f"Querying endpoint: {full_url}")
     try:
         response = requests.get(full_url, headers=headers, verify=False)
