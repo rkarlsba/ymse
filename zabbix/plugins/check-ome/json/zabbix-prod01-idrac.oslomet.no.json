@@ -1,0 +1,2869 @@
+{
+  "device": {
+    "@odata.context": "/api/$metadata#DeviceService.Device",
+    "@odata.type": "#DeviceService.Device",
+    "@odata.id": "/api/DeviceService/Devices(10214)",
+    "Id": 10214,
+    "Type": 1000,
+    "Identifier": "5JK6BL3",
+    "DeviceServiceTag": "5JK6BL3",
+    "ChassisServiceTag": "5JK6BL3",
+    "Model": "PowerEdge R6525",
+    "PowerState": 1,
+    "ManagedState": 6000,
+    "Status": 2000,
+    "ConnectionState": false,
+    "AssetTag": null,
+    "SystemId": 2302,
+    "DeviceName": "zabbix-prod01-idrac.oslomet.no",
+    "LastInventoryTime": "2025-05-16 01:45:01.869",
+    "LastStatusTime": "2025-07-07 09:02:20.187",
+    "DeviceSubscription": null,
+    "DeviceCapabilities": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      1101,
+      14,
+      1102,
+      15,
+      207,
+      1103,
+      16,
+      208,
+      1104,
+      17,
+      209,
+      1105,
+      18,
+      210,
+      211,
+      212,
+      213,
+      30,
+      31,
+      41,
+      1001,
+      1009,
+      50,
+      1012,
+      1015,
+      1016
+    ],
+    "SlotConfiguration": {
+      "ChassisName": null
+    },
+    "DeviceManagement": [
+      {
+        "ManagementId": 5043,
+        "NetworkAddress": "10.42.68.12",
+        "MacAddress": "b0:7b:25:f4:b5:de",
+        "ManagementType": 2,
+        "InstrumentationName": "",
+        "DnsName": "zabbix-prod01-idrac.oslomet.no",
+        "ManagementProfile": [
+          {
+            "ManagementProfileId": 5055,
+            "ProfileId": "",
+            "ManagementId": 5043,
+            "AgentName": "iDRAC",
+            "Version": "6.10.00.00",
+            "ManagementURL": "https://10.42.68.12:443",
+            "HasCreds": 1,
+            "Status": 1000,
+            "StatusDateTime": "2023-02-25 13:37:45.857"
+          },
+          {
+            "ManagementProfileId": 5076,
+            "ProfileId": "",
+            "ManagementId": 5043,
+            "AgentName": "iDRAC",
+            "Version": "7.10.50.10",
+            "ManagementURL": "https://10.42.68.12:443",
+            "HasCreds": 1,
+            "Status": 1000,
+            "StatusDateTime": "2023-02-25 13:37:47.005"
+          }
+        ]
+      }
+    ],
+    "Enabled": true,
+    "Actions": null,
+    "ConnectionStateReason": 102,
+    "ChassisIp": "",
+    "DeviceSpecificData": {
+      "sdCardPresent": false,
+      "idracDnsName": "zabbix-prod01-idrac.oslomet.no",
+      "vlanId": 1,
+      "maxDIMMSlots": 32,
+      "populatedDIMMSlots": 8,
+      "manufacturer": "Dell Inc.",
+      "populatedCPUSockets": 2,
+      "totalMemory": 131072,
+      "chassisSlot": "NA",
+      "populatedPCISlots": 8,
+      "serviceTag": "5JK6BL3",
+      "systemGeneration": "15G Monolithic",
+      "chassisServiceTag": "5JK6BL3",
+      "platformGuid": "334c424f-c0b5-3680-4b10-004a4c4c4544",
+      "maxCPUSockets": 2,
+      "chassisIp": "",
+      "expressServiceCode": "12066656295",
+      "nodeId": "5JK6BL3",
+      "maxPCISlots": 4
+    },
+    "SensorHealth@odata.navigationLink": "/api/DeviceService/Devices(10214)/SensorHealth",
+    "VirtualSession": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/VirtualSession"
+    },
+    "Baselines": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/Baselines"
+    },
+    "InventoryDetails@odata.navigationLink": "/api/DeviceService/Devices(10214)/InventoryDetails",
+    "HardwareLogs@odata.navigationLink": "/api/DeviceService/Devices(10214)/HardwareLogs",
+    "SubSystemHealth@odata.navigationLink": "/api/DeviceService/Devices(10214)/SubSystemHealth",
+    "RecentActivity@odata.navigationLink": "/api/DeviceService/Devices(10214)/RecentActivity",
+    "InventoryTypes": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/InventoryTypes"
+    },
+    "LogSeverities": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/LogSeverities"
+    },
+    "Settings@odata.navigationLink": "/api/DeviceService/Devices(10214)/Settings",
+    "Temperature": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/Temperature"
+    },
+    "Power": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/Power"
+    },
+    "SystemUpTime": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/SystemUpTime"
+    },
+    "BlinkStatus": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/BlinkStatus"
+    },
+    "PowerUsageByDevice@odata.navigationLink": "/api/DeviceService/Devices(10214)/PowerUsageByDevice",
+    "DeviceBladeSlots@odata.navigationLink": "/api/DeviceService/Devices(10214)/DeviceBladeSlots",
+    "GraphicInfo": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/GraphicInfo"
+    },
+    "DeployRequired": {
+      "@odata.id": "/api/DeviceService/Devices(10214)/DeployRequired"
+    }
+  },
+  "inventory": {
+    "@odata.context": "/api/$metadata#Collection(DeviceService.InventoryDetail)",
+    "@odata.count": 20,
+    "value": [
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverDeviceCards')",
+        "InventoryType": "serverDeviceCards",
+        "InventoryInfo": [
+          {
+            "Id": 3643,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3644,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Root Complex",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3645,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3646,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3647,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3648,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3649,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3650,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3651,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3652,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57416 NetXtreme-E Dual-Media 10G RDMA Ethernet Controller",
+            "DatabusWidth": "16x or x16",
+            "SlotLength": "Short Length",
+            "SlotType": "PCI Express Gen 4"
+          },
+          {
+            "Id": 3653,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57416 NetXtreme-E Dual-Media 10G RDMA Ethernet Controller",
+            "DatabusWidth": "16x or x16",
+            "SlotLength": "Short Length",
+            "SlotType": "PCI Express Gen 4"
+          },
+          {
+            "Id": 3654,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3655,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Root Complex",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3656,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "PowerEdge Rx5xx LOM Board",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3657,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3658,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship USB 3.0 Host Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3659,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3660,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3661,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3662,
+            "SlotNumber": "",
+            "Manufacturer": "Matrox Electronics Systems Ltd.",
+            "Description": "Integrated Matrox G200eW3 Graphics Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3663,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3664,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "FCH SATA Controller [AHCI mode]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3665,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3666,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3667,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3668,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3669,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3670,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3671,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3672,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3673,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3674,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3675,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3676,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3677,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3678,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3679,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3680,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3681,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3682,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3683,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3684,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3685,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3686,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "FCH LPC Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3687,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3688,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3689,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3690,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3691,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3692,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "FCH SMBus Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3693,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse GPP Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3694,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3695,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3696,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3697,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3698,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3699,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3700,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3701,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3702,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3703,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3704,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3705,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "PowerEdge Rx5xx LOM Board",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3706,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship USB 3.0 Host Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3707,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3708,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3709,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3710,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3711,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3712,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3713,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57412 NetXtreme-E 10Gb RDMA Ethernet Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3714,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57412 NetXtreme-E 10Gb RDMA Ethernet Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3715,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3716,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3717,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3718,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3719,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3720,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3721,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3722,
+            "SlotNumber": "",
+            "Manufacturer": "Advanced Micro Devices, Inc. [AMD]",
+            "Description": "Starship/Matisse PCIe Dummy Host Bridge",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 3723,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom / LSI",
+            "Description": "PERC H745 Front",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverProcessors')",
+        "InventoryType": "serverProcessors",
+        "InventoryInfo": [
+          {
+            "Id": 59,
+            "Family": "AMD Zen Processor Family",
+            "MaxSpeed": 3900,
+            "CurrentSpeed": 2850,
+            "SlotNumber": "CPU.Socket.1",
+            "Status": 1000,
+            "NumberOfCores": 24,
+            "NumberOfEnabledCores": 24,
+            "BrandName": "AMD",
+            "ModelName": "AMD EPYC 7443 24-Core Processor",
+            "InstanceId": "CPU.Socket.1",
+            "Voltage": "1.8"
+          },
+          {
+            "Id": 60,
+            "Family": "AMD Zen Processor Family",
+            "MaxSpeed": 3900,
+            "CurrentSpeed": 2850,
+            "SlotNumber": "CPU.Socket.2",
+            "Status": 1000,
+            "NumberOfCores": 24,
+            "NumberOfEnabledCores": 24,
+            "BrandName": "AMD",
+            "ModelName": "AMD EPYC 7443 24-Core Processor",
+            "InstanceId": "CPU.Socket.2",
+            "Voltage": "1.8"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverDellVideos')",
+        "InventoryType": "serverDellVideos",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverNetworkInterfaces')",
+        "InventoryType": "serverNetworkInterfaces",
+        "InventoryInfo": [
+          {
+            "NicId": "NIC.Embedded.1",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Embedded.1-1",
+                "ProductName": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:36",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Embedded.1-1-1",
+                    "CurrentMacAddress": "B0:7B:25:E9:47:36",
+                    "PermanentMacAddress": "B0:7B:25:E9:47:36",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "B0:7B:25:E9:47:36",
+                    "NicMode": "Unknown",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "NicId": "NIC.Embedded.2",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Embedded.2-1",
+                "ProductName": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:37",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Embedded.2-1-1",
+                    "CurrentMacAddress": "B0:7B:25:E9:47:37",
+                    "PermanentMacAddress": "B0:7B:25:E9:47:37",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "B0:7B:25:E9:47:37",
+                    "NicMode": "Unknown",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "NicId": "NIC.Integrated.1",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Integrated.1-1",
+                "ProductName": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:20",
+                "LinkStatus": "Up",
+                "LinkSpeed": 10000,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Integrated.1-1-1",
+                    "CurrentMacAddress": "E4:3D:1A:8D:02:20",
+                    "PermanentMacAddress": "E4:3D:1A:8D:02:20",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "E4:3D:1A:8D:02:20",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              },
+              {
+                "PortId": "NIC.Integrated.1-2",
+                "ProductName": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:21",
+                "LinkStatus": "Up",
+                "LinkSpeed": 10000,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Integrated.1-2-1",
+                    "CurrentMacAddress": "E4:3D:1A:8D:02:21",
+                    "PermanentMacAddress": "E4:3D:1A:8D:02:21",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "E4:3D:1A:8D:02:21",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "NicId": "NIC.Slot.2",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Slot.2-1",
+                "ProductName": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:30",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Slot.2-1-1",
+                    "CurrentMacAddress": "5C:6F:69:5C:E0:30",
+                    "PermanentMacAddress": "5C:6F:69:5C:E0:30",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "5C:6F:69:5C:E0:30",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              },
+              {
+                "PortId": "NIC.Slot.2-2",
+                "ProductName": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:31",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Slot.2-2-1",
+                    "CurrentMacAddress": "5C:6F:69:5C:E0:31",
+                    "PermanentMacAddress": "5C:6F:69:5C:E0:31",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "5C:6F:69:5C:E0:31",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverFcCards')",
+        "InventoryType": "serverFcCards",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverOperatingSystems')",
+        "InventoryType": "serverOperatingSystems",
+        "InventoryInfo": [
+          {
+            "Id": 23,
+            "OsName": "",
+            "OsVersion": "",
+            "Hostname": ""
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverVirtualFlashes')",
+        "InventoryType": "serverVirtualFlashes",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverPowerSupplies')",
+        "InventoryType": "serverPowerSupplies",
+        "InventoryInfo": [
+          {
+            "Id": 26768,
+            "Name": "Power Supply 1",
+            "PowerSupplyType": 0,
+            "OutputWatts": 800,
+            "Location": "PSU.Slot.1",
+            "RedundancyState": "2",
+            "Status": 1000,
+            "State": "Presence Detected",
+            "FirmwareVersion": "00.17.29",
+            "InputVoltage": 252,
+            "Model": "PWR SPLY,800W,RDNT,LTON",
+            "Manufacturer": "DELL",
+            "Range1MaxInputPowerWatts": 927,
+            "SerialNumber": "CNLOD001773F25",
+            "ActiveInputVoltage": "Unknown",
+            "InputPowerUnits": "Watts",
+            "OperationalStatus": "OK",
+            "Range1MaxInputVoltageHighMilliVolts": 264,
+            "RatedMaxOutputPower": 0,
+            "RequestedState": 0,
+            "AcInput": true,
+            "AcOutput": false,
+            "SwitchingSupply": true
+          },
+          {
+            "Id": 26769,
+            "Name": "Power Supply 2",
+            "PowerSupplyType": 0,
+            "OutputWatts": 800,
+            "Location": "PSU.Slot.2",
+            "RedundancyState": "2",
+            "Status": 1000,
+            "State": "Presence Detected",
+            "FirmwareVersion": "00.17.29",
+            "InputVoltage": 232,
+            "Model": "PWR SPLY,800W,RDNT,LTON",
+            "Manufacturer": "DELL",
+            "Range1MaxInputPowerWatts": 927,
+            "SerialNumber": "CNLOD0017729D9",
+            "ActiveInputVoltage": "Unknown",
+            "InputPowerUnits": "Watts",
+            "OperationalStatus": "OK",
+            "Range1MaxInputVoltageHighMilliVolts": 264,
+            "RatedMaxOutputPower": 0,
+            "RequestedState": 0,
+            "AcInput": true,
+            "AcOutput": false,
+            "SwitchingSupply": true
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverArrayDisks')",
+        "InventoryType": "serverArrayDisks",
+        "InventoryInfo": [
+          {
+            "Id": 2074,
+            "DiskNumber": "Disk 0 in Backplane 1 of RAID Controller in SL 8",
+            "VendorName": "SKhynix",
+            "Status": 1000,
+            "StatusString": "OK",
+            "ModelNumber": "HFS1T9G3H2X069N",
+            "SerialNumber": "ASA9N4740I0109I1N",
+            "SasAddress": "3EC2A720064F3C07",
+            "Revision": "DZ02",
+            "ManufacturedDay": 0,
+            "ManufacturedWeek": 0,
+            "ManufacturedYear": 0,
+            "EncryptionAbility": false,
+            "FormFactor": "2500",
+            "PartNumber": "KR-0962FP-SK500-19I-041G-A00",
+            "PredictiveFailureState": "No",
+            "EnclosureId": "Disk.Bay.0:Enclosure.Internal.0-1:RAID.SL.8-1",
+            "Channel": 0,
+            "Size": "1787.88",
+            "FreeSpace": "0",
+            "UsedSpace": "1787.88",
+            "BusType": "SATA",
+            "SlotNumber": 0,
+            "MediaType": "Solid State Drive",
+            "RemainingReadWriteEndurance": "99",
+            "SecurityState": "Unencrypted",
+            "RaidStatus": "Online"
+          },
+          {
+            "Id": 2075,
+            "DiskNumber": "Disk 1 in Backplane 1 of RAID Controller in SL 8",
+            "VendorName": "SKhynix",
+            "Status": 1000,
+            "StatusString": "OK",
+            "ModelNumber": "HFS1T9G3H2X069N",
+            "SerialNumber": "ASA9N4740I0109I1J",
+            "SasAddress": "3EC2A720064F3C06",
+            "Revision": "DZ02",
+            "ManufacturedDay": 0,
+            "ManufacturedWeek": 0,
+            "ManufacturedYear": 0,
+            "EncryptionAbility": false,
+            "FormFactor": "2500",
+            "PartNumber": "KR-0962FP-SK500-19I-041C-A00",
+            "PredictiveFailureState": "No",
+            "EnclosureId": "Disk.Bay.1:Enclosure.Internal.0-1:RAID.SL.8-1",
+            "Channel": 0,
+            "Size": "1787.88",
+            "FreeSpace": "0",
+            "UsedSpace": "1787.88",
+            "BusType": "SATA",
+            "SlotNumber": 1,
+            "MediaType": "Solid State Drive",
+            "RemainingReadWriteEndurance": "99",
+            "SecurityState": "Unencrypted",
+            "RaidStatus": "Online"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverRaidControllers')",
+        "InventoryType": "serverRaidControllers",
+        "InventoryInfo": [
+          {
+            "Id": 719,
+            "Name": "PERC H745 Front",
+            "Fqdd": "RAID.SL.8-1",
+            "DeviceDescription": "RAID Controller in SL 8",
+            "Status": 1000,
+            "StatusTypeString": "NORMAL",
+            "RollupStatus": 1000,
+            "RollupStatusString": "NORMAL",
+            "FirmwareVersion": "51.16.0-5150",
+            "CacheSizeInMb": 4096,
+            "PciSlot": "Not Applicable",
+            "DriverVersion": "--NA--",
+            "StorageAssignmentAllowed": "0",
+            "ServerVirtualDisks": [
+              {
+                "Id": 274,
+                "RaidControllerId": 719,
+                "DeviceId": 0,
+                "Fqdd": "Disk.Virtual.0:RAID.SL.8-1",
+                "State": "Online",
+                "RollupStatus": 1000,
+                "Status": 1000,
+                "Layout": "RAID-1",
+                "MediaType": "Solid State Drive",
+                "Name": "VG00",
+                "ReadPolicy": "Read Ahead",
+                "WritePolicy": "Write Back",
+                "CachePolicy": "Enabled",
+                "StripeSize": "256 KB",
+                "Size": "1787.88",
+                "TargetId": 0,
+                "LockStatus": "Unlocked"
+              }
+            ]
+          },
+          {
+            "Id": 720,
+            "Name": "FCH SATA Controller [AHCI mode]",
+            "Fqdd": "AHCI.Embedded.1-1",
+            "DeviceDescription": "Embedded AHCI 1",
+            "Status": 2000,
+            "StatusTypeString": "UNKNOWN",
+            "RollupStatus": 2000,
+            "RollupStatusString": "UNKNOWN",
+            "FirmwareVersion": "",
+            "CacheSizeInMb": 0,
+            "PciSlot": "Not Applicable",
+            "DriverVersion": "",
+            "StorageAssignmentAllowed": "0"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverMemoryDevices')",
+        "InventoryType": "serverMemoryDevices",
+        "InventoryInfo": [
+          {
+            "Id": 1289,
+            "Name": "DIMM.Socket.A1",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A47",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A1",
+            "DeviceDescription": "DIMM A1"
+          },
+          {
+            "Id": 1290,
+            "Name": "DIMM.Socket.B3",
+            "BankName": "B",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53AC5",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.B3",
+            "DeviceDescription": "DIMM B3"
+          },
+          {
+            "Id": 1291,
+            "Name": "DIMM.Socket.A2",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A8B",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A2",
+            "DeviceDescription": "DIMM A2"
+          },
+          {
+            "Id": 1292,
+            "Name": "DIMM.Socket.B4",
+            "BankName": "B",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A0F",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.B4",
+            "DeviceDescription": "DIMM B4"
+          },
+          {
+            "Id": 1293,
+            "Name": "DIMM.Socket.B1",
+            "BankName": "B",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A94",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.B1",
+            "DeviceDescription": "DIMM B1"
+          },
+          {
+            "Id": 1294,
+            "Name": "DIMM.Socket.B2",
+            "BankName": "B",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A3F",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.B2",
+            "DeviceDescription": "DIMM B2"
+          },
+          {
+            "Id": 1295,
+            "Name": "DIMM.Socket.A3",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A9E",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A3",
+            "DeviceDescription": "DIMM A3"
+          },
+          {
+            "Id": 1296,
+            "Name": "DIMM.Socket.A4",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53AA9",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 16 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 3200,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A4",
+            "DeviceDescription": "DIMM A4"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverStorageEnclosures')",
+        "InventoryType": "serverStorageEnclosures",
+        "InventoryInfo": [
+          {
+            "Id": 331,
+            "Name": "BP15G+ 0:1",
+            "Status": 1000,
+            "StatusTypeString": "OK",
+            "ChannelNumber": "0",
+            "BackplanePartNum": "1",
+            "NumberOfFanPacks": 0,
+            "Version": "7.10",
+            "RollupStatus": 1000,
+            "SlotCount": 8
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('serverSupportedPowerStates')",
+        "InventoryType": "serverSupportedPowerStates",
+        "InventoryInfo": [
+          {
+            "Id": 133,
+            "PowerState": 2
+          },
+          {
+            "Id": 134,
+            "PowerState": 5
+          },
+          {
+            "Id": 135,
+            "PowerState": 8
+          },
+          {
+            "Id": 136,
+            "PowerState": 10
+          },
+          {
+            "Id": 137,
+            "PowerState": 11
+          },
+          {
+            "Id": 138,
+            "PowerState": 12
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceLicense')",
+        "InventoryType": "deviceLicense",
+        "InventoryInfo": [
+          {
+            "SoldDate": "2021-12-21 09:50:47.000",
+            "LicenseBound": 4,
+            "EvalTimeRemaining": 0,
+            "AssignedDevices": "iDRAC.Embedded.1",
+            "LicenseStatus": 1000,
+            "EntitlementId": "FD00000024605375",
+            "LicenseDescription": "iDRAC9 15g Enterprise License",
+            "LicenseType": {
+              "Name": "Perpetual",
+              "LicenseId": 1
+            }
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceCapabilities')",
+        "InventoryType": "deviceCapabilities",
+        "InventoryInfo": [
+          {
+            "Id": 827,
+            "CapabilityType": {
+              "CapabilityId": 7,
+              "Name": "CONFIGURE",
+              "Description": "Set attributes on the system",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401641,
+            "CapabilityType": {
+              "CapabilityId": 5,
+              "Name": "POWER_MONITOR",
+              "Description": "Power statistics retrieval",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 829,
+            "CapabilityType": {
+              "CapabilityId": 3,
+              "Name": "POWER_CONTROL_RESET",
+              "Description": "Power reset hard/graceful",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 831,
+            "CapabilityType": {
+              "CapabilityId": 1,
+              "Name": "POWER_CONTROL_ON",
+              "Description": "Power up",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 833,
+            "CapabilityType": {
+              "CapabilityId": 30,
+              "Name": "REMOTE_RACADM",
+              "Description": "Ability to execute RACADM tasks",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401642,
+            "CapabilityType": {
+              "CapabilityId": 1015,
+              "Name": "WARRANTY_MANAGEMENT_CAPABLE",
+              "Description": "Indicates that device is capable of warranty management",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 835,
+            "CapabilityType": {
+              "CapabilityId": 212,
+              "Name": "DIAGNOSTICS_HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is supporting Diagnostics using HTTPS Share.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 837,
+            "CapabilityType": {
+              "CapabilityId": 18,
+              "Name": "DEVICE_ALERT",
+              "Description": "Device capable of sending alerts.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 838,
+            "CapabilityType": {
+              "CapabilityId": 210,
+              "Name": "REDFISH_CAPABILITY_EXTENSION",
+              "Description": "Capability to indicate that device is supporting firmware update, realtime power and thermal read, reset etc using Redfish protocol.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401643,
+            "CapabilityType": {
+              "CapabilityId": 1009,
+              "Name": "BLINK_ON_OFF_ONLY",
+              "Description": "Identify function on server ON indefinitely or OFF only",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 840,
+            "CapabilityType": {
+              "CapabilityId": 16,
+              "Name": "VIRTUAL_CONSOLE",
+              "Description": "Ability to execute RACADM tasks",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 841,
+            "CapabilityType": {
+              "CapabilityId": 208,
+              "Name": "HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is HTTPS support capable.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292528,
+            "CapabilityType": {
+              "CapabilityId": 1104,
+              "Name": "AIRFLOW_METRIC",
+              "Description": "Airflow metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 843,
+            "CapabilityType": {
+              "CapabilityId": 14,
+              "Name": "POWER_HISTORY",
+              "Description": "Retrieve historical power data",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292529,
+            "CapabilityType": {
+              "CapabilityId": 1102,
+              "Name": "TEMPERATURE_METRIC",
+              "Description": "Temperature metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 845,
+            "CapabilityType": {
+              "CapabilityId": 12,
+              "Name": "DIAGS",
+              "Description": "Diagnostics",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 848,
+            "CapabilityType": {
+              "CapabilityId": 41,
+              "Name": "SHARED_STORAGE_ALLLOWED",
+              "Description": "Capability to share externally assigned Storage",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401640,
+            "CapabilityType": {
+              "CapabilityId": 1001,
+              "Name": "VIRTUAL_CONSOLE_SESSION",
+              "Description": "Ability to create a virtual console session",
+              "IdOwner": 30
+            },
+            "IdOwner": 30
+          },
+          {
+            "Id": 849,
+            "CapabilityType": {
+              "CapabilityId": 8,
+              "Name": "FW_UPDATE",
+              "Description": "Remote Firmware update capability. ",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401644,
+            "CapabilityType": {
+              "CapabilityId": 6,
+              "Name": "TEMPERATURE_MONITOR",
+              "Description": "Temp statistics retrieval",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 828,
+            "CapabilityType": {
+              "CapabilityId": 4,
+              "Name": "SENSOR_DETAILS",
+              "Description": "Get Sensor Info, sub system health details",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 830,
+            "CapabilityType": {
+              "CapabilityId": 2,
+              "Name": "POWER_CONTROL_OFF",
+              "Description": "Power Down hard/graceful",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 832,
+            "CapabilityType": {
+              "CapabilityId": 31,
+              "Name": "REMOTE_IPMI",
+              "Description": "Ability to execute IPMI tasks",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401645,
+            "CapabilityType": {
+              "CapabilityId": 1016,
+              "Name": "POWER_STATISTICS_RESET_CAPABLE",
+              "Description": "Indicates that the device is capable of resetting power statistics",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 834,
+            "CapabilityType": {
+              "CapabilityId": 213,
+              "Name": "REDFISH_CAPABILITY_EXTENSION_III",
+              "Description": "Capability to indicate device is supporting Phase III feature integrations e.g. profiles, deployments, subscriptions etc using Redfish protocol.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401646,
+            "CapabilityType": {
+              "CapabilityId": 1012,
+              "Name": "BASIC_METRICS",
+              "Description": "Indicates the capability to retrieve basic metrics",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 836,
+            "CapabilityType": {
+              "CapabilityId": 211,
+              "Name": "TSR_HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is supporting TSR using HTTPS Share.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401647,
+            "CapabilityType": {
+              "CapabilityId": 50,
+              "Name": "ONBOARDING",
+              "Description": "Ability to do on-boarding",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 839,
+            "CapabilityType": {
+              "CapabilityId": 17,
+              "Name": "FEATURES_14G",
+              "Description": "14G specific features",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401639,
+            "CapabilityType": {
+              "CapabilityId": 209,
+              "Name": "REDFISH_CAPABLE",
+              "Description": "Capability to indicate that device is discovered via Redfish protocol.",
+              "IdOwner": 10
+            },
+            "IdOwner": 30
+          },
+          {
+            "Id": 292530,
+            "CapabilityType": {
+              "CapabilityId": 1105,
+              "Name": "POWER_CAP",
+              "Description": "Capable to apply power cap",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 842,
+            "CapabilityType": {
+              "CapabilityId": 15,
+              "Name": "TEMP_HISTORY",
+              "Description": "Retrieve historical temperature data",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401648,
+            "CapabilityType": {
+              "CapabilityId": 207,
+              "Name": "COMPLIANCE_ELIGIBLE",
+              "Description": "Capability to indicate that device is eligible for compliance report.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292531,
+            "CapabilityType": {
+              "CapabilityId": 1103,
+              "Name": "UTILIZATION_METRIC",
+              "Description": "Subsystem utilization metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 844,
+            "CapabilityType": {
+              "CapabilityId": 13,
+              "Name": "TSR",
+              "Description": "Tech Support Report",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292532,
+            "CapabilityType": {
+              "CapabilityId": 1101,
+              "Name": "POWER_METRIC",
+              "Description": "Power metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 846,
+            "CapabilityType": {
+              "CapabilityId": 11,
+              "Name": "HW_LOGS ",
+              "Description": "System Hardware logs",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 847,
+            "CapabilityType": {
+              "CapabilityId": 9,
+              "Name": "BLINK",
+              "Description": "Identify function on a device",
+              "IdOwner": 10
+            }
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceFru')",
+        "InventoryType": "deviceFru",
+        "InventoryInfo": [
+          {
+            "Revision": "",
+            "Id": 241,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53AA9"
+          },
+          {
+            "Revision": "",
+            "Id": 227,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A8B"
+          },
+          {
+            "Revision": "A02",
+            "Id": 239,
+            "Manufacturer": "Dell",
+            "Name": "BRCM 2P 10G SFP 57412S OCP NIC",
+            "PartNumber": "0CP610",
+            "SerialNumber": "VNFCVBA17100RF"
+          },
+          {
+            "Revision": "A05",
+            "Id": 236,
+            "Manufacturer": "Dell",
+            "Name": "BRCM 10Gb BASET 2P 57416 Adptr",
+            "PartNumber": "0NC5VD",
+            "SerialNumber": "VNFCVBA1A401J2"
+          },
+          {
+            "Revision": "A03",
+            "Id": 228,
+            "Manufacturer": "DELL",
+            "Name": "PWR SPLY,800W,RDNT,LTON",
+            "PartNumber": "0C8T2P",
+            "SerialNumber": "CNLOD0017729D9"
+          },
+          {
+            "Revision": "",
+            "Id": 230,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A0F"
+          },
+          {
+            "Revision": "",
+            "Id": 232,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53AC5"
+          },
+          {
+            "Revision": "",
+            "Id": 233,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A3F"
+          },
+          {
+            "Revision": "",
+            "Id": 231,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A9E"
+          },
+          {
+            "Revision": "A01",
+            "Id": 237,
+            "Manufacturer": "Dell Inc.",
+            "Name": "SystemPlanar",
+            "PartNumber": "024PW1",
+            "SerialNumber": "CNIVC0018T0166"
+          },
+          {
+            "Revision": "",
+            "Id": 234,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A47"
+          },
+          {
+            "Revision": "",
+            "Id": 238,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74F53A94"
+          },
+          {
+            "Revision": "A04",
+            "Id": 229,
+            "Manufacturer": "Dell",
+            "Name": "Dell Storage Cntlr. H745 Front",
+            "PartNumber": "0JT47Y",
+            "SerialNumber": "CNIVC001AR2069"
+          },
+          {
+            "Revision": "A09",
+            "Id": 235,
+            "Manufacturer": "Dell",
+            "Name": "DRIVE BACKPLANE",
+            "PartNumber": "05TRWM",
+            "SerialNumber": "CNIVC001871286"
+          },
+          {
+            "Revision": "A03",
+            "Id": 240,
+            "Manufacturer": "DELL",
+            "Name": "PWR SPLY,800W,RDNT,LTON",
+            "PartNumber": "0C8T2P",
+            "SerialNumber": "CNLOD001773F25"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceLocation')",
+        "InventoryType": "deviceLocation",
+        "InventoryInfo": [
+          {
+            "Id": 23,
+            "Room": "",
+            "Rack": "",
+            "Aisle": "",
+            "Datacenter": "",
+            "Rackslot": "0",
+            "ManagementSystemUnit": 1
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceManagement')",
+        "InventoryType": "deviceManagement",
+        "InventoryInfo": [
+          {
+            "ManagementId": 5043,
+            "IpAddress": "10.42.68.12",
+            "MacAddress": "b0:7b:25:f4:b5:de",
+            "InstrumentationName": "",
+            "DnsName": "zabbix-prod01-idrac.oslomet.no",
+            "ManagementType": {
+              "ManagementType": 2,
+              "Name": "PUBLIC",
+              "Description": "Public Management Interface"
+            },
+            "EndPointAgents": [
+              {
+                "ManagementProfileId": 5055,
+                "ProfileId": "",
+                "AgentName": "iDRAC",
+                "Version": "6.10.00.00",
+                "ManagementURL": "https://10.42.68.12:443",
+                "HasCreds": 1,
+                "Status": 1000,
+                "StatusDateTime": "2023-02-25 13:37:45.857"
+              },
+              {
+                "ManagementProfileId": 5076,
+                "ProfileId": "",
+                "AgentName": "iDRAC",
+                "Version": "7.10.50.10",
+                "ManagementURL": "https://10.42.68.12:443",
+                "HasCreds": 1,
+                "Status": 1000,
+                "StatusDateTime": "2023-02-25 13:37:47.005"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('deviceSoftware')",
+        "InventoryType": "deviceSoftware",
+        "InventoryInfo": [
+          {
+            "Version": "6.97",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "107649",
+            "PciDeviceId": "",
+            "DeviceDescription": "Backplane 1",
+            "InstanceId": "DCIM:PREVIOUS#314_C_RAID.Backplane.Firmware.1"
+          },
+          {
+            "Version": "7.2.3.1",
+            "InstallationDate": "2024-04-29 14:31:03.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "109673",
+            "PciDeviceId": "",
+            "DeviceDescription": "TPM",
+            "InstanceId": "DCIM:INSTALLED#807__TPM.Integrated.1-1"
+          },
+          {
+            "Version": "2.14.1",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:PREVIOUS#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "5.3.1.0",
+            "InstallationDate": "2024-08-28 13:17:30.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "104684",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell iDRAC Service Module Embedded Package v5.3.1.0, A00",
+            "InstanceId": "DCIM:INSTALLED#802__ServiceModule.Embedded.1"
+          },
+          {
+            "Version": "7.10",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "107649",
+            "PciDeviceId": "",
+            "DeviceDescription": "Backplane 1",
+            "InstanceId": "DCIM:CURRENT#314_C_RAID.Backplane.Firmware.1"
+          },
+          {
+            "Version": "DZ02",
+            "InstallationDate": "2023-03-27 13:46:33.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "110210",
+            "PciDeviceId": "",
+            "DeviceDescription": "Disk 1 in Backplane 1 of RAID Controller in SL 8",
+            "InstanceId": "DCIM:INSTALLED#304_C_Disk.Bay.1:Enclosure.Internal.0-1:RAID.SL.8-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:30",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Slot.2-1-1"
+          },
+          {
+            "Version": "7.10",
+            "InstallationDate": "2024-04-29 14:18:50.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "107649",
+            "PciDeviceId": "",
+            "DeviceDescription": "Backplane 1",
+            "InstanceId": "DCIM:INSTALLED#314_C_RAID.Backplane.Firmware.1"
+          },
+          {
+            "Version": "2.16.2",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:CURRENT#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-29 14:38:43.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:21",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Integrated.1-2-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:31",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Slot.2-2-1"
+          },
+          {
+            "Version": "00.17.29",
+            "InstallationDate": "2021-12-23 13:39:21.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "108078",
+            "PciDeviceId": "",
+            "DeviceDescription": "Power Supply.Slot.1",
+            "InstanceId": "DCIM:INSTALLED#0x15__PSU.Slot.1"
+          },
+          {
+            "Version": "7.10.50.10",
+            "InstallationDate": "2024-08-28 09:34:25.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25227",
+            "PciDeviceId": "",
+            "DeviceDescription": "Integrated Dell Remote Access Controller",
+            "InstanceId": "DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo"
+          },
+          {
+            "Version": "7.10.30.00",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25227",
+            "PciDeviceId": "",
+            "DeviceDescription": "Integrated Dell Remote Access Controller",
+            "InstanceId": "DCIM:PREVIOUS#iDRAC.Embedded.1-1#IDRACinfo"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:37",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "24.01.03",
+            "InstallationDate": "2024-04-29 14:15:56.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "18981",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell OS Driver Pack, 24.01.03, A00",
+            "InstanceId": "DCIM:INSTALLED#802__DriverPack.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:20",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Integrated.1-1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-29 14:38:42.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:20",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Integrated.1-1-1"
+          },
+          {
+            "Version": "22.31.6",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:36",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-29 14:38:44.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:30",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Slot.2-1-1"
+          },
+          {
+            "Version": "DZ02",
+            "InstallationDate": "2023-03-27 13:46:33.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "110210",
+            "PciDeviceId": "",
+            "DeviceDescription": "Disk 0 in Backplane 1 of RAID Controller in SL 8",
+            "InstanceId": "DCIM:INSTALLED#304_C_Disk.Bay.0:Enclosure.Internal.0-1:RAID.SL.8-1"
+          },
+          {
+            "Version": "22.31.13.70",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:30",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Slot.2-1-1"
+          },
+          {
+            "Version": "2.16.2",
+            "InstallationDate": "2024-08-28 13:31:48.000",
+            "Status": "Installed",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:INSTALLED#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "00.17.29",
+            "InstallationDate": "2021-12-23 13:39:20.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "108078",
+            "PciDeviceId": "",
+            "DeviceDescription": "Power Supply.Slot.2",
+            "InstanceId": "DCIM:INSTALLED#0x15__PSU.Slot.2"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-29 14:38:45.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:31",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Slot.2-2-1"
+          },
+          {
+            "Version": "1.1.14",
+            "InstallationDate": "2021-11-10 19:43:40.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "27763",
+            "PciDeviceId": "",
+            "DeviceDescription": "System CPLD",
+            "InstanceId": "DCIM:INSTALLED#803__CPLD.Embedded.1"
+          },
+          {
+            "Version": "22.31.13.70",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:20",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Integrated.1-1-1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "2024-04-29 14:38:46.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:36",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "22.31.13.70",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:21",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Integrated.1-2-1"
+          },
+          {
+            "Version": "7.10.50.10",
+            "InstallationDate": "2024-08-28 09:34:34.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "28897",
+            "PciDeviceId": "",
+            "DeviceDescription": "Lifecycle Controller",
+            "InstanceId": "DCIM:INSTALLED#802__USC.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "22.31.6",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:37",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "22.31.13.70",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4161",
+            "SubVendorId": "14E4",
+            "ComponentId": "104864",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - 5C:6F:69:5C:E0:31",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Slot.2-2-1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "2024-04-29 14:38:47.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:37",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "51.16.0-5150",
+            "InstallationDate": "2024-04-29 14:38:42.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "1000",
+            "SubDeviceId": "1F3B",
+            "SubVendorId": "1028",
+            "ComponentId": "107656",
+            "PciDeviceId": "0014",
+            "DeviceDescription": "PERC H745 Front",
+            "InstanceId": "DCIM:INSTALLED#301_C_RAID.SL.8-1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "08FF",
+            "SubVendorId": "1028",
+            "ComponentId": "108255",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom NetXtreme Gigabit Ethernet - B0:7B:25:E9:47:36",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "4125",
+            "SubVendorId": "14E4",
+            "ComponentId": "108149",
+            "PciDeviceId": "16D6",
+            "DeviceDescription": "Broadcom Adv. Dual 10Gb Ethernet - E4:3D:1A:8D:02:21",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Integrated.1-2-1"
+          },
+          {
+            "Version": "4303A15",
+            "InstallationDate": "2024-04-29 14:12:38.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25806",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell 64 Bit uEFI Diagnostics, version 4303, 4303A15, 4303.15",
+            "InstanceId": "DCIM:INSTALLED#802__Diagnostics.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "51.16.0-5150",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "1000",
+            "SubDeviceId": "1F3B",
+            "SubVendorId": "1028",
+            "ComponentId": "107656",
+            "PciDeviceId": "0014",
+            "DeviceDescription": "PERC H745 Front",
+            "InstanceId": "DCIM:CURRENT#301_C_RAID.SL.8-1"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10214)/InventoryDetails('subsystemRollupStatus')",
+        "InventoryType": "subsystemRollupStatus",
+        "InventoryInfo": [
+          {
+            "Id": 177,
+            "Status": 1000,
+            "SubsystemName": "cpuRollupStatus"
+          },
+          {
+            "Id": 178,
+            "Status": 1000,
+            "SubsystemName": "sysMemPrimaryStatus"
+          },
+          {
+            "Id": 179,
+            "Status": 1000,
+            "SubsystemName": "voltRollupStatus"
+          },
+          {
+            "Id": 180,
+            "Status": 1000,
+            "SubsystemName": "batteryRollupStatus"
+          },
+          {
+            "Id": 181,
+            "Status": 1000,
+            "SubsystemName": "licensingRollupStatus"
+          },
+          {
+            "Id": 182,
+            "Status": 1000,
+            "SubsystemName": "storageRollupStatus"
+          },
+          {
+            "Id": 183,
+            "Status": 1000,
+            "SubsystemName": "tempRollupStatus"
+          },
+          {
+            "Id": 184,
+            "Status": 1000,
+            "SubsystemName": "intrusionRollupStatus"
+          }
+        ]
+      }
+    ]
+  },
+  "firmware": {
+    "error": "HTTP 501 for /api/DeviceService/Devices(10214)/FirmwareInventory"
+  },
+  "subsystem_health": {
+    "error": "HTTP 400 for /api/DeviceService/Devices(10214)/SubSystemHealth"
+  },
+  "recent_activity": {
+    "@odata.context": "/api/$metadata#Collection(DeviceService.ExecutionHistoryDetailModel)",
+    "@odata.count": 9,
+    "value": [
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2912057,
+        "Progress": "100",
+        "StartTime": "2024-08-28 13:32:34.032",
+        "EndTime": "2024-08-28 13:33:44.213",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 2038465,
+        "TaskId": 76677,
+        "TaskType": 8,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2912017,
+        "Progress": "100",
+        "StartTime": "2024-08-28 13:16:03.637",
+        "EndTime": "2024-08-28 13:32:33.965",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__ServiceModule.Embedded.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#741__BIOS.Setup.1-1\nInitiated Status check for Job ID : JID_248509693282\nJob state for JID_248509693282 is COMPLETED\nInitiated Status check for Job ID : JID_248509749850\nJob state for JID_248509749850 is SCHEDULED\nInitiating host reboot action as one or more payload(s) marked as reboot required.\nJob state for JID_248509749850 is COMPLETED\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 2038423,
+        "TaskId": 76675,
+        "TaskType": 5,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2911698,
+        "Progress": "100",
+        "StartTime": "2024-08-28 11:48:29.774",
+        "EndTime": "2024-08-28 11:49:29.013",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 2038193,
+        "TaskId": 76662,
+        "TaskType": 8,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2911619,
+        "Progress": "100",
+        "StartTime": "2024-08-28 11:23:32.466",
+        "EndTime": "2024-08-28 11:36:22.218",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_248442190038\nJob state for JID_248442190038 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 2038128,
+        "TaskId": 76658,
+        "TaskType": 5,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2349989,
+        "Progress": "100",
+        "StartTime": "2024-04-29 14:39:52.170",
+        "EndTime": "2024-04-29 14:41:16.238",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1645133,
+        "TaskId": 64753,
+        "TaskType": 8,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2349903,
+        "Progress": "100",
+        "StartTime": "2024-04-29 14:10:44.955",
+        "EndTime": "2024-04-29 14:39:52.083",
+        "TaskStatusId": 2070,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#701__NIC.Embedded.2-1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#314_C_RAID.Backplane.Firmware.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#701__NIC.Integrated.1-2-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__Diagnostics.Embedded.1:LC.Embedded.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#741__BIOS.Setup.1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__ServiceModule.Embedded.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#807__TPM.Integrated.1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#301_C_RAID.SL.8-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__DriverPack.Embedded.1:LC.Embedded.1\nInitiated Status check for Job ID : JID_143998499778\nJob state for JID_143998499778 is SCHEDULED\nInitiated Status check for Job ID : JID_143998555213\nJob state for JID_143998555213 is COMPLETED\nInitiated Status check for Job ID : JID_143998614111\nJob state for JID_143998614111 is SCHEDULED\nInitiated Status check for Job ID : JID_143998670409\nJob state for JID_143998670409 is COMPLETED\nInitiated Status check for Job ID : JID_143998730911\nJob state for JID_143998730911 is SCHEDULED\nInitiated Status check for Job ID : JID_143998790504\nJob state for JID_143998790504 is COMPLETED\nInitiated Status check for Job ID : JID_143998854576\nJob state for JID_143998854576 is SCHEDULED\nInitiated Status check for Job ID : JID_143998909308\nJob state for JID_143998909308 is SCHEDULED\nInitiated Status check for Job ID : JID_143998965414\nJob state for JID_143998965414 is COMPLETED\nInitiating host reboot action as one or more payload(s) marked as reboot required.\nJob state for JID_143998909308 is COMPLETED\nJob state for JID_143998499778 is COMPLETED\nJob state for JID_143998614111 is COMPLETED\nJob state for JID_143998730911 is COMPLETED\nTask Failed. Completed With Errors.",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 1645047,
+        "TaskId": 64743,
+        "TaskType": 5,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2324275,
+        "Progress": "100",
+        "StartTime": "2024-04-24 15:19:36.323",
+        "EndTime": "2024-04-24 15:20:33.924",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1625989,
+        "TaskId": 64142,
+        "TaskType": 8,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2323881,
+        "Progress": "100",
+        "StartTime": "2024-04-24 14:56:12.242",
+        "EndTime": "2024-04-24 15:06:56.809",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_139705777564\nJob state for JID_139705777564 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 1625920,
+        "TaskId": 64140,
+        "TaskType": 5,
+        "BaseEntityId": 10214
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 1531285,
+        "Progress": "100",
+        "StartTime": "2023-12-07 10:48:37.542",
+        "EndTime": "2023-12-07 10:49:28.559",
+        "TaskStatusId": 2060,
+        "Key": "zabbix-prod01-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1091487,
+        "TaskId": 45720,
+        "TaskType": 8,
+        "BaseEntityId": 10214
+      }
+    ]
+  },
+  "warranty": {
+    "@odata.context": "/api/$metadata#Collection(WarrantyService.Warranty)",
+    "@odata.count": 2,
+    "value": [
+      {
+        "@odata.type": "#WarrantyService.Warranty",
+        "@odata.id": "/api/WarrantyService/Warranties(101013)",
+        "Id": 101013,
+        "DeviceId": 10214,
+        "DeviceModel": "PowerEdge R6525",
+        "DeviceIdentifier": "5JK6BL3",
+        "DeviceName": "zabbix-prod01-idrac.oslomet.no",
+        "DeviceType": 1000,
+        "GroupName": null,
+        "CountryLookupCode": "NO",
+        "CustomerNumber": 0,
+        "LocalChannel": "ENTP",
+        "OrderNumber": 0,
+        "SystemShipDate": "2021-12-30 00:00:00.000",
+        "State": "INITIAL",
+        "ItemNumber": "709-BBIM",
+        "ServiceLevelCode": "ND",
+        "ServiceLevelDescription": "Onsite Service After Remote Diagnosis (Consumer Customer)/ Next Business Day Onsite After Remote Diagnosis (for business Customer)",
+        "ServiceLevelGroup": 0,
+        "ServiceProvider": null,
+        "StartDate": "2021-12-30 00:00:00.000",
+        "EndDate": "2024-12-30 23:59:59.412",
+        "DaysRemaining": 0,
+        "Timestamp": null,
+        "MaxEndDateForServiceCode": "2024-12-30 23:59:59.412",
+        "IsWarrantyItemRenewed": false
+      },
+      {
+        "@odata.type": "#WarrantyService.Warranty",
+        "@odata.id": "/api/WarrantyService/Warranties(101014)",
+        "Id": 101014,
+        "DeviceId": 10214,
+        "DeviceModel": "PowerEdge R6525",
+        "DeviceIdentifier": "5JK6BL3",
+        "DeviceName": "zabbix-prod01-idrac.oslomet.no",
+        "DeviceType": 1000,
+        "GroupName": null,
+        "CountryLookupCode": "NO",
+        "CustomerNumber": 0,
+        "LocalChannel": "ENTP",
+        "OrderNumber": 0,
+        "SystemShipDate": "2021-12-30 00:00:00.000",
+        "State": "EXTENDED",
+        "ItemNumber": "865-BBMZ",
+        "ServiceLevelCode": "NU",
+        "ServiceLevelDescription": "ProSupport with Next Business Day Service",
+        "ServiceLevelGroup": 0,
+        "ServiceProvider": null,
+        "StartDate": "2024-12-31 00:00:00.000",
+        "EndDate": "2028-12-31 23:59:59.000",
+        "DaysRemaining": 1273,
+        "Timestamp": null,
+        "MaxEndDateForServiceCode": "2028-12-31 23:59:59.000",
+        "IsWarrantyItemRenewed": false
+      }
+    ]
+  },
+  "licenses": {
+    "error": "HTTP 501 for /api/LicenseService/Devices(10214)/Licenses"
+  },
+  "alerts": {
+    "error": "HTTP 400 for /api/AlertService/Alerts?$filter=DeviceId eq 10214"
+  },
+  "compliance": {
+    "error": "HTTP 501 for /api/ComplianceService/Devices(10214)/ComplianceReports"
+  },
+  "power_metrics": {
+    "error": "HTTP 501 for /api/PowerManagerService/Devices(10214)/Metrics"
+  },
+  "power_cap": {
+    "error": "HTTP 501 for /api/PowerManagerService/Devices(10214)/PowerCap"
+  },
+  "supportassist_client": {
+    "error": "HTTP 501 for /api/SupportAssistService/Registration/ClientDetails"
+  },
+  "supportassist_cases": {
+    "error": "HTTP 501 for /api/SupportAssistService/Cases?$filter=DeviceId eq 10214"
+  },
+  "network": {
+    "error": "HTTP 501 for /api/DeviceService/Devices(10214)/NetworkInterfaces"
+  },
+  "groups": {
+    "error": "HTTP 501 for /api/GroupService/Devices(10214)/Groups"
+  }
+}

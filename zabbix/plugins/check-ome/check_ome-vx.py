@@ -105,7 +105,6 @@ def get_full_device_info(ome_host, auth_token, device_id, verbose):
         "inventory": get("Inventory", f"/api/DeviceService/Devices({device_id})/InventoryDetails"),
         "firmware": get("Firmware", f"/api/DeviceService/Devices({device_id})/FirmwareInventory"),
         "subsystem_health": get("SubsystemHealth", f"/api/DeviceService/Devices({device_id})/SubSystemHealth"),
-        "hardware_logs": get("HardwareLogs", f"/api/DeviceService/Devices({device_id})/HardwareLogs"),
         "recent_activity": get("RecentActivity", f"/api/DeviceService/Devices({device_id})/RecentActivity"),
         "warranty": get("Warranty", f"/api/WarrantyService/Warranties?DeviceId={device_id}"),
         "licenses": get("Licenses", f"/api/LicenseService/Devices({device_id})/Licenses"),
