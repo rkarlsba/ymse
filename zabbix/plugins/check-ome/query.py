@@ -12,26 +12,6 @@ from zabbix_auth import *
 # Disable SSL warnings (optional)
 requests.packages.urllib3.disable_warnings()
 
-devices=[
-    10200, 10201, 10203, 10204, 10206, 10211, 10214, 10216, 10217, 10218,
-    10219, 10220, 10221, 10222, 10223, 10224, 10225, 10226, 13916, 13917,
-    45723, 45724, 64765, 64877, 67872, 73156, 84482, 89251, 90207,
-]
-
-endpoints=[
-    '/api/DeviceService/Devices(64877)/FirmwareInventory',
-    '/api/DeviceService/Devices(64877)/HardwareLogs',
-    '/api/LicenseService/Devices(64877)/Licenses',
-    '/api/AlertService/Alerts?$filter=DeviceId,
-    '/api/ComplianceService/Devices(64877)/ComplianceReports',
-    '/api/PowerManagerService/Devices(64877)/Metrics',
-    '/api/PowerManagerService/Devices(64877)/PowerCap',
-    '/api/SupportAssistService/Registration/ClientDetails',
-    '/api/SupportAssistService/Cases?$filter=DeviceId,
-    '/api/DeviceService/Devices(64877)/NetworkInterfaces',
-    '/api/GroupService/Devices(64877)/Groups',
-]
-
 def setup_logging(verbosity):
     if verbosity == 0:
         level = logging.WARNING

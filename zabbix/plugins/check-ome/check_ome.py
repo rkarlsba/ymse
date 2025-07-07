@@ -107,6 +107,7 @@ def get_full_device_info(ome_host, auth_token, device_id, verbose):
         "recent_activity": get("RecentActivity", f"/api/DeviceService/Devices({device_id})/RecentActivity"),
         "warranty": get("Warranty", f"/api/WarrantyService/Warranties?DeviceId={device_id}"),
         "network": get("Network", f"/api/DeviceService/Devices({device_id})/NetworkInterfaces"),
+        "update_service": get("Network", f"/api/UpdateService/Devices({device_id})"),
     }
 
 def do_discover(ome_host, ome_user, ome_pass, verbose):
