@@ -19,4 +19,5 @@
 | Get compliance/baseline info  | '/api/updateservice/compliancestatuses?$filter=deviceid eq 64877' |
 | Get recent activity           | '/api/deviceservice/devices(64877)/recentactivity'                |
 
-
+…og json/DeviceComplianceReports.json viser alt vi egentlig trenger. Den kommer fra
+$ ./query.py '/api/UpdateService/Baselines(8)/DeviceComplianceReports' > json/DeviceComplianceReports.json
