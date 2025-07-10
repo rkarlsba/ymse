@@ -2,6 +2,8 @@
 
 import argparse
 import re
+import os
+import sys
 
 def dec_to_hex(match):
     num = int(match.group(0))
@@ -12,15 +14,8 @@ def hex_to_dec(match):
     return str(num)
 
 def replace_nth_occurrence(line, pattern, repl_func, occurrences):
-    """
-    Replace only the nth (or list of n) occurrence(s) in a line.
-    If occurrences is 'all', replace all.
-    If occurrences is an int, replace only that occurrence (1-based).
-    If occurrences is a list, replace those occurrences.
-    """
     matches = list(re.finditer(pattern, line))
     if occurrences == 'all':
-        # Replace all
         return re.sub(pattern, repl_func, line)
     elif isinstance(occurrences, int):
         occurrences = [occurrences]
@@ -31,7 +26,6 @@ def replace_nth_occurrence(line, pattern, repl_func, occurrences):
             start, end = match.start() + offset, match.end() + offset
             replacement = repl_func(match)
             new_line = new_line[:start] + replacement + new_line[end:]
-            # Adjust offset for next matches due to length change
             offset += len(replacement) - (end - start)
     return new_line
 
@@ -57,24 +51,38 @@ def parse_occurrences(arg):
     if arg == 'all':
         return 'all'
     try:
-        # Try as single int
         return int(arg)
     except ValueError:
-        # Try as comma-separated list
         return [int(x) for x in arg.split(',')]
 
+def detect_direction_from_invocation():
+    prog = os.path.basename(sys.argv[0]).lower()
+    if 'dec2hex' in prog:
+        return 'dec2hex'
+    elif 'hex2dec' in prog:
+        return 'hex2dec'
+    else:
+        # Default or error
+        print("Could not determine direction from script name. Please use --direction.")
+        sys.exit(1)
+
 def main():
-    parser = argparse.ArgumentParser(description="Replace decimals <-> hex in files, modularly.")
+    parser = argparse.ArgumentParser(
+        description="Replace decimals <-> hex in files, modularly. "
+                    "Direction is determined by script name (hex2dec or dec2hex), "
+                    "but can be overridden."
+    )
     parser.add_argument("filenames", nargs="+", help="Files to process")
-    parser.add_argument("--direction", choices=['dec2hex', 'hex2dec'], required=True,
-                        help="Choose conversion direction: dec2hex or hex2dec")
+    parser.add_argument("--direction", choices=['dec2hex', 'hex2dec'], required=False,
+                        help="Override conversion direction: dec2hex or hex2dec")
     parser.add_argument("--occurrence", default='all',
                         help="Which occurrence(s) to replace per line: all, a number (e.g. 2), or comma-separated list (e.g. 2,4)")
     args = parser.parse_args()
 
+    direction = args.direction or detect_direction_from_invocation()
     occurrences = parse_occurrences(args.occurrence)
     for filename in args.filenames:
-        process_file(filename, args.direction, occurrences)
+        process_file(filename, direction, occurrences)
 
 if __name__ == "__main__":
     main()
