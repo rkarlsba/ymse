@@ -21,8 +21,8 @@ PGBIN="psql"
 PGSQL_HOST="localhost"
 PGSQL_PORT="5432"
 PGSQL_DATABASE="postgres"
-PGSQL_USERNAME="pguser"
-export PGPASSWORD="pgpass"
+PGSQL_USERNAME="dbuser"
+export PGPASSWORD="dbpass"
 HEADER_FILE=$( mktemp )
 CONTENT_FILE=$( mktemp )
 
