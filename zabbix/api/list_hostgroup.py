@@ -128,10 +128,21 @@ if __name__ == "__main__":
                     firstline=1
                 output += f'{host["hostid"]}{separator}{host["host"]}{separator}{host["status"]}\n'
             elif args.format == "html":
+                css = '''<style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 7px;
+                text-align: left;
+            }
+        </style>'''
                 if firstline == 0:
                     output = f'''<html>
     <head>
         <title>Maskiner i hostgroup {args.hostgroup}</title>
+        {css}
     </head>
     <body>
         <h1>Maskiner i hostgroup <b>{args.hostgroup}</b></h1>
@@ -143,7 +154,7 @@ if __name__ == "__main__":
                 <th>disabled</th>
             </tr>\n'''
                     firstline=1
-                output += f'''\t\t\t<tr>
+                output += f'''            <tr>
                 <td>{host["hostid"]}</td>
                 <td><a href="{zabbix_host_url}">{host["host"]}</a></td>
                 <td>{host["status"]}</td>
@@ -162,7 +173,7 @@ if __name__ == "__main__":
 #               print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
 
         if args.format == 'html':
-            output += '''\t\t</table>
+            output += '''        </table>
     </body>
 </html>\n'''
 
