@@ -17,7 +17,7 @@ hostgroup_list=None
 zabbix_host_base_url='https://zabbix.oslomet.no/zabbix/zabbix.php?action=host.edit&hostid='
 firstline=0
 global_debug=0
-csv_separator='\t'
+separator='\t'
 
 def die(s: str, exitcode: int = 1) -> None:
     print(s, file=sys.stderr)
@@ -41,8 +41,7 @@ if __name__ == "__main__":
     argparser.add_argument("-H", "--hostgroup", type=str, help="List members of given hostgroup")
     argparser.add_argument("-O", "--hostgrouplist", action='store_true', help="List all hostgroups")
     argparser.add_argument("-o", "--hostlist", action='store_true', help="List all hosts")
-    argparser.add_argument("-L", "--html", action='store_true', help="Output HTML (not implemented)")
-    argparser.add_argument("-C", "--csv", action='store_false', help="Output CSV (default)")
+    argparser.add_argument("-f", "--format", choices=["csv", "markdown", "html"], default="csv", help="Output format (default: csv)")
     argparser.add_argument("-s", "--separator", type=str, help="CSV separator (default is tab, as in \\t) ir just 0x09 - currently hardcoded as tab")
     argparser.add_argument("-v", "--verbose", action='count', default=0, help="Be verbose, tell the user what's going on and what's not going on, what Trump had for breakfast and how many hours it's left to armageddon and don't save any time whatsoever")
     argparser.add_argument("-d", "--debug", action='store_true', help="Enable debugging")
@@ -58,9 +57,6 @@ if __name__ == "__main__":
     if args.debug:
         global_debug+=1
 
-    if args.html and args.csv:
-        die("Doh! Can't output both HTML and CSV at the same time")
-
     if args.hostgroup is None and not args.hostgrouplist and not args.hostlist:
         die("[1] We need either --hostgroup <hostgroup>, --hostgrouplist or --hostlist")
 
@@ -70,8 +66,11 @@ if __name__ == "__main__":
     if args.hostgrouplist and args.hostlist:
         die("A wee glitch in the matrix - please use either hostgrouplist or hostlist")
 
-    elif args.html and args.csv:
-        die("Can't output HTML and CSV at the same time")
+    if args.separator:
+        separator = args.separator
+
+    if args.verbose > 1:
+        print(f"args.format is {args.format}")
 
 # Gammelt {{{
         
@@ -102,7 +101,7 @@ if __name__ == "__main__":
         host_filter = { }
         host_list = zapi.host.get(filter=host_filter, output=['hostid', 'host', 'status'], selectHosts=['hostid', 'host', 'status'], selectGroups='extend')
 
-        csv = None
+        output = None
         if (args.hostlist):
             for h in sorted(host_list, key=lambda d: d["host"].lower()):
                 print(h["host"]+": ", end='')
@@ -120,46 +119,41 @@ if __name__ == "__main__":
         for host in sorted(hostgroup_list[0]["hosts"], key=lambda d: d["host"].lower()):
             status=''
             count += 1
+            zabbix_host_url = zabbix_host_base_url+str(host["hostid"])
             if host["status"] == "1":
                 status='\tDISABLED'
-            if args.csv or args.html:
+            if args.format == "csv":
                 if firstline == 0:
-                    csv = "hostid,hostname,disabled\n"
+                    output = "hostid,hostname,disabled\n"
                     firstline=1
-                if args.html:
-                    zabbix_host_url = zabbix_host_base_url+str(host["hostid"])
-                    csvl = f'{host["hostid"]},<a href="{zabbix_host_url}">{host["host"]}</a>,{host["status"]}\n'
-                    csv += csvl
-                else:
-                    csv += f'{host["hostid"]},{host["host"]},{host["status"]}\n'
+                output += f'{host["hostid"]}{separator}{host["host"]}{separator}{host["status"]}\n'
+            elif args.format == "html":
+                if firstline == 0:
+                    output = f'<html><head><title>Maskiner i hostgroup <b>{args.hostgroup}</title></head><body>\n'
+                    output = f'<h1>Maskiner i hostgroup <b>{args.hostgroup}</b>:</h1><p>'
+                    output = "<table><tr><th>hostid</th><th>hostname</th><th>disabled</th></tr>\n"
+                    firstline=1
+                output += f'<td>{host["hostid"]}</td><td><a href="{zabbix_host_url}">{host["host"]}</a></td><td>{host["status"]}</td>\n'
+            elif args.format == "markdown":
+                if firstline == 0:
+                    output = f'# Maskiner i hostgroup **{args.hostgroup}**:\n\n'
+                    output += "| hostid | hostname | disabled |\n"
+                    output += "| ------ | -------- | -------- |\n"
+                    firstline=1
+                output += f'| {host["hostid"]} | {host["host"]} | {host["status"]} |\n'
             else:
-                print(host["host"]+status)
-                if count == len(hostgroup_list[0]["hosts"]):
-                    print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
+                print(f"args.format is '{args.format}', something that doesn't make sense!", file=sys.stderr)
+                exit(1)
+#           if count == len(hostgroup_list[0]["hosts"]):
+#               print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
 
-        if args.csv:
-            print(f"# Maskiner i hostgroup **'{args.hostgroup}:'**")
-            if (csv is None):
-                print("(tomt)")
-            else:
-                print(csv, end='')
-        elif args.html:
-            title = "Zabbix report for hostgroup"
-            html = f"""<html>
-    <head>
-        <title>{title} {args.hostgroup}</title>
-    </head>
-    <body>
-        <h1>{title} <b>{args.hostgroup}</b></h1>
-        <hr width="60%">\n"""
-            csvbuf = io.StringIO(csv)
-            htmlobj = pd.read_csv(csvbuf)
-            html += htmlobj.to_html(index=False, justify="left")
-            html = html.replace('&lt;', '<')
-            html = html.replace('&gt;', '>')
-            print(html)
-        else:
-            print("Her er'e no' muffens…")
+        if args.format == 'html':
+            output += '</body></html>\n'
+
+        if (output is None):
+            output = '(tomt)\n'
+
+        print(output, end='')
 
         zapi.user.logout()
     except ZabbixAPIException as e:
