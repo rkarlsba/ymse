@@ -129,11 +129,25 @@ if __name__ == "__main__":
                 output += f'{host["hostid"]}{separator}{host["host"]}{separator}{host["status"]}\n'
             elif args.format == "html":
                 if firstline == 0:
-                    output = f'<html><head><title>Maskiner i hostgroup <b>{args.hostgroup}</title></head><body>\n'
-                    output = f'<h1>Maskiner i hostgroup <b>{args.hostgroup}</b>:</h1><p>'
-                    output = "<table><tr><th>hostid</th><th>hostname</th><th>disabled</th></tr>\n"
+                    output = f'''<html>
+    <head>
+        <title>Maskiner i hostgroup {args.hostgroup}</title>
+    </head>
+    <body>
+        <h1>Maskiner i hostgroup <b>{args.hostgroup}</b></h1>
+        <p>
+        <table>
+            <tr>
+                <th>hostid</th>
+                <th>hostname</th>
+                <th>disabled</th>
+            </tr>\n'''
                     firstline=1
-                output += f'<td>{host["hostid"]}</td><td><a href="{zabbix_host_url}">{host["host"]}</a></td><td>{host["status"]}</td>\n'
+                output += f'''\t\t\t<tr>
+                <td>{host["hostid"]}</td>
+                <td><a href="{zabbix_host_url}">{host["host"]}</a></td>
+                <td>{host["status"]}</td>
+            </tr>\n'''
             elif args.format == "markdown":
                 if firstline == 0:
                     output = f'# Maskiner i hostgroup **{args.hostgroup}**:\n\n'
@@ -148,7 +162,9 @@ if __name__ == "__main__":
 #               print(f"\nFound a total of {count} hosts in hostgroup {args.hostgroup}")
 
         if args.format == 'html':
-            output += '</body></html>\n'
+            output += '''\t\t</table>
+    </body>
+</html>\n'''
 
         if (output is None):
             output = '(tomt)\n'
