@@ -1,0 +1,2025 @@
+{
+  "device": {
+    "@odata.context": "/api/$metadata#DeviceService.Device",
+    "@odata.type": "#DeviceService.Device",
+    "@odata.id": "/api/DeviceService/Devices(10201)",
+    "Id": 10201,
+    "Type": 1000,
+    "Identifier": "DP339L3",
+    "DeviceServiceTag": "DP339L3",
+    "ChassisServiceTag": "DP339L3",
+    "Model": "PowerEdge R440",
+    "PowerState": 1,
+    "ManagedState": 6000,
+    "Status": 2000,
+    "ConnectionState": false,
+    "AssetTag": null,
+    "SystemId": 1993,
+    "DeviceName": "ifdown-idrac.oslomet.no",
+    "LastInventoryTime": "2025-05-16 01:44:33.137",
+    "LastStatusTime": "2025-07-07 10:02:21.009",
+    "DeviceSubscription": null,
+    "DeviceCapabilities": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      13,
+      1101,
+      14,
+      1102,
+      15,
+      207,
+      1103,
+      16,
+      208,
+      1104,
+      17,
+      209,
+      1105,
+      18,
+      210,
+      211,
+      212,
+      213,
+      30,
+      31,
+      41,
+      1001,
+      1009,
+      50,
+      1012,
+      1015,
+      1016
+    ],
+    "SlotConfiguration": {
+      "ChassisName": null
+    },
+    "DeviceManagement": [
+      {
+        "ManagementId": 5007,
+        "NetworkAddress": "10.42.68.19",
+        "MacAddress": "d0:8e:79:cd:c1:32",
+        "ManagementType": 2,
+        "InstrumentationName": "",
+        "DnsName": "ifdown-idrac.oslomet.no",
+        "ManagementProfile": [
+          {
+            "ManagementProfileId": 5009,
+            "ProfileId": "",
+            "ManagementId": 5007,
+            "AgentName": "iDRAC",
+            "Version": "6.10.00.00",
+            "ManagementURL": "https://10.42.68.19:443",
+            "HasCreds": 1,
+            "Status": 1000,
+            "StatusDateTime": "2023-02-25 13:37:43.411"
+          },
+          {
+            "ManagementProfileId": 5029,
+            "ProfileId": "",
+            "ManagementId": 5007,
+            "AgentName": "iDRAC",
+            "Version": "7.00.00.174",
+            "ManagementURL": "https://10.42.68.19:443",
+            "HasCreds": 1,
+            "Status": 1000,
+            "StatusDateTime": "2023-02-25 13:37:43.793"
+          }
+        ]
+      }
+    ],
+    "Enabled": true,
+    "Actions": null,
+    "ConnectionStateReason": 102,
+    "ChassisIp": "",
+    "DeviceSpecificData": {
+      "sdCardPresent": false,
+      "idracDnsName": "ifdown-idrac.oslomet.no",
+      "vlanId": 1,
+      "maxDIMMSlots": 16,
+      "populatedDIMMSlots": 4,
+      "manufacturer": "Dell Inc.",
+      "populatedCPUSockets": 1,
+      "totalMemory": 65536,
+      "chassisSlot": "NA",
+      "populatedPCISlots": 4,
+      "serviceTag": "DP339L3",
+      "systemGeneration": "14G Monolithic",
+      "chassisServiceTag": "DP339L3",
+      "platformGuid": "334c394f-c0c4-3380-3310-00504c4c4544",
+      "maxCPUSockets": 2,
+      "chassisIp": "",
+      "expressServiceCode": "29815016007",
+      "nodeId": "DP339L3",
+      "maxPCISlots": 7
+    },
+    "SensorHealth@odata.navigationLink": "/api/DeviceService/Devices(10201)/SensorHealth",
+    "VirtualSession": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/VirtualSession"
+    },
+    "Baselines": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/Baselines"
+    },
+    "InventoryDetails@odata.navigationLink": "/api/DeviceService/Devices(10201)/InventoryDetails",
+    "HardwareLogs@odata.navigationLink": "/api/DeviceService/Devices(10201)/HardwareLogs",
+    "SubSystemHealth@odata.navigationLink": "/api/DeviceService/Devices(10201)/SubSystemHealth",
+    "RecentActivity@odata.navigationLink": "/api/DeviceService/Devices(10201)/RecentActivity",
+    "InventoryTypes": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/InventoryTypes"
+    },
+    "LogSeverities": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/LogSeverities"
+    },
+    "Settings@odata.navigationLink": "/api/DeviceService/Devices(10201)/Settings",
+    "Temperature": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/Temperature"
+    },
+    "Power": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/Power"
+    },
+    "SystemUpTime": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/SystemUpTime"
+    },
+    "BlinkStatus": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/BlinkStatus"
+    },
+    "PowerUsageByDevice@odata.navigationLink": "/api/DeviceService/Devices(10201)/PowerUsageByDevice",
+    "DeviceBladeSlots@odata.navigationLink": "/api/DeviceService/Devices(10201)/DeviceBladeSlots",
+    "GraphicInfo": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/GraphicInfo"
+    },
+    "DeployRequired": {
+      "@odata.id": "/api/DeviceService/Devices(10201)/DeployRequired"
+    }
+  },
+  "inventory": {
+    "@odata.context": "/api/$metadata#Collection(DeviceService.InventoryDetail)",
+    "@odata.count": 20,
+    "value": [
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverDeviceCards')",
+        "InventoryType": "serverDeviceCards",
+        "InventoryInfo": [
+          {
+            "Id": 53,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57416 NetXtreme-E Dual-Media 10G RDMA Ethernet Controller",
+            "DatabusWidth": "8x or x8",
+            "SlotLength": "Other",
+            "SlotType": "PCI Express Gen 3"
+          },
+          {
+            "Id": 54,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "BCM57416 NetXtreme-E Dual-Media 10G RDMA Ethernet Controller",
+            "DatabusWidth": "8x or x8",
+            "SlotLength": "Other",
+            "SlotType": "PCI Express Gen 3"
+          },
+          {
+            "Id": 55,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C620 Series Chipset Family PCI Express Root Port #5",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 56,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C620 Series Chipset Family SATA Controller [AHCI mode]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 57,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "NetXtreme BCM5720 Gigabit Ethernet PCIe",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 58,
+            "SlotNumber": "",
+            "Manufacturer": "Matrox Electronics Systems Ltd.",
+            "Description": "Integrated Matrox G200eW3 Graphics Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 59,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "Sky Lake-E DMI3 Registers",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 60,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C620 Series Chipset Family PCI Express Root Port #1",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 61,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C620 Series Chipset Family SSATA Controller [AHCI mode]",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 62,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom Inc. and subsidiaries",
+            "Description": "NetXtreme BCM5720 Gigabit Ethernet PCIe",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 63,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C621 Series Chipset LPC/eSPI Controller",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 64,
+            "SlotNumber": "",
+            "Manufacturer": "Intel Corporation",
+            "Description": "C620 Series Chipset Family SMBus",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          },
+          {
+            "Id": 65,
+            "SlotNumber": "",
+            "Manufacturer": "Broadcom / LSI",
+            "Description": "PERC H750 Adapter",
+            "DatabusWidth": "Unknown",
+            "SlotLength": "Unknown",
+            "SlotType": "Unknown"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverProcessors')",
+        "InventoryType": "serverProcessors",
+        "InventoryInfo": [
+          {
+            "Id": 377,
+            "Family": "Intel(R) Xeon(TM)",
+            "MaxSpeed": 4000,
+            "CurrentSpeed": 2100,
+            "SlotNumber": "CPU.Socket.1",
+            "Status": 1000,
+            "NumberOfCores": 16,
+            "NumberOfEnabledCores": 16,
+            "BrandName": "Intel",
+            "ModelName": "Intel(R) Xeon(R) Silver 4216 CPU @ 2.10GHz",
+            "InstanceId": "CPU.Socket.1",
+            "Voltage": "1.8"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverDellVideos')",
+        "InventoryType": "serverDellVideos",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverNetworkInterfaces')",
+        "InventoryType": "serverNetworkInterfaces",
+        "InventoryInfo": [
+          {
+            "NicId": "NIC.Embedded.1",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Embedded.1-1",
+                "ProductName": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:38",
+                "LinkStatus": "Up",
+                "LinkSpeed": 1000,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Embedded.1-1-1",
+                    "CurrentMacAddress": "D0:8E:79:CD:C1:38",
+                    "PermanentMacAddress": "D0:8E:79:CD:C1:38",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "D0:8E:79:CD:C1:38",
+                    "NicMode": "Unknown",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "NicId": "NIC.Embedded.2",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Embedded.2-1",
+                "ProductName": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:39",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Embedded.2-1-1",
+                    "CurrentMacAddress": "D0:8E:79:CD:C1:39",
+                    "PermanentMacAddress": "D0:8E:79:CD:C1:39",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "D0:8E:79:CD:C1:39",
+                    "NicMode": "Unknown",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "NicId": "NIC.Mezzanine.1",
+            "VendorName": "Broadcom Corp",
+            "Ports": [
+              {
+                "PortId": "NIC.Mezzanine.1-1",
+                "ProductName": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F3",
+                "LinkStatus": "Up",
+                "LinkSpeed": 1000,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Mezzanine.1-1-1",
+                    "CurrentMacAddress": "F4:EE:08:05:7E:F3",
+                    "PermanentMacAddress": "F4:EE:08:05:7E:F3",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "F4:EE:08:05:7E:F3",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              },
+              {
+                "PortId": "NIC.Mezzanine.1-2",
+                "ProductName": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F4",
+                "LinkStatus": "Down",
+                "LinkSpeed": 0,
+                "Partitions": [
+                  {
+                    "Fqdd": "NIC.Mezzanine.1-2-1",
+                    "CurrentMacAddress": "F4:EE:08:05:7E:F4",
+                    "PermanentMacAddress": "F4:EE:08:05:7E:F4",
+                    "PermanentIscsiMacAddress": "",
+                    "PermanentFcoeMacAddress": "",
+                    "Wwn": "",
+                    "Wwpn": "",
+                    "VirtualWwn": "",
+                    "VirtualWwpn": "",
+                    "VirtualMacAddress": "F4:EE:08:05:7E:F4",
+                    "NicMode": "Enabled",
+                    "FcoeMode": "Unknown",
+                    "IscsiMode": "Unknown",
+                    "MinBandwidth": 0,
+                    "MaxBandwidth": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverFcCards')",
+        "InventoryType": "serverFcCards",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverOperatingSystems')",
+        "InventoryType": "serverOperatingSystems",
+        "InventoryInfo": [
+          {
+            "Id": 5,
+            "OsName": "",
+            "OsVersion": "",
+            "Hostname": ""
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverVirtualFlashes')",
+        "InventoryType": "serverVirtualFlashes",
+        "InventoryInfo": []
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverPowerSupplies')",
+        "InventoryType": "serverPowerSupplies",
+        "InventoryInfo": [
+          {
+            "Id": 26576,
+            "Name": "Power Supply 1",
+            "PowerSupplyType": 0,
+            "OutputWatts": 550,
+            "Location": "PSU.Slot.1",
+            "RedundancyState": "2",
+            "Status": 1000,
+            "State": "Presence Detected",
+            "FirmwareVersion": "00.31.50",
+            "InputVoltage": 252,
+            "Model": "PWR SPLY,550W,RDNT,LTON",
+            "Manufacturer": "DELL",
+            "Range1MaxInputPowerWatts": 666,
+            "SerialNumber": "CNLOD0017Q422E",
+            "ActiveInputVoltage": "Unknown",
+            "InputPowerUnits": "Watts",
+            "OperationalStatus": "OK",
+            "Range1MaxInputVoltageHighMilliVolts": 264,
+            "RatedMaxOutputPower": 0,
+            "RequestedState": 0,
+            "AcInput": true,
+            "AcOutput": false,
+            "SwitchingSupply": true
+          },
+          {
+            "Id": 26577,
+            "Name": "Power Supply 2",
+            "PowerSupplyType": 0,
+            "OutputWatts": 550,
+            "Location": "PSU.Slot.2",
+            "RedundancyState": "2",
+            "Status": 1000,
+            "State": "Presence Detected",
+            "FirmwareVersion": "00.31.50",
+            "InputVoltage": 232,
+            "Model": "PWR SPLY,550W,RDNT,LTON",
+            "Manufacturer": "DELL",
+            "Range1MaxInputPowerWatts": 666,
+            "SerialNumber": "CNLOD0017Q4244",
+            "ActiveInputVoltage": "Unknown",
+            "InputPowerUnits": "Watts",
+            "OperationalStatus": "OK",
+            "Range1MaxInputVoltageHighMilliVolts": 264,
+            "RatedMaxOutputPower": 0,
+            "RequestedState": 0,
+            "AcInput": true,
+            "AcOutput": false,
+            "SwitchingSupply": true
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverArrayDisks')",
+        "InventoryType": "serverArrayDisks",
+        "InventoryInfo": [
+          {
+            "Id": 1284,
+            "DiskNumber": "Disk 1 in Backplane 1 of Integrated RAID Controller 1",
+            "VendorName": "MICRON",
+            "Status": 1000,
+            "StatusString": "OK",
+            "ModelNumber": "MTFDDAK480TDS",
+            "SerialNumber": "2142320A04BA",
+            "SasAddress": "3F4EE080137FCE09",
+            "Revision": "D3DJ008",
+            "ManufacturedDay": 0,
+            "ManufacturedWeek": 0,
+            "ManufacturedYear": 0,
+            "EncryptionAbility": false,
+            "FormFactor": "2500",
+            "PartNumber": "SG-0KCT7J-MCS00-1AL-0FYP-A00",
+            "PredictiveFailureState": "No",
+            "EnclosureId": "Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1",
+            "Channel": 0,
+            "Size": "446.62",
+            "FreeSpace": "0",
+            "UsedSpace": "446.62",
+            "BusType": "SATA",
+            "SlotNumber": 1,
+            "MediaType": "Solid State Drive",
+            "RemainingReadWriteEndurance": "100",
+            "SecurityState": "Unencrypted",
+            "RaidStatus": "Online"
+          },
+          {
+            "Id": 1285,
+            "DiskNumber": "Disk 0 in Backplane 1 of Integrated RAID Controller 1",
+            "VendorName": "MICRON",
+            "Status": 1000,
+            "StatusString": "OK",
+            "ModelNumber": "MTFDDAK480TDS",
+            "SerialNumber": "2142320A04ED",
+            "SasAddress": "3F4EE080137FCE08",
+            "Revision": "D3DJ008",
+            "ManufacturedDay": 0,
+            "ManufacturedWeek": 0,
+            "ManufacturedYear": 0,
+            "EncryptionAbility": false,
+            "FormFactor": "2500",
+            "PartNumber": "SG-0KCT7J-MCS00-1AL-0FYT-A00",
+            "PredictiveFailureState": "No",
+            "EnclosureId": "Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1",
+            "Channel": 0,
+            "Size": "446.62",
+            "FreeSpace": "0",
+            "UsedSpace": "446.62",
+            "BusType": "SATA",
+            "SlotNumber": 0,
+            "MediaType": "Solid State Drive",
+            "RemainingReadWriteEndurance": "100",
+            "SecurityState": "Unencrypted",
+            "RaidStatus": "Online"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverRaidControllers')",
+        "InventoryType": "serverRaidControllers",
+        "InventoryInfo": [
+          {
+            "Id": 734,
+            "Name": "PERC H750 Adapter",
+            "Fqdd": "RAID.Integrated.1-1",
+            "DeviceDescription": "Integrated RAID Controller 1",
+            "Status": 1000,
+            "StatusTypeString": "NORMAL",
+            "RollupStatus": 1000,
+            "RollupStatusString": "NORMAL",
+            "FirmwareVersion": "52.26.0-5179",
+            "CacheSizeInMb": 8192,
+            "PciSlot": "Not Applicable",
+            "DriverVersion": "--NA--",
+            "StorageAssignmentAllowed": "0",
+            "ServerVirtualDisks": [
+              {
+                "Id": 215,
+                "RaidControllerId": 734,
+                "DeviceId": 0,
+                "Fqdd": "Disk.Virtual.239:RAID.Integrated.1-1",
+                "State": "Online",
+                "RollupStatus": 1000,
+                "Status": 1000,
+                "Layout": "RAID-1",
+                "MediaType": "Solid State Drive",
+                "Name": "OS",
+                "ReadPolicy": "Read Ahead",
+                "WritePolicy": "Write Back",
+                "CachePolicy": "Enabled",
+                "StripeSize": "256 KB",
+                "Size": "446.62",
+                "TargetId": 239,
+                "LockStatus": "Unlocked"
+              }
+            ]
+          },
+          {
+            "Id": 735,
+            "Name": "C620 Series Chipset Family SATA Controller [AHCI mode]",
+            "Fqdd": "AHCI.Embedded.2-1",
+            "DeviceDescription": "Embedded AHCI 2",
+            "Status": 2000,
+            "StatusTypeString": "UNKNOWN",
+            "RollupStatus": 2000,
+            "RollupStatusString": "UNKNOWN",
+            "FirmwareVersion": "",
+            "CacheSizeInMb": 0,
+            "PciSlot": "Not Applicable",
+            "DriverVersion": "",
+            "StorageAssignmentAllowed": "0"
+          },
+          {
+            "Id": 736,
+            "Name": "C620 Series Chipset Family SSATA Controller [AHCI mode]",
+            "Fqdd": "AHCI.Embedded.1-1",
+            "DeviceDescription": "Embedded AHCI 1",
+            "Status": 2000,
+            "StatusTypeString": "UNKNOWN",
+            "RollupStatus": 2000,
+            "RollupStatusString": "UNKNOWN",
+            "FirmwareVersion": "",
+            "CacheSizeInMb": 0,
+            "PciSlot": "Not Applicable",
+            "DriverVersion": "",
+            "StorageAssignmentAllowed": "0"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverMemoryDevices')",
+        "InventoryType": "serverMemoryDevices",
+        "InventoryInfo": [
+          {
+            "Id": 2718,
+            "Name": "DIMM.Socket.A1",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA6300",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 23 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 2400,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A1",
+            "DeviceDescription": "DIMM A1"
+          },
+          {
+            "Id": 2719,
+            "Name": "DIMM.Socket.A4",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA6348",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 23 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 2400,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A4",
+            "DeviceDescription": "DIMM A4"
+          },
+          {
+            "Id": 2720,
+            "Name": "DIMM.Socket.A2",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA630F",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 23 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 2400,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A2",
+            "DeviceDescription": "DIMM A2"
+          },
+          {
+            "Id": 2721,
+            "Name": "DIMM.Socket.A5",
+            "BankName": "A",
+            "Size": 16384,
+            "Status": 1000,
+            "Manufacturer": "Hynix Semiconductor",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA636F",
+            "TypeDetails": "DDR4",
+            "ManufacturerDate": "Mon Aug 23 14:00:00 2021 UTC",
+            "Speed": 3200,
+            "CurrentOperatingSpeed": 2400,
+            "Rank": "Double Rank",
+            "InstanceId": "DIMM.Socket.A5",
+            "DeviceDescription": "DIMM A5"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverStorageEnclosures')",
+        "InventoryType": "serverStorageEnclosures",
+        "InventoryInfo": [
+          {
+            "Id": 182,
+            "Name": "BP14G+ 0:1",
+            "Status": 1000,
+            "StatusTypeString": "OK",
+            "ChannelNumber": "0",
+            "BackplanePartNum": "1",
+            "NumberOfFanPacks": 0,
+            "Version": "4.35",
+            "RollupStatus": 1000,
+            "SlotCount": 4
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('serverSupportedPowerStates')",
+        "InventoryType": "serverSupportedPowerStates",
+        "InventoryInfo": [
+          {
+            "Id": 25,
+            "PowerState": 2
+          },
+          {
+            "Id": 26,
+            "PowerState": 5
+          },
+          {
+            "Id": 27,
+            "PowerState": 8
+          },
+          {
+            "Id": 28,
+            "PowerState": 10
+          },
+          {
+            "Id": 29,
+            "PowerState": 11
+          },
+          {
+            "Id": 30,
+            "PowerState": 12
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceLicense')",
+        "InventoryType": "deviceLicense",
+        "InventoryInfo": [
+          {
+            "SoldDate": "2021-12-21 09:51:15.000",
+            "LicenseBound": 4,
+            "EvalTimeRemaining": 0,
+            "AssignedDevices": "iDRAC.Embedded.1",
+            "LicenseStatus": 1000,
+            "EntitlementId": "FD00000024605361",
+            "LicenseDescription": "iDRAC9 Enterprise License",
+            "LicenseType": {
+              "Name": "Perpetual",
+              "LicenseId": 1
+            }
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceCapabilities')",
+        "InventoryType": "deviceCapabilities",
+        "InventoryInfo": [
+          {
+            "Id": 401603,
+            "CapabilityType": {
+              "CapabilityId": 1015,
+              "Name": "WARRANTY_MANAGEMENT_CAPABLE",
+              "Description": "Indicates that device is capable of warranty management",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 122,
+            "CapabilityType": {
+              "CapabilityId": 212,
+              "Name": "DIAGNOSTICS_HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is supporting Diagnostics using HTTPS Share.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 124,
+            "CapabilityType": {
+              "CapabilityId": 18,
+              "Name": "DEVICE_ALERT",
+              "Description": "Device capable of sending alerts.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 125,
+            "CapabilityType": {
+              "CapabilityId": 210,
+              "Name": "REDFISH_CAPABILITY_EXTENSION",
+              "Description": "Capability to indicate that device is supporting firmware update, realtime power and thermal read, reset etc using Redfish protocol.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401604,
+            "CapabilityType": {
+              "CapabilityId": 1009,
+              "Name": "BLINK_ON_OFF_ONLY",
+              "Description": "Identify function on server ON indefinitely or OFF only",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 127,
+            "CapabilityType": {
+              "CapabilityId": 16,
+              "Name": "VIRTUAL_CONSOLE",
+              "Description": "Ability to execute RACADM tasks",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 128,
+            "CapabilityType": {
+              "CapabilityId": 208,
+              "Name": "HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is HTTPS support capable.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292498,
+            "CapabilityType": {
+              "CapabilityId": 1104,
+              "Name": "AIRFLOW_METRIC",
+              "Description": "Airflow metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 130,
+            "CapabilityType": {
+              "CapabilityId": 14,
+              "Name": "POWER_HISTORY",
+              "Description": "Retrieve historical power data",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292499,
+            "CapabilityType": {
+              "CapabilityId": 1102,
+              "Name": "TEMPERATURE_METRIC",
+              "Description": "Temperature metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 132,
+            "CapabilityType": {
+              "CapabilityId": 12,
+              "Name": "DIAGS",
+              "Description": "Diagnostics",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 135,
+            "CapabilityType": {
+              "CapabilityId": 41,
+              "Name": "SHARED_STORAGE_ALLLOWED",
+              "Description": "Capability to share externally assigned Storage",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401584,
+            "CapabilityType": {
+              "CapabilityId": 1001,
+              "Name": "VIRTUAL_CONSOLE_SESSION",
+              "Description": "Ability to create a virtual console session",
+              "IdOwner": 30
+            },
+            "IdOwner": 30
+          },
+          {
+            "Id": 136,
+            "CapabilityType": {
+              "CapabilityId": 8,
+              "Name": "FW_UPDATE",
+              "Description": "Remote Firmware update capability. ",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401605,
+            "CapabilityType": {
+              "CapabilityId": 6,
+              "Name": "TEMPERATURE_MONITOR",
+              "Description": "Temp statistics retrieval",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 138,
+            "CapabilityType": {
+              "CapabilityId": 4,
+              "Name": "SENSOR_DETAILS",
+              "Description": "Get Sensor Info, sub system health details",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 140,
+            "CapabilityType": {
+              "CapabilityId": 2,
+              "Name": "POWER_CONTROL_OFF",
+              "Description": "Power Down hard/graceful",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 142,
+            "CapabilityType": {
+              "CapabilityId": 31,
+              "Name": "REMOTE_IPMI",
+              "Description": "Ability to execute IPMI tasks",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401606,
+            "CapabilityType": {
+              "CapabilityId": 1016,
+              "Name": "POWER_STATISTICS_RESET_CAPABLE",
+              "Description": "Indicates that the device is capable of resetting power statistics",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 121,
+            "CapabilityType": {
+              "CapabilityId": 213,
+              "Name": "REDFISH_CAPABILITY_EXTENSION_III",
+              "Description": "Capability to indicate device is supporting Phase III feature integrations e.g. profiles, deployments, subscriptions etc using Redfish protocol.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401607,
+            "CapabilityType": {
+              "CapabilityId": 1012,
+              "Name": "BASIC_METRICS",
+              "Description": "Indicates the capability to retrieve basic metrics",
+              "IdOwner": 30
+            }
+          },
+          {
+            "Id": 123,
+            "CapabilityType": {
+              "CapabilityId": 211,
+              "Name": "TSR_HTTPS_CAPABLE",
+              "Description": "Capability to indicate that device is supporting TSR using HTTPS Share.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401608,
+            "CapabilityType": {
+              "CapabilityId": 50,
+              "Name": "ONBOARDING",
+              "Description": "Ability to do on-boarding",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 126,
+            "CapabilityType": {
+              "CapabilityId": 17,
+              "Name": "FEATURES_14G",
+              "Description": "14G specific features",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401583,
+            "CapabilityType": {
+              "CapabilityId": 209,
+              "Name": "REDFISH_CAPABLE",
+              "Description": "Capability to indicate that device is discovered via Redfish protocol.",
+              "IdOwner": 10
+            },
+            "IdOwner": 30
+          },
+          {
+            "Id": 292500,
+            "CapabilityType": {
+              "CapabilityId": 1105,
+              "Name": "POWER_CAP",
+              "Description": "Capable to apply power cap",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 129,
+            "CapabilityType": {
+              "CapabilityId": 15,
+              "Name": "TEMP_HISTORY",
+              "Description": "Retrieve historical temperature data",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401609,
+            "CapabilityType": {
+              "CapabilityId": 207,
+              "Name": "COMPLIANCE_ELIGIBLE",
+              "Description": "Capability to indicate that device is eligible for compliance report.",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292501,
+            "CapabilityType": {
+              "CapabilityId": 1103,
+              "Name": "UTILIZATION_METRIC",
+              "Description": "Subsystem utilization metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 131,
+            "CapabilityType": {
+              "CapabilityId": 13,
+              "Name": "TSR",
+              "Description": "Tech Support Report",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 292502,
+            "CapabilityType": {
+              "CapabilityId": 1101,
+              "Name": "POWER_METRIC",
+              "Description": "Power metrics monitoring capable",
+              "IdOwner": 40
+            },
+            "IdOwner": 40
+          },
+          {
+            "Id": 133,
+            "CapabilityType": {
+              "CapabilityId": 11,
+              "Name": "HW_LOGS ",
+              "Description": "System Hardware logs",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 134,
+            "CapabilityType": {
+              "CapabilityId": 9,
+              "Name": "BLINK",
+              "Description": "Identify function on a device",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 137,
+            "CapabilityType": {
+              "CapabilityId": 7,
+              "Name": "CONFIGURE",
+              "Description": "Set attributes on the system",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 401610,
+            "CapabilityType": {
+              "CapabilityId": 5,
+              "Name": "POWER_MONITOR",
+              "Description": "Power statistics retrieval",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 139,
+            "CapabilityType": {
+              "CapabilityId": 3,
+              "Name": "POWER_CONTROL_RESET",
+              "Description": "Power reset hard/graceful",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 141,
+            "CapabilityType": {
+              "CapabilityId": 1,
+              "Name": "POWER_CONTROL_ON",
+              "Description": "Power up",
+              "IdOwner": 10
+            }
+          },
+          {
+            "Id": 143,
+            "CapabilityType": {
+              "CapabilityId": 30,
+              "Name": "REMOTE_RACADM",
+              "Description": "Ability to execute RACADM tasks",
+              "IdOwner": 10
+            }
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceFru')",
+        "InventoryType": "deviceFru",
+        "InventoryInfo": [
+          {
+            "Revision": "A02",
+            "Id": 1939,
+            "Manufacturer": "Dell Inc.",
+            "Name": "SystemPlanar",
+            "PartNumber": "0WCC33",
+            "SerialNumber": "CNCMS001AT00CT"
+          },
+          {
+            "Revision": "A03",
+            "Id": 1944,
+            "Manufacturer": "Dell",
+            "Name": "DRIVE BACKPLANE",
+            "PartNumber": "0TDM6T",
+            "SerialNumber": "CNIVC0015O3087"
+          },
+          {
+            "Revision": "",
+            "Id": 1941,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA630F"
+          },
+          {
+            "Revision": "A02",
+            "Id": 1937,
+            "Manufacturer": "DELL",
+            "Name": "PWR SPLY,550W,RDNT,LTON",
+            "PartNumber": "0NCNFF",
+            "SerialNumber": "CNLOD0017Q4244"
+          },
+          {
+            "Revision": "A01",
+            "Id": 1936,
+            "Manufacturer": "Dell",
+            "Name": "BRCM 10GbE 2P 57416 LOM",
+            "PartNumber": "0WTV34",
+            "SerialNumber": "CNFCP001AF00NK"
+          },
+          {
+            "Revision": "A00",
+            "Id": 1938,
+            "Manufacturer": "Dell",
+            "Name": "Dell Storage Cntlr. H750  Adp.",
+            "PartNumber": "0HYM6Y",
+            "SerialNumber": "CNFCP001C102PR"
+          },
+          {
+            "Revision": "",
+            "Id": 1943,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA6348"
+          },
+          {
+            "Revision": "A02",
+            "Id": 1942,
+            "Manufacturer": "DELL",
+            "Name": "PWR SPLY,550W,RDNT,LTON",
+            "PartNumber": "0NCNFF",
+            "SerialNumber": "CNLOD0017Q422E"
+          },
+          {
+            "Revision": "",
+            "Id": 1940,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA6300"
+          },
+          {
+            "Revision": "",
+            "Id": 1945,
+            "Manufacturer": "Hynix Semiconductor",
+            "Name": "DDR4 DIMM",
+            "PartNumber": "HMA82GR7CJR8N-XN",
+            "SerialNumber": "74FA636F"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceLocation')",
+        "InventoryType": "deviceLocation",
+        "InventoryInfo": [
+          {
+            "Id": 5,
+            "Room": "",
+            "Rack": "",
+            "Aisle": "",
+            "Datacenter": "",
+            "Rackslot": "0",
+            "ManagementSystemUnit": 1
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceManagement')",
+        "InventoryType": "deviceManagement",
+        "InventoryInfo": [
+          {
+            "ManagementId": 5007,
+            "IpAddress": "10.42.68.19",
+            "MacAddress": "d0:8e:79:cd:c1:32",
+            "InstrumentationName": "",
+            "DnsName": "ifdown-idrac.oslomet.no",
+            "ManagementType": {
+              "ManagementType": 2,
+              "Name": "PUBLIC",
+              "Description": "Public Management Interface"
+            },
+            "EndPointAgents": [
+              {
+                "ManagementProfileId": 5009,
+                "ProfileId": "",
+                "AgentName": "iDRAC",
+                "Version": "6.10.00.00",
+                "ManagementURL": "https://10.42.68.19:443",
+                "HasCreds": 1,
+                "Status": 1000,
+                "StatusDateTime": "2023-02-25 13:37:43.411"
+              },
+              {
+                "ManagementProfileId": 5029,
+                "ProfileId": "",
+                "AgentName": "iDRAC",
+                "Version": "7.00.00.174",
+                "ManagementURL": "https://10.42.68.19:443",
+                "HasCreds": 1,
+                "Status": 1000,
+                "StatusDateTime": "2023-02-25 13:37:43.793"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('deviceSoftware')",
+        "InventoryType": "deviceSoftware",
+        "InventoryInfo": [
+          {
+            "Version": "2.21.1",
+            "InstallationDate": "2024-04-30 07:25:31.000",
+            "Status": "Installed",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:INSTALLED#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "4301A66",
+            "InstallationDate": "2024-04-24 13:05:55.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25806",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell 64 Bit uEFI Diagnostics, version 4301, 4301A66, 4301.67",
+            "InstanceId": "DCIM:INSTALLED#802__Diagnostics.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-30 07:25:33.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F3",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Mezzanine.1-1-1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:38",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "2.16.1",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:PREVIOUS#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "6.0",
+            "InstallationDate": "2024-04-24 13:05:55.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "101734",
+            "PciDeviceId": "",
+            "DeviceDescription": "OS COLLECTOR, v6.0, A00",
+            "InstanceId": "DCIM:INSTALLED#802__OSCollector.Embedded.1"
+          },
+          {
+            "Version": "52.26.0-5179",
+            "InstallationDate": "2024-04-30 07:25:31.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "1000",
+            "SubDeviceId": "2176",
+            "SubVendorId": "1028",
+            "ComponentId": "111242",
+            "PciDeviceId": "10E2",
+            "DeviceDescription": "PERC H750 Adapter",
+            "InstanceId": "DCIM:INSTALLED#301_C_RAID.Integrated.1-1"
+          },
+          {
+            "Version": "52.26.0-5179",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "1000",
+            "SubDeviceId": "2176",
+            "SubVendorId": "1028",
+            "ComponentId": "111242",
+            "PciDeviceId": "10E2",
+            "DeviceDescription": "PERC H750 Adapter",
+            "InstanceId": "DCIM:CURRENT#301_C_RAID.Integrated.1-1"
+          },
+          {
+            "Version": "1.0.10",
+            "InstallationDate": "2024-04-24 13:05:55.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "27763",
+            "PciDeviceId": "",
+            "DeviceDescription": "System CPLD",
+            "InstanceId": "DCIM:INSTALLED#803__CPLD.Embedded.1"
+          },
+          {
+            "Version": "21.85.21.91",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F4",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Mezzanine.1-2-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F3",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Mezzanine.1-1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "2024-04-30 07:25:35.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F4",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Mezzanine.1-2-1"
+          },
+          {
+            "Version": "J008",
+            "InstallationDate": "2024-04-30 07:25:32.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "109277",
+            "PciDeviceId": "",
+            "DeviceDescription": "Disk 0 in Backplane 1 of Integrated RAID Controller 1",
+            "InstanceId": "DCIM:INSTALLED#304_C_Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+          },
+          {
+            "Version": "00.31.50",
+            "InstallationDate": "2024-04-24 13:05:49.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "101621",
+            "PciDeviceId": "",
+            "DeviceDescription": "Power Supply.Slot.1",
+            "InstanceId": "DCIM:INSTALLED#0x15__PSU.Slot.1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "2024-04-30 07:25:29.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:38",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "00.31.50",
+            "InstallationDate": "2024-04-24 13:05:49.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "101621",
+            "PciDeviceId": "",
+            "DeviceDescription": "Power Supply.Slot.2",
+            "InstanceId": "DCIM:INSTALLED#0x15__PSU.Slot.2"
+          },
+          {
+            "Version": "24.01.04",
+            "InstallationDate": "2024-04-29 14:16:12.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "18981",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell OS Driver Pack, 24.01.04, A00",
+            "InstanceId": "DCIM:INSTALLED#802__DriverPack.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "5.2.0.0",
+            "InstallationDate": "2024-04-29 14:13:52.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "104684",
+            "PciDeviceId": "",
+            "DeviceDescription": "Dell iDRAC Service Module Embedded Package v5.2.0.0, A00",
+            "InstanceId": "DCIM:INSTALLED#802__ServiceModule.Embedded.1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:39",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "22.71.3",
+            "InstallationDate": "2024-04-30 07:25:31.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:39",
+            "InstanceId": "DCIM:INSTALLED#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "22.71.11.13",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F4",
+            "InstanceId": "DCIM:CURRENT#701__NIC.Mezzanine.1-2-1"
+          },
+          {
+            "Version": "7.00.00.174",
+            "InstallationDate": "2025-03-25 19:04:01.000",
+            "Status": "Installed",
+            "SoftwareType": "APAC",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "28897",
+            "PciDeviceId": "",
+            "DeviceDescription": "Lifecycle Controller",
+            "InstanceId": "DCIM:INSTALLED#802__USC.Embedded.1:LC.Embedded.1"
+          },
+          {
+            "Version": "21.81.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:39",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Embedded.2-1-1"
+          },
+          {
+            "Version": "21.85.21.91",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "1FEA",
+            "SubVendorId": "1028",
+            "ComponentId": "105896",
+            "PciDeviceId": "16D8",
+            "DeviceDescription": "Broadcom Adv. Dual 10GBASE-T Ethernet - F4:EE:08:05:7E:F3",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Mezzanine.1-1-1"
+          },
+          {
+            "Version": "7.00.00.174",
+            "InstallationDate": "2025-03-25 19:03:49.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25227",
+            "PciDeviceId": "",
+            "DeviceDescription": "Integrated Dell Remote Access Controller",
+            "InstanceId": "DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo"
+          },
+          {
+            "Version": "4.35",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "103999",
+            "PciDeviceId": "",
+            "DeviceDescription": "Backplane 1",
+            "InstanceId": "DCIM:CURRENT#314_C_RAID.Backplane.Firmware.1"
+          },
+          {
+            "Version": "7.00.00.173",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "25227",
+            "PciDeviceId": "",
+            "DeviceDescription": "Integrated Dell Remote Access Controller",
+            "InstanceId": "DCIM:PREVIOUS#iDRAC.Embedded.1-1#IDRACinfo"
+          },
+          {
+            "Version": "2.21.1",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "BIOS",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "159",
+            "PciDeviceId": "",
+            "DeviceDescription": "BIOS",
+            "InstanceId": "DCIM:CURRENT#741__BIOS.Setup.1-1"
+          },
+          {
+            "Version": "52.16.1-4074",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "1000",
+            "SubDeviceId": "2176",
+            "SubVendorId": "1028",
+            "ComponentId": "111242",
+            "PciDeviceId": "10E2",
+            "DeviceDescription": "PERC H750 Adapter",
+            "InstanceId": "DCIM:PREVIOUS#301_C_RAID.Integrated.1-1"
+          },
+          {
+            "Version": "21.81.3",
+            "InstallationDate": "NA",
+            "Status": "Available",
+            "SoftwareType": "FRMW",
+            "VendorId": "14E4",
+            "SubDeviceId": "001F",
+            "SubVendorId": "1028",
+            "ComponentId": "105897",
+            "PciDeviceId": "165F",
+            "DeviceDescription": "Broadcom Gigabit Ethernet BCM5720 - D0:8E:79:CD:C1:38",
+            "InstanceId": "DCIM:PREVIOUS#701__NIC.Embedded.1-1-1"
+          },
+          {
+            "Version": "J008",
+            "InstallationDate": "2024-04-30 07:25:32.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "109277",
+            "PciDeviceId": "",
+            "DeviceDescription": "Disk 1 in Backplane 1 of Integrated RAID Controller 1",
+            "InstanceId": "DCIM:INSTALLED#304_C_Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1"
+          },
+          {
+            "Version": "4.35",
+            "InstallationDate": "2024-04-24 15:06:35.000",
+            "Status": "Installed",
+            "SoftwareType": "FRMW",
+            "VendorId": "",
+            "SubDeviceId": "",
+            "SubVendorId": "",
+            "ComponentId": "103999",
+            "PciDeviceId": "",
+            "DeviceDescription": "Backplane 1",
+            "InstanceId": "DCIM:INSTALLED#314_C_RAID.Backplane.Firmware.1"
+          }
+        ]
+      },
+      {
+        "@odata.type": "#DeviceService.InventoryDetail",
+        "@odata.id": "/api/DeviceService/Devices(10201)/InventoryDetails('subsystemRollupStatus')",
+        "InventoryType": "subsystemRollupStatus",
+        "InventoryInfo": [
+          {
+            "Id": 4833,
+            "Status": 1000,
+            "SubsystemName": "cpuRollupStatus"
+          },
+          {
+            "Id": 4834,
+            "Status": 1000,
+            "SubsystemName": "sysMemPrimaryStatus"
+          },
+          {
+            "Id": 4835,
+            "Status": 1000,
+            "SubsystemName": "voltRollupStatus"
+          },
+          {
+            "Id": 4836,
+            "Status": 1000,
+            "SubsystemName": "batteryRollupStatus"
+          },
+          {
+            "Id": 4837,
+            "Status": 1000,
+            "SubsystemName": "licensingRollupStatus"
+          },
+          {
+            "Id": 4838,
+            "Status": 1000,
+            "SubsystemName": "storageRollupStatus"
+          },
+          {
+            "Id": 4839,
+            "Status": 1000,
+            "SubsystemName": "tempRollupStatus"
+          },
+          {
+            "Id": 4840,
+            "Status": 1000,
+            "SubsystemName": "intrusionRollupStatus"
+          }
+        ]
+      }
+    ]
+  },
+  "firmware": {
+    "error": "HTTP 501 for /api/DeviceService/Devices(10201)/FirmwareInventory"
+  },
+  "subsystem_health": {
+    "error": "HTTP 400 for /api/DeviceService/Devices(10201)/SubSystemHealth"
+  },
+  "recent_activity": {
+    "@odata.context": "/api/$metadata#Collection(DeviceService.ExecutionHistoryDetailModel)",
+    "@odata.count": 10,
+    "value": [
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 3830098,
+        "Progress": "100",
+        "StartTime": "2025-03-25 20:05:44.129",
+        "EndTime": "2025-03-25 20:06:17.386",
+        "TaskStatusId": 2060,
+        "Key": "ifdown-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 2718237,
+        "TaskId": 92627,
+        "TaskType": 8,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 3830034,
+        "Progress": "100",
+        "StartTime": "2025-03-25 19:53:49.325",
+        "EndTime": "2025-03-25 20:05:44.025",
+        "TaskStatusId": 2060,
+        "Key": "ifdown-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_429324352278\nInitiated Status check for Job ID : JID_429324352278\nJob state for JID_429324352278 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 2718201,
+        "TaskId": 92626,
+        "TaskType": 5,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2911700,
+        "Progress": "100",
+        "StartTime": "2024-08-28 11:48:29.774",
+        "EndTime": "2024-08-28 11:49:00.898",
+        "TaskStatusId": 2060,
+        "Key": "ifdown-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 2038193,
+        "TaskId": 76662,
+        "TaskType": 8,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2911623,
+        "Progress": "100",
+        "StartTime": "2024-08-28 11:23:32.472",
+        "EndTime": "2024-08-28 11:34:45.416",
+        "TaskStatusId": 2060,
+        "Key": "ifdown-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_248442178562\nJob state for JID_248442178562 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 2038128,
+        "TaskId": 76658,
+        "TaskType": 5,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2349952,
+        "Progress": "100",
+        "StartTime": "2024-04-29 14:27:44.645",
+        "EndTime": "2024-04-29 14:28:12.683",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1645095,
+        "TaskId": 64750,
+        "TaskType": 8,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2349905,
+        "Progress": "100",
+        "StartTime": "2024-04-29 14:11:08.388",
+        "EndTime": "2024-04-29 14:27:44.565",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#304_C_Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#701__NIC.Embedded.1-1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#701__NIC.Mezzanine.1-2-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__ServiceModule.Embedded.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#741__BIOS.Setup.1-1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#802__DriverPack.Embedded.1:LC.Embedded.1\nAttempting to initiate/stage payload instance: DCIM:INSTALLED#301_C_RAID.Integrated.1-1\nInitiated Status check for Job ID : JID_143998727419\nJob state for JID_143998727419 is SCHEDULED\nInitiated Status check for Job ID : JID_143998785234\nJob state for JID_143998785234 is SCHEDULED\nInitiated Status check for Job ID : JID_143998844239\nJob state for JID_143998844239 is SCHEDULED\nInitiated Status check for Job ID : JID_143998900172\nJob state for JID_143998900172 is COMPLETED\nInitiated Status check for Job ID : JID_143998964761\nJob state for JID_143998964761 is SCHEDULED\nInitiated Status check for Job ID : JID_143999022222\nJob state for JID_143999022222 is COMPLETED\nInitiated Status check for Job ID : JID_143999086148\nJob state for JID_143999086148 is SCHEDULED\nInitiating host reboot action as one or more payload(s) marked as reboot required.\nJob state for JID_143998964761 is COMPLETED\nJob state for JID_143999086148 is COMPLETED\nJob state for JID_143998727419 is COMPLETED\nJob state for JID_143998785234 is COMPLETED\nJob state for JID_143998844239 is COMPLETED\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 1645048,
+        "TaskId": 64744,
+        "TaskType": 5,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2324276,
+        "Progress": "100",
+        "StartTime": "2024-04-24 15:19:36.330",
+        "EndTime": "2024-04-24 15:20:08.119",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1625989,
+        "TaskId": 64142,
+        "TaskType": 8,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 2323894,
+        "Progress": "100",
+        "StartTime": "2024-04-24 14:56:12.371",
+        "EndTime": "2024-04-24 15:07:33.142",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_139705773965\nJob state for JID_139705773965 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 1625920,
+        "TaskId": 64140,
+        "TaskType": 5,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 1531290,
+        "Progress": "100",
+        "StartTime": "2023-12-07 10:48:37.550",
+        "EndTime": "2023-12-07 10:49:09.354",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nCompleted",
+        "TaskName": "Post Inventory Task for Update",
+        "ExecutionHistoryId": 1091487,
+        "TaskId": 45720,
+        "TaskType": 8,
+        "BaseEntityId": 10201
+      },
+      {
+        "@odata.type": "#DeviceService.ExecutionHistoryDetailModel",
+        "Id": 1531237,
+        "Progress": "100",
+        "StartTime": "2023-12-07 10:32:46.464",
+        "EndTime": "2023-12-07 10:44:04.186",
+        "TaskStatusId": 2060,
+        "Key": "rack2-2-slot14-idrac.oslomet.no",
+        "Value": "Running\nVerifying if the device Service Tag is valid.\nThe device Service Tag is valid.\nStarting communication with the device.\nUpdate allowed in target, System Lockdown status = DISABLED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nAttempting to initiate/stage iDRAC payload instance: DCIM:INSTALLED#iDRAC.Embedded.1-1#IDRACinfo\nInitiated Status check for Job ID : JID_019451218887\nJob state for JID_019451218887 is COMPLETED\nChecking Remote LC Services availability\nRemote LC Services are ready now\nCompleted",
+        "TaskName": "Device Update: Alle Dell enheter",
+        "ExecutionHistoryId": 1091448,
+        "TaskId": 45719,
+        "TaskType": 5,
+        "BaseEntityId": 10201
+      }
+    ]
+  },
+  "warranty": {
+    "@odata.context": "/api/$metadata#Collection(WarrantyService.Warranty)",
+    "@odata.count": 2,
+    "value": [
+      {
+        "@odata.type": "#WarrantyService.Warranty",
+        "@odata.id": "/api/WarrantyService/Warranties(101062)",
+        "Id": 101062,
+        "DeviceId": 10201,
+        "DeviceModel": "PowerEdge R440",
+        "DeviceIdentifier": "DP339L3",
+        "DeviceName": "ifdown-idrac.oslomet.no",
+        "DeviceType": 1000,
+        "GroupName": null,
+        "CountryLookupCode": "NO",
+        "CustomerNumber": 0,
+        "LocalChannel": "ENTP",
+        "OrderNumber": 0,
+        "SystemShipDate": "2021-12-23 00:00:00.000",
+        "State": "INITIAL",
+        "ItemNumber": "709-BBIL",
+        "ServiceLevelCode": "ND",
+        "ServiceLevelDescription": "Onsite Service After Remote Diagnosis (Consumer Customer)/ Next Business Day Onsite After Remote Diagnosis (for business Customer)",
+        "ServiceLevelGroup": 0,
+        "ServiceProvider": null,
+        "StartDate": "2021-12-23 00:00:00.000",
+        "EndDate": "2024-12-23 23:59:59.286",
+        "DaysRemaining": 0,
+        "Timestamp": null,
+        "MaxEndDateForServiceCode": "2024-12-23 23:59:59.286",
+        "IsWarrantyItemRenewed": false
+      },
+      {
+        "@odata.type": "#WarrantyService.Warranty",
+        "@odata.id": "/api/WarrantyService/Warranties(101063)",
+        "Id": 101063,
+        "DeviceId": 10201,
+        "DeviceModel": "PowerEdge R440",
+        "DeviceIdentifier": "DP339L3",
+        "DeviceName": "ifdown-idrac.oslomet.no",
+        "DeviceType": 1000,
+        "GroupName": null,
+        "CountryLookupCode": "NO",
+        "CustomerNumber": 0,
+        "LocalChannel": "ENTP",
+        "OrderNumber": 0,
+        "SystemShipDate": "2021-12-23 00:00:00.000",
+        "State": "EXTENDED",
+        "ItemNumber": "865-BBMZ",
+        "ServiceLevelCode": "NU",
+        "ServiceLevelDescription": "ProSupport with Next Business Day Service",
+        "ServiceLevelGroup": 0,
+        "ServiceProvider": null,
+        "StartDate": "2024-12-24 00:00:00.000",
+        "EndDate": "2028-12-24 23:59:59.000",
+        "DaysRemaining": 1266,
+        "Timestamp": null,
+        "MaxEndDateForServiceCode": "2028-12-24 23:59:59.000",
+        "IsWarrantyItemRenewed": false
+      }
+    ]
+  },
+  "licenses": {
+    "error": "HTTP 501 for /api/LicenseService/Devices(10201)/Licenses"
+  },
+  "power_metrics": {
+    "error": "HTTP 501 for /api/PowerManagerService/Devices(10201)/Metrics"
+  },
+  "power_cap": {
+    "error": "HTTP 501 for /api/PowerManagerService/Devices(10201)/PowerCap"
+  },
+  "supportassist_client": {
+    "error": "HTTP 501 for /api/SupportAssistService/Registration/ClientDetails"
+  },
+  "supportassist_cases": {
+    "error": "HTTP 501 for /api/SupportAssistService/Cases?$filter=DeviceId eq 10201"
+  },
+  "network": {
+    "error": "HTTP 501 for /api/DeviceService/Devices(10201)/NetworkInterfaces"
+  },
+  "groups": {
+    "error": "HTTP 501 for /api/GroupService/Devices(10201)/Groups"
+  }
+}

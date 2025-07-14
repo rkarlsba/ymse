@@ -1,0 +1,3 @@
+./query.py '/api/DeviceService/Devices(64877)/FirmwareInventory'
+./query.py '/api/UpdateService/ComplianceStatuses?$filter=DeviceId eq 64877'
+./query.py '/api/DeviceService/Devices(64877)/RecentActivity'

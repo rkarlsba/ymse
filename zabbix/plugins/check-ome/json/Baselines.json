@@ -1,0 +1,347 @@
+{
+  "@odata.context": "/api/$metadata#Collection(UpdateService.Baselines)",
+  "@odata.count": 3,
+  "value": [
+    {
+      "@odata.type": "#UpdateService.Baselines",
+      "@odata.id": "/api/UpdateService/Baselines(6)",
+      "Id": 6,
+      "Name": "M640 firmware",
+      "Description": "",
+      "CatalogId": 22,
+      "RepositoryId": 12,
+      "TaskId": 10244,
+      "TaskStatusId": 2070,
+      "RepositoryName": "Dell firmware catalog",
+      "RepositoryType": "DELL_ONLINE",
+      "LastRun": "2025-07-07 00:05:00.653",
+      "DowngradeEnabled": true,
+      "FilterNoRebootRequired": false,
+      "Is64Bit": true,
+      "Targets": [],
+      "ComplianceSummary": {
+        "ComplianceStatus": "OK",
+        "NumberOfCritical": 0,
+        "NumberOfWarning": 0,
+        "NumberOfNormal": 0,
+        "NumberOfDowngrade": 0,
+        "NumberOfUnknown": 0
+      },
+      "DeviceComplianceReports@odata.navigationLink": "/api/UpdateService/Baselines(6)/DeviceComplianceReports"
+    },
+    {
+      "@odata.type": "#UpdateService.Baselines",
+      "@odata.id": "/api/UpdateService/Baselines(7)",
+      "Id": 7,
+      "Name": "M630 firmware",
+      "Description": "",
+      "CatalogId": 22,
+      "RepositoryId": 12,
+      "TaskId": 10252,
+      "TaskStatusId": 2070,
+      "RepositoryName": "Dell firmware catalog",
+      "RepositoryType": "DELL_ONLINE",
+      "LastRun": "2025-07-07 00:05:00.657",
+      "DowngradeEnabled": true,
+      "FilterNoRebootRequired": false,
+      "Is64Bit": true,
+      "Targets": [],
+      "ComplianceSummary": {
+        "ComplianceStatus": "OK",
+        "NumberOfCritical": 0,
+        "NumberOfWarning": 0,
+        "NumberOfNormal": 0,
+        "NumberOfDowngrade": 0,
+        "NumberOfUnknown": 0
+      },
+      "DeviceComplianceReports@odata.navigationLink": "/api/UpdateService/Baselines(7)/DeviceComplianceReports"
+    },
+    {
+      "@odata.type": "#UpdateService.Baselines",
+      "@odata.id": "/api/UpdateService/Baselines(8)",
+      "Id": 8,
+      "Name": "Alle Dell enheter",
+      "Description": "",
+      "CatalogId": 22,
+      "RepositoryId": 12,
+      "TaskId": 10253,
+      "TaskStatusId": 2060,
+      "RepositoryName": "Dell firmware catalog",
+      "RepositoryType": "DELL_ONLINE",
+      "LastRun": "2025-07-07 00:05:00.661",
+      "DowngradeEnabled": true,
+      "FilterNoRebootRequired": false,
+      "Is64Bit": true,
+      "Targets": [
+        {
+          "Id": 500,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1000,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1001,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1002,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1003,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1004,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1005,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1006,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1007,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1008,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1009,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1010,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1011,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1012,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1013,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1014,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1015,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1016,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1017,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1018,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1019,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1021,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1022,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1023,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1024,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1025,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1026,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1027,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1028,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1031,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1032,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 1033,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 10248,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 10249,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 63954,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 63958,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        },
+        {
+          "Id": 64737,
+          "Type": {
+            "Id": 6000,
+            "Name": "GROUP"
+          }
+        }
+      ],
+      "ComplianceSummary": {
+        "ComplianceStatus": "CRITICAL",
+        "NumberOfCritical": 16,
+        "NumberOfWarning": 1,
+        "NumberOfNormal": 10,
+        "NumberOfDowngrade": 0,
+        "NumberOfUnknown": 1
+      },
+      "DeviceComplianceReports@odata.navigationLink": "/api/UpdateService/Baselines(8)/DeviceComplianceReports"
+    }
+  ]
+}
