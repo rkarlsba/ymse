@@ -3,7 +3,7 @@
 #
 # zabbix_check_ldap.pl - do an LDAP query
 #
-# By Roy Sigurd Karlsbakk <roysk@oslomet.no>
+# By Roy Sigurd Karlsbakk <roy@karlsbakk.net>
 # 
 # Usage:
 #

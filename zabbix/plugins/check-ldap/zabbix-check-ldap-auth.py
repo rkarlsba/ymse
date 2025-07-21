@@ -38,14 +38,8 @@ node_successes = 0
 cluster_max_attempts = 5
 cluster_attempts = 0
 cluster_successes = 0
-cluster_delay = 1       # Second(s)
+cluster_delay = 1
 ldap_nodes = ()
-#ldap_nodes = (
-#        'openldap-prod01.oslomet.no',
-#        'openldap-prod02.oslomet.no'
-#)
-#ldap_cluster = 'ldap.oslomet.no'
-#base_dn = 'ou=tilsatt,ou=oslomet,dc=oslomet,dc=no'
 
 builtinhelp = False
 
