@@ -1,6 +1,13 @@
-SERVERS="begrunnelse.hioa.no bibin.hioa.no bibin.oslomet.no camunda-stage.oslomet.no cloud.cs.hioa.no epay.hioa.no epay.oslomet.no provisjon.oslomet.no sites.oslomet.no styringsportal.hioa.no styringsportal.oslomet.no tps.oslomet.no"
+#!/bin/bash
+# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker
 
-for srv in $SERVERS
+if [ $# -eq 0 ]
+then
+    echo "Syntax: $0 filename [filename [ filename [ … ]]]" >&2
+    exit 1
+fi
+
+for srv in $@
 do
 	printf "%25s\t" $srv
 	./zabbix_check_ciphers.pl -N /opt/nmap/bin/nmap $srv
