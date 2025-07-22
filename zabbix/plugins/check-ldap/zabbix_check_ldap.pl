@@ -17,7 +17,7 @@ use Getopt::Long;
 # Globals
 my $ldap_cmd_tmpl = 'ldapsearch -LLL -H %s -s base -b "%s" -o nettimeout=1 -x 2>&1';
 my $verbose = 0;
-password_file = ".ldap_passwd"
+my $password_file = "~/.ldap_passwd";
 
 # Opts
 my $opt_basedn = undef;
