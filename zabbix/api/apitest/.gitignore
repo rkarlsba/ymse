@@ -1,6 +1,0 @@
-local_passwords.py
-data/
-debug.out
-mangler*
-all-missing-no-hostid.json
-test.json
