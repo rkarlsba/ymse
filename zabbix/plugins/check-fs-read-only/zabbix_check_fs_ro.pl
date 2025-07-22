@@ -51,7 +51,7 @@
 # for vertsmaskinen, som dette gjør. Bruk heller nevnte skript enn dette, med
 # mindre du har spesielle behov.
 #
-# Roy Sigurd Karlsbakk <roysk@oslomet.no> <roy@karlsbakk.net>
+# Roy Sigurd Karlsbakk <roy@karlsbakk.net> <roysk@oslomet.no>
 #
 # }}}
 
