@@ -9,18 +9,18 @@ import re
 import sys
 import traceback
 from ldap.controls import SimplePagedResultsControl
+import ldapstuff
 
 # Globals
-password_file = ".ldap_passwd"
 debug = 1
 
 # This one returns the first token in the format username:password
 def getpwtok():
     try:
-        f=open(password_file,"r")
+        f=open(ldap_pw_file,"r")
         lines=f.readlines()
         if (len(lines) > 1):
-            print("More than one line in {password_file}, only one considered", file=sys.stderr)
+            print("More than one line in {ldap_pw_file}, only one considered", file=sys.stderr)
         for line in lines:
             line = re.sub(r"[\r\n]", "", line)
             auth_token = line.split(':')
@@ -127,40 +127,19 @@ def try_decode(value):
 
 
 if __name__ == "__main__":
-
-    # ldapsearch -y $HOME/x123 -z 10000 -o ldif-wrap=no -x -W -H ldaps://openldap-prod01.oslomet.no -b "ou=tilsatt,ou=oslomet,dc=oslomet,dc=no" -D "uid=roysk,ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
     # Globals
     ldapuser,ldappass = getpwtok()
-    #ldap_uri="ldaps://openldap-prod01.oslomet.no"
-    #ldap_bindDN="uid=tmpauth[0],ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
-    #ldap_bindDN=f"uid={tmpauth[0]},ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
-    ldap_baseDN="ou=tilsatt,ou=oslomet,dc=oslomet,dc=no"
-    # Junk {{{
-
-    #ldap_filterstr="&(objectClass=user)(!(objectClass=computer))(memberOf:1.2.840.113556.1.4.1941:=CN=cool_group,OU=folder,OU=folder,DC=domain,DC=local)"
-
-    # }}}
     ldap_filterstr="&(objectClass=user)(!(objectClass=computer))"
     ldap_attrlist=["userPrincipalName", "givenName"]    # None to fetch all attributes
-    ldap_timeout=-1                                     # wait indefinitely
-    ldap_pagesize=200                                   # this is an internal parameter that says how many records do you want to fetch per request
-                                                        # it doesn't change the result, since pages are fetched as needed
-                                                        # by default, the max number of records allowed by AD is 1000
-                                                        # so if you request more than 1000 records, it will return 1000
-                                                        # At OsloMeth, it's max 250.
+    ldap_timeout=-1                                     # wait indefinitely?
+    ldap_pagesize=200
 
     response = query_activedirectory(
         uri=ldap_uri,
         bindDN=ldap_bindDN,
         bindPW=tmpauth[1],
         baseDN=ldap_baseDN,
-#       filterstr=ldap_filterstr,
-#       filterstr='(objectClass=*)(cn="roysk")',
-#       filterstr="(&(objectClass=user)(uid=*r*))",
-#       filterstr="(sAMAccountName=*roy*)",
-#       filterstr=f"(sAMAccountName=*roy*)",
         filterstr=f"(&(objectClass=user)(uid=*roy*))",
-#       filterstr="(&(objectCategory=person)(objectClass=user)(!cn=roysk))",
         attrlist=ldap_attrlist,
         timeout=-1,
         pagesize=ldap_pagesize,

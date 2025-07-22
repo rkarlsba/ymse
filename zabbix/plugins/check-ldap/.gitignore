@@ -1,5 +1,7 @@
 .ldap_passwd*
 .ldappas*
 .passw*
+ldapstuff.py
+test.py
 faen*
 query_activedirectory*
