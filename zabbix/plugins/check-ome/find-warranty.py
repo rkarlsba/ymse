@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
         today = datetime.now()
 
-        # Find the machine name, testing with json/log-core2-idrac.oslomet.no.json
+        # Find the machine name
         devicename = hostdata["device"]["DeviceName"]
 
         # Find the entry with the largest Id
