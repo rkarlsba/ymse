@@ -11,17 +11,6 @@
 # Licensed under som obscure BSD license of choice
 #
 # }}}
-# {{{ ls /var/log/httpd/ 
-# 
-# access_log          ssl_access_log          synopsis.oslomet.no-access_log           synopsis.oslomet.no-error_log-20240519       synopsis.oslomet.no-ssl_access_log-20240602
-# error_log           ssl_error_log           synopsis.oslomet.no-access_log-20240512  synopsis.oslomet.no-error_log-20240526       synopsis.oslomet.no-ssl_error_log
-# error_log-20240512  ssl_error_log-20240512  synopsis.oslomet.no-access_log-20240519  synopsis.oslomet.no-error_log-20240602       synopsis.oslomet.no-ssl_error_log-20240512
-# error_log-20240519  ssl_error_log-20240519  synopsis.oslomet.no-access_log-20240526  synopsis.oslomet.no-ssl_access_log           synopsis.oslomet.no-ssl_error_log-20240519
-# error_log-20240526  ssl_error_log-20240526  synopsis.oslomet.no-access_log-20240602  synopsis.oslomet.no-ssl_access_log-20240512  synopsis.oslomet.no-ssl_error_log-20240526
-# error_log-20240602  ssl_error_log-20240602  synopsis.oslomet.no-error_log            synopsis.oslomet.no-ssl_access_log-20240519  synopsis.oslomet.no-ssl_error_log-20240602
-# gml/                ssl_request_log         synopsis.oslomet.no-error_log-20240512   synopsis.oslomet.no-ssl_access_log-20240526
-# 
-# }}}
 # Global Variables {{{
 
 dir='/var/log/httpd'
