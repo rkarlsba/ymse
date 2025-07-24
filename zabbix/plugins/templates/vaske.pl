@@ -30,7 +30,8 @@ while (my $s = <$fd>) {
     my $line = "| ";
     my @splat = split(/\t/, $s);
     if ($firstline) {
-        $output = "| Template name | Hosts | Items | Triggers | Graphs | Dashboards | Discovery | Web | Vendor | Version | Linked templates | Linked to templates | Tags\n";
+        $output = "| Template name | Hosts | Items | Triggers | Graphs | Dashboards | Discovery | Web | Vendor | Version | Linked templates | Linked to templates | Tags |\n";
+        $output .= "| ------------- | ----- | ----- | -------- | ------ | ---------- | --------- | --- | ------ | ------- | ---------------- | ------------------- | ---- |\n";
         $firstline = 0;
         next;
     }

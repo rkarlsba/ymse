@@ -1,4 +1,5 @@
-| Template name | Hosts | Items | Triggers | Graphs | Dashboards | Discovery | Web | Vendor | Version | Linked templates | Linked to templates | Tags
+| Template name | Hosts | Items | Triggers | Graphs | Dashboards | Discovery | Web | Vendor | Version | Linked templates | Linked to templates | Tags |
+| ------------- | ----- | ----- | -------- | ------ | ---------- | --------- | --- | ------ | ------- | ---------------- | ------------------- | ---- |
 | Template App HTTP Service | 0 | 1 | 1 | 0 | 0 | 0 | 1 |
 | Template App HTTPS Service | 0 | 1 | 1 | 0 | 0 | 0 | 0 |
 | Template App IMAP Service | 1 | 1 | 1 | 0 | 0 | 0 | 0 |
