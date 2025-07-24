@@ -1,0 +1,300 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+    - uuid: 13e16d3ad2ad4021864cb146f2c2799a
+      name: Templates/RaspberryPi
+  templates:
+    - uuid: 9ada0e177db34f56ba1174aecbd11d29
+      template: 'Raspberry Pi'
+      name: 'Raspberry Pi'
+      description: 'Template for a Raspberry Pi to monitor vcgencmd parameters among others.'
+      groups:
+        - name: Templates
+        - name: Templates/RaspberryPi
+      items:
+        - uuid: 09d4ce7eba9f44f285f204be74c7864b
+          name: 'Board revision'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[boardrevision]'
+          delay: 120s
+          history: 90d
+          value_type: CHAR
+          description: 'Die board revision of the Raspberry Pi.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: dfdf1fa776aa48638574533f10c68e03
+          name: 'Board serial number'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[boardserialnumber]'
+          delay: 120s
+          history: 90d
+          value_type: CHAR
+          description: 'The unique serial number of the Raspberry Pi.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 081b9342faa54dc9a113658cdde41c3d
+          name: 'Board version'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[boardversion]'
+          delay: 120s
+          history: 90d
+          value_type: CHAR
+          description: 'The hardware version of the Raspberry Pi.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: d742143efce44bfc86e5c5cbbb3547b6
+          name: 'Core clock speed'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[coreclock]'
+          delay: 30s
+          history: 90d
+          units: Hz
+          description: 'Core clock speed in Hz.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 1b9f04893b0546d383adbc5c3d8575ed
+          name: 'CPU clock speed'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[cpuclock]'
+          delay: 30s
+          history: 90d
+          units: Hz
+          description: 'CPU clock speed in Hz.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 10116cdd2b37466d8e5124d01928c5d6
+          name: 'RAM CPU'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[cpumem]'
+          delay: 30s
+          history: 90d
+          units: Byte
+          description: 'Amount of CPU memory.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '1000000'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: df266fd8f4aa40808d0e9950deaad93e
+          name: 'CPU Voltage'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[cpuvoltage]'
+          delay: 30s
+          history: 90d
+          value_type: FLOAT
+          units: V
+          description: 'Voltage of the CPU.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: b7a4b5e2a251449c9a905351e1c960be
+          name: 'Firmware version'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[firmwareversion]'
+          delay: 120s
+          history: 90d
+          value_type: CHAR
+          description: 'The firmware version of the Raspberry Pi.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 9f6ce48c9c0d4bb1a43a2ebe6053e5f2
+          name: 'RAM GPU'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[gpumem]'
+          delay: 30s
+          history: 90d
+          units: Byte
+          description: 'Amount of memory for the GPU.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '1000000'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: ae1a58ae9e4a450f9dc07cc36b1a1ced
+          name: 'SD-Card - Free disk space'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdcardfree]'
+          delay: 120s
+          history: 90d
+          units: Byte
+          description: 'Free disk space on SD-Card in Byte.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 07a8352048564e9abd59548f8c9440e4
+          name: 'SD-Card - Total size'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdcardtotalsize]'
+          delay: 120s
+          history: 90d
+          units: Byte
+          description: 'The total size of the SD-Card.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: dd1cfab447d24fc5a064dbc27beb8757
+          name: 'SD-Card - Used disk space in percent'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdcardusedpercent]'
+          delay: 120s
+          history: 90d
+          units: '%'
+          description: 'Used space in percent of the SD-Card.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 72701ace60c94383bc7ef6113f4f1904
+          name: 'SD-Card - Used disk space'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdcardused]'
+          delay: 120s
+          history: 90d
+          units: Byte
+          description: 'Used disk space of the SD-Card.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 190384b5d87d44b49757d139fb111c78
+          name: 'SD-RAM C voltage'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdramcvoltage]'
+          delay: 30s
+          history: 90d
+          value_type: FLOAT
+          units: V
+          description: 'SD-RAM C Voltage in Volt.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: bcec7b2162ff4b8b8ddc9b7aff0cdfe6
+          name: 'SD-RAM i voltage'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdramivoltage]'
+          delay: 30s
+          history: 90d
+          value_type: FLOAT
+          units: V
+          description: 'SD-RAM i Voltage in Volt.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 4dc4227e236f475dab88d1c0a1d42fa4
+          name: 'SD-RAM P voltage'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[sdrampvoltage]'
+          delay: 30s
+          history: 90d
+          value_type: FLOAT
+          units: V
+          description: 'SD-RAM P Voltage in Volt.'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+        - uuid: 83c95854d9a746c4bfb6f38f9ddea10a
+          name: 'Core temperature'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[temperature]'
+          delay: 30s
+          history: 90d
+          value_type: FLOAT
+          units: C
+          description: 'The board / CPU temperature in Degree-Celsius'
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+          triggers:
+            - uuid: 716788d458a94d5f9c33279ed4602fb7
+              expression: 'last(/Raspberry Pi/raspberrypi.sh[temperature])>79'
+              name: 'Thermal throttle'
+              priority: WARNING
+              description: 'Raspberry Pi will throttle at ca. 80 °C.'
+        - uuid: 5f1e5a7a47ee4761b6cdd6c5db5a3af6
+          name: 'Throttle State'
+          type: ZABBIX_ACTIVE
+          key: 'raspberrypi.sh[throttlestate]'
+          delay: 30s
+          history: 90d
+          description: |
+            The throttle state of the Raspberry Pi.
+            For more information:
+            https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=147781&start=50#p972790
+          tags:
+            - tag: Application
+              value: 'Raspberry Pi'
+  graphs:
+    - uuid: 08595bd391d34566a9acd182fa03d9c3
+      name: Frequencies
+      graph_items:
+        - color: 1A7C11
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[coreclock]'
+        - sortorder: '1'
+          color: F63100
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[cpuclock]'
+    - uuid: bf3530f8d89249e69f2dfc35312cefdf
+      name: RAM
+      type: STACKED
+      graph_items:
+        - color: 1A7C11
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[cpumem]'
+        - sortorder: '1'
+          color: F63100
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[gpumem]'
+    - uuid: 6b34e408144c4fc39a6849be1e1d707b
+      name: 'SD-Card usage'
+      graph_items:
+        - color: 1A7C11
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdcardfree]'
+        - sortorder: '1'
+          color: 2774A4
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdcardtotalsize]'
+        - sortorder: '2'
+          color: F63100
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdcardused]'
+    - uuid: e79c76d80d404d528900f8941e6fad04
+      name: Voltages
+      graph_items:
+        - color: 1A7C11
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[cpuvoltage]'
+        - sortorder: '1'
+          color: F63100
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdramcvoltage]'
+        - sortorder: '2'
+          color: 2774A4
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdramivoltage]'
+        - sortorder: '3'
+          color: A54F10
+          item:
+            host: 'Raspberry Pi'
+            key: 'raspberrypi.sh[sdrampvoltage]'
