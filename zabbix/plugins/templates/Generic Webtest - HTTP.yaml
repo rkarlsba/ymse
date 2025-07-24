@@ -1,0 +1,24 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: c16895d408aa40f381edd67e713b4b92
+      name: 'Web servers'
+  templates:
+    - uuid: c84bb018328a4a41b138ab53939a81d1
+      template: 'Generic Webtest - HTTP'
+      name: 'Generic Webtest - HTTP'
+      groups:
+        - name: 'Web servers'
+      httptests:
+        - uuid: e4f03d463eee4770bcaa9624a214922b
+          name: 'Generic 200 test - http'
+          steps:
+            - name: 'Generic 200 test - http'
+              url: 'http://{HOST.NAME}:{$HTTP_PORT}/'
+              posts: ''
+          tags:
+            - tag: Application
+              value: WEB
+      macros:
+        - macro: '{$HTTP_PORT}'
+          value: '80'

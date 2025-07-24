@@ -1,0 +1,37 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: dc579cd7a1a34222933f24f52a68bcd8
+      name: 'Linux servers'
+  templates:
+    - uuid: f877a6eabe374dff9639aab9afa1c8fe
+      template: fail2ban
+      name: fail2ban
+      groups:
+        - name: 'Linux servers'
+      items:
+        - uuid: 1af1bc91e5ea4dab92cf1ab6e04bff74
+          name: 'Fail2ban: Currently banned IPs'
+          key: custom.fail2ban.currently_banned
+          history: 90d
+        - uuid: a40c10d96c26488daf675c6abad5b5f8
+          name: 'Fail2ban: Currently failed logins'
+          key: custom.fail2ban.currently_failed
+          history: 90d
+        - uuid: 25a493cdb98d425abf813b58b88dafd2
+          name: 'Fail2ban: Total banned logins'
+          key: custom.fail2ban.total_banned
+          history: 90d
+        - uuid: 86826d1d0426419ebe3539162a29429f
+          name: 'Fail2ban: Total failed logins'
+          key: custom.fail2ban.total_failed
+          history: 90d
+  graphs:
+    - uuid: f35cd265eeb94d339be4eda4e31ed5fb
+      name: 'Currently banned logins'
+      graph_items:
+        - sortorder: '1'
+          color: F63100
+          item:
+            host: fail2ban
+            key: custom.fail2ban.currently_banned

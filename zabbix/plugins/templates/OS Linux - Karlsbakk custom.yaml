@@ -1,0 +1,206 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: 846977d1dfed4968bc5f8bdb363285bc
+      name: 'Templates/Operating systems'
+  templates:
+    - uuid: 0ae92a74ed5448deae784f12550a06af
+      template: 'OS Linux - Karlsbakk custom'
+      name: 'OS Linux - Karlsbakk custom'
+      templates:
+        - name: 'Systemd by Zabbix agent 2'
+      groups:
+        - name: 'Templates/Operating systems'
+      items:
+        - uuid: f885d2e8a5104f59a457ab6c126c6084
+          name: 'Linux distro architecture'
+          key: custom.distro.arch
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+        - uuid: befbd82536a347f189733c3170793f5e
+          name: 'Linux distro friendly name'
+          key: custom.distro.friendlyname
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+        - uuid: c5e60db0c10d4b4b9ccdbcef6f5fc862
+          name: 'Linux distro name'
+          key: custom.distro.name
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+        - uuid: 9fda4658d57b4be885b5a4f94d2d9ab8
+          name: 'Linux distro version'
+          key: custom.distro.version
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+        - uuid: bd5a6bb673ea442e8c770cb9445b3884
+          name: 'DNS lookups'
+          key: custom.dnslookup
+          delay: 5m
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+        - uuid: ba1c02f415a447d2bdd37de9cfacd6bb
+          name: 'Linux filesystem read-only check'
+          key: custom.fsrocheck
+          delay: 60s
+          history: 7d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: Filesystems
+          triggers:
+            - uuid: 36e27d00731242fdb3ac1c9310e5d0b8
+              expression: 'nodata(/OS Linux - Karlsbakk custom/custom.fsrocheck,2h)=1'
+              name: 'Linux filesystem read-only - nodata check > 2 hours'
+              priority: INFO
+              manual_close: 'YES'
+            - uuid: e09ae0257a9a4aeb86354274bbda2055
+              expression: 'find(/OS Linux - Karlsbakk custom/custom.fsrocheck,,"like","WARNING")=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/OS Linux - Karlsbakk custom/custom.fsrocheck,,"like","OK")=1'
+              name: 'Linux filesystem read-only check'
+              priority: AVERAGE
+        - uuid: d0e8c2eb7ba84644a2cf600bdfbb4f10
+          name: 'Linux kernel update check'
+          key: custom.kernelversioncheck
+          delay: 1h
+          history: 90d
+          value_type: TEXT
+          status: DISABLED
+          tags:
+            - tag: Application
+              value: OS
+          triggers:
+            - uuid: 745b83b5752a47e394e729a3d91fa946
+              expression: 'nodata(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,7200s)=1'
+              name: 'Linux kernel update - nodata check > 2 hours'
+              priority: INFO
+              manual_close: 'YES'
+            - uuid: 9c326f09286f4d3498e268af51bb5a5c
+              expression: 'find(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,7d,"like","WARNING")=1'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,,"like","OK")=1'
+              name: 'Linux kernel update check > 7 days'
+              priority: WARNING
+        - uuid: 79b28dc630df44e49929efbbdc6ce5ef
+          name: 'System reboot required'
+          key: custom.rebootcheck
+          delay: 5m
+          history: 90d
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: OS
+          triggers:
+            - uuid: 27386483a44e49c1ab4713d4355e56a4
+              expression: 'find(/OS Linux - Karlsbakk custom/custom.rebootcheck,,"like","YES")=1'
+              name: 'System reboot required'
+              priority: INFO
+            - uuid: 70003bdf39bc4e65bcbc301eae8bad9d
+              expression: 'find(/OS Linux - Karlsbakk custom/custom.rebootcheck,7d,"like","YES")=1 and last(/OS Linux - Karlsbakk custom/custom.rebootcheck)="YES"'
+              name: 'System reboot required > 7 days'
+              priority: WARNING
+        - uuid: 5fbbdfe1cd0a498ba93efdf3a66535b7
+          name: 'Linux packages upgrade check'
+          key: custom.yumupdatescheck
+          delay: 5m
+          history: 90d
+          value_type: TEXT
+          preprocessing:
+            - type: LTRIM
+              parameters:
+                - 'custom.yumupdatescheck '
+          tags:
+            - tag: Application
+              value: OS
+          triggers:
+            - uuid: c060faad91e142e78a76f3afd1a127c6
+              expression: 'nodata(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,1d)=1'
+              name: 'Linux package update - nodata check > 24 hours'
+              priority: INFO
+              manual_close: 'YES'
+            - uuid: 37db62b8d14748f8a23f82f84d2dcf6d
+              expression: 'find(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,7d,"like","OK")=0'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'find(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,,"like","OK")=1'
+              name: 'Linux package update check > 7 days'
+              priority: WARNING
+        - uuid: 2c03cdb49567411d88251b5c5870fdcb
+          name: 'Docker process'
+          key: 'proc.num[dockerd,,,/usr/bin/dockerd]'
+          history: 90d
+      macros:
+        - macro: '{$DISK_IO_MAX_PST}'
+          value: '20'
+        - macro: '{$DISK_IO_SAMPLETIME}'
+          value: 5m
+        - macro: '{$LINUX_KERNEL_UPDATE_MAX_TIME}'
+          value: 7d
+        - macro: '{$LINUX_MAX_UPTIME}'
+          value: '7776000'
+          description: '7776000 er (60*60*24)=86400*90=90 dager.'
+        - macro: '{$LOW_SPACE}'
+          value: 2G
+        - macro: '{$LOW_SPACE:"/"}'
+          value: 500M
+        - macro: '{$LOW_SPACE:"/boot"}'
+          value: 10M
+        - macro: '{$LOW_SPACE:"/data"}'
+          value: 10G
+        - macro: '{$LOW_SPACE:"/var"}'
+          value: 10G
+        - macro: '{$LOW_SPACE_PR}'
+          value: '10'
+        - macro: '{$LOW_SPACE_PR:"/"}'
+          value: '15'
+        - macro: '{$LOW_SPACE_PR:"/boot"}'
+          value: '15'
+        - macro: '{$LOW_SPACE_PR:"/data"}'
+          value: '5'
+        - macro: '{$LOW_SPACE_PR:"/var"}'
+          value: '5'
+        - macro: '{$MAX_NUMBER_OF_PROCESSES}'
+          value: '500'
+        - macro: '{$MAX_NUMBER_OF_RUNNING_PROCESSES}'
+          value: '30'
+        - macro: '{$MIN_FREE_SWAP_SPACE}'
+          value: '50'
+        - macro: '{$MIN_MEM_AVAIL}'
+          value: 20M
+      dashboards:
+        - uuid: 1aae5906e5874c00bed4a4e8ab0053bf
+          name: 'System performance'
+          pages:
+            - {  }
+  triggers:
+    - uuid: a91a536dce404ecba39d38df84f4c6e1
+      expression: |
+        nodata(/OS Linux - Karlsbakk custom/custom.fsrocheck,120s)=1 or
+        nodata(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,7200s)=1 or
+        nodata(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,43200s)=1
+      recovery_mode: RECOVERY_EXPRESSION
+      recovery_expression: |
+        nodata(/OS Linux - Karlsbakk custom/custom.fsrocheck,120s)=0 and
+        nodata(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,120s)=0 and
+        nodata(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,120s)=0
+      name: 'General nodata check'
+      status: DISABLED
+      priority: INFO
+    - uuid: e25d7e702f1640b9b9f0cece68cfd0a0
+      expression: 'find(/OS Linux - Karlsbakk custom/custom.yumupdatescheck,,"like","OK")=0 and not find(/OS Linux - Karlsbakk custom/custom.kernelversioncheck,7d,"like","WARNING")=1'
+      name: 'Linux package update check'
+      priority: INFO

@@ -1,0 +1,60 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: c16895d408aa40f381edd67e713b4b92
+      name: 'Web servers'
+  templates:
+    - uuid: 6fb1b91c9c4c4b2c89490636fe343908
+      template: 'Karlsbakk - Generic Webtest - HTTPS'
+      name: 'Karlsbakk - Generic Webtest - HTTPS'
+      groups:
+        - name: 'Web servers'
+      items:
+        - uuid: ad27e655fc314504b6b116dcb201a74c
+          name: 'Simple HTTPS check'
+          type: EXTERNAL
+          key: 'check_https_simple.py[https://{HOST.NAME}/]'
+          value_type: TEXT
+          triggers:
+            - uuid: c24141b5cc484d48a162ac638c447efa
+              expression: 'find(/Karlsbakk - Generic Webtest - HTTPS/check_https_simple.py[https://{HOST.NAME}/])="ERROR"'
+              name: 'Simple HTTPS check'
+              priority: WARNING
+              description: 'find(/OsloMet - Generic Webtest - HTTPS/check_https_all_addresses.py["-i","{HOST.HOST}"])="ERROR"'
+      httptests:
+        - uuid: 7bc26d5d9c874c1395dbf06f297820eb
+          name: 'Websjekk HTTPS'
+          steps:
+            - name: 'Websjekk HTTPS'
+              url: 'https://{HOST.NAME}:{$HTTPS_PORT}'
+              timeout: 60s
+              status_codes: '{$HTTPS_GOOD_STATUS_CODES}'
+          tags:
+            - tag: Application
+              value: WEB
+      macros:
+        - macro: '{$HTTPS_CERT_DAYSLEFT}'
+          value: '-d'
+        - macro: '{$HTTPS_CERT_EXPIRY_EPOCH}'
+          value: '-e'
+        - macro: '{$HTTPS_CERT_EXPIRY_ISO}'
+          value: '-l'
+        - macro: '{$HTTPS_FAIL_CHECK_ATTEMPTS}'
+          value: '#5'
+        - macro: '{$HTTPS_GOOD_STATUS_CODES}'
+          value: '200-299,300-399'
+        - macro: '{$HTTPS_PORT}'
+          value: '443'
+  triggers:
+    - uuid: 0cfbf5a7472d4e2381ebe32ad722693a
+      expression: 'last(/Karlsbakk - Generic Webtest - HTTPS/web.test.fail[Websjekk HTTPS],{$HTTPS_FAIL_CHECK_ATTEMPTS})>0'
+      name: 'Web sjekk fail: HTTPS'
+      priority: WARNING
+    - uuid: 31f7bf7c466649d6833b25ba904cccac
+      expression: |
+        length(last(/Karlsbakk - Generic Webtest - HTTPS/web.test.error[Websjekk HTTPS]))>0 and 
+        min(/Karlsbakk - Generic Webtest - HTTPS/web.test.fail[Websjekk HTTPS],3m)>0
+      name: 'Web sjekk fail HTTPS: {ITEM.VALUE}'
+      status: DISABLED
+      priority: WARNING
+      description: '3 minutter forsinkelse og med feilkode'

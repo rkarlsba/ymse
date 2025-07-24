@@ -1,0 +1,37 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 100ec6b873cd4ce19cd032cfe7714bf7
+      template: 'BIND Stats'
+      name: 'BIND Stats'
+      vendor:
+        name: Roy Sigurd Karlsbakk
+        version: '0.1'
+      groups:
+        - name: Templates/Applications
+      items:
+        - uuid: cf468550ca2c40069c71c46a4a64042d
+          name: 'BIND JSON Stats'
+          type: HTTP_AGENT
+          key: bind.json
+          delay: 10m
+          history: 30d
+          value_type: TEXT
+          timeout: 10s
+          url: 'http://{HOST.HOST}:{$BIND_HTTP_PORT}/json'
+        - uuid: e3784b652c9e4118a3a7e8a2243cf77e
+          name: 'BIND XML Stats'
+          type: HTTP_AGENT
+          key: bind.xml
+          delay: 10m
+          history: 30d
+          value_type: TEXT
+          status: DISABLED
+          timeout: 10s
+          url: 'http://{HOST.HOST}:{$BIND_HTTP_PORT}/'
+      macros:
+        - macro: '{$BIND_HTTP_PORT}'
+          value: '8653'

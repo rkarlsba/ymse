@@ -1,0 +1,40 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: c16895d408aa40f381edd67e713b4b92
+      name: 'Web servers'
+  templates:
+    - uuid: 5bebd286f53f4bd1b7bb1b2cd6921ac5
+      template: 'Karlsbakk - Generic Webtest - HTTP'
+      name: 'Karlsbakk - Generic Webtest - HTTP'
+      groups:
+        - name: 'Web servers'
+      httptests:
+        - uuid: d3810c49c532405dbde89775142b85aa
+          name: 'Websjekk HTTP'
+          steps:
+            - name: 'Websjekk HTTP'
+              url: 'http://{HOST.NAME}:{$HTTP_PORT}'
+              timeout: 60s
+              status_codes: '200-299,300-399'
+          tags:
+            - tag: Application
+              value: WEB
+      macros:
+        - macro: '{$HTTP_FAIL_CHECK_ATTEMPTS}'
+          value: '#5'
+        - macro: '{$HTTP_PORT}'
+          value: '80'
+  triggers:
+    - uuid: ef5344f2424a4d9197be10e15c021c2b
+      expression: 'last(/Karlsbakk - Generic Webtest - HTTP/web.test.fail[Websjekk HTTP],{$HTTP_FAIL_CHECK_ATTEMPTS})>0'
+      name: 'Web sjekk fail: HTTP'
+      priority: WARNING
+    - uuid: 255ee01e4b35415bb07e3b8289441b5a
+      expression: |
+        length(last(/Karlsbakk - Generic Webtest - HTTP/web.test.error[Websjekk HTTP]))>0 and 
+        min(/Karlsbakk - Generic Webtest - HTTP/web.test.fail[Websjekk HTTP],3m)>0
+      name: 'Web sjekk fail HTTP: {ITEM.VALUE}'
+      status: DISABLED
+      priority: WARNING
+      description: '3 minutter forsinkelse og med feilkode'

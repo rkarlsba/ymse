@@ -1,0 +1,26 @@
+zabbix_export:
+  version: '7.4'
+  template_groups:
+    - uuid: c16895d408aa40f381edd67e713b4b92
+      name: 'Web servers'
+  templates:
+    - uuid: d5360679025a4cada5430efec95c7c5e
+      template: 'Generic Webtest - HTTPS'
+      name: 'Generic Webtest - HTTPS'
+      templates:
+        - name: 'Template SSL Certificate Check'
+      groups:
+        - name: 'Web servers'
+      httptests:
+        - uuid: 4780d0e4ca654942b528ee332dfa4dc8
+          name: 'Generic 200 test - https'
+          steps:
+            - name: 'Generic 200 test - https'
+              url: 'https://{HOST.NAME}:${PORT}/'
+              posts: ''
+          tags:
+            - tag: Application
+              value: WEB
+      macros:
+        - macro: '{$PORT}'
+          value: '443'
