@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use Data::Dumper;
 
 =pod
 
@@ -18,5 +19,32 @@ Template App IMAP Service	Hosts 1	Items 1	Triggers 1	Graphs	Dashboards	Discovery
 
 =cut
 
-my $infile = 'oldshite.md';
-open my $fd,$infile || die "Can't open file '$infile': $!\n"
+my $infile = "oldshite.txt";
+my $firstline = 1;
+my $output;
+
+open(my $fd, "<", $infile) || die "Can't open file '$infile': $!\n";
+
+while (my $s = <$fd>) {
+    chomp($s);
+    my $line = "| ";
+    my @splat = split(/\t/, $s);
+    if ($firstline) {
+        $output = "| Template name | Hosts | Items | Triggers | Graphs | Dashboards | Discovery | Web | Vendor | Version | Linked templates | Linked to templates | Tags\n";
+        $firstline = 0;
+        next;
+    }
+    my $servicename = $splat[0];
+    $line = "| $servicename |";
+    shift @splat;
+    foreach my $field (@splat) {
+        my $num = 0;
+        if ($field =~ /^\w+\s+(\d+)$/) {
+            $num = $1;
+        }
+        $line .= " $num |"
+    }
+    $line .= "\n";
+    $output .= $line;
+}
+print $output;
