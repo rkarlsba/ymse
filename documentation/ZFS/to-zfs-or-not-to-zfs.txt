@@ -1,0 +1,20 @@
+If you don't have enough SATA ports, grab an LSI 3081 off ebay or ali or something. They're dead cheap and you can hook up 8 drives to them, be it SAS or SATA (but I don't think you can mix the two, so either SAS or SATA). For home use, SATA should work fine. RAID is the number of drives you can lose, so RAID-5 is like RAIDz1, you can lose one, but lose the capacity of one. RAIDz2 is like RAID-6, you can lose two drives, but again, lose the capaicty of two drives. RAIDz3 doesn't have a similar RAID-level, but you can lose three drives, but at that point, it starts slowing down writes quite a tad, so I wouldn't recommend that except for pure backup.
+
+Also, keep in mind that VDEVs in ZFS are static, meaning if it's a RAIDz1 with three drives, it can only be a RAIDz1 with three drives, although you can replace all the drives and have the VDEV grow. A mirror is just two striped drives, so you can start out with a single drive (scary), but then add another to mirror it. Then  you can add more mirrors, each a VDEV, but again, you can't exte
+nd a mirror to more drives. If you add a third drive to a ZFS mirror, you just make a three-way-mirror, meaning it's very safe, but not very useful in terms of cost.
+
+As with ZFS and datasets, it runs SMB in the kernel and can't share a single drive, or at least that's the way it was, so you need more datasets.
+As for syncing, use rsync or something similar.
+
+Another thing with ZFS, it gets really slow if you fill it up to over 90%, over 95%, it just trashes everything. The thing is the allocation in ZFS, above 95% it goes into panic mode and instead o
+f allocating large, fine blocks, it just jams in data in whatever corner it can find, effectively fragmenting all new data really badly!
+
+Now, ZFS is nice, since it checksums everything (although there is a speed penalty for that too), but again, for video data, you hardly need that, beleive me, at least if you have a backup elsewhere. So the alternative is to use Linux MD ("multiple devices") RAID. That way you can start out with two drives in a mirror, or RAID-5 and then add more drives as you go, change from a mirror to RAID-5 or to RAID-6, but try to keep the number of drives in a RAID set to something usable (say max 4 for RAID-5 and 8 or 10 for RAID-6). You can have it all in a single filesystem if you like, but you can also (as at least I do) create one big VG (volume group) and then create separate LVs (logical volumes) for separate filesystems. Filesystems do not share space, like datasets in a zpool, but if you don't grow them too large, it's not an issue and often, you can just use a single filesystem anyway. This is also easy to setup *and* expand with openmediavault, which is also free.
+
+PS: As for syncing with google, there are things like rsync that works well, at least for one-way sync. But then, if you setup remote access and have sufficient bandwidth, you can just use googlefor the backup and your own system for the real data.
+
+PPS: If you choose to use mdraid as in openmediavault, you'd better choose to use the XFS filesystem. The only problem with it, is that filesystems can't be shrunk (like with ext4), but then again, ZFS has this issue as well.
+
+Good luck!
+
+roy
