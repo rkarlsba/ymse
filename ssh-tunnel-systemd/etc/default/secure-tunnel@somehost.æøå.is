@@ -1,0 +1,16 @@
+# vim:ft=sh
+
+# secure-tunnel@somehost.thisdoesntexistbecauseæøåwontworkindotis.is
+#
+# Hopefully you changed this file's name and content ;)
+
+# If this is left unchanged, it'll tell you
+HAVE_BOTHERED_TO_RTFM_AND_RTFS=0
+
+# If these are left unchanged, it'll won't, but it won't work either
+LOCAL_PORT="22"
+LISTEN_ADDRESS="localhost"
+REMOTE_PORT="20202"
+REMOTE_USER="myremoteuser"
+REMOTE_HOST="somehost.thisdoesntexistbecauseæøåwontworkindotis.is"
+

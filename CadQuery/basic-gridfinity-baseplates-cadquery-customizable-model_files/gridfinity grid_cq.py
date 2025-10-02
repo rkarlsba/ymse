@@ -1,8 +1,15 @@
+#!/usr/bin/env python3
+
 #reimplementation of basic gridfinity grid design by Zack Freedman
 #designed in CadQuery and CQ-Editor both from github out on 2022-04-13
+
 import cadquery as cq
 import math
 from cadquery import exporters
+
+if 'show_object' not in globals():
+    def show_object(*args, **kwargs):
+        pass
 
 output_dir = 'stl'
 

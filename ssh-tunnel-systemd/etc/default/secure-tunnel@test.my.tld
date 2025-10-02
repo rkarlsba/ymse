@@ -1,7 +1,0 @@
-# vim:ft=sh
-
-LOCAL_PORT="93422"
-LISTEN_ADDRESS="localhost"
-REMOTE_PORT="22"
-REMOTE_USER="mymachinnename_tun"
-REMOTE_HOST="tunnel.my.tld"

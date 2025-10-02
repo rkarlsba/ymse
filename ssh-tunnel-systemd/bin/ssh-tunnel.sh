@@ -1,6 +1,7 @@
-root@smilla:~# ssh -p 8822 localhost
-#
-# ========================================== DOCUMENTATION ======================================= {{{
+#!/usr/bin/env bash
+# vim:ts=4:sw=4:sts=4:et:ai:si:fdm=marker
+
+# ================================ DOCUMENTATION ================================ {{{
 # Flags with which to use with ssh
 #  -N   Do not execute a remote command. This is useful for just forwarding ports.
 #  -n   Redirects stdin from /dev/null (actually, prevents reading from stdin).
@@ -32,13 +33,24 @@ root@smilla:~# ssh -p 8822 localhost
 
 #
 # ========================================== DOCUMENTATION ======================================= }}}
-# Variables
-LISTEN_ADDRESS="localhost"
-LOCAL_PORT="22"
-REMOTE_PORT="9444"
-REMOTE_USER="gilean"
-REMOTE_HOST="smilla.karlsbakk.net"
-SSH_FLAGS="-v -o ServerAliveInterval=20 -o ServerAliveCountMax=5 -o ExitOnForwardFailure=yes -n -N -R $REMOTE_PORT:$LISTEN_ADDRESS:$LOCAL_PORT $REMOTE_USER@$REMOTE_HOST"
+
+# No variables here, they should be in this file
+defaults_file='/etc/default/secure-tunnel@somehost.thisdoesntexistbecauseæøåwontworkindotis.is'
+if [ ! -r $defaults_file ]
+then
+    echo "Can't read defaults file \"$defaults_file\""
+    exit 1
+fi
+source $defaults_file
+
+if [ "$HAVE_BOTHERED_TO_RTFM_AND_RTFS" = "" -o "$HAVE_BOTHERED_TO_RTFM_AND_RTFS" -eq 0 ]
+then
+    echo "Please RTFM *and* RTFS!" >&2
+    exit 1
+fi
+
+SSH_OPTIONS="-o ServerAliveInterval=20 -o ServerAliveCountMax=5 -o ExitOnForwardFailure=yes"
+SSH_FLAGS="$SSH_OPTIONS -n -N -R $REMOTE_PORT:$LISTEN_ADDRESS:$LOCAL_PORT $REMOTE_USER@$REMOTE_HOST"
 SSH_CMD="/usr/bin/ssh"
 
 $SSH_CMD $SSH_FLAGS
