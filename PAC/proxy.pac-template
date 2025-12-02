@@ -1,4 +1,4 @@
-// vim:ft=javascript:fdm=marker
+// vim:ft=javascript:ts=2:sw=2:sts=2:et:ai:fdm=marker
 
 /* Usage: {{{
  *
@@ -102,4 +102,60 @@ function FindProxyForURL(url, host) {
 }
 
 * }}} */
+// Multiple IPs/hostnames with multiple proxies - in arrays
+
+function FindProxyForURL(url, host) {
+  // Array of proxies
+  var proxies = [
+    "PROXY proxy1.my.tld:3128",  // # proxy1
+    "PROXY proxy2.my.tld:8080",  // # proxy2
+    "PROXY proxy3.my.tld:8000"   // # proxy3
+  ];
+
+  // Array of host groups for each proxy
+  var hostGroups = [
+    [ "*.av.my.tld" ],      // for proxy1
+    [ "*.junk.my.tld" ],    // for proxy2
+    [ ]                     // for proxy3
+  ];
+
+  // Array of network groups for each proxy
+  var netGroups = [
+    [ { network: "10.11.12.0", mask: "255.255.255.0" } ],     // for proxy1
+    [ { network: "192.168.100.0", mask: "255.255.254.0" } ],  // for proxy2
+    [ ]                                                       // for proxy3
+  ];
+
+  // Helper function to match hostnames against host patterns
+  function matchHostInGroup(host, hostPatterns) {
+    for (var i = 0; i < hostPatterns.length; i++) {
+      if (shExpMatch(host, hostPatterns[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Helper function to match IPs against network groups
+  function matchIPInGroup(host, nets) {
+    var ip = dnsResolve(host);
+    if (!ip) return false;
+    for (var i = 0; i < nets.length; i++) {
+      if (isInNet(ip, nets[i].network, nets[i].mask)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Check groups iteratively and return the matching proxy
+  for (var i = 0; i < proxies.length; i++) {
+    if (matchHostInGroup(host, hostGroups[i]) || matchIPInGroup(host, netGroups[i])) {
+      return proxies[i];
+    }
+  }
+
+  // Default to direct connection if no proxy matches
+  return "DIRECT";
+}
 
