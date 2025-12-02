@@ -1,0 +1,105 @@
+// vim:ft=javascript:fdm=marker
+
+/* Usage: {{{
+ *
+ * Create a new file, if you like, use this as a template and save it as
+ * proxy.pac. If you have something like an intranet server, put it there
+ * somewhere and find the URL, like https://myserver.my.tld/proxy.pac 
+ * If you only want this for certain clients, copy the file to somewhere
+ * locally, like and give the path to the file something like this
+ * file:///home/myuser/pac/proxy.pac
+ *
+ * Most of this was written by Perplexity AI, so don't blame me!
+ *
+ * This is public domain. See https://creativecommons.org/public-domain/pdm/
+ * for details.
+ *
+ * }}} */
+/* Single IP+hostname {{{
+
+function FindProxyForURL(url, host) {
+  if (shExpMatch(host, "*.somedomain.tld") || isInNet(host, "10.11.12.0", "255.255.255.0"))
+    return "PROXY myproxy.my.tld:3128";
+  return "DIRECT";
+}
+
+}}} */
+/* Multiple IPs/hostnames {{{
+
+function FindProxyForURL(url, host) {
+  var hosts = ["*.somedomain.tld", "*.someanotherdomain.tld"];
+  var nets = [
+    {network: "10.11.12.0", mask: "255.255.255.0"},
+    {network: "192.168.1.0", mask: "255.255.255.0"}
+  ];
+
+  for (var i = 0; i < hosts.length; i++) {
+    if (shExpMatch(host, hosts[i]))
+      return "PROXY myproxy.my.tld:3128";
+  }
+
+  for (var j = 0; j < nets.length; j++) {
+    if (isInNet(host, nets[j].network, nets[j].mask))
+      return "PROXY myproxy.my.tld:3128";
+  }
+
+  return "DIRECT";
+}
+
+* }}} */
+/* Multiple IPs/hostnames with multiple proxies {{{
+
+function FindProxyForURL(url, host) {
+  // Define proxies
+  var proxy1 = "PROXY proxy1.my.tld:3128";
+  var proxy2 = "PROXY proxy2.my.tld:8080";
+  var proxy3 = "PROXY proxy3.my.tld:8888";
+
+  // Group hostnames per proxy
+  var group1_hosts = ["*.somedomain.tld", "*.anotherdomain.tld"];
+  var group2_hosts = ["specificdomain.com", "*.example.com"];
+
+  // Group IP ranges per proxy
+  var group1_nets = [{network: "10.11.12.0", mask: "255.255.255.0"}];
+  var group3_nets = [{network: "192.168.1.0", mask: "255.255.255.0"}];
+
+  // Helper function to match hostnames against a group
+  function matchHostInGroup(host, hostPatterns) {
+    for (var i = 0; i < hostPatterns.length; i++) {
+      if (shExpMatch(host, hostPatterns[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Helper function to match IPs against network groups
+  function matchIPInGroup(host, nets) {
+    // Use dnsResolve to get IP for hostname where needed
+    var ip = dnsResolve(host);
+    if (!ip) return false;
+    for (var i = 0; i < nets.length; i++) {
+      if (isInNet(ip, nets[i].network, nets[i].mask)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Check groups in order and return corresponding proxy
+  if (matchHostInGroup(host, group1_hosts) || matchIPInGroup(host, group1_nets)) {
+    return proxy1;
+  }
+  if (matchHostInGroup(host, group2_hosts)) {
+    return proxy2;
+  }
+  if (matchIPInGroup(host, group3_nets)) {
+    return proxy3;
+  }
+
+  // Default to direct connection if nothing matched
+  return "DIRECT";
+}
+
+* }}} */
+
