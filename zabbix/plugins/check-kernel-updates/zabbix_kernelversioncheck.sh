@@ -119,7 +119,6 @@ case $DISTRO in
         esac
         ;;
     debian|ubuntu)
-        # FIXME Legg til 'latest' og sånt hvis det trengs - trur apparmor kan være snill nok til å tillate dette, da
         LATEST=$( dpkg -l linux-image* | awk '/^ii  linux-image-[0-9]/ { print $2 }' | sort -V | tail -1 | sed s/^linux-image-// )
         ;;
     *)
