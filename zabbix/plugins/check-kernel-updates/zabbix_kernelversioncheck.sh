@@ -65,17 +65,17 @@ do
     case "$1" in
         --cron)
             RUNMODE="cron"
-            runmode_count=$((runmode_count+1))
+            runmode_count=$(( runmode_count+1 ))
             shift
             ;;
         --direct)
             RUNMODE="direct"
-            runmode_count=$((runmode_count+1))
+            runmode_count=$(( runmode_count+1 ))
             shift
             ;;
         --local)
             RUNMODE="local"
-            runmode_count=$((runmode_count+1))
+            runmode_count=$(( runmode_count+1 ))
             shift
             ;;
         --help)
