@@ -1,4 +1,4 @@
-# vim:ts=:ts=8:sw==8:st==8:et:ai:tw=100:fdm=marker
+# vim:ts=8:ts=8:sw=8:st=8:et:ai:tw=100:fdm=marker
 
 # Installasjon av zabbix-pluggen for å få overvåka postfix
 
