@@ -45,14 +45,6 @@ EOT
     exit 0
 }
 
-# Optional: verify GNU getopt presence (on Linux it's usually fine)
-# if ! getopt --test >/dev/null 2>&1; then
-#     echo "Error: This script requires GNU getopt with long-option support." >&2
-#     echo "Tip: On macOS, install GNU getopt (e.g., via Homebrew) and invoke that binary explicitly." >&2
-#     exit 1
-# fi
-
-# Parse
 PARSED="$(getopt -o "$SHORT_OPTS" -l "$LONG_OPTS" -- "$@")" || {
   MESSAGE="Failed to parse options"
   echo "$STATUS $MESSAGE" >&2
