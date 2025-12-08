@@ -8,11 +8,27 @@
 
 PATH=$PATH:/usr/local/bin
 
+PROGNAME=$0
 OUTFILE='/var/run/zabbix/zabbix-kernelversioncheck'
 STATUS='WARNING'
-
 RUNMODE='direct'
 MESSAGE=''
+
+#   --cron      Run as cronjob, saving data to intermediate file (good for
+#               slower systems like RHEL where yum/dnf is so slow a zabbix
+#               check can easily timeout.
+#   --direct    Just check, don't use intermediate file.
+#   --local     Read intermediate file, don't check directly.
+#   --help      This help.
+
+help() {
+    printf "Syntax: $PROGNAME [ --cron | --direct --local | --help ]\n\n"
+    printf "    --cron\tRun as cronjob, saving data to intermediate file (good for\n\t\tslower systems like RHEL where yum/dnf is so slow a zabbix\n\t\tcheck can easily timeout.\n";
+    printf "    --direct\tJust check, don't use intermediate file.\n"
+    printf "    --local\tRead intermediate file, don't check directly.\n"
+    printf "    --help\tThis help.\n"
+    exit 0
+}
 
 case "$#" in
     0)
@@ -26,6 +42,9 @@ case "$#" in
                 ;;
             "--local")
                 RUNMODE='local'
+                ;;
+            "--help")
+                help
                 ;;
             *)
                 MESSAGE="Illegal run mode '$1'"
