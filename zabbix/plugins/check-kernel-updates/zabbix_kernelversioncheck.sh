@@ -6,70 +6,106 @@
 # Copyleft Roy Sigurd Karlsbakk <roy@karlsbakk.net> <roysk@oslomet.no>
 # Licensed under GPL v3
 
+set -o errexit -o pipefail -o nounset
+
 PATH=$PATH:/usr/local/bin
 
 PROGNAME=$0
 OUTFILE='/var/run/zabbix/zabbix-kernelversioncheck'
 STATUS='WARNING'
 RUNMODE='direct'
-MESSAGE=''
-
-# --help output {{{
-#
-# Syntax: ./zabbix_kernelversioncheck.sh [ --cron | --direct --local | --help ]
-#   --cron      Run as cronjob, saving data to intermediate file (good for
-#               slower systems like RHEL where yum/dnf is so slow a zabbix
-#               check can easily timeout.
-#   --direct    Just check, don't use intermediate file.
-#   --local     Read intermediate file, don't check directly.
-#   --help      This help.
-#
-# }}}
-
-help() {
-    printf "Syntax: $PROGNAME [ --cron | --direct --local | --help ]\n"
-    printf "    --cron\tRun as cronjob, saving data to intermediate file (good for\n\t\tslower systems like RHEL where yum/dnf is so slow a zabbix\n\t\tcheck can easily timeout.\n";
-    printf "    --direct\tJust check, don't use intermediate file.\n"
-    printf "    --local\tRead intermediate file, don't check directly.\n"
-    printf "    --help\tThis help.\n"
-    exit 0
-}
-
-case "$#" in
-    0)
-        ;;
-    1)
-        case "$1" in
-            "--cron")
-                RUNMODE='cron'
-                ;;
-            "--direct")
-                ;;
-            "--local")
-                RUNMODE='local'
-                ;;
-            "--help")
-                help
-                ;;
-            *)
-                MESSAGE="Illegal run mode '$1'"
-                ;;
-        esac
-        ;;
-    *)
-        MESSAGE="Illegal number of arguments ($#)"
-        echo $STATUS $MESSAGE
-        exit 1
-        ;;
-esac
-
+MESSAGE="No such error, this doesn't make sense!!!"
+LONG_OPTS="cron,direct,local,help"
+SHORT_OPTS=""  # none
 DISTRO=$( zabbix_linux_distro_check.pl )
 RETCODE=$?
+runmode_count=0
 
 if [ $RETCODE -ne 0 ]
 then
     echo "Can't run distro check - exiting with $RETCODE"
     exit $RETCODE
+fi
+
+help() {
+    cat <<EOT
+Syntax: $PROGNAME [ --cron | --direct --local | --help ]
+    --cron      Run as cronjob, saving data to intermediate file (good for
+                slower systems like RHEL where yum/dnf is so slow a zabbix
+                check can easily timeout.
+    --direct    Just check, don't use intermediate file.
+    --local     Read intermediate file, don't check directly.
+    --help      This help.
+
+Notes:
+    - Use only one mode.
+    - On Debian and related systems, the check is always done directly, since
+      it only takes a few milliseconds.
+EOT
+    exit 0
+}
+
+# Optional: verify GNU getopt presence (on Linux it's usually fine)
+# if ! getopt --test >/dev/null 2>&1; then
+#     echo "Error: This script requires GNU getopt with long-option support." >&2
+#     echo "Tip: On macOS, install GNU getopt (e.g., via Homebrew) and invoke that binary explicitly." >&2
+#     exit 1
+# fi
+
+# Parse
+PARSED="$(getopt -o "$SHORT_OPTS" -l "$LONG_OPTS" -- "$@")" || {
+  MESSAGE="Failed to parse options"
+  echo "$STATUS $MESSAGE" >&2
+  exit 1
+}
+eval set -- "$PARSED"
+
+while true
+do
+    case "$1" in
+        --cron)
+            RUNMODE="cron"
+            runmode_count=$((runmode_count+1))
+            shift
+            ;;
+        --direct)
+            RUNMODE="direct"
+            runmode_count=$((runmode_count+1))
+            shift
+            ;;
+        --local)
+            RUNMODE="local"
+            runmode_count=$((runmode_count+1))
+            shift
+            ;;
+        --help)
+            help
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            MESSAGE="Internal parsing error near '$1'"
+            echo "$STATUS $MESSAGE" >&2
+            exit 1
+            ;;
+    esac
+done
+
+# Enforce at most one runmode
+if [ "$runmode_count" -gt 1 ]; then
+  MESSAGE="Specify only one run mode (got $runmode_count)"
+  echo "$STATUS $MESSAGE" >&2
+  exit 1
+fi
+
+# No stray positional args allowed
+if [ "$#" -gt 0 ]; then
+  MESSAGE="Unexpected arguments: $*"
+  echo "$STATUS $MESSAGE"
+  exit 1
 fi
 
 case $DISTRO in
@@ -117,6 +153,7 @@ case $RUNMODE in
         then
             echo "$STATUS $MESSAGE" > $OUTFILE
         else
-            echo "[1] $STATUS [2] $MESSAGE"
+            echo "$STATUS $MESSAGE"
         fi
 esac
+
