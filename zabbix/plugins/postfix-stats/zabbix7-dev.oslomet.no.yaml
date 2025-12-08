@@ -1,0 +1,650 @@
+---
+# vim:ts=2:sw=2:sts=2:et:ai:fdm=marker
+#
+# zabbix7-dev.oslomet.no.yaml
+#
+# Rolf: Under har jeg skrevet litt kommentarer om hva jeg har gjort og hva som
+# ikke ser ut til å virke.
+# 
+classes:
+  - packages
+  - selinux
+  - profile::nft
+  - omcerts
+  - zabbix::server
+  - zabbix::web
+
+# Denne gir ikke noen feilmeldinger, men ser ikke ut til å ha noe å si, den
+# dukker ikke opp i noen av filene der den burde være.
+yum::repos:
+  epel:
+    ensure: present
+    enabled: true
+    exclude: 'zabbix*'
+
+# Denne virker
+domene: zabbix7-dev.oslomet.no
+omcerts::omcerts:
+  "%{lookup('domene')}":
+    commonname: "%{lookup('domene')}"
+    ensure: present
+
+packages::install:
+  - php
+  - php-bcmath
+  - php-cli
+  - php-common
+  - php-curl
+  - php-fpm
+  - php-gd
+  - php-gmp
+  - php-json
+  - php-ldap
+  - php-mbstring
+  - php-pear
+  - php-pgsql
+  - php-snmp
+  - php-xml
+  - postfix-perl-scripts
+  - zabbix-get
+  - zabbix-selinux-policy
+
+# Priority funka fint
+stdlib::manage::create_resources:
+  yumrepo:
+    zabbix_7:
+      baseurl: 'https://repo.zabbix.com/zabbix/7.4/stable/rhel/10/$basearch/'
+      descr: 'Zabbix Official Repository - $basearch'
+      enabled: true
+      gpgcheck: true
+      gpgkey: 'https://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-B5333005'
+      priority: 0
+
+  file:
+    /usr/share/zabbix/index.php:
+      ensure: file
+      content: |
+        <?php
+          header('Location: /ui');
+        ?>
+      owner: 'root'
+      group: 'root'
+      mode: '0644'
+
+# Sørg for at maillog er lesbar for gruppe zabbix også før loggrotasjon
+    /var/log/maillog:
+      ensure: file
+      owner: 'root'
+      group: 'zabbix'
+      mode: '0640'
+
+# Legg til zabbix-sjekk av postfix. Skrevet for å kjøre med sudo, den funker som
+# burker zabbix med gruppegreiene over.
+    '/etc/zabbix/zabbix_agent2.d/postfix.conf':
+      ensure: file
+      owner: 'root'
+      group: 'root'
+      mode: '0644'
+      content: |
+        # Postfix check from https://github.com/kstka/zabbix-postfix-template, changed to avoid using sudo
+        UserParameter=postfix.pfmailq,mailq | grep -v "Mail queue is empty" | grep -c '^[0-9A-Z]'
+        UserParameter=postfix[*],/opt/oslomet/bin/zabbix-postfix-stats.sh $1
+        UserParameter=postfix.update_data,/opt/oslomet/bin/zabbix-postfix-stats.sh
+
+# Hjelpeskript, en "tail" som husker der den var sist ved hjelp av ei
+# midlertidig fil under /tmp
+    '/opt/oslomet/bin/pygtail.py':
+      ensure: file
+      owner: 'root'
+      group: 'root'
+      mode: '0755'
+      content: |
+        #!/usr/bin/env python3 -tt
+        # -*- coding: utf-8 -*-
+
+        # pygtail - a python "port" of logtail2
+        # Copyright (C) 2011 Brad Greenlee <brad@footle.org>
+        #
+        # Derived from logcheck <http://logcheck.org>
+        # Copyright (C) 2003 Jonathan Middleton <jjm@ixtab.org.uk>
+        # Copyright (C) 2001 Paul Slootman <paul@debian.org>
+        #
+        # This program is free software; you can redistribute it and/or modify
+        # it under the terms of the GNU General Public License as published by
+        # the Free Software Foundation; either version 2 of the License, or
+        # (at your option) any later version.
+        #
+        # This program is distributed in the hope that it will be useful,
+        # but WITHOUT ANY WARRANTY; without even the implied warranty of
+        # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        # GNU General Public License for more details.
+        #
+        # You should have received a copy of the GNU General Public License
+        # along with this program; if not, write to the Free Software
+        # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+        from os import stat
+        from os.path import exists
+        import sys
+        import glob
+        import string
+        from optparse import OptionParser
+
+        __version__ = '0.2'
+
+        class Pygtail(object):
+            """
+            Creates an iterable object that returns only unread lines.
+            """
+            def __init__(self, filename, offset_file=None, paranoid=False):
+                self.filename = filename
+                self.paranoid = paranoid
+                self._offset_file = offset_file or "%s.offset" % self.filename
+                self._offset_file_inode = 0
+                self._offset = 0
+                self._fh = None
+                self._rotated_logfile = None
+
+                # if offset file exists, open and parse it
+                if exists(self._offset_file):
+                    offset_fh = open(self._offset_file, "r")
+                    (self._offset_file_inode, self._offset) = \
+                        [string.atoi(line.strip()) for line in offset_fh]
+                    offset_fh.close()
+                    if self._offset_file_inode != stat(self.filename).st_ino:
+                        # The inode has changed, so the file might have been rotated.
+                        # Look for the rotated file and process that if we find it.
+                        self._rotated_logfile = self._determine_rotated_logfile()
+
+            def __iter__(self):
+                return self
+
+            def next(self):
+                """
+                Return the next line in the file, updating the offset.
+                """
+                try:
+                    line = self._filehandle().next()
+                except StopIteration:
+                    # we've reached the end of the file; if we're processing the
+                    # rotated log file, we can continue with the actual file; otherwise
+                    # update the offset file
+                    if self._rotated_logfile:
+                        self._rotated_logfile = None
+                        self._fh.close()
+                        self._offset = 0
+                        # open up current logfile and continue
+                        try:
+                            line = self._filehandle().next()
+                        except StopIteration: # oops, empty file
+                            self._update_offset_file()
+                            raise
+                    else:
+                        self._update_offset_file()
+                        raise
+
+                if self.paranoid:
+                    self._update_offset_file()
+
+                return line
+
+            def readlines(self):
+                """
+                Read in all unread lines and return them as a list.
+                """
+                return [line for line in self]
+
+            def read(self):
+                """
+                Read in all unread lines and return them as a single string.
+                """
+                lines = self.readlines()
+                if lines:
+                    return ''.join(lines)
+                else:
+                    return None
+
+            def _filehandle(self):
+                """
+                Return a filehandle to the file being tailed, with the position set
+                to the current offset.
+                """
+                if not self._fh or self._fh.closed:
+                    filename = self._rotated_logfile or self.filename
+                    self._fh = open(filename, "r")
+                    self._fh.seek(self._offset)
+
+                return self._fh
+
+            def _update_offset_file(self):
+                """
+                Update the offset file with the current inode and offset.
+                """
+                offset = self._filehandle().tell()
+                inode = stat(self.filename).st_ino
+                fh = open(self._offset_file, "w")
+                fh.write("%s\n%s\n" % (inode, offset))
+                fh.close()
+
+            def _determine_rotated_logfile(self):
+                """
+                We suspect the logfile has been rotated, so try to guess what the
+                rotated filename is, and return it.
+                """
+                rotated_filename = self._check_rotated_filename_candidates()
+                if (rotated_filename and exists(rotated_filename) and
+                    stat(rotated_filename).st_ino == self._offset_file_inode):
+                    return rotated_filename
+                else:
+                    return None
+
+            def _check_rotated_filename_candidates(self):
+                """
+                Check for various rotated logfile filename patterns and return the first
+                match we find.
+                """
+                # savelog(8)
+                candidate = "%s.0" % self.filename
+                if (exists(candidate) and exists("%s.1.gz" % self.filename) and
+                    (stat(candidate).st_mtime > stat("%s.1.gz" % self.filename).st_mtime)):
+                    return candidate
+
+                # logrotate(8)
+                candidate = "%s.1" % self.filename
+                if exists(candidate):
+                    return candidate
+
+                # dateext rotation scheme
+                candidates = glob.glob("%s-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" % self.filename)
+                if candidates:
+                    candidates.sort()
+                    return candidates[-1] # return most recent
+
+                # no match
+                return None
+
+        def main():
+            # command-line parsing
+            cmdline = OptionParser(usage="usage: %prog [options] logfile",
+                description="Print log file lines that have not been read.")
+            cmdline.add_option("--offset-file", "-o", action="store",
+                help="File to which offset data is written (default: <logfile>.offset).")
+            cmdline.add_option("--paranoid", "-p", action="store_true",
+                help="Update the offset file every time we read a line (as opposed to"
+                     " only when we reach the end of the file).")
+
+            options, args = cmdline.parse_args()
+
+            if (len(args) != 1):
+                cmdline.error("Please provide a logfile to read.")
+
+            pygtail = Pygtail(args[0],
+                              offset_file=options.offset_file,
+                              paranoid=options.paranoid)
+            for line in pygtail:
+                sys.stdout.write(line)
+
+
+        if __name__ == "__main__":
+            main()
+
+# Selve zabbix-sjekken
+    '/opt/oslomet/bin/zabbix-postfix-stats.sh':
+      ensure: file
+      owner: 'root'
+      group: 'root'
+      mode: '0755'
+      content: |
+        #!/usr/bin/env bash
+        # vim:ts=4:sw=4:sts=4:et:ai:si:fdm=marker:isfname-==
+
+        MAILLOG=/var/log/maillog
+        PFOFFSETFILE=/tmp/zabbix-postfix-offset.dat
+        PFSTATSFILE=/tmp/postfix_statsfile.dat
+        TEMPFILE=$(mktemp)
+        PFLOGSUMM=/usr/sbin/pflogsumm
+        PYGTAIL=/opt/oslomet/bin/pygtail.py
+
+        # list of values we are interested in
+        PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'held' 'discarded' 'reject_warnings' 'bytes_received' 'bytes_delivered' )
+
+        # write result of running this script
+        write_result () {
+            echo "$2"
+            exit $1
+        }
+
+        # check for binaries we need to run the script
+        if [ ! -x ${PFLOGSUMM} ]
+        then
+            echo "ERROR: ${PFLOGSUMM} not found"
+            exit 1
+        fi
+
+        if [ ! -x ${PYGTAIL} ]
+        then
+            echo "ERROR: ${PYGTAIL} not found"
+            exit 1
+        fi
+
+        if [ ! -r ${MAILLOG} ]
+        then
+            echo "ERROR: ${MAILLOG} not readable"
+            exit 1
+        fi
+
+
+        # check whether file exists and the write permissions are granted
+        if [ ! -w "${PFSTATSFILE}" ]
+        then
+            touch "${PFSTATSFILE}" && chown zabbix:zabbix "${PFSTATSFILE}" > /dev/null 2>&1
+
+            if [ ! $? -eq 0 ]
+            then
+                result_text="ERROR: wrong exit code returned while creating file ${PFSTATSFILE} and setting its owner to zaabbix:zabbix"
+                result_code="1"
+                write_result "${result_code}" "${result_text}"
+            fi
+        fi
+
+        # read specific value from data file and print it
+        readvalue () {
+            local $key
+            key=$(echo ${PFVALS[@]} | grep -wo $1)
+            if [ -n "${key}" ]
+                then
+                value=$(grep -e "^${key};" "${PFSTATSFILE}" | cut -d ";" -f2)
+                echo "${value}"
+            else
+                rm "${TEMPFILE}"
+                result_text="ERROR: could not get value \"$1\" from ${PFSTATSFILE}"
+                result_code="1"
+                write_result "${result_code}" "${result_text}"
+            fi
+        }
+
+        # update value  in data file
+        updatevalue() {
+            local $key
+            local $pfkey
+
+            key=$1
+            pfkey=$(echo "$1" | tr '_' ' ')
+
+            # convert value to bytes
+            value=$(grep -m 1 "$pfkey" $TEMPFILE | awk '{print $1}' | awk '/k|m/{p = /k/?1:2}{printf "%d\n", int($1) * 1024 ^ p}')
+
+            # update values in data file
+            old_value=$(grep -e "^${key};" "${PFSTATSFILE}" | cut -d ";" -f2)
+            if [ -n "${old_value}" ]
+                then
+                sed -i -e "s/^${key};${old_value}/${key};$((${old_value}+${value}))/" "${PFSTATSFILE}"
+            else
+                echo "${key};${value}" >> "${PFSTATSFILE}"
+            fi
+        }
+
+        # is there a requests for specific value or do we update all values ?
+        if [ -n "$1" ]
+            then
+            readvalue "$1"
+        else
+            # read the new part of mail log and read it with pflogsumm to get the summary
+            "${PYGTAIL}" -o"${PFOFFSETFILE}" "${MAILLOG}" | "${PFLOGSUMM}" -h 0 -u 0 --no_bounce_detail --no_deferral_detail --no_reject_detail --no_smtpd_warnings --no_no_msg_size > "${TEMPFILE}" 2>/dev/null
+
+            if [ ! $? -eq 0 ]
+            then
+                result_text="ERROR: wrong exit code returned while running  \"${PYGTAIL}\" -o\"${PFOFFSETFILE}\" \"${MAILLOG}\" | \"${PFLOGSUMM}\" -h 0 -u 0 --no_bounce_detail --no_deferral_detail --no_reject_detail --no_smtpd_warnings --no_no_msg_size > \"${TEMPFILE}\" 2>/dev/null"
+                result_code="1"
+                write_result "${result_code}" "${result_text}"
+            fi
+
+            # update all values from pflogsumm summary
+            for i in "${PFVALS[@]}"
+            do
+                updatevalue "$i"
+            done
+
+            result_text="OK: statistics updated"
+            result_code="0"
+            write_result "${result_code}" "${result_text}"
+        fi
+
+        rm "${TEMPFILE}"
+
+# logrotate-klassa tar sånn overhånd, så bare overskriver denne her 
+    '/etc/logrotate.d/rsyslog':
+      ensure: file
+      owner: 'root'
+      group: 'root'
+      mode: '0644'
+      content: |
+        /var/log/cron
+        /var/log/messages
+        /var/log/secure
+        /var/log/spooler
+        {
+            missingok
+            sharedscripts
+            postrotate
+                /usr/bin/systemctl -s HUP kill rsyslog.service >/dev/null 2>&1 || true
+            endscript
+        }
+
+        /var/log/maillog
+        {
+            missingok
+            sharedscripts
+            create 0640 root zabbix
+            postrotate
+                /usr/bin/systemctl -s HUP kill rsyslog.service >/dev/null 2>&1 || true
+            endscript
+        }
+
+##### SELINUX #####
+#selinux::mode: 'permissive'
+selinux::mode: 'enforcing'
+
+selinux::boolean:
+  httpd_can_network_connect:
+    ensure: true
+    persistent: true
+# definert i modules/zabbix/manifests/web.pp
+#  httpd_can_network_connect_db:
+#    ensure: true
+#    persistent: true
+#  httpd_can_connect_zabbix:
+#    ensure: true
+#    persistent: true
+  httpd_can_network_relay:
+    ensure: true
+    persistent: true
+  httpd_graceful_shutdown:
+    ensure: true
+    persistent: true
+
+selinux::port:
+  allow-postgresql-ports:
+    ensure: present
+    seltype: postgresql_port_t
+    protocol: tcp
+    port_range:
+    - 5432
+    - 5434
+
+# zabbix_can_network og ymse annet som er kommentert ut {{{
+#  zabbix_can_network:  # does not exist
+#    ensure: true
+#    persistent: true
+
+#selinux::module:
+#  zabbix-server:
+#    ensure: present
+#    source_te: 'puppet:///modules/zabbix/zabbix-server.te'
+#  zabbix-server-ipc:
+#    ensure: present
+#    source_te: 'puppet:///modules/zabbix/zabbix-server-ipc.te'
+#
+
+#selinux::module:
+#  'zabbix-server':
+#    ensure: 'present'
+#    content_te: |
+#      module zabbix-server 1.0;
+#      require {
+#              type zabbix_t;
+#              class process setrlimit;
+#      }
+#      #============= zabbix_t ==============
+#      allow zabbix_t self:process setrlimit;
+#    builder: 'simple' # simple|refpolicy
+#    #builder: 'refpolicy' # simple|refpolicy
+#  'zabbix-server-ipc':
+#    ensure: 'present'
+#    content_te: |
+#      module zabbix-server-ipc 1.0;
+#      require {
+#              type tmp_t;
+#              type zabbix_t;
+#              class sock_file { create write };
+#              class unix_stream_socket connectto;
+#      }
+#      #============= zabbix_t ==============
+#      allow zabbix_t self:unix_stream_socket connectto;
+#      allow zabbix_t tmp_t:sock_file { create write };
+#    builder: 'simple' # simple|refpolicy
+#    #builder: 'refpolicy' # simple|refpolicy
+
+# Yumrepo['zabbix_7'] -> Class['zabbix::server']
+#
+# }}}
+# Sertifikater {{{
+#
+# Fra prod:
+#
+# SSLCACertificateFile /opt/om-certs/zabbix.oslomet.no/bundle-zabbix.oslomet.no.crt
+# SSLCertificateChainFile /opt/om-certs/zabbix.oslomet.no/chain-zabbix.oslomet.no.pem
+# SSLCertificateFile  /opt/om-certs/zabbix.oslomet.no/zabbix.oslomet.no.pem
+# SSLCertificateKeyFile /opt/om-certs/zabbix.oslomet.no/zabbix.oslomet.no.key
+#
+# Ny verdier
+#
+# SSLCACertificateFile /etc/pki/tls/certs/zabbix7-dev.oslomet.no/bundle-zabbix7-dev.oslomet.no.crt
+# SSLCertificateChainFile /etc/pki/tls/certs/zabbix7-dev.oslomet.no/chain-zabbix7-dev.oslomet.no.pem
+# SSLCertificateFile /etc/pki/tls/certs/zabbix7-dev.oslomet.no/zabbix7-dev.oslomet.no.pem
+# SSLCertificateKeyFile /etc/pki/tls/certs/zabbix7-dev.oslomet.no/zabbix7-dev.oslomet.no.key
+#
+# }}}
+
+# PHP tuning and general frontend settings
+zabbix::web::php_max_execution_time: 300
+zabbix::web::php_memory_limit: '512M'
+zabbix::web::php_post_max_size: '16M'
+zabbix::web::php_upload_max_filesize: '8M'
+zabbix::web::php_max_input_time: 300
+zabbix::web::database_type: 'postgresql'
+zabbix::web::database_user: 'zabbix_dev'
+zabbix::web::database_name: 'zabbix_dev'
+zabbix::web::database_host: 'pgsql-cluster-stage.oslomet.no'
+# zabbix::web::database_host: 'localhost'
+zabbix::web::database_password: 'ipe5eemai8OhnookaighaequeeRohx9U'
+zabbix::web::apache_use_ssl: false
+zabbix::web::listen_ip: '*'
+zabbix::web::listen_port: 443
+zabbix::web::manage_service: true
+zabbix::web::default_vhost: true
+zabbix::web::manage_vhost: true
+# De under vil bare syte og klage
+# zabbix::web::apache_vhost_custom_params:
+#   RedirectMatch: '^/$ /ui'
+# zabbix::web::apache_vhost_custom_params:
+#   - 'RedirectMatch ^/$ /ui'
+zabbix::web::apache_use_ssl: true
+zabbix::web::apache_ssl_cert: '/etc/pki/tls/certs/zabbix7-dev.oslomet.no/zabbix7-dev.oslomet.no.pem'
+zabbix::web::apache_ssl_key: '/etc/pki/tls/certs/zabbix7-dev.oslomet.no/zabbix7-dev.oslomet.no.key'
+zabbix::web::apache_ssl_chain: '/etc/pki/tls/certs/zabbix7-dev.oslomet.no/chain-zabbix7-dev.oslomet.no.pem'
+zabbix::web::zabbix_url: "%{facts.fqdn}"
+zabbix::web::default_vhost: true
+zabbix::web::zabbix_server: "%{facts.fqdn}"
+zabbix::web::zabbix_server_name: 'Zabbix 7.4 Dev'
+
+# Zabbix server things
+zabbix::database_type: 'postgresql'
+zabbix::server::database_host: 'pgsql-cluster-stage.oslomet.no'
+# zabbix::server::database_host: 'localhost'
+zabbix::server::database_name: 'zabbix_dev'
+zabbix::server::database_user: 'zabbix_dev'
+zabbix::server::database_password: 'ipe5eemai8OhnookaighaequeeRohx9U'
+zabbix::server::zabbix_version: '7.4'
+zabbix::zabbix_url: "%{facts.fqdn}"
+zabbix::zabbix_server: "%{facts.fqdn}"
+zabbix::zabbix_server_name: 'Zabbix 7.4 Dev'
+zabbix::server::manage_repo: false
+zabbix::params::manage_database: false
+zabbix::server::manage_database: false
+zabbix::manage_database: false
+zabbix::server::manage_service: true
+zabbix::server::manage_selinux: false  # Tuller til, feil verdier
+
+# PostgreSQL server things
+postgresql::globals::version: '16'
+postgresql::globals::needs_initdb: true
+postgresql::globals::service_enable: true
+postgresql::globals::service_ensure: 'running'
+postgresql::globals::service_manage: true
+postgresql::globals::service_name: 'postgresql.service'
+postgresql::globals::datadir: '/var/lib/pgsql/data/'
+postgresql::globals::pg_hba_conf_path: '/var/lib/pgsql/data/pg_hba.conf'
+postgresql::globals::initdb_path: '/usr/bin/initdb'
+postgresql::globals::listen_addresses: "*"
+postgresql::server::psql_path: '/usr/bin/psql'
+
+postgresql::server::listen_addresses: '*'
+postgresql::server::service_ensure: 'running'
+postgresql::server::service_enable: true
+postgresql::server::service_manage: true
+postgresql::server::version: '16'
+
+# Allow all traffic out
+profile::nft::out_all: true
+
+nftables::rules:
+  'default_in-zabbix_server':
+    order: '50'
+    ensure: 'present'
+    content: |
+      tcp dport { 80 } ip saddr @om_netv4 counter accept comment "HTTP v4"
+      tcp dport { 80 } ip6 saddr @om_netv6 counter accept comment "HTTP v6"
+      tcp dport { 443 } ip saddr @om_netv4 counter accept comment "HTTPS v4"
+      tcp dport { 443 } ip6 saddr @om_netv6 counter accept comment "HTTPS v6"
+      tcp dport { 10051 } ip saddr @om_netv4 counter accept comment "Apache active agent v4"
+      tcp dport { 10051 } ip6 saddr @om_netv6 counter accept comment "Apache active agent v6"
+
+zabbix_agent2::repo_manage: false
+
+zabbix_agent2::config:
+  #HostMetadata: "Linux BumpChange3 has_puppet"
+  HostMetadata: "Linux has_puppet"
+  PidFile: '/var/run/zabbix/zabbix_agent2.pid'
+  LogFile: '/var/log/zabbix/zabbix_agent2.log'
+  LogFileSize: 0
+  Server: '::1,2001:700:700:2002::70,2001:700:700:2002::71,127.0.0.1,158.36.68.70,158.36.68.71'
+  ServerActive: '::1,2001:700:700:2002::70,2001:700:700:2002::71'
+  Hostname: "%{facts.fqdn}"
+  Include: '/etc/zabbix/zabbix_agent2.d/*.conf'
+  ControlSocket: '/tmp/agent.sock'
+  Timeout: 30
+
+
+#    /etc/profile.d/patroni.sh:
+#      ensure: 'file'
+#      owner: 'root'
+#      group: 'root'
+#      mode: '644'
+#      content: |
+#        # Add /opt/patroni/bin to the path
+#        if [ -z "${PATH-}" ] ; then
+#          export PATH=/opt/patroni/bin
+#        elif ! echo "${PATH}" | grep -q /opt/patroni/bin ; then
+#          export PATH="${PATH}:/opt/patroni/bin"
+#         fi

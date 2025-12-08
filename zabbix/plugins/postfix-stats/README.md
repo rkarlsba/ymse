@@ -18,6 +18,9 @@ So this should extract the filename easily
 
     $ perl -ne 'print "$1\n" if (/^mail\..*?(\/.*)/)' /etc/rsyslog.conf
 
+Now, read zabbix7-dev.oslomet.no.yaml and pull out the parts that need to be
+fixed before this can be useful alone.
+
 [roy](mailto:roy@karlsbakk.net) December 2025
 
 # zabbix-postfix-template
