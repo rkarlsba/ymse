@@ -14,10 +14,17 @@ PYGTAIL=''
 # list of values we are interested in
 PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'held' 'discarded' 'reject_warnings' 'bytes_received' 'bytes_delivered' )
 
+trap cleanup EXIT SIGINT SIGTERM SIGHUP SIGQUIT
+
 # write result of running this script
 write_result () {
     echo "$2"
     exit $1
+}
+
+# Cleanup before exiting
+cleanup() {
+    rm -f $TEMPFILE
 }
 
 # check for binaries we need to run the script
