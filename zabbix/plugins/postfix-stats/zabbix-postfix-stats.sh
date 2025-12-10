@@ -10,6 +10,7 @@ TEMPFILE=$(mktemp)
 PFLOGSUMM='/usr/sbin/pflogsumm'
 PYGTAILS='pygtail pygtail.py'
 PYGTAIL=''
+TEST=0
 
 # list of values we are interested in
 PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'held' 'discarded' 'reject_warnings' 'bytes_received' 'bytes_delivered' )
@@ -27,6 +28,9 @@ cleanup() {
     rm -f $TEMPFILE
 }
 
+# Check for --test
+[ $1 == "--test" ] && TEST=1
+
 # check for binaries we need to run the script
 if [ ! -x "${PFLOGSUMM}" ]
 then
@@ -35,9 +39,10 @@ fi
 
 for pygtail in $PYGTAILS
 do
-    if [ -x "$( which ${pygtail} )" ]
+    pte=$( which ${pygtail} )
+    if [ -x "$pte" ]
     then
-        PYGTAIL=${pygtail}
+        PYGTAIL=${pte}
         break
     fi
 done
