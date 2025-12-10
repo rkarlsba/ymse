@@ -1,27 +1,6 @@
 <!--
 vim:ts=4:sw=4:sts=4:et:ai:fdm=marker:tw=80
 -->
-# Rewrite required
-
-After my rewrite of this to not needing sudo, a rewrite of this documentation is
-required, since it currently doesn't make sense. Also, either the docs or the
-script itself needs to check which maillog to check. In the file
-/etc/rsyslog.conf, there should be something like this on Debian
-
-    mail.*				-/var/log/mail.log
-
-and this on RHEL/CentOS
-
-    mail.*              -/var/log/maillog
-
-So this should extract the filename easily
-
-    $ perl -ne 'print "$1\n" if (/^mail\..*?(\/.*)/)' /etc/rsyslog.conf
-
-Now, read zabbix7-dev.oslomet.no.yaml and pull out the parts that need to be
-fixed before this can be useful alone.
-
-[roy](mailto:roy@karlsbakk.net) December 2025
 
 # zabbix-postfix-template
 Zabbix template for Postfix SMTP server
@@ -36,24 +15,100 @@ Forked from http://admin.shamot.cz/?p=424
 
 # Installation
     # for Ubuntu / Debian
-    apt-get install pflogsumm
+    apt-get install pflogsumm pygtail
     
     # for CentOS
     yum install postfix-perl-scripts
-    
-    cp pygtail.py /usr/sbin/
-    chmod +x /usr/sbin/pygtail.py
+    cp pygtail.py /usr/bin/
+    chmod +x /usr/bin/pygtail.py
     
     # ! check MAILLOG path in zabbix-postfix-stats.sh
     cp zabbix-postfix-stats.sh /usr/bin/
     chmod +x /usr/bin/zabbix-postfix-stats.sh
 
     cp userparameter_postfix.conf /etc/zabbix/zabbix_agentd.d/
-    
-    # run visudo as root
-    Defaults:zabbix !requiretty
-    zabbix ALL=(ALL) NOPASSWD: /usr/bin/zabbix-postfix-stats.sh
-    
-    systemctl restart zabbix-agent
 
-Finally import template_app_zabbix.xml and attach it to your host
+    # Change the group of the maillog
+    On debian and related systems, it's called /var/log/mail.log and
+    /var/log/maillog on RHEL and its likes. This file is normally listed in
+    /etc/logrotate.d/rsyslog and should look something like this (this is from a
+    Debian machine)
+    
+        /var/log/syslog
+        /var/log/mail.info
+        /var/log/mail.log
+        /var/log/mail.warn
+        /var/log/mail.err
+        /var/log/daemon.log
+        /var/log/kern.log
+        /var/log/auth.log
+        /var/log/user.log
+        /var/log/lpr.log
+        /var/log/cron.log
+        /var/log/debug
+        /var/log/messages
+        {
+                rotate 4
+                weekly
+                missingok
+                notifempty
+                compress
+                delaycompress
+                sharedscripts
+                postrotate
+                        /usr/lib/rsyslog/rsyslog-rotate
+                endscript
+        }
+
+    Now, keep the above, minus the line with mail.log and pull that out and give
+    it a separate section, something like this. Please note that the only
+    difference between this and the above, is the **create** line, which tells
+    logrotate the mode and ownership of the new file.
+
+    /var/log/mail.log
+    {
+            rotate 4
+            weekly
+            missingok
+            notifempty
+            compress
+            delaycompress
+            sharedscripts
+            create 0640 root zabbix
+            postrotate
+                    /usr/lib/rsyslog/rsyslog-rotate
+            endscript
+    }
+
+    Now, since this only changes the file when it's rotated, change the current
+    file's owner and mode manually:
+
+    # chown :zabbix /var/log/mail.log
+    # chmod g+r /var/log/mail.log
+
+Finally import template_app_zabbix.xml and attach it to your host. You may want
+to change the macros holding the thresholds 
+
+- {$POSTFIX_MAX_BOUNCED}
+- {$POSTFIX_MAX_DEFERRED}
+- {$POSTFIX_MAX_HELD}
+- {$POSTFIX_MAX_REJECTED}
+- {$POSTFIX_MAX_REJECT_WARNINGS}
+
+The busier the server is and the more pentests and such you run against it, the
+more rejects and the likes you'll get, so better tune these values to meet your
+needs.
+
+Now, just add a file to configure the zabbix agent, perhaps named it
+userparameter_postfix.conf and place it under /etc/zabbix/zabbix_agent2.d/ or
+whatever zabbix agent you're using. The file should contain the following:
+
+    UserParameter=postfix.pfmailq,mailq | grep -v "Mail queue is empty" | grep -c '^[0-9A-Z]'
+    UserParameter=postfix[*],/usr/bin/zabbix-postfix-stats.sh $1
+    UserParameter=postfix.update_data,/usr/bin/zabbix-postfix-stats.sh
+
+Test well and pray to your favourite god(s) and please don't blame me if it all
+goes bad.
+
+[roy](mailto:roy@karlsbakk.net)
+[roy](mailto:roysk@oslomet.no)
