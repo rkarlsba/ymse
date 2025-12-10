@@ -1,0 +1,331 @@
+zabbix_export:
+  version: '6.0'
+  date: '2025-12-10T06:51:54Z'
+  groups:
+    - uuid: 7df96b18c23049a09a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: e5cc2a8a065c4272866ee0277ccc417f
+      template: 'Template App Postfix'
+      name: 'Template App Postfix'
+      description: |
+        Postfix check from https://github.com/kstka/zabbix-postfix-template, changed to avoid using sudo
+        Se https://jira.oslomet.no/browse/EINFRA-4737 for mer info
+      groups:
+        - name: Templates
+      items:
+        - uuid: c39bb96edc4949ec8d4870b46fbda929
+          name: 'SMTP Service'
+          type: SIMPLE
+          key: 'net.tcp.service[smtp]'
+          history: 1w
+          tags:
+            - tag: Application
+              value: Postfix
+          triggers:
+            - uuid: 3f33c174dbef4ddc824935e6b46be999
+              expression: 'max(/Template App Postfix/net.tcp.service[smtp],#3)=0'
+              name: 'SMTP service is down on {HOST.NAME}'
+              priority: HIGH
+        - uuid: b5fa080b20e2420c8dab14c671186fa6
+          name: 'Postfix Mail Queue'
+          key: postfix.pfmailq
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 531a9ef9272d48e7b6ceca9e48feb7c3
+          name: 'Postfix data update request'
+          key: postfix.update_data
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: Postfix
+          triggers:
+            - uuid: bedefc099dd84fd6bf6f11055a6a7745
+              expression: 'find(/Template App Postfix/postfix.update_data,,"regexp","ERROR")=1'
+              name: 'Postfix statistics could not be updated'
+              priority: WARNING
+        - uuid: 7cd3ee0f095745479f41a130f9f4d0fe
+          name: 'Postfix Bounced'
+          key: 'postfix[bounced]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+          triggers:
+            - uuid: ab1160bd66b24df2bcde8331f7e05e2c
+              expression: 'last(/Template App Postfix/postfix[bounced])>{$POSTFIX_MAX_BOUNCED}'
+              name: 'Postfix: Too many bounced mails on {HOST.NAME}'
+              priority: WARNING
+        - uuid: 2bd4be03b4594fa1b9164c457945314c
+          name: 'Postfix Bytes Delivered'
+          key: 'postfix[bytes_delivered]'
+          delay: 3m
+          history: 30d
+          units: B
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 58cdfb43b842476d8b2e00043055a574
+          name: 'Postfix Bytes Received'
+          key: 'postfix[bytes_received]'
+          delay: 3m
+          history: 30d
+          units: B
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: bb47ae2f75a74a3d8dc91e01a3f748b3
+          name: 'Postfix Deferred'
+          key: 'postfix[deferred]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+          triggers:
+            - uuid: f6b29344b2a1463f8e1e8754dbf64fbc
+              expression: 'last(/Template App Postfix/postfix[deferred])>{$POSTFIX_MAX_DEFERRED}'
+              name: 'Postfix: Too many deferred mails on {HOST.NAME}'
+              priority: HIGH
+        - uuid: a216b3ef611143dab8b82bc16c8e30f0
+          name: 'Postfix Delivered'
+          key: 'postfix[delivered]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 1d8d84e7ef164558b159efd2a88f402a
+          name: 'Postfix Discarded'
+          key: 'postfix[discarded]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: dc6e94bf570c4028b82fad8d23ff4a41
+          name: 'Postfix Forwarded'
+          key: 'postfix[forwarded]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 0cf6423c8e0140d0916b337480b146e2
+          name: 'Postfix Held'
+          key: 'postfix[held]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: a956a25859c541cf8e383775dbb94a62
+          name: 'Postfix Received'
+          key: 'postfix[received]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 6f5fd2fa88ae42a38598e23ffa82e778
+          name: 'Postfix Rejected'
+          key: 'postfix[rejected]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+        - uuid: 55da764ec6d84e74a7dd2a221f3fafbb
+          name: 'Postfix Reject Warnings'
+          key: 'postfix[reject_warnings]'
+          delay: 3m
+          history: 30d
+          units: mails
+          preprocessing:
+            - type: SIMPLE_CHANGE
+              parameters:
+                - ''
+          tags:
+            - tag: Application
+              value: Postfix
+      macros:
+        - macro: '{$POSTFIX_MAX_BOUNCED}'
+          value: '50'
+        - macro: '{$POSTFIX_MAX_DEFERRED}'
+          value: '50'
+        - macro: '{$POSTFIX_MAX_HELD}'
+          value: '200'
+        - macro: '{$POSTFIX_MAX_REJECTED}'
+          value: '100'
+        - macro: '{$POSTFIX_MAX_REJECT_WARNINGS}'
+          value: '20000'
+  triggers:
+    - uuid: 6693645b846e480ea8aec7697ee8c028
+      expression: 'last(/Template App Postfix/postfix[held])>{$POSTFIX_MAX_HELD} or last(/Template App Postfix/postfix.pfmailq)>{$POSTFIX_MAX_HELD}'
+      name: 'Postfix: Too many held mails on {HOST.NAME}'
+      priority: WARNING
+    - uuid: c81176b73401484784a9905af239e9e4
+      expression: 'last(/Template App Postfix/postfix[rejected])>{$POSTFIX_MAX_REJECTED} or last(/Template App Postfix/postfix[reject_warnings])>{$POSTFIX_MAX_REJECT_WARNINGS}'
+      name: 'Postfix: Too many rejected mails on {HOST.NAME}'
+      priority: HIGH
+  graphs:
+    - uuid: b623609c08684947935db8eb6b92fb8d
+      name: 'Postfix Error Pie'
+      yaxismax: '0'
+      show_work_period: 'NO'
+      show_triggers: 'NO'
+      type: EXPLODED
+      show_3d: 'YES'
+      graph_items:
+        - color: C80000
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[bounced]'
+        - sortorder: '1'
+          color: 00C800
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[deferred]'
+        - sortorder: '2'
+          color: 0000C8
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[discarded]'
+        - sortorder: '3'
+          color: C800C8
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[rejected]'
+        - sortorder: '4'
+          color: 00C8C8
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[reject_warnings]'
+    - uuid: 913c1703abdf43db8f840051e7e23d2f
+      name: 'Postfix Mails Scoreboard'
+      height: '300'
+      show_work_period: 'NO'
+      show_triggers: 'NO'
+      graph_items:
+        - color: '009900'
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[bounced]'
+        - sortorder: '1'
+          color: FF99FF
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[reject_warnings]'
+        - sortorder: '2'
+          color: AAAA00
+          item:
+            host: 'Template App Postfix'
+            key: postfix.pfmailq
+        - sortorder: '3'
+          color: EE00EE
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[discarded]'
+        - sortorder: '4'
+          color: '880088'
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[rejected]'
+        - sortorder: '5'
+          color: 0000CC
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[received]'
+        - sortorder: '6'
+          color: FF6666
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[held]'
+        - sortorder: '7'
+          color: FFFF33
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[forwarded]'
+        - sortorder: '8'
+          color: 00EE00
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[delivered]'
+        - sortorder: '9'
+          color: EE0000
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[deferred]'
+    - uuid: 4481f1f55f1f465ab51994f9bd2ed575
+      name: 'Postfix Traffic'
+      show_work_period: 'NO'
+      show_triggers: 'NO'
+      graph_items:
+        - color: C80000
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[bytes_received]'
+        - sortorder: '1'
+          color: 00C800
+          item:
+            host: 'Template App Postfix'
+            key: 'postfix[bytes_delivered]'
