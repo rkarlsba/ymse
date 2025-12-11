@@ -21,6 +21,10 @@ DISTRO=$( zabbix_linux_distro_check.pl )
 RETCODE=$?
 runmode_count=0
 
+# This used to be "kernel", but since RHEL8, "kernel" is just a metapackage, so
+# we'll need to look for "kernel-core"
+RHEL_KERNEL_PACKAGE="kernel-core"
+
 if [ $RETCODE -ne 0 ]
 then
     echo "Can't run distro check - exiting with $RETCODE"
@@ -104,7 +108,7 @@ case $DISTRO in
     rhel|centos)
         case $RUNMODE in
             cron|direct)
-                LATEST=$( rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" kernel | tail -n1 )
+                LATEST=$( rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" "$RHEL_KERNEL_PACKAGE" | tail -n1 )
                 ;;
             local)
                 if [ -r $OUTFILE ]
