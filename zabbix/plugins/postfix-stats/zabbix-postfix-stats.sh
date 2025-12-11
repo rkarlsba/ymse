@@ -29,7 +29,11 @@ cleanup() {
 }
 
 # Check for --test
-[ "$1" == "--test" ] && TEST=1
+if [ "$1" == "--test" ]
+then
+    TEST=1
+    shift
+fi
 
 # check for binaries we need to run the script
 if [ ! -x "${PFLOGSUMM}" ]
