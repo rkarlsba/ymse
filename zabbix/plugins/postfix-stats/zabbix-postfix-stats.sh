@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# vim:ts=4:sw=4:sts=4:et:ai:fdm=marker:isfname-==
+# vim:ts=4:sw=4:sts=4:et:ai:si:fdm=marker:isfname-==
 
 PATH="$PATH:/opt/oslomet/bin"
 MAILLOGS='/var/log/mail.log /var/log/maillog'
@@ -11,6 +11,8 @@ PFLOGSUMM='/usr/sbin/pflogsumm'
 PYGTAILS='pygtail pygtail.py'
 PYGTAIL=''
 TEST=0
+
+export PATH
 
 # list of values we are interested in
 PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'held' 'discarded' 'reject_warnings' 'bytes_received' 'bytes_delivered' )
@@ -43,7 +45,7 @@ fi
 
 for pygtail in $PYGTAILS
 do
-    pte=$( which ${pygtail} )
+    pte=$( which ${pygtail} 2>/dev/null )
     if [ -x "$pte" ]
     then
         PYGTAIL=${pte}
