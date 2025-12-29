@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 from stl import mesh
 
-def print_info(mesh_obj, label=""):
+def print_info(mesh_obj, filename):
     """Print mesh dimensions and properties"""
     min_coords = mesh_obj.min_
     max_coords = mesh_obj.max_
@@ -12,7 +12,7 @@ def print_info(mesh_obj, label=""):
     volume, _, _ = mesh_obj.get_mass_properties()
     triangles = len(mesh_obj.data)
     
-    print(f"\n{label}STL Info:")
+    print(f"\nSTL Info: {filename}")
     print(f"  Dimensions: {dims[0]:.3f} x {dims[1]:.3f} x {dims[2]:.3f} mm")
     print(f"  Min corner: [{min_coords[0]:.3f}, {min_coords[1]:.3f}, {min_coords[2]:.3f}]")
     print(f"  Max corner: [{max_coords[0]:.3f}, {max_coords[1]:.3f}, {max_coords[2]:.3f}]")
@@ -21,37 +21,37 @@ def print_info(mesh_obj, label=""):
     print(f"  Vertices: {triangles * 3}")
 
 def main():
-    parser = argparse.ArgumentParser(description='Move STL bottom corner to [0,0,0] for OpenSCAD')
-    parser.add_argument('--input', '-i', help='Input STL filename')
-    parser.add_argument('--output', '-o', help='Output STL filename')
-    parser.add_argument('--info', '-I', action='store_true', help='Show STL dimensions/info')
-    args = parser.parse_args()
-
-    if not args.input:
-        parser.error("Input file required for processing or info")
-
-    # Load the STL file
-    your_mesh = mesh.Mesh.from_file(args.input)
+    parser = argparse.ArgumentParser(description='STL origin tool')
+    subparsers = parser.add_subparsers(dest='mode', required=True)
     
-    # Show original info if requested
-    if args.info:
-        print_info(your_mesh, "Original ")
-
-    # Move bottom corner to [0,0,0] if output specified
-    if args.output:
+    # Processing mode: input + required output
+    process_parser = subparsers.add_parser('process', 
+        help='Move STL bottom corner to [0,0,0]')
+    process_parser.add_argument('-i', '--input', required=True, 
+        help='Input STL filename')
+    process_parser.add_argument('-o', '--output', required=True, 
+        help='Output STL filename')
+    
+    # Info mode: single filename
+    info_parser = subparsers.add_parser('info', aliases=['-I', '--info'],
+        help='Show STL dimensions/info')
+    info_parser.add_argument('filename', nargs=1, 
+        help='STL filename to analyze')
+    
+    args = parser.parse_args()
+    
+    if args.mode == 'process':
+        your_mesh = mesh.Mesh.from_file(args.input)
         min_coords = your_mesh.min_
         your_mesh.translate(-min_coords)
         your_mesh.update_min()
-        
-        # Show processed info if requested
-        if args.info:
-            print_info(your_mesh, "Processed ")
-        
-        # Save
         your_mesh.save(args.output)
-        print(f"\nSaved to {args.output}")
-    elif args.info:
-        print("\nNo output specified - info only")
+        print(f"Moved bottom corner of {args.input} to [0,0,0]. Saved to {args.output}")
+        
+    elif args.mode in ['info', '-I', '--info']:
+        filename = args.filename[0]
+        your_mesh = mesh.Mesh.from_file(filename)
+        print_info(your_mesh, filename)
 
 if __name__ == '__main__':
     main()
