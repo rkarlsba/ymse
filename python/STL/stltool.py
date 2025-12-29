@@ -34,7 +34,7 @@ def main():
     group.add_argument('--center', action='store_true', 
         help='Center using center of gravity')
     group.add_argument('--center-xy', action='store_true', 
-        help='Center XY, keep Z at min (sits on Z=0 plane)')
+        help='Center X/Y, Z stays at bottom (sits on Z=0 plane)')
     
     args = parser.parse_args()
     
@@ -60,8 +60,11 @@ def main():
         _, cog, _ = mesh_obj.get_mass_properties()
         offset = cog
     elif args.center_xy:
-        offset = np.array([mesh_obj.min_[0], mesh_obj.min_[1], 
-                          (mesh_obj.min_[2] + mesh_obj.max_[2]) / 2])
+        # Center X/Y, keep Z at minimum
+        center_x = (mesh_obj.min_[0] + mesh_obj.max_[0]) / 2
+        center_y = (mesh_obj.min_[1] + mesh_obj.max_[1]) / 2
+        min_z = mesh_obj.min_[2]
+        offset = np.array([center_x, center_y, min_z])
     
     mesh_obj.translate(-offset)
     mesh_obj.update_min()
