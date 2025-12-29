@@ -1,23 +1,32 @@
 #!/usr/bin/env python3
 
+import argparse
 import numpy as np
 from stl import mesh
 
-input_filename = 'USB Micro Breakout lid.stl'
-output_filename = 'USB Micro Breakout lid-new.stl'
+def main():
+    parser = argparse.ArgumentParser(description='Move STL bottom corner to [0,0,0] for OpenSCAD')
+    parser.add_argument('--input', '-i', required=True, help='Input STL filename')
+    parser.add_argument('--output', '-o', required=True, help='Output STL filename')
+    args = parser.parse_args()
 
-# Load the STL file
-your_mesh = mesh.Mesh.from_file('your_file.stl')
+    # Load the STL file
+    your_mesh = mesh.Mesh.from_file(args.input)
 
-# Option 1: Shift so min coordinates are at [0,0,0]
-min_coords = your_mesh.min_  # Shape (3,)
-your_mesh.translate(-min_coords)
+    # Get minimum coordinates (bottom-left-front corner)
+    min_coords = your_mesh.min_  # Shape (3,) - [min_x, min_y, min_z]
+    
+    # Translate so min corner is at [0,0,0]
+    your_mesh.translate(-min_coords)
+    
+    # Update cached min/max properties
+    your_mesh.update_min()
+    
+    # Save the positioned mesh
+    your_mesh.save(args.output)
+    print(f"Moved bottom corner of {args.input} to [0,0,0]. Saved to {args.output}")
+    print(f"New min coordinates: {your_mesh.min_}")
 
-# Option 2: Center at center of gravity (often preferred)
-volume, cog, inertia = your_mesh.get_mass_properties()
-your_mesh.translate(-cog)
-
-# Update mesh properties and save
-your_mesh.update_min()
-your_mesh.save('centered_file.stl')
+if __name__ == '__main__':
+    main()
 
