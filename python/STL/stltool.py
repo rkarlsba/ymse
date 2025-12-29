@@ -22,36 +22,31 @@ def print_info(mesh_obj, filename):
 
 def main():
     parser = argparse.ArgumentParser(description='STL origin tool')
-    subparsers = parser.add_subparsers(dest='mode', required=True)
-    
-    # Processing mode: input + required output
-    process_parser = subparsers.add_parser('process', 
-        help='Move STL bottom corner to [0,0,0]')
-    process_parser.add_argument('-i', '--input', required=True, 
-        help='Input STL filename')
-    process_parser.add_argument('-o', '--output', required=True, 
-        help='Output STL filename')
-    
-    # Info mode: single filename
-    info_parser = subparsers.add_parser('info', aliases=['-I', '--info'],
-        help='Show STL dimensions/info')
-    info_parser.add_argument('filename', nargs=1, 
-        help='STL filename to analyze')
+    parser.add_argument('-i', '--input', required=True, 
+        help='Input STL filename (required for both modes)')
+    parser.add_argument('-o', '--output', 
+        help='Output STL filename (required for processing)')
+    parser.add_argument('-I', '--info', action='store_true', 
+        help='Show STL info only (mutually exclusive with -o)')
     
     args = parser.parse_args()
     
-    if args.mode == 'process':
-        your_mesh = mesh.Mesh.from_file(args.input)
-        min_coords = your_mesh.min_
-        your_mesh.translate(-min_coords)
-        your_mesh.update_min()
-        your_mesh.save(args.output)
+    # Load mesh
+    mesh_obj = mesh.Mesh.from_file(args.input)
+    
+    if args.info:
+        if args.output:
+            parser.error("-I/--info cannot be used with -o/--output")
+        print_info(mesh_obj, args.input)
+    else:
+        if not args.output:
+            parser.error("-o/--output required when not using -I/--info")
+        # Process mode
+        min_coords = mesh_obj.min_
+        mesh_obj.translate(-min_coords)
+        mesh_obj.update_min()
+        mesh_obj.save(args.output)
         print(f"Moved bottom corner of {args.input} to [0,0,0]. Saved to {args.output}")
-        
-    elif args.mode in ['info', '-I', '--info']:
-        filename = args.filename[0]
-        your_mesh = mesh.Mesh.from_file(filename)
-        print_info(your_mesh, filename)
 
 if __name__ == '__main__':
     main()
