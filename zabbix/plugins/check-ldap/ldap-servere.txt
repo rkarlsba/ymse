@@ -1,0 +1,11 @@
+ldap-c-dev.oslomet.no
+ldap-d-dev.oslomet.no
+ldap-dev-intern.oslomet.no
+ldap-e.oslomet.no
+ldap-f.oslomet.no
+ldap.oslomet.no
+openldap-prod01.oslomet.no
+openldap-prod02.oslomet.no
+openldap-stage01.oslomet.no
+openldap-stage02.oslomet.no
+openldap.oslomet.no

@@ -59,7 +59,7 @@ GetOptions(
     "help"      => \$opt_help,
     "pwfile"    => \$opt_pwfile,
     "test"      => \$opt_test,
-    "url=s"     => \$opt_url,       "u=s" => \$opt_url,
+    "url=s"     => \$opt_url,       "u=s" => \$opt_url,     "U=s" => \$opt_url,
     "basedn=s"  => \$opt_basedn,    "b=s" => \$opt_basedn,
     "daredevil" => \$opt_daredevil,
 ) or die "Invalid argument";
