@@ -2,10 +2,9 @@
 
 """
 Normalize an SVG for OpenSCAD:
-- Make +Y point up (Cartesian), origin at bottom-left.
-- Bake the transform into path geometry (matrix(1 0 0 -1 0 H)).
-- Write a clean viewBox: 0 0 W H.
-- Avoid overwriting output unless --force is passed.
+- Bake a Cartesian coordinate system (+Y up, origin at bottom-left) into path geometry.
+- Clean viewBox to 0 0 W H.
+- Do not overwrite an existing output file unless --force is given.
 
 Usage:
     python normalize_svg.py input.svg output.svg
@@ -20,16 +19,13 @@ from pathlib import Path
 from typing import Tuple, Optional
 
 from lxml import etree
-from svgpathtools import svg2paths2, wsvg, Matrix
+from svgpathtools import svg2paths2, wsvg  # Path transformation methods are on each Path
 
-
-# --- Helpers ---------------------------------------------------------------
+# --- Unit helpers ----------------------------------------------------------
 
 def _strip_unit(value: Optional[str]) -> Optional[float]:
-    """Convert '100', '100px', '210mm', etc. to float user units.
-    Note: If absolute units like mm/in are present, this function
-    assumes they've already been mapped to user units by the authoring tool.
-    If you need physical scaling, add unit conversion here.
+    """Convert '100', '100px', '210mm', etc., to a float (user units).
+    If you need robust physical unit conversion (mm/in), add it here.
     """
     if value is None:
         return None
@@ -58,14 +54,13 @@ def read_canvas_size(svg_root: etree._Element) -> Tuple[float, float]:
     h = _strip_unit(svg_root.get("height"))
     if w is None or h is None:
         raise ValueError(
-            "SVG lacks a usable viewBox and width/height; "
-            "cannot determine canvas size."
+            "SVG lacks a usable viewBox and width/height; cannot determine canvas size."
         )
     return w, h
 
 
 def collect_style(attrs: dict) -> dict:
-    """Extract a minimal set of style attributes from svgpathtools attrs."""
+    """Extract a minimal set of style attributes to preserve in output."""
     out = {}
     # Common direct attributes
     for k in ("fill", "stroke", "stroke-width", "fill-rule", "stroke-linejoin",
@@ -104,18 +99,20 @@ def normalize_svg(infile: Path, outfile: Path) -> None:
 
     W, H = read_canvas_size(root)
 
-    # Load paths and their attributes
+    # Load paths and attributes
     paths, attributes, svg_attrs = svg2paths2(str(infile))
 
-    # Build Y-flip + translate(H) matrix: matrix(1 0 0 -1 0 H)
-    flip = Matrix(1, 0, 0, -1, 0, H)
-
-    # Transform paths; preserve basic styling
+    # Implement the canonical SVG-to-Cartesian flip:
+    #   1) scale(1, -1) around origin (0,0)
+    #   2) translate(0, H)
+    # Using svgpathtools Path methods to stay compatible when Matrix is unavailable. [2](https://deepwiki.com/mathandy/svgpathtools)
     new_paths = []
     new_attrs = []
     for p, a in zip(paths, attributes):
-        tp = p.transformed(flip)
-        new_paths.append(tp)
+        # Scale around the origin; origin can be provided as complex (0+0j)
+        ps = p.scaled(sx=1.0, sy=-1.0, origin=0+0j)   # flip Y
+        pt = ps.translated(0 + H*1j)                  # translate up by H
+        new_paths.append(pt)
         new_attrs.append(collect_style(a))
 
     # Write out a clean SVG with normalized viewBox/size
@@ -144,7 +141,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         )
     )
     p.add_argument("input", type=Path, help="Input SVG file")
-    p.add_argument("output", type=Path, help="Output SVG file (will not overwrite unless --force)")
+    p.add_argument("output", type=Path,
+                   help="Output SVG file (won't overwrite unless --force)")
     p.add_argument(
         "-f", "--force",
         action="store_true",
@@ -167,8 +165,7 @@ def main(argv: list[str]) -> int:
         print("ERROR: Input and output paths are the same. Refusing to overwrite input.")
         return 1
     if outfile.exists() and not args.force:
-        print(f"ERROR: Output already exists: {outfile}\n"
-              f"       Use --force to overwrite.")
+        print(f"ERROR: Output already exists: {outfile}\n       Use --force to overwrite.")
         return 1
 
     try:
