@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 """
-Normalize an SVG for OpenSCAD:
-- Bake a Cartesian coordinate system (+Y up, origin at bottom-left) into path geometry.
+Normalize an SVG:
+- Default: normalize only (retain SVG's +Y down), ideal for OpenSCAD which flips on import.
+- Optional: --flip to bake a Cartesian (+Y up, origin bottom-left) transform into path geometry.
 - Clean viewBox to 0 0 W H.
-- Do not overwrite an existing output file unless --force is given.
+- Do not overwrite an existing output unless --force is given.
 
 Usage:
     python normalize_svg.py input.svg output.svg
+    python normalize_svg.py input.svg output.svg --flip
     python normalize_svg.py input.svg output.svg --force
 """
 
@@ -19,14 +21,12 @@ from pathlib import Path
 from typing import Tuple, Optional
 
 from lxml import etree
-from svgpathtools import svg2paths2, wsvg  # Path transformation methods are on each Path
+from svgpathtools import svg2paths2, wsvg  # Path has .scaled() and .translated()
 
 # --- Unit helpers ----------------------------------------------------------
 
 def _strip_unit(value: Optional[str]) -> Optional[float]:
-    """Convert '100', '100px', '210mm', etc., to a float (user units).
-    If you need robust physical unit conversion (mm/in), add it here.
-    """
+    """Convert '100', '100px', '210mm', etc. to float user units."""
     if value is None:
         return None
     s = value.strip()
@@ -49,7 +49,6 @@ def read_canvas_size(svg_root: etree._Element) -> Tuple[float, float]:
             _, _, w, h = map(float, parts)
             return w, h
 
-    # Fallback to width/height
     w = _strip_unit(svg_root.get("width"))
     h = _strip_unit(svg_root.get("height"))
     if w is None or h is None:
@@ -62,14 +61,12 @@ def read_canvas_size(svg_root: etree._Element) -> Tuple[float, float]:
 def collect_style(attrs: dict) -> dict:
     """Extract a minimal set of style attributes to preserve in output."""
     out = {}
-    # Common direct attributes
     for k in ("fill", "stroke", "stroke-width", "fill-rule", "stroke-linejoin",
               "stroke-linecap", "opacity", "fill-opacity", "stroke-opacity"):
         v = attrs.get(k)
         if v is not None:
             out[k] = v
 
-    # Parse inline style="..."
     style = attrs.get("style")
     if style:
         for item in style.split(";"):
@@ -88,8 +85,8 @@ def collect_style(attrs: dict) -> dict:
 
 # --- Core normalization ----------------------------------------------------
 
-def normalize_svg(infile: Path, outfile: Path) -> None:
-    """Read SVG, flip Y (+ translate by H), write with clean viewBox."""
+def normalize_svg(infile: Path, outfile: Path, flip: bool) -> None:
+    """Read SVG, optionally flip Y, write with clean viewBox."""
     # Parse DOM to get root and canvas size
     tree = etree.parse(str(infile))
     root = tree.getroot()
@@ -102,17 +99,19 @@ def normalize_svg(infile: Path, outfile: Path) -> None:
     # Load paths and attributes
     paths, attributes, svg_attrs = svg2paths2(str(infile))
 
-    # Implement the canonical SVG-to-Cartesian flip:
-    #   1) scale(1, -1) around origin (0,0)
-    #   2) translate(0, H)
-    # Using svgpathtools Path methods to stay compatible when Matrix is unavailable. [2](https://deepwiki.com/mathandy/svgpathtools)
     new_paths = []
     new_attrs = []
+
     for p, a in zip(paths, attributes):
-        # Scale around the origin; origin can be provided as complex (0+0j)
-        ps = p.scaled(sx=1.0, sy=-1.0, origin=0+0j)   # flip Y
-        pt = ps.translated(0 + H*1j)                  # translate up by H
-        new_paths.append(pt)
+        if flip:
+            # Cartesian bake-in: scale Y by -1 about origin, then translate up by H
+            ps = p.scaled(sx=1.0, sy=-1.0, origin=0+0j)
+            pt = ps.translated(0 + H*1j)
+            new_paths.append(pt)
+        else:
+            # OpenSCAD-friendly: leave geometry as-is; OpenSCAD will flip on import
+            new_paths.append(p)
+
         new_attrs.append(collect_style(a))
 
     # Write out a clean SVG with normalized viewBox/size
@@ -136,17 +135,22 @@ def normalize_svg(infile: Path, outfile: Path) -> None:
 def parse_args(argv: list[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description=(
-            "Normalize an SVG for OpenSCAD: bake a Cartesian (+Y up) coordinate "
-            "system into path geometry and write a clean viewBox."
+            "Normalize an SVG. "
+            "Default keeps SVG's +Y down (good for OpenSCAD, which flips on import). "
+            "Use --flip to bake a Cartesian (+Y up) transform."
         )
     )
     p.add_argument("input", type=Path, help="Input SVG file")
-    p.add_argument("output", type=Path,
-                   help="Output SVG file (won't overwrite unless --force)")
+    p.add_argument("output", type=Path, help="Output SVG file (won't overwrite unless --force)")
     p.add_argument(
         "-f", "--force",
         action="store_true",
         help="Overwrite output file if it already exists"
+    )
+    p.add_argument(
+        "--flip",
+        action="store_true",
+        help="Bake a Cartesian transform into the geometry (scale(1,-1) then translate(0,H))"
     )
     return p.parse_args(argv)
 
@@ -157,7 +161,6 @@ def main(argv: list[str]) -> int:
     infile: Path = args.input
     outfile: Path = args.output
 
-    # Basic checks
     if not infile.exists():
         print(f"ERROR: Input not found: {infile}")
         return 1
@@ -169,9 +172,8 @@ def main(argv: list[str]) -> int:
         return 1
 
     try:
-        # Ensure parent directory exists
         outfile.parent.mkdir(parents=True, exist_ok=True)
-        normalize_svg(infile, outfile)
+        normalize_svg(infile, outfile, flip=args.flip)
     except Exception as e:
         print(f"ERROR: {e}")
         return 2
