@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
 """
-Normalize an SVG:
-- Default: normalize only (retain SVG's +Y down), ideal for OpenSCAD which flips on import.
-- Optional: --flip to bake a Cartesian (+Y up, origin bottom-left) transform into path geometry.
-- Clean viewBox to 0 0 W H.
-- Do not overwrite an existing output unless --force is given.
+Normalize/Tighten an SVG for OpenSCAD or general use.
 
-Usage:
-    python normalize_svg.py input.svg output.svg
-    python normalize_svg.py input.svg output.svg --flip
-    python normalize_svg.py input.svg output.svg --force
+Defaults:
+- Keep SVG's native +Y down orientation (best for OpenSCAD; it flips on import).
+- Write a clean viewBox.
+
+Options:
+- --tight : Crop viewBox to the drawing's tight bounding box and translate paths so minX/minY => 0,0.
+- --flip  : Bake Cartesian (+Y up) into geometry (scale(1,-1) then translate(0,H)).
+- --force : Allow overwriting output if it exists.
+
+Examples:
+    python normalize_svg.py in.svg out.svg --tight
+    python normalize_svg.py in.svg out.svg --flip --tight
+    python normalize_svg.py in.svg out.svg --force
 """
 
 from __future__ import annotations
@@ -21,12 +26,12 @@ from pathlib import Path
 from typing import Tuple, Optional
 
 from lxml import etree
-from svgpathtools import svg2paths2, wsvg  # Path has .scaled() and .translated()
+from svgpathtools import svg2paths2, wsvg  # Path has .scaled(), .translated()
 
 # --- Unit helpers ----------------------------------------------------------
 
 def _strip_unit(value: Optional[str]) -> Optional[float]:
-    """Convert '100', '100px', '210mm', etc. to float user units."""
+    """Convert '100', '100px', '210mm', etc., to float user units."""
     if value is None:
         return None
     s = value.strip()
@@ -83,10 +88,56 @@ def collect_style(attrs: dict) -> dict:
     return out
 
 
+# --- Bounding box utilities ------------------------------------------------
+
+def path_bbox(p) -> Tuple[float, float, float, float]:
+    """
+    Return (minx, miny, maxx, maxy) for a Path.
+    svgpathtools provides bounding-box methods on path/segments; we rely on them. [3](https://baszerr.eu/doku.php?id=blog:2022:04:07:2022-04-07_-_importing_svg_in_openscad)
+    """
+    # Path has .bbox() in recent versions. Fallback: union of segment bboxes.
+    try:
+        minx, miny, maxx, maxy = p.bbox()
+        return minx, miny, maxx, maxy
+    except Exception:
+        # Manual union over segments
+        minx = miny = float("inf")
+        maxx = maxy = float("-inf")
+        for s in p:
+            try:
+                sxmin, symin, sxmax, symax = s.bbox()
+            except Exception:
+                # As a very conservative fallback, include endpoints
+                xs = [s.start.real, s.end.real]
+                ys = [s.start.imag, s.end.imag]
+                sxmin, sxmax = min(xs), max(xs)
+                symin, symax = min(ys), max(ys)
+            minx = min(minx, sxmin)
+            miny = min(miny, symin)
+            maxx = max(maxx, sxmax)
+            maxy = max(maxy, symax)
+        return minx, miny, maxx, maxy
+
+
+def union_bbox(paths) -> Tuple[float, float, float, float]:
+    """Union bbox across all paths."""
+    if not paths:
+        return 0.0, 0.0, 0.0, 0.0
+    minx = miny = float("inf")
+    maxx = maxy = float("-inf")
+    for p in paths:
+        pxmin, pymin, pxmax, pymax = path_bbox(p)
+        minx = min(minx, pxmin)
+        miny = min(miny, pymin)
+        maxx = max(maxx, pxmax)
+        maxy = max(maxy, pymax)
+    return minx, miny, maxx, maxy
+
+
 # --- Core normalization ----------------------------------------------------
 
-def normalize_svg(infile: Path, outfile: Path, flip: bool) -> None:
-    """Read SVG, optionally flip Y, write with clean viewBox."""
+def normalize_svg(infile: Path, outfile: Path, flip: bool, tight: bool) -> None:
+    """Read SVG, optionally flip Y, optionally tighten to bbox, write with clean viewBox."""
     # Parse DOM to get root and canvas size
     tree = etree.parse(str(infile))
     root = tree.getroot()
@@ -99,89 +150,5 @@ def normalize_svg(infile: Path, outfile: Path, flip: bool) -> None:
     # Load paths and attributes
     paths, attributes, svg_attrs = svg2paths2(str(infile))
 
-    new_paths = []
-    new_attrs = []
-
-    for p, a in zip(paths, attributes):
-        if flip:
-            # Cartesian bake-in: scale Y by -1 about origin, then translate up by H
-            ps = p.scaled(sx=1.0, sy=-1.0, origin=0+0j)
-            pt = ps.translated(0 + H*1j)
-            new_paths.append(pt)
-        else:
-            # OpenSCAD-friendly: leave geometry as-is; OpenSCAD will flip on import
-            new_paths.append(p)
-
-        new_attrs.append(collect_style(a))
-
-    # Write out a clean SVG with normalized viewBox/size
-    svg_out_attrs = {
-        "viewBox": f"0 0 {W} {H}",
-        "width": str(W),
-        "height": str(H),
-        "preserveAspectRatio": svg_attrs.get("preserveAspectRatio", "xMidYMid meet"),
-    }
-
-    wsvg(
-        new_paths,
-        attributes=new_attrs,
-        svg_attributes=svg_out_attrs,
-        filename=str(outfile)
-    )
-
-
-# --- CLI -------------------------------------------------------------------
-
-def parse_args(argv: list[str]) -> argparse.Namespace:
-    p = argparse.ArgumentParser(
-        description=(
-            "Normalize an SVG. "
-            "Default keeps SVG's +Y down (good for OpenSCAD, which flips on import). "
-            "Use --flip to bake a Cartesian (+Y up) transform."
-        )
-    )
-    p.add_argument("input", type=Path, help="Input SVG file")
-    p.add_argument("output", type=Path, help="Output SVG file (won't overwrite unless --force)")
-    p.add_argument(
-        "-f", "--force",
-        action="store_true",
-        help="Overwrite output file if it already exists"
-    )
-    p.add_argument(
-        "--flip",
-        action="store_true",
-        help="Bake a Cartesian transform into the geometry (scale(1,-1) then translate(0,H))"
-    )
-    return p.parse_args(argv)
-
-
-def main(argv: list[str]) -> int:
-    args = parse_args(argv)
-
-    infile: Path = args.input
-    outfile: Path = args.output
-
-    if not infile.exists():
-        print(f"ERROR: Input not found: {infile}")
-        return 1
-    if infile.resolve() == outfile.resolve():
-        print("ERROR: Input and output paths are the same. Refusing to overwrite input.")
-        return 1
-    if outfile.exists() and not args.force:
-        print(f"ERROR: Output already exists: {outfile}\n       Use --force to overwrite.")
-        return 1
-
-    try:
-        outfile.parent.mkdir(parents=True, exist_ok=True)
-        normalize_svg(infile, outfile, flip=args.flip)
-    except Exception as e:
-        print(f"ERROR: {e}")
-        return 2
-
-    print(f"Normalized SVG written to: {outfile}")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    # Step 1: Optional flip (Cartesian bake-in).
 
