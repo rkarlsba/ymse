@@ -15,12 +15,13 @@ then
     QUIET=1
 fi
 
-for f in *.json
+for f in $( find . -maxdepth 1 -type f -name \*.json -size 0 )
 do
     if $( lsof $f > /dev/null 2>&1 )
     then
         [[ $QUIET == 1 ]] || echo "File $f is open, ignoring"
     else
         [[ $VERBOSE == 1 ]] && echo "Remove file $f"
+        rm -f $f
     fi
 done
