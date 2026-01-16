@@ -4,12 +4,14 @@
 
   <template_groups>
     <template_group>
+      <uuid>c3b36f2e-0ce9-4faf-9c0c-2c07d79e55a2</uuid>
       <name>Templates/Hardware</name>
     </template_group>
   </template_groups>
 
   <templates>
     <template>
+      <uuid>9de6f120-6be3-43ab-bb95-7900e9b7da9b</uuid>
       <template>Template ARM Thermal Sensors</template>
       <name>Template ARM Thermal Sensors</name>
 
@@ -21,6 +23,7 @@
 
       <items>
         <item>
+          <uuid>7d7e71c4-7a8c-4821-af17-1cdde7aea32a</uuid>
           <name>Thermal zones JSON</name>
           <type>ZABBIX_AGENT</type>
           <key>thermal.json</key>
@@ -35,6 +38,7 @@
 
       <discovery_rules>
         <discovery_rule>
+          <uuid>0f7e997d-b603-4be4-8209-3d04297df034</uuid>
           <name>Thermal zone discovery</name>
           <key>thermal.lld</key>
           <type>ZABBIX_AGENT</type>
@@ -50,6 +54,7 @@
 
           <item_prototypes>
             <item_prototype>
+              <uuid>0ad58f43-5ea7-4a8c-b579-025904960996</uuid>
               <name>Temperature {#ITEMKEY}</name>
               <key>thermal[{#ITEMKEY}]</key>
               <type>DEPENDENT</type>
@@ -73,7 +78,6 @@
               <enabled>1</enabled>
             </item_prototype>
           </item_prototypes>
-
         </discovery_rule>
       </discovery_rules>
 
