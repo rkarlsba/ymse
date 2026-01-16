@@ -32,7 +32,6 @@
           <history>1d</history>
           <trends>0</trends>
           <preprocessing/>
-          <enabled>1</enabled>
         </item>
       </items>
 
@@ -43,7 +42,6 @@
           <key>thermal.lld</key>
           <type>ZABBIX_AGENT</type>
           <delay>300s</delay>
-          <enabled>1</enabled>
 
           <lld_steps>
             <lld_step>
@@ -74,8 +72,6 @@
                   <parameter>$.{#ITEMKEY}</parameter>
                 </step>
               </preprocessing>
-
-              <enabled>1</enabled>
             </item_prototype>
           </item_prototypes>
         </discovery_rule>
