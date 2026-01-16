@@ -25,7 +25,6 @@
         <item>
           <uuid>7d7e71c4-7a8c-4821-af17-1cdde7aea32a</uuid>
           <name>Thermal zones JSON</name>
-          <type>0</type>
           <key>thermal.json</key>
           <value_type>4</value_type>
           <delay>30s</delay>
@@ -40,7 +39,6 @@
           <uuid>0f7e997d-b603-4be4-8209-3d04297df034</uuid>
           <name>Thermal zone discovery</name>
           <key>thermal.lld</key>
-          <type>0</type>
           <delay>300s</delay>
 
           <lld_steps>
@@ -72,7 +70,6 @@
                   <parameter>$.{#ITEMKEY}</parameter>
                 </step>
               </preprocessing>
-
             </item_prototype>
           </item_prototypes>
 
