@@ -2,7 +2,6 @@
 <zabbix_export>
   <version>7.0</version>
 
-  <!-- Root-level template group container -->
   <template_groups>
     <template_group>
       <name>Templates/Hardware</name>
@@ -14,14 +13,12 @@
       <template>Template ARM Thermal Sensors</template>
       <name>Template ARM Thermal Sensors</name>
 
-      <!-- Assign this template to a group -->
       <groups>
         <group>
           <name>Templates/Hardware</name>
         </group>
       </groups>
 
-      <!-- Master JSON item that holds the script output -->
       <items>
         <item>
           <name>Thermal zones JSON</name>
@@ -36,7 +33,6 @@
         </item>
       </items>
 
-      <!-- LLD rule that discovers zone keys from --lld output -->
       <discovery_rules>
         <discovery_rule>
           <name>Thermal zone discovery</name>
@@ -45,7 +41,6 @@
           <delay>300s</delay>
           <enabled>1</enabled>
 
-          <!-- Preprocess discovery payload to $.data array -->
           <lld_steps>
             <lld_step>
               <type>JSONPATH</type>
@@ -53,7 +48,6 @@
             </lld_step>
           </lld_steps>
 
-          <!-- Item prototype per discovered zone -->
           <item_prototypes>
             <item_prototype>
               <name>Temperature {#ITEMKEY}</name>
@@ -79,6 +73,7 @@
               <enabled>1</enabled>
             </item_prototype>
           </item_prototypes>
+
         </discovery_rule>
       </discovery_rules>
 
@@ -86,4 +81,5 @@
       <tags/>
     </template>
   </templates>
+
 </zabbix_export>
