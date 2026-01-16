@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.0</version>
+    <date>2026-01-16T15:00:00Z</date>
+    <groups>
+        <group>
+            <name>Templates/Hardware</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template ARM Thermal Sensors</template>
+            <name>Template ARM Thermal Sensors</name>
+            <groups>
+                <group>
+                    <name>Templates/Hardware</name>
+                </group>
+            </groups>
+            <items>
+                <!-- Master JSON item -->
+                <item>
+                    <name>Thermal zones JSON</name>
+                    <key>thermal.json</key>
+                    <type>ZABBIX_AGENT</type>
+                    <value_type>TEXT</value_type>
+                    <delay>30s</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <preprocessing/>
+                    <description>JSON thermal zone output from /usr/local/bin/mangopi_thermal_json.py</description>
+                    <enabled>1</enabled>
+                </item>
+
+                <!-- LLD Discovery Rule -->
+                <item>
+                    <name>Thermal zone discovery</name>
+                    <type>ZABBIX_AGENT</type>
+                    <key>thermal.lld</key>
+                    <delay>300s</delay>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <filter/>
+                    <lld_macro_paths>
+                        <lld_macro_path>
+                            <lld_macro>{#ITEMKEY}</lld_macro>
+                            <path>$.data[*].{#ITEMKEY}</path>
+                        </lld_macro_path>
+                    </lld_macro_paths>
+                    <preprocessing/>
+                    <lld_steps>
+                        <lld_step>
+                            <type>JSONPATH</type>
+                            <parameter>$.data</parameter>
+                        </lld_step>
+                    </lld_steps>
+                    <enabled>1</enabled>
+                </item>
+            </items>
+
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Thermal zone discovery</name>
+                    <key>thermal.lld</key>
+                    <type>ZABBIX_AGENT</type>
+                    <delay>300s</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Temperature {#ITEMKEY}</name>
+                            <key>thermal[{#ITEMKEY}]</key>
+                            <type>DEPENDENT</type>
+                            <value_type>FLOAT</value_type>
+                            <units>°C</units>
+                            <delay>0</delay>
+                            <history>3d</history>
+                            <trends>30d</trends>
+                            <master_item>
+                                <key>thermal.json</key>
+                            </master_item>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameter>$.{#ITEMKEY}</parameter>
+                                </step>
+                            </preprocessing>
+                            <enabled>1</enabled>
+                        </item_prototype>
+                    </item_prototypes>
+                    <enabled>1</enabled>
+                </discovery_rule>
+            </discovery_rules>
+
+            <macros/>
+            <tags/>
+        </template>
+    </templates>
+</zabbix_export>
