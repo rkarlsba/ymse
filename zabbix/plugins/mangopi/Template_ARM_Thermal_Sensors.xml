@@ -1,86 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>7.0</version>
+  <version>7.0</version>
 
-    <groups>
+  <!-- Root-level template group container -->
+  <template_groups>
+    <template_group>
+      <name>Templates/Hardware</name>
+    </template_group>
+  </template_groups>
+
+  <templates>
+    <template>
+      <template>Template ARM Thermal Sensors</template>
+      <name>Template ARM Thermal Sensors</name>
+
+      <!-- Assign this template to a group -->
+      <groups>
         <group>
-            <name>Templates/Hardware</name>
+          <name>Templates/Hardware</name>
         </group>
-    </groups>
+      </groups>
 
-    <templates>
-        <template>
-            <template>Template ARM Thermal Sensors</template>
-            <name>Template ARM Thermal Sensors</name>
+      <!-- Master JSON item that holds the script output -->
+      <items>
+        <item>
+          <name>Thermal zones JSON</name>
+          <type>ZABBIX_AGENT</type>
+          <key>thermal.json</key>
+          <value_type>TEXT</value_type>
+          <delay>30s</delay>
+          <history>1d</history>
+          <trends>0</trends>
+          <preprocessing/>
+          <enabled>1</enabled>
+        </item>
+      </items>
 
-            <groups>
-                <group>
-                    <name>Templates/Hardware</name>
-                </group>
-            </groups>
+      <!-- LLD rule that discovers zone keys from --lld output -->
+      <discovery_rules>
+        <discovery_rule>
+          <name>Thermal zone discovery</name>
+          <key>thermal.lld</key>
+          <type>ZABBIX_AGENT</type>
+          <delay>300s</delay>
+          <enabled>1</enabled>
 
-            <!-- Master item: JSON data from python script -->
-            <items>
-                <item>
-                    <name>Thermal zones JSON</name>
-                    <type>ZABBIX_AGENT</type>
-                    <key>thermal.json</key>
-                    <value_type>TEXT</value_type>
-                    <delay>30s</delay>
-                    <history>1d</history>
-                    <trends>0</trends>
-                    <preprocessing/>
-                    <enabled>1</enabled>
-                </item>
-            </items>
+          <!-- Preprocess discovery payload to $.data array -->
+          <lld_steps>
+            <lld_step>
+              <type>JSONPATH</type>
+              <parameter>$.data</parameter>
+            </lld_step>
+          </lld_steps>
 
-            <!-- LLD rule -->
-            <discovery_rules>
-                <discovery_rule>
-                    <name>Thermal zone discovery</name>
-                    <key>thermal.lld</key>
-                    <type>ZABBIX_AGENT</type>
-                    <delay>300s</delay>
-                    <enabled>1</enabled>
+          <!-- Item prototype per discovered zone -->
+          <item_prototypes>
+            <item_prototype>
+              <name>Temperature {#ITEMKEY}</name>
+              <key>thermal[{#ITEMKEY}]</key>
+              <type>DEPENDENT</type>
+              <value_type>FLOAT</value_type>
+              <units>°C</units>
+              <delay>0s</delay>
+              <history>3d</history>
+              <trends>30d</trends>
 
-                    <lld_steps>
-                        <lld_step>
-                            <type>JSONPATH</type>
-                            <!-- LLD script returns { "data": [ ... ] } -->
-                            <parameter>$.data</parameter>
-                        </lld_step>
-                    </lld_steps>
+              <master_item>
+                <key>thermal.json</key>
+              </master_item>
 
-                    <item_prototypes>
-                        <item_prototype>
-                            <name>Temperature {#ITEMKEY}</name>
-                            <key>thermal[{#ITEMKEY}]</key>
-                            <type>DEPENDENT</type>
-                            <value_type>FLOAT</value_type>
-                            <units>°C</units>
-                            <delay>0s</delay>
-                            <history>3d</history>
-                            <trends>30d</trends>
+              <preprocessing>
+                <step>
+                  <type>JSONPATH</type>
+                  <parameter>$.{#ITEMKEY}</parameter>
+                </step>
+              </preprocessing>
 
-                            <master_item>
-                                <key>thermal.json</key>
-                            </master_item>
+              <enabled>1</enabled>
+            </item_prototype>
+          </item_prototypes>
+        </discovery_rule>
+      </discovery_rules>
 
-                            <preprocessing>
-                                <step>
-                                    <type>JSONPATH</type>
-                                    <parameter>$.{#ITEMKEY}</parameter>
-                                </step>
-                            </preprocessing>
-
-                            <enabled>1</enabled>
-                        </item_prototype>
-                    </item_prototypes>
-                </discovery_rule>
-            </discovery_rules>
-
-            <macros/>
-            <tags/>
-        </template>
-    </templates>
+      <macros/>
+      <tags/>
+    </template>
+  </templates>
 </zabbix_export>
