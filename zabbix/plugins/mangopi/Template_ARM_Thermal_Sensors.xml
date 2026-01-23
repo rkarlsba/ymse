@@ -1,84 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
   <version>7.0</version>
-
-  <template_groups>
-    <template_group>
-      <uuid>c3b36f2e-0ce9-4faf-9c0c-2c07d79e55a2</uuid>
+  <groups>
+    <group>
       <name>Templates/Hardware</name>
-    </template_group>
-  </template_groups>
+    </group>
+  </groups>
 
   <templates>
     <template>
-      <uuid>9de6f120-6be3-43ab-bb95-7900e9b7da9b</uuid>
-      <template>Template ARM Thermal Sensors</template>
-      <name>Template ARM Thermal Sensors</name>
-
+      <template>Template Linux Thermal Zones (MangoPi)</template>
+      <name>Template Linux Thermal Zones (MangoPi)</name>
       <groups>
         <group>
           <name>Templates/Hardware</name>
         </group>
       </groups>
 
-      <items>
-        <item>
-          <uuid>7d7e71c4-7a8c-4821-af17-1cdde7aea32a</uuid>
-          <name>Thermal zones JSON</name>
-          <key>thermal.json</key>
-          <value_type>4</value_type>
-          <delay>30s</delay>
-          <history>1d</history>
-          <trends>0</trends>
-          <preprocessing/>
-        </item>
-      </items>
-
+      <items/>
       <discovery_rules>
         <discovery_rule>
-          <uuid>0f7e997d-b603-4be4-8209-3d04297df034</uuid>
-          <name>Thermal zone discovery</name>
-          <key>thermal.lld</key>
-          <delay>300s</delay>
-
-          <lld_steps>
-            <lld_step>
-              <type>15</type>
-              <parameter>$.data</parameter>
-            </lld_step>
-          </lld_steps>
-
+          <name>MangoPi Thermal Zone Discovery</name>
+          <key>system.run[/usr/local/bin/mangopi_thermal_json.py --lld]</key>
+          <type>0</type> <!-- Zabbix agent -->
+          <delay>1m</delay>
+          <lifetime>7d</lifetime>
+          <enabled>1</enabled>
           <item_prototypes>
             <item_prototype>
-              <uuid>0ad58f43-5ea7-4a8c-b579-025904960996</uuid>
-              <name>Temperature {#ITEMKEY}</name>
-              <key>thermal[{#ITEMKEY}]</key>
-              <type>18</type>
-              <value_type>0</value_type>
+              <name>Temperature {#ZONETYPE}</name>
+              <key>system.run[/usr/local/bin/mangopi_thermal_json.py]</key>
+              <value_type>0</value_type> <!-- numeric float -->
               <units>°C</units>
-              <delay>0s</delay>
-              <history>3d</history>
-              <trends>30d</trends>
-
-              <master_item>
-                <key>thermal.json</key>
-              </master_item>
-
+              <delay>30s</delay>
               <preprocessing>
                 <step>
-                  <type>15</type>
-                  <parameter>$.{#ITEMKEY}</parameter>
+                  <type>21</type> <!-- JSONPATH -->
+                  <params>$.{#ZONETYPE}</params>
                 </step>
               </preprocessing>
             </item_prototype>
           </item_prototypes>
 
+          <trigger_prototypes>
+            <trigger_prototype>
+              <name>{#ZONETYPE} temperature above 75°C</name>
+              <expression>{Template Linux Thermal Zones (MangoPi):system.run[/usr/local/bin/mangopi_thermal_json.py].last()} > 75</expression>
+              <priority>4</priority> <!-- High -->
+              <description>Temperature for zone {#ZONETYPE} is above safe operating levels.</description>
+            </trigger_prototype>
+          </trigger_prototypes>
+
+          <lld_macro_paths>
+            <lld_macro_path>
+              <lld_macro>{#ZONETYPE}</lld_macro>
+              <path>$.data[*].{#ZONETYPE}</path>
+            </lld_macro_path>
+            <lld_macro_path>
+              <lld_macro>{#ITEMKEY}</lld_macro>
+              <path>$.data[*].{#ITEMKEY}</path>
+            </lld_macro_path>
+          </lld_macro_paths>
+
         </discovery_rule>
       </discovery_rules>
-
       <macros/>
-      <tags/>
     </template>
   </templates>
-
 </zabbix_export>
