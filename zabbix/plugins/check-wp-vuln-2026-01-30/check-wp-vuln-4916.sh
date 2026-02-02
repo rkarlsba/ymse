@@ -9,7 +9,7 @@ fi
 
 HOSTNAME=$1
 
-curl -s https://$HOSTNAME/asdf/2022/02/03/14071https:/uni.os > /dev/null 2>&1
+curl -ks https://$HOSTNAME/asdf/2022/02/03/14071https:/uni.os > /dev/null 2>&1
 retcode=$?
 
 # Below, 0 is normally ok, but in our case, we don't want curl to reurn ok,
@@ -24,7 +24,7 @@ retcode=$?
 #
 case $retcode in
     0)
-        echo "ERROR: Server $HOSTNAME is vurlerable to this attack"
+        echo "ERROR: Server $HOSTNAME is vulnerable to this attack"
         ;;
     6)
         echo "WARNING: Could not resolve host "$HOSTNAME""
