@@ -24,6 +24,7 @@ runmode_count=0
 # This used to be "kernel", but since RHEL8, "kernel" is just a metapackage, so
 # we'll need to look for "kernel-core"
 RHEL_KERNEL_PACKAGE="kernel-core"
+RHEL_KERNEL_DEBUG_PACKAGE="kernel-debug-core"
 
 if [ $RETCODE -ne 0 ]
 then
@@ -108,7 +109,7 @@ case $DISTRO in
     rhel|centos)
         case $RUNMODE in
             cron|direct)
-                LATEST=$( rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" "$RHEL_KERNEL_PACKAGE" | tail -n1 )
+                LATEST=$( rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" "$RHEL_KERNEL_DEBUG_PACKAGE" "$RHEL_KERNEL_PACKAGE"  | sort -V -u | tail -1 )
                 ;;
             local)
                 if [ -r $OUTFILE ]
@@ -136,7 +137,7 @@ case $RUNMODE in
         ;;
     *)
         RUNNING=$(uname -r)
-        if [ "$RUNNING" == "$LATEST" ]
+        if [ "$RUNNING" == "$LATEST" -o "$RUNNING" == "$LATEST+debug" ]
         then
             STATUS="OK"
             MESSAGE="Latest kernel $RUNNING is running"
@@ -151,4 +152,3 @@ case $RUNMODE in
             echo "$STATUS $MESSAGE"
         fi
 esac
-
