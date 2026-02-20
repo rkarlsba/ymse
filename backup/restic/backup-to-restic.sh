@@ -21,15 +21,52 @@
 # VERBOSE=0
 # }}}
 
+# Fail fast, catch errors in pipelines, undefined vars are errors
+# -E ensures ERR trap is inherited in functions/subshells
+set -Eeuo pipefail
+
+PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
+
+# Variabler - se https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+export RESTIC_REPOSITORY="sftp:restic:restic-repo"
+export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
+
+RESTIC_LOG_DIR="/var/log/restic"
+RESTIC_SNAPSHOT_JSON="$RESTIC_LOG_DIR/snapshots.json"
+# RESTIC_LATEST_ID_TXT="$RESTIC_LOG_DIR/latest_snapshot.txt"
+# RESTIC_BACKUP_LOG="$RESTIC_LOG_DIR/backup.jsonl"
+
+RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
+RESTIC_EXCLUDE=""
+RESTIC_VERBOSE=""
+RESTIC_ONE_FILESYSTEM="0"
+RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
+RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
+RESTIC_CMD="restic --verbose backup --exclude-file $RESTIC_EXCLUDE_FILE /"
+RESTIC_BACKUP_DIRS="/"
+ONE_FILESYSTEM=0
+RETCODE=0
+VERBOSE=0
 OS=$( uname -s )
+
 RESTIC_CONFIG="/etc/default/restic"
 PROGNAME=restic-backup
 LOCKDIR=/var/lock
 LOCKFILE=$LOCKDIR/$PROGNAME.lock
 AUTOCLEANUP=1
 
+# Import user config
+source $RESTIC_CONFIG
+
 # Trap specific signals (not EXIT)
-trap "{ rm -f $LOCKFILE ; exit 1; }" SIGHUP SIGINT SIGQUIT SIGTERM
+# Trap on EXIT for the "finally" behavior, on ERR for error paths,
+# and on common termination signals. SIGKILL/SIGSTOP cannot be trapped.
+trap endgame EXIT
+trap 'return 1' ERR
+trap 'kill -TERM 0' HUP TERM
+trap 'echo "Interrupted"; exit 130' INT
+
+[ -d $RESTIC_LOG_DIR ] || mkdir -p $RESTIC_LOG_DIR || exit 1
 
 # Check if lockfile directory exits is writable and exit if not
 if [ ! -d $LOCKDIR -o ! -w $LOCKDIR ]; then
@@ -60,15 +97,6 @@ fi
 # Create lockfile
 echo $$ > $LOCKFILE
 
-# Import user config
-source $RESTIC_CONFIG
-exitcode=$?
-if [ $exitcode -ne 0 ]
-then
-    echo "Can't opeen restic config file, \"$RESTIC_CONFIG\", giving up" >&2
-    exit $exitcode
-fi
-
 # This should have been with getopts, but hell, this works too
 for op in $@
 do
@@ -93,23 +121,38 @@ do
     fi
 done
 
-trap exit_msg EXIT
-
 # Functions
-function verbose {
-    [ $VERBOSE -gt 0 ] || return
-    echo $@
+verbose() {
+    if [ $VERBOSE -gt 0 ]
+    then
+        echo $@
+    fi
 }
 
-function exit_msg {
+endgame() {
+    # exit status of the script so far
+    local exitcode=$? 
+
+    set +e
+
     verbose "-------------------------------------------------------------------------------"
     verbose "Backup av $( hostname ) avsluttet"
-    if [ $RETCODE -ne 0 ]
+    if [ $exitcode -ne 0 ]
     then
-        verbose "Returkode $RETCODE"
+        verbose "Returkode $exitcode"
     fi
     verbose "$( date "+%d. %B %Y klokka %H:%M:%S" )"
     verbose "-------------------------------------------------------------------------------"
+
+    # Best-effort: write a fresh snapshot list that Zabbix can ingest
+    # (Works whether the backup succeeded or not, as long as the repo is reachable)
+    # JSON output flag is global and supported by 'snapshots'.
+    # Errors here should not hide the original status, so don't 'set -e' break this.
+    restic snapshots --json >"$RESTIC_SNAPSHOT_JSON"
+
+    rm -f $LOCKFILE
+
+    exit $exitcode
 }
 
 # Sanity checks
