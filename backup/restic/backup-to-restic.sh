@@ -58,6 +58,12 @@ AUTOCLEANUP=1
 # Import user config
 source $RESTIC_CONFIG
 
+# Sjekk om vi er på ei skrivebeskytta rot
+if $( mount | grep -w /| grep -qw ro )
+then
+    export RESTIC_CACHE_DIR=/tmp/restic-cache
+fi
+
 # Trap specific signals (not EXIT)
 # Trap on EXIT for the "finally" behavior, on ERR for error paths,
 # and on common termination signals. SIGKILL/SIGSTOP cannot be trapped.
