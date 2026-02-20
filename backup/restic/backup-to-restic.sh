@@ -16,47 +16,23 @@
 # RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
 # RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
 # RESTIC_BACKUP_DIRS="/"
-# ONE_FILESYSTEM=0
-# RETCODE=0
-# VERBOSE=0
+# RESTIC_ONE_FILESYSTEM=0
 # }}}
 
 # Fail fast, catch errors in pipelines, undefined vars are errors
 # -E ensures ERR trap is inherited in functions/subshells
 set -Eeuo pipefail
 
-PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
-
-# Variabler - se https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
-export RESTIC_REPOSITORY="sftp:restic:restic-repo"
-export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
-
-RESTIC_LOG_DIR="/var/log/restic"
-RESTIC_SNAPSHOT_JSON="$RESTIC_LOG_DIR/snapshots.json"
-# RESTIC_LATEST_ID_TXT="$RESTIC_LOG_DIR/latest_snapshot.txt"
-# RESTIC_BACKUP_LOG="$RESTIC_LOG_DIR/backup.jsonl"
-
-RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
-RESTIC_EXCLUDE=""
-RESTIC_VERBOSE=""
-RESTIC_ONE_FILESYSTEM="0"
-RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
-RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
-RESTIC_CMD="restic --verbose backup --exclude-file $RESTIC_EXCLUDE_FILE /"
-RESTIC_BACKUP_DIRS="/"
-ONE_FILESYSTEM=0
-RETCODE=0
-VERBOSE=0
-OS=$( uname -s )
-
 RESTIC_CONFIG="/etc/default/restic"
-PROGNAME=restic-backup
-LOCKDIR=/var/lock
-LOCKFILE=$LOCKDIR/$PROGNAME.lock
-AUTOCLEANUP=1
+RESTIC_OVERRIDE="/usr/local/etc/restic-override"
+
+# Import system config
+[ -f $RESTIC_CONFIG ] && source $RESTIC_CONFIG
 
 # Import user config
-source $RESTIC_CONFIG
+[ -f $RESTIC_OVERRIDE ] && source $RESTIC_OVERRIDE
+
+RESTIC_CMD="restic --verbose backup --exclude-file $RESTIC_EXCLUDE_FILE $RESTIC_BACKUP_DIRS"
 
 # Sjekk om vi er på ei skrivebeskytta rot
 if $( mount | grep -w /| grep -qw ro )
@@ -112,11 +88,11 @@ do
         exit 0
     elif [ "$op" = "-v" -o "$op" = "--verbose" ]
     then
-        VERBOSE=1
+        RESTIC_VERBOSE=1
         shift
     elif [ "$op" = "--one-file-system" -o "$op" = "--one-filesystem" -o "$op" = "-O" ]
     then
-        ONE_FILESYSTEM=1
+        RESTIC_ONE_FILESYSTEM=1
         shift
     elif [ "$op" = "--no-pre-exec" ]
     then
@@ -129,7 +105,7 @@ done
 
 # Functions
 verbose() {
-    if [ $VERBOSE -gt 0 ]
+    if [ $RESTIC_VERBOSE -gt 0 ]
     then
         echo $@
     fi
@@ -193,11 +169,11 @@ case "$OS" in
         ;;
 esac
 
-if [ $VERBOSE -gt 0 ]
+if [ $RESTIC_VERBOSE -gt 0 ]
 then
-    RESTIC_VERBOSE='--verbose'
+    RESTIC_VERBOSE_FLAG='--verbose'
 else
-    RESTIC_VERBOSE='--quiet'
+    RESTIC_VERBOSE_FLAG='--quiet'
 fi
 
 if [ $RESTIC_ONE_FILESYSTEM -gt 0 ]
@@ -211,7 +187,7 @@ then
 else
     case $OS in
         Linux)
-            if [ $ONE_FILESYSTEM -eq 0 ]
+            if [ $RESTIC_ONE_FILESYSTEM -eq 0 ]
             then
                 echo <<EOT
 ERROR:
@@ -230,7 +206,7 @@ fi
 # Dette er trygt og enkelt
 if ! restic snapshots >/dev/null 2>&1; then
     verbose "No repo found - running init"
-    restic $RESTIC_VERBOSE init
+    restic $RESTIC_VERBOSE_FLAG init
 fi
 
 # Hovedprogram
@@ -241,11 +217,10 @@ verbose "-----------------------------------------------------------------------
 
 if [ -x "$RESTIC_PRE_EXEC_JOB" ]
 then
-    export VERBOSE
     verbose "Running pre-exec job $RESTIC_PRE_EXEC_JOB"
     bash -c "$RESTIC_PRE_EXEC_JOB"
-    RETCODE=$?
-    if [ $RETCODE -ne 0 ]
+    RESTIC_RETCODE=$?
+    if [ $RESTIC_RETCODE -ne 0 ]
     then
         verbose "pre-exec job returned non-zero ($?) - stopping"
         exit 3
@@ -254,7 +229,7 @@ else
     verbose "Fant ikke passende pre-exec-job"
 fi
 
-restic $RESTIC_VERBOSE backup $RESTIC_ONE_FILESYSTEM $RESTIC_EXCLUDE $RESTIC_BACKUP_DIRS
+restic $RESTIC_VERBOSE_FLAG backup $RESTIC_ONE_FILESYSTEM $RESTIC_EXCLUDE $RESTIC_BACKUP_DIRS
 
 if [ -x "$RESTIC_POST_EXEC_JOB" ]
 then
