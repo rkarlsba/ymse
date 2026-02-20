@@ -227,8 +227,8 @@ EOT
     esac
 fi
 
-if $( restic snapshots 2>&1|grep '^Is there a repos' > /dev/null )
-then
+# Dette er trygt og enkelt
+if ! restic snapshots >/dev/null 2>&1; then
     verbose "No repo found - running init"
     restic $RESTIC_VERBOSE init
 fi
