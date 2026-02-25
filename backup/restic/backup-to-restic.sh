@@ -131,8 +131,6 @@ endgame() {
     # JSON output flag is global and supported by 'snapshots'.
     # Errors here should not hide the original status, so don't 'set -e' break this.
     restic snapshots --json >"$RESTIC_SNAPSHOT_JSON"
-    chown root:zabbix "$RESTIC_SNAPSHOT_JSON"
-    chmod 0640 "$RESTIC_SNAPSHOT_JSON"
 
     rm -f $LOCKFILE
 
