@@ -2,19 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """
-TopWisdom .out-filleser (port av C#-logikken du delte).
+TopWisdom .out-filleser (port av C#-logikken).
 
-Egenskaper:
 - Leser en enkelt .out-fil eller alle .out i en katalog.
 - XOR-dekoder med konfigurerbar maske (default 0x63).
 - Tolker bytes til menneskelesbar tekst, og skriver .txt ved siden av .out,
   eller i valgfri output-katalog.
 - Kan speile output til stdout (--echo-stdout).
-- Tydelig statusutskrift som standard + mer logging med --verbose.
-
-Bruk:
-  ./topwisdom-reader.py samples/SimpleCurve.out
-  ./topwisdom-reader.py samples -o dumps --echo-stdout -v
+- Skriver statuslinjer som standard + mer logging med --verbose.
+- Overskriver ALDRI eksisterende filer som standard (no-clobber). Bruk --overwrite for å tillate overskriving.
 """
 
 from __future__ import annotations
@@ -26,47 +22,26 @@ from typing import Optional, TextIO, List
 
 
 # --------- Konfigurerbare standarder (kan overstyres med CLI-flagg) ---------
-DEFAULT_INPUT_DIR = Path("samples")     # <- relativ samples/
+DEFAULT_INPUT_DIR = Path("samples")        # <- relativ samples/
 DEFAULT_OUTPUT_DIR: Optional[Path] = None  # None => skriv .txt ved siden av .out (i input)
-DEFAULT_XOR_BYTE = 0x63                 # XOR-masken brukt ved lesing
+DEFAULT_XOR_BYTE = 0x63                    # XOR-masken brukt ved lesing
 # ---------------------------------------------------------------------------
 
 
 class BitConverter:
     @staticmethod
     def to_number(a: int, b: int) -> float:
-        """
-        Port av C#-logikk:
-            if (a == 0) return b;
-            int v = (b - a);
-            if (a > 64) return v - (0x7F * (0x7F - a));
-            if (a >= 1) return a * 0x7F + v;
-            return v;
-        """
         if a == 0:
             return float(b)
-
         v = b - a
         if a > 64:
             return float(v - (0x7F * (0x7F - a)))
         if a >= 1:
             return float(a * 0x7F + v)
-
         return float(v)
 
     @staticmethod
     def to_float(cb: bytes) -> float:
-        """
-        5 byte, 7-bit «pakking» per byte, delt på 1000.
-        C#:
-            int value =
-                  (cb[0] << 7 * 4)
-                + (cb[1] << 7 * 3)
-                + (cb[2] << 7 * 2)
-                + (cb[3] << 7)
-                + cb[4];
-            return value / 1000f;
-        """
         if len(cb) != 5:
             raise ValueError(f"to_float expects 5 bytes, got {len(cb)}")
         value = (
@@ -80,14 +55,6 @@ class BitConverter:
 
     @staticmethod
     def to_percentage(a: int, b: int) -> float:
-        """
-        C#:
-            int l = (a * 0x7f) + b;
-            int f = 0x7f << 7;
-            float v = (l * 10000f) / f;
-            var g = v + 0.5f;
-            return ((int)g) / 100f;
-        """
         l = (a * 0x7F) + b
         f = (0x7F << 7)
         v = (l * 10000.0) / f
@@ -124,6 +91,32 @@ def list_out_files(path: Path) -> List[Path]:
     return []
 
 
+def open_unique_text(path: Path):
+    """
+    Åpner en ny tekstfil i eksklusiv modus uten å overskrive eksisterende.
+    Hvis 'path' finnes, prøver path.stem + .1 + suffix, .2, osv.
+    Returnerer (file_obj, final_path).
+    """
+    # Første forsøk: ønsket navn.
+    try:
+        f = path.open("x", encoding="utf-8", newline="")
+        return f, path
+    except FileExistsError:
+        pass
+
+    stem = path.stem
+    suffix = path.suffix
+    parent = path.parent
+    i = 1
+    while True:
+        candidate = parent / f"{stem}.{i}{suffix}"
+        try:
+            f = candidate.open("x", encoding="utf-8", newline="")
+            return f, candidate
+        except FileExistsError:
+            i += 1
+
+
 class Reader:
     def __init__(
         self,
@@ -132,16 +125,18 @@ class Reader:
         out_stream: Optional[TextIO] = None,
         xorbyte: int = DEFAULT_XOR_BYTE,
         echo_stdout: bool = False,
+        overwrite: bool = False,
     ):
         self._offset: int = 0
         self._length: int = 0
         self._buffer: bytes = b""
-        self._raw_out_stream: Optional[TextIO] = out_stream  # rå stream (ikke brukt i vanlig flyt)
+        self._raw_out_stream: Optional[TextIO] = out_stream  # ikke brukt i vanlig flyt
         self._out_stream: Optional[TeeWriter] = None
 
         # konfig
         self.xorbyte = xorbyte
         self.echo_stdout = echo_stdout
+        self.overwrite = overwrite
 
         # standard: relativ "samples/"
         self.base_path = Path(base_path) if base_path else DEFAULT_INPUT_DIR
@@ -209,17 +204,27 @@ class Reader:
         print(f"Prosesserer {len(files)} fil(er) fra {where}")
 
         for in_file in files:
-            out_file = (
+            desired_out = (
                 (self.out_dir / in_file.name).with_suffix(".txt")
                 if self.out_dir
                 else in_file.with_suffix(".txt")
             )
-            out_file.parent.mkdir(parents=True, exist_ok=True)
+            desired_out.parent.mkdir(parents=True, exist_ok=True)
 
-            # Kort per-fil status (alltid)
-            print(f"  {in_file} -> {out_file}")
+            if self.overwrite:
+                # Tillat eksplisitt overskriving
+                out_file = desired_out
+                print(f"  {in_file} -> {out_file} (overskriver)")
+                f = out_file.open("w", encoding="utf-8", newline="")
+            else:
+                # No-clobber: eksklusiv opprettelse og automatisk nummerering
+                f, out_file = open_unique_text(desired_out)
+                if out_file == desired_out:
+                    print(f"  {in_file} -> {out_file}")
+                else:
+                    print(f"  {in_file} -> {desired_out} finnes; skriver til: {out_file}")
 
-            with out_file.open("w", encoding="utf-8", newline="") as f:
+            with f:
                 self._out_stream = TeeWriter(f, also_stdout=self.echo_stdout)
                 if verbose:
                     print(f"[debug] Leser bytes fra: {in_file}")
@@ -252,7 +257,6 @@ class Reader:
 
         elif b == 0xE2:
             if self.next() == 0x01:
-                # Filnavn-del (9 bytes UTF-8)
                 s = self.next_n(9).decode("utf-8", errors="replace")
                 self._out_stream.write(f" File name (or a part of it): {s}")
             else:
@@ -286,7 +290,6 @@ class Reader:
             if b2 == 0x00:
                 pass
             elif b2 == 0x04:
-                # something related to line position: x,y
                 self.next_n(4)
                 self.print_float(" x")
                 self._out_stream.write(" ")
@@ -377,10 +380,8 @@ class Reader:
                 self.next_n(2)
             elif b2 == 0x01:
                 self.next()
-            # ellers som originalen (ingen default/return)
 
         elif b == 0xD0:
-            # ingen ekstra lesing i originalen
             pass
 
         elif b == 0x80:
@@ -412,11 +413,9 @@ class Reader:
             self._out_stream.write(f"[{BitConverter.to_number(a1, b1)},{BitConverter.to_number(c1, d1)}],")
 
         elif b == 0xA2:
-            # «Horizontal line?»
             self._out_stream.write(f" Horizontal line? {BitConverter.to_number(self.next(), self.next())}")
 
         elif b == 0xA3:
-            # «Vertical line?»
             self._out_stream.write(f" Vertical line? {BitConverter.to_number(self.next(), self.next())}")
 
         else:
@@ -454,6 +453,11 @@ def parse_args() -> argparse.Namespace:
         help="Skriv også til stdout i tillegg til fil."
     )
     p.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Tillat overskriving av eksisterende filer (default: av/på=av)."
+    )
+    p.add_argument(
         "-v", "--verbose",
         action="store_true",
         help="Mer utskrift om hva som skjer."
@@ -469,17 +473,16 @@ def main() -> None:
         print(f"Feil: sti finnes ikke: {in_path}", file=sys.stderr)
         sys.exit(2)
 
-    # base_path settes til katalogen vi jobber i (for konsistens), men brukes ikke strengt nødvendig.
     reader = Reader(
         base_path=in_path if in_path.is_dir() else in_path.parent,
         out_dir=ns.output,
         xorbyte=ns.xor,
         echo_stdout=ns.echo_stdout,
+        overwrite=ns.overwrite,
     )
 
     count = reader.process_path(in_path, verbose=ns.verbose)
     if count == 0:
-        # Gi en exit-kode som signaliserer "ingenting å gjøre"
         if ns.verbose:
             print("Ingen filer prosessert.")
         sys.exit(2)
