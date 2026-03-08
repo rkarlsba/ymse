@@ -1,18 +1,34 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# topwisdom-reader.py
+"""
+TopWisdom .out-filleser (port av C#-logikken du delte).
+
+Egenskaper:
+- Leser en enkelt .out-fil eller alle .out i en katalog.
+- XOR-dekoder med konfigurerbar maske (default 0x63).
+- Tolker bytes til menneskelesbar tekst, og skriver .txt ved siden av .out,
+  eller i valgfri output-katalog.
+- Kan speile output til stdout (--echo-stdout).
+- Tydelig statusutskrift som standard + mer logging med --verbose.
+
+Bruk:
+  ./topwisdom-reader.py samples/SimpleCurve.out
+  ./topwisdom-reader.py samples -o dumps --echo-stdout -v
+"""
 
 from __future__ import annotations
+
 import sys
 import argparse
 from pathlib import Path
-from typing import Optional, TextIO
+from typing import Optional, TextIO, List
+
 
 # --------- Konfigurerbare standarder (kan overstyres med CLI-flagg) ---------
-default_input_dir = Path("samples")     # <- relativ samples/
-default_output_dir = None               # None => skriv .txt ved siden av .out (i input-dir)
-default_xor_byte = 0x63                 # XOR-masken brukt ved lesing
+DEFAULT_INPUT_DIR = Path("samples")     # <- relativ samples/
+DEFAULT_OUTPUT_DIR: Optional[Path] = None  # None => skriv .txt ved siden av .out (i input)
+DEFAULT_XOR_BYTE = 0x63                 # XOR-masken brukt ved lesing
 # ---------------------------------------------------------------------------
 
 
@@ -96,20 +112,31 @@ class TeeWriter:
             sys.stdout.flush()
 
 
+def is_out_file(p: Path) -> bool:
+    return p.is_file() and p.suffix.lower() == ".out"
+
+
+def list_out_files(path: Path) -> List[Path]:
+    if path.is_file():
+        return [path] if is_out_file(path) else []
+    if path.is_dir():
+        return sorted([p for p in path.glob("*.out") if p.is_file()])
+    return []
+
+
 class Reader:
     def __init__(
         self,
         base_path: Optional[Path] = None,
         out_dir: Optional[Path] = None,
         out_stream: Optional[TextIO] = None,
-        xorbyte: int = default_xor_byte,
+        xorbyte: int = DEFAULT_XOR_BYTE,
         echo_stdout: bool = False,
     ):
-
         self._offset: int = 0
         self._length: int = 0
         self._buffer: bytes = b""
-        self._raw_out_stream: Optional[TextIO] = out_stream  # rå stream (kun ved enkel bruk)
+        self._raw_out_stream: Optional[TextIO] = out_stream  # rå stream (ikke brukt i vanlig flyt)
         self._out_stream: Optional[TeeWriter] = None
 
         # konfig
@@ -117,7 +144,7 @@ class Reader:
         self.echo_stdout = echo_stdout
 
         # standard: relativ "samples/"
-        self.base_path = Path(base_path) if base_path else default_input_dir
+        self.base_path = Path(base_path) if base_path else DEFAULT_INPUT_DIR
         self.base_path = self.base_path.resolve()
 
         # output-dir (valgfritt). Hvis None: skriv .txt ved siden av .out
@@ -165,12 +192,22 @@ class Reader:
         self._out_stream.write(f"{name}:{val:.2f}")
 
     # --- main logic ---
-    def process_files(self) -> None:
-        if not self.base_path.exists():
-            print(f"Samples-katalog finnes ikke: {self.base_path}", file=sys.stderr)
-            return
+    def process_path(self, in_path: Path, verbose: bool = False) -> int:
+        """
+        Prosesserer in_path:
+        - Hvis fil: bare denne.
+        - Hvis katalog: alle *.out i denne.
+        Returnerer antall prosesserte filer.
+        """
+        files = list_out_files(in_path)
+        if not files:
+            print(f"Ingen .out-filer funnet i/for: {in_path}", file=sys.stderr)
+            return 0
 
-        files = sorted([p for p in self.base_path.glob("*.out") if p.is_file()])
+        # Kort statuslinje (alltid)
+        where = in_path if in_path.is_dir() else in_path.parent
+        print(f"Prosesserer {len(files)} fil(er) fra {where}")
+
         for in_file in files:
             out_file = (
                 (self.out_dir / in_file.name).with_suffix(".txt")
@@ -179,13 +216,18 @@ class Reader:
             )
             out_file.parent.mkdir(parents=True, exist_ok=True)
 
+            # Kort per-fil status (alltid)
+            print(f"  {in_file} -> {out_file}")
+
             with out_file.open("w", encoding="utf-8", newline="") as f:
-                # Tee til stdout hvis ønsket
                 self._out_stream = TeeWriter(f, also_stdout=self.echo_stdout)
-                # (hvis noen har satt _raw_out_stream manuelt — brukes ikke i denne flyten)
+                if verbose:
+                    print(f"[debug] Leser bytes fra: {in_file}")
                 self.read_file(in_file)
                 self._out_stream.flush()
                 self._out_stream = None
+
+        return len(files)
 
     def read_file(self, file_path: Path) -> None:
         self._buffer = file_path.read_bytes()
@@ -244,7 +286,7 @@ class Reader:
             if b2 == 0x00:
                 pass
             elif b2 == 0x04:
-                # line position / x,y
+                # something related to line position: x,y
                 self.next_n(4)
                 self.print_float(" x")
                 self._out_stream.write(" ")
@@ -335,10 +377,10 @@ class Reader:
                 self.next_n(2)
             elif b2 == 0x01:
                 self.next()
-            # ellers som originalen
+            # ellers som originalen (ingen default/return)
 
         elif b == 0xD0:
-            # ingenting ekstra
+            # ingen ekstra lesing i originalen
             pass
 
         elif b == 0x80:
@@ -370,9 +412,11 @@ class Reader:
             self._out_stream.write(f"[{BitConverter.to_number(a1, b1)},{BitConverter.to_number(c1, d1)}],")
 
         elif b == 0xA2:
+            # «Horizontal line?»
             self._out_stream.write(f" Horizontal line? {BitConverter.to_number(self.next(), self.next())}")
 
         elif b == 0xA3:
+            # «Vertical line?»
             self._out_stream.write(f" Vertical line? {BitConverter.to_number(self.next(), self.next())}")
 
         else:
@@ -384,22 +428,24 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="TopWisdom .out-filleser med C#-kompatibel tolkning. Skriver .txt-dump per fil."
     )
+    # Posisjonelt: valgfritt INPUT som kan være fil ELLER katalog.
+    # Hvis utelatt → default = ./samples
     p.add_argument(
-        "-i", "--input",
-        type=Path,
-        default=default_input_dir,
-        help="Inndatakatalog med .out-filer (default: ./samples)"
+        "input",
+        nargs="?",
+        default=str(DEFAULT_INPUT_DIR),
+        help="Fil ELLER katalog. Hvis katalog: alle *.out i denne (default: ./samples)."
     )
     p.add_argument(
         "-o", "--output",
         type=Path,
-        default=default_output_dir,
-        help="Utkatalog for .txt (default: ved siden av .out i input-dir)"
+        default=DEFAULT_OUTPUT_DIR,
+        help="Utkatalog for .txt (default: ved siden av .out i input)"
     )
     p.add_argument(
         "--xor",
         type=lambda x: int(x, 0),
-        default=default_xor_byte,
+        default=DEFAULT_XOR_BYTE,
         help="XOR-byte i heks/dec (default: 0x63)"
     )
     p.add_argument(
@@ -407,19 +453,41 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Skriv også til stdout i tillegg til fil."
     )
+    p.add_argument(
+        "-v", "--verbose",
+        action="store_true",
+        help="Mer utskrift om hva som skjer."
+    )
     return p.parse_args()
 
 
 def main() -> None:
     ns = parse_args()
 
+    in_path = Path(ns.input).resolve()
+    if not in_path.exists():
+        print(f"Feil: sti finnes ikke: {in_path}", file=sys.stderr)
+        sys.exit(2)
+
+    # base_path settes til katalogen vi jobber i (for konsistens), men brukes ikke strengt nødvendig.
     reader = Reader(
-        base_path=ns.input,
+        base_path=in_path if in_path.is_dir() else in_path.parent,
         out_dir=ns.output,
         xorbyte=ns.xor,
         echo_stdout=ns.echo_stdout,
     )
 
-    reader.process_files()
+    count = reader.process_path(in_path, verbose=ns.verbose)
+    if count == 0:
+        # Gi en exit-kode som signaliserer "ingenting å gjøre"
+        if ns.verbose:
+            print("Ingen filer prosessert.")
+        sys.exit(2)
+
+    print(f"Ferdig. Prosesserte {count} fil(er).")
     print("Done")
+
+
+if __name__ == "__main__":
+    main()
 
