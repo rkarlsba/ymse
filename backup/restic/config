@@ -1,37 +1,39 @@
 # vim:ft=sh
 
-# This one goes to /etc/default/restic
+# This file is managed by Ansible and *will* be overwritten. If you want to change
+# anything in here, add it to /usr/local/etc/restic-override
+
+# Since this is in another file, we'll just export it all :D
 
 # We need a good path - it's lost sometimes
 export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/snap/bin
 
-# Variables - for details, please see
-# https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
+# Variables - see https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables
 export RESTIC_REPOSITORY="sftp:restic:restic-repo"
 export RESTIC_PASSWORD_FILE="/usr/local/etc/restic-password.txt"
-export RESTIC_COMPRESSION="auto"
 
-PROGNAME=restic-backup
+export RESTIC_LOG_DIR="/var/log/restic"
+export RESTIC_SNAPSHOT_JSON="$RESTIC_LOG_DIR/snapshots.json"
+# export RESTIC_LATEST_ID_TXT="$RESTIC_LOG_DIR/latest_snapshot.txt" # Not in use (yet)
+# export RESTIC_BACKUP_LOG="$RESTIC_LOG_DIR/backup.jsonl" # Not in use (yet)
 
-RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
-RESTIC_EXCLUDE=""
-RESTIC_VERBOSE=""
-RESTIC_ONE_FILESYSTEM="1"
-RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
-RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
-
-# Don't add VM images to this list - they fill up the backup - better take a backup of the
-# VMs and backup those backups and make sure to retention them regularly.
-RESTIC_BACKUP_DIRS="/some/dir"
-RESTIC_CMD="restic --verbose backup --exclude-file $RESTIC_EXCLUDE_FILE $RESTIC_BACKUP_DIRS"
-ONE_FILESYSTEM="0"
-RETCODE="0"
-VERBOSE="0"
+export RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
+export RESTIC_EXCLUDE=""
+export RESTIC_VERBOSE=""
+export RESTIC_ONE_FILESYSTEM="0"
+export RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
+export RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
+export RESTIC_BACKUP_DIRS="/"
+export OS=$( uname -s )
 
 # Backup rotation - see https://restic.readthedocs.io/en/stable/060_forget.html
-RESTIC_KEEP_WIITHIN="14d"
-RESTIC_KEEP_WEEKLY="5"
-RESTIC_KEEP_MONTHLY="3"
-RESTIC_KEEP_YEARLY="0"
-RESTIC_PRUNE="--prune"
+export RESTIC_KEEP_WIITHIN='14d'
+export RESTIC_KEEP_WEEKLY='5'
+export RESTIC_KEEP_MONTHLY='3'
+export RESTIC_KEEP_YEARLY='0'
+
+export PROGNAME=restic-backup
+export LOCKDIR=/var/lock
+export LOCKFILE=$LOCKDIR/$PROGNAME.lock
+export AUTOCLEANUP=1
 
