@@ -11,6 +11,7 @@ TopWisdom .out-filleser (port av C#-logikken).
 - Kan speile output til stdout (--echo-stdout).
 - Skriver statuslinjer som standard + mer logging med --verbose.
 - Overskriver ALDRI eksisterende filer som standard (no-clobber). Bruk --overwrite for å tillate overskriving.
+- Norsk tallformat med komma, riktig fortegn og riktig avrunding (half-up).
 """
 
 from __future__ import annotations
@@ -28,9 +29,56 @@ DEFAULT_XOR_BYTE = 0x63                    # XOR-masken brukt ved lesing
 # ---------------------------------------------------------------------------
 
 
+# -------------------- Formateringshjelpere (norsk) --------------------
+
+def fmt_hundredths_to_str(hundredths: int) -> str:
+    """
+    From 2 desimalers heltallsrepresentasjon (hundredths) til norsk str med komma.
+    Eksempel: 78 -> "0,78", 7301 -> "73,01", -78 -> "-0,78".
+    """
+    sign = "-" if hundredths < 0 else ""
+    v = abs(hundredths)
+    whole = v // 100
+    frac = v % 100
+    return f"{sign}{whole},{frac:02d}"
+
+
+def fmt_milli_to_2dec(milli: int) -> str:
+    """
+    Fra tusendels-hele (milli) til 2 desimaler (half-up), norsk komma.
+    Eksempel: 73005 -> "73,01" (IKKE "73,00").
+    """
+    # Konverter milli (×1e-3) til hundredths (×1e-2) med half-up: (milli + 5)//10
+    sign = -1 if milli < 0 else 1
+    v = abs(milli)
+    hundredths = (v + 5) // 10
+    return fmt_hundredths_to_str(hundredths * sign)
+
+
+def fmt_int_if_whole(x: float) -> str:
+    """
+    Hvis x er (nesten) et helt tall, formater som heltall. Ellers norsk desimal med komma.
+    Brukes for felter som forventes heltall i eksemplene (Payloadsize, to_number, Short line to).
+    """
+    # Tåle litte granne float-støy
+    xi = int(round(x))
+    if abs(x - xi) < 1e-9:
+        return str(xi)
+    # Fall-back: to 2 desimaler, norsk komma
+    # Vi bruker hundredths via nærmeste 2 desimaler, half-up:
+    hundredths = int(round(x * 100))
+    return fmt_hundredths_to_str(hundredths)
+
+
+# -------------------- Dekoding/konvertering --------------------
+
 class BitConverter:
     @staticmethod
     def to_number(a: int, b: int) -> float:
+        """
+        Port av C#-logikk.
+        Brukes for de 2-byte tallene (ofte heltall i praksis i disse dumpene).
+        """
         if a == 0:
             return float(b)
         v = b - a
@@ -41,25 +89,50 @@ class BitConverter:
         return float(v)
 
     @staticmethod
-    def to_float(cb: bytes) -> float:
+    def to_milli(cb: bytes) -> int:
+        """
+        Dekoder 5 bytes med 7-bit «pakking» til SIGNERT 35-bits heltall i tusendeler (milli).
+        Dette matcher C#-koden (sum << (7*k)) men håndterer korrekt fortegn via to's complement.
+        - Kombinerer 5 x 7-bits grupper (MSB først) til 35-bit heltall.
+        - Dersom sign-bit (bit 34) er 1 (cb[0] >= 64), trekk 1<<35 (to's complement).
+        Returnerer antall tusendeler som int (kan være negativt).
+        """
         if len(cb) != 5:
-            raise ValueError(f"to_float expects 5 bytes, got {len(cb)}")
-        value = (
+            raise ValueError(f"to_milli expects 5 bytes, got {len(cb)}")
+        raw = (
             (cb[0] << (7 * 4))
             + (cb[1] << (7 * 3))
             + (cb[2] << (7 * 2))
             + (cb[3] << 7)
             + cb[4]
         )
-        return value / 1000.0
+        # Sign (bit 34) sitter i høyeste bit av cb[0] (cb[0] >= 64)
+        if cb[0] & 0x40:
+            raw -= (1 << 35)
+        # raw er i tusendeler
+        return raw
 
     @staticmethod
-    def to_percentage(a: int, b: int) -> float:
+    def to_percentage_hundredths(a: int, b: int) -> int:
+        """
+        C#:
+            l = a*0x7f + b
+            f = 0x7f << 7
+            v = (l * 10000f) / f
+            g = v + 0.5f
+            return ((int)g) / 100f
+
+        Vi returnerer *hundredths* direkte, heltallsavrundet (half-up).
+        """
         l = (a * 0x7F) + b
-        f = (0x7F << 7)
-        v = (l * 10000.0) / f
-        g = v + 0.5
-        return int(g) / 100.0
+        f = (0x7F << 7)  # 16256
+        # (l*100) gir hundredths * f/100; vi vil ha (l*10000)/f avrundet half-up:
+        # Her gjør vi *100 for hundredths direkte (for slutt-format), men må gange med 100 mer
+        # for to desimaler på v før half-up -> enklere: bruk 10000 og så // med +0.5
+        # Vi gjør heltalls half-up ved å legge på f//2 før heltallsdiv:
+        # Vi trenger hundredths (to desimaler) => (l*10000 + f//2) // f gir hundredths*100? Nei, det gir "v" i hundredths.
+        hundredths = (l * 10000 + (f // 2)) // f
+        return int(hundredths)
 
 
 class TeeWriter:
@@ -97,7 +170,6 @@ def open_unique_text(path: Path):
     Hvis 'path' finnes, prøver path.stem + .1 + suffix, .2, osv.
     Returnerer (file_obj, final_path).
     """
-    # Første forsøk: ønsket navn.
     try:
         f = path.open("x", encoding="utf-8", newline="")
         return f, path
@@ -177,14 +249,15 @@ class Reader:
         return bytes(out)
 
     # --- helpers matching C# ---
-    def read_percentage(self) -> float:
+    def read_percentage_str(self) -> str:
         a = self.next()
         b = self.next()
-        return BitConverter.to_percentage(a, b)
+        hundredths = BitConverter.to_percentage_hundredths(a, b)
+        return fmt_hundredths_to_str(hundredths) + "%"
 
-    def print_float(self, name: str = "f") -> None:
-        val = BitConverter.to_float(self.next_n(5))
-        self._out_stream.write(f"{name}:{val:.2f}")
+    def print_milli(self, name: str = "f") -> None:
+        milli = BitConverter.to_milli(self.next_n(5))
+        self._out_stream.write(f"{name}:{fmt_milli_to_2dec(milli)}")
 
     # --- main logic ---
     def process_path(self, in_path: Path, verbose: bool = False) -> int:
@@ -212,12 +285,10 @@ class Reader:
             desired_out.parent.mkdir(parents=True, exist_ok=True)
 
             if self.overwrite:
-                # Tillat eksplisitt overskriving
                 out_file = desired_out
                 print(f"  {in_file} -> {out_file} (overskriver)")
                 f = out_file.open("w", encoding="utf-8", newline="")
             else:
-                # No-clobber: eksklusiv opprettelse og automatisk nummerering
                 f, out_file = open_unique_text(desired_out)
                 if out_file == desired_out:
                     print(f"  {in_file} -> {out_file}")
@@ -264,7 +335,9 @@ class Reader:
                 b2 = self.next()
                 c = self.next()
                 d = self.next()
-                self._out_stream.write(f" Payloadsize: {BitConverter.to_number(a, b2)}")
+                n1 = BitConverter.to_number(a, b2)
+                # "Payloadsize: 0 + 374" (første uten desimaler hvis heltall)
+                self._out_stream.write(f" Payloadsize: {fmt_int_if_whole(n1)}")
                 payload_size = int(BitConverter.to_number(c, d))
                 self._out_stream.write(f" + {payload_size}")
 
@@ -274,7 +347,7 @@ class Reader:
                 self._out_stream.write(" ? ")
                 self.next()
                 self.next()
-                self.print_float("?")
+                self.print_milli("?")
             elif b2 == 0x02:
                 self._out_stream.write(" <- END ")
                 self.next_n(2)
@@ -291,25 +364,25 @@ class Reader:
                 pass
             elif b2 == 0x04:
                 self.next_n(4)
-                self.print_float(" x")
+                self.print_milli(" x")
                 self._out_stream.write(" ")
-                self.print_float(" y")
+                self.print_milli(" y")
             elif b2 == 0x05:
                 self.next_n(10)
             elif b2 == 0x06:
-                self.print_float()
+                self.print_milli()
             elif b2 == 0x07:
-                self.print_float("x")
+                self.print_milli("x")
             elif b2 == 0x08:
-                self.print_float()
+                self.print_milli()
             elif b2 == 0x09:
-                self.print_float("y")
+                self.print_milli("y")
             elif b2 == 0x0A:
                 self.next()
             elif b2 == 0x0B:
                 self.next()
             elif b2 == 0x0C:
-                self.print_float()
+                self.print_milli()
             elif b2 == 0x0E:
                 self.next()
             elif b2 == 0x11:
@@ -325,9 +398,9 @@ class Reader:
             if b2 == 0x00:
                 self.next()
             elif b2 == 0x02:
-                self.print_float("cut speed")
+                self.print_milli("cut speed")
             elif b2 == 0x04:
-                self.print_float("free speed")
+                self.print_milli("free speed")
             else:
                 self._out_stream.write(f"Unknown category {b2:02X}")
                 return
@@ -338,15 +411,15 @@ class Reader:
                 self.next_n(2)
             elif b2 == 0x01:
                 self._out_stream.write(" Corner power1: ")
-                self._out_stream.write(f"{self.read_percentage():.2f}%")
+                self._out_stream.write(self.read_percentage_str())
             elif b2 == 0x02:
                 self._out_stream.write(" Work power1: ")
-                self._out_stream.write(f"{self.read_percentage():.2f}%")
+                self._out_stream.write(self.read_percentage_str())
             elif b2 == 0x03:
                 self._out_stream.write(" Work power2: ")
-                self._out_stream.write(f"{self.read_percentage():.2f}%")
+                self._out_stream.write(self.read_percentage_str())
             elif b2 == 0x04:
-                self._out_stream.write(f"{BitConverter.to_number(self.next(), self.next())}")
+                self._out_stream.write(fmt_int_if_whole(BitConverter.to_number(self.next(), self.next())))
             elif b2 == 0x05:
                 self.next_n(2)
             elif b2 == 0x06:
@@ -355,15 +428,15 @@ class Reader:
                 self.next_n(2)
             elif b2 == 0x08:
                 self._out_stream.write(" Corner power2: ")
-                self._out_stream.write(f"{self.read_percentage():.2f}%")
+                self._out_stream.write(self.read_percentage_str())
             elif b2 == 0x09:
                 a3 = self.next()
                 b3 = self.next()
-                self._out_stream.write(f"{BitConverter.to_number(a3, b3)}")
+                self._out_stream.write(fmt_int_if_whole(BitConverter.to_number(a3, b3)))
             elif b2 == 0x10:
-                self.print_float(" Point mode, delay")
+                self.print_milli(" Point mode, delay")
             elif b2 == 0x11:
-                self.print_float()
+                self.print_milli()
             else:
                 self._out_stream.write(f"Unknown category {b2:02X}")
                 return
@@ -386,9 +459,9 @@ class Reader:
 
         elif b == 0x80:
             self._out_stream.write(" Move to: ")
-            self.print_float(" x")
+            self.print_milli(" x")
             self._out_stream.write(" ")
-            self.print_float(" y")
+            self.print_milli(" y")
 
         elif b == 0x81:
             self._out_stream.write(" Carve? ")
@@ -400,23 +473,22 @@ class Reader:
 
         elif b == 0xA0:
             self._out_stream.write(" Line to: ")
-            self.print_float(" x")
+            self.print_milli(" x")
             self._out_stream.write(" ")
-            self.print_float(" y")
+            self.print_milli(" y")
 
         elif b == 0xA1:
             self._out_stream.write(" Short line to: ")
-            a1 = self.next()
-            b1 = self.next()
-            c1 = self.next()
-            d1 = self.next()
-            self._out_stream.write(f"[{BitConverter.to_number(a1, b1)},{BitConverter.to_number(c1, d1)}],")
+            a1 = BitConverter.to_number(self.next(), self.next())
+            c1 = BitConverter.to_number(self.next(), self.next())
+            # Forventet som heltall (ingen .0)
+            self._out_stream.write(f"[{int(round(a1))},{int(round(c1))}],")
 
         elif b == 0xA2:
-            self._out_stream.write(f" Horizontal line? {BitConverter.to_number(self.next(), self.next())}")
+            self._out_stream.write(f" Horizontal line? {fmt_int_if_whole(BitConverter.to_number(self.next(), self.next()))}")
 
         elif b == 0xA3:
-            self._out_stream.write(f" Vertical line? {BitConverter.to_number(self.next(), self.next())}")
+            self._out_stream.write(f" Vertical line? {fmt_int_if_whole(BitConverter.to_number(self.next(), self.next()))}")
 
         else:
             self._out_stream.write(f"Unknown category {b:02X}")
@@ -455,7 +527,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--overwrite",
         action="store_true",
-        help="Tillat overskriving av eksisterende filer (default: av/på=av)."
+        help="Tillat overskriving av eksisterende filer (default: AV)."
     )
     p.add_argument(
         "-v", "--verbose",
