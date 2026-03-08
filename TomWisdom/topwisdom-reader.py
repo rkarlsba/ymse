@@ -4,17 +4,23 @@
 # topwisdom-reader.py
 
 from __future__ import annotations
-import os
 import sys
+import argparse
 from pathlib import Path
-from typing import List, Optional, BinaryIO, TextIO
+from typing import Optional, TextIO
+
+# --------- Konfigurerbare standarder (kan overstyres med CLI-flagg) ---------
+default_input_dir = Path("samples")     # <- relativ samples/
+default_output_dir = None               # None => skriv .txt ved siden av .out (i input-dir)
+default_xor_byte = 0x63                 # XOR-masken brukt ved lesing
+# ---------------------------------------------------------------------------
 
 
 class BitConverter:
     @staticmethod
     def to_number(a: int, b: int) -> float:
         """
-        C#:
+        Port av C#-logikk:
             if (a == 0) return b;
             int v = (b - a);
             if (a > 64) return v - (0x7F * (0x7F - a));
@@ -35,6 +41,7 @@ class BitConverter:
     @staticmethod
     def to_float(cb: bytes) -> float:
         """
+        5 byte, 7-bit «pakking» per byte, delt på 1000.
         C#:
             int value =
                   (cb[0] << 7 * 4)
@@ -43,7 +50,6 @@ class BitConverter:
                 + (cb[3] << 7)
                 + cb[4];
             return value / 1000f;
-        5 bytes, 7-bit «pakking» per byte, delt på 1000.
         """
         if len(cb) != 5:
             raise ValueError(f"to_float expects 5 bytes, got {len(cb)}")
@@ -73,27 +79,61 @@ class BitConverter:
         return int(g) / 100.0
 
 
+class TeeWriter:
+    """Skriver samtidig til fil (obligatorisk) og evt. stdout."""
+    def __init__(self, file_stream: TextIO, also_stdout: bool = False):
+        self.file_stream = file_stream
+        self.also_stdout = also_stdout
+
+    def write(self, s: str) -> None:
+        self.file_stream.write(s)
+        if self.also_stdout:
+            sys.stdout.write(s)
+
+    def flush(self) -> None:
+        self.file_stream.flush()
+        if self.also_stdout:
+            sys.stdout.flush()
+
+
 class Reader:
-    def __init__(self, base_path: Optional[Path] = None, out_stream: Optional[TextIO] = None):
+    def __init__(
+        self,
+        base_path: Optional[Path] = None,
+        out_dir: Optional[Path] = None,
+        out_stream: Optional[TextIO] = None,
+        xorbyte: int = default_xor_byte,
+        echo_stdout: bool = False,
+    ):
+
         self._offset: int = 0
         self._length: int = 0
         self._buffer: bytes = b""
-        self._out_stream: Optional[TextIO] = out_stream
-        self.base_path = base_path if base_path is not None else Path(__file__).parent / "../../../Samples/"
-        # Normaliser stier
+        self._raw_out_stream: Optional[TextIO] = out_stream  # rå stream (kun ved enkel bruk)
+        self._out_stream: Optional[TeeWriter] = None
+
+        # konfig
+        self.xorbyte = xorbyte
+        self.echo_stdout = echo_stdout
+
+        # standard: relativ "samples/"
+        self.base_path = Path(base_path) if base_path else default_input_dir
         self.base_path = self.base_path.resolve()
 
-    # --- raw byte ops (XOR 0x63) ---
+        # output-dir (valgfritt). Hvis None: skriv .txt ved siden av .out
+        self.out_dir = Path(out_dir).resolve() if out_dir else None
+
+    # --- raw byte ops (XOR self.xorbyte) ---
     def peek(self, offset: int = 0) -> int:
         idx = self._offset + offset
         if idx < 0 or idx >= len(self._buffer):
             raise IndexError("peek out of range")
-        return self._buffer[idx] ^ 0x63
+        return self._buffer[idx] ^ self.xorbyte
 
     def read(self) -> int:
         if self._offset >= len(self._buffer):
             raise IndexError("read out of range")
-        b = self._buffer[self._offset] ^ 0x63
+        b = self._buffer[self._offset] ^ self.xorbyte
         self._offset += 1
         return b
 
@@ -126,16 +166,23 @@ class Reader:
 
     # --- main logic ---
     def process_files(self) -> None:
-        # Lik C#: Directory.GetFiles("../../../Samples/", "*.out")
         if not self.base_path.exists():
             print(f"Samples-katalog finnes ikke: {self.base_path}", file=sys.stderr)
             return
 
         files = sorted([p for p in self.base_path.glob("*.out") if p.is_file()])
         for in_file in files:
-            out_file = in_file.with_suffix(".txt")
+            out_file = (
+                (self.out_dir / in_file.name).with_suffix(".txt")
+                if self.out_dir
+                else in_file.with_suffix(".txt")
+            )
+            out_file.parent.mkdir(parents=True, exist_ok=True)
+
             with out_file.open("w", encoding="utf-8", newline="") as f:
-                self._out_stream = f
+                # Tee til stdout hvis ønsket
+                self._out_stream = TeeWriter(f, also_stdout=self.echo_stdout)
+                # (hvis noen har satt _raw_out_stream manuelt — brukes ikke i denne flyten)
                 self.read_file(in_file)
                 self._out_stream.flush()
                 self._out_stream = None
@@ -288,10 +335,10 @@ class Reader:
                 self.next_n(2)
             elif b2 == 0x01:
                 self.next()
-            # ellers gjør vi som originalen (ingen default/return)
+            # ellers som originalen
 
         elif b == 0xD0:
-            # ingen ekstra lesing i originalen
+            # ingenting ekstra
             pass
 
         elif b == 0x80:
@@ -323,11 +370,9 @@ class Reader:
             self._out_stream.write(f"[{BitConverter.to_number(a1, b1)},{BitConverter.to_number(c1, d1)}],")
 
         elif b == 0xA2:
-            # «Horizontal line?»
             self._out_stream.write(f" Horizontal line? {BitConverter.to_number(self.next(), self.next())}")
 
         elif b == 0xA3:
-            # «Vertical line?»
             self._out_stream.write(f" Vertical line? {BitConverter.to_number(self.next(), self.next())}")
 
         else:
@@ -335,13 +380,46 @@ class Reader:
             return
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(
+        description="TopWisdom .out-filleser med C#-kompatibel tolkning. Skriver .txt-dump per fil."
+    )
+    p.add_argument(
+        "-i", "--input",
+        type=Path,
+        default=default_input_dir,
+        help="Inndatakatalog med .out-filer (default: ./samples)"
+    )
+    p.add_argument(
+        "-o", "--output",
+        type=Path,
+        default=default_output_dir,
+        help="Utkatalog for .txt (default: ved siden av .out i input-dir)"
+    )
+    p.add_argument(
+        "--xor",
+        type=lambda x: int(x, 0),
+        default=default_xor_byte,
+        help="XOR-byte i heks/dec (default: 0x63)"
+    )
+    p.add_argument(
+        "--echo-stdout",
+        action="store_true",
+        help="Skriv også til stdout i tillegg til fil."
+    )
+    return p.parse_args()
+
+
 def main() -> None:
-    # Standard oppførsel: samme som C# - bruk ../../../Samples/
-    base = Path(__file__).parent / "../../../Samples/"
-    reader = Reader(base_path=base)
+    ns = parse_args()
+
+    reader = Reader(
+        base_path=ns.input,
+        out_dir=ns.output,
+        xorbyte=ns.xor,
+        echo_stdout=ns.echo_stdout,
+    )
+
     reader.process_files()
     print("Done")
 
-
-if __name__ == "__main__":
-    main()
