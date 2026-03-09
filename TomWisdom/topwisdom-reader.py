@@ -12,6 +12,7 @@ TopWisdom .out-filleser (port av C#-logikken).
 - Skriver statuslinjer som standard + mer logging med --verbose.
 - Overskriver ALDRI eksisterende filer som standard (no-clobber). Bruk --overwrite for å tillate overskriving.
 - Norsk tallformat med komma, riktig fortegn og riktig avrunding (half-up).
+- Fjerner NUL-terminatorer fra filnavn-felt (slik at ^@ ikke forurenser output).
 """
 
 from __future__ import annotations
@@ -33,7 +34,7 @@ DEFAULT_XOR_BYTE = 0x63                    # XOR-masken brukt ved lesing
 
 def fmt_hundredths_to_str(hundredths: int) -> str:
     """
-    From 2 desimalers heltallsrepresentasjon (hundredths) til norsk str med komma.
+    Fra 2 desimalers heltallsrepresentasjon (hundredths) til norsk str med komma.
     Eksempel: 78 -> "0,78", 7301 -> "73,01", -78 -> "-0,78".
     """
     sign = "-" if hundredths < 0 else ""
@@ -46,9 +47,8 @@ def fmt_hundredths_to_str(hundredths: int) -> str:
 def fmt_milli_to_2dec(milli: int) -> str:
     """
     Fra tusendels-hele (milli) til 2 desimaler (half-up), norsk komma.
-    Eksempel: 73005 -> "73,01" (IKKE "73,00").
+    Eksempel: 73005 -> "73,01".
     """
-    # Konverter milli (×1e-3) til hundredths (×1e-2) med half-up: (milli + 5)//10
     sign = -1 if milli < 0 else 1
     v = abs(milli)
     hundredths = (v + 5) // 10
@@ -58,16 +58,24 @@ def fmt_milli_to_2dec(milli: int) -> str:
 def fmt_int_if_whole(x: float) -> str:
     """
     Hvis x er (nesten) et helt tall, formater som heltall. Ellers norsk desimal med komma.
-    Brukes for felter som forventes heltall i eksemplene (Payloadsize, to_number, Short line to).
+    Brukes for felter som i praksis forventes å være heltall (Payloadsize, to_number, A1 etc.).
     """
-    # Tåle litte granne float-støy
     xi = int(round(x))
     if abs(x - xi) < 1e-9:
         return str(xi)
-    # Fall-back: to 2 desimaler, norsk komma
-    # Vi bruker hundredths via nærmeste 2 desimaler, half-up:
     hundredths = int(round(x * 100))
     return fmt_hundredths_to_str(hundredths)
+
+
+def safe_text_from_bytes(b: bytes, max_len: int | None = None) -> str:
+    """
+    Trygg tekst fra bytes: klipp ved første NUL, dekod som UTF-8 (replace), fjern kontrolltegn.
+    """
+    if max_len is not None:
+        b = b[:max_len]
+    b = b.split(b'\x00', 1)[0]
+    s = b.decode("utf-8", errors="replace")
+    return "".join(ch for ch in s if ch >= " " or ch == "\t")
 
 
 # -------------------- Dekoding/konvertering --------------------
@@ -76,8 +84,7 @@ class BitConverter:
     @staticmethod
     def to_number(a: int, b: int) -> float:
         """
-        Port av C#-logikk.
-        Brukes for de 2-byte tallene (ofte heltall i praksis i disse dumpene).
+        Port av C#-logikk. Brukes for de 2-byte tallene (ofte heltall).
         """
         if a == 0:
             return float(b)
@@ -92,10 +99,7 @@ class BitConverter:
     def to_milli(cb: bytes) -> int:
         """
         Dekoder 5 bytes med 7-bit «pakking» til SIGNERT 35-bits heltall i tusendeler (milli).
-        Dette matcher C#-koden (sum << (7*k)) men håndterer korrekt fortegn via to's complement.
-        - Kombinerer 5 x 7-bits grupper (MSB først) til 35-bit heltall.
-        - Dersom sign-bit (bit 34) er 1 (cb[0] >= 64), trekk 1<<35 (to's complement).
-        Returnerer antall tusendeler som int (kan være negativt).
+        Kombiner 5 x 7-bit (MSB først). Hvis sign-bit (bit 34) er 1, trekk 1<<35 (to's complement).
         """
         if len(cb) != 5:
             raise ValueError(f"to_milli expects 5 bytes, got {len(cb)}")
@@ -106,31 +110,18 @@ class BitConverter:
             + (cb[3] << 7)
             + cb[4]
         )
-        # Sign (bit 34) sitter i høyeste bit av cb[0] (cb[0] >= 64)
-        if cb[0] & 0x40:
+        if cb[0] & 0x40:  # sign bit i høyeste 7-bit
             raw -= (1 << 35)
-        # raw er i tusendeler
         return raw
 
     @staticmethod
     def to_percentage_hundredths(a: int, b: int) -> int:
         """
-        C#:
-            l = a*0x7f + b
-            f = 0x7f << 7
-            v = (l * 10000f) / f
-            g = v + 0.5f
-            return ((int)g) / 100f
-
-        Vi returnerer *hundredths* direkte, heltallsavrundet (half-up).
+        Returner prosent i hundredths (to desimaler) avrundet half-up.
+        Basert på C#-formelen i originalkoden.
         """
         l = (a * 0x7F) + b
         f = (0x7F << 7)  # 16256
-        # (l*100) gir hundredths * f/100; vi vil ha (l*10000)/f avrundet half-up:
-        # Her gjør vi *100 for hundredths direkte (for slutt-format), men må gange med 100 mer
-        # for to desimaler på v før half-up -> enklere: bruk 10000 og så // med +0.5
-        # Vi gjør heltalls half-up ved å legge på f//2 før heltallsdiv:
-        # Vi trenger hundredths (to desimaler) => (l*10000 + f//2) // f gir hundredths*100? Nei, det gir "v" i hundredths.
         hundredths = (l * 10000 + (f // 2)) // f
         return int(hundredths)
 
@@ -328,7 +319,9 @@ class Reader:
 
         elif b == 0xE2:
             if self.next() == 0x01:
-                s = self.next_n(9).decode("utf-8", errors="replace")
+                # Filnavn-del (9 bytes UTF-8) – klipp ved NUL og rens kontrolltegn
+                raw = self.next_n(9)
+                s = safe_text_from_bytes(raw)
                 self._out_stream.write(f" File name (or a part of it): {s}")
             else:
                 a = self.next()
@@ -336,7 +329,6 @@ class Reader:
                 c = self.next()
                 d = self.next()
                 n1 = BitConverter.to_number(a, b2)
-                # "Payloadsize: 0 + 374" (første uten desimaler hvis heltall)
                 self._out_stream.write(f" Payloadsize: {fmt_int_if_whole(n1)}")
                 payload_size = int(BitConverter.to_number(c, d))
                 self._out_stream.write(f" + {payload_size}")
@@ -434,7 +426,8 @@ class Reader:
                 b3 = self.next()
                 self._out_stream.write(fmt_int_if_whole(BitConverter.to_number(a3, b3)))
             elif b2 == 0x10:
-                self.print_milli(" Point mode, delay")
+                self._out_stream.write(" Point mode, delay")
+                self.print_milli("")  # beholder leading space i label
             elif b2 == 0x11:
                 self.print_milli()
             else:
@@ -481,7 +474,6 @@ class Reader:
             self._out_stream.write(" Short line to: ")
             a1 = BitConverter.to_number(self.next(), self.next())
             c1 = BitConverter.to_number(self.next(), self.next())
-            # Forventet som heltall (ingen .0)
             self._out_stream.write(f"[{int(round(a1))},{int(round(c1))}],")
 
         elif b == 0xA2:
