@@ -1,0 +1,764 @@
+BEGIN:VCALENDAR
+PRODID:-//M365 Copilot//Jevndøgn & Solverv//NO
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Jevndøgn og solverv (Oslo)
+X-WR-TIMEZONE:Europe/Oslo
+BEGIN:VEVENT
+UID:equi-sol-2020-mar-20200320T0350@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20200320T045000
+DTEND;TZID=Europe/Oslo:20200320T045100
+SUMMARY:Vårjevndøgn 2020
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2020-jun-20200620T2143@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20200620T234300
+DTEND;TZID=Europe/Oslo:20200620T234400
+SUMMARY:Sommersolverv 2020
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2020-sep-20200922T1331@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20200922T153100
+DTEND;TZID=Europe/Oslo:20200922T153200
+SUMMARY:Høstjevndøgn 2020
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2020-dec-20201221T1003@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20201221T110300
+DTEND;TZID=Europe/Oslo:20201221T110400
+SUMMARY:Vintersolverv 2020
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2021-mar-20210320T0937@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20210320T103700
+DTEND;TZID=Europe/Oslo:20210320T103800
+SUMMARY:Vårjevndøgn 2021
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2021-jun-20210621T0332@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20210621T053200
+DTEND;TZID=Europe/Oslo:20210621T053300
+SUMMARY:Sommersolverv 2021
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2021-sep-20210922T1921@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20210922T212100
+DTEND;TZID=Europe/Oslo:20210922T212200
+SUMMARY:Høstjevndøgn 2021
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2021-dec-20211221T1559@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20211221T165900
+DTEND;TZID=Europe/Oslo:20211221T170000
+SUMMARY:Vintersolverv 2021
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2022-mar-20220320T1533@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20220320T163300
+DTEND;TZID=Europe/Oslo:20220320T163400
+SUMMARY:Vårjevndøgn 2022
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2022-jun-20220621T0914@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20220621T111400
+DTEND;TZID=Europe/Oslo:20220621T111500
+SUMMARY:Sommersolverv 2022
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2022-sep-20220923T0104@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20220923T030400
+DTEND;TZID=Europe/Oslo:20220923T030500
+SUMMARY:Høstjevndøgn 2022
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2022-dec-20221221T2148@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20221221T224800
+DTEND;TZID=Europe/Oslo:20221221T224900
+SUMMARY:Vintersolverv 2022
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2023-mar-20230320T2125@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20230320T222500
+DTEND;TZID=Europe/Oslo:20230320T222600
+SUMMARY:Vårjevndøgn 2023
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2023-jun-20230621T1458@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20230621T165800
+DTEND;TZID=Europe/Oslo:20230621T165900
+SUMMARY:Sommersolverv 2023
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2023-sep-20230923T0650@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20230923T085000
+DTEND;TZID=Europe/Oslo:20230923T085100
+SUMMARY:Høstjevndøgn 2023
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2023-dec-20231222T0328@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20231222T042800
+DTEND;TZID=Europe/Oslo:20231222T042900
+SUMMARY:Vintersolverv 2023
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2024-mar-20240320T0307@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20240320T040700
+DTEND;TZID=Europe/Oslo:20240320T040800
+SUMMARY:Vårjevndøgn 2024
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2024-jun-20240620T2051@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20240620T225100
+DTEND;TZID=Europe/Oslo:20240620T225200
+SUMMARY:Sommersolverv 2024
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2024-sep-20240922T1244@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20240922T144400
+DTEND;TZID=Europe/Oslo:20240922T144500
+SUMMARY:Høstjevndøgn 2024
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2024-dec-20241221T0920@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20241221T102000
+DTEND;TZID=Europe/Oslo:20241221T102100
+SUMMARY:Vintersolverv 2024
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2025-mar-20250320T0902@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20250320T100200
+DTEND;TZID=Europe/Oslo:20250320T100300
+SUMMARY:Vårjevndøgn 2025
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2025-jun-20250621T0242@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20250621T044200
+DTEND;TZID=Europe/Oslo:20250621T044300
+SUMMARY:Sommersolverv 2025
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2025-sep-20250922T1820@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20250922T202000
+DTEND;TZID=Europe/Oslo:20250922T202100
+SUMMARY:Høstjevndøgn 2025
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2025-dec-20251221T1503@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20251221T160300
+DTEND;TZID=Europe/Oslo:20251221T160400
+SUMMARY:Vintersolverv 2025
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2026-mar-20260320T1446@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20260320T154600
+DTEND;TZID=Europe/Oslo:20260320T154700
+SUMMARY:Vårjevndøgn 2026
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2026-jun-20260621T0825@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20260621T102500
+DTEND;TZID=Europe/Oslo:20260621T102600
+SUMMARY:Sommersolverv 2026
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2026-sep-20260923T0006@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20260923T020600
+DTEND;TZID=Europe/Oslo:20260923T020700
+SUMMARY:Høstjevndøgn 2026
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2026-dec-20261221T2050@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20261221T215000
+DTEND;TZID=Europe/Oslo:20261221T215100
+SUMMARY:Vintersolverv 2026
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2027-mar-20270320T2025@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20270320T212500
+DTEND;TZID=Europe/Oslo:20270320T212600
+SUMMARY:Vårjevndøgn 2027
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2027-jun-20270621T1411@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20270621T161100
+DTEND;TZID=Europe/Oslo:20270621T161200
+SUMMARY:Sommersolverv 2027
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2027-sep-20270923T0602@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20270923T080200
+DTEND;TZID=Europe/Oslo:20270923T080300
+SUMMARY:Høstjevndøgn 2027
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2027-dec-20271222T0243@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20271222T034300
+DTEND;TZID=Europe/Oslo:20271222T034400
+SUMMARY:Vintersolverv 2027
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2028-mar-20280320T0217@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20280320T031700
+DTEND;TZID=Europe/Oslo:20280320T031800
+SUMMARY:Vårjevndøgn 2028
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2028-jun-20280620T2002@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20280620T220200
+DTEND;TZID=Europe/Oslo:20280620T220300
+SUMMARY:Sommersolverv 2028
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2028-sep-20280922T1145@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20280922T134500
+DTEND;TZID=Europe/Oslo:20280922T134600
+SUMMARY:Høstjevndøgn 2028
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2028-dec-20281221T0820@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20281221T092000
+DTEND;TZID=Europe/Oslo:20281221T092100
+SUMMARY:Vintersolverv 2028
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2029-mar-20290320T0801@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20290320T090100
+DTEND;TZID=Europe/Oslo:20290320T090200
+SUMMARY:Vårjevndøgn 2029
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2029-jun-20290621T0148@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20290621T034800
+DTEND;TZID=Europe/Oslo:20290621T034900
+SUMMARY:Sommersolverv 2029
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2029-sep-20290922T1737@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20290922T193700
+DTEND;TZID=Europe/Oslo:20290922T193800
+SUMMARY:Høstjevndøgn 2029
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2029-dec-20291221T1414@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20291221T151400
+DTEND;TZID=Europe/Oslo:20291221T151500
+SUMMARY:Vintersolverv 2029
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2030-mar-20300320T1351@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20300320T145100
+DTEND;TZID=Europe/Oslo:20300320T145200
+SUMMARY:Vårjevndøgn 2030
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2030-jun-20300621T0731@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20300621T093100
+DTEND;TZID=Europe/Oslo:20300621T093200
+SUMMARY:Sommersolverv 2030
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2030-sep-20300922T2327@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20300923T012700
+DTEND;TZID=Europe/Oslo:20300923T012800
+SUMMARY:Høstjevndøgn 2030
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2030-dec-20301221T2009@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20301221T210900
+DTEND;TZID=Europe/Oslo:20301221T211000
+SUMMARY:Vintersolverv 2030
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2031-mar-20310320T1941@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20310320T204100
+DTEND;TZID=Europe/Oslo:20310320T204200
+SUMMARY:Vårjevndøgn 2031
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2031-jun-20310621T1317@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20310621T151700
+DTEND;TZID=Europe/Oslo:20310621T151800
+SUMMARY:Sommersolverv 2031
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2031-sep-20310923T0515@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20310923T071500
+DTEND;TZID=Europe/Oslo:20310923T071600
+SUMMARY:Høstjevndøgn 2031
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2031-dec-20311222T0156@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20311222T025600
+DTEND;TZID=Europe/Oslo:20311222T025700
+SUMMARY:Vintersolverv 2031
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2032-mar-20320320T0123@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20320320T022300
+DTEND;TZID=Europe/Oslo:20320320T022400
+SUMMARY:Vårjevndøgn 2032
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2032-jun-20320620T1909@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20320620T210900
+DTEND;TZID=Europe/Oslo:20320620T211000
+SUMMARY:Sommersolverv 2032
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2032-sep-20320922T1111@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20320922T131100
+DTEND;TZID=Europe/Oslo:20320922T131200
+SUMMARY:Høstjevndøgn 2032
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2032-dec-20321221T0757@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20321221T085700
+DTEND;TZID=Europe/Oslo:20321221T085800
+SUMMARY:Vintersolverv 2032
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2033-mar-20330320T0723@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20330320T082300
+DTEND;TZID=Europe/Oslo:20330320T082400
+SUMMARY:Vårjevndøgn 2033
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2033-jun-20330621T0101@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20330621T030100
+DTEND;TZID=Europe/Oslo:20330621T030200
+SUMMARY:Sommersolverv 2033
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2033-sep-20330922T1652@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20330922T185200
+DTEND;TZID=Europe/Oslo:20330922T185300
+SUMMARY:Høstjevndøgn 2033
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2033-dec-20331221T1345@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20331221T144500
+DTEND;TZID=Europe/Oslo:20331221T144600
+SUMMARY:Vintersolverv 2033
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2034-mar-20340320T1318@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20340320T141800
+DTEND;TZID=Europe/Oslo:20340320T141900
+SUMMARY:Vårjevndøgn 2034
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2034-jun-20340621T0645@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20340621T084500
+DTEND;TZID=Europe/Oslo:20340621T084600
+SUMMARY:Sommersolverv 2034
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2034-sep-20340922T2241@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20340923T004100
+DTEND;TZID=Europe/Oslo:20340923T004200
+SUMMARY:Høstjevndøgn 2034
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2034-dec-20341221T1935@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20341221T203500
+DTEND;TZID=Europe/Oslo:20341221T203600
+SUMMARY:Vintersolverv 2034
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2035-mar-20350320T1903@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20350320T200300
+DTEND;TZID=Europe/Oslo:20350320T200400
+SUMMARY:Vårjevndøgn 2035
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2035-jun-20350621T1233@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20350621T143300
+DTEND;TZID=Europe/Oslo:20350621T143400
+SUMMARY:Sommersolverv 2035
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2035-sep-20350923T0439@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20350923T063900
+DTEND;TZID=Europe/Oslo:20350923T064000
+SUMMARY:Høstjevndøgn 2035
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2035-dec-20351222T0131@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20351222T023100
+DTEND;TZID=Europe/Oslo:20351222T023200
+SUMMARY:Vintersolverv 2035
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2036-mar-20360320T0102@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20360320T020200
+DTEND;TZID=Europe/Oslo:20360320T020300
+SUMMARY:Vårjevndøgn 2036
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2036-jun-20360620T1831@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20360620T203100
+DTEND;TZID=Europe/Oslo:20360620T203200
+SUMMARY:Sommersolverv 2036
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2036-sep-20360922T1023@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20360922T122300
+DTEND;TZID=Europe/Oslo:20360922T122400
+SUMMARY:Høstjevndøgn 2036
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2036-dec-20361221T0712@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20361221T081200
+DTEND;TZID=Europe/Oslo:20361221T081300
+SUMMARY:Vintersolverv 2036
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2037-mar-20370320T0650@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20370320T075000
+DTEND;TZID=Europe/Oslo:20370320T075100
+SUMMARY:Vårjevndøgn 2037
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2037-jun-20370621T0022@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20370621T022200
+DTEND;TZID=Europe/Oslo:20370621T022300
+SUMMARY:Sommersolverv 2037
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2037-sep-20370922T1613@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20370922T181300
+DTEND;TZID=Europe/Oslo:20370922T181400
+SUMMARY:Høstjevndøgn 2037
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2037-dec-20371221T1308@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20371221T140800
+DTEND;TZID=Europe/Oslo:20371221T140900
+SUMMARY:Vintersolverv 2037
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2038-mar-20380320T1240@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20380320T134000
+DTEND;TZID=Europe/Oslo:20380320T134100
+SUMMARY:Vårjevndøgn 2038
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2038-jun-20380621T0609@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20380621T080900
+DTEND;TZID=Europe/Oslo:20380621T081000
+SUMMARY:Sommersolverv 2038
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2038-sep-20380922T2202@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20380923T000200
+DTEND;TZID=Europe/Oslo:20380923T000300
+SUMMARY:Høstjevndøgn 2038
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2038-dec-20381221T1901@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20381221T200100
+DTEND;TZID=Europe/Oslo:20381221T200200
+SUMMARY:Vintersolverv 2038
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2039-mar-20390320T1832@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20390320T193200
+DTEND;TZID=Europe/Oslo:20390320T193300
+SUMMARY:Vårjevndøgn 2039
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2039-jun-20390621T1158@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20390621T135800
+DTEND;TZID=Europe/Oslo:20390621T135900
+SUMMARY:Sommersolverv 2039
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2039-sep-20390923T0350@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20390923T055000
+DTEND;TZID=Europe/Oslo:20390923T055100
+SUMMARY:Høstjevndøgn 2039
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2039-dec-20391222T0041@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20391222T014100
+DTEND;TZID=Europe/Oslo:20391222T014200
+SUMMARY:Vintersolverv 2039
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2040-mar-20400320T0011@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20400320T011100
+DTEND;TZID=Europe/Oslo:20400320T011200
+SUMMARY:Vårjevndøgn 2040
+DESCRIPTION:Astronomisk hendelse: Vårjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2040-jun-20400620T1746@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20400620T194600
+DTEND;TZID=Europe/Oslo:20400620T194700
+SUMMARY:Sommersolverv 2040
+DESCRIPTION:Astronomisk hendelse: Sommersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2040-sep-20400922T0944@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20400922T114400
+DTEND;TZID=Europe/Oslo:20400922T114500
+SUMMARY:Høstjevndøgn 2040
+DESCRIPTION:Astronomisk hendelse: Høstjevndøgn. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+UID:equi-sol-2040-dec-20401221T0633@m365copilot
+DTSTAMP:20260309T083419Z
+DTSTART;TZID=Europe/Oslo:20401221T073300
+DTEND;TZID=Europe/Oslo:20401221T073400
+SUMMARY:Vintersolverv 2040
+DESCRIPTION:Astronomisk hendelse: Vintersolverv. Tidspunktet er beregnet fra UTC og konvertert til Oslo-tid (Europe/Oslo). Kilde: AstroPixels-tabell for solverv/jevndøgn (UTC).
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR
