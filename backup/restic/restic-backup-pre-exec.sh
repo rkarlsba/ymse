@@ -7,7 +7,7 @@ RESTIC_CONFIG='/etc/default/restic'
 # Read config
 source $RESTIC_CONFIG
 
-if [ "$VERBOSE" -gt 0 ]
+if [ "$RESTIC_VERBOSE" -gt 0 ]
 then
     VERBFLAG="-v"
 else

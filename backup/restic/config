@@ -19,7 +19,7 @@ export RESTIC_SNAPSHOT_JSON="$RESTIC_LOG_DIR/snapshots.json"
 
 export RESTIC_EXCLUDE_FILE="/usr/local/etc/restic-excludes.txt"
 export RESTIC_EXCLUDE=""
-export RESTIC_VERBOSE=""
+export RESTIC_VERBOSE="0"
 export RESTIC_ONE_FILESYSTEM="0"
 export RESTIC_PRE_EXEC_JOB="/usr/local/bin/restic-backup-pre-exec.sh"
 export RESTIC_POST_EXEC_JOB="/usr/local/bin/restic-backup-post-exec.sh"
