@@ -28,51 +28,75 @@
 
 use strict;
 use warnings;
+use Getopt::Long;
 
 # }}}
-# report(str); {{{
+# report(str, frame); {{{
 
 sub report {
     my $s = shift;
+    my $f = shift;
     chomp($s);
 
     my $stjerner = length($s) + 4;
 
-    print "*" x $stjerner . "\n";
-    print "* $s *\n";
-    print "*" x $stjerner . "\n";
+    if ($f > 0) {
+        print "*" x $stjerner . "\n";
+        print "* $s *\n";
+        print "*" x $stjerner . "\n";
+    } else {
+        print "$s\n";
+    }
 }
 
 # }}}
 # Globals {{{
 
 my $dev = "enp1s0";
-my $cmd = "ip addr list dev $dev";
+my $frame = 0;
 my $state = undef;
+my $verbose = 0;
 
 # }}}
 # Main code {{{
+
+Getopt::Long::Configure('bundling');
+
+GetOptions(
+    'dev|d=s'    => \$dev,
+    'frame|f'    => \$frame,
+    'verbose|v+' => \$verbose,
+) or die "Invalid argument\n";
+
+my $cmd = "ip addr list dev $dev";
 
 if ($^O ne "linux") {
     print "We don't like $^O! Go away!\n";
     exit 1;
 }
 
+print "Probing device $dev\n" if ($verbose > 1);
+print "With command \"$cmd\"\n" if ($verbose > 2);
+
 open my $p,"$cmd|" || die "Can't run command \"$cmd\": $!";
 while (<$p>) {
+    # 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     if (/\d+:\s+$dev:.*?state\s+(\w+)/) {
         $state = $1;
+        print "State for $dev is $state\n" if ($verbose > 2);
     }
 }
 
 if (!defined($state)) {
-    report "Can't read state - wrong NIC name?\n";
+    report "Can't read state - wrong NIC name?\n", $frame;
     exit 1;
 } elsif ($state eq "UP") {
-    report "Networking is UP and everyone except Haaland are happy\n";
+    report "Networking is UP and everyone except Haaland et al. are happy\n", $frame if ($verbose > 0);
     exit 0;
 } elsif ($state eq "DOWN") {
-    report "Networking is DOWN, probably because the sysadmin disabled the NIC in virt-manager or somewhere\n";
+    report "Networking is DOWN, probably because the sysadmin disabled the NIC in virt-manager or somewhere\n", $frame;
+} elsif ($state eq "UNKNOWN") {
+    report "Networking is UNKNOWN, possibly because you're trying to probe lo or something is on bad mushrooms\n", $frame;
 } else {
     exit 1;
 }
