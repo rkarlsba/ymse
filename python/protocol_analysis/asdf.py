@@ -30,6 +30,12 @@ from scapy.layers.inet import IP
 from scapy.layers.inet6 import IPv6
 from scapy.utils import RawPcapReader, RawPcapNgReader
 
+# Common pcap DLT (linktype) constants we need
+DLT_NULL = 0          # BSD loopback
+DLT_EN10MB = 1        # Ethernet
+DLT_RAW = 12          # Raw IP (no L2)
+DLT_LOOP = 108        # Another loopback variant
+DLT_PKTAP = 248       # Apple PKTAP (macOS)
 
 def entropy(counter):
     """
@@ -90,6 +96,7 @@ def select_default_iface():
 def build_bpf_expr(proto, base_filter, ips, src_ips, dst_ips, ports, src_ports, dst_ports):
     """
     Build a BPF expression string combining proto, ip/port filters, and an optional base filter.
+    For IP filters, include (ip or ip6) guard so it works for both families.
     """
     clauses = []
 
@@ -98,6 +105,8 @@ def build_bpf_expr(proto, base_filter, ips, src_ips, dst_ips, ports, src_ports, 
         clauses.append("(udp or tcp)")
     elif proto in ("udp", "tcp"):
         clauses.append(proto)
+
+    have_ip_filters = bool(ips or src_ips or dst_ips)
 
     # IP clauses
     ip_terms = []
@@ -108,7 +117,8 @@ def build_bpf_expr(proto, base_filter, ips, src_ips, dst_ips, ports, src_ports, 
     for ip in (dst_ips or []):
         ip_terms.append(f"dst host {ip}")
     if ip_terms:
-        clauses.append("(" + " or ".join(ip_terms) + ")")
+        ip_clause = "(" + " or ".join(ip_terms) + ")"
+        clauses.append(f"(ip or ip6) and {ip_clause}")
 
     # port clauses
     port_terms = []
@@ -301,23 +311,16 @@ def render_prefix_analysis(
             pass
 
 
-def analyze_packets_from_bytes(
-    raw_bytes,
-    max_prefix,
-    prefix_stats,
-    proto,
-    counters,
-):
+def analyze_packets_from_bytes(raw_bytes, linktype, max_prefix, prefix_stats, proto, counters):
     """
-    Parse a single raw frame and update stats (used by tcpdump backend reader).
+    Parse a single raw frame using linktype and update stats (used by tcpdump backend).
     """
     want_udp = proto in ("udp", "both")
     want_tcp = proto in ("tcp", "both")
 
-    try:
-        pkt = Ether(raw_bytes)
-    except Exception:
-        return  # non-Ethernet or parse error
+    pkt = parse_by_linktype(raw_bytes, linktype)
+    if pkt is None:
+        return
 
     if want_udp and UDP in pkt:
         counters["udp_packets"] += 1
@@ -338,6 +341,55 @@ def analyze_packets_from_bytes(
                 maxlen = min(max_prefix, len(payload))
                 for n in range(1, maxlen + 1):
                     prefix_stats[n - 1][payload[:n]] += 1
+
+
+def _parse_ip_or_ipv6(buf: bytes):
+    if not buf:
+        return None
+    v = (buf[0] >> 4) & 0xF
+    if v == 4:
+        return IP(buf)
+    if v == 6:
+        return IPv6(buf)
+    # Fallback: try IP first, then IPv6
+    try:
+        return IP(buf)
+    except Exception:
+        try:
+            return IPv6(buf)
+        except Exception:
+            return None
+
+
+def parse_by_linktype(raw: bytes, linktype: int):
+    """
+    Return a scapy Packet from raw bytes based on linktype, or None if unknown.
+    Handles Ethernet, RAW IP, NULL/LOOP (skip 4-byte af header), and PKTAP (skip variable header).
+    """
+    try:
+        if linktype == DLT_EN10MB:
+            return Ether(raw)
+        elif linktype == DLT_RAW:
+            return _parse_ip_or_ipv6(raw)
+        elif linktype in (DLT_NULL, DLT_LOOP):
+            if len(raw) >= 4:
+                return _parse_ip_or_ipv6(raw[4:])
+            return None
+        elif linktype == DLT_PKTAP:
+            # PKTAP header: first uint32 is total header length (little-endian)
+            if len(raw) >= 4:
+                hdr_len = int.from_bytes(raw[:4], "little", signed=False)
+                if 0 <= hdr_len <= len(raw):
+                    return parse_by_linktype(raw[hdr_len:], DLT_RAW)  # underlying is usually RAW or Ethernet
+            return None
+        else:
+            # Try Ethernet, then RAW
+            try:
+                return Ether(raw)
+            except Exception:
+                return _parse_ip_or_ipv6(raw)
+    except Exception:
+        return None
 
 
 def capture_via_tcpdump(
@@ -430,6 +482,62 @@ def capture_via_tcpdump(
                     self.stream.close()
                 except Exception:
                     pass
+
+        stream = prefixed_stream(first4, proc.stdout)
+
+        # Choose reader and obtain linktype
+        if magic == b"\x0a\x0d\x0d\x0a":  # pcapng
+            reader = RawPcapNgReader(stream)
+            # For pcapng, per-packet metadata contains the linktype
+            for pkt_data, meta in reader:
+                counters["packets"] += 1
+                if progress_every and counters["packets"] % progress_every == 0:
+                    print(
+                        f"\rPackets={counters['packets']:,} UDP={counters['udp_packets']:,} "
+                        f"TCP={counters['tcp_packets']:,} "
+                        f"UDP payload={counters['udp_payload_packets']:,} "
+                        f"TCP payload={counters['tcp_payload_packets']:,}",
+                        end="", flush=True
+                    )
+                lt = meta.get("linktype", DLT_EN10MB)
+                analyze_packets_from_bytes(
+                    pkt_data,
+                    linktype=lt,
+                    max_prefix=max_prefix,
+                    prefix_stats=prefix_stats,
+                    proto=proto,
+                    counters=counters,
+                )
+            try:
+                reader.close()
+            except Exception:
+                pass
+        else:
+            reader = RawPcapReader(stream)
+            # For classic pcap, the linktype is per-file
+            file_linktype = getattr(reader, "linktype", DLT_EN10MB)
+            for pkt_data, _ in reader:
+                counters["packets"] += 1
+                if progress_every and counters["packets"] % progress_every == 0:
+                    print(
+                        f"\rPackets={counters['packets']:,} UDP={counters['udp_packets']:,} "
+                        f"TCP={counters['tcp_packets']:,} "
+                        f"UDP payload={counters['udp_payload_packets']:,} "
+                        f"TCP payload={counters['tcp_payload_packets']:,}",
+                        end="", flush=True
+                    )
+                analyze_packets_from_bytes(
+                    pkt_data,
+                    linktype=file_linktype,
+                    max_prefix=max_prefix,
+                    prefix_stats=prefix_stats,
+                    proto=proto,
+                    counters=counters,
+                )
+            try:
+                reader.close()
+            except Exception:
+                pass
 
         stream = prefixed_stream(first4, proc.stdout)
 
