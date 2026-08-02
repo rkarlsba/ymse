@@ -2,25 +2,28 @@
 # vim:ts=4:sw=4:sts=4:et:ai:si:fdm=marker
 
 """
-Live prefix analysis for UDP/TCP payloads.
+Live prefix analysis tool for UDP/TCP payloads.
 
-Sniffs packets from a network interface (UDP, TCP, or both), extracts payloads,
-counts prefix occurrences up to a chosen length, and reports entropy and top
-prefixes. You can list interfaces, auto-pick a default, limit capture by time
-or packet count, choose backend (libpcap/BPF), and filter out small/irrelevant
-hits in the report.
+This script sniffs packets from a network interface (UDP, TCP, or both),
+extracts payloads, counts prefix occurrences up to a chosen length, and reports
+entropy and top prefixes. It can list available interfaces, auto-pick a default,
+limit capture by time or packet count, write results to a file, and gracefully
+handle backend/socket errors by retrying with safer settings (e.g., disabling
+kernel BPF filters and promiscuous mode, switching backends). It uses an
+AsyncSniffer plus a watchdog to avoid getting stuck mid-capture and bounds
+the reporting phase to prevent stalls.
 """
 
 import sys
 import argparse
-import time
 import logging
 import warnings
-
+import time
 from collections import Counter
 from math import log2
 from pathlib import Path
-from scapy.all import sniff, conf, get_if_list, UDP, TCP, Raw
+
+from scapy.all import AsyncSniffer, conf, get_if_list, UDP, TCP, Raw
 
 
 def entropy(counter):
@@ -54,7 +57,12 @@ def list_nics():
         print(f"Could not retrieve network interfaces: {e}", file=sys.stderr)
         sys.exit(2)
 
-    default_iface = getattr(conf, "iface", None)
+    default_iface = None
+    try:
+        default_iface = conf.iface
+    except Exception:
+        pass
+
     print("Available network interfaces:")
     for nic in nics:
         mark = " *" if nic == default_iface else ""
@@ -75,22 +83,76 @@ def select_default_iface():
     return nics[0]
 
 
-def set_backend(backend):
+def set_backend(backend, verbose=False):
     """
     Force Scapy's sniffing backend: 'auto', 'pcap', or 'bpf'.
     """
-    b = backend.lower()
-    if b == "pcap":
+    backend = backend.lower()
+    msg = None
+    if backend == "pcap":
         try:
             conf.use_pcap = True
+            msg = "Using libpcap backend (conf.use_pcap=True)."
         except Exception as e:
             print(f"Warning: could not enable libpcap backend: {e}", file=sys.stderr)
-    elif b == "bpf":
+    elif backend == "bpf":
         try:
             conf.use_pcap = False
+            msg = "Using native BPF backend (conf.use_pcap=False)."
         except Exception as e:
             print(f"Warning: could not force BPF backend: {e}", file=sys.stderr)
-    # 'auto' -> leave as-is
+    if verbose and msg:
+        print(msg)
+
+
+class scapy_warning_capture(logging.Handler):
+    """
+    Capture Scapy runtime warnings to detect socket/backend failures and silence them.
+    """
+    def __init__(self):
+        super().__init__(level=logging.WARNING)
+        self.socket_failed = False
+
+    def emit(self, record):
+        msg = record.getMessage()
+        if "Socket" in msg and "failed" in msg and "closed" in msg:
+            self.socket_failed = True
+
+
+class scapy_log_silencer:
+    """
+    Context manager that replaces scapy.runtime handlers to suppress and capture warnings.
+    """
+    def __init__(self):
+        self.logger = logging.getLogger("scapy.runtime")
+        self.prev_handlers = None
+        self.prev_level = None
+        self.prev_propagate = None
+        self.handler = scapy_warning_capture()
+
+    def __enter__(self):
+        self.prev_handlers = list(self.logger.handlers)
+        self.prev_level = self.logger.level
+        self.prev_propagate = self.logger.propagate
+
+        self.logger.handlers = [self.handler]
+        self.logger.setLevel(logging.WARNING)
+        self.logger.propagate = False
+
+        self._warnings_cm = warnings.catch_warnings()
+        self._warnings_cm.__enter__()
+        warnings.filterwarnings(
+            "ignore",
+            message=r".*Socket .* failed .* It was closed\.*",
+            category=Warning,
+        )
+        return self.handler
+
+    def __exit__(self, exc_type, exc, tb):
+        self.logger.handlers = self.prev_handlers
+        self.logger.setLevel(self.prev_level)
+        self.logger.propagate = self.prev_propagate
+        self._warnings_cm.__exit__(exc_type, exc, tb)
 
 
 def render_prefix_analysis(
@@ -103,16 +165,9 @@ def render_prefix_analysis(
     top_k,
     no_entropy,
     analysis_timeout,
-    min_count,
-    coverage_pct,
-    show_others,
 ):
     """
-    Render the prefix analysis with bounds and filters.
-
-    min_pct is a percentage threshold (e.g., 0.5 means 0.5%%).
-    min_count requires at least N occurrences for an entry to be shown.
-    coverage_pct keeps entries until cumulative coverage reaches this percent.
+    Render the prefix analysis for the given stats with bounds and safeguards.
     """
     start_t = time.monotonic()
     outprint(out, title)
@@ -143,37 +198,21 @@ def render_prefix_analysis(
                 outprint(out, f"Entropy : {ent:.4f}")
             outprint(out, f"Unique  : {len(counter):,}")
 
-            items = counter.most_common()
+            shown = False
             emitted = 0
-            covered = 0.0
-            printed_count_sum = 0
-
-            for value, c in items:
-                pct = (c * 100.0 / total) if total else 0.0
-
-                # Apply thresholds and caps
-                if c < min_count:
-                    continue
+            iterable = counter.most_common(top_k if top_k and top_k > 0 else None)
+            for value, c in iterable:
+                pct = c * 100.0 / total
                 if pct < min_pct:
-                    continue
-                if coverage_pct and covered >= coverage_pct:
-                    continue
-                if top_k and top_k > 0 and emitted >= top_k:
-                    continue
-
+                    break
+                shown = True
                 emitted += 1
-                covered += pct
-                printed_count_sum += c
                 outprint(out, f"{pct:8.3f}% {c:10d} {value.hex(' ')}")
 
-            if emitted == 0:
+            if not shown:
                 outprint(out, "(no prefixes above threshold)")
-            elif show_others:
-                others_count = max(0, total - printed_count_sum)
-                others_entries = max(0, len(counter) - emitted)
-                pct_rest = (others_count * 100.0 / total) if total else 0.0
-                if others_entries > 0 and pct_rest > 0.0:
-                    outprint(out, f"(others: {others_entries} entries, {pct_rest:.3f}% cumulative)")
+            elif top_k and emitted >= top_k and emitted < len(counter):
+                outprint(out, f"(truncated to top {top_k} entries)")
 
             if ent is not None and ent > entropy_limit:
                 outprint(out)
@@ -207,19 +246,17 @@ def analyze_live(
     proto,
     py_filter,
     backend,
+    verbose,
+    idle_timeout,
     top_k,
     no_entropy,
     analysis_timeout,
-    min_count,
-    coverage,
-    show_others,
 ):
     """
-    Sniff live packets and analyze UDP/TCP payload prefixes.
+    Sniff live packets and analyze UDP/TCP payload prefixes with fallbacks and watchdog.
     """
-    set_backend(backend)
-
     prefix_stats = [Counter() for _ in range(max_prefix)]
+
     packets = 0
     udp_packets = 0
     tcp_packets = 0
@@ -229,14 +266,17 @@ def analyze_live(
     want_udp = proto in ("udp", "both")
     want_tcp = proto in ("tcp", "both")
 
+    last_progress = time.monotonic()
+
     def add_payload(payload):
         maxlen = min(max_prefix, len(payload))
         for n in range(1, maxlen + 1):
             prefix_stats[n - 1][payload[:n]] += 1
 
     def process_packet(pkt):
-        nonlocal packets, udp_packets, tcp_packets, udp_payload_packets, tcp_payload_packets
+        nonlocal packets, udp_packets, tcp_packets, udp_payload_packets, tcp_payload_packets, last_progress
         packets += 1
+        last_progress = time.monotonic()
 
         if progress_every and packets % progress_every == 0:
             print(
@@ -265,38 +305,124 @@ def analyze_live(
     sniff_timeout = None if (timeout is None or timeout <= 0) else timeout
     sniff_count = None if (count is None or count <= 0) else count
 
-    # Choose kernel vs Python-level filter
-    if py_filter:
-        if want_udp and want_tcp:
-            lfilter = lambda p: (UDP in p) or (TCP in p)
-        elif want_udp:
-            lfilter = lambda p: UDP in p
-        else:
-            lfilter = lambda p: TCP in p
-        active_bpf_filter = None
-    else:
-        lfilter = None
-        if bpf_filter:
-            active_bpf_filter = bpf_filter
-        else:
-            active_bpf_filter = "udp or tcp" if (want_udp and want_tcp) else ("udp" if want_udp else "tcp")
+    def run_sniff(backend_choice, use_py_filter, use_promisc, use_bpf_filter, attempt_no):
+        set_backend(backend_choice, verbose=verbose)
 
-    try:
-        sniff(
-            iface=iface,
-            prn=process_packet,
-            store=False,
-            filter=active_bpf_filter,
-            lfilter=lfilter,
-            timeout=sniff_timeout,
-            count=sniff_count,
-            promisc=promisc,
-        )
-    except KeyboardInterrupt:
-        print("\nInterrupted by user.", file=sys.stderr)
-    except Exception as e:
-        # Keep going to reporting with whatever we captured
-        print(f"\nSniff error: {e}", file=sys.stderr)
+        if use_py_filter:
+            if want_udp and want_tcp:
+                lfilter = lambda p: (UDP in p) or (TCP in p)
+            elif want_udp:
+                lfilter = lambda p: UDP in p
+            else:
+                lfilter = lambda p: TCP in p
+            active_bpf_filter = None
+        else:
+            lfilter = None
+            if use_bpf_filter:
+                active_bpf_filter = bpf_filter if bpf_filter else (
+                    "udp or tcp" if (want_udp and want_tcp)
+                    else ("udp" if want_udp else "tcp")
+                )
+            else:
+                active_bpf_filter = None
+
+        if verbose:
+            print(
+                f"Attempt {attempt_no}: backend={backend_choice}, "
+                f"py_filter={use_py_filter}, promisc={use_promisc}, "
+                f"bpf_filter={'ON' if active_bpf_filter else 'OFF'}"
+            )
+
+        exc = None
+        packets_before = packets
+
+        with scapy_log_silencer() as cap:
+            try:
+                sniffer = AsyncSniffer(
+                    iface=iface,
+                    prn=process_packet,
+                    store=False,
+                    filter=active_bpf_filter,
+                    lfilter=lfilter,
+                    promisc=use_promisc,
+                )
+                sniffer.start()
+            except Exception as e:
+                exc = e
+                return {
+                    "exception": exc,
+                    "socket_failed": cap.socket_failed,
+                    "packets_before": packets_before,
+                    "packets_after": packets,
+                }
+
+            start = time.monotonic()
+            try:
+                while True:
+                    now = time.monotonic()
+                    if sniff_timeout is not None and (now - start) >= sniff_timeout:
+                        break
+                    if sniff_count is not None and packets - packets_before >= sniff_count:
+                        break
+                    if idle_timeout and idle_timeout > 0 and (now - last_progress) >= idle_timeout:
+                        cap.socket_failed = True
+                        if verbose:
+                            print(f"Attempt {attempt_no}: idle timeout reached ({idle_timeout}s) — aborting attempt.")
+                        break
+                    if not sniffer.running:
+                        break
+                    time.sleep(0.2)
+            finally:
+                try:
+                    sniffer.stop()
+                except Exception:
+                    pass
+
+        return {
+            "exception": exc,
+            "socket_failed": cap.socket_failed,
+            "packets_before": packets_before,
+            "packets_after": packets,
+        }
+
+    attempts = [
+        dict(backend_choice=backend, use_py_filter=py_filter, use_promisc=promisc, use_bpf_filter=True),
+        dict(backend_choice=backend, use_py_filter=True,     use_promisc=promisc, use_bpf_filter=False),
+        dict(backend_choice=backend, use_py_filter=True,     use_promisc=False,   use_bpf_filter=False),
+    ]
+    if backend == "pcap":
+        attempts.append(dict(backend_choice="bpf", use_py_filter=True, use_promisc=False, use_bpf_filter=False))
+    elif backend == "bpf":
+        attempts.append(dict(backend_choice="pcap", use_py_filter=True, use_promisc=False, use_bpf_filter=False))
+    else:
+        attempts.append(dict(backend_choice="pcap", use_py_filter=True, use_promisc=False, use_bpf_filter=False))
+
+    last_error = None
+    attempt_succeeded = False
+
+    for idx, params in enumerate(attempts, 1):
+        res = run_sniff(**params, attempt_no=idx)
+
+        if res["exception"]:
+            last_error = res["exception"]
+            if verbose:
+                print(f"Attempt {idx}: sniff error: {last_error}", file=sys.stderr)
+            continue
+
+        if res["socket_failed"]:
+            if verbose:
+                print(f"Attempt {idx}: detected socket failure or idle hang, retrying...", file=sys.stderr)
+            continue
+
+        captured = res["packets_after"] - res["packets_before"]
+
+        # Accept the attempt if it captured any packets, or if we had a finite stop condition.
+        if captured > 0 or (sniff_timeout is not None or sniff_count is not None):
+            attempt_succeeded = True
+            break
+
+    if not attempt_succeeded and not last_error:
+        last_error = RuntimeError("All sniff attempts failed or captured no packets.")
 
     print()  # end any in-place progress line
 
@@ -319,6 +445,8 @@ def analyze_live(
         outprint(out, f"TCP packets    : {tcp_packets:,}")
         outprint(out, f"UDP payload    : {udp_payload_packets:,}")
         outprint(out, f"TCP payload    : {tcp_payload_packets:,}")
+        if last_error:
+            outprint(out, f"Note: last sniff error: {last_error}")
         outprint(out)
         try:
             out.flush()
@@ -335,9 +463,6 @@ def analyze_live(
             top_k=top_k,
             no_entropy=no_entropy,
             analysis_timeout=analysis_timeout,
-            min_count=min_count,
-            coverage_pct=coverage,
-            show_others=show_others,
         )
         try:
             out.flush()
@@ -358,7 +483,8 @@ def build_arg_parser():
     p = argparse.ArgumentParser(
         description=(
             "Sniff UDP/TCP packets from a network interface and analyze payload prefixes "
-            "with entropy computation. Use Python-level filters for stability if needed."
+            "with entropy computation. Automatically retries on backend/socket errors, "
+            "uses a watchdog to avoid mid-capture hangs, and bounds the reporting phase."
         )
     )
     p.add_argument("--iface", help="Network interface to sniff on (auto-selected if omitted).")
@@ -370,39 +496,19 @@ def build_arg_parser():
     p.add_argument("--proto", choices=["udp", "tcp", "both"], default="both", help="Which protocols to analyze. Default: both.")
     p.add_argument("--max-prefix", type=int, default=8, help="Maximum prefix length (bytes) to analyze. Default: 8")
     p.add_argument("--entropy-limit", type=float, default=2.0, help="Stop at the first prefix length where entropy exceeds this. Default: 2.0")
-    p.add_argument("--min-pct", type=float, default=0.1, help="Minimum percentage to display a prefix line. Default: 0.1 (i.e., 0.1%%).")
-    p.add_argument("--min-count", type=int, default=1, help="Minimum absolute count to display a prefix entry. Default: 1")
-    p.add_argument("--coverage", type=float, default=0.0, help="Keep entries until cumulative coverage reaches this percent (<=0 disables).")
-    p.add_argument("--show-others", action="store_true", help="Summarize filtered entries as an '(others)' line.")
+    p.add_argument("--min-pct", type=float, default=0.1, help="Minimum percentage to display a prefix line. Default: 0.1 (i.e., 0.1%).")
     p.add_argument("--output", dest="output_file", help="Write results to this file instead of stdout.")
     p.add_argument("--progress-every", type=int, default=100000, help="Print progress every N packets (0 disables). Default: 100000")
     p.add_argument("--no-promisc", action="store_true", help="Disable promiscuous mode while sniffing.")
     p.add_argument("--backend", choices=["auto", "pcap", "bpf"], default="auto", help="Select Scapy sniffing backend.")
+    p.add_argument("--verbose", action="store_true", help="Show backend selection and retry steps.")
+    p.add_argument("--idle-timeout", type=float, default=0.0, help="Abort an attempt if no packets for this many seconds (<=0 disables).")
     p.add_argument("--top-k", type=int, default=50, help="Limit lines per prefix length to top K (<=0 for unlimited). Default: 50")
     p.add_argument("--analysis-timeout", type=float, default=0.0, help="Hard cap (seconds) for the reporting section (<=0 disables).")
     p.add_argument("--no-entropy", action="store_true", help="Skip entropy computation during reporting.")
-    p.add_argument("--suppress-scapy-warnings", action="store_true", help="Hide Scapy socket/backend warnings.")
-
     # Backward-compatibility alias; maps to --proto udp + --py-filter
     p.add_argument("--udp-only", action="store_true", help=argparse.SUPPRESS)
     return p
-
-
-def suppress_scapy_runtime_warnings():
-    """
-    Silence Scapy 'Socket ... failed ... It was closed.' warnings.
-    """
-    logger = logging.getLogger("scapy.runtime")
-    logger.setLevel(logging.ERROR)
-    logger.propagate = False
-    # Replace handlers with a NullHandler to keep the logger quiet
-    logger.handlers = [logging.NullHandler()]
-    # Also silence Python warnings that mirror this text
-    warnings.filterwarnings(
-        "ignore",
-        message=r".*Socket .* failed .* It was closed\.*",
-        category=Warning,
-    )
 
 
 def main():
@@ -412,10 +518,6 @@ def main():
     parser = build_arg_parser()
     args = parser.parse_args()
 
-    # On macOS, prefer libpcap by default to avoid BPF quirks when backend is 'auto'
-    if args.backend == "auto" and sys.platform == "darwin":
-        args.backend = "pcap"
-
     if args.list_nics:
         list_nics()
         return
@@ -423,9 +525,6 @@ def main():
     if args.udp_only:
         args.proto = "udp"
         args.py_filter = True
-
-    if args.suppress_scapy_warnings:
-        suppress_scapy_runtime_warnings()
 
     try:
         iface = args.iface or select_default_iface()
@@ -447,12 +546,11 @@ def main():
         proto=args.proto,
         py_filter=args.py_filter,
         backend=args.backend,
+        verbose=args.verbose,
+        idle_timeout=args.idle_timeout,
         top_k=args.top_k,
         no_entropy=args.no_entropy,
         analysis_timeout=args.analysis_timeout,
-        min_count=args.min_count,
-        coverage=args.coverage,
-        show_others=args.show_others,
     )
 
 
