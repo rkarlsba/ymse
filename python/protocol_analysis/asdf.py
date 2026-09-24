@@ -431,6 +431,7 @@ def capture_via_tcpdump(
         cmd += shlex.split("udp or tcp" if proto == "both" else proto)
 
     proc = None
+    killer = None
     try:
         proc = subprocess.Popen(
             cmd,
@@ -440,14 +441,13 @@ def capture_via_tcpdump(
         )
 
         # Kill tcpdump after timeout (if specified)
-        killer = None
         if timeout and timeout > 0:
+            import threading
             def _kill():
                 try:
                     proc.terminate()
                 except Exception:
                     pass
-            import threading
             killer = threading.Timer(timeout, _kill)
             killer.daemon = True
             killer.start()
@@ -464,19 +464,26 @@ def capture_via_tcpdump(
                 self.pos = 0
                 self.stream = stream
             def read(self, n=-1):
+                # Serve from the head buffer first
                 if self.pos < len(self.head):
                     if n < 0:
-                        data = self.head[self.pos:] + self.stream.read(n)
+                        data = self.head[self.pos:] + self._read_silent(n)
                         self.pos = len(self.head)
                         return data
                     take = min(n, len(self.head) - self.pos)
                     data = self.head[self.pos:self.pos+take]
                     self.pos += take
                     if n > take:
-                        tail = self.stream.read(n - take)
+                        tail = self._read_silent(n - take)
                         return data + (tail or b"")
                     return data
-                return self.stream.read(n)
+                return self._read_silent(n)
+            def _read_silent(self, n):
+                try:
+                    return self.stream.read(n)
+                except ValueError:
+                    # Underlying pipe is closed; behave like EOF
+                    return b""
             def close(self):
                 try:
                     self.stream.close()
@@ -485,10 +492,9 @@ def capture_via_tcpdump(
 
         stream = prefixed_stream(first4, proc.stdout)
 
-        # Choose reader and obtain linktype
+        # Choose reader and obtain linktype, then iterate once
         if magic == b"\x0a\x0d\x0d\x0a":  # pcapng
             reader = RawPcapNgReader(stream)
-            # For pcapng, per-packet metadata contains the linktype
             for pkt_data, meta in reader:
                 counters["packets"] += 1
                 if progress_every and counters["packets"] % progress_every == 0:
@@ -539,37 +545,6 @@ def capture_via_tcpdump(
             except Exception:
                 pass
 
-        stream = prefixed_stream(first4, proc.stdout)
-
-        # Choose reader
-        if magic == b"\x0a\x0d\x0d\x0a":
-            reader = RawPcapNgReader(stream)
-        else:
-            reader = RawPcapReader(stream)
-
-        for pkt_data, _ in reader:
-            counters["packets"] += 1
-            if progress_every and counters["packets"] % progress_every == 0:
-                print(
-                    f"\rPackets={counters['packets']:,} UDP={counters['udp_packets']:,} "
-                    f"TCP={counters['tcp_packets']:,} "
-                    f"UDP payload={counters['udp_payload_packets']:,} "
-                    f"TCP payload={counters['tcp_payload_packets']:,}",
-                    end="", flush=True
-                )
-            analyze_packets_from_bytes(
-                pkt_data,
-                max_prefix=max_prefix,
-                prefix_stats=prefix_stats,
-                proto=proto,
-                counters=counters,
-            )
-
-        try:
-            reader.close()
-        except Exception:
-            pass
-
         # Drain and ignore stderr (tcpdump stats)
         try:
             if proc.stderr:
@@ -577,10 +552,12 @@ def capture_via_tcpdump(
         except Exception:
             pass
 
-        if killer:
-            killer.cancel()
-
     finally:
+        if killer:
+            try:
+                killer.cancel()
+            except Exception:
+                pass
         if proc:
             try:
                 proc.terminate()
