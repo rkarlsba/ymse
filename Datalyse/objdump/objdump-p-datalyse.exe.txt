@@ -1,0 +1,599 @@
+
+../utpakka/Datalyse.exe:	file format coff-i386
+Characteristics 0x818e
+	executable
+	line numbers stripped
+	symbols stripped
+	little endian
+	32 bit words
+	big endian
+
+Time/Date               Sat Jun 20 00:22:17 1992
+Magic                   010b	(PE32)
+MajorLinkerVersion      2
+MinorLinkerVersion      25
+SizeOfCode              001a6600
+SizeOfInitializedData   0008c800
+SizeOfUninitializedData 00000000
+AddressOfEntryPoint     001a7394
+BaseOfCode              00001000
+BaseOfData              001a8000
+ImageBase               00400000
+SectionAlignment        00001000
+FileAlignment           00000200
+MajorOSystemVersion     1
+MinorOSystemVersion     0
+MajorImageVersion       0
+MinorImageVersion       0
+MajorSubsystemVersion   4
+MinorSubsystemVersion   0
+Win32Version            00000000
+SizeOfImage             0023b000
+SizeOfHeaders           00000400
+CheckSum                00000000
+Subsystem               00000002	(Windows GUI)
+DllCharacteristics      00000000
+SizeOfStackReserve      00100000
+SizeOfStackCommit       00004000
+SizeOfHeapReserve       00100000
+SizeOfHeapCommit        00001000
+LoaderFlags             00000000
+NumberOfRvaAndSizes     00000010
+
+The Data Directory
+Entry 0 00000000 00000000 Export Directory [.edata (or where ever we found it)]
+Entry 1 001b0000 00002794 Import Directory [parts of .idata]
+Entry 2 001d5000 00065e00 Resource Directory [.rsrc]
+Entry 3 00000000 00000000 Exception Directory [.pdata]
+Entry 4 00000000 00000000 Security Directory
+Entry 5 001b5000 0001f86c Base Relocation Directory [.reloc]
+Entry 6 00000000 00000000 Debug Directory
+Entry 7 00000000 00000000 Description Directory
+Entry 8 00000000 00000000 Special Directory
+Entry 9 001b4000 00000018 Thread Storage Directory [.tls]
+Entry a 00000000 00000000 Load Configuration Directory
+Entry b 00000000 00000000 Bound Import Directory
+Entry c 00000000 00000000 Import Address Table Directory
+Entry d 00000000 00000000 Delay Import Directory
+Entry e 00000000 00000000 CLR Runtime Header
+Entry f 00000000 00000000 Reserved
+TLS directory:
+  StartAddressOfRawData: 0x5b3000
+  EndAddressOfRawData: 0x5b3010
+  AddressOfIndex: 0x5ad4d4
+  AddressOfCallBacks: 0x5b4010
+  SizeOfZeroFill: 0
+  Characteristics: 0
+  Alignment: 0
+
+
+The Import Tables:
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0898 addr 001b0154
+
+    DLL Name: kernel32.dll
+    Hint/Ord  Name
+           0  GetCurrentThreadId
+           0  DeleteCriticalSection
+           0  LeaveCriticalSection
+           0  EnterCriticalSection
+           0  InitializeCriticalSection
+           0  VirtualFree
+           0  VirtualAlloc
+           0  LocalFree
+           0  LocalAlloc
+           0  InterlockedDecrement
+           0  InterlockedIncrement
+           0  VirtualQuery
+           0  WideCharToMultiByte
+           0  SetCurrentDirectoryA
+           0  MultiByteToWideChar
+           0  lstrlenA
+           0  lstrcpyA
+           0  LoadLibraryExA
+           0  GetThreadLocale
+           0  GetStartupInfoA
+           0  GetModuleFileNameA
+           0  GetLocaleInfoA
+           0  GetLastError
+           0  GetCurrentDirectoryA
+           0  GetCommandLineA
+           0  FreeLibrary
+           0  ExitProcess
+           0  WriteFile
+           0  SetFilePointer
+           0  SetEndOfFile
+           0  RtlUnwind
+           0  ReadFile
+           0  RaiseException
+           0  GetStdHandle
+           0  GetFileSize
+           0  GetSystemTime
+           0  GetFileType
+           0  DeleteFileA
+           0  CreateFileA
+           0  CloseHandle
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0b66 addr 001b01f8
+
+    DLL Name: user32.dll
+    Hint/Ord  Name
+           0  GetKeyboardType
+           0  LoadStringA
+           0  MessageBoxA
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0ba0 addr 001b0208
+
+    DLL Name: advapi32.dll
+    Hint/Ord  Name
+           0  RegQueryValueExA
+           0  RegOpenKeyExA
+           0  RegCloseKey
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0be0 addr 001b0218
+
+    DLL Name: oleaut32.dll
+    Hint/Ord  Name
+           0  VariantChangeTypeEx
+           0  VariantCopyInd
+           0  VariantClear
+           0  SysStringLen
+           0  SysFreeString
+           0  SysReAllocStringLen
+           0  SysAllocStringLen
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0c70 addr 001b0238
+
+    DLL Name: kernel32.dll
+    Hint/Ord  Name
+           0  TlsSetValue
+           0  TlsGetValue
+           0  LocalAlloc
+           0  GetModuleHandleA
+           0  GetModuleFileNameA
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0cd2 addr 001b0250
+
+    DLL Name: advapi32.dll
+    Hint/Ord  Name
+           0  RegQueryValueExA
+           0  RegOpenKeyExA
+           0  RegCloseKey
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b0d12 addr 001b0260
+
+    DLL Name: kernel32.dll
+    Hint/Ord  Name
+           0  lstrcpyA
+           0  WriteFile
+           0  WaitForSingleObject
+           0  VirtualQuery
+           0  VirtualAlloc
+           0  Sleep
+           0  SizeofResource
+           0  SetupComm
+           0  SetThreadLocale
+           0  SetFilePointer
+           0  SetEvent
+           0  SetErrorMode
+           0  SetEndOfFile
+           0  SetCommTimeouts
+           0  SetCommState
+           0  SetCommMask
+           0  ReadFile
+           0  MultiByteToWideChar
+           0  MulDiv
+           0  LockResource
+           0  LoadResource
+           0  LoadLibraryA
+           0  LeaveCriticalSection
+           0  InitializeCriticalSection
+           0  GlobalUnlock
+           0  GlobalSize
+           0  GlobalReAlloc
+           0  GlobalHandle
+           0  GlobalLock
+           0  GlobalFree
+           0  GlobalDeleteAtom
+           0  GlobalAlloc
+           0  GlobalAddAtomA
+           0  GetVersionExA
+           0  GetVersion
+           0  GetTickCount
+           0  GetThreadLocale
+           0  GetSystemInfo
+           0  GetProfileStringA
+           0  GetProcAddress
+           0  GetModuleHandleA
+           0  GetModuleFileNameA
+           0  GetLocaleInfoA
+           0  GetLocalTime
+           0  GetLastError
+           0  GetDiskFreeSpaceA
+           0  GetDateFormatA
+           0  GetCurrentThreadId
+           0  GetCurrentProcessId
+           0  GetCommTimeouts
+           0  GetCommState
+           0  GetCPInfo
+           0  FreeResource
+           0  FreeLibrary
+           0  FormatMessageA
+           0  FindResourceA
+           0  FindFirstFileA
+           0  FindClose
+           0  FileTimeToLocalFileTime
+           0  FileTimeToDosDateTime
+           0  EnumCalendarInfoA
+           0  EnterCriticalSection
+           0  DeleteCriticalSection
+           0  CreateThread
+           0  CreateFileA
+           0  CreateEventA
+           0  CompareStringA
+           0  CloseHandle
+           0  ClearCommError
+           0  Beep
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b11c0 addr 001b037c
+
+    DLL Name: gdi32.dll
+    Hint/Ord  Name
+           0  UnrealizeObject
+           0  StretchBlt
+           0  StartPage
+           0  StartDocA
+           0  SetWindowOrgEx
+           0  SetWindowExtEx
+           0  SetWinMetaFileBits
+           0  SetViewportOrgEx
+           0  SetViewportExtEx
+           0  SetTextColor
+           0  SetStretchBltMode
+           0  SetROP2
+           0  SetPixel
+           0  SetMapMode
+           0  SetEnhMetaFileBits
+           0  SetDIBColorTable
+           0  SetBrushOrgEx
+           0  SetBkMode
+           0  SetBkColor
+           0  SetAbortProc
+           0  SelectPalette
+           0  SelectObject
+           0  SelectClipRgn
+           0  SaveDC
+           0  RestoreDC
+           0  Rectangle
+           0  RectVisible
+           0  RealizePalette
+           0  Polyline
+           0  Polygon
+           0  PolyPolyline
+           0  PlayEnhMetaFile
+           0  PatBlt
+           0  MoveToEx
+           0  MaskBlt
+           0  LineTo
+           0  IntersectClipRect
+           0  GetWindowOrgEx
+           0  GetWinMetaFileBits
+           0  GetTextMetricsA
+           0  GetTextExtentPointA
+           0  GetTextExtentPoint32A
+           0  GetSystemPaletteEntries
+           0  GetStockObject
+           0  GetPixel
+           0  GetPaletteEntries
+           0  GetObjectA
+           0  GetEnhMetaFilePaletteEntries
+           0  GetEnhMetaFileHeader
+           0  GetEnhMetaFileDescriptionA
+           0  GetEnhMetaFileBits
+           0  GetDeviceCaps
+           0  GetDIBits
+           0  GetDIBColorTable
+           0  GetDCOrgEx
+           0  GetCurrentPositionEx
+           0  GetClipRgn
+           0  GetClipBox
+           0  GetBrushOrgEx
+           0  GetBitmapBits
+           0  GdiFlush
+           0  ExtTextOutA
+           0  ExtCreatePen
+           0  ExcludeClipRect
+           0  EnumFontsA
+           0  EnumFontFamiliesExA
+           0  EndPage
+           0  EndDoc
+           0  DeleteObject
+           0  DeleteEnhMetaFile
+           0  DeleteDC
+           0  CreateSolidBrush
+           0  CreateRectRgn
+           0  CreatePenIndirect
+           0  CreatePalette
+           0  CreateICA
+           0  CreateHalftonePalette
+           0  CreateFontIndirectA
+           0  CreateEnhMetaFileA
+           0  CreateDIBitmap
+           0  CreateDIBSection
+           0  CreateDCA
+           0  CreateCompatibleDC
+           0  CreateCompatibleBitmap
+           0  CreateBrushIndirect
+           0  CreateBitmap
+           0  CopyEnhMetaFileA
+           0  CloseEnhMetaFile
+           0  BitBlt
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b17ae addr 001b04e4
+
+    DLL Name: user32.dll
+    Hint/Ord  Name
+           0  WindowFromPoint
+           0  WinHelpA
+           0  WaitMessage
+           0  ValidateRect
+           0  UpdateWindow
+           0  UnregisterClassA
+           0  UnionRect
+           0  UnhookWindowsHookEx
+           0  TranslateMessage
+           0  TranslateMDISysAccel
+           0  TrackPopupMenu
+           0  SystemParametersInfoA
+           0  ShowWindow
+           0  ShowScrollBar
+           0  ShowOwnedPopups
+           0  ShowCursor
+           0  SetWindowRgn
+           0  SetWindowsHookExA
+           0  SetWindowTextA
+           0  SetWindowPos
+           0  SetWindowPlacement
+           0  SetWindowLongA
+           0  SetTimer
+           0  SetScrollRange
+           0  SetScrollPos
+           0  SetScrollInfo
+           0  SetRect
+           0  SetPropA
+           0  SetMenuItemInfoA
+           0  SetMenu
+           0  SetKeyboardState
+           0  SetForegroundWindow
+           0  SetFocus
+           0  SetCursorPos
+           0  SetCursor
+           0  SetClipboardData
+           0  SetCapture
+           0  SetActiveWindow
+           0  SendMessageA
+           0  SendDlgItemMessageA
+           0  ScrollWindowEx
+           0  ScrollWindow
+           0  ScreenToClient
+           0  RemovePropA
+           0  RemoveMenu
+           0  ReleaseDC
+           0  ReleaseCapture
+           0  RegisterWindowMessageA
+           0  RegisterClipboardFormatA
+           0  RegisterClassA
+           0  RedrawWindow
+           0  PtInRect
+           0  PostQuitMessage
+           0  PostMessageA
+           0  PeekMessageA
+           0  OpenClipboard
+           0  OffsetRect
+           0  OemToCharA
+           0  MessageBoxA
+           0  MessageBeep
+           0  MapWindowPoints
+           0  MapVirtualKeyA
+           0  LoadStringA
+           0  LoadIconA
+           0  LoadCursorA
+           0  LoadBitmapA
+           0  KillTimer
+           0  IsZoomed
+           0  IsWindowVisible
+           0  IsWindowEnabled
+           0  IsWindow
+           0  IsRectEmpty
+           0  IsIconic
+           0  IsDialogMessageA
+           0  IsClipboardFormatAvailable
+           0  IsChild
+           0  IsCharAlphaNumericA
+           0  IsCharAlphaA
+           0  InvalidateRect
+           0  IntersectRect
+           0  InsertMenuItemA
+           0  InsertMenuA
+           0  InflateRect
+           0  GetWindowThreadProcessId
+           0  GetWindowTextA
+           0  GetWindowRgn
+           0  GetWindowRect
+           0  GetWindowPlacement
+           0  GetWindowLongA
+           0  GetWindowDC
+           0  GetTopWindow
+           0  GetSystemMetrics
+           0  GetSystemMenu
+           0  GetSysColor
+           0  GetSubMenu
+           0  GetScrollRange
+           0  GetScrollPos
+           0  GetScrollInfo
+           0  GetPropA
+           0  GetParent
+           0  GetWindow
+           0  GetMessageTime
+           0  GetMenuStringA
+           0  GetMenuState
+           0  GetMenuItemInfoA
+           0  GetMenuItemID
+           0  GetMenuItemCount
+           0  GetMenu
+           0  GetLastActivePopup
+           0  GetKeyboardState
+           0  GetKeyboardLayoutList
+           0  GetKeyboardLayout
+           0  GetKeyState
+           0  GetKeyNameTextA
+           0  GetIconInfo
+           0  GetForegroundWindow
+           0  GetFocus
+           0  GetDoubleClickTime
+           0  GetDlgItem
+           0  GetDesktopWindow
+           0  GetDCEx
+           0  GetDC
+           0  GetCursorPos
+           0  GetCursor
+           0  GetClipboardData
+           0  GetClientRect
+           0  GetClassInfoA
+           0  GetCapture
+           0  GetActiveWindow
+           0  FrameRect
+           0  FindWindowA
+           0  FillRect
+           0  EqualRect
+           0  EnumWindows
+           0  EnumThreadWindows
+           0  EnumClipboardFormats
+           0  EndPaint
+           0  EnableWindow
+           0  EnableScrollBar
+           0  EnableMenuItem
+           0  EmptyClipboard
+           0  DrawTextA
+           0  DrawMenuBar
+           0  DrawIcon
+           0  DrawFrameControl
+           0  DrawFocusRect
+           0  DrawEdge
+           0  DispatchMessageA
+           0  DestroyWindow
+           0  DestroyMenu
+           0  DestroyIcon
+           0  DestroyCursor
+           0  DeleteMenu
+           0  DefWindowProcA
+           0  DefMDIChildProcA
+           0  DefFrameProcA
+           0  CreateWindowExA
+           0  CreatePopupMenu
+           0  CreateMenu
+           0  CreateIcon
+           0  CloseClipboard
+           0  ClientToScreen
+           0  CheckMenuItem
+           0  CallWindowProcA
+           0  CallNextHookEx
+           0  BeginPaint
+           0  CharLowerBuffA
+           0  CharLowerA
+           0  CharUpperBuffA
+           0  AdjustWindowRectEx
+           0  ActivateKeyboardLayout
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b22c6 addr 001b0794
+
+    DLL Name: ole32.dll
+    Hint/Ord  Name
+           0  CLSIDFromProgID
+           0  CoCreateInstance
+           0  CoUninitialize
+           0  CoInitialize
+           0  IsEqualGUID
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b2326 addr 001b07ac
+
+    DLL Name: oleaut32.dll
+    Hint/Ord  Name
+           0  GetErrorInfo
+           0  SysFreeString
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b2354 addr 001b07b8
+
+    DLL Name: comctl32.dll
+    Hint/Ord  Name
+           0  ImageList_GetImageInfo
+           0  ImageList_SetIconSize
+           0  ImageList_GetIconSize
+           0  ImageList_Read
+           0  ImageList_GetDragImage
+           0  ImageList_DragShowNolock
+           0  ImageList_SetDragCursorImage
+           0  ImageList_DragMove
+           0  ImageList_DragLeave
+           0  ImageList_DragEnter
+           0  ImageList_EndDrag
+           0  ImageList_BeginDrag
+           0  ImageList_Remove
+           0  ImageList_DrawEx
+           0  ImageList_Replace
+           0  ImageList_Draw
+           0  ImageList_GetBkColor
+           0  ImageList_SetBkColor
+           0  ImageList_ReplaceIcon
+           0  ImageList_Add
+           0  ImageList_GetImageCount
+           0  ImageList_Destroy
+           0  ImageList_Create
+           0  InitCommonControls
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b257e addr 001b081c
+
+    DLL Name: winspool.drv
+    Hint/Ord  Name
+           0  OpenPrinterA
+           0  EnumPrintersA
+           0  DocumentPropertiesA
+           0  ClosePrinter
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b25d2 addr 001b0830
+
+    DLL Name: winmm.dll
+    Hint/Ord  Name
+           0  waveOutWrite
+           0  waveOutUnprepareHeader
+           0  waveOutReset
+           0  waveOutPrepareHeader
+           0  waveOutOpen
+           0  waveOutGetErrorTextA
+           0  waveOutGetDevCapsA
+           0  waveOutClose
+           0  waveInUnprepareHeader
+           0  waveInStart
+           0  waveInPrepareHeader
+           0  waveInOpen
+           0  waveInGetErrorTextA
+           0  waveInGetDevCapsA
+           0  waveInClose
+           0  waveInAddBuffer
+           0  timeGetTime
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b271c addr 001b0878
+
+    DLL Name: comdlg32.dll
+    Hint/Ord  Name
+           0  PrintDlgA
+           0  ChooseFontA
+           0  ChooseColorA
+           0  GetSaveFileNameA
+           0  GetOpenFileNameA
+
+  lookup 00000000 time 00000000 fwd 00000000 name 001b277c addr 001b0890
+
+    DLL Name: kernel32.dll
+    Hint/Ord  Name
+           0  MulDiv
+

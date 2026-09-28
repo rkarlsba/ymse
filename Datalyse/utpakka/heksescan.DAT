@@ -1,0 +1,30 @@
+DATALYSE	Amtsgymnasiet i Roskilde	Heksehyl	1
+	0	3	0	3
+t/s	f/kHz
+"##	-0.1	 1.4	 0	 0.2	 3.34	 3.92	 3.4	 0.05
+"#%	 8	 2	0	255	 0	 2	16711680	16711680	 0	 3	 0
+ 0	 3.90294
+ 0.093	 3.79541
+ 0.186	 3.7078
+ 0.279	 3.67613
+ 0.372	 3.61043
+ 0.464	 3.52815
+ 0.557	 3.46997
+ 0.65	 3.47226
+ 0.743	 3.41576
+ 0.836	 3.404
+ 0.929	 3.3876
+ 1.022	 3.36708
+ 1.115	 3.36318
+ 1.207	 3.364
+ 1.3	 3.43926
+"Heksehyl
+"radius: 2 mm
+"hullets dybde før afbrænding: 2,9 cm.
+"hullets dybde efter afbrænding: 3,8 cm
+"det giver en temperatur på ca. 750°C
+"f(t)=t
+"a1=0
+"a2=0
+"a3=0
+"a4=0
