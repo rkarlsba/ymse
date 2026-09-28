@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Installation of Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Installation</h2>
+
+<hr>
+
+<p>The installation diskette creates a library and copies all
+files on the diskette to this library. Save the diskette. Install
+Datalyse in Windows, and the program should be ready to run! </p>
+
+<h3>A few hints</h3>
+
+<p>Always use the following procedure when measuring:</p>
+
+<blockquote>
+    <p><i>Mare sure that PC and device are off! Connect the
+    device to the PC. Turn on the PC. Run the Datalyse program.
+    Turn on the device, when the program tells you to!</i></p>
+</blockquote>
+
+<p>When the PC is turned on, it sends some characters to the
+ports which may cause the device to freeze, start measuring or
+send an error message to the PC. All of this can be avoided by
+turning on the PC first! </p>
+
+<p>If the communication doesn't function, look to the online help
+for that device. Here, you can see if the device takes a special
+cable, the proper baud rate settings and any other pertinent
+information on that device.</p>
+
+<p>The help will also provide you with sample experiments. You
+will find a description of all functions in the program. There
+are a lot of screen shots from Datalyse which may for instance be
+copied for use in a practice manual or students may use the
+picture in their reports. </p>
+
+<hr>
+
+<h3><a name="Inifiler">Ini-files</a>:</h3>
+
+<p><font size="3"><b>Datalyse.ini contains:</b></font></p>
+
+<p><strong>separator: #9</strong></p>
+
+<blockquote>
+    <p>This is the separator character used e.g. when copying a
+    table to the clipboard. The default is tab.</p>
+</blockquote>
+
+<p><strong>companynumber: 1</strong></p>
+
+<blockquote>
+    <p><font size="3">1: all, 2: Atimco, 3: Buch&amp;Holm, 4:
+    IMPO, 5: Muller+Sørensen, 6: Radiometer, 7: SF, 8: Other
+    devices. This setting decides which manufacturer is the
+    default when selecting a device. </font></p>
+</blockquote>
+
+<p><strong>path,c:\datalyse\data\</strong></p>
+
+<blockquote>
+    <p>Default directory when opening and saving files.</p>
+</blockquote>
+
+<p><strong>device,1,off: pt200, impo, pt2, pt1</strong></p>
+
+<p><strong>device,2,on : dmi24 multimeter, impo</strong></p>
+
+<p><strong>device,3,on : smart pulley timer, pasco,</strong></p>
+
+<p><strong>----</strong></p>
+
+<blockquote>
+    <p><font size="3">At the time of writing about 80 devices are
+    available, for this reason it is a good idea to set the
+    devices you do not have to off. </font></p>
+</blockquote>
+
+<p><strong>defaultdevice,34</strong>,Shimadzu spectrophotometer</p>
+
+<blockquote>
+    <p>With this line device no. 34 has been made the default.
+    You can find the number in the ini-file above.</p>
+</blockquote>
+
+<p>It does not matter whether you use upper or lower case.</p>
+
+<p>Datalyse first looks for the ini-file in its own directory
+then in the root of the C-drive. </p>
+
+<table border="0" cellpadding="5" cellspacing="0" width="608">
+    <tr>
+        <td width="50%"><font size="3"><b>basedata.ini:</b></font><p>Fluoride/10.83*</p>
+        <p>Nitrite/10.65*</p>
+        <p>Carbonate/3.68/7.63/*</p>
+        <p><font size="3">----</font></p>
+        </td>
+        <td width="50%"><font size="3"><b>aciddata.ini:</b></font><p>1,2-benzoic
+        diacid/*2.95/5.41</p>
+        <p>1,3-benzoic diacid/*3.62/4.60</p>
+        <p>1,2-benzoic diacid/*3.54/4.46</p>
+          <p>Aspirin/*3.49</p>
+        <p>Aniline/4.60*</p>
+        <p><font size="3">---</font></p>
+        </td>
+    </tr>
+</table>
+
+<p><font size="3">Basedata.ini contains the names and pKa values
+of bases and aciddata.ini the names and pKa values of acids. You
+can add new data to these files. These data are used for »model
+for titration curves«.</font></p>
+
+<p><font size="3"><b>Vernier.ini</b></font></p>
+
+<p>Accelerometer, 5g&quot;m/s²&quot;23.94&quot;-59.82</p>
+
+<p>Barometer 0..1.2 Bar&quot;P/Bar&quot;0.6997&quot;0.1357</p>
+
+<p><font size="3">---</font></p>
+
+<p><font size="3">Vernier.ini contains name, unit, y-axis factor
+and y-axis-offset for probes. Note that a probe can also be an
+analog device. You can add new probes to this file.</font></p>
+
+<p><font size="3">Multilog.ini</font></p>
+
+<p><font size="3">Contains a list of 40 sensors. The first 30 are
+»built in«, the last 10 are user-definable. This can for
+instance be vernier-probes. The file Multilog.ini contains:</font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font size="3">No.\Title\unit\minimum\maximum\decimals
+        in table</font></p>
+    </blockquote>
+</blockquote>
+
+<p><font size="3"><b>Shortcuts:</b></font></p>
+
+<p><font size="3">If a filename is added to the shortcut that
+file will be opened by Datalyse automatically.</font></p>
+
+<p><font size="3">If e.g. &quot;apparat:25&quot; is added Datalyse
+will automatically open the menu »Choose device« with device
+number 25 already selected and you only have to press Connect.
+You can find the number in Datalyse.ini.</font></p>
+
+<hr>
+
+<p>If you experience any difficulties with Datalyse, please help
+me, yourself and others!</p>
+
+<blockquote>
+  <dl>
+    <dt>
+            Carl Hemmingsen</dt>
+    <dt>
+            Borgmestervænget 22</dt>
+    <dt>
+            DK - 3600 Frederikssund</dt>
+    <dt>
+        Denmark</dt>
+  </dl>
+</blockquote>
+
+<p>&nbsp;</p>
+</body>
+</html>

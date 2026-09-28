@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-us">
+<title>Unico Spectrophotometer, Datalyse</title>
+</head>
+
+<body>
+
+<h2><span style="font-weight: 400">UNICO UV-spectrophotometer</span></h2><hr>
+<p>Menu in Datalyse:</p>
+<dl>
+	<dd>Measure at one wavelength</dd>
+	<dd>Spectrum, wavelength scan</dd>
+	<dd>Baseline, wavelength scan</dd>
+	<dd>Release control</dd>
+</dl>
+<p>You can also use the terminal program in Datalyse with the spectrophotometer. </p>
+<p>Frederiksen (UNICO) spectrophotometer is connected to the pc with a 0-modem 
+cable.</p>
+<p>Baud rate 9600, no parity, 1 stop, 8 data bits.</p>
+<p>There is no version command, but handshake at connection. After choosing the 
+device in Datalyse you must press ENT at the spectrophotometer within 2 seconds. 
+The handshake consists in package of chars from UNICO to the PC. The PC reacts 
+and returns a code. </p>
+<p>UNICO spectrophotometer does not transmit absorbance or transmittance to the PC! 
+UNICO transmit an energy level. A measurement is calculated using the test level 
+and a reference level.</p>
+<h3>Measure at one wavelength:</h3>
+<p>When you have selected wavelength, number of measurement at time per measurement, 
+you are asked to insert a reference cuvette (that means a cuvette with water)</p>
+<p>Then you are asked to insert a cuvette with solution</p>
+<h3>Spectrum and baseline:</h3>
+<p>UNICO does not have a command for scan. Hence Datalyse performs a scan by first 
+measuring the base line. This scan is placed in column C in the table. At any 
+following scan the base line is automatically subtracted. This method does 
+however require that you measure at the same wavelengths as you did when 
+measuring the base line. UNICO works slowly this way. Choose large steps, e.g. 
+10 nm to begin with.</p><hr>
+<p>Distributor S. Frederiksen</p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

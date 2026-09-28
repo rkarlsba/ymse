@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Cecil 1000 spectrophotometer, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Cecil spectrophotometers</h2>
+
+<menu>
+  <li><a href="cecil.htm#Cecil 1000">Cecil 10xx</a></li>
+  <li><a href="cecil.htm#Cecil 2000 UV/VIS">Cecil 200xx</a></li>
+</menu>
+
+<h3><a name="Cecil 1000">Cecil 1000</a> spectrophotometer</h3>
+
+<hr>
+
+<p><font size="3">Cecil 1011 has been tested in Datalyse, Cecil
+1021 has not.</font></p>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure at one wavelength</strong><br>
+    <strong>Spectrum</strong>, wavelength scan<br>
+    <strong>Baseline</strong>, wavelength scan<br>
+    <strong>Zero value absorbance</strong>, (transmittance)<br>
+    <strong>Release control</strong></font></p>
+</blockquote>
+
+<p><font size="3">You can use the terminal program in Datalyse
+with the spectrophotometer.</font></p>
+
+<p><font size="3">Baud rate 9600, even parity, 2 stop, 7 data
+bits. Command for version.</font></p>
+
+<p><font size="3">Wavelength interval:</font></p>
+
+<blockquote>
+
+<dl>
+    <dt><font size="3">Cecil 1011: 325 nm - 1000 nm</font></dt>
+    <dt><font size="3">Cecil 1021: 180 nm - 1000 nm</font></dt>
+</dl>
+
+</blockquote>
+
+<p><font size="3">It is possible to measure absorbance,
+transmittance and concentration.</font></p>
+
+<p><font size="3"><b>Scan:</b></font></p>
+
+<p><font size="3">Cecil 10xx cannot scan a spectrum, so Datalyse
+runs through the wavelength interval. The data from the baseline
+is placed in column C in the table. Once the baseline has been
+measured, column C in the table will automatically be subtracted
+at a scan. Scanning might be problematic, since the
+spectrophotometer often locks up, see the comments below. If you
+experience problems, try reducing the wavelength interval to for
+instance [400 nm; 800 nm] and remember that an ordinary cuvette
+does absorb light in the UV-area.</font></p>
+
+<p><font size="3"><b>Comments:</b></font></p>
+
+<p><font size="3">The cable is a standard null-modem cable,
+available in most computer shops.</font></p>
+
+<p><font size="3">At startup the wavelength is set to 500 nm and
+the absorbance is set to 0.000. This is a bit unfortunate,
+because if a scan is being made, the absorbance will go below the
+lower limit of -0.300 and the device will lock up. If a cuvette
+containing water is placed in the cell holder before Cecil is
+turned on, you will get the same zero level every time. If the
+absorbance increases to a value greater than 3.000, the device
+will also lock up. Dilute the solution and try again.</font></p>
+
+<p><font size="3">The serial communication is enabled by pressing
+PEAK SEEK thrice. It is possible to release the control from the
+pc, but not activate it.</font></p>
+
+<hr>
+<h3><a name="Cecil 2000 UV/VIS">Cecil 2000 UV/VIS</a> spectrophotometer</h3>
+<p><font size="3">Cecil 2041 has been tested in Datalyse, Cecil 2011, 2021, 2031
+have not.</font></p>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Measure at one wavelength<br>
+  Spectrum, wavelength scan<br>
+  Baseline, wavelength scan<br>
+  Zero value absorbance</strong>, (transmittance)<br>
+  <strong>Release control</strong></font></p>
+</blockquote>
+<p><font size="3">You can also use the terminal program in Datalyse with the
+spectrophotometer.</font></p>
+<p><font size="3">Baud rate 9600, even parity, 2 stop, 7 data bits. Command for
+version.</font></p>
+<p><font size="3">Wavelength interval:</font></p>
+<blockquote>
+  <dl>
+    <dt><font size="3">Cecil 2011: 325 nm - 1000 nm</font></dt>
+    <dt><font size="3">Cecil 2021: 190 nm - 1000 nm</font></dt>
+    <dt><font size="3">Cecil 2031: 325 nm - 1000 nm</font></dt>
+    <dt><font size="3">Cecil 2041: 190 nm - 1000 nm</font></dt>
+  </dl>
+</blockquote>
+<p><font size="3">It is possible to measure absorbance, transmittance and
+concentration.</font></p>
+<p><font size="3"><b>Scan:</b></font></p>
+<p><font size="3">Before Cecil 20xx is capable of scanning, you have to measure
+a baseline. Place a cuvette containing only water in the holder (or leave it
+empty) and make a base scan. This takes from a few minutes to 15 minutes
+depending on the selected scan speed. When the baseline has been measured Cecil
+writes »Ready« on the display. Now you can scan spectra. When Cecil is
+controlled from the pc, a transmittance spectrum is always send. If you have
+selected absorbance in the menu in Datalyse, the absorbance is calculated as
+well. The measured spectra are saved in the memory in Cecil, and you can print
+them on the internal printer later (as absorbance spectra!)</font></p>
+<p><font size="3">The table is not deleted after a scan, which makes it possible
+to have several spectra with the same wavelength interval in the same table
+simply by moving column C (the absorbance) to another column, e.g. D, E, ... You
+can move a column with the mouse.</font></p>
+<p><font size="3"><b>Comments:</b></font></p>
+<p><font size="3">The cable is a standard null-modem cable, available in most
+computer shops.</font></p>
+<p><font size="3">At startup the wavelength is set to 500 nm and the absorbance
+is set to 0.000. If a cuvette containing water is placed in the cell holder
+before Cecil is turned on, you will get the same zero level every time. If the
+absorbance increases to a value greater than 3.000, dilute the solution and try
+again.</font></p>
+<p><font size="3">The serial communication is enabled by pressing <strong>PROG</strong>ram
+and <strong>Select Remote</strong> and Enter. It is possible to release the
+control from the pc, but not activate it.</font></p>
+<hr>
+<p><font size="3"><b>Distributor:</b></font></p>
+<dl>
+  <dd><font size="3">Radiometer, Valhøjs Alle 176, DK-2610 Rødovre, Denmark.</font></dd>
+  <dd><font size="3">Cecil Instruments Limited, Milton Technical Center,
+    Cambridge CB4 6AZ,</font></dd>
+  <dt>&nbsp;</dt>
+</dl>
+</body>
+</html>

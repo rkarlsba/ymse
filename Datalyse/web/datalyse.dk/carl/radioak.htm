@@ -1,0 +1,585 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Forsøg med radioaktivitet vha. Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Forsøg med radioaktivitet</font></h2>
+
+<hr>
+
+<p><a href="noterad.htm">Tips</a> </p>
+
+<p>Denne vejledning indeholder: </p>
+
+<ol>
+    <li><a href="radioak.htm#Bestemmelse af halveringstid">Bestemmelse
+        af halveringstid</a> </li>
+    <li><a href="radioak.htm#Gammastrålers absorption i bly">Gammastrålers
+        absorption i bly</a> </li>
+    <li><a href="radioak.htm#Spændingskarakteristik">Spændingskarakteristik</a></li>
+    <li><a href="radioak.htm#Middelværdi og spredning">Middelværdi
+        og spredning for tælletal - poissonfordelingen</a> </li>
+    <li><a href="radioak.htm#Note om »Skolekilderne«">Note om
+        »Skolekilderne</a> </li>
+</ol>
+
+<h3><a name="Bestemmelse af halveringstid"><font color="#0000FF">Bestemmelse af
+halveringstid</font></a></h3>
+
+<hr>
+
+<h3><font color="#0000FF">Øvelsens formål</font></h3>
+
+<p>Formålet er at bestemme halveringstiden og henfaldskonstanten
+for henfaldet af en eksiteret bariumisotop.</p>
+
+<h3><font color="#0000FF">Forsøgsopstilling</font></h3>
+
+<p>Minigeneratoren er en radioaktiv kilde, der indeholder den
+langtlevende cæsiumisotop <img SRC="images/radio901.gif" align="absmiddle" width="45" height="31">med halveringstiden <i>T</i><font
+size="1"><sub>½</sub></font> = 30,2 år. Henfaldsdiagrammet er
+vist nedenfor. Det ses, at <font size="1"><sup>137</sup></font>Cs for 92%'s
+vedkommende henfalder til en eksiteret bariumkerne, <font
+size="1"><sup>137</sup></font>Ba. Denne metastabile kerne henfalder, med
+kort halveringstid, under <font face="Symbol">g</font>-udsendelse
+til den stabile <img SRC="images/radio902.gif" align="absmiddle" width="46" height="31">. Det er <font face="Symbol">g </font>-strålingen
+fra dette sidste henfald vi registrerer med Geiger-Müller
+røret. </p>
+
+<h3><font color="#0000FF">Henfaldsdiagram:</font></h3>
+
+<blockquote>
+
+<p><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:304.8pt;
+ height:186pt' o:ole="">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="images/radio903.gif" v:shapes="_x0000_i1025" alt="gamma-henfaldsdiagram" width="406" height="248"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1028382598">
+ </o:OLEObject>
+</xml><![endif]-->
+</span> <br>
+</p>
+
+</blockquote>
+
+<h3><font color="#0000FF">Forsøgets udførelse</font></h3>
+
+<p>MINIGENRATOREN malkes for <img SRC="images/radio904.gif" align="absmiddle" width="46" height="31"> ved at presse ca. 5 ml
+elueringsvæske (0,04 M HCl i 1% NaCl) gennem MINIGENERATOREN.
+Eluatet opsamles i et lille bægerglas.</p>
+
+<p align="center"><img src="images/radio905.gif" align="middle" alt="Minigenerator" width="425" height="174"></p>
+
+<p align="center">Forsøgsopstilling</p>
+
+<p>GM-røret opspændes lodret lige over væsken. GM-tælleren
+(med serielt interface) forbindes til pc'en. I programmet
+Datalyse vælges den pågældende tæller, dernæst vælges
+»Counting, Thalve«. Måletiden indstilles til 10 sekunder. </p>
+
+<p>Sæt tælleren i gang før MINIGENERATOREN malkes, så
+målingerne kan starte straks efter malkningen. Der tælles i 5
+til 6 minutter. Herefter fjernes reagensglasset og indholdet
+smides i vasken. Er det forsvarligt!? </p>
+
+<p>Mål herefter baggrundsstrålingen, f.eks. i 10 minutter og
+omregn til pr 10 s. </p>
+
+<p>Baggrundsstrålingen kan fratrækkes som søjleoperation i
+tabellen i Datalyse.</p>
+
+<p>Bemærk, at første måling fra 0 s til 10 s afbildes til
+tiden <i>t</i><font size="1"><sub>1</sub></font> = 5 sekunder,
+osv...</p>
+
+<h3><font color="#0000FF">Rapporten skal indeholde:</font></h3>
+
+<p>De korrigerede tælletal er proportionale med væskens
+aktivitet. Kun en del af <font face="Symbol">g</font> -strålerne
+fra væsken rammer GM-røret, og GM-rørets effektivitet over for
+<font face="Symbol">g</font>-stråling er kun ca. 1%. </p>
+
+<p>Afbild de korrigerede tælletal som funktion af tiden <i>t</i>
+og vælg logaritmisk 2.akser. Ud fra formlen for aktiviteten <i>A</i>
+= <i>A</i><font size="1"><sub>0</sub></font>·e<font size="1"
+face="Symbol"><sup>-</sup></font><sup><i>kt</i></sup><font face="Symbol">
+</font>forventes en ret linie. Bestem halveringstiden <i>T</i><font
+size="1"><sub>½</sub></font> vha. grafen. (benyt lineær
+regression).</p>
+
+<p>Udregn herefter henfaldskonstanten <i>k</i>. </p>
+
+<p>Den semilogaritmiske afbildning bliver ikke en perfekt ret
+linie. Hvorfor ikke? </p>
+
+<p>Lav en skitse af GM-rørets indre og forklar hvordan det
+registrerer <font face="Symbol">g</font>-stråling. </p>
+
+<p>Beregn <font face="Symbol">g</font>-strålingens bølgelængde
+og frekvens.</p>
+
+<p>Tabelværdien for halveringstiden er <i>T</i><font size="1"><sub>½</sub></font>
+= 153 s.</p>
+
+<p>&nbsp;</p>
+
+<h3><a name="Gammastrålers absorption i bly"><font color="#0000FF">Gammastrålers
+absorption i bly</font></a></h3>
+
+<hr>
+
+<p>Når <font face="Symbol">g</font>-stråler passerer et stof,
+svækkes strålingen pga. fotoelektrisk effekt, comptoneffekt og
+måske pardannelse. For at halvere strålingens intensitet skal
+den passere gennem adskillige cm aluminium eller flere mm bly.
+Ved gennemgangen svækkes strålingens intensitet eksponentielt
+med tykkelsen <i>x</i> af det passerede stof: </p>
+
+<blockquote>
+    <p><i>I</i> = <i>I</i><font size="1"><sub>0</sub></font>·e<font
+    size="3" face="Symbol"><sup>-<i>m</i></sup></font><font
+    size="3"><sup><i>x</i></sup></font>,</p>
+</blockquote>
+
+<p>hvor <i>I</i><font size="1"><sub>0</sub></font> er den
+usvækkede strålings intensitet og svækkelseskonstanten <font
+face="Symbol">m</font> afhænger af stoffets Z-værdi og af <font
+face="Symbol">g</font>-strålingens bølgelængde (energi).</p>
+
+<blockquote>
+
+<p align="left"><span style="font-size:11.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:354.6pt;
+ height:2in' o:ole="">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="images/radio906.gif" v:shapes="_x0000_i1025" align="left" alt="Gamma strålers absorption i bly" width="473" height="192"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1020865230">
+ </o:OLEObject>
+</xml><![endif]-->
+</span></p>
+
+</blockquote>
+
+<p align="left">&nbsp; </p>
+
+<p align="left">&nbsp; </p>
+
+<p align="left">&nbsp; </p>
+
+<p>&nbsp;
+</p>
+
+<p>&nbsp;
+</p>
+
+<p>Opspænd GM-røret og <font face="Symbol">g</font>-kilden,
+således at afstanden fra kilde til rør er ca. 10 cm. Mellem
+røret og kilden anbringes 2 mm tykke Pb-plader lige foran GM-røret. Bestem absorptionsslagets
+tykkelse <i>x</i> (brug skydelære) og
+strålingens intensitet I (korrigeret for baggrundsstråling, som
+du har målt i forsøg med halveringstid). Målingerne foretages
+vha. programmet Datalyse. Samme opstilling som i foregående
+forsøg. Her vælges blot »Counting (xhalve)« i menuen.<br>
+</p>
+
+<table border="1">
+    <tr>
+        <td width="238">tykkelse <i>x</i> / mm</td>
+        <td width="238">tælletal <i>I</i> / pr 60 s </td>
+        <td width="209">korrigerede tælletal <i>I</i><font
+        size="1">korr</font> </td>
+    </tr>
+    <tr>
+        <td width="238"><p align="center">0</p>
+        </td>
+        <td width="238">&nbsp;</td>
+        <td width="209">&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="238"><p align="center">&nbsp; </p>
+        </td>
+        <td width="238"><p align="center">&nbsp; </p>
+        </td>
+        <td width="209"><p align="center">&nbsp; </p>
+        </td>
+    </tr>
+    <tr>
+        <td width="238"><p align="center">&nbsp; </p>
+        </td>
+        <td width="238"><p align="center">&nbsp; </p>
+        </td>
+        <td width="209"><p align="center">&nbsp; </p>
+        </td>
+    </tr>
+</table>
+
+<p>Tabellen kan se ud som ovenfor. Du fratrækker baggrundsstrålingen som en søjleoperation. Dernæst vælger du
+Funktioner, Graf i tabellen og tegner en graf over korrigerede
+tælletal som funktion af tykkelsen.</p>
+
+<h3><font color="#0000FF">Rapporten skal indeholde:</font></h3>
+
+<p>Afbild <i>I</i><font size="1"><sub>korr</sub></font> som
+funktion af <i>x</i> på semilogaritmisk papir. Tegn den bedste
+rette linie og bestem halveringstykkelsen <i>x</i><font size="1"><sub>½</sub></font>.</p>
+
+<p>Beregn absorptionskoefficienten <img SRC="images/radio907.gif" align="absmiddle" width="83" height="56"></p>
+
+<p>Find vha. en graf for absorptionskoefficient som funktion af
+Energien af <font face="Symbol">g</font>-strålingen i
+Datahåndbogen ud af, hvilken svækkelsesform der er den
+væsentligste for <font face="Symbol">g</font>-strålingen. <font
+face="Symbol">g</font> -strålingens energi er <i>E</i> = 0,66 MeV.</p>
+
+<p>&nbsp;</p>
+
+<h3><a name="Spændingskarakteristik"><font color="#0000FF">Spændingskarakteristik</font></a></h3>
+
+<hr>
+
+<p>Med samme opstilling som i foregående forsøg, blot uden
+blyplader måles GM-rørets karakteristik. Anbring <font
+face="Symbol">G</font>-kilden tæt på røret for at få en
+tilpas stor tællehastighed.</p>
+
+<p>Skru helt ned for spændingen over GM-røret. Skru op indtil
+røret begynder at tælle og skru så lidt ned igen.</p>
+
+<p>Mål nu sammenhørende værdier af GM-spænding og tælletal.
+Tælletiden kan fx være 10 sekunder.</p>
+
+<p>Afslut målingerne, når GM-spændingen ikke kan skrues
+højere op - eller når antallet af tællinger stiger voldsomt
+efter at have være konstant over et stort spændingsområde.</p>
+
+<p>Afbind aktiviteten som funktion af GM-spændingen. Indstil
+herefter spændingen til en værdi midt på plateauet.</p>
+
+<p>&nbsp;</p>
+
+<h3><font color="#0000FF"><a name="Middelværdi og spredning">Middelværdi
+og spredning</a> for tælletal -
+poissonfordelingen</font> </h3>
+
+<hr>
+
+<h3><font color="#0000FF">Øvelsens formål</font></h3>
+
+<p>Formålet er at bestemme middelværdi og spredning for
+tælletal fra et Geiger-Müller-rør, der måler på en
+radioaktiv kilde med (næsten) konstant strålings-aktivitet (der
+er tale om <font face="Symbol">g</font> -henfald af den
+eksiterede Ba-137*. Halveringstiden for kilden er 30.1 år. Der
+tælles i et stort antal tidsperioder af samme længde. </p>
+
+<p>Desuden skal den målte fordeling af tælletal sammenlignes
+med den tilsvarende Poissonfordeling (med samme middelværdi som
+de målte tælletal) - se senere!</p>
+
+<h3><font color="#0000FF">Opstilling:</font></h3>
+
+<p align="center"><img src="images/radio908.gif" align="middle" alt="Måling af radioaktiv spredning" width="624" height="177"></p>
+
+<p align="center">Forsøgsopstilling </p>
+
+<p align="center">&nbsp;</p>
+
+<h3><font color="#0000FF">Forsøgets udførelse:</font></h3>
+
+<p><font face="Symbol">g</font>-kilden anbringes i kildeholderen
+(se opstilling). GM-røret anbringes så nogle cm fra kilden, se
+figuren. </p>
+
+<p>På pc'en vælges programmet Datalyse. I programmet indstilles
+G-M tælleren til at tælle i en passende valgt tidsperiode.
+Vælg <b>1 sekund</b>, ellers bliver du ikke færdig i timen. Du
+skal måle i lang tid! Hvor længe kan du jo overveje mens du
+måler. </p>
+
+<p>Efter hver tidsperiode sender tælleren tallet til pc'en,
+nulstilles og tæller videre. </p>
+
+<p>På pc'en optælles hyppighederne for de indkommende tælletal
+- og samtidig tegne stolpediagrammet med hyppighederne på
+skærmen.</p>
+
+<p>Udskriv grafen og en tabel med tælletal og hyppigheder.
+Bemærk, at Datalyse beregner middelværdi og spredning for de
+målte data. (se dem i memoen).</p>
+
+<p>&nbsp;</p>
+
+<h3><font color="#0000FF">Rapporten skal indeholde:</font></h3>
+
+<p>Besvar følgende spørgsmål (vis ved beregninger i rapporten)
+</p>
+
+<ol>
+    <li>Hvor mange % af perioderne har tælletal i intervallet [<i>m</i><font
+        face="Symbol">-</font><i>s</i>, <i>m</i>+<i>s</i>] ? </li>
+    <li>Hvor mange % af perioderne har tælletal i intervallet [<i>m</i><font
+        face="Symbol">-</font>2<i>s</i>, <i>m</i>+2<i>s</i>] ? </li>
+</ol>
+
+<p>Desuden skal du beregne kvadratroden af middelværdien <i>m</i>
+og sammenligne denne med spredningen <i>s</i>. Kan du på denne
+baggrund acceptere følgende postulat:<br>
+</p>
+
+<p><b>»Spredningen på tælletal er ca. kvadratroden af
+(middelværdien af) tælletallet«</b></p>
+
+<p>&nbsp;</p>
+
+<h3><font color="#0000FF">Poisson-fordelingen</font></h3>
+
+<p>Poisson-fordelingen med middelværdi m er givet ved følgende
+sandsynligheder: </p>
+
+<blockquote>
+    <p><img SRC="images/radio909.gif" align="absmiddle" width="276" height="31"></p>
+</blockquote>
+
+<p>hvor <i>X</i> er den stokastiske variabel, der som
+værdimængde har tælletallene 0,1,2,... </p>
+
+<p>Poissonfordelingen fremkommer som følge af, at de
+registrerede henfald forekommer på fuldstændig tilfældige
+tidspunkter. Dette er igen en følge af, at det er umuligt at
+forudsige, hvornår den enkelte atomkerne vil henfalde: hver
+atomkerne har en bestemt henfaldssandsynlighed pr tidsenhed, og
+denne er uafhængig af, hvor »gammel« atomkernen er. Der er
+altså tale om en ægte stokastisk proces!</p>
+
+<p>Poisson-fordelingen kan fås som grænseværdi af
+Binomialfordelingen <i>b</i>(<i>n</i>,<i>p</i>), hvor
+middelværdien <i>m</i> = <i>n</i>·<i>p</i> fastholdes under
+grænseovergangen <i>n</i> gående mod uendelig. Spørg eventuelt
+din matematiklærer!<br>
+</p>
+
+<h3><a name="Note om »Skolekilderne«"><font color="#0000FF">Note om »Skolekilderne«</font></a></h3>
+
+<hr>
+
+<p>De tre radioaktive kilder er fremstillet af Risø, og er
+beregnet til undervisningsbrug. Kilderne er ufarlige, men
+følgende sikkerhedsregler skal overholdes:</p>
+
+<ol>
+  <li>Kilderne holdes mindst 25 cm fra kroppen.</li>
+  <li>Kilderne må kun berøres på den halvdel af
+    plexiglasholderen, der er længst væk fra metalbeholderen.</li>
+</ol>
+
+<p><font face="Symbol"><b>a</b></font>-<b>kilden</b>: denne
+indeholder Americium-241. Americium forekommer ikke i naturen.
+Am-241 blev første gang fremstillet kunstigt i 1944 vha. den
+store cyklotron i Berkeley. Am-241 udsender <font face="Symbol">a </font>-partikler
+(5,5 MeV) og blød <font face="Symbol">g</font>-stråling (0,060 MeV). T<font size="1"><sub>½</sub></font> =
+432 år. </p>
+
+<table border="0">
+  <tr>
+    <td><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:262.2pt;
+ height:186pt' o:ole="" o:allowoverlap="f">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1028391509">
+ </o:OLEObject>
+</xml><![endif]--><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:262.2pt;
+ height:186pt' o:ole="">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+      <img src="images/radio910.gif" v:shapes="_x0000_i1025" alt="alfa-henfaldsdiagram" width="350" height="248"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1066455200">
+ </o:OLEObject>
+</xml><![endif]-->
+      </span></td>
+    <td><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:3in;
+ height:150.6pt' o:ole="" o:allowoverlap="f">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1028391542">
+ </o:OLEObject>
+</xml><![endif]--><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:3in;
+ height:150.6pt' o:ole="">
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+      <img src="images/radio911.gif" v:shapes="_x0000_i1025" alt="beta henfaldsdiagram" width="288" height="201"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="Word.Picture.8" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1066455234">
+ </o:OLEObject>
+</xml><![endif]-->
+      </span></td>
+  </tr>
+</table>
+
+<p><font face="Symbol"><b>b</b></font>-<b>kilden</b>:
+denne indeholder strontium-90, der fremstilles i store mængder
+fra atomreaktorers brændselselementer. Sr-90 omdannes ved en <font
+face="Symbol">b</font>-udsendelse (E<sub>max</sub> = 0,52 MeV) til
+yttrium-90, der ved en ny <font face="Symbol">b </font>-udsendelse
+omdannes til zirkonium-90. <font face="Symbol">b</font>-partiklerne
+fra yttrium har en maksimal energi på 2,26 MeV, og det er disse
+partikler, man måler, idet partiklerne fra strontium absorberes
+i plexiglasset. Halveringstiderne for de to henfald er
+henholdsvis 28 år og 64 timer. </p>
+
+<p><font face="Symbol"><b>g</b></font>-<b>kilden</b>: denne
+indeholder caecium-137, der ligesom stontium-90 fremstilles ud
+fra atomreaktorers brændselselementer. Cs-137 udsender både <font
+face="Symbol">b</font>- og <font face="Symbol">g</font>-stråling,
+og kilden er derfor omgivet af et plexiglaslag, der absorberer <font
+face="Symbol">b</font>-strålingen. Halveringstiden er 30,2 år. </p>
+
+<p>Se henfaldsdiagrammet i starten af vejledningen. </p>
+</body>
+</html>

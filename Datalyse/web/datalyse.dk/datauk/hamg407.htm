@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Hameg HM407 oscilloscope, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Hameg HM407, HM1507-2</h2>
+
+<hr>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <p><strong>Single scope image<br>
+    Updating scope</strong></p>
+</blockquote>
+
+<p><font color="#8000FF" size="3"><b>Hameg last updated: 26/2
+1999.</b></font></p>
+
+<p><font size="3">Baud rate 38400, no parity, 2 stop, 8 data
+bits.</font></p>
+
+<p><font size="3">Hameg has automatic baud rate detection. Hameg
+expects a space (#32) as the first character in the serial
+communication and calculates the baud rate from this. </font></p>
+
+<p><font size="3">Command &quot;id?&quot; for version. A standard
+cable is used.</font></p>
+
+<p><font size="3">When Datalyse reads a scope image, it firsts
+sends a space (#32) to the Hameg, then Datalyse takes control. A
+number of commands are send, and the data is returned. It ends
+with the command &quot;RM0&quot;, breaking remote control.</font></p>
+
+<p><font size="3">For this reason you cannot use the front panel
+of the Hameg, while measuring. At »Running scope«, a pause of 2
+seconds is held between images. This is enough to set the
+buttons. The light diode &quot;RO&quot; next to Autoset is on
+when Hameg is remote controlled.</font></p>
+
+<p><font size="3">The digital scope image consists of 2048 bytes.
+The screen is 8 check patterns large, and each check pattern
+corresponds with 25 bits. So the 8 check patterns corresponds
+with 200 bits. This has actually been thought through, because it
+means you will not have overrun (underrun) when the function goes
+above (below) the image with more than 1 check pattern.</font></p>
+
+<p><font size="3">In Datalyse the 2048 bytes are combined to 1024
+values and smoothing is performed, so every data point is
+calculated from 6 measured values (bytes).</font></p>
+
+<p><font size="3">The cursor and offset and other values on the
+scope are determined more accurately, here the resolution is 1000
+bits per check pattern.</font></p>
+
+<p><font size="3">The use is very logical! It is not possible to
+improve it with a pc. But the pc is very good as monitor and for
+analysis of the measured data.</font></p>
+
+<p><font size="3">Hameg 407 100 Mhz/40MHz has Autoset, graphical
+cursor, memory for all settings and several other clever details.</font></p>
+
+<p><font size="3">By the way Hameg 1507-2 150Mhz/200MS/s has the
+same functions as 407.</font></p>
+
+<p><font size="3">This page used to describe errors in Hameg. The
+error was mine however and has now been corrected (25/2 1999)</font></p>
+
+<p><font size="3" face="Times New Roman"><b>Suggestions for
+improvement:</b></font></p>
+
+<p><font size="3" face="Times New Roman">Data for each channel
+contains 2048 bytes, you can transfer a part of these data, since
+you can specify start and number of bytes.</font></p>
+
+<p><font size="3" face="Times New Roman">It would be interesting
+if you could also specify a <i>density</i>, so that every 2. byte
+(every 10. byte) is transferred. Often you will get a fine
+picture with less data points than 2048 and it takes some time to
+transfer them all (I am using 38400 baud). If this was possible,
+the pc would make a better scope.</font></p>
+
+<p><font size="3" face="Times New Roman"></font>&nbsp;</p>
+</body>
+</html>

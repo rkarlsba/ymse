@@ -1,0 +1,113 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>CBL 2, Datalyse</title>
+</head>
+
+<body>
+
+<h2>CBL 2</h2>
+<hr>
+<p>Menu in Datalyse</p>
+<font SIZE="3">
+<dl>
+  <dd><b>Measure (t, f(t)) on 1 channel</b></dd>
+  <dd><b>Scan on several channels</b></dd>
+  <dd><b>Timer, circulation</b></dd>
+  <dd><b>Radioactivity, T½</b></dd>
+  <dd><b>Radioactivity, X½</b></dd>
+  <dd><b>Set the switches of the DIG-out unit</b></dd>
+  <dd><b>Read Scan (Online) from the CBL 2 into Datalyse</b></dd>
+  <dd><b>Read List (Off-line)</b></dd>
+  <dd><b>Read Setup (status)</b></dd>
+</dl>
+<p>The CBL 2 is connected to the pc with a TI-graph link cable. <b>The cable
+must be gray</b>, the black cable will not work! The black cable communicates
+bit wise using dtr, dsr, cts and rts. This requires extra programming not needed
+for the gray cable.</p>
+<p><span lang="EN-US" style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:DA;mso-bidi-language:AR-SA">You can
+measure on the probes that comes with the logger: voltage, temperature, light
+irradiance and on the Range sensor. CBL 2 has auto detect for new Vernier-probes.
+Old Vernier-probes are connected using a converter cable from DIN to CBL. The
+CBL 2 will automatically calculate the correct value from the voltage of the
+probe.</span></p>
+<b>
+<p>When measuring normally</b> the minimum time is 0.2 seconds and max number of
+measurements is 3000.</p>
+<b>
+<p>When scanning</b> the minimum time is 0,00010 s and max number of
+measurements is 3000.</p>
+<p>The CBL 2 has a number of advanced functions for calculation of data before
+sending them to the pc. These include:</p>
+<dl>
+  <dd>Calculation of d/dt and d²/dt²</dd>
+  <dd>Functions for smoothing (noise filtering)</dd>
+  <dd>Several types of trigging</dd>
+  <dd>From 0% to 100% measurings before the trigger point</dd>
+</dl>
+<b>
+<p>Read Scan (Online)</p>
+</b>
+<p><span lang="EN-US" style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:EN-US;mso-fareast-language:DA;mso-bidi-language:AR-SA">In this
+menu point a scan is transferred to the table and the graph in Datalyse. CBL 2
+beeps ready when the scan is complete. You can check the status of the scan in
+the memo and interrupt it if necessary.</span> </p>
+<b>
+<p>Read List (Offline)</p>
+</b>
+<p>The CBL 2 can be set to measure offline. In Datalyse this is done by
+selecting measuring and choosing the trigger setting <b>»Manual«.</b> Then you
+start measuring in the field by pressing the Start/Stop-button on the CBL 2.
+Unfortunately the CBL 2 does not save sufficient information to tell if e.g. d/dt
+or d²/dt² has been measured.</p>
+<p>There it is recommended to select »Read List«, having one list read and
+written to the table in Datalyse. Then select Read List again until every list
+has been read, which is when the list read last is identical to the first.</p>
+<p>When measuring offline it is recommended to log time as well. Otherwise you
+will not be able to draw the data points as a function of time!</p>
+<b>
+<p>Read Setup, </b>example:</p>
+<b>
+<dl>
+  <dd>CBL 2</b> status:</dd>
+<dd>Device code: 5.01120</dd>
+<dd>Last error: 0 see description in the manual</dd>
+<dd>Battery: OK|low|low: 0</dd>
+<dd>Constant ID: 8888</dd>
+<dd>Sample time: 0.00100</dd>
+<dd>Trigger condition: 0</dd>
+<dd>Trigger channel: 0</dd>
+<dd>Post processing: 0</dd>
+<dd>Filter: 0</dd>
+<dd>Num samples: 1000</dd>
+<dd>Record time: 0|1|2: 0</dd>
+<dd>Temperature: 0</dd>
+<dd>Sound: off|on: 1</dd>
+<dd>System state: 1|2|3|4|5|99: 36</dd>
+<dd>Data start: 1</dd>
+<dd>Data end: 1000</dd>
+<dd>System ID: 0.00000</dd>
+</dl>
+</font>
+
+<p class="Base"><span lang="EN-US" style="mso-ansi-language:EN-US">CBL 2 has auto detection
+of connected probes but you can also use old probes. Their
+calibration factors are read from the file »Vernier.ini«. See calibration of
+probes with CBL.<o:p>
+</o:p>
+</span></p>
+
+<p class="Base"><span style="mso-ansi-language: EN-US" lang="EN-US"><a href="cbldata.htm">More
+information about cbl, cbl2 and labpro</a></span></p>
+
+</body>
+
+</html>

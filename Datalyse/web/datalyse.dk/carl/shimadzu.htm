@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Shimadzu spektrofotometre, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Shimadzu spektrofotometre</font></h2>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b>UVmini 1240</b></font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk Måling (t,f(t))<br>
+    Spektrum, bølgelængdescan <br>
+    Udfør basisscan<br>
+    Nulstil værdi</strong></font></p>
+</blockquote>
+
+<p><font size="3">Kommunikationen er speciel med mange
+handshakes, derfor kan Datalyses terminalprogram ikke benyttes.
+Der er ikke programmeret brug af tilbehør såsom indstikskort,
+multicell og sipper i Datalyse.</font></p>
+
+<p><font size="3">UVmini skal være i remote kontrol, ellers kan
+Datalyse ikke kommunikere med apparatet. Det betyder, at
+målinger lavet lokalt ikke kan overføres til Datalyse! En
+basislinie udført fra UVmini vil dog også være korrekt i
+remote kontrol.</font></p>
+
+<p><font size="3">Baudrate 9600, ulige paritet, 1 stop, 7
+databit. Ingen kommando for version. Kablet er standard.</font></p>
+
+<p><font size="3"><strong>Scan indstillinger:</strong></font></p>
+
+<p><font size="3">Ved scan kan man indstille startbølgelængde
+og stopbølgelængde og scan speed. antallet af målinger i
+scannet fremgår af nedenstående skema:</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="9" cellspacing="0" width="90%">
+    <tr>
+        <td><strong>Scan speed</strong></td>
+        <td colspan="4"><font size="3"><b>Scanning range
+        (lambdamax - lambdamin)</b></font></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><font size="3">&lt;= 100 nm</font></td>
+        <td><font size="3">&lt;= 200 nm</font></td>
+        <td><font size="3">&gt;= 500 nm</font></td>
+        <td>&gt;500 nm</td>
+    </tr>
+    <tr>
+        <td><font size="3">very fast</font></td>
+        <td><font size="3">2.0 nm</font></td>
+        <td><font size="3">2.0 nm</font></td>
+        <td><font size="3">2.0 nm</font></td>
+        <td>2.0 nm</td>
+    </tr>
+    <tr>
+        <td><font size="3">fast</font></td>
+        <td><font size="3">1.0 nm</font></td>
+        <td><font size="3">1.0 nm</font></td>
+        <td><font size="3">1.0 nm</font></td>
+        <td>1.0 nm</td>
+    </tr>
+    <tr>
+        <td><font size="3">medium</font></td>
+        <td><font size="3">0.5 nm</font></td>
+        <td><font size="3">0.5 nm</font></td>
+        <td><font size="3">0.5 nm</font></td>
+        <td>1.0 nm</td>
+    </tr>
+    <tr>
+        <td>slow</td>
+        <td>0.2 nm</td>
+        <td>0.2 nm</td>
+        <td>0.5 nm</td>
+        <td>1.0 nm</td>
+    </tr>
+    <tr>
+        <td>very slow</td>
+        <td>0.1 nm</td>
+        <td>0.2 nm</td>
+        <td>0.5 nm</td>
+        <td>1.0 nm</td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p><font size="3">Hvis er er problemer med kommunikationen kan
+det skyldes:</font></p>
+
+<ul>
+    <li><font size="3">Apparatet er i gang med en proces, fx med
+        et scan.</font></li>
+    <li><font size="3">Apparatet er ikke i remote kontrol, tryk
+        F4 (PC Ctrl) på displayet.</font></li>
+</ul>
+
+<p><font size="3">Sluk for pc og apparat og prøv forfra.</font></p>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b>UV1201</b></font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk Måling </strong>(t, f(t))<br>
+    <strong>Absorbans, tabelmålinger</strong>.<br>
+    <strong>Indstil parametre</strong>: bølgelængde og
+    stepværdier ...<br>
+    <strong>Læs memory</strong>, overfør et spektrum til pc'en.<br>
+    <strong>Kinetics</strong>.</font></p>
+</blockquote>
+
+<p><font size="3">Bemærk, at der skal side et indstikskort foran
+i apparatet ellers virker den serielle kommunikation ikke.
+Datalyse kan benyttes sammen med spektrumkortet og
+kinetics-kortet. Bemærk betegnelserne i menuen herover.</font></p>
+
+<p><font size="3">Der findes flere kort, men man behøver kun
+spektrumkortet. Kinetics-kortet kan måle absorbans eller
+transmittans som funktion af tiden, men det kan man også med
+spektrumkortet.</font></p>
+
+<p><font size="3">Kabel: (fra meter til pc) 2-2, 3-3 og 7 -5 og
+på pc-siden kortsluttes 4-6 og 7-8.</font></p>
+
+<p><font size="3">Kommunikationen er speciel: </font></p>
+
+<blockquote>
+    <dl>
+        <dt><font size="3"><strong>repeat</strong></font></dt>
+        <dt><font size="3">send #5</font></dt>
+        <dt><font size="3">modtag svar</font></dt>
+        <dt><font size="3"><strong>until</strong> svar = #6</font></dt>
+        <dt><font size="3">send kommando { fx &quot;D&quot; }</font></dt>
+        <dt><font size="3">modtag svar</font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Trods denne kommunikation kan man godt bruge Datalyses terminalprogram, for Datalyse sender automatisk
+repeat - until løkken før kommandoen.</font></p>
+
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 7
+databit. Ingen kommando for version.</font></p>
+
+<p><font size="3"><strong>Indstil parametre:</strong></font></p>
+
+<p><font size="3">Shimadzu spektrofotometret har ikke kommandoer
+til aflæsning af indstillingen af bølgelængder, måle mode
+eller scan speed. Denne mangel kan delvis afhjælpes ved at
+værdierne indstilles fra pc'en. Hermed er indstillingen jo
+kendt.</font></p>
+
+<p><font size="3"><strong>Læs Memory:</strong></font></p>
+
+<p><font size="3">Overførslen af data varer som skrevet står
+kun et øjeblik. Det er heldigt, for du får muligvis brug for at
+overføre dine data flere gange. </font></p>
+
+<p><font size="3">Det er nemlig ikke sikkert, at du har styr på
+antallet målepunkter pr nm. Det afhænger af Scan Speed og
+Scanning Range:</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="9" cellspacing="0" width="80%">
+    <tr>
+        <td rowspan="5" width="20%"><font size="3"><b>Scan</b></font><p><font
+        size="3"><b>Speed</b></font></p>
+        </td>
+        <td width="20%">&nbsp;</td>
+        <td colspan="3" width="60%"><font size="3"><b>Scanning
+        range</b></font></td>
+    </tr>
+    <tr>
+        <td width="20%">&nbsp;</td>
+        <td width="20%"><font size="3">&lt;= 200 nm</font></td>
+        <td width="20%"><font size="3">&lt;= 500 nm</font></td>
+        <td width="20%"><font size="3">&gt; 500 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font size="3">fast</font></td>
+        <td width="20%"><font size="3">0.2 nm</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font size="3">medium</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font size="3">slow</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font size="3">På billedet øverst er Maximum - minimum =
+600, hvilket er større end 500, så derfor er en måling pr nm.
+Shimadzu overfører måledata i omvendt orden, f(lambdamax) ...
+f(lambdamin).</font></p>
+
+<p><font size="3">Hvis spektret fx indeholder 401 værdier og du
+har indstillet Datalyse til at overføre 601 værdier, vil du få
+et spektrum, hvor de første 200 værdier er nuller. </font></p>
+
+<p><font size="3"><strong>Problemer:</strong></font></p>
+
+<p><font size="3">Hvis er er problemer med kommunikationen kan
+det skyldes:</font></p>
+
+<dir>
+    <li><font size="3">Kablet er ikke korrekt.</font></li>
+    <li><font size="3">Der mangler et indstikskort i apparatet,
+        det indsættes foran.</font></li>
+    <li><font size="3">Der er ikke valgt et menupunkt, hvor
+        kommunikationen er åben.</font></li>
+    <li><font size="3">Apparatet er i gang med en proces, fx med
+        et scan</font></li>
+    <li><font size="3">Sluk for pc og apparat og prøv forfra.</font></li>
+</dir>
+
+<p><font size="3">Shimadzu er testet den 14/11 1998, 20/1 1999.
+Der er foretaget nogle smårettelser i Datalyse, og der er rettet
+er problem ved tabelmålinger. Her sender Shimadzu nemlig data +
+chr(17). Det må være en fejl, som er opstået ved ændring i
+software i Shimadzu. Hvis du får beskeden:
+&quot;Fejlmåling&quot; i tabelmålinger, så bør du få
+Datalyse opdateret. Ethvert apparat har fordele og ulemper. Nogle
+ting betyder noget for programmøren, andre ting betyder også
+noget for brugeren. For shimadzu er det et problem, at der
+mangler en del koder. Det gør det fx vanskeligt, at overføre et
+spektrum korrekt.</font></p>
+
+<p><font size="3">Kontakt importøren, hvis der er problemer med
+apparatet.</font></p>
+
+<dl>
+    <dd><font size="3">SpectraChrom</font></dd>
+    <dd><font size="3">Vallensbækvej 35</font></dd>
+    <dd><font size="3">2605 Brøndby</font></dd>
+    <dd><font size="3">tlf: 43 96 88 11</font></dd>
+    <dd><font size="3">fax: 43 96 77 11</font></dd>
+    <dt>&nbsp;</dt>
+</dl>
+</body>
+</html>

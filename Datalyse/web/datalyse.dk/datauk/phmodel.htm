@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Model of titration curves in Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Model of titration curves</h2>
+
+<hr>
+
+<p>A DMI-24 multimeter from IMPO is used to measure the
+pH-values. Only one buffer, 4.01, is used to calibrate the meter.
+(It is better to use 2 or 3 buffers.) With the help of a
+peristaltic pump 0.00129 mL NaOH is added pr. second. The X-axis
+in Datalyse is automatically calibrated by this factor. The acid
+volume is 50,0 mL</p>
+
+<p><img src="images/phmode1.gif" alt="Titration curve analysis in Datalyse" width="722" height="398"></p>
+
+<p>The panel to the left contains buttons to handle the
+measurements.</p>
+
+<blockquote>
+    <p><b>Diff &#150; ln</b>: Is short for differentiation
+    /logarithmic axis. Differentiation of a titration curve gives
+    some nice peaks where the pH-values changes.</p>
+    <p><b>Equ</b>ivalency points: Calculates equivalent points,
+    select <strong>Diff - ln</strong> first if necessary, see
+    above. </p>
+    <p><b>Model</b>: Theoretical analysis of measured data. The
+    theoretical curve is fitted to the measured data.</p>
+    <p><b>Popula</b>tion: calculates population data using the
+    theoretical model (see above) and writes population data to
+    the table.</p>
+</blockquote>
+
+<p><font size="4"><b>Equivalency:</b></font></p>
+
+<p>The equivalency points can be determined rather easily. Open
+the file and click at the Equi-button. If the titration curve
+isn't smooth, the procedure can fail. Remember to stir while
+measuring! </p>
+
+<p>You can use <strong>»Diff - ln«</strong> to repair the the
+curve. Use fx. a smooth factor 5. You can also draw a rectangle
+with the mouse as shown above. In that case Datalyse calculates
+only the equivalency points within the rectangle. In the actual
+case only for a volume greater than 1,5 and less than 4,5 and a
+pH-value greater than 3.</p>
+
+<p><img src="images/phmode2.gif" alt="Equivalency points" width="692" height="405"></p>
+
+<p>When the equivalency calculations are finished, click again at
+»<strong>Diff - ln</strong>« and the pH-curve is redrawn as
+above. Notice the memo - a small built-in notepad - where you can
+write your comments to your measurements and where Datalyse
+writes the results of calculations in the program. Notice that
+the memo accumulates the results. You might need to erase some
+data before saving or printing.</p>
+
+<p><font size="4"><b>Model</b></font></p>
+
+<p>Notice the step by step guide in the online help in Datalyse!</p>
+
+<p><img src="images/phmode3.gif" alt="Phosphoric acid titration curve" width="642" height="454"></p>
+
+<p><font size="3" face="Arial">Figure 1: titration curve, file:
+H3PO4.DAT</font></p>
+
+<p>&nbsp;</p>
+
+<p><img src="images/phmode4.gif" alt="Type in volume and contracion" width="559" height="413"></p>
+
+<p><font size="3" face="Arial">Figure 2: typing in volume and
+concentration:</font></p>
+
+<p>Type the acid volume in the upper field. Next pull the scroll
+bar for concentration to a proper value. (Notice that the <strong>vertical</strong>
+parts of the green curve is shifted in a horizontal direction.
+The vertical parts of the curves must fit together)</p>
+
+<p>There are 4 scroll bars for pKa-values. Use the upper bar to
+fit a monovalent acid. H<sub>3</sub>PO<sub>4</sub> is a trivalent
+acid, so we need to use 3 scroll bars. Begin with the upper bar
+and pull it to the left until the first <strong>horizontal</strong>
+part of the curves fit together.</p>
+
+<p><img src="images/phmode5.gif" alt="Phosporic acid without ionstrengths" width="548" height="414"></p>
+
+<p><font size="3" face="Arial">Figure 3: Almost finished fit.</font></p>
+
+<p>You can easily see that the acid is trivalent. The pKa-button
+is pressed, so the pKa-values and equivalence values are shown.
+But unfortunately, the measurements could have been better.
+Remember to calibrate your meter carefully! You can choose an
+acid in the drop down list box. (Phosphoric acid /*2.15/7.20/12.12
+is shown)</p>
+
+<p>The Memo-button writes all relevant data in the memo. You can
+write your comments in the memo too, and the memo can be printed
+together with the graph.</p>
+
+<p><font size="4"><b><img src="images/phmode6.gif" width="641"
+height="555" alt="Population diagram"></b></font></p>
+
+<p><font size="4"><b>Population</b></font></p>
+
+<p><font size="3" face="Arial">The diagram above is drawn in
+excel based on values in the table in Datalyse.</font></p>
+
+<p>Phosphoric acid is named H3A in the model (trivalent acid). In
+waterous solutions the acid takes the forms H<sub>3</sub>A, H<sub>2</sub>A<font
+face="Symbol"><sup>-</sup></font>, HA<font face="Symbol"><sup>-</sup></font><sup>2</sup>
+and A<font face="Symbol"><sup>-</sup></font><sup>3</sup>. The
+relative concentrations depend on the pH of the solution.
+Datalyse calculates the distribution in % of the different forms
+as a function of the calculated pH-values.</p>
+
+<p><font size="3">Populations are only calculated when pH has
+been calculated in Model and only for one acid.</font></p>
+
+<p><font size="3">When you click on population to the left in the
+panel, Datalyse calculates these values and writes them to the
+table. Note that you can copy data from the clipboard and paste
+it into e.g. excel.</font></p>
+
+<p>How to copy the <b>Table in Datalyse and paste it into excel:</b></p>
+
+<ul>
+    <li>Press the Copy Button in the table in Datalyse</li>
+    <li>Select the columns in excel and draw graphs. Choose xy-diagram.</li>
+</ul>
+</body>
+</html>

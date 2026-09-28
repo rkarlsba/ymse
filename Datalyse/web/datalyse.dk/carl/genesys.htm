@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>ThermoSpectronic, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">ThermoSpectronic: Genesys 6, 8, 10, 20,&nbsp;</font></h2>
+
+<h2> <font color="#0000FF"> Unicam Helios e</font></h2>
+
+<h2> <font color="#0000FF"> Spectronic 301</font></h2>
+
+<hr>
+
+<h3><a name="Genesys 6"><font color="#0000FF">Genesys 6</font></a></h3>
+
+<font SIZE="3">
+<p>Menu i Datalyse:</p>
+<dl>
+  <dd><b>Måling ved en bølgelængde</b></dd>
+  <dd><b>Bølgelængdescan</b></dd>
+  <dd><b>Basislinie</b></dd>
+  <dd><b>Nulstil værdi</b></dd>
+</dl>
+</font><font SIZE="3">
+<p>Datalyses terminalprogram kan også benyttes i forbindelse med
+spektrofotometret.</p>
+<p>Genesys 6 forbindes med pc'en med et almindeligt serielt kabel, dog skal
+kablet være forsynet med 9-polet hunstik ved apparatet. Man kan eventuelt købe
+et konverter stik.</p>
+<p>Baudrate 19200, ingen paritet, 1 stop, 8 databit.</p>
+<p>kommando <b>MODEL</b> for model og <b>REV</b> for software version.</p>
+<p>Kommandoen <b>»SAMPLE«</b> får spektrofotometret til at sende absorbansen
+til pc'en.</p>
+<p>Bølgelængdeinterval: Model UV: 190 nm - 1100 nm</p>
+<p>Der kan måles absorbans og transmittans og koncentration. Spektral
+båndbredde 1,8 nm.</p>
+</font>
+<hr>
+
+<h3><font color="#0000FF"><a name="Genesys 8">Genesys 8</a>&nbsp;&nbsp;&nbsp;</font></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Måling ved en bølgelængde<br>
+    Bølgelængdescan</strong></font></p>
+</blockquote>
+
+<p><font size="3">Genesys 8 forbindes med pc'en med
+nul-modem (hun-han) kabel. </font></p>
+
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 8
+databit.</font></p>
+
+<p><font size="3">Genesys 8 kan scanne et spektrum, når det
+benyttes off-line. For hvert scan vælges startbølgelængde og
+slutbølgelængde. Et scan består af to processer, 1
+basismålingen og 2 selve scannet. Det er lidt besværligt og
+langsomt.</font></p>
+
+<p><font size="3">Desværre har Genesys 8 ikke kommandoer til
+scan. Derfor foretages et scan fra Datalyse ved først at måle
+basis. Dette scan anbringes i søjle C i tabellen. Ved
+efterfølgende scan fratrækkes basis automatisk. Metoden
+forudsætter blot, at man foretager målinger ved de samme
+bølgelængder, som er gemt i tabellen. Genesys 8 scanner
+langsomt på denne måde. Vælg store step, fx 10 nm. </font></p>
+
+<p><font size="3">Denne metode er ikke så god som et rigtigt
+scan, og man kan lige så godt benytte det billigere apparat
+Genesys 20.</font></p>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="Genesys 10">Genesys 10</a>&nbsp;</font></h3>
+<font SIZE="3">
+<p>Menu i Datalyse:</p>
+<dl>
+  <dd><b>Måling ved en bølgelængde</b></dd>
+  <dd><b>Bølgelængdescan</b></dd>
+  <dd><b>Basislinie</b></dd>
+  <dd><b>Nulstil værdi</b></dd>
+</dl>
+</font><font SIZE="3">
+<p>Datalyses terminalprogram kan også benyttes i forbindelse med
+spektrofotometret.</p>
+<p>Genesys 10 forbindes med pc'en med et almindeligt serielt kabel, dog skal
+kablet være forsynet med 9-polet hunstik ved apparatet. Man kan eventuelt købe
+et konverter stik.</p>
+<p>Baudrate 19200, ingen paritet, 1 stop, 8 databit.</p>
+<p>kommando <b>MODEL</b> for model og <b>REV</b> for software version.</p>
+<p>Kommandoen <b>»SAMPLE«</b> får spektrofotometret til at sende absorbansen
+til pc'en.</p>
+<p>Bølgelængdeinterval:</p>
+<dl>
+  <dd>Model UV: 190 nm - 1100 nm</dd>
+  <dd>Model VIS: 325 nm - 1100 nm</dd>
+</dl>
+<p>Der kan måles absorbans og transmittans og koncentration. Spektral
+båndbredde 5 nm.</p>
+<b>
+<p>Basiscan:</p>
+</b>
+<p>Ved Bølgelængdescan vises resultaterne løbende på skærmen, og når
+scannet er tilendebragt kopierer datalyse målingerne til tabellens søjle A og
+B. Måles Basisscan anbringes målingerne i tabellen i søjle A og søjle C. Ved
+efterfølgende bølgelængdescan fratrækkes værdierne i søjle C automatisk</p>
+<p>Et bølgelængdescan foretages således i to omgange:</p>
+<p>Først måles basis på et tom glas. Dernæst måles på opløsningen.
+Desværre fås nemt &quot;over-range error&quot;, så Genesys 10 er ikke egnet
+til scanning.</p>
+</font>
+<hr>
+<h3><a name="Genesys 20"><font color="#0000FF">Genesys 20</font></a><strong><font size="4">, version 1,11</font></strong></h3>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<dl>
+  <dd>
+    <p><b><font size="3">Måling ved en bølgelængde<br>
+    Bølgelængdescan<br>
+    </font><font size="3">Basislinie<br>
+    Nulstil værdi</font></b></p>
+  </dd>
+</dl>
+
+<p><font size="3">Datalyses terminalprogram kan også benyttes i
+forbindelse med spektrofotometret. </font></p>
+
+<p><font size="3">Spectronic 20 Genesys forbindes med pc'en med
+et almindeligt serielt kabel, dog skal kablet være forsynet med
+9-polet hunstik ved apparatet. Man kan eventuelt købe et
+konverter stik.</font></p>
+
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 8
+databit.</font> <font size="3">Kommando <b>MODEL</b> for model og <b>REV</b>
+for software version.</font></p>
+
+<p><font size="3">Kommandoen <b>»SND«</b> får
+spektrofotometret til at sende absorbansen til pc'en.</font></p>
+
+<p><font size="3"><b>Bølgelængdescan og basislinie:</b></font></p>
+
+<p><font size="3">Ved Bølgelængdescan vises resultaterne løbende
+på skærmen, og når scannet er tilendebragt kopierer datalyse
+målingerne til tabellens søjle A og B. Man kan herefter kopiere
+søjle B til fx søjle C som en søjleoperation. Ved en ny
+måling slettes tabellen ikke, men søjle A og B overskrives,
+når scannet er tilendebragt. </font></p>
+
+<p><font size="3">Et bølgelængdescan foretages således i to
+omgange:</font></p>
+
+<p><font size="3">Først måles på et tom glas og søjle B
+kopieres til søjle C. Dernæst måles på opløsningen.</font></p>
+
+<p><font size="3">Når begge målinger er foretaget beregnes
+søjle D som B-C. Herefter afbildes søjle D som funktion af
+bølgelængden.</font></p>
+
+<p><font size="3">Det er lidt besværligt, men man kan gemme
+tabellen med referencen, så man starter en øvelse med at hente
+en tabel, vælge apparat og foretage bølgelængdescan. Dette
+forudsætter blot, at man foretager målinger ved de samme
+bølgelængder, som er gemt i tabellen.</font></p>
+
+<p><font size="3">Desværre kan apparatet kun sende absorbans til
+pc'en. Det er heller ingen kommando til at se hvilken
+bølgelængde apparatet er indstillet til.</font></p>
+
+<p><font size="3">Spectronic 301 kan begge dele! Det vil være
+ret nemt at rette denne softwarefejl!</font> <font size="3">Desuden har apparatet kun en celle.</font></p>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="Unicam Helios">Unicam Helios</a>  e</font><font size="4"><b>,
+</b> </font><font size="3">versions
+2.00</font></h3>
+
+<font SIZE="1"></font><font SIZE="3">
+<p>Menu i Datalyse:</p>
+<dl>
+  <dd><b>Måling ved en bølgelængde</b></dd>
+  <dd><b>Bølgelængdescan</b></dd>
+  <dd><b>Basisscan</b></dd>
+  <blockquote>
+    <dt><b>Nulstil værdi</b></dt>
+  </blockquote>
+</dl>
+</font><font SIZE="3">
+<p>Datalyses terminalprogram kan også benyttes i forbindelse med
+spektrofotometret.</p>
+<p>Unicam Helios e forbindes med pc'en med et almindeligt serielt kabel, dog
+skal kablet være forsynet med 9-polet hunstik ved apparatet. Man kan eventuelt
+købe et konverter stik.</p>
+<p>Baudrate 9600, ingen paritet, 1 stop, 8 databit.
+</font>
+
+ <font SIZE="3">
+Kommando <b>MODEL</b> for model og <b>REV</b> for software version.</p>
+<p>Kommandoen <b>»SND«</b> får spektrofotometret til at sende absorbansen til
+pc'en. Apparatet kan måle absorbans, transmittans og koncentration, men
+desværre kun sende absorbans til pc'en!</p>
+<b>
+<p>Bølgelængdescan og basislinie:</p>
+</b>
+<p>Ved Bølgelængdescan vises resulterne løbende på skærmen, og når scannet
+er tilendebragt kopierer datalyse målingerne til tabellens søjle A og B.
+Måles Basiscan anbringes målingerne i tabellen i søjle A og søjle C. Ved
+efterfølgende bølgelængdescan fratrækkes værdierne i søjle C automatisk</p>
+<p>Et bølgelængdescan foretages således i to omgange:</p>
+<p>Først måles basis på et tom glas. Dernæst måles på opløsningen.</p>
+<p>Unicam Helios importeres af Bie &amp; Berntsen A/S, tlf: 42 94 88 22.</p>
+<p>Forhandler Müller+Sørensen. tlf: 43 99 68 00</p>
+</font>
+
+<hr>
+
+<h3><a name="Spectronic 301"><font color="#0000FF">Spectronic 301</font></a></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <dl>
+      <dt><font size="3"><strong>Måling ved en bølgelængde<br>
+    Bølgelængdescan</strong></font></dt>
+      <dt><font size="3"><b>Basislinie, til bølgelængdescan</b></font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Datalyses terminalprogram kan også benyttes i
+forbindelse med spektrofotometret. </font></p>
+
+<p><font size="3">Spectronic 301 forbindes med pc'en med et
+almindeligt serielt kabel, dog skal kablet være forsynet med
+9-polet hunstik ved apparatet. Man kan eventuelt købe et
+konverter stik.</font></p>
+
+<p><font size="3">Baudrate 1200, ingen paritet, 1 stop, 8 databit.</font> <font size="3">Ingen kommando for version.</font></p>
+
+<p><font size="3">Kommandoen <b>»SND«</b> får
+spektrofotometret til at sende data til pc'en. Denne kommando
+benyttes derfor også i Datalyse til at teste forbindelsen til
+apparatet.</font></p>
+
+<p><font size="3"><b>Basislinie:</b></font></p>
+
+<font SIZE="3">
+<p>Ved Bølgelængdescan vises resultaterne løbende på skærmen, og når
+scannet er tilendebragt kopierer datalyse målingerne til tabellens søjle A og
+B. Måles basisscan anbringes målingerne i tabellen i søjle A og søjle C. Ved
+efterfølgende bølgelængdescan fratrækkes værdierne i søjle C automatisk.</p>
+<p>Et bølgelængdescan foretages således i to omgange:</p>
+<p>Først måles basis på et tom glas. Dernæst måles på opløsningen.</p>
+<p>Spectronic 301 er fra 1992. Altså et »gammelt« apparat. Rungsted Gymnasium for yderligere oplysninger om spektrofotometret. Det
+forhandles ikke mere!</p>
+<b>
+<p>Ny driver 28/1 2003</p>
+</b>
+<p>Kommunikationen er ændret, så der benyttes handshake. Ved bølgelængdescan
+er der indsat mulighed for pause efter indstilling af bølgelængde og måling.
+Det giver mere stabile målinger.</p>
+</font>
+
+<hr>
+
+<p>web: <a href="http://www.thermo.com">www.thermo.com</a></p>
+
+<p><font size="3">Helios&nbsp; importeres af Bie &amp; Berntsen
+A/S, tlf.: 42 94 88 22.</font></p>
+
+<p><font SIZE="3">Genesys importeres af VWR international, tlf.: 43 86 87 90. <a href="http://dk.vwr.com/app/Home">http.//dr.vwr.com/app/Home</a></font></p>
+
+<p>Geenesys 20 f<font size="3">orhandles også af&nbsp; Müller + Sørensen. tlf.: 43 99 68 00</font></p>
+
+</body>
+</html>

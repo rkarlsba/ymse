@@ -1,0 +1,98 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>TitroLine 96 Titrator, Datalyse</title>
+</head>
+
+<body>
+
+<font SIZE="3">
+<h2><font color="#0000FF">TitroLine 96 Titrator og Titronic Basic</font></h2>
+<hr>
+</font>
+
+<p><b><font size="4" color="#0000FF">TitroLine 96</font></b></p>
+
+<font SIZE="3">
+<dl>
+	<dt><b>Menu i Datalyse:</b></dt>
+	<dd>Grafisk måling</dd>
+	<dd>Start titrer</dd>
+	<dd>Stop titrer</dd>
+	<dd>Læs data</dd>
+</dl>
+<p>Baudrate 4800, ingen paritet, 2 stop, 7 databits. Der er kommando for version.</p>
+<p>Kablet ser således ud:</p>
+<blockquote>
+  <dl>
+    <dt>pin 1: TxD</dt>
+    <dt>pin 2: RxD</dt>
+    <dt>pin 3: Gnd</dt>
+    <dt>pin 4: not used</dt>
+  </dl>
+</blockquote>
+<b>
+<p>Grafisk måling</b>:</p>
+<blockquote>
+	<p>Ved grafisk måling læses pH, og der doseres. Herefter venter Datalyse på
+klarsignal fra titratoren og venter samtidigt med næste måling til tid pr
+måling er gået. Jo længere tid pr måling, jo længere pause fås fra
+dosering til måling af pH. Efter endt måling kopieres grafen til tabellen.</p>
+</blockquote>
+<b>
+<p>Start titrer:</p>
+</b>
+<blockquote>
+	<p>Her benyttes titratorens indstillinger. Disse skal altså være valgt på
+forhånd. Målte værdier (Vol/mL, pH, t/s) gemmes i titratoren.</p>
+</blockquote>
+<b>
+<p>Stop titrer:</p>
+</b>
+<blockquote>
+	<p>Titreringen stoppes og slutdata skrives i memoen i Datalyse.</p>
+</blockquote>
+<b>
+<p>Læs data:</p>
+</b>
+<blockquote>
+	<p>Målte værdier overføres til tabellen i Datalyse.</p>
+</blockquote>
+<hr>
+</font>
+
+<p><font size="4" color="#0000FF"><b>Titronic Basic</b></font></p>
+
+<font SIZE="3">
+<dl>
+	<dt><b>Menu i Datalyse:</b></dt>
+	<dd>Grafisk måling</dd>
+</dl>
+<p>Baudrate 4800, lige paritet, 2 stop, 7 databit.</p>
+<p>Vælges 2 apparater i Datalyse kan Titronic Basic være det ene. Man kan så 
+vælge forskellige former for målinger: </p>
+<dl>
+	<dd>Tabel</dd>
+	<dd>(t,y1, y2)-graf</dd>
+	<dd>(x,y)-graf</dd>
+</dl>
+<p>Hvis man vælger (x,y)-graf, bør Titronic Basic tilsluttes den »laveste« 
+com-port, idet man nok vil have volumen, V/mL på 1.aksen og fx absorbans på 2. 
+aksen.</p>
+<p>Vælges 2 apparater, kan man vælge mellem:</p>
+<dl>
+	<dd>1: ingen dosis</dd>
+	<dd>2: 0.05 mL dosis</dd>
+</dl>
+<hr>
+<p><b>Fabrikant</b>: Schott Instruments</p>
+<b>
+</b>
+</font>
+
+</body>
+
+</html>

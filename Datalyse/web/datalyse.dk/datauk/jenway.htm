@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Jenway Instruments, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Jenway instruments</h2>
+
+<hr>
+
+<menu>
+  <li><a href="jenway.htm#Jenway 9200">Jenway 9200 DO<sub>2</sub> Meter</a>&nbsp;</li>
+  <li><a href="jenway.htm#Jenway 6300">Jenway 6300, 6305 spectrophotometer</a></li>
+  <li><a href="jenway.htm#Jenway 6400">Jenway 6400, 6405 spectrophotometer</a></li>
+  <li><a href="jenway.htm#Jenway 3310">Jenway 3310, 3320 pH Meter</a></li>
+</menu>
+<hr>
+
+<h3><a name="Jenway 9200">Jenway 9200</a> DO<sub>2</sub> Meter</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><b>Read log<br>
+    Terminal</b></font></p>
+</blockquote>
+
+<p><font size="3">Baud rate 1200, odd parity, 2 stop, 7 data
+bits. No command for version.</font></p>
+
+<p><font size="3">The cable is specific, since the device is
+placed in a cradle and there is an infrared connection between
+device and cradle.</font></p>
+
+<p><font size="3"><b>Read log:</b></font></p>
+
+<p><font size="3">Every time the <b>M</b>emory button on the DO<sub>2</sub>
+meter is pressed, a measuring is saved. The log can contain no
+more than 100 measurings. You can transfer the log to the table
+in Datalyse. Every line in the log contains a measuring of
+concentration, temperature and pressure and a time stamp. The
+time stamp is converted to a time in seconds, which makes it
+possible to draw a graph of for instance the concentration as a
+function of time.</font></p>
+
+<p><font size="3"><b>Terminal:</b></font></p>
+
+<p><font size="3">The Jenway DO<sub>2</sub> meter has in some menus a <b>print
+out</b> function. The »printout« can be transferred to Datalyse
+by selecting Terminal in Datalyse and print out on Jenway. Then
+click on Receive in the menu in Datalyse.</font></p>
+
+<p><font size="3">Unfortunately the device has no command for
+regularly transferring measurings!</font></p>
+
+<hr>
+<h3><a name="Jenway 6300">Jenway 6300</a>, 6305 spectrophotometer</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+
+<p><font size="3"><strong>Measure</strong> at one wavelength<br>
+<strong>Spectrum</strong>, wavelength scan<br>
+<strong>Baseline</strong>, wavelength scan<br>
+Zero Value</font></p>
+
+</blockquote>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with spectrophotometer.</font></p>
+
+<p><font size="3">Baud rate 1200, odd parity, 1 stop, 7 data
+bits.</font></p>
+
+<p><font size="3">No command for version.</font></p>
+
+<dir>
+  <li><font size="3">Jenway 6300: 320 nm - 950 nm</font></li>
+  <li><font size="3">Jenway 6305: 198 nm - 1000 nm (has Zenon lamp)</font></li>
+</dir>
+
+<p><font size="3">It is possible to measure absorbance,
+transmittance and concentration. Note that the panel of Jenway is
+not setup in agreement with the measuring in Datalyse.</font></p>
+
+<p><font size="3"><b>Scan:</b></font></p>
+
+<p><font size="3">Jenway 6300, 6305 cannot scan a spectrum, so Datalyse
+goes over the wavelength interval. If measuring the baseline, the
+number are placed in column C in the table. Once the base has
+been measured, column C in the table will automatically be
+subtracted from a scan.</font></p>
+
+<p><font size="3">If you have saved a table with the base line,
+you can start an experiment by opening the table and selecting
+scan right away. The only requirement is that you measure at
+wavelength identical to those saved in the table.</font></p>
+
+<hr>
+<h3><a name="Jenway 6400">Jenway 6400</a>, 6405 spectrophotometer</h3>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure</strong> at one wavelength<br>
+    <strong>Spectrum</strong>, wavelength scan<br>
+    <strong>Release control</strong></font></p>
+</blockquote>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with spectrophotometer.</font></p>
+
+<p><font size="3">Baud rate 1200, odd parity, 1 stop, 7 data
+bits.</font></p>
+
+<p><font size="3">No command for version.</font></p>
+
+<ul>
+    <li><font size="3">Jenway 6400: 320 nm - 950 nm</font></li>
+    <li><font size="3">Jenway 6405: 190 nm - 950 nm (has
+        deuterium lamp)</font></li>
+</ul>
+
+<p><font size="3">When the spectrophotometer is controlled from
+the pc, the display reads: <b>remote control.</b> The pc takes
+control by sending the command: <b>R</b> to the device and
+releases control again by sending the command <b>X. </b></font></p>
+
+<p><font size="3">You can interrupt the control with the enter
+button on the spectrophotometer. Now you can measure manually. If
+you wish to measure from the pc with Datalyse again, you only
+have to go back to the main menu on Jenway. </font></p>
+
+<p><font size="3">At wavelength measuring you can measure
+absorbance, transmittance and concentration. At wavelength scan
+you can measure absorbance and transmittance.</font></p>
+
+<p><font size="3"><b>Scan:</b></font></p>
+
+<p><font size="3">Upon startup the spectrophotometer reads a
+baseline, so you should place an empty glass in the cell holder.
+At a scan the baseline is subtracted automatically.</font></p>
+
+<p><font size="3"><b>Note</b>, that the baud rate only is 1200.
+This means that a scan takes several minutes. It helps somewhat,
+that you can set the scan step to 0,2 nm, 1.0 nm or 5.0 nm. Start
+with 5.0 nm.</font></p>
+
+<hr>
+
+<h3><a name="Jenway 3310">Jenway 3310</a>, 3320 pH Meter</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement<br>
+    Terminal</strong></font></p>
+</blockquote>
+
+<p><font size="3">Baud rate 1200, odd parity, 1 stop, 7 data
+bits.</font></p>
+
+<p><font size="3">No version command. The cable is standard.</font></p>
+
+<p><font size="3">The following description is true for both 3310
+and 3320 with only small deviations:</font></p>
+
+<hr>
+
+<p><font size="3">When the device is connected a measuring is
+made. This is a test of the connection. Datalyse will write
+something like: » 3 6.67pH 21,8'C«. Calibration data are read
+as well, since they contain the type number of the device: 3310,
+3320, ?</font></p>
+
+<p><font size="3">As shown the device sends measuring number, pH
+and temperature on the same line.</font></p>
+
+<p><font size="3">The pH-value is plotted one the graph and pH
+and temperature are written to the table.</font></p>
+
+<p><font size="3">The pH Meter has no more than 2 commands: </font></p>
+
+<dl>
+    <dd><font size="3">&quot;D&quot;: fetch data</font></dd>
+    <dd><font size="3">&quot;C&quot;: fetch last calibration.</font></dd>
+</dl>
+
+<p><font size="3">In the terminal program the command C is
+already inserted to make it easier to fetch the calibration data.</font></p>
+
+<p><font size="3">Jenway has a series of pH meters. So far only
+3310 and 3320 have been tested.</font></p>
+
+<hr>
+
+<p><font size="3"><b>Danish Distributor:</b></font></p>
+
+<p><font size="3">Buch &amp; Holm, Marielundvej 36, DK-2730
+Herlev. Denmark: <a href="http://www.buch-holm.dk">www.buch-holm.dk</a></font></p>
+
+<p><font size="3">Jenway Inc: </font><a
+href="http://www.jenway.com"><font size="3">www.jenway.com</font></a><font
+size="3"></font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

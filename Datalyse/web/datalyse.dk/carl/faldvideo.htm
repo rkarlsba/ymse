@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Formål at bestemme tyngdeaccelerationen</title>
+</head>
+
+<body>
+
+<h2><font color="#0000FF">Den hoppende bold med videokamera</font></h2>
+<hr>
+
+<h3>
+<font color="#0000FF">
+<img src="images/faldvi1.jpg" align="right" hspace="12" v:shapes="_x0000_s1026" width="124" height="442">Formål at bestemme tyngdeaccelerationen</font></h3>
+<h3><font color="#0000FF">Forsøgsopstilling</font></h3>
+<p>En meterstok anbringes lodret foran en hvid væg, eventuelt
+foran et lærred. Meterstokken bør være i samme afstand fra videokameraet som
+bolden.</p>
+<p>En rød gummibold med en diameter på ca. 3 cm slippes fra
+en position lidt over meterstokkens øverste punkt. Bevægelsen optages på
+video med at kamera anbragt på en solid trefod ca. 3 meter væk. Da bevægelsen
+er lodret og da videokameraets største opløsning er vandret, drejes kameraet
+90°. Juster trefodens ben indtil kameraet viser en lodret lineal i displayet.</p>
+<p>Aktiver optageknappen og slip bolden. Stop optagelsen.
+Gentag forsøget fx med en stålkugle.</p>
+<h3><font color="#0000FF">Analyse af optagelse</font></h3>
+<p>Overfør optagelsen til en PC og start programmet <b>LoggerPro</b>. I
+LoggerPro vælges Insert... Movie..., filen vælges.</p>
+<p>Indsæt redigeringsværtøjet ved at klikke på ikonet: »Enable/Disable
+viede analyses« i nederste højre hjørne af billedrammen.&nbsp;</p>
+<p>Nu skal der ske 3 ting:</p>
+<ol>
+  <li>
+    <p style="text-indent: 0; mso-list: l1 level1 lfo1; tab-stops: 14.2pt list 36.0pt; margin-left: 0"><b>Indlæggelse af koordinatsystem</b><br>
+    Klik på »Set Origin« i værktøjsbjælken. Træk koordinatsystemets
+nulpunktet til et passende punkt på billedet. Tag fat i det gule enhedsmærke
+    på x-aksen og kør ud ad aksen og drej denne, indtil koordinatsystemmet
+    ligger tilfredsstillende.<br>
+  </li>
+  <li>
+    <p style="text-indent: 0; mso-list: l1 level1 lfo1; tab-stops: 14.2pt list 36.0pt; margin-left: 0"><b>Indlæggelse af målestok</b><br>
+    Klik på »Set Scale«. Træk en grøn linje, gerne en meterstoks længde.
+    Skriv aktuelle længde i den menuboks, som fremkommer, når du er færdig
+    med at tegne linjen.<br>
+  </li>
+  <li>
+    <p style="text-indent: 0; mso-list: l1 level1 lfo1; tab-stops: 14.2pt list 36.0pt; margin-left: 0"><b>Markering af bolden på hvert af billederne</b><br>
+    Klik på »Add Point« Marker et punkt på billedet. LoggerPro skifter
+    automatisk til næste billede og du kan klikke på næste punkt. De
+    markerede punkter tegnes automatisk på en graf og skrives i en tabel i
+    LoggerPro.</li>
+</ol>
+<p>Når du er færdig med at markere punkter, kan bevægelsen analyseres i
+LoggerPro. LoggerPro har en glimrende funktion til kurve fit.</p>
+<p>Data kan også kopieres til andre programmer, fx Datalyse eller Excel.</p>
+<h3><font color="#0000FF">Databehandling</font></h3>
+<p>Tegn grafer for sted og hastighed som funktion af tiden i den lodrette del af
+bevægelsen. Bestem tyngdeaccelerationen vha. lineær regression til
+hastighedsgrafen.</p>
+<h3><font color="#0000FF">Vurder forsøget</font></h3>
+<p>Dette indbefatter både en vurdering af graferne, en
+beregning af afvigelse fra tabelværdi og overvejelser over forsøgets nøjagtighed.</p>
+<h3><font color="#0000FF">Eksempel, den hoppende bold</font></h3>
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left:3.5pt;
+ border-collapse:collapse;mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr>
+    <td width="312" valign="top" style="width:233.9pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p>&nbsp;
+      <img src="images/faldvi2.gif" v:shapes="_x0000_i1025" width="305" height="229"></p>
+    </td>
+    <td width="321" valign="top" style="width:241.0pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p>&nbsp;
+      <img src="images/faldvi3.gif" v:shapes="_x0000_i1026" width="304" height="229"></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="312" valign="top" style="width:233.9pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p>Højde <i>y</i> som funktion af tiden</p>
+    </td>
+    <td width="321" valign="top" style="width:241.0pt;padding:0cm 3.5pt 0cm 3.5pt">
+      <p>Hastighed <i>v</i><sub>y</sub> som funktion af tiden</p>
+    </td>
+  </tr>
+</table>
+<p>Linealen står ikke på gulvet, så <i>y</i><sub>0</sub>  er lidt tilfældig,
+men det influerer ikke på hastighedsgrafen.</p>
+
+</body>
+
+</html>

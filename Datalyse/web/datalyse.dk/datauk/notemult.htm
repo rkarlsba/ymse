@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Note about the use of multimeters in Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Note about the use of multimeters</h2>
+
+<hr>
+
+<p>There are a lot of multimeters with a serial interface, both
+cheep and expensive. See the description of each individual
+device.</p>
+
+<p>A multimeter with a serial interface can collect data from all
+devices with an analog output. Measure the voltage from the
+analog output with the multimeter and connect the multimeter via
+the serial interface to the PC.</p>
+
+<p>In »Setup measurement parameters | Probes and axes« in
+Datalyse you can choose an Y-axis factor and Y-axis offset. You
+can also choose a Vernier - probe. In this case is Y-axis factor
+and Y-axis offset read from the file vernier.ini (see below). The
+user can edit the file.</p>
+
+<p><strong>Example:</strong></p>
+
+<p>The Pressure meter PTM100 gives the analog output 1mV pr mBar,
+and offset is 0 mBar. Write the following line in vernier.ini:</p>
+
+<blockquote>
+    <p><font face="Courier New">PTM100 Pressure
+    meter&quot;P/Bar&quot;1000.0&quot;0.0</font></p>
+</blockquote>
+
+<p>The setup is:</p>
+
+<blockquote>
+    <p>Title&quot;physical quantity/unit&quot;factor&quot;offset</p>
+</blockquote>
+
+<hr>
+
+<h3>Vernier.ini:</h3>
+
+<dl>
+    <dd><font size="3" face="Times New Roman">Accelerometer,
+        5g&quot;m/s²&quot;23.94&quot;-59.82</font></dd>
+    <dd><font size="3" face="Times New Roman">Barometer 0..1.2
+        Bar&quot;P/Bar&quot;0.6997&quot;0.1357</font></dd>
+    <dd><font size="3" face="Times New Roman">CO2 Gas
+        Sensor&quot;ppm&quot;2000.0&quot;0.00</font></dd>
+    <dd><font size="3" face="Times New Roman">Force </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor(±10N)&quot;F/N&quot;-4.94&quot;12.28</font></dd>
+    <dd><font size="3" face="Times New Roman">Force </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor(±50N)&quot;F/N&quot;-24.75&quot;62.22</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..600)&quot;Lux&quot;200&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..6000)&quot;Lux&quot;2222&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..150000)&quot;Lux&quot;50000&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Heart Rate
+        Monitor&quot;U/V&quot;1.00/0.00</font></dd>
+    <dd><font size="3" face="Times New Roman">Teslameter (Low
+        amp.)&quot;B/T&quot;0.0032&quot;-0.0080</font></dd>
+    <dd><font size="3" face="Times New Roman">Teslameter (High
+        amp.)&quot;B/T&quot;0.00016&quot;-0.00029</font></dd>
+    <dd><font size="3" face="Times New Roman">Pressure </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor
+        (0..6.8 atm)&quot;P/atm&quot;2.20&quot;0.0</font></dd>
+</dl>
+
+<p><font size="3">You can add probes in the file »vernier.ini«.
+</font></p>
+
+<p><font size="3">The pin connections of the Vernier-probes seen
+from the front (the wire goes through the back of the screen to
+the sensor):</font></p>
+
+<p><font size="3"><img src="images/valgaap9.gif" width="261"
+height="240"></font></p>
+
+<p><font size="3">Pin position counterclockwise: </font></p>
+
+<dl>
+    <dd><font size="3">9.00 o'clock: signal</font></dd>
+    <dd><font size="3">7.30 o'clock: +5V (supply)</font></dd>
+    <dd><font size="3">4.30 o'clock: GND (common zero for voltage
+        supply and signal)</font></dd>
+</dl>
+</body>
+</html>

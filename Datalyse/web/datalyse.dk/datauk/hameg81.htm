@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Hameg 8130 Function Generator, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Hameg 8130 Function Generator</h2>
+
+<hr>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Download data</strong> from column
+    2 in the table.<br>
+    <strong>Read arbitrary data</strong> to column 2 in the
+    table.<br>
+    <strong>Reset</strong> the settings to the default values.<br>
+    <strong>Activate sweep</strong> (remember setting output ON)<br>
+    <strong>Interrupt sweep</strong><br>
+    <strong>Trig</strong>, starting sweep.</font></p>
+</blockquote>
+
+<p><font size="3">Baud rate 19200, no parity, 1 stop, 8 data
+bits.</font></p>
+
+<p><font size="3">Hameg has automatic baud rate detection. Hameg
+expects a space (#32) as the first character in the serial
+communication and calculates the baud rate from this. The cable
+is crossed, see Digital Meter</font></p>
+
+<p><font size="3">Command &quot;#VR&quot; for version.</font></p>
+
+<hr>
+
+<p><font size="3">Hameg 8130 Function generator has the following
+specifications:</font></p>
+
+<dl>
+    <dd><font size="3"><b>Frequency:</b> 10 mHz to 10 MHz<br>
+        Resolution: 5 digits with an accuracy of ±(1 digit +
+        5mHz)<br>
+        </font></dd>
+    <dd><font size="3"><b>Waveforms:</b> sine, square, pulse,
+        ramp, triangle and arbitrary.</font></dd>
+    <dd><font size="3"><b>Input:</b> continual, gate, trig</font></dd>
+    <dd><font size="3"><b>Output:</b> 50 ohm</font></dd>
+    <dd><font size="3"><b>DC Offset</b>: -7.5V to 7.5V</font></dd>
+    <dd><font size="3"><b>Trigger Output</b>: ramp (follows
+        sweep)</font></dd>
+    <dd><font size="3"><b>Sweep:</b> time from 20 ms to 100 s</font></dd>
+    <dd><font size="3"><b>Amplitude Modulation</b>: using
+        external signal</font></dd>
+</dl>
+
+<p><font size="3">The arbitrary waveform consists of X: 1024; Y:
+1024 (10 bit) points. This means you can make your very own
+signal which is saved when the device is turned off.</font></p>
+
+<p><font size="3">You can download a signal as follows:</font></p>
+
+<p><font size="3">In Datalyse you select <b>View</b> | <b>Table</b>,
+and in the table you select <b>Options</b> | <b>Setup</b></font></p>
+
+<p><font size="3">Here you select 1024 rows. These are then
+filled with numbers in column A from 1 to 1024.</font></p>
+
+<p><font size="3">Now place the cursor in column B and type in a
+function, e.g. 0.4*a.</font></p>
+
+<p><font size="3">Remember that the y-values should be between
+-511 and 512. (Datalyse will automatically cut »top« and
+»bottom« of column B, so you only need to worry whether the
+numbers are too small. sin(A) will not work very well but
+500*sin(2*pi/360*A) will work just fine.</font></p>
+
+<p><font size="3">Hameg has commands for setting frequency and
+amplitude as well, but I have chosen not to implement them in
+Datalyse. This is superfluous, since the panel is logical and
+easy to use, and since the functions as mentioned are for setup
+only.</font></p>
+
+<p><font size="3">The trig function can be used to start a sweep
+at a given time. This way you do not have to connect a signal to
+the Gate/Trig input.</font></p>
+
+<p><font size="3">It would be better if during a sweep you could
+read the current frequency, but this is not possible. Note that
+in Datalyse you can use the Hameg 8130 together with another
+device and select enter for each measurement. This way you can
+get corresponding values of frequency and some other measured
+value.</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Terminalprogram i Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Terminalprogram</font></h2>
+
+<hr>
+
+<p><font size="3">Datalyses terminal kan bruges til at teste
+forbindelsen til et apparat. Knappernes betydning er beskrevet
+herunder:</font></p>
+
+<blockquote>
+    <p><font size="3"><img src="images/termin1.gif" alt="Terminalvindue i Datalyse" width="472" height="188"></font></p>
+</blockquote>
+
+<ul>
+    <li><font size="3"><strong>Send</strong>: kommandoen »D3«
+        sendes til apparatet</font></li>
+    <li><font size="3"><strong>Modtag</strong>: data i
+        COM-portens buffer læses og skrives i memoen</font></li>
+    <li><font size="3"><strong>Dialog</strong>: kommandoen »D3«
+        sendes, og data fra apparatet modtages og skrives.</font></li>
+    <li><font size="3"><strong>Status</strong>: vises antal bytes
+        i COM-portens buffer.</font></li>
+</ul>
+
+<p><font size="3">Ved Dialog beregner Datalyse tiden siden
+første måling, og måling nr, tid og selve målingen skrives i
+memoen. Data kan kopieres til regneark, og en graf kan tegnes.</font></p>
+
+<p><font size="3">Jeg har snydt lidt, jeg har først valgt
+Apparatet Energimeter og målt effekt. Da jeg derefter valgte
+Terminalprogrammet, var kommandoen for måling af effekt »D3«
+indsat.</font></p>
+
+<p><font size="3">På billedet er der to gange klikket på
+»Dialog«.</font></p>
+
+<p><font size="3">Dernæst er der klikket på send. Derfor er 7
+tegn klar til modtagelse.</font></p>
+
+<hr>
+
+<p><font size="3">Men inden man kan kommunikere med et apparat
+skal man vælge <strong>Terminal</strong> | <strong>Indstil</strong>...</font></p>
+
+<p><font
+size="3"> <img border="0" src="images/termin2.gif" align="left" hspace="4" vspace="4" alt="Terminalmenu" width="172" height="121">Hvis et apparat er valgt i hovedmenuen i Datalyse, vil
+terminalindstillingen vise dette apparats parametre, og man kan
+umiddelbart benytte ovenstående knapper.</font></p>
+
+<p><strong>Terminal</strong> | <strong>Indstil</strong>... giver
+følgende menu:</p>
+
+<p>&nbsp;</p>
+
+<blockquote>
+    <p><img src="images/termin3.gif" alt="indstilling af interface" width="453" height="378"></p>
+</blockquote>
+
+<p><font size="3">Her vælges Baudrate, databits, stopbits,
+paritet og comport. og DTR.</font></p>
+
+<p><font size="3">Se eventuelt oplysninger om Baudrate med videre
+under de enkelte apparater.</font></p>
+
+<p><font size="3">^M er det samme som CR (#13) og ^J er LF(#10).</font></p>
+
+<p><font size="3">Bemærk, at ModtagTerm er ét tegn, nemlig
+sidste tegn som apparatet svarer med. Når det tegn er modtaget
+ved datalyse at der ikke kommer flere tegn.</font></p>
+
+<p><font size="3">Mange apparater benytter kun ^M for SendTerm.
+Nogle apparater har ingen SendTerm.</font></p>
+
+<p><font size="3">Når kommunikationen er afprøvet og den
+virker, kan man i terminalprogrammet vælge <strong>Grafisk
+måling</strong>. Man må dog huske, at en del apparater sender
+en masse gøgl til pc'en. I så fald vil grafisk måling være
+meningsløs.</font></p>
+</body>
+</html>

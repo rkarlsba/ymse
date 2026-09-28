@@ -1,0 +1,293 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>pHM metre fra Radiometer, Datalyse</title>
+</head>
+
+<body>
+
+<h2><font color="#0000FF">pHM serien fra Radiometer</font></h2>
+<font SIZE="3">
+<hr>
+</font>
+
+<menu>
+  <li><a href="phmradio.htm#CDM210">CDM210 conductivity Meter</a></li>
+  <li><a href="phmradio.htm#pHM92">pHM92 pH meter</a></li>
+  <li><a href="phmradio.htm#pHM93">pHM93 pH meter</a></li>
+  <li><a href="phmradio.htm#pHM210">pHM210 Standard pH meter</a></li>
+  <li><a href="phmradio.htm#pHM220">pHM220 pH meter</a></li>
+  <li><a href="phmradio.htm#pHM240">pHM240 pH/ION meter</a></li>
+  <li><a href="phmradio.htm#pHM250">pHM250 ION analyzer</a></li>
+</menu>
+<blockquote>
+  <p><a href="phmradio.htm#Kommunikation">Kommunikation med mere</a></p>
+</blockquote>
+<font SIZE="3">
+<hr>
+</font>
+
+<p><font size="4" color="#0000FF"><b><a name="CDM210">CDM210</a> conductivity Meter</b></font></p>
+
+<font SIZE="3">
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><strong>Grafisk måling</strong> af
+    konduktivitet eller ledningsevne.<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der konduktivitet/ledningsevne,
+    temperatur<br>
+    <strong>Terminalprogram</strong></p>
+</blockquote>
+
+<p>I Datalyse indstilles metret til at måle
+konduktivitet eller ledningsevne:</p>
+
+<ol>
+    <li>konduktivitet S/m</li>
+    <li>konduktivitet S/cm</li>
+    <li>resistivitet ohm.m</li>
+    <li>resisitivitet ohm.cm</li>
+</ol>
+
+<p>Kommando &quot;?TY&quot; for version.</p>
+
+<p>Hvis der ikke er forbindelse til apparatet kan
+det skyldes:</p>
+
+<ol type="A" start="1">
+    <li>Kommandoen &quot;&gt;CE&quot; ikke er
+        sendt. Denne kommando enabler remote kontrol.</li>
+    <li>Baudrate eller kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</li>
+</ol>
+
+<hr>
+</font>
+
+<p><font size="4" color="#0000FF"><b><a name="pHM92">pHM92</a> pH meter</b></font></p>
+<font SIZE="3">
+<p>Menu i Datalyse:</p>
+<blockquote>
+  <dl>
+    <dt><b>Grafisk måling af pH</b></dt>
+    <dt><b>Vis måling</b><br>
+    </dt>
+  </dl>
+</blockquote>
+<p>Ved måling skal apparatet vise pH i mV eller pH. Datalyse detekterer selv
+enheden, men det vil være noget rod, at skifte under selve dataopsamlingen!</p>
+<p>Ingen kommando for version, men der laves en måling.</p>
+<p>Hvis der ikke er forbindelse til apparatet kan det skyldes baudrate eller
+kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</p>
+<p>Ps: pHM92 var med i min første version af Datalyse til DOS, men er først
+testet i windowsversionen den 10/10 2000.</p>
+</font>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b><a name="pHM93">pHM93</a> pH meter</b></font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling</strong> af pH<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der måles pH og temperatur<br>
+    <strong>Terminalprogram</strong></font></p>
+</blockquote>
+
+<p><font size="3">Ved måling skal apparatet vise pH i mV eller
+pH. Datalyse detekterer selv enheden, men det vil være noget
+rod, at skifte under selve dataopsamlingen!</font></p>
+
+<p><font size="3">Ingen kommando for version, men der laves en
+måling. </font></p>
+
+<p><font size="3">Hvis der ikke er forbindelse til apparatet kan
+det skyldes:</font></p>
+
+<ol type="A" start="1">
+    <li><font size="3">Baudrate eller kabel, </font><font size="3">se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</font></li>
+    <li><font size="3">Printout formatet skal sættes til &lt;<b>Result</b>&gt;
+        og ikke All.<br>
+        Apparatet sender 7 linier tekst til pc'en. Selve
+        målingen skal klippes ud af denne tekst. Er
+        indstillingen ikke korrekt, kan datalyse ikke finde <b>resultatet.</b></font></li>
+    <li><font size="3">Du har trykket på <b>GLP!</b> Det
+        bevirker, at apparatet med hver måling sender et resume
+        af indstillingerne! Igen kan datalyse ikke finde
+        resultatet!</font></li>
+</ol>
+
+<p><font size="3"><b>Styrke ved apparatet:</b></font></p>
+
+<p><font size="3">Apparatet kan måle pH med 3 decimaler.</font></p>
+
+<p><font size="3"><b>Svaghed ved apparatet:</b></font></p>
+
+<p><font size="3">Apparatet kan indstilles på frontpanelet med
+diverse trykknapper fx. piletaster. Det er for besværligt at
+lave de tilsvarende indstillinger fra pc'en.</font></p>
+
+<p><font size="3">Apparatet sender ikke et sluttegn, fx eof. Det
+er et problem, når der sendes flere linier tekst for hver
+måling.</font></p>
+<hr>
+<p><font size="4" color="#0000FF"><b><a name="pHM210">pHM210</a> Standard pH meter</b></font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling</strong> af pH
+    eller temperatur<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der måles pH og temperatur<br>
+    <strong>Terminalprogram</strong></font></p>
+</blockquote>
+
+<p><font size="3">I Datalyse vælges indstilling af måling: </font></p>
+
+<ol>
+    <li><font size="3">pH</font></li>
+    <li><font size="3">pH i mV</font></li>
+    <li><font size="3">temperatur</font></li>
+</ol>
+
+<p><font size="3">Kommando ?TY for version.</font></p>
+
+<p><font size="3">Hvis der ikke er forbindelse til apparatet kan
+det skyldes baudrate eller kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</font></p>
+
+<hr>
+<p><font size="4" color="#0000FF"><b><a name="pHM220">pHM220</a> pH meter</b></font></p>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling</strong> af pH<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der måles pH og temperatur<br>
+    <strong>Terminalprogram</strong></font></p>
+</blockquote>
+
+<p><font size="3">Ved måling skal apparatet vise pH i mV eller
+pH. Datalyse detekterer selv enheden, men det vil være noget
+rod, at skifte under selve dataopsamlingen!</font></p>
+
+<p><font size="3">Ingen kommando for version, men der laves en
+måling. </font></p>
+
+<p><font size="3">Hvis der ikke er forbindelse til apparatet kan
+det skyldes baudrate eller kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</font></p>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b><a name="pHM240">pHM240</a> pH/ION meter</b></font></p>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling</strong> af pH<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der måles pH og temperatur<br>
+    <strong>Terminalprogram</strong></font></p>
+</blockquote>
+
+<p><font size="3">Ved måling skal apparatet vise pH i mV eller
+pH. Datalyse detekterer selv enheden, men det vil være noget
+rod, at skifte under selve dataopsamlingen!</font></p>
+
+<p><font size="3">Apparatet kan også måle ion-koncentration,
+men det er endnu ikke lagt ind i Datalyse.</font></p>
+
+<p><font size="3">Ingen kommando for version, men der laves en
+måling. </font></p>
+
+<p><font size="3">Hvis der ikke er forbindelse til apparatet kan
+det skyldes:</font></p>
+
+<ol type="A" start="1">
+    <li><font size="3">Baudrate eller kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.&nbsp; </font></li>
+    <li><font size="3">Du har trykket på <b>GLP!</b> Det
+        bevirker, at apparatet med hver måling sender et resume
+        af indstillingerne! Igen kan datalyse ikke finde
+        resultatet!</font></li>
+</ol>
+
+<p><font size="3"><b>Styrke ved apparatet:</b></font></p>
+
+<p><font size="3">Apparatet kan måle pH med 3 decimaler.</font></p>
+
+<p><font size="3"><b>Svaghed ved apparatet:</b></font></p>
+
+<p><font size="3">Apparatet kan indstilles på frontpanelet med
+diverse trykknapper fx. piletaster. Det er for besværligt at
+lave de tilsvarende indstillinger fra pc'en.</font></p>
+
+<p><font size="3">Apparatet sender ikke et sluttegn, fx eof. Det
+er et problem, når der sendes flere linier tekst for hver
+måling.</font></p>
+<hr>
+<p><font size="4" color="#0000FF"><b><a name="pHM250">pHM250</a> ION analyzer</b></font></p>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling</strong> af pH<br>
+    <b>Vis måling</b><br>
+    <strong>Multitabel</strong>, der måles pH og temperatur<br>
+    <strong>Terminalprogram</strong></font></p>
+</blockquote>
+
+<p><font size="3">Ved måling skal apparatet vise pH i mV eller
+pH. Datalyse detekterer selv enheden, men det vil være noget
+rod, at skifte under selve dataopsamlingen!</font></p>
+
+<p><font size="3">Apparatet kan også måle ion-koncentration,
+men det er endnu ikke lagt ind i Datalyse.</font></p>
+
+<p><font size="3">Ingen kommando for version, men der laves en
+måling. </font></p>
+
+<p><font size="3">Hvis der ikke er forbindelse til apparatet kan
+det skyldes baudrate eller kabel, se <a href="phmradio.htm#Kommunikation">kommunikation</a>.</font></p>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b><a name="Kommunikation">Kommunikation</a> med mere:</b></font></p>
+
+<p>
+<font SIZE="3">
+Baudrate 9600, ingen paritet, 1 stop, 8
+databit.
+</font>
+
+</p>
+
+<p><font size="3">Kablet er et 0-modemkabel, dvs. er <b>hun</b> i begge ender og
+lederne er krydset:</font></p>
+
+<dl compact>
+<font SIZE="3">
+  <dd>2 til 3 og 3 til 2 (data)</dd>
+  <dd>8 til 4 og 4 til 8 (kontrol), hvis stikket
+    er 9 polet.</dd>
+  <dd>eller</dd>
+  <dd>5 til 20 og 20 til 5 (kontrol), hvis
+    stikket er 25 polet.</dd>
+</font>
+
+</dl>
+
+<p>&nbsp;</p>
+<p><a href="http://www.radiometer.dk">www.radiometer.dk</a></p>
+
+</body>
+
+</html>

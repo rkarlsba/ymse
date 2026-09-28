@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Ultrospec 3000 spectrophotometer, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Ultrospec spectrophotometers</h2>
+
+<menu>
+  <li><a href="ultr3000.htm#Ultrospec 3000">Ultrospec 3000&nbsp;</a></li>
+  <li><a href="ultr3000.htm#Ultrospec II">Ultrospec II</a></li>
+</menu>
+
+<h3><a name="Ultrospec 3000">Ultrospec 3000</a> spectrophotometer</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measurements at one wavelength<br>
+    Spectrum, wavelength scan</strong></font></p>
+</blockquote>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with the spectrophotometer, but not for scanning since
+the data is send packed. </font><font color="#FF00FF" size="3">See PS. below!</font></p>
+
+<p><font size="3">Ultrospec 3000 uses a crossed cable, see
+Digital Meter</font></p>
+
+<p><font size="3">Baud rate 19200, no parity, 1 stop, 8 data
+bits. Command &quot;id&quot; for version.</font></p>
+
+<p><font size="3">When the spectrophotometer is controlled from
+the pc the display of the pc reads: <b>remote control. </b>The pc
+takes control by sending the command: <b>control</b> to the
+device and releases it again by sending <b>release. </b></font></p>
+
+<p><font size="3">At wavelength measuring you can measure
+absorbance and transmittance. At wavelength scan you can only
+measure absorbance.</font></p>
+
+<p><font size="3"><b>Reference measuring:</b></font></p>
+
+<p><font size="3">At wavelength scan the scan is send as a packet
+to the pc. About 10 seconds later it is displayed on screen and
+in column A and B. Then you can copy column B to for instance
+column C using a column operation. At the next measuring the
+table is not erased, but new data will be written to column A and
+B when the scan has been completed. </font></p>
+
+<p><font size="3">Thus a wavelength scan is done in two rounds:</font></p>
+
+<p><font size="3">First measure on an empty glass and copy column
+B to column C. Then measure on the solution.</font></p>
+
+<p><font size="3">When both measurings have been completed,
+column D is calculated as B - C. Then a graph is drawn of column
+D as a function of the wavelength.</font></p>
+
+<p><font size="3">This is a bit troublesome but you can save the
+table of the reference, and start every experiment by loading a
+table, selecting the device and making a wavelength scan. This
+assumes nothing but that you measure at the same wavelengths as
+those saved in the table.</font></p>
+
+<p><font size="3">Ultrospec 3000 <b>does have</b> a baseline, but
+you should follow the above procedure anyway.</font></p>
+
+<p><font size="3">Other devices from Pharmacia: Ultrospec 1000,
+Ultrospec 2000 and Ultrospec 4000.</font></p>
+
+<p><font size="3">Ultrospec 2000 has almost the same codes as
+Ultrospec 3000. So I assume that it is possible to use this
+device in Datalyse as well.</font></p>
+
+<p><font size="3">PS. At a scan data is send packed, 3 bytes for
+each measuring. Pharmacia has not been able to give me
+information on the data format, so I cannot guarantee that the
+interpretation is correct!</font></p>
+
+<p><font size="3">It should be noted that the spectrophotometer
+has functions not available through serial communication.
+Pharmacia Biosystems in Denmark actually admits that they prefer
+selling their own software to support the development of other
+software.</font></p>
+
+<hr>
+
+<h3><a name="Ultrospec II">Ultrospec II</a> spectrophotometer</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure at one wavelength<br>
+    Spectrum, wavelength scan</strong></font></p>
+</blockquote>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with the spectrophotometer.</font></p>
+
+<p><font size="3">The LBK Ultrospec II Spectrophotometer is
+connected to the pc with an ordinary serial cable. (same type as
+for the IMPO devices)</font></p>
+
+<p><font size="3">Baud rate 600 (9600), no parity, 1 stop, 8 data
+bits. No version command.</font></p>
+
+<p><font size="3">9600 in brackets means that the setting is
+changed by Datalyse when the device is selected.</font></p>
+
+<p><font size="3">The command <b>»STATUS«</b> makes the
+spectrophotometer send data to the pc. For that reason this
+command is used in Datalyse to test the connection.</font></p>
+
+<p><font size="3"><b>Reference measuring:</b></font></p>
+
+<p><font size="3">At wavelength scan the results are displayed on
+screen as they are being measured. When the scan is over,
+datalyse copies the measurings to column A and B in the table.
+Then you can copy column B to for instance column C using a
+column operation. At the next measuring the table is not erased,
+but new data will be written to column A and B when the scan has
+been completed. </font></p>
+
+<p><font size="3">Thus a wavelength scan is done in two rounds:</font></p>
+
+<p><font size="3">First measure on an empty glass and copy column
+B to column C. Then measure on the solution.</font></p>
+
+<p><font size="3">When both measurings have been completed,
+column D is calculated as B - C. Then a graph is drawn of column
+D as a function of the wavelength.</font></p>
+
+<p><font size="3">This is a bit troublesome but you can save the
+table of the reference, and start every experiment by loading a
+table, selecting the device and making a wavelength scan. This
+assumes nothing but that you measure at the same wavelengths as
+those saved in the table.</font></p>
+
+<p><font size="3">LBK Ultrospec II is from 1986, so it is an
+»old« device. </font></p>
+
+<hr>
+
+<p><font size="3"><b>Distributor:</b></font></p>
+
+<p><font size="3">Pharmacia Biosystems, Gydevang 21, DK-3450
+Allerød, Denmark.</font></p>
+
+<p><font size="3">Internet: </font><a
+href="http://www.biotech.pharmacia.se"><font size="3">http://www.biotech.pharmacia.se</font></a></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

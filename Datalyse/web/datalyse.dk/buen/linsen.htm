@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Linsen og linsenfejl, simulation i Regnbuen</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Linsen og linsefejl</h2>
+
+<hr>
+
+<p>Se også <a href="kuglef.htm">brydning i en kugleflade</a>.</p>
+
+<p><img src="images/linsen2.gif" width="590" height="239" alt="linsetyper"></p>
+
+<p>En linse er et glaslegeme, hvor den ene eller begge overflader
+er en del af en kuglekalot. Hvis linsen er tykkest på midten er
+den konveks (af latin convexus, hvælvet dvs. en samlelinse)
+ellers er den konkav (spredelinse). Figuren herover viser
+forskellige typer linser.</p>
+
+<p>Når lys samles efter at have passeret en linse dannes et
+virkeligt billede. Et termometer anbragt på billedets plads vil
+vise stigende temperatur. Et stykke papir kan gå i brand.
+Billedet kan projiceres på en skærm og billedet står på
+hovedet. </p>
+
+<p>Når lys spredes efter at have passeret en linse dannes et
+indbildt billede. Det er opret og det kan ikke projiceres på en
+skærm. Bemærk, at en samlelinse godt kan sprede lyset, hvis
+genstanden er meget tæt på linsen!</p>
+
+<p><font size="4" face="Arial">Linsen</font></p>
+
+<p><img src="images/linsen1.gif" width="515" height="379" alt="lysets brydning i linse"></p>
+
+<p>Dette billede viser et strålebundt af parallelt lys, som
+brydes i en konveks linse. Strålerne er tegnet korrekt. Den
+lodrette streg markerer brændvidden. Hovedstrålen, som er
+strålen gennem linsens centrum og tegnet med grøn farve.</p>
+
+<h3><b>Gaussisk afbildningsteori:</b></h3>
+
+<p>I Gauss' afbildningsteori bestemmes de optiske egenskaber af
+et linsesystem af 2 brændpunkter og 2 knudepunkter på den
+optisk akse. Teorien er en god tilnærmelse for paraxiale
+stråler, dvs. stråler som danner en lille vinkel med den
+optiske akse, så sinus til vinklen kan approksimeres med
+vinklen: sin(<i>v</i>) <font face="Symbol">»</font> <i>v</i>. </p>
+
+<blockquote>
+    <p><img src="images/linsen3.gif" width="519" height="309" alt="Gaussisk afbildning"></p>
+</blockquote>
+
+<p>Ifølge Gauss's teori gælder:</p>
+
+<ul>
+    <li>Der findes to brændpunkter <i>F</i><sub>1</sub> og <i>F</i><sub>2</sub>
+        med tilhørende brændplaner.</li>
+    <li>Der findes to hovedplaner <i>H</i><sub>1</sub> og <i>H</i><sub>2</sub>
+        vinkelret på aksen, som afbildes i forholdet 1:1 på
+        hinanden.</li>
+    <li>Der findes 2 knudepunkter K<sub>1</sub> og K<sub>2</sub>
+        på aksen. </li>
+</ul>
+
+<p>På figuren er billedet <i>B</i> af genstanden <i>G</i> tegnet
+ved at benytte følgende linseregler:</p>
+
+<ul>
+    <li>En lysstråle igennem <i>K</i><sub>1</sub>, vil gå ud
+        gennem <i>K</i><sub>2</sub> parallelt med sin oprindelige
+        retning.</li>
+    <li>En lysstråle igennem brændpunktet <i>F</i><sub>1</sub>
+        vil brydes i <i>H</i><sub>1</sub>, så den går parallelt
+        med aksen.</li>
+    <li>En lysstråle parallel med den optiske akse vil brydes i <i>H</i><sub>2</sub>
+        og gå gennem <i>F</i><sub>2</sub>.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3>Linsefejl:</h3>
+
+<p>I simulationen kan man ændre linsens radius og dermed
+brændvidde, stoffet og dermed brydningsindekset, og strålernes
+retninger. Man kan også indsætte en blænde foran linsen. Man
+således iagttage forskellige linsefejl. Linsefejl benævnes
+også med aberration, der betyder afvigelse, forskydning. De
+vigtigste linsefejl er:</p>
+
+<dir>
+    <li>Sfærisk aberration </li>
+    <li>Koma</li>
+    <li>Astigmatisme</li>
+    <li>Billedkrumning</li>
+    <li>Billedfortegning</li>
+    <li>Kromatisk aberration</li>
+</dir>
+
+<p><b>Sfærisk aberration </b></p>
+
+<p>Denne fejl skyldes, at forskellige ringe af linsen har
+forskellige brændvidder. Linsens ydre dele samler lyset i
+kortere afstand end linsens midte. Den sfæriske aberration kan
+opdeles i longitudinal sfærisk aberration, LSA og transversal
+sfærisk aberration, TSA. Se figuren herunder:</p>
+
+<p><img src="images/linsen4.gif" width="593" height="268" alt="sfærisk aberration"></p>
+
+<p>LSA er afstanden fra brændplanet til strålens skæring med
+aksen. TSA er afstanden fra den optiske akse til strålen målt i
+brændplanet.</p>
+
+<p>Fejlen kan afhjælpes ved at indsætte en blænde eller ved at
+vælge en plankonveks linse, men det er bedre at lave en
+kombineret linse. LSA kan simuleres i linsen og i linsesystemer.</p>
+
+<p><img src="images/linsen6.gif" width="602" height="304" alt="sammensat linsesystem"></p>
+
+<p>Dette billede viser en simulation af linsen, hvor der er valgt
+dublet, dvs. en linse sammenkittet af en samlelinse og en
+spredelinse. Bemærk, at LSA er betydeligt mindre for denne linse
+end for en enkelt samlelinse (LSA er indtegnet som en bue,
+således at LSA kan aflæses som funktion af <em>y</em>). Desuden
+ser man, at de to farver har samme LSA.</p>
+
+<p><b>Koma</b></p>
+
+<p>Linsens ydre dele giver ikke samme billedstørrelse som dens
+midte, et punkt udenfor aksen får derfor et kometlignende
+udseende.</p>
+
+<p><img src="images/linsen5.gif" width="593" height="268" alt="linsefejl, koma"></p>
+
+<p>En linse uden sfærisk aberration, vil afbilde en uendelig
+fjern genstand i brændplanet. Men billedet bliver ikke skarpt,
+for en stråle der rammer linsens ydre dele brydes mere end
+hovedstrålen, som går gennem linsens centrum. Afstanden fra
+hovedstrålens skæringspunkt med brændplanet til den givne
+stråles skæringspunkt med brændplanet kaldes tangentiel koma,
+TC.</p>
+
+<p><b>Astigmatisme</b></p>
+
+<p>Lysstråler, der rammer linsen under en skrå vinkel vil
+brydes mere end lysstråler, der ligger mere parallelt med
+linsens optiske akse. Se simulationen.</p>
+
+<p><b>Billedkrumning</b></p>
+
+<p>Et plant objekt, der afbildes på en plan flade, således at
+det er skarpt i centrum bliver gradvist mere uskarpt mod
+kanterne. Skarpheden i en vis afstand fra centrum kan forbedres
+ved at forskyde billedplanen et stykke langs aksen.</p>
+
+<p><b>Billedfortegning</b></p>
+
+<p>På en plan flade afbildes rette linier som krumme, hvis de
+ikke har retning mod aksen. Vinklerne gengives heller ikke
+rigtigt. Disse fejl tiltager stærkt imod kanterne.</p>
+
+<p><b>Kromatisk aberration</b></p>
+
+<p>Forskellige farver har ikke samme brydningsindeks og dermed
+heller ikke samme brændvidde. Prøv, at vælge både rødt og
+blåt lyse.</p>
+
+<p>Forskellige farver giver heller ikke et billede af samme
+størrelse. Et punkt uden for aksen bliver til en farvet streg.</p>
+
+<p>Ved en akromatisk linse, forstås en linse uden
+farvespredning, en sådan kan sammensættes af en samlelinse og
+en spredelinse med hver sin farvespredning, se <a
+href="linsesys.htm">linsesystemer</a> eller vælg dublet i
+simulation af linsen.</p>
+
+<p>Se også hulspejl og parabol.</p>
+</body>
+</html>

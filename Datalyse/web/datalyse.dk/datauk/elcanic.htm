@@ -1,0 +1,594 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>CNT150 Counter</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Elcanic instruments</h2>
+
+<hr>
+
+<menu>
+  <li><a href="elcanic.htm#CNT150">CNT150 Counter</a></li>
+  <li><a href="elcanic.htm#Datalogger 755">Datalogger 755</a></li>
+  <li><a href="elcanic.htm#DM450">DM450 multimeter</a></li>
+  <li><a href="elcanic.htm#ENG110">ENG110 </a><a href="elcanic.htm#ENG110">energy meter</a></li>
+  <li><a href="elcanic.htm#FNG120">FNG120 function generator</a></li>
+  <li><a href="elcanic.htm#pHTM105">pHTM105 pHmeter/thermometer</a></li>
+  <li><a href="elcanic.htm#PTM100">PTM100 pressure and temperature</a></li>
+  <li><a href="elcanic.htm#RM400">RM400 Counter</a></li>
+</menu>
+<hr>
+
+<h3><a name="CNT150">CNT150</a> Counter <font size="3">v</font><font size="3">ersion 1.02</font></h3>
+
+<p><font size="3">Menu in Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Elastic and inelastic collisions</strong>,
+    see menu for collision experiments<br>
+    <strong>Frequency at input A<br>
+    Passage time at input A<br>
+    Periods of revolution at input A<br>
+    Time of oscillation at input A<br>
+    Start A, stop B <br>
+    Run time and passage time</strong> (acceleration measurings)<br>
+    <strong>Pulse counting in table <br>
+    Pulse counting, using graph<br>
+    Half-time<br>
+    Half-thickness<br>
+    GM plateau</strong>, voltage characteristic</font></p>
+</blockquote>
+
+<p><font size="3">Datalyse does not use all functions of CNT150,
+but on the other hand Datalyse also adds new functionality to the
+counter! That might sound a bit cryptic but it is quite natural.
+CNT150 can be used without a PC since you can control it using
+the buttons, but not all these functions are necessary when
+controlled from the PC.</font></p>
+
+<p><font size="3">The reason for having menu topics for both
+pulse counting and counting with a GM-tube is that the counter
+has an input for pulse counting on the front and an input for a
+GM-tube on the back. CNT150 does only have an interval of 10
+seconds for continued counting, but in Datalyse this is combined
+to 10 s, 20 s, 30 s 60s, 120 s. It is not a problem that the
+display of the counter stops for 5 seconds every 10 seconds.</font></p>
+
+<p><font size="3">Several of the menu topics in Datalyse contain
+exhaustive calculations of measured data. The makes it easy to
+use the counter for experiments. This is particularly true for
+the collision experiments. </font></p>
+<hr>
+<h3><a name="Datalogger 755">Datalogger 755</a></h3>
+
+<p><font size="3"><strong>Menu in Datalyse</strong></font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Multitable</strong><br>
+    <strong>Setup</strong> of inputs and outputs...<br>
+    <strong>Read log</strong>, the log is read and written to the
+    table.<br>
+    <strong>Delete log</strong>. </font></p>
+</blockquote>
+
+<p><font size="3">The datalogger has:</font></p>
+
+<dl>
+    <dd><font size="3">5 analog inputs: 0..10 V</font></dd>
+    <dd><font size="3">two temperature inputs: -50°C ..250°C</font></dd>
+    <dd><font size="3">two frequency inputs: 0Hz..22000 Hz</font></dd>
+    <dd><font size="3">1 counter input: 0..65535, voltage app. 6
+        volt peak to peak</font></dd>
+    <dd><font size="3">3 analog outputs: 0.00 to 5.00 V</font></dd>
+    <dd><font size="3">3 relays, max 5A, 50 V</font></dd>
+    <dd><font size="3">2 inputs for Vernier-probes parallel with
+        analog input 1 and 2. (changed Dec 1998)</font></dd>
+</dl>
+
+<p><font size="3">The device also has a datalog of 1948 bytes.
+Since every measured value takes two bytes, it is possible to log
+a total of 974 values. If for instance 2 voltages and 1
+temperature is logged there is room for 1948/6 = 324 data sets.
+The logging time can be any integer number of seconds from 1s to
+1800s.</font></p>
+
+<p><font size="3">When the device is connected to a PC, logging
+is done online, i.e. the data in the log of the device is left
+unchanged. If you wish to use the device elsewhere, first connect
+it to a PC and setup logging time and select the active inputs
+and relays. Then turn off the device and PC and go data
+gathering. When back, you can transfer the data to the PC.</font></p>
+
+<p><font size="3"><b>The log of the device must not be active,
+when Datalyse is started!</b></font></p>
+
+<hr>
+
+<h2><font size="4">There are 5 tab sheets in the setup menu.</font></h2>
+
+<p><font size="4"><img src="images/log755op.gif" width="478"
+height="328"></font></p>
+
+<p><font size="3" face="Times New Roman"><b>Inputs:</b></font></p>
+
+<p><font size="3">On this tab sheet an input is set to be active
+or for logging. </font></p>
+
+<p><font size="3">When you press OK, Datalyse activates all
+outputs to be used for logging or by a relay automatically.</font></p>
+
+<p><font size="3" face="Times New Roman"><b>Analog Outputs:</b></font></p>
+
+<p><font size="3">Each of the outputs can be set from 0.00 to
+5.00 Volt, but the values are lost when the device is turned off.
+</font></p>
+
+<p><font size="3" face="Times New Roman"><b>Relays:</b></font></p>
+
+<p><font size="3">On this tab sheet you choose which relays are
+active, which inputs the relays should use and the limits for on
+and off.</font></p>
+
+<p><font size="3">When the on-limit is smaller than the
+off-limit, the relays turns on when the input value becomes
+greater than the on-limit and off when the input becomes greater
+than the off-limit. (heating).</font></p>
+
+<p><font size="3">If the on-limit is greater than the off-limit,
+this is reversed. (cooling).</font></p>
+
+<p><font size="3" face="Times New Roman"><b>Time and number:</b></font></p>
+
+<p><font size="3">Here you can choose the time per measurement
+both for online and offline logging, as well as number of
+measurings at online logging. The first measuring is made, when
+the first time interval has passed. Not when log is started!</font></p>
+
+<p><font size="3" face="Times New Roman"><b>Probes:</b></font></p>
+
+<p><font size="3">You can connect Vernier-probes to the two
+inputs on the back of the device. The inputs are parallel to
+input 1 and 2 (changed dec. 1998).</font></p>
+
+<p><font size="3">So the selection of »<b>Vernier-probe</b>«
+causes the data on input 1 and 2 to be calculated into relevant
+values automatically when logging online. E.g. if »CO2 Gas
+Sensor« has been selected the voltage is calculated from Volt to
+ppm. </font></p>
+
+<p><font size="3">Datalyse reads the sensors from the file
+»Vernier.ini«. This file contains: Name of sensor, unit, y-axis
+factor and y-axis offset. You can add sensors to the file
+yourself. You can also type in unit y-axis factor and y-axis
+offset directly in the menu.</font></p>
+
+<hr>
+
+<h3><a name="DM450">DM450</a> multimeter</h3>
+<font SIZE="3">
+<p>Menu in Datalyse</p>
+<blockquote>
+  <p><strong>Graphical measurement</strong><br>
+  <b>Setup.</b>..</p>
+</blockquote>
+<p>Functions:</p>
+<ul>
+  <li>multimeter</li>
+  <li>thermometer</li>
+  <li>pH-meter</li>
+  <li>remote display.</li>
+</ul>
+</font>
+<h3>Setup:</h3>
+<font SIZE="3">
+<p>You can set the remote display to:</p>
+<b>
+<dl>
+  <dd>0: None, </b>remote display is not available.</dd>
+<b>
+<dd>1: Slave,</b> it is possible to write to the display of the DM450 (pc remote
+display)</dd>
+<b>
+<dd>2: Special instrument,</b> which is capable of measuring Volt-Amp-ohm and it
+is possible to write to the display simultaneously.</dd>
+<b>
+<dd>3: Elcanic instrument, </b>remote display for other Elcanic instruments</dd>
+<b>
+<dd>4: Mettler PB3001S</dd>
+<dd>5: Sartorius LC4201</dd>
+</dl>
+<p>Case 1</b>: Slave. It is possible to write to the display of the DM450. This
+has not been implemented in Datalyse yet.</p>
+<b>
+<p>Case 2</b>: Special instrument is particularly interesting in Datalyse in the
+case where you measure the voltage of for instance a Vernier probe. This could
+be e.g. a Force sensor. The probe is connected to for instance a battery box
+(2515.60 from SF) and the DM450 is set to measure voltage Vdc, max 4 volt or max
+40 volt.</p>
+<p>When setting up Measure (t, f(t)) in Datalyse you choose probe and Send Value
+to DM450. Then you set the DM450 to Remote Display.</p>
+<p>While measuring Datalyse will display the correct Force both on screen and on
+the device.</p>
+<b>
+<p>Case 3, 4 and 5</b>: Using the accompanying cross connector you connect for
+instance another Elcanic instrument to the DM450. In this setting the DM450 can
+only be used as a remote display. It cannot be used with a pc at the same time
+since it only has one serial connector.</p>
+<hr>
+</font>
+
+<h3><a name="ENG110">ENG110</a>  energy meter</h3>
+
+<p><font size="3">Menu in Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong><br>
+    <strong>Multitable</strong>, a number of parameters are
+    measured, see below.<br>
+    <strong>Overview</strong>, displays all measured parameters.<br>
+    <strong>Display</strong>, submenu to modify parameter
+    displaying.<br>
+    <strong>Setup log</strong><br>
+    <strong>Read log</strong>, the log is read by Datalyse and
+    written to the table.<br>
+    <strong>Start / Stop log<br>
+    Reset Energy<br>
+    Reset time</strong></font></p>
+</blockquote>
+
+<p><font size="3">The energy meter displays effect as well as
+consumed energy. It can also measure two temperatures at the same
+time. The function buttons »<b>up«</b> and »<b>down«</b>
+switches the display between:</font></p>
+
+<dl>
+    <dd><font size="3">V true RMS-voltage</font></dd>
+    <dd><font size="3">A true RMS-current</font></dd>
+    <dd><font size="3">W true effect</font></dd>
+    <dd><font size="3"><i>VAr blind effect</i></font></dd>
+    <dd><font size="3">VA apparent effect</font></dd>
+    <dd><font size="3">Hz frequency</font></dd>
+    <dd><font size="3" face="Symbol">j</font><font size="3">
+        measured phase</font></dd>
+    <dd><font size="3"><i>cos(</i></font><font size="3"
+        face="Symbol"><i>j</i></font><font size="3"><i>) cosine
+        of the phase</i></font></dd>
+    <dd><font size="3"><i>cosphi calculated cosphi as W/VA</i></font></dd>
+    <dd><font size="3">Ws energy in Ws</font></dd>
+    <dd><font size="3"><i>Wh energy in Wh</i></font></dd>
+    <dd><font size="3">Time time for Ws/Wh in seconds</font></dd>
+    <dd><font size="3">T1 temperature 1</font></dd>
+    <dd><font size="3">T2 temperature 2</font></dd>
+</dl>
+
+<p><font size="3">When measuring graphically one of the above
+parameters is measured. In multitable in Datalyse I have skipped
+the parameters written in italic above. If you wish to draw
+several graphs in the same coordinate system, you have to choose
+multitable and choose graph in the table when the measuring is
+done. Here you can select as much as 10 y-values for the same
+graph.</font></p>
+
+<p><font size="3"><strong>In version 2.0 the following has been
+added:</strong></font></p>
+
+<dir>
+    <li><font size="3">The setup of the instrument is not lost
+        when the device is turned off</font></li>
+    <li><font size="3">It is possible to start (stop) the log
+        from the PC</font></li>
+    <li><font size="3">The log can be set to start</font><dir>
+            <li><font size="3">at a certain time</font></li>
+            <li><font size="3">when a certain effect increases to
+                a specified value</font></li>
+            <li><font size="3">when a certain temperature
+                increases or decreases to a certain value</font></li>
+        </dir>
+    </li>
+    <li><font size="3">It is possible to setup energy and time
+        independently</font></li>
+</dir>
+
+<hr>
+
+<p><font size="3">The log can contain about 31 kB. The number of
+data sets depend on the number of parameters logged. </font></p>
+
+<blockquote>
+    <p><img src="images/englog.gif" width="327" height="330"></p>
+</blockquote>
+
+<p><font size="3"><b>Select inputs:</b></font></p>
+
+<p><font size="3">On the image above I have placed the functions,
+as they have been placed on the device. But the phase, </font><font
+size="3" face="Symbol">j</font><font size="3">, covers two
+parameters: </font><font size="3" face="Symbol">j</font><font
+size="3"> and cos(</font><font size="3" face="Symbol">j</font><font
+size="3">). </font></p>
+
+<p><font size="3">Each data set consists of a time stamp and from
+0 to 13 parameters. It does, of course, not make any sense to log
+0 parameters however.</font></p>
+
+<p><font size="3">If all parameters are logged, the log will have
+room for 534 data sets, if only one is logged, it will be able to
+contain 3100 data sets.</font></p>
+
+<p><font size="3">Time per measuring can be set from 1 second to
+3600 seconds.</font></p>
+
+<blockquote>
+    <p><img src="images/engtemp.gif" width="324" height="329"></p>
+</blockquote>
+
+<p><font size="3"><b>Calibrate thermo probes:</b></font></p>
+
+<p><font size="3">On this tab sheet you can specify the offset of
+the two temperature inputs. The number must be between -100 and
+100. Scroll slowly up and down using the arrows until the energy meter displays the desired temperature. </font></p>
+
+<p><font size="3">Note that on this tab sheet the setting will
+take effect immediately, while on the first tab sheet it will not
+become effective until OK is clicked.</font></p>
+
+<blockquote>
+    <p><img src="images/engstart.gif" width="323" height="332"></p>
+</blockquote>
+
+<p><font size="3"><b>Log starting condition</b>:</font></p>
+
+<p><font size="3">Here the different choices for the log starting
+condition are available:</font></p>
+
+<table border="0" cellspacing="0" width="614">
+    <tr>
+        <td width="23%"><font size="3"><b>Start method</b></font></td>
+        <td width="77%"><font size="3"><b>The log starts when</b>:</font></td>
+    </tr>
+    <tr>
+        <td width="23%"><font size="3">Manual</font></td>
+        <td width="77%"><font size="3">Start/stop on device or in
+        menu in Datalyse</font></td>
+    </tr>
+    <tr>
+        <td width="23%"><font size="3">Time</font></td>
+        <td width="77%"><font size="3">Internal time increases to
+        the specified time</font></td>
+    </tr>
+    <tr>
+        <td width="23%"><font size="3">Effect</font></td>
+        <td width="77%"><font size="3">consumed effect increases
+        to specified effect</font></td>
+    </tr>
+    <tr>
+        <td width="23%"><font size="3">T<sub>1</sub> above</font></td>
+        <td width="77%"><font size="3">the temperature on input 1
+        is above specified temperature</font></td>
+    </tr>
+    <tr>
+        <td width="23%"><font size="3">T<sub>1</sub> below</font></td>
+        <td width="77%"><font size="3">the temperature on input 1
+        is below specified temperature</font></td>
+    </tr>
+</table>
+
+<p><font size="3">The condition is setup from Datalyse and, of
+course, saved even if the device is turned off.</font></p>
+
+<hr>
+<h3><a name="FNG120">FNG120</a> function generator</h3>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement<br>
+    Setup parameters<br>
+    Sweep</strong>: measuring microphone-signal as a function of
+    frequency.</font></p>
+</blockquote>
+
+<p><font size="3">The tone generator is very useful for sound
+experiments.</font></p>
+
+<hr>
+
+<p><font size="3"><b><img src="images/fngind.gif" width="442"
+height="375"></b></font></p>
+
+<p><font size="3"><b>FNG120 has two settings</b>:</font></p>
+
+<p><font size="3">A normal setting with frequencies from 0-130
+kHz with a curve shape of either sine, square or positive square.</font></p>
+
+<p><font size="3">A special setting (in blue) with frequencies
+from 0.10 to 20.00 Hz with a curve shape of either sine or
+triangle.</font></p>
+
+<p><font size="3"><b>Sweep:</b></font></p>
+
+<p><font size="3">You can set the step from 1-10 kHz with a
+resolution of 1 Hz and the time step from 0.05 - 5.00 s.</font></p>
+
+<p><font size="3">When FNG120 makes a sweep, corresponding values
+of frequency and microphone signal are sent to PC as they are
+being measured.</font></p>
+<hr>
+<h3><a name="pHTM105">pHTM105</a> pHmeter/Thermometer</h3>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement<br>
+    Multitable measure pH and temperature.<br>
+    Setup parametres</strong></font></p>
+</blockquote>
+
+<hr>
+
+<p><font size="3"><img src="images/phtm105i.gif" width="412"
+height="257"></font></p>
+
+<p><font size="3">In <strong>Setup parameters</strong> you can
+choose:</font></p>
+
+<p><font size="3"><b>Display</b> on the pH-meter:</font></p>
+
+<blockquote>
+    <p><font size="3">pH, t/°C or T/K.</font></p>
+</blockquote>
+
+<p><font size="3"><b>pH-compensation:</b></font></p>
+
+<blockquote>
+    <p><font size="3">environment: the temperature is measured
+    internally.<br>
+    K-probes: the temperature is measured with a K-probe.<br>
+    Constant temperature: type in the temperature.</font></p>
+</blockquote>
+
+<p><font size="3">Constant temperature is only available in this
+menu, while the other two settings are available from the buttons
+on the front of the device.</font></p>
+
+<p><font size="3">You can calibrate the pH-meter via two
+parametres: asymmetry voltage and Nernst slope.</font></p>
+
+<p><font size="3"><b>Asymmetry voltage:</b></font></p>
+
+<blockquote>
+    <p><font size="3">Erroneous voltage from the pH-glass
+    electrode. Ideally the pH-glass electrode will give 0 mv at 7
+    pH. The error is corrected with the buttons »Buffer adj.«
+    on the front of the pHTM105.</font></p>
+</blockquote>
+
+<p><font size="3"><b>Nernst slope</b>:</font></p>
+
+<blockquote>
+    <p><font size="3">The relative slope of the pH-glass
+    electrode is adjusted in this menu as follows:</font></p>
+    <ol>
+      <li><font size="3">The meter is set to display pH and the
+    pH-glass electrode is placed in a buffer with pH = 7.</font></li>
+      <li><font size="3">When the display becomes stable, the
+    setting is adjusted using Buffer adj. until the meter
+    displays pH = 7.</font></li>
+      <li><font size="3">Then the electrode is placed in another
+    buffer with for instance pH = 4 and the Nernst slope is
+    adjusted until the meter displays pH = 4.00.</font></li>
+    </ol>
+</blockquote>
+
+<p><font size="3">The displayed Nernst slope is transferred to
+the meter and saved.</font></p>
+
+<p><font size="3"><b>Temperature offset</b>:</font></p>
+
+<blockquote>
+    <p><font size="3">If the thermo probe does not display the
+    correct temperature, you can adjust the offset here. The
+    setting is transferred to the meter and saved.</font></p>
+</blockquote>
+<hr>
+<h3><a name="PTM100">PTM100</a> pressure and temperature</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong><br>
+    <strong>Multitable</strong>, of pressure and temperature.<br>
+    <strong>Calibrate</strong></font></p>
+</blockquote>
+
+<p><font size="3">PTM100 sends data to the PC constantly (app.
+twice a second).&nbsp;</font></p>
+
+<p><font size="3">The display of the PTM100 will display a
+pressure from 0 to 200 kPa. At 200 kPa the display shows - - - -
+, but values somewhat greater than that is still send correctly
+to the PC.</font></p>
+
+<p><font size="3">According to Elcanic the temperature should be
+between 0 and 250 °C, but the device is capable of displaying
+negative temperatures as well as sending them to the PC. </font></p>
+
+<p><font size="3">So it is possible to make experiments using a
+freezing mixture.</font></p>
+
+<p><font size="3">The inner diameter of the hose is 3 mm and its
+length is about 120 cm.</font></p>
+
+<hr>
+
+<p><font size="4"><strong>Calibrate:</strong></font></p>
+
+<p><font size="3"><b>PTM100 is calibrated from the factory,</b>
+so normally you would not need to change the parametres!</font></p>
+
+<p><font size="3">Calibrate pressure as follows:</font></p>
+
+<p><font size="3">Adjust the amplification until a modification
+in the absolute pressure of 100 kPa gives a modification in the
+reading of 100 kPa.</font></p>
+
+<p><font size="3">Then adjust the offset until the absolute
+pressure corresponds to the reading.</font></p>
+
+<p><font size="3">Calibrate temperature by adjusting the offset
+until the reading is correct.</font></p>
+
+<p><font size="3">Reset adjust the parametres as shown. The
+pressure transducer measure pressure in the interval 0 to 30psi
+(0-206,84kPa). Therefore the setting (Amplification=full-scale=2068 and offset = 0)</font></p>
+<hr>
+<h3><a name="RM400">RM400</a> Counter</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><b>Half-thickness</b>, you can type in the
+    plate thickness before each measuring.<br>
+    <b>Half-time</b> (and other time dependant measurings).<br>
+    <b>Poisson distribution</b>, </font></p>
+</blockquote>
+
+<p><font size="3"><b>Version 1.02</b> lacks a command for sending
+data from the device to the PC, which means you cannot use the
+measuring times 1 second and infinity for data gathering.</font></p>
+
+<p><font size="3">RM400 is equipped with memory capable of
+containing 60 measurings. The memory cannot be used with data
+gathering.</font></p>
+
+<p><font size="3"><b>Version 1.03</b></font></p>
+
+<p><font size="3">When the device is stopped during infinite
+time, a measuring is send to the PC.</font></p>
+
+<p><font size="3">In automode you can measure in all constant
+times. When measuring at 1 second every 5 measuring is displayed
+on the RM400 and all measurings are send to PC.</font></p>
+
+<hr>
+<h3>Data transfer</h3>
+
+<p><font size="3">Baud rate 9600, no parity, 1 stop, 8 data bits.
+Command for version. The cable is female in both ends but
+otherwise standard.</font></p>
+
+<p><font size="3">Data is send packed, which means you cannot use
+the terminal program for data gathering.</font></p>
+
+<p>&nbsp;</p>
+<p>Elcanic, Gørtlervej 3, DK 5750 Ringe, Denmark: <a href="http://www.elcanic.dk">www.elcanic.dk</a></p>
+</body>
+</html>

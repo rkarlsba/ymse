@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>CBL og CBR, apparater i Datalyse!</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">CBL og CBR</font></h2>
+
+<hr>
+
+<p>Interfacet til CBL og CBR er lavet af René Hemmingsen.</p>
+
+<p><a href="cbldata.htm">Forsøg med CBL, CBL 2, CBR og LabPro</a></p>
+
+<h3><font color="#0000FF">CBL logger</font></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><strong><font size="3">Mål (t, f(t)) løbende på 1 kanal<br>
+    Scan på flere kanaler<br>
+    Indstil kontakter på DIG-out enheden<br>
+    Læs Scan fra CBL'en til Datalyse<br>
+    </font></strong><b>Læs Liste</b><strong><font size="3"><br>
+    Læs Opsætning</font></strong></p>
+</blockquote>
+
+<p><font size="3">CBL'en forbindes til pc'en vha. et TI-graph
+link kabel. <b>Kablet skal være gråt</b>, det sorte kabel kan
+ikke benyttes! Det sorte kabel kommunikerer bit for bit vha. dtr,
+dsr, cts og rts. Det kræver programmering, som ikke er
+nødvendigt med det grå kabel.</font></p>
+
+<p><font size="3">Foreløbig kan man måle på de medfølgende
+sonder: spænding, temperatur, lystyrke og på Range sensoren og
+på alle vernier-sonder. Vernier-sonder tilsluttes vha. et
+konverterkabel fra DIN til CBL. CBL'en omregner automatisk
+sondens spænding til måling i korrekt enhed.</font></p>
+
+<p><font size="3"><strong>Mål (t, f(t)) løbende på 1 kanal</strong></font></p>
+
+<p><font size="3">Denne menu ligner »indstil mål (t, f(t))« for
+andre apparater. For hver måling hentes data fra CBL'en til
+Datalyse. Mindste tid pr måling er 0.2 sekunder og maxantal 3000
+målinger.</font></p>
+
+<p><font size="3">Da der i denne menu kun måles på 1 kanal
+forventes denne enten tilsluttet indgang 1 eller indgang SONIC
+(bevægelse)</font></p>
+
+<p><font size="3">Der kan tilsluttes alle sonder fra Vernier. Se
+sonder og akser. Man skal blot have et CBL til DIN
+konverterkabel. </font></p>
+
+<p><font size="3">Ved indstilling sendes kaliberingsfaktorerne
+til CBL'en og omregningen foregår i CBL'en.</font></p>
+
+<p><font size="3"><strong>Scan på flere kanaler</strong></font></p>
+
+<b><font SIZE="3">
+<p>Ved scan</font></b><font SIZE="3"> er mindste tid 0,00010 s og maxantal er
+512. Altså mere end længden af en liste i en TI-83 lommeregner. Mindste tid
+afhænger af antallet af valgte kanaler og valgte funktioner.</font></p>
+<p><font SIZE="3"><strong>Indstil kontakter på DIG-out enheden</strong></font></p>
+<font SIZE="3">
+<p>CBL Digital kontrolenheden består af en hardware boks og et kabel med 9
+ledere.</p>
+<p>Boksen er forsynet med 6 røde dioder, svarende til 6 kontakter.</p>
+<p>De 6 kontakter kan alle stilles i minus, off eller plus. Dog er kontakterne
+kan kontakterne ikke stilles uafhængigt af hinanden, idet der kun er 16
+kombinationer af indstillinger. Vha. det medfølgende kabel kan man så styre
+forskellige enheder, fx motorer, alarmer...</p>
+<p>Boksen kan benytte en DC spændingsforsyning fra 5V til 12V. Prøv at finde
+en passende adapter.</p>
+<p>Indtil videre kan man i Datalyse kun indstille kontakterne. Der er ikke lavet
+styringsprogrammer, som fx afhængigt af en temperatur tænder og slukker for et
+varmelegeme.</p>
+</font><p><font size="3"><strong>Læs Scan (Online)</strong></font></p>
+
+<p><font SIZE="3">I dette menupunkt overføres et scan til tabel og graf i
+Datalyse. Er den samlede tid for scannet lille overføres scannet automatisk. Er
+tiden større end ca. 1 sekund må man holde øje med CBL'en. Når dens panel
+viser DONE, kan man klikke på menupunktet »Læs Scan« og få overført data
+til Datalyse.</font></p>
+
+<b><font SIZE="3">
+<p>Læs Liste (Offline)</p>
+</font></b><font SIZE="3">
+<p>CBL'en kan indstilles til at måle offline. Det gøres I Datalyse at vælge
+måling og indstille trigningen til <b>»Manual«.</b> Derpå startes
+målingerne i marken ved at trykke på Trigger-tasten på CBL'en. Desværre
+gemmer CBL'en ikke tilstrækkelig information om der fx er målt d/dt eller d²/dt².</p>
+<p>Det anbefales derfor, at vælge »Læs Liste«, for så læses kun én liste,
+og denne skrives i tabellen i Datalyse. Vælg atter Læs Liste indtil alle
+lister er læst, hvilket ses ved at sidste læste liste er identisk med første
+læste liste.</p>
+<p>Ved offline målinger anbefales det ligeledes at logge tiden. Ellers vil de
+målte data ikke kunne afbildes som funktion af tiden!</p>
+</font>
+
+<p><font size="3"><b>Læs Opsætning, </b>eksempel:</font></p>
+
+<dl>
+    <dd><font size="3">CBL status:</font></dd>
+    <dd><font size="3">device code 1.06</font></dd>
+    <dd><font size="3">last error 0.00 se beskrivelsen i manualen</font></dd>
+    <dd><font size="3">R1/kohm 999.00 999 kohm betyder åben kanal
+        / ikke identificeret sensor</font></dd>
+    <dd><font size="3">R2/kohm 999.00</font></dd>
+    <dd><font size="3">R3/kohm 999.00</font></dd>
+    <dd><font size="3">R4/kohm 22.00 22 kohm: afstandsmåler med
+        enhed meter</font></dd>
+    <dd><font size="3">aktiv kanal 11.00 11 er SONIC</font></dd>
+</dl>
+
+<p><font size="3">PS:</font></p>
+
+<p><font size="3">Man får langt færre oplysninger end ved
+status i CBR'en. Det er derfor problematisk at overføre data
+målt offline. I ovenstående tilfælde viser CBL'ens display
+også</font></p>
+
+<blockquote>
+    <p><font size="3">SONIC m, d²/dt² og rec time</font></p>
+</blockquote>
+
+<p><font size="3">dvs. tabellen vil indeholde 4 lister:</font></p>
+
+<blockquote>
+    <p><font size="3">afstand, hastighed, acceleration og tid.</font></p>
+</blockquote>
+
+<p><font size="3">CBL'en har en række avancerede funktioner til
+behandling af data før disse sendes til pc'en. Disse omfatter:</font></p>
+
+<ul>
+    <li><font size="3">Udregning af d/dt og d²/dt²</font></li>
+    <li><font size="3">Funktioner til udglatning (støjfilter)</font></li>
+    <li><font size="3">Flere former for trigning</font></li>
+    <li><font size="3">Fra 0% til 100% målinger før trigpunktet</font></li>
+</ul>
+
+<hr>
+
+<h3><font color="#0000FF">CBR ranger</font></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Mål løbende (t, f(t)) <br>
+    Scan måling<br>
+    Læs Scan fra CBR til Datalyse<br>
+    Læs Opsætning</strong></font></p>
+</blockquote>
+
+<p><font size="3">CBR'en forbindes til pc'en vha. et TI-graph
+link kabel. <b>Kablet skal være gråt</b>, det sorte kabel kan
+ikke benyttes! Det sorte kabel kommunikerer bit for bit vha. dtr,
+dsr, cts og rts. Det kræver programmering, som ikke er
+nødvendigt med det grå kabel.</font></p>
+
+<p><font size="3"><strong>Mål løbende (t, f(t))</strong></font></p>
+
+<p><font size="3">Denne menu indeholder valg af tid pr måling
+(mindste tid er 0.25 sekunder) og antal målinger (fra 1 til 3000). Ved »Retur« for hver måling, skal man
+klikke på den grønne måleknap i Datalyse for hver værdi,
+ellers måles løbende. Ved Indsæt Dato og tid indsættes disse
+værdier for hver måling i tabellen i Datalyse.</font></p>
+
+<p><font size="3">Desuden kan man vælge om man vil korrigere for
+temperatur eller ikke. Bemærk at CBL'en ikke har denne
+valgmulighed.</font></p>
+
+<p><font size="3"><strong>Scan måling</strong></font></p>
+
+<p><font size="3">Mindste tid er 0.005 sekunder og der kan måles
+fra 1 til 512 målinger i et scan. Mindste tid afhænger antallet
+af beregninger. Fås fejl ved målingen, må man sætte tiden pr
+måling op. Læg mærke til, at tiden har været indstillet til
+0,04 sekund. Ved læsningen af status ved valg af apparat er
+ovenstående oplysninger indsat i Datalyse. Tiden 0.03994 er en
+typisk afrunding, idet CBR og CBL måler med 10 bits opløsning.</font></p>
+
+<p><font size="3">Filter (udglatning) omfatter:</font></p>
+
+<dl>
+    <dd><font size="3">0: ingen filtrering</font></dd>
+    <dd><font size="3">1: 5-punkts Savitzsky-Golay-udglatning</font></dd>
+    <dd><font size="3">2: 9-punkts Savitzsky-Golay-udglatning</font></dd>
+    <dd><font size="3">3: 17-punkts Savitzsky-Golay-udglatning</font></dd>
+    <dd><font size="3">4: 29-punkts Savitzsky-Golay-udglatning</font></dd>
+    <dd><font size="3">5: 3-punkts medianudjævning</font></dd>
+    <dd><font size="3">6: 5-punkts medianudjævning</font></dd>
+</dl>
+
+<p>Desuden kan CBR'en beregne hastighed og acceleration: <font
+size="3">d/dt og d²/dt²</font></p>
+
+<p><font size="3"><b>Læs Scan</b><strong> fra CBR til
+Datalyse</strong></font></p>
+
+<font SIZE="3">
+<p>Et scan kan indeholde fra 1 til 4 søjler afhængigt af indstillingen:
+afstand, hastighed, acceleration og tid.</p>
+<p>Når scan læses overføres alle data til tabellen i Datalyse og afstanden
+til grafen i Datalyse. Brugeren må selv efterfølgende udvælge en eller flere
+søjler i tabellen til grafen.</p>
+<p>Da Opsætning omfatter alle nødvendige informationer, kan man uden problemer
+overføre data målt offline til Datalyse.</p>
+</font><p><font size="3"><b>Læs Opsætning</b></font></p>
+
+<p><font SIZE="3">Når menupunktet vælges læses og skrives opsætningen i
+memoen i Datalyse. Det kan være en hjælp at læse opsætningen, hvis CBR'en
+ikke vil måle. Man kan se om batteriets tilstand er lav under målingen og man
+kan se om CBR'en er klar eller hvad? Fejlkoderne er beskrevet i cbl-manualen.</font></p>
+
+<p><font size="3">CBR status:</font></p>
+
+<dl>
+    <dd><font size="3">device code 10.01</font></dd>
+    <dd><font size="3">last error 0.00, fejlkoderne er beskrevet
+        i cbl-manualen</font></dd>
+    <dd><font size="3">batteri 0.00, 0: OK, 1: lav under måling,
+        2: altid lav</font></dd>
+    <dd><font size="3">lydkanal ID 11.00</font></dd>
+    <dd><font size="3">tid pr måling 0.04, i sekunder</font></dd>
+    <dd><font size="3">trigger indstilling 0.00, 0: ingen
+        trigger, 1: trigger, 2: venter 10 sekunder</font></dd>
+    <dd><font size="3">indgang (kanal) 2.00 </font></dd>
+    <dd><font size="3">efterbehandling 1.00, 0: ingen 1: d/dt, 2:
+        d²/dt²</font></dd>
+    <dd><font size="3">filter 0.00, 0: ingen, 1..5 udglatning</font></dd>
+    <dd><font size="3">antal målinger 100.00, fra 1 til 512</font></dd>
+    <dd><font size="3">mål tid 0.00, 0: ingen tid 1: absolut tid
+        2: relativ tid</font></dd>
+    <dd><font size="3">temperatur 20.00, lydhastigheden beregnes
+        ved denne temperatur</font></dd>
+    <dd><font size="3">lyd on/off 1.00, 0: ingen lyd, 1: lyd</font></dd>
+    <dd><font size="3">Tilstand: 4.00, 1: ingen, 2: klar, 3:
+        måler, 4: færdig</font></dd>
+    <dd><font size="3">data start 1.00, første måling, som
+        sendes til pc'en</font></dd>
+    <dd><font size="3">data slut 100.00, sidste måling, som
+        sendes til pc'en</font></dd>
+    <dd><font size="3">ID 0.00, brugerdefineret</font></dd>
+</dl>
+
+<p><font size="3">Når CBR'en vælges læses status og parametre
+som antal målinger, tid pr måling indstilles automatisk i
+Datalyse. </font></p>
+
+<p><font size="3"><b>PS:</b></font></p>
+
+<p><font size="3">CBR'en kan også benyttes som sonde til CBL'en,
+men det bør man ikke gøre, for benyttes CBR'en som sonde til
+CBL'en mister man nogle funktioner.</font></p>
+
+<p><font size="3">CBL'en behandler CBR'en på samme måde som sin
+egen bevægelsessonde (Motion Detector). </font></p>
+
+<p><font size="3">CBR'en har temperaturkompensation til
+afstandsbestemmelse, det har CBL'en ikke.</font></p>
+
+<p><font size="3">CBR'en har fuld status (se ovenfor), det har
+CBL'en ikke. CBL'en har kun information om aktive kanaler, ikke
+hvad der er målt.</font></p>
+
+<hr>
+
+<h3><font color="#0000FF">Kalibering af sonder</font></h3>
+
+<p>I dokumentationen til Vernier-sonderne er omregningsfaktorer
+fra spænding til sondens enhed anført. For force sensoren
+(±10N):</p>
+
+<p>Intercept (k<sub>0</sub>): 12,25N og Slope (k<sub>1</sub>):
+-4,90 N/volt.</p>
+
+<p>Kalibreringen foretages ved at belaste sonden med 2 kendte
+kræfter og i Datalyse vælge spændingsmåling. Vælg for 100
+målinger og udregn gennemsnittet i Datalyse vha. lineær
+regression. </p>
+
+<p>Eksempel:</p>
+
+<table border="1" cellpadding="4" cellspacing="0" width="307">
+    <tr>
+        <td valign="top" width="46%">Kendt kraft /N</td>
+        <td valign="top" width="54%">målt spænding /V</td>
+    </tr>
+    <tr>
+        <td valign="top" width="46%" align="center">0</td>
+        <td valign="top" width="54%" align="center">2,535 </td>
+    </tr>
+    <tr>
+        <td valign="top" width="46%" align="center">1,963 </td>
+        <td valign="top" width="54%" align="center">2,156 </td>
+    </tr>
+</table>
+
+<p>Herefter beregnes den rette linie gennem de 2 punkter.
+Resultat:</p>
+
+<blockquote>
+    <p>F = -5,176 N/V·U + 13,12 N</p>
+</blockquote>
+
+<p>Disse værdier skrives nu i filen »Vernier.ini«</p>
+
+<dl>
+    <dd>Accelerometer, 5g&quot;a/m/s²&quot;22.72&quot;-57.02</dd>
+    <dd>Barometer 0..1.2 Bar&quot;P/Bar&quot;0.6997&quot;0.1357</dd>
+    <dd>CO2 Gas Sensor&quot;ppm&quot;2000.0&quot;0.00</dd>
+    <dd><b>Kraftsensor(±10N)&quot;F/N&quot;-5.176&quot;13.12</b></dd>
+    <dd>Kraftsensor(±50N)&quot;F/N&quot;-24.75&quot;62.22</dd>
+    <dd>&#133;</dd>
+</dl>
+
+<p><a href="cbldata.htm#Oversigt">Oversigt: CBL, CBL 2 og LabPro</a></p>
+<p>&nbsp;</p>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Afladning af kondensator, målt med Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Bestemmelse af kapacitans</font></h2>
+
+<hr>
+
+<h4><a href="notekapc.htm">Tips</a></h4>
+
+<h3><font color="#0000FF">Øvelsens formål er at måle kapacitans ved to forskellige
+metoder:</font></h3>
+
+<ol>
+  <li>Afladning af kapacitor gennem modstand - måling af (tid, spænding)-graf.</li>
+  <li>Måling af sammenhørende værdier af ladning og
+spændingsfald på kondensator.</li>
+</ol>
+<blockquote>
+
+<p><img src="images/kapac901.gif" align="middle" alt="Afladning af kondensator" width="328" height="189"> </p>
+
+</blockquote>
+
+<p align="left">fig.1 </p>
+
+<h3><font color="#0000FF">1 Afladning af kapacitor gennem modstand</font></h3>
+
+<h3><font color="#0000FF">Forsøgsopstilling</font></h3>
+
+<p>Aflade- (og oplade-) kredsløbet ses på fig.1 </p>
+
+<p>En spændingskilde (f.eks. et 9-volt element) benyttes til
+opladning af kapacitoren <i> C</i> (vippekontakt <i> K</i> i stilling <i>a</i>). Når
+vippekontakten <i> K</i> trykkes ned (til stilling <i>b</i>), vil kapacitoren
+aflades gennem modstanden <i>R</i>. Spændingsforskellen over
+kapacitoren måles som funktion af tiden <i>t</i>.</p>
+
+<blockquote>
+
+<p align="left"><img src="images/kapac902.gif" align="middle" alt="Afladning af kondensator" width="193" height="175"> </p>
+
+</blockquote>
+
+<p align="left">fig.2 </p>
+
+<h3><font color="#0000FF">Teori</font></h3>
+
+<p>Kapacitorligningen (1) giver sammenhængen mellem elektrisk
+ladning <i> Q</i> på kapacitorens positive plade og spændingsforskellen <i>
+U</i> mellem pladerne: </p>
+
+<blockquote>
+    <p><font size="3">1) <i> Q</i> = <i>C</i>·<i>U</i> </font></p>
+</blockquote>
+
+<p>I opstillingen på fig. 2 vil ladningen <i> Q</i> på kapacitorens
+positive plade løbe gennem resistoren <i> R</i> over på den negative
+plade - og spændingsforskellen vil gradvis nærme sig 0. </p>
+
+<p>I et lille tidsrum <font face="Symbol">D</font><i>t</i>, vil en lille
+ladningsmængde overføres fra den positive plade til den
+negative. Kaldes ladningstilvæksten på den positive plade for <font
+face="Symbol">D</font><i>Q</i>, er <font face="Symbol">D</font><i>Q</i> ifølge
+ligning (1) bestemt ved: </p>
+
+<blockquote>
+    <p><font face="Symbol">D</font><i>Q</i> = <i> C</i> ·<font face="Symbol">D</font><i>U</i></p>
+</blockquote>
+
+<p>Divideres på begge sider af lighedstegnet med <font
+face="Symbol">D</font><i>t</i>, fås: </p>
+
+<blockquote>
+    <p><img SRC="images/kapac903.gif" HEIGHT="51" WIDTH="115" align="absmiddle"> </p>
+</blockquote>
+
+<p>Lader vi <font face="Symbol">D</font><i>t</i> gå mod 0, får vi: </p>
+
+<blockquote>
+    <p><img SRC="images/kapac904.gif" HEIGHT="51" WIDTH="110" align="absmiddle"> </p>
+</blockquote>
+
+<p>Hvis strømmen <i> I</i> regnes positiv i pilens retning på fig. 2,
+er <img SRC="images/kapac905.gif" HEIGHT="51" WIDTH="76" align="absmiddle">,</p>
+
+<p>minustegnet skyldes, at ladningstilvæksten <i> dQ</i> er negativ!
+Indsættes <i> I</i> fås: </p>
+
+<blockquote>
+    <p>2) <img SRC="images/kapac906.gif" HEIGHT="51" WIDTH="265" align="absmiddle"></p>
+</blockquote>
+
+<p>Vi benytter nu Ohms 1. lov <i> U</i> = <i>R</i>·<i>I</i>, som sammen med (2) giver</p>
+
+<blockquote>
+    <p>3) <img SRC="images/kapac907.gif" HEIGHT="51" WIDTH="135" align="absmiddle"></p>
+</blockquote>
+
+<p>Løsningen til denne ligning er </p>
+
+<blockquote>
+    <p>4) <img SRC="images/kapac908.gif" HEIGHT="35" WIDTH="101" align="absmiddle"></p>
+</blockquote>
+
+<p>(dette kan vises enten ved at differentiere (4) og indsætte i
+(3) - eller direkte ved at integrere (3)). Ligningen (4) siger
+altså, at kapacitorspændingen <i> U</i> aftager eksponentielt med tiden <i>
+t</i> (fra værdien <i> U</i><font size="1"><sub>0</sub></font>) til tiden <i> t</i>
+= 0). </p>
+
+<h3><font color="#0000FF">Forsøgets udførelse</font></h3>
+
+<p>Resistansen <i> R</i> (se fig. 1) skal have værdien ca. 1 M<font
+face="Symbol">W</font>. Denne måles med et ohm-meter, og
+værdien noteres. Denne resistor skal ikke udskiftes under
+øvelsen. To forskellige kapacitorer <i> C</i><font size="1"><sub>1</sub></font>
+og <i> C</i><font size="1"><sub>2</sub></font> (ca. 25 <font
+face="Symbol">m</font>F og ca. 40 <font face="Symbol">m</font>F)
+benyttes i opstillingen på fig. 1: først skal (<i>t</i>, <i>U</i>)-grafen for <i>
+C</i><font size="1"><sub>1</sub></font> og <i> C</i><font size="1"><sub>2</sub></font>
+måles, dernæst skal de tilsvarende grafer for serie- og
+parallelforbindelserne måles. </p>
+
+<p>Opstillingen vist på fig. 1 laves med kapacitor <i> C</i><font
+size="1"><sub>1</sub></font> indsat som <i>C</i>. Følg diagrammet
+nøje! </p>
+
+<p>Spændingen over kapacitoren måles ved at forbinde de to
+indgange på kapacitoren til voltmeter med serielt interface.
+Målingerne styres vha. programmet Datalyse. </p>
+
+<p>Der laves forsøg med hver enkelt kapacitor og med serie- og
+parallelforbindelsen mellem de to kapacitorer! </p>
+
+<h3><font color="#0000FF">Rapporten skal indeholde</font></h3>
+
+<p>Vis, at ligning (4) er en løsning til ligning (3). </p>
+
+<p>Hvordan kan man se på (<i>t</i>, ln(<i>U</i>))-grafen, om spændingen
+aftager eksponentielt? </p>
+
+<p>Beregn vha. de målte (<i>t</i>, ln(<i>U</i>))-grafer kapacitanserne for <i> C</i><font
+size="1"><sub>1</sub></font> og <i> C</i><font size="1"><sub>2</sub></font>
+og disses serie- og parallelforbindelse. I beregningerne indgår
+naturligvis den målte værdi for <i>R</i>. </p>
+
+<p>Ved hjælp af de fundne værdier for <i> C</i><font size="1"><sub>1</sub></font>
+og <i> C</i><font size="1"><sub>2</sub></font> skal du beregne
+erstatningskapacitanserne for serie- og parallelforbindelsen.
+Stemmer disse med de målte? </p>
+
+<p>Når man som her har valgt (<i>t</i>, ln(<i>U</i>))-graf giver Datalyse ved
+lineær regression forskriften af formen <i>U</i> = <i>U</i><sub>0</sub>·e<sup>-<i>k</i>·<i>t</i></sup>.
+Se resultatet i memoen. Herefter beregnes kapacitansen let idet <i>k</i>= 1/(<i>R</i>·<i>C</i>).</p>
+</body>
+</html>

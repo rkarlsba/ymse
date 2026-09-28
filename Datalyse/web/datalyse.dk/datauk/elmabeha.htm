@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Elma / TES multimeter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Elma <a name="2730">2730</a>/ TES 2730 multimeter</h2>
+
+<hr>
+
+<p><i>Elma, Beha and TES are identical, only the
+packing is different!&nbsp;</i></p>
+
+<p><font size="3">Multimeter capable of measuring temperature,
+frequency and capacity as well.</font></p>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong></font></p>
+</blockquote>
+
+<p><font size="3">The communication is specific: you send a space
+without CR, LF and the meter responds with 5 bytes.</font></p>
+
+<dl>
+    <dd><font size="3">1. byte: #2, start byte</font></dd>
+    <dd><font size="3">2. byte: area</font></dd>
+    <dd><font size="3">3,4. byte: digits, decimal point, sign (or
+        error code)</font></dd>
+    <dd><font size="3">5. byte: #3 stop byte.</font></dd>
+</dl>
+
+<p><font size="3">Baud rate 9600, no parity, 1 stop, 8 data bits.</font></p>
+
+<p><font size="3">Older versions of the device has a button
+labeled »COMM«. You have to activate this, or the device will
+not open for communication with the pc.</font></p>
+
+<p><font size="3">Newer versions do not have this button, instead
+RTS must be set low in the serial communication. </font></p>
+
+<p><font size="3">December 1998 elma left production. New types
+are likely to show up.</font></p>
+
+<p><font size="3"><b>Importer and distributor of elma</b></font></p>
+
+<p><font size="3">Elma A/S, Geminivej 32, Postbox 180, DK-2670
+Greve, tel.: 70 22 10 00, fax: 70 22 10 01</font></p>
+
+<p><font size="3">Email: </font><a
+href="mailto:elma@elma.dk"><font size="3">elma@elma.dk</font></a><font
+size="3"></font></p>
+
+<p><font size="3">Elma A/S has many other device of interest in
+physics.</font></p>
+
+<p><font size="3">E.g. on Frederikssund Gymnasium we have an
+excellent sound measurer, that also works as a microphone. </font></p>
+
+<p><font size="3">TES multimeters are distributed in Denmark by</font></p>
+
+<blockquote>
+    <dl>
+        <dt>Atimco Egsagervej 8, 8230 Aabyhøj</dt>
+        <dt>Phone: 86 25 88 99</dt>
+        <dt>E-mail: <a href="mailto:atimco@post4.tele.dk">atimco@post4.tele.dk</a></dt>
+        <dt>web: <a href="http://www.atimco.dk">www.atimco.dk</a></dt>
+    </dl>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<h2><a name="Elma 2732">Elma 2732</a>, <a name="TES 2732">TES
+2732</a></h2>
+
+<hr>
+
+<p>Elma 2732 has the same functions as elma <a
+href="elmabeha.htm#2730">2730</a> + a datalog of 4048 bytes. </p>
+
+<p><font size="3">The reading takes some time, partly you need to
+read the format of the log, partly you have to read 8096 bytes.</font></p>
+
+<p><font size="3">The meter can remember 5 changes to the
+measuring area. When the log is full, or when you changed the
+measuring area more than 5 times, the displays blinks »<b>com</b>«.
+The meter does not have a clock built-in, so changing the time
+per measuring effects the already logged data as well.</font></p>
+
+<p><font size="3"> </font></p>
+</body>
+</html>

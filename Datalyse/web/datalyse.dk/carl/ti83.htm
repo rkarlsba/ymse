@@ -1,0 +1,1426 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Dataopsamling med TI83</title>
+</head>
+
+<body>
+
+<h2><font color="#0000FF">Dataopsamling med TI83, CBL 2 og Labpro</font></h2>
+<hr>
+<p>Programeksemplerne kan indtastes direkte på TI83, men de
+kan også indtastes i programmet ”TI-GRAPH LINK”, som kan downloades fra <span style="color:blue"><a href="http://www.ti.com/calc">www.ti.com/calc</a></span><a href="http://www.ti.com/calc">.</a>
+Når programmet er skrevet kan det overføres til TI83 via et TI-GRAPH LINK
+kabel. Nogle af programeksemplerne er&nbsp; hentet fra LabPro Technical Reference
+Manual.</p>
+<p>Kommandoerne skrives som almindelig tekst, dog skal enkelte
+parametre vælges fra <b>Catalog, </b>fx: specialtegn som Mark ».«, kolon »:«
+eller <b>Vars, </b>fx:<span style="mso-spacerun: yes">&nbsp; </span>»x<sub>min</sub>«,
+»x<sub>max</sub>«. Pas på med små og store bogstaver og unødvendige
+mellemrum!</p>
+<p>CBL 2 og LabPro styres med de samme kommandoer. Se
+oversigten over de vigtigste kommandoer efter eksemplerne.</p>
+<h3><font color="#0000FF">Eksempel 1: Temperatur, non-realtime (scan) dataopsamling</font></h3>
+<div align="left">
+  <table border="0" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="30%">ClrAllLists</td>
+      <td width="69%"></td>
+    </tr>
+    <tr>
+      <td width="30%">ClrHome</td>
+      <td width="69%"></td>
+    </tr>
+    <tr>
+      <td width="30%">Send({0})</td>
+      <td width="69%"><span style="mso-bidi-font-size:
+8.0pt">Reset LabPro.</span></td>
+    </tr>
+    <tr>
+      <td width="30%">Send({6,4})</td>
+      <td width="69%"><span style="mso-bidi-font-size:
+8.0pt">LabPro lyd ON ved start og stop.</span></td>
+    </tr>
+    <tr>
+      <td width="30%">Send({1,1,1})</td>
+      <td width="69%">Indstil kanal 1 til dataopsamling (autodetect).</td>
+    </tr>
+    <tr>
+      <td width="30%">Send({3,.1,100,0})</td>
+      <td width="69%">Mål <span style="mso-bidi-font-size:
+8.0pt">temperatur hvert 0.1 sekund, 100 gange.</span></td>
+    </tr>
+    <tr>
+      <td width="30%">Get(<span style="mso-bidi-font-size:7.0pt">L</span><sub>2</sub>)</td>
+      <td width="69%">Overfør<span style="mso-bidi-font-size:8.0pt"> temperaturer til </span><span style="mso-bidi-font-size:6.0pt">L</span><span style="mso-bidi-font-size:8.0pt"><sub>2</sub></span><span style="mso-bidi-font-size:
+8.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="30%">Get(<span style="mso-bidi-font-size:7.0pt">L</span><sub>1</sub>)</td>
+      <td width="69%"><span style="mso-bidi-font-size:8.0pt">Overfør tider til </span><span style="mso-bidi-font-size:6.0pt">L</span><sub><span style="mso-bidi-font-size:8.0pt">1</span></sub><span style="mso-bidi-font-size:
+8.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="30%">Plot1(Scatter,<span style="mso-bidi-font-size:7.0pt">L</span><sub>1</sub>,<span style="mso-bidi-font-size:
+7.0pt">L</span><sub>2</sub>,.)</td>
+      <td width="69%"><span style="mso-bidi-font-size:8.0pt">Plot temperatur versus tid, sidste
+plottegn er et specialtegn)</span></td>
+    </tr>
+    <tr>
+      <td width="30%">ZoomStat</td>
+      <td width="69%"></td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 2: Temperatur realtime (løbende) dataopsamling</font></h3>
+<div align="left">
+  <table border="0" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">PlotsOff:Func</span></td>
+      <td width="61%">Initier graffunktioner<span style="font-size:10.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">FnOff:AxesOn</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">x<sub>min</sub>:30</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">x<sub>max</sub>:1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">x<sub>scl</sub><span style="mso-tab-count:
+1">&nbsp;
+</span></span></td>
+      <td width="61%">Indstil windows parametre: x<sub>min</sub>, … benyt vars<span style="font-size:10.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">-20</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">y<sub>min</sub>:60</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">y<sub>max</sub>:.1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">Yscl</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+      <td width="61%">Reset LabPro<span style="font-size: 10.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+      <td width="61%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({1,3,1})</span></td>
+      <td width="61%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 3 til dataopsamling
+        (autodetect)</span><span style="font-size:10.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">30</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">dim(L2)</span></td>
+      <td width="61%">Dimensioner liste<span style="font-size:10.0pt">.</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({3,1,-1,0})</span></td>
+      <td width="61%"><span style="mso-bidi-font-size:7.0pt">Mål hvert sekund</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">ClrDraw</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">For(I,1,30,1)</span></td>
+      <td width="61%"></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>2</sub>(I))</span></td>
+      <td width="61%"><span style="mso-bidi-font-size:7.0pt">Overfør værdi nr i</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">Pt-On(I,L<sub>2</sub>(I))</span></td>
+      <td width="61%"><span style="mso-bidi-font-size:7.0pt">Afsæt værdi på graf</span></td>
+    </tr>
+    <tr>
+      <td width="40%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+      <td width="61%"></td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 3: Afstand og hastighed, non-realtime dataopsamling</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">PlotsOff</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrDraw</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="65%">Reset LabPro.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,11,1,1})</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 11</span> 
+      (Sonic) til dataopsamling (afstand og hastighed,
+s 38).</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,.1,100,0})</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Foretag en måling hvert</span> .1 sekund, 100 gange.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>2</sub>)</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Overfør</span> afstande til L<sub>2</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>3</sub>)</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Overfør hastigheder til</span> L<sub>3</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Overfør tider til</span> L<sub>1</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot1(Scatter,L<sub>1</sub>,L<sub>2</sub>,.)</span></td>
+    <td width="65%">Plot afstand versus tid.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot2(Scatter,L<sub>1</sub>,L<sub>3</sub>,+)<span style="mso-tab-count:1">&nbsp;
+</span></span></td>
+    <td width="65%">Plot hastighed versus tid.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="65%"></td>
+  </tr>
+</table>
+<p>ps. <span style="mso-bidi-font-size:7.0pt">Send({1,11,1,0})
+for afstand. Send({1,11,1,2}) for afstand, hastighed og acceleration.</span></p>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 4: Flere kanaler,&nbsp; non-realtime
+dataopsamling</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">PlotsOff</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="64%">Reset LabPro.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="64%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1})</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1</span> 
+      (autodetect), kan være temperatur.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,2,1})</span></td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 2 (autodetect), kan være spænding.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,3,1})</span></td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 3 (autodetect), kan være lys.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,.1,100,0})</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Foretag en måling hvert</span> .1 sekund, 100 gange.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>2</sub>)</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Overfor</span> temperaturer til L<sub>2</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>3</sub>)</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Overfør</span> spændinger til L<sub>3</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>4</sub>)</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Overfør lysintensiter til</span> L<sub>4</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)</span> </td>
+    <td width="64%"><span style="mso-bidi-font-size:7.0pt">Overfør tider</span> L<sub>1</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot1(Scatter,L<sub>1</sub>,L<sub>2</sub>,.)</span></td>
+    <td width="64%">Plot temperatur versus tid.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Pause</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">PlotsOff<span style="mso-tab-count:1">&nbsp;</span></span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot2(Scatter,L<sub>1</sub>,L<sub>3</sub>,.)</span></td>
+    <td width="64%">Plot spænding versus tid.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Pause<span style="mso-tab-count:1">&nbsp;</span></span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">PlotsOff</span></td>
+    <td width="64%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot3(Scatter,L<sub>1</sub>,L<sub>4</sub>,.)</span></td>
+    <td width="64%">Plot lys versus tid.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="64%"></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 5: Konvertering, kommando 4</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+    <td width="69%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="69%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Reset LabPro.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1,0,0,1})</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1 med konvertering
+      ON.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({4,1,1,1,0,100})</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Konverter, offset = 0 og faktor = 100. Fx omregning til dB.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,.1,100,0})</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Foretag en måling hvert .1 sekund, 100 gange.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>2</sub>)</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Overfør værdier til L<sub>2</sub>.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Overfør tider til L<sub>1</sub>.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot1(Scatter,L<sub>1</sub>,L<sub>2</sub>,.)</span></td>
+    <td width="69%"><span style="mso-bidi-font-size:7.0pt">Plot værdier versus tid.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="69%"></td>
+  </tr>
+</table>
+<p>De fleste sonder er lineære, så dette er en typisk
+konvertering.</p>
+<p>&nbsp;
+</p>
+<h3><font color="#0000FF">Eksempel 6: Digital In dataopsamling</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+    <td width="68%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome<span style="mso-tab-count:1">&nbsp;</span></span></td>
+    <td width="68%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="68%">Reset LabPro.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="68%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,21,1})</span> </td>
+    <td width="68%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal</span> 21 (Digital In)<span style="mso-spacerun: yes">&nbsp;
+</span>til dataopsamling.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,.1,100,0})</span> </td>
+    <td width="68%"><span style="mso-bidi-font-size:7.0pt">Mål hvert</span> .1 sekund, 100 gange.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>2</sub>)</span> </td>
+    <td width="68%"><span style="mso-bidi-font-size:7.0pt">Overfør de digitale data til</span> L<sub>2</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>) </span></td>
+    <td width="68%"><span style="mso-bidi-font-size:7.0pt">Overfør tider til </span><span style="mso-spacerun: yes">&nbsp;</span>L<sub>1</sub>.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+L<sub>2</sub></span></td>
+    <td width="68%">Display de målte digitale data.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+L<sub>1</sub></span></td>
+    <td width="68%">Display tider.</td>
+  </tr>
+</table>
+<p>Kommando 12 kan benyttes til Digital In dataopsamling, fx
+timermålinger, radioaktivitet og meget mere. Antal passager og passagetider
+registreres i Labpro og skal blot overføres til TI83 eller pc.</p>
+<p>&nbsp;
+</p>
+<h3><font color="#0000FF">Eksempel 7: Digital Out</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists<span style="mso-tab-count:1">&nbsp;</span></span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="63%">Reset LabPro.</td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="63%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({102,-1}) </span></td>
+    <td width="63%"><span style="mso-bidi-font-size:7.0pt">Kommando 102, </span>power konstant
+      on.</td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({1,31,16,0,1,2,3,<span style="mso-tab-count:
+1">&nbsp;</span>4,5, 6,7,8,9,10,11,12,13,14,15})</span></td>
+    <td width="63%"><span style="font-size:11.0pt;mso-bidi-font-size:
+7.0pt">Indstil kanal </span><span style="font-size:11.0pt;mso-bidi-font-size:
+10.0pt">31 (Digital Out) til output af liste med 16 elementer.</span><span style="mso-bidi-font-size: 10.0pt; font-size: 11.0pt">
+      </span><span style="mso-bidi-font-size:7.0pt">(bufferen er cirkulær)</span></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({3,.5,10,0})</span> </td>
+    <td width="63%"><span style="mso-bidi-font-size:7.0pt">Hvert</span> .5 sekund sendes en værdi, i alt 10 gange.</td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Disp
+&quot;TAST ENTER&quot;</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Disp
+&quot;VED AFSLUT&quot;</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Disp
+&quot;SÅ SÆTTES&quot;</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Disp
+&quot;POWER OFF&quot;</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Pause</span></td>
+    <td width="63%"></td>
+  </tr>
+  <tr>
+    <td width="40%"><span style="mso-bidi-font-size:7.0pt">Send({0})<span style="mso-tab-count:1">&nbsp;
+</span></span></td>
+    <td width="63%">Reset LabPro, slå lyd fra, sætte power off</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 8: Temperaturkontrol vha. kommando 2001 til Digital Out</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Variablen I nulstilles.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="65%">Reset LabPro.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:8.0pt">LabPro lyd ON ved start og
+stop.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1})</span> </td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1</span> 
+      (autodetect), kan være temperatur.</td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,1,-1,0})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Mål hvert sekund realtime.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Repeat
+I&gt;200</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Gentag indtil I er større end 200</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(A)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Overfør temperatur til variablen A</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+(A)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Skriv temperatur på display.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+(I)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Skriv I på display.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">If
+A&gt;30</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Then</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({2001,0})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">0 volt på digitale udgang 1, hvis temperatur &gt;30°C</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Else</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({2001,1})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">5 volt på digitale udgang 1, hvis temperatur&lt;=30°C</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">I+1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Øg I med 1</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+    <td width="65%"></td>
+  </tr>
+</table>
+<p>Digital Out, pin 1 til pin 6 er D0, D1, D2, +5V, Gnd, D3,
+dvs. der kan styres 4 relæer. Fx vil parameter 6 = (0,1,1,0) sætte D0 lav, D1
+høj, D2 høj og D3 lav.</p>
+<p>Samtidig måling på kanal 1 til 4 giver mulighed for at
+styre 4 kredse!</p>
+<p>Lav eksemplet om, så D0 sættes høj, hvis temperaturen
+bliver mindre end 20°C og lav, hvis temperaturen bliver større end 30°C. Der
+må kun sendes en kommando ved programstart eller passage.</p>
+<p>&nbsp;</p>
+<h3><font color="#0000FF">Eksempel 9: Multikontrol</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">G</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Variabel nulstilles.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1 (autodetect).</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,2,1})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 2 (autodetect).</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,1,-1,0})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Mål realtime, hvert sekund.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Repeat
+I&gt;20</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Stopparameter, kan slettes, men er praktisk under test.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Værdi 1, værdi 2 og dt modtages, her er dt = 1s</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+L<sub>1</sub>(1)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+L<sub>1</sub>(2)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+I<span style="mso-tab-count:1">&nbsp;</span></span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">K</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">If
+L<sub>1</sub>(1)&gt;30:K+1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">K</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kunne være en temperatur.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">If
+L<sub>1</sub>(2)&lt;2:K+2</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">K</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kunne være en spænding.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+K</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({2001,K})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">K kan så være 0, 1, 2 eller 3 og sætte 2 digitale udgange.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">I+1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">getKey</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">G</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Stop ved tryk på en tast.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">If
+G</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">¹</span><span style="mso-bidi-font-size:7.0pt">0:Stop</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+    <td width="65%"></td>
+  </tr>
+</table>
+<p>Lav eksempel med 3 indgange og udgange. Lav eksempel på
+styring af stepmotor.</p>
+<h3><font color="#0000FF">Eksempel 10: Fotogate, fx et frit fald</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">PlotsOff</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrAllLists</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Variabel nulstilles</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1 (autodetect),
+      sonde behøves ikke</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,4,1})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Mål pulser på
+      digital indgang 1</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,1,1000,0})</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Dummy måling, mindst
+      én kanal skal være aktiv</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Repeat I&gt;20</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Løkke af passende
+      længde, fx til et frit fald</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,0}</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kommando til læsning
+      af antal passager</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(A)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp (A)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">I+1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,-2}</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kommando til læsning
+      af tider</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">A</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">dim(L<sub>2</sub>)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Dimensionerer liste L<sub>2</sub></span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">A</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">dim(L<sub>3</sub>)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Dimensionerer liste L<sub>3</sub></span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">For(J,1,A,1)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">L<sub>1</sub>(J)-L<sub>1</sub>(1)
+      </span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">L<sub>2</sub>(J)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Træk første tid fra
+      alle elementer i listen</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">J*0.05</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">L<sub>3</sub>(J)</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Udregn strækninger.</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">QuadReg L<sub>2</sub>,L<sub>3</sub>,Y<sub>1</sub></span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Udregner tilnærmet
+      polynomium: y = ax<sup>2</sup> + bx + c</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Plot1(Scatter,L<sub>2</sub>,L<sub>3</sub>,.)</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ZoomStat</span></td>
+    <td width="65%"></td>
+  </tr>
+</table>
+<p>Bemærk, at Kommandoen <span style="mso-bidi-font-size:7.0pt">Send({12,41,4,1})
+giver pulser fra faldende kant til faldende kant. Den målte tid er derfor en
+hel periode = (lystid + mørketid). Kommando 12 har også andre parametre, så
+man fx kan måle radioaktivt henfald.</span></p>
+<p><o:p>
+</o:p>
+</p>
+<h3><font color="#0000FF">Eksempel 11: Passagetid, fx passage af et pendul</font></h3>
+<table border="0" cellspacing="0" width="100%" cellpadding="0">
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">ClrHome
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Variabel nulstilles
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">0</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">A
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({0})
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({6,4})
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({1,1,1})
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Indstil kanal 1 (autodetect), sonde behøves ikke
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,3,1})
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Mål passagetider på digital indgang 1
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({3,1,1000,0})
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Dummy måling, mindst én kanal skal være aktiv
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Repeat
+(I&gt;1000) or (A&gt;0)
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Løkke med sikkerhedsstop eller passage
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,0}
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kommando til læsning af antal passager
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(A)
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+(A)
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">I+1</span><span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-bidi-font-size: 7.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">®</span><span style="mso-bidi-font-size:7.0pt">I
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">End
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Send({12,41,-1}
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Kommando til læsning af passagetider
+</span></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Get(L<sub>1</sub>)
+</span></td>
+    <td width="65%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><span style="mso-bidi-font-size:7.0pt">Disp
+&quot;T=&quot;,L(1)
+</span></td>
+    <td width="65%"><span style="mso-bidi-font-size:7.0pt">Skriv første
+      passagetid.
+</span></td>
+  </tr>
+</table>
+<hr>
+<h2><font color="#0000FF">LabPro og CBL 2 kommandooversigt</font></h2>
+<p>Fra LabPro<sup>TM</sup> Technical Reference Manual, se <a href="http://www.vernier.com/">www.vernier.com</a>.
+Kun de vigtigste kommandoer er nævnt her. <span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">Alle
+kommandoerne kan benyttes til LabPro og CBL 2. Kommando 0 til 4 kan også
+benyttes til CBL.</span></p>
+<div align="left">
+  <table border="1" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2"><span style="mso-bidi-font-size:
+  10.0pt;mso-bidi-font-family:&quot;Times New Roman&quot;">Kommando&nbsp;
+      </span></p>
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b>Beskrivelse</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">0</p>
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b>Reset</b>: sætter alle kanaler til default setup.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">1</p>
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b>Kanal</b>: indstiller en kanal til dataopsamling.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">3</p>
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b>Trigger</b>: indstiller triggerparametre, <b>starter
+      dataopsamlingen</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">4</p>
+      </td>
+      <td width="84%">
+      <p style="margin-left: 2; margin-right: 2"><b>Konvertering (Analoge kanaler, 1- 4</b>): kommando
+      til omregning af målt spænding til andre enheder fx Newton, pH,
+      temperatur,…</p>
+      <p style="margin-left: 2; margin-right: 2">Omregningen foregår i LabPro.</p>
+      <p style="margin-left: 2; margin-right: 2"><b>Sonic Temperatur kompensation (kanal 11, 12</b>):
+      Kompensation for hastighedens afhængighed af temperatur. Default
+      temperatur er 20 °C.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">6</p>
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b>Systemopsætning</b>: Sætter fx lyd ON eller OFF
+      ved start og stop af Non-realtime måling (scan).</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">12
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">Digital
+        datafangst</span></b><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">, fx måling
+        af omløbstider vha. fotogate.</span>
+      </td>
+    </tr>
+    <tr>
+      <td width="16%">
+        <p style="margin-left: 2; margin-right: 2">2001
+      </td>
+      <td width="84%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:12.0pt;mso-bidi-font-size:
+10.0pt;font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">Direkte
+        skrivning til</span></b><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"> »Digital
+        out« under måling på analoge kanaler.</span>
+      </td>
+    </tr>
+  </table>
+</div>
+<h3><font color="#0000FF">Kommando 0: reset LabPro ram</font></h3>
+<h4>Syntaks: {0}</h4>
+<p>Denne kommando har ingen parametre. Sletter data i
+hukommelsen, sletter fejlmeddelelser, men sletter ikke<span style="mso-spacerun: yes">&nbsp;
+</span><i>FLASH </i>hukommelsen.</p>
+<h3><font color="#0000FF">Kommando 1: kanalindstilling</font></h3>
+<p>Denne kommando har en række forskellige parametre, kun de
+vigtigste nævnes her.</p>
+<h4>Syntaks: {1,0}</h4>
+<p>Nulstiller alle kanaler.</p>
+<h4>Syntaks: {1,kanal,0}</h4>
+<p>Lukker for den valgte kanal.: 1-4 = Analog, 11 = Sonic,…
+se mere side 36</p>
+<h4>Syntaks: {1,kanal,operation,efterbehandling,(delta)<span style="font-size:
+10.5pt"> </span>,konvertering}</h4>
+<p>Opsætning af analog kanal.</p>
+<div align="left">
+  <table border="1" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="18%">
+        <p style="margin-left: 2; margin-right: 1"><b>Kanal</b></p>
+      </td>
+      <td width="31%">
+        <p style="margin-left: 2; margin-right: 1"><b><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;">Operation/</span><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Times New Roman">
+        </span>Sensor Type</b></p>
+      </td>
+      <td width="29%">
+        <p style="margin-left: 2; margin-right: 1"><b>Efterbehandling</b></p>
+      </td>
+      <td width="22%">
+        <p style="margin-left: 2; margin-right: 1"><b>Konvertering</b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="18%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 1">1-3 = Analog</dt>
+        </dl>
+      </td>
+      <td width="31%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 1"><b>0= Lukker for kanal</b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 1">1 = Auto-ID<span style="mso-spacerun: yes">&nbsp; </span>sensor</dt>
+          <dt style="margin-left: 2; margin-right: 1">(default 0-5V sensor)</dt>
+          <dt style="margin-left: 2; margin-right: 1">2 til 14 er udeladt her!!</dt>
+        </dl>
+      </td>
+      <td width="29%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 1"><b>0 = Ingen (RT<span style="mso-bidi-font-size:
+  7.0pt"> </span>og not-RT)</b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 1">1 = d/dt (not-RT)</dt>
+          <dt style="margin-left: 2; margin-right: 1">2 = d/dt og d<sup>2</sup>/dt<sup>2 </sup>(not-RT)</dt>
+        </dl>
+      </td>
+      <td width="22%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 1"><b>0 = Off</b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 1">1 = On</dt>
+          <dt style="margin-left: 2; margin-right: 1">(konverteringen opsættes med kommando 4)</dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Eksempel: {1, 1, 1 }, Auto-ID kanal 1. Bemærk afsluttende
+0’er kan udelades.</p>
+<p>Se opsætning af kanal 11, sonic side 38.</p>
+<h3><font color="#0000FF">Kommando 3: trigger</font></h3>
+<p>Denne kommando indstiller triggerbetingelser, antal målinger,
+tid pr måling og <b>starter dataopsamlingen.</b></p>
+<h4>Syntaks: {3, -1}</h4>
+<p>Gentager sidste kommando 3 (bruges til hurtig gentagelse af
+dataopsamling, når alle indstillinger kan benyttes uændrede). Data læses med
+Get() fra TI83. Dataopsamlingen ophører, når der ikke afsendes flere Get().</p>
+<h4>Syntaks: {3,tid pr måling, antal værdier,0,0,0,0,0,0,filter}</h4>
+<p>Bruges til realtime dataopsamling, dvs. målinger overføres
+løbende til TI83, eller pc.</p>
+<div align="left">
+  <table border="1" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="28%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Tid
+      pr måling</span></b></p>
+      </td>
+      <td width="32%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Antal
+      værdier</span></b></p>
+      </td>
+      <td width="40%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Filter</span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="28%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0&lt; t </span><span style="font-size:10.0pt;font-family:Symbol">£
+      </span><span style="font-size:10.0pt;font-family:Arial">16000</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Default
+      = 0.5</span></b></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">Tid i
+      sekunder</span></dt>
+        </dl>
+      </td>
+      <td width="32%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">-1 =
+      REALTIME mode</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0 =
+      Invalid</span></dt>
+        </dl>
+      </td>
+      <td width="40%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">0 =
+      Intet</span></b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">7 = let
+      udglatning</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">8 =
+      medium udglatning</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">9 =
+      kraftig udglatning</span></dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<h4>Syntaks: {3,tid pr måling, antal værdier, triggertype, triggerkanal,
+triggerværdi, pre-store, (e<span style="mso-bidi-font-size:10.0pt">x</span>tclock),
+rekord tid, filter, fastmode}</h4>
+<p>Bruges til non-realtime dataopsamling, dvs. alle målinger
+gemmes i LabPro og overføres efterfølgende til TI83 eller pc. Datalister læses
+med Get().</p>
+<div align="left">
+  <table border="1" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="18%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Tid
+      pr måling</span></b></p>
+      </td>
+      <td width="17%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Antal
+      værdier</span></b></p>
+      </td>
+      <td width="24%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Triggertype</span></b></p>
+      </td>
+      <td width="21%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Triggerkanal</span></b></p>
+      </td>
+      <td width="20%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Triggerværdi</span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="18%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0&lt; t </span><span style="font-size:10.0pt;font-family:Symbol">£
+      </span><span style="font-size:10.0pt;font-family:Arial">16000</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Default
+      = 0.5</span></b></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">Tid i
+      sekunder</span></dt>
+        </dl>
+      </td>
+      <td width="17%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0 =
+      Invalid</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">1 til
+      12287 værdier <b><sup>1)</sup></b></span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">max 3000
+      i Datalyse</span></dt>
+        </dl>
+      </td>
+      <td width="24%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0 =
+      straks</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">1 =
+      manuelt</span></b></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 =
+      stigende/stigende</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">3 =
+      faldende/faldende</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">4 =
+      stigende/faldende</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">5 =
+      Faldende/stigende</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">6 = Ved
+      hvert tryk på trigger foretages en måling.</span></dt>
+        </dl>
+      </td>
+      <td width="21%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">0 =
+      Disabel trigger</span></b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">1 = CH1
+      </span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 = CH2</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">3 = CH3</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">4 = CH4</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">11 =
+      CH11</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">12 =
+      CH12</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Den
+      valgte kanal skal være aktiveret med kommando 1</span></b></dt>
+        </dl>
+      </td>
+      <td width="20%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">Værdi i
+      måleområde for valgt kanal.</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">(for en
+      ikke autodetekt sensor: 0-5V)</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Default
+      = 1V</span></b></dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<p style="tab-stops:65.2pt;mso-layout-grid-align:none;
+text-autospace:none">&nbsp;</p>
+<div align="left">
+  <table border="1" cellspacing="0" width="100%" cellpadding="0">
+    <tr>
+      <td width="19%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Pre-store</span></b></p>
+      </td>
+      <td width="20%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Rekord
+        tid</span></b></p>
+      </td>
+      <td width="36%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Filter
+      (udglatning)</span></b></p>
+      </td>
+      <td width="25%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">FastMode</span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="19%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">0</span></b><span style="font-size:10.0pt;font-family:Arial">%
+      til 100%</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">triggertype
+      skal være 2 til 5</span></dt>
+          <dt style="margin-left: 2; margin-right: 2">&nbsp;</dt>
+        </dl>
+      </td>
+      <td width="20%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0 =
+      Ingen</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">1 =
+      Absolut</span></b></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 =
+      Relativ</span></dt>
+        </dl>
+      </td>
+      <td width="36%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">0 =
+      Intet</span></b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">1 =
+      Savitzsky-Golay 5-punkt</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 =
+      Savitzsky-Golay 9-punkt</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">3 =
+      Savitzsky-Golay 17-punkt</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">4 =
+      Savitzsky-Golay 29-punkt</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">5 =
+      Median Pruning 3-punkt</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">6 =
+      Median Pruning 5-punkt</span></dt>
+        </dl>
+      </td>
+      <td width="25%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">0=
+      OFF (normal operation) </span></b>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">1= ON
+      FastMode</span><b><sup>2)</sup></b></dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>1) Antal værdier skal divideres med antal aktive kanaler +
+efterbehandling: 12000:(x+d/dt+d<sup>2</sup>/dt<sup>2</sup>)</p>
+<p><span style="mso-bidi-font-size:7.0pt">2) </span>FastMode
+kan kun bruges for analoge kanaler. I FastMode kan kun én kanal være aktiv.
+Mindste tid pr måling er 2<span style="mso-bidi-font-size:11.0pt;font-family:
+Symbol">0</span><span style="font-family:Symbol">m</span>s. Fastmode er velegnet
+til fx skop eller lyd.</p>
+<h3><font color="#0000FF">Kommando 4: konvertering
+(Analog)</font></h3>
+<p>Denne kommando bruges til at konvertere den målte analoge
+spænding til fx Newton, pH, lux osv.</p>
+<p>Her medtages kun polynomiumskonvertering. Se manual for
+andre konverteringsformer.</p>
+<h4>Syntaks: {4,0}</h4>
+<p>Nulstiller konverteringsligning for alle kanaler.</p>
+<h4>Syntaks: {4, kanal,-1}</h4>
+<p>Kanal 1, 2, 3, el 4</p>
+<p>Ingen konvertering for den valgte kanal.</p>
+<h4>Syntaks: {4,kanal,1,N,K<sub><span style="font-size:10.5pt">0</span></sub><span style="font-size:10.5pt">
+</span>, . . .K<sub><span style="font-size:10.5pt">n</span></sub>}</h4>
+<div align="left">
+  <table border="1" cellspacing="0" width="50%" cellpadding="0">
+    <tr>
+      <td width="33%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">kanal</span></b></p>
+      </td>
+      <td width="33%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">N</span></b></p>
+      </td>
+      <td width="33%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">K</span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="33%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">1 = CH 1</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 = CH 2</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">3 = CH 3</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">4 = CH 4</span></dt>
+        </dl>
+      </td>
+      <td width="33%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">N = 1
+      til 9</span></dt>
+        </dl>
+      </td>
+      <td width="33%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">Reelt
+      tal</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">-10<sup>38</sup>
+      til 10<sup>38</sup>.</span></dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Data konverteres i loggeren vha. polynomiet: <span style="mso-bidi-font-size:6.5pt">K<sub>0</sub>
+</span>+ <span style="mso-bidi-font-size:
+6.5pt">K<sub>1</sub>·</span>X + <span style="mso-bidi-font-size:6.5pt">K<sub>2</sub>·</span>X<sub><span style="mso-bidi-font-size:6.5pt">2</span></sub><span style="mso-bidi-font-size:
+6.5pt"> </span>+ ... + <span style="mso-bidi-font-size:6.5pt">K<sub>n</sub>·</span>X<sub><span style="mso-bidi-font-size:6.5pt">n</span></sub></p>
+<p>Eksempel: {4,1,1,1,0,100}, dvs. alle data ganges med 100.</p>
+<h3><font color="#0000FF">Kommando 6: systemindstillinger</font></h3>
+<h4>Syntaks: {6, kommando}</h4>
+<div align="left">
+  <table border="1" cellspacing="0" width="23%" cellpadding="0">
+    <tr>
+      <td width="100%">
+        <p style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">Kommando</span></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="100%">
+        <dl>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">0 =
+      Abort måling</span>
+          </dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">2 =
+      Abort måling</span></dt>
+          <dt style="margin-left: 2; margin-right: 2"><b><span style="font-size:10.0pt;font-family:Arial">3 =
+      Lyd off</span></b></dt>
+          <dt style="margin-left: 2; margin-right: 2"><span style="font-size:10.0pt;font-family:Arial">4 = Lyd
+      on</span></dt>
+        </dl>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>Kommandoen har endnu 2 syntakser, se manualen. Denne
+syntaks benyttes fx til at indstille LabPro til at afgive et lydsignal ved start
+og stop af scan eller til at afbryde et scan.</p>
+<h3><font color="#0000FF">Kommando 12&nbsp;&nbsp;&nbsp; Digital
+datafangst</font></h3>
+<h4>Syntaks: {12,41,1}</h4>
+<p>Kan fx benyttes til two-way pulley fra SF, tilslut pulser til D0 og retning
+til D1</p>
+<h4>Syntaks: {12,41,3,retning}</h4>
+<p>Kan fx bruges til måling af passagetider</p>
+<h4>Syntaks: {12,41,4,retning}</h4>
+<p>Kan fx bruges til timermålinger, omløbstider og svingningstider</p>
+<h4>Syntaks: {12,41,5}</h4>
+<p>Kan bruges til at tælle pulser, fx radioaktivitet.</p>
+<p>Se eksempel 10 og 11 og se LabPro Technical Manual for nærmere oplysninger.</p>
+<h3><font color="#0000FF">Kommando 2001: direkte
+output</font></h3>
+<h4>Syntaks: {2001, data1, data2, … dataN)</h4>
+<p>Her er N = 1...16 og dataN en byte (0..255).</p>
+<p>Eksempel: {2001, 3} sætter D0 og D1 høje. Den digitale
+udgang har 4 ben ud: D0, D1, D2 og D3. Spændingen på disse sættes derfor med
+tallene 0..15. (0 alle ben lave, 15 alle ben høje).</p>
+
+</body>
+
+</html>

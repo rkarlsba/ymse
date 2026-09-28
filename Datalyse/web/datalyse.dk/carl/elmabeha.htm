@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Elma / TES multimeter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Elma <a name="2730">2730</a>/ TES 2730 multimeter</font></h2>
+
+<hr>
+
+<p><font size="2">Elma, TES er identiske multimetre, kun
+indpakningen er forskellig.</font></p>
+
+<p><font size="3">Multimeter som også kan måle temperatur
+frekvens og kapacitet.</font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <dl>
+      <dt><font size="3"><strong>Grafisk måling</strong></font></dt>
+      <dt><font size="3"><strong>Vis måling</strong></font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Kommunikationen er speciel: man sender et space
+uden CR, LF og metret svarer med 5 bytes.</font></p>
+
+<blockquote>
+    <dl>
+        <dd><font size="3">1. byte: #2, startbyte</font></dd>
+        <dd><font size="3">2. byte: område</font></dd>
+        <dd><font size="3">3,4. byte: cifre, punktum, fortegn
+            (eller fejlkode)</font></dd>
+        <dd><font size="3">5. byte: #3 stopbyte.</font></dd>
+    </dl>
+</blockquote>
+
+<p><font size="3">Glem, at kommunikationen er speciel, det har
+kun betydning, hvis du selv skal lave et program til
+dataopsamling. Apparatet er godt og billigt.</font></p>
+
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 8
+databit.</font></p>
+
+<hr>
+
+<p><font size="3">Ældre udgaver af apparatet har en knap mærket
+»<strong>COMM</strong>«. Denne skal aktiveres inden apparatet
+åbner for kommunikationen til pc'en.</font></p>
+
+<p><font size="3">Nyere udgaver er uden denne knap, til gengæld
+skal RTS sættes lav i den serielle kommunikation. </font></p>
+
+<p><font size="3">Denne opdatering er foretaget i Datalyse den
+12/12 1998</font></p>
+
+<hr>
+
+<p><font size="3"><b>Importør og leverandør af elma:</b></font></p>
+
+<dl>
+    <dd><font size="3">Elma A/S, Geminivej 32, Postbox 180, DK-2670
+        Greve, tlf.: 70 22 10 00, fax.: 70 22 10 01</font></dd>
+    <dd><font size="3">E-mail: </font><a
+        href="mailto:elma@elma.dk"><font size="3">elma@elma.dk</font></a></dd>
+    <dd><font size="3">Elma A/S har mange andre apparater af
+        interesse for fysik.</font></dd>
+    <dd><font size="3">På Frederikssund Gymnasium har vi fx en
+        glimrende lydmåler, der også kan bruges som mikrofon. </font></dd>
+    <dd><font size="3">Metret forhandles også af: <strong>Søren
+        Frederiksen.</strong></font></dd>
+    <dd><font size="3"><strong>dec. 1998 er elma udgået af
+        produktion, der kommer sikkert en ny type.</strong></font></dd>
+</dl>
+
+<p><strong>Forhandler af TES:</strong></p>
+
+<blockquote>
+    <dl>
+        <dt>Atimco, Egsagervej 8, 8230 Aabyhøj, tlf: 86 25 88 99</dt>
+        <dt>E-mail: <a href="mailto:atimco@post4.tele.dk">atimco@post4.tele.dk</a></dt>
+        <dt>web: <a href="http://www.atimco.dk">www.atimco.dk</a></dt>
+    </dl>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<h2><font color="#0000FF"><a name="Elma 2732">Elma 2732</a>, <a name="TES 2732">TES
+2732</a></font></h2>
+
+<hr>
+
+<p>2732 har samme funktioner, som <a href="elmabeha.htm#2730">2730</a>
+plus en datalog på 4048 målinger. </p>
+
+<p><font size="3">Læsningen af loggen tager lidt tid, dels skal
+man læse loggens format, dels skal man læse 8096 bytes.</font></p>
+
+<p><font size="3">Metret kan huske 5 områdeskift. Når loggen er
+fuld, eller man har skiftet område mere end 5 gange, blinker »<b>com</b>«
+i displayet. Metret har ikke et indbygget ur, så skift af tid pr
+måling gælder også allerede loggede data. Loggetiden
+indstilles i multipla af 0,4s. </font></p>
+</body>
+</html>

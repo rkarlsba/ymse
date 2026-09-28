@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Mettler (BD, College, PM, Tolodo), Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Mettler (BD, College, PM, Toledo) vægte</font></h2>
+
+<hr>
+
+<p><font color="#FF0000" size="3">Senest opdateret: 30/1 1998!
+(pgra: ændring i interface, se nederst)</font></p>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <dl>
+      <dt><font size="3"><strong>Grafisk måling </strong></font></dt>
+      <dt><font size="3"><strong>Vis måling</strong></font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Vægtene har 2 indstillinger: hurtig vejning og
+stabil vejning.<br>
+Ved den hurtige vejning sendes displayvisningen straks til pc'en.
+Ved den stabile vejning, sendes resultatet først, når vægten
+er stabil.</font></p>
+
+<p><font size="3">Mindste tider: 1 sekund / 10 (5) sekunder.</font></p>
+
+<p><font size="3"><strong>Mettler BD 202, BD 601, BD 1201, BD6000</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baudrate 2400, lige paritet, 2 stop, 7
+    databit.</font></p>
+    <p><font size="3">Desuden benyttes DTR (Data Terminal Ready).
+    Derfor, kan windows terminalprogram ikke kommunikere med
+    Mettler. Det er en svaghed ved windows terminalprogram!</font></p>
+    <p><font size="3">Kommando &quot;ID&quot; for version.</font></p>
+    <p><font size="3">Bemærk, at kablet er specielt, og at du
+    selv skal samle det.</font></p>
+</blockquote>
+
+<p><font size="3"><strong>Mettler College 240 og PM ...</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baudrate 1200, (2400) lige paritet, 1 stop,
+    7 databit.</font></p>
+    <p><font size="3">Datalyse prøver først med 1200 baud, så
+    med 2400 baud.</font></p>
+    <p><font size="3">Kommando &quot;ID&quot; for version.</font></p>
+    <p><font size="3">Bemærk, at kablet er specielt, og at du
+    selv skal samle det.</font></p>
+</blockquote>
+
+<p><font size="3"><strong>Mettler College B3002, ...</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baudrate 2400, lige paritet, 1 stop, 7
+    databit.</font></p>
+    <p><font size="3">Denne vægt benytter også DTR.</font></p>
+    <p><font size="3">Kommando &quot;@&quot; for version.</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="3">Kablet er specielt, idet det indeholder en
+    interfaceboks. Du skal åbne låget på boksen og indstille
+    de 3 switche til position 0: HOST(PC) og 3: 2400 Baud og 0:
+    7bit, Even, CTS/DTR. Disse indstillinger er markeret med fed
+    i vejledningen til kablet.</font></p>
+</blockquote>
+
+<p><font size="3">PS: fra april 1997 fås Mettlervægte også med
+almindeligt serielt kabel! Det er billigere og nemmere at
+tilslutte en pc, men....!!</font></p>
+
+<p><font size="3">De forskellige vægte behandler data
+forskelligt: typisk sender et apparat følgende streng til pc'en:</font></p>
+
+<blockquote>
+    <p><font size="3">S_D_____128.4 g</font></p>
+</blockquote>
+
+<p><font size="3">hvor S kan betyde Stabil, D fortegn: -/+ og g
+står naturligvis for gram.</font></p>
+
+<p><font size="3">De forskellige typer vægte har desværre
+forskelligt dataformat. Derfor er det absolut nødvendigt at
+kommunikationen starter med at læse apparatets version.
+Desværre har de forskellige vægte også forskellige standarder
+til at læse versionen. </font></p>
+
+<p><font size="3">I forbindelse med ændring at kabeltype har
+Mettler desværre også lavet om på interfacet.</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

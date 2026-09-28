@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Bosch vægte, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Bosch vægte</font></h2>
+
+<hr>
+
+<menu>
+  <li><a href="boschvgt.htm#Bosch BS, EP, DMS">Bosch BS, EP, DMS</a></li>
+  <li><a href="boschvgt.htm#Bosch SAE">Bosch SAE</a></li>
+</menu>
+
+<h3><a name="Bosch BS, EP, DMS"><font color="#0000FF">Bosch BS, EP, DMS</font></a></h3>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <dl>
+      <dt><font size="3"><strong>Grafisk måling</strong></font></dt>
+      <dt><font size="3"><strong>Vis måling</strong></font></dt>
+    </dl>
+</blockquote>
+
+<p><b><font size="3">Bosch opdateret senest: 5/12
+1998.</font> </b></p>
+
+<p><font size="3">Bosch BS serien: Baudrate 1200, ingen paritet,
+1 stop, 8 databit.</font></p>
+
+<p><font size="3">Bosch EP, DMS serierne: Baudrate 1200, ingen
+paritet, 2 stop, 7 databit.</font></p>
+
+<p><font size="3">Begge serie vægte kræver et specialkabel, men
+det medfølger. Datalyse forsøger først, at få forbindelse med
+8 databit og 1 stopbit, og hvis dette glipper så med 7 databit
+og 2 stopbit.</font></p>
+
+<p><font size="3">Kommando for vejning er »<b>w</b>« eller »<b>s</b>«.
+Vægten svarer med:</font></p>
+
+<blockquote>
+    <p><font size="3">NNNBBBBDDDDDDDDBUUUUCRLF </font></p>
+</blockquote>
+
+<p><font size="3">ialt 22 tegn. Ved konverteringen klipper
+Datalyse først 3 tegn, så fjernes alle tegn, som ikke er tal og
+den resterende streng konverteres til et tal. Datalyse aflæse
+vægtens enhed før hver måleserie.</font></p>
+
+<p><font size="3">Bemærk, at vægten først skal klargøres til
+kommunikation med en pc. Bosch har løbende ændret default
+indstilling i vægtene, fx baudrate. Desuden ændres vægtenes
+funktioner også løbende. Det er derfor vanskeligt, at lave en
+generel beskrivelse af indstillingen, men Datalyse forudsætter.</font></p>
+
+<blockquote>
+    <dl>
+        <dt><font size="3"><b>Autoprint PC</b>: off</font></dt>
+        <dt><font size="3"><b>Baudrate: </b>1200</font></dt>
+        <dt><font size="3"><b>Fast</b> on</font></dt>
+        <dt><font size="3"><b>Numerator:</b> on</font></dt>
+        <dt><font size="3"><b>Print Clock</b>: off</font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Bemærk, at Autoprint ON får vægten til
+løbende at poste data til pc'en. Det kan give fejl ved
+kommunikationen, derfor skal det afbrydes.</font></p>
+<hr>
+<h3><a name="Bosch SAE"><font color="#0000FF">Bosch SAE</font></a></h3>
+<p><font size="3">Menu i Datalyse</font></p>
+<blockquote>
+  <dl>
+    <dt><font size="3"><strong>Grafisk måling</strong></font></dt>
+    <dt><font size="3"><strong>Vis måling</strong></font></dt>
+  </dl>
+</blockquote>
+<p><b><font size="3">Bosch SAE er identisk med Sartorius.</font></b></p>
+<p><font size="3">Baudrate 9600, ulige paritet, 1 stop, 7 databit.</font></p>
+<p><font size="3">Vægten kræver et specialkabel.</font></p>
+<p><font size="3">Vægten skal indstilles til kommunikation med en pc.</font></p>
+</body>
+</html>

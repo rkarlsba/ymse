@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Installation af Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Installation af Datalyse</font></h2>
+
+<hr>
+
+<p>Datalyse fås til tidligere og nyeste version af Windows.</p>
+
+<p>Opret et katalog (en mappe) på harddisken og kopier alle
+filer på disketterne over i dette katalog. Gem disketterne.
+Indsæt en genvej til Datalyse.exe i Windows. Nu skulle det gerne
+køre!</p>
+
+<p>En ældre udgave af Datalyse kan ikke altid forventes at køre
+fejlfrit under et nyere styresystem. Det har erfaringen vist! Har
+du problemer, så prøv at få Datalyse opdateret. </p>
+
+<h3><font color="#0000FF">Råd og vink</font></h3>
+
+<p>Benyt altid følgende fremgangsmåde, når der skal måles:</p>
+
+<blockquote>
+    <p><i>Kontrollér, at pc og apparat er slukkede! Montér
+    kablet fra apparatet til pc'en. Tænd for pc'en. Start
+    programmet Datalyse. Tænd for apparatet, når programmet
+    beder om det!</i></p>
+</blockquote>
+
+<p>Når pc'en tændes, sender den nogle tegn ud på portene.
+Disse tegn kan få apparatet til at gå i baglås, gå i gang med
+en måleprocedure eller få apparatet til at sende en
+fejlmeddelelse til pc'en. Alt dette undgås, hvis man tænder for
+pc'en først! </p>
+
+<p>Virker kommunikationen ikke, så se i hjælpen for det
+pågældende apparat. Her kan du se om kablet er specielt, hvad
+baudraten skal være og om der er andet, du skal være opmærksom
+på ved netop det apparat. Bemærk også at et åbent modem kan
+sende kommandoen tilbage til pc'en!</p>
+
+<p>I hjælpen kan du sikkert også få idéer til forsøg.
+Hjælpen indeholder en beskrivelse af alle funktioner i
+programmet. Der er indsat mange skærmbilleder fra Datalyse.
+Disse kan fx klippes ud og indsættes i øvelsesvejledninger.
+Eller eleverne kan sætte dem ind i deres rapporter.</p>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="Inifiler">Inifiler</a>:</font></h3>
+
+<p>Alle hjælpefiler bør ligge i samme mappe som programmet
+Datalyse.</p>
+
+<p>I »<strong>Datalyse.ini</strong>« kan man vælge: </p>
+
+<dl>
+    <dd><strong>Separator</strong>, #9, dvs. adskilletegn i
+        tabelopstilling, #9 (tab) er default tegn.</dd>
+    <dd><strong>Valgapparatnr</strong>, 1, 1: alle, 2: Atimco, 3:
+        Buch&amp;Holm, 4: IMPO, 5: Muller+Sørensen, 6:
+        Radiometer, 7: SF, 8: Andre apparater. Indstilling til
+        visning af default leverandør ved valg af apparat. </dd>
+    <dd><strong>STI</strong>, (et arbejdskatalog)</dd>
+    <dd><strong>APPARAT</strong>,1, OFF: PT200, IMPO</dd>
+    <dd><strong>APPARAT</strong>,2, ON : dmi24 multimeter, impo</dd>
+    <dd>osv....</dd>
+    <dd><strong>Defaultapparat</strong>,34,Shimadzu spektrofotometer. Hermed er apparat nr. 34 valgt som
+        default.</dd>
+</dl>
+
+<p>Da Datalyse kan opsamle data fra mere end 100 apparater,
+anbefales det, at sætte de apparater, som man ikke har, OFF i
+Datalyse.ini. Det kan gøres i Datalyse | Rediger | Indstillinger. Datalyse.ini læses ved opstart af Datalyse.&nbsp;</p>
+
+<p><a href="vernier.htm">Vernier.ini</a> indeholder
+kalibreringsfaktorer for Vernier-sonder. Denne fil læses ved
+valg af parametre til <a href="valgappa.htm#Akser">akser</a> og i
+opsætningsmenuen til datalog 755.</p>
+
+<p>Basedata.ini og Syredata.ini er også ini-filer, de indeholder
+syrekonstanter. </p>
+
+<dl>
+    <dd><font size="2" face="Courier New">Fluorid/10.83*</font></dd>
+    <dd><font size="2" face="Courier New">Nitrit/10.65*</font></dd>
+    <dd><font size="2" face="Courier New">Carbonat/3.68/7.63/*</font></dd>
+    <dd><font size="2" face="Courier New">Sulfit/6.75/12.11/*</font></dd>
+</dl>
+
+<p><font size="3">Dette er de første fire linier i Basedata.ini,
+man kan selv tilføje flere data.</font></p>
+
+<p><font size="3">Multilog.ini indeholder oplysninger om sonder
+til </font><a href="multilog.htm"><font size="3">Multilog DB-526</font></a><font
+size="3">.</font></p>
+
+<p><b>Genveje: (ændret nov. 2003 )</b></p>
+
+<font FACE="Times New Roman" SIZE="3">
+<p>Tilføjes et filnavn til genvejen hentes den pågældende opgave automatisk
+af Datalyse. Dette kan være en tom opgave med skalering af akser. Denne
+skalering bevares ved efterfølgende målinger.</p>
+<p>Tilføjes fx &quot;apparat:25&quot; vil Datalyse automatisk starte menuen
+»Vælg apparat« og man skal blot klikke på Tilslut. Apparatets nummer findes
+i filen Datalyse.ini.</p>
+<p>Man kan tilføje både et filnavn og et apparat. En genvej kan se således
+ud:</p>
+<p>&quot;C:\Datalyse\Datalyse.exe&quot; &quot;data\setup.dat&quot;
+&quot;apparat:12&quot;</p>
+<p>hvor data er en mappe i mappen Datalyse.</p>
+</font>
+
+<hr>
+
+<p>Har du problemer med Datalyse, så hjælp mig, dig og andre!</p>
+
+<p>Kontakt:</p>
+
+<blockquote>
+  <address>
+            Carl Hemmingsen 
+        </address>
+  <address>
+            Borgmestervænget 22 
+        </address>
+  <address>
+            3600 Frederikssund 
+        </address>
+</blockquote>
+
+<p>Eller send en E-mail fra startsiden i denne hjemmeside.</p>
+</body>
+</html>

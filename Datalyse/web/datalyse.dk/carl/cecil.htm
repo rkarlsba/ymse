@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Cecil 1000 spektrofotometer, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Cecil spektrofotometre</font></h2>
+
+<menu>
+  <li><a href="cecil.htm#Cecil 1000 spektrofotometer">Cecil 10xx</a></li>
+  <li><a href="cecil.htm#Cecil 2000/3000 UV/VIS">Cecil 20xx UV/VIS</a></li>
+  <li><a href="cecil.htm#Cecil 2000/3000 UV/VIS">Cecil 3000 UV/VIS</a></li>
+</menu>
+
+<hr>
+
+<h3><a name="Cecil 1000 spektrofotometer"><font color="#0000FF">Cecil 1000 spektrofotometer</font></a></h3>
+
+<p><font size="3">Cecil 1011 er testet i Datalyse, Cecil 1021 er
+ikke testet (21/3 1999)&nbsp;</font></p>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Måling ved en bølgelængde<br>
+    Bølgelængdescan<br>
+    Basislinie<br>
+    Frigiv kontrol</strong></font></p>
+</blockquote>
+
+<p><font size="3">Datalyses terminalprogram kan også benyttes i
+forbindelse med spektrofotometret.</font></p>
+
+<p><font size="3">Baudrate 9600, lige paritet, 2 stop, 7 databit,
+kommando for version. Kablet er altså et standard nul-modemkabel.</font></p>
+
+<p><font size="3">Bølgelængdeinterval: </font></p>
+
+<dl>
+    <dd><font size="3">Cecil 1011: 325 nm - 1000 nm</font></dd>
+    <dd><font size="3">Cecil 1021: 180 nm - 1000 nm</font></dd>
+</dl>
+
+<p><font size="3"><b>Scan:</b></font></p>
+
+<p><font size="3">Cecil 10xx kan ikke scanne et spektrum, derfor
+gennemløbes bølgelængdeintervallet i Datalyse. Måles
+basislinie anbringes tallene i søjle C i tabellen. Når basis er
+målt, vil søjle C i tabellen automatisk blive fratrukket ved
+scan. Det kan være problematisk at scanne, da spektrofotometret
+nemt går i baglås, se bemærkninger nedenfor. Har man
+problemer, så indskrænk bølgelængdeintervallet til fx [400 nm;
+800 nm] og husk at en almindelig cuvette absorberer i
+UV-området.</font></p>
+
+<p><font size="3"><b>Bemærkninger:</b></font></p>
+
+<p><font size="3">Ved opstart indstilles bølgelængden til 500
+nm og absorbansen sættes til 0.000. Det er lidt uheldigt, for
+laves et scan, vil absorbansen komme under nedre grænse -0.300
+og apparatet går i sort. Anbringes en kuvette med vand i
+celleholderen før Cecil tændes, vil man hver gang få samme
+nulpunkt. Hvis absorbansen overstiger 3.000, går apparatet også
+i sort. Fortynd opløsningen og prøv igen.</font></p>
+
+<p><font size="3">Den serielle kommunikation aktiveres ved at
+trykke 3 gange på PEAK SEEK. Der er kommando til at frigive
+kontrollen fra pc'en, men der mangler en kommando til at aktivere
+kontrollen.</font></p>
+
+<hr>
+<h3><font color="#0000FF"><a name="Cecil 2000/3000 UV/VIS">Cecil 2000/3000 UV/VIS</a> spektrofotometre</font></h3>
+<p><font size="3">Cecil 2041 er testet i Datalyse, Cecil 2011, 2021, 2031 er
+ikke testet. (21/3 1999)</font></p>
+<p><font size="3">Menu i Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Måling ved en bølgelængde<br>
+  Bølgelængdescan<br>
+  Basislinie<br>
+  Nulstil absorbans, (transmittans)<br>
+  Frigiv kontrol</strong></font></p>
+</blockquote>
+<p><font size="3">Datalyses terminalprogram kan også benyttes i forbindelse med
+spektrofotometret.</font></p>
+<p><font size="3">Baudrate 9600, lige paritet, 2 stop, 7 databit. Kommando for
+version. Kablet er et standard nulmodemkabel.</font></p>
+<p><font size="3">Bølgelængdeinterval:</font></p>
+<dl>
+  <dd><font size="3">Cecil 2011: 325 nm - 1000 nm</font></dd>
+  <dd><font size="3">Cecil 2021: 190 nm - 1000 nm</font></dd>
+  <dd><font size="3">Cecil 2031: 325 nm - 1000 nm</font></dd>
+  <dd><font size="3">Cecil 2041: 190 nm - 1000 nm</font></dd>
+  <dd>Cecil 3000: 190 nm - 1000 nm</dd>
+</dl>
+<p>Båndbredde:</p>
+<dl>
+  <dd>Cecil 2000: 4 nm</dd>
+  <dd>Cecil 3000: 1,4 nm</dd>
+</dl>
+<p><font size="3">Der kan måles absorbans og transmittans og koncentration.</font></p>
+<p><font size="3"><b>Scan:</b></font></p>
+<p><font size="3">Før Cecil 2000 kan scanne, skal der måles en basislinie.
+Anbring en cuvette med rent vand i cuvetteholderen (eller land cuvetteholderen
+stå tom) og udfør basisscan. Basicscannet varer fra nogle minutter til 15
+minutter afhængigt af den valgte scanhastighed. Når basislinien er målt
+skriver Cecil »Ready« på displayet. Herefter kan spektre scannes. Når Cecil
+styres fra pc'en sendes altid et transmittansspektrum. Har man valgt absorbans i
+menuen i Datalyse, er absorbansen altså beregnet. De målte spektre opbevares i
+Cecils hukommelse og kan senere udskrives på Cecils interne printer. (nu
+udskrives de som absorbansspektre!)</font></p>
+<p><font size="3">Tabellen slettes ikke efter et scan. Flere spektre i det samme
+bølgelængdeområde kan derfor med fordel gemmes i den samme tabel ved efter et
+scan at flytte søjle C (absorbansen) til en anden søjle, fx D, E, ... En søjle
+kan trækkes til en ny plads med musen.</font></p>
+<p><font size="3"><b>Bemærkninger:</b></font></p>
+<p><font size="3">Ved opstart indstilles bølgelængden til 500 nm og
+absorbansen sættes til 0.000. Anbringes en cuvette med vand i celleholderen før
+Cecil tændes, vil man hver gang få samme nulpunkt. Fortynd opløsningen, hvis
+absorbansen overstiger 3.000.</font></p>
+<p><font size="3">Den serielle kommunikation aktiveres ved at vælger <b>PROG</b>ram
+og <b>Select Remote</b> og <b>E</b>nter. Der er kommando til at frigive
+kontrollen fra pc'en, men der mangler en kommando til at aktivere kontrollen.</font></p>
+<hr>
+<p><font size="3"><b>Forhandler:</b></font></p>
+<dl>
+  <dd><font size="3">Radiometer, Valhøjs Alle 176, 2610 Rødovre, tlf. 38 27 28 29</font></dd>
+  <dd><font size="3">Cecil Instruments Limited, Milton Technical Centre, Cambridge
+CB4 6AZ,</font></dd>
+  <dd><font size="3">Email: </font><a href="mailto:cecil@dial.pipex.com"><font size="3">cecil@dial.pipex.com</font></a></dd>
+</dl>
+</body>
+</html>

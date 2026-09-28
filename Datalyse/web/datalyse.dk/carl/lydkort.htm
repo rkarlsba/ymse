@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Lydkort, 16 bits, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Lydkort, 16 bits</font></h2>
+
+<hr>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Lydmålinger med fourieranalyse</strong><br>
+    <strong>Svævninger</strong><br>
+    <strong>Tonegenerator<br>
+    Sweep<br>
+    Amplitude (t, f(t))</strong></font></p>
+</blockquote>
+
+<font SIZE="3">
+<p>Datalyse tester, om der sidder et lydkort i pc'en.</p>
+</font>
+
+<h3><font color="#0000FF">Lydmålinger</font></h3>
+
+<font SIZE="3">
+<p>Har det 16 bits opløsning og frekvenserne 11.025 kHz, 22.05 kHz
+og 44.1 kHz, så kan apparatet vælges og der kan måles lyd med fourieranalyse.
+Bemærk, at lydkortet ikke behøver at være af en bestemt type, men det skal
+have de nævnte funktioner via windows interface.</p>
+<h4><a name="Forbedringer marts 2000">Forbedringer marts 2000</a>:</h4>
+<p>Wavefiler kan læses og lydmåler gemmes i waveformat.</p>
+<p>Ved måling og afspilning af lyd, er antallet af punkter ændret fra 4096 til
+100000. Hermed kan man optage i ca. 4,5 sekunder ved 22050 Hz. Ved indlæsning af
+en wavefil læses de første 100000 målinger.&nbsp;</p>
+<p>Ved løbende fourieranalyse kan man overføre tid og frekvens til memoen.
+Holdes Ctrl nede udføres fourieranalyse og grafen tegnes undervejs. Holdes
+shift nede overføres tid og frekvens uden at der laves fourieranalyse. Det
+giver flere målinger pr tid. Efterfølgende kan memoen indsættes i tabellen og
+en (t, f)-graf kan tegnes.</p>
+<p>Man kan bladre i fourierspektret med PageUp og PageDown. Bladres med PageDown
+og holdes Alt nede, overføres tid og frekvens til memoen. (se ovenfor)</p>
+<p>I Indstil kan autoscale slås fra ved fourieranalyse.&nbsp;</p>
+<p>Her er et <a href="original/Klaverc.mp3">klaver c</a> (440 Hz) og klaver <a href="original/Klaverk.mp3">kvint</a>
+og et <a href="original/Bakken.mp3">bækken</a>. Prøv, om du kan høre at i
+klaverets c, vokser 1 overtone (880 Hz) op og forsvinder igen. Og bækkenet
+lyder blødere og blødere, dvs. de høje frekvenser dør ud. Prøv også at
+sammenligne en <a href="original/violin.mp3">violin</a> med en <a href="original/bratchc.mp3">bratch</a>.
+
+Eksemplerne målt med Datalyse og gemt som wavefiler.
+<a href="original/wavefile.zip">Download wavefiler</a>.</p>
+
+</font>
+
+<h3><font color="#0000FF">Svævninger</font></h3>
+
+<font SIZE="3">
+<p>De to frekvenser udsendes på hver sin kanal og stødtonen høres og
+svævningerne vises på grafen.
+</font>
+
+<font SIZE="3">
+Ikke alle frekvenser kan vælges. Det skyldes, at det ellers ikke ville lyde
+godt.</p>
+<p>Lydes udsendes som en pakke af et antal perioder. Når pakken er afspillet
+begynder lydkortet forfra på pakken. Når pakken skal indeholde et helt antal
+perioder af både frekvens 1 og frekvens 2, kan ikke alle frekvenser vælges.</p>
+</font>
+
+<h3><font color="#0000FF">Tonegenerator</font></h3>
+
+<font SIZE="3">
+<p>Desuden kan lydkortet benyttes som en tonegenerator. Der kan afspilles rene
+toner og klange. Bemærk, at en klang er mere end blot den konstante tone. Det
+er også måden som lyden vokser op på og aftager igen. Man kan tilføje
+overtoner og skifte mellem afspilning af ren tone og klang.&nbsp;</p>
+</font>
+
+<h3><a name="Sweep"><font color="#0000FF">Sweep</font></a></h3>
+
+<font SIZE="3">
+<p>Vha. lydkortet kan man kan lave et sweep fra Datalyse. Parametrene indstilles
+her, og sweepet startes, når man vælger »OK«. Herefter sender Datalyse lyd
+ud på pc'en højttalere og måler samtidigt med mikrofonen tilsluttet
+lydkortet. Minimum tid pr frekvens er 0,05s og maksimum tid pr frekvens er 4,0
+s.</p>
+<p>Før start, skal man indstille sit lydkort til at måle lyd vha. mikrofonen
+(og kun denne) og afspilning af lyd på højttalere og gerne andre enheder, men
+ikke mikrofonen! Hvis lydkortet ikke kan afspille lyd og måle lyd samtidigt,
+må man udskifte det!</p>
+<p>Hvis checkboksen: »Mål lyd« er afmærket, vil datalyse tegne en graf over
+mikrofonsignal som funktion af frekvensen. Er checkboksen ikke afmærket tegnes
+frekvensen som funktion af tiden.</p>
+<p>Pc'ens mikrofon har et område på 16 bit [-32767; 32768]. Under
+lydmålingerne finder Datalyse minimum og maksimum for mikrofonsignalet og
+omregner amplituden til %</p>
+<p>Man kan vise resonans i et paprør og udregne lydens hastighed i luft vha.
+pc.ens lydkort. Se <a href="reslyd.htm"> øvelsesvejledningen</a>.</p>
+</font>
+
+<h3><font color="#0000FF">Amplitude</font></h3>
+
+<font SIZE="3">
+<p>Vha. lydkortet kan man undersøge resonans i et rør. Det kan være en
+gennemsigtig plasticslange eller et glasrør.</p>
+<p>Man kan bruge pc'en højttalere som lydgiver, eller man kan benytte en
+tonegenerator.</p>
+<p>Sæt fx tid pr måling til 2 sekunder og træk mikrofonen til næste
+position, når du har hørt lydpulsen fra pc'ens højttaler.</p>
+</font>
+
+<h3><font color="#0000FF">Indstillinger</font></h3>
+
+<font SIZE="3">
+<p>Hvis måling af lyd ikke virker, kan det være fordi indgangen ikke er
+enablet i opsætningen af lydkortet. Et 16 bits lydkort giver et måleområde
+fra [-32768 til 32768]. Hvis amplituden på lydmålingerne er for lille (nogle
+hundrede og ikke tusinde) skal forstærkningen indstilles, se afsnittet nedenfor
+eller mikrofonen skal udskiftes så dens amplitude passer til indgangen på
+lydkortet. Desuden skal man bruge en mikrofon med stereostik til et lydkort med
+stereostik og visa versa.</p>
+<p>I windows vælges volumenkontrol | Indstillinger | Egenskaber:</p>
+<p>Afmærk »Vis Mikrofon« for indspilning, så kan lyd optages.</p>
+<p>Eksempel: (kun mikrofon afmærket og record level justeret)</p>
+<blockquote>
+  <p><img border="0" src="images/lydkor1.gif" width="268" height="164"></p>
+</blockquote>
+<p>I windows kan flere programmer afvikles samtidigt. Det gælder fx også
+afspilning af musik og måling af lyd i Datalyse. Man kan fx høre Peer Kjær
+Andersens foredrag samtidigt med at Datalyse viser fourieranalyse af de indlagte
+lydeksempler.</p>
+<hr>
+</font>
+
+<p>
+
+<font size="3">Interface til lydkortet er lavet af René
+Hemmingsen.</font></p>
+</body>
+</html>

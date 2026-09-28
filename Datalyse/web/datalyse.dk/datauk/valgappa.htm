@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Choose one device to collect data in Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Choose one device to collect data</h2>
+
+<hr>
+
+<p>There are more than 100 devices. They can be grouped in two
+ways: »Company« or »Type«. Company 0 (type 0) gives a list of
+all devices in alphabetic order. In the ini-file »Datalyse.ini«
+devices can be enabled (ON) or disabled (OFF). </p>
+
+<p>If you choose <font face="Wingdings">þ</font> »Show all
+devices«, you can also choose devices disabled in datalyse.ini.
+Datalyse shows all free com-ports. <font size="3">The actual pc
+has 2 standard com-ports, using irq 3 and 4 and a pci card with 4
+serial ports sharing one irq. <a href="http://image.bio.methods.free.fr/usbtors232.html">See also USB</a></font></p>
+
+<p>The menu below shows, that the device »EM1 energy meter« is
+connected correctly.</p>
+
+<blockquote>
+    <p><img src="images/valgap6.gif" alt="Datalyse, choose a device " width="443" height="425"></p>
+</blockquote>
+
+<p>Notice that Datalyse tests the connection to the device. The
+message: »EM1 English version 2.57 93 S/N 932104« is send from
+EM1 energy meter to the pc. The green color symbolizes ok, (a red
+color symbolizes a missing connection).</p>
+
+<p>Press ok. (You can also double-click on the device). Beneath
+the menu for EM1 energy meter is merged into the main menu in
+Datalyse.</p>
+
+<blockquote>
+    <p><img src="images/valgap1.gif" alt="Datalyse, device menu merged into the main menu" width="416" height="174"></p>
+</blockquote>
+
+<hr>
+
+<p><font size="4">Measurements setup (t,f(t)), (Energy Meter
+parameters).</font></p>
+
+<p><font size="3">Time per measurement and number of measurements
+should be self-explaining.</font></p>
+
+<p><font size="3">However, if the time is more than 10 times the
+minimum time, Datalyse makes 3 measurements (shortly after each
+other) and uses the mean value of the 3 measurements.</font></p>
+
+<blockquote>
+    <p><img src="images/valgap2.gif" alt="measurement parameters" width="447" height="398"></p>
+</blockquote>
+
+<p><font size="3">If the minimum recorded growth is positive,
+measurements will not be »saved« unless the parameter has
+changed with an amount that is numerically greater than the
+minimum recorded growth. See also the file »refriger.dat«.</font></p>
+
+<p><font size="3">Choose input is visible only if the device has
+commands for measuring more than one parameter. See also
+Multitable, where several parameters may be measured at once - in
+this case to the table.</font></p>
+
+<p><font size="3"><b>Check boxes:</b></font></p>
+
+<p><font size="3">If you enable »Enter« for new measurement,
+the chosen time is not used, but Datalyse will read the clock
+when you cause a measurement to be made.</font></p>
+
+<p><font size="3">X in Auto scale means that Datalyse
+automatically scales the coordinate system. E.g. the Y-axis is
+scaled to 0-250 Volt at voltage measuring, but to 0-3 Ampere at
+current measuring. It is recommended to check this at the first
+measuring. If the experiment is repeated the setting can be kept
+by removing this check.</font></p>
+
+<p><font size="3">X at Insert Date and time means that YY-MM-DD
+and hh:mm:ss is inserted in the first two columns of the table.
+This way it is possible to see when each measurement was made.</font></p>
+
+<p><font size="3">X at Save data regularly will have the date
+saved as it is being measured. Should the PC go down the data
+measured until that time will not be lost. Datalyse will prompt
+for a filename.</font></p>
+
+<p><font size="3"><strong>Probes, axes:</strong></font></p>
+
+<blockquote>
+    <p><img src="images/valgap3.gif" width="447" height="398"></p>
+</blockquote>
+
+<p><font size="3">This tab sheet can for instance be used at
+titration, where the titrand is added with a constant velocity
+with a pump. In this case it should say <b>V/mL</b> (volume in mL
+on the x-axis) and the X-factor could for instance be <b>0.5</b>,
+if 0.5 mL is added per second.</font></p>
+
+<p><font size="3">Scaling of the Y-axis can for instance be used
+with </font><a name="Vernier-probes"><font size="3"><b>Vernier-probes</b></font></a><font
+size="3">. The probes can for instance be: </font></p>
+
+<p><font size="3">A manometer from Soldata. The probe gives a
+voltage from 0 - 4 volt, so it is possible to connect it to a
+multimeter.</font></p>
+
+<p><font size="3">Heart Rate Monitor. This probe requires fast
+measuring (10-20 measurements per second). </font></p>
+
+<p><font size="3">CO2 Gas Sensor, which is useable with any
+voltmeter.</font></p>
+
+<dl>
+    <dd><font size="3" face="Times New Roman">Accelerometer,
+        5g&quot;m/s²&quot;23.94&quot;-59.82</font></dd>
+    <dd><font size="3" face="Times New Roman">Barometer 0..1.2
+        Bar&quot;P/Bar&quot;0.6997&quot;0.1357</font></dd>
+    <dd><font size="3" face="Times New Roman">CO2 Gas
+        Sensor&quot;ppm&quot;2000.0&quot;0.00</font></dd>
+    <dd><font size="3" face="Times New Roman">Force </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor(±10N)&quot;F/N&quot;-4.94&quot;12.28</font></dd>
+    <dd><font size="3" face="Times New Roman">Force </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor(±50N)&quot;F/N&quot;-24.75&quot;62.22</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..600)&quot;Lux&quot;200&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..6000)&quot;Lux&quot;2222&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Luxmeter(0..150000)&quot;Lux&quot;50000&quot;0.0</font></dd>
+    <dd><font size="3" face="Times New Roman">Heart Rate
+        Monitor&quot;U/V&quot;1.00/0.00</font></dd>
+    <dd><font size="3" face="Times New Roman">Teslameter (Low
+        amp.)&quot;B/T&quot;0.0032&quot;-0.0080</font></dd>
+    <dd><font size="3" face="Times New Roman">Teslameter (High
+        amp.)&quot;B/T&quot;0.00016&quot;-0.00029</font></dd>
+    <dd><font size="3" face="Times New Roman">Pressure </font><font
+        size="3">S</font><font size="3" face="Times New Roman">ensor
+        (0..6.8 atm)&quot;P/atm&quot;2.20&quot;0.0</font></dd>
+</dl>
+
+<p><font size="3">You can add probes in the file »vernier.ini«.
+</font></p>
+
+<p><font size="3">The format consists of four texts/numbers
+separated with a quote:</font></p>
+
+<p><font size="3">the name of the probe, y-axis unit, factor ,
+offset</font></p>
+
+<p><font size="3">The pin connections of the Vernier-probes seen
+from the front (the wire goes through the back of the screen to
+the sensor):</font></p>
+
+<p><font size="3"><img src="images/valgaap9.gif" width="261"
+height="240"></font></p>
+
+<p><font size="3">Pin position counterclockwise: </font></p>
+
+<dl>
+    <dd><font size="3">9.00 o'clock: signal</font></dd>
+    <dd><font size="3">7.30 o'clock: +5V (supply)</font></dd>
+    <dd><font size="3">4.30 o'clock: GND (common zero for voltage
+        supply and signal)</font></dd>
+</dl>
+
+<p><font size="3"><strong>Trigging:</strong></font></p>
+
+<p><font size="3">Trigging displays the last tabsheet, where the
+start conditions may be chosen. Measuring may still be activated
+using the »Start« button in the tool bar.</font></p>
+
+<p><font size="3">If you choose a trigging condition, it will be
+showed in the memo.</font></p>
+
+<p><font size="3">Datalyse measures and writes the values in the
+status line, but the clock does not start until the trigging
+condition is fulfilled.</font></p>
+
+<p><font size="3">Measurements start when:</font></p>
+
+<dl>
+    <dd><font size="3"><b>Manual</b>: you press start.</font></dd>
+    <dd><font size="3"><b>Smaller</b>: the input is less than the
+        trigging value.</font></dd>
+    <dd><font size="3"><b>Greater</b>: the input is greater than
+        the trigging value.</font></dd>
+    <dd><font size="3"><b>Decreasing</b>: input becomes less than
+        the first measurement - trigging value.</font></dd>
+    <dd><font size="3"><b>Increasing</b>: input becomes greater
+        than the first measurement + trigging value.</font></dd>
+    <dd><font size="3"><b>Clock</b>: the time is greater than the
+        starting time. Only the current day is taken into account.</font></dd>
+</dl>
+
+<p><font size="3">Trigging is deactivated by »Enter« for new
+measurement.</font></p>
+</body>
+</html>

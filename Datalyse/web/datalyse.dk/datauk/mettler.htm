@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Mettler balances (BD, College, PM, Tolodo), Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Mettler (BD, College, PM, Toledo) balances</h2>
+
+<hr>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement </strong></font></p>
+</blockquote>
+
+<p><font color="#8000FF" size="3"><b>Mettler last updated: 30/1
+1998.</b></font></p>
+
+<p><font size="3">The balances have 2 settings: fast weighing and
+stable weighing.<br>
+At fast weighing the display reading is transmitted to the pc
+immediately. At stable weighing no data is transmitted until the
+reading is stable.</font></p>
+
+<p><font size="3">Minimum times: 2 seconds / 10 (5) seconds.</font></p>
+
+<p><font size="4"><strong>Mettler BD 202, BD 601, BD 1201, BD6000</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baud rate 2400, even parity, 2 stop, 7 data
+    bits.</font></p>
+    <p><font size="3">The device uses DTR (Data Terminal Ready).
+    This means the terminal program in windows cannot communicate
+    with Mettler. This is a weakness in the windows terminal
+    program!</font></p>
+    <p><font size="3">Command &quot;ID&quot; for version.</font></p>
+    <p><font size="3">Note that the cable is specific and that
+    you have to assemble it yourself.</font></p>
+</blockquote>
+
+<p><font size="4"><strong>Mettler College 240 and PM ...</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baud rate 1200,(2400) even parity, 1 stop,
+    7 data bits.</font></p>
+    <p><font size="3">Datalyse first tries 1200 baud, then 2400
+    baud.</font></p>
+    <p><font size="3">Command &quot;ID&quot; for version.</font></p>
+    <p><font size="3">Note that the cable is specific and that
+    you have to assemble it yourself.</font></p>
+</blockquote>
+
+<p><font size="4"><strong>Mettler College B3002, ...</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Baud rate 2400, even parity, 1 stop, 7 data
+    bits</font></p>
+    <p><font size="3">This balance uses DTR as well.</font></p>
+    <p><font size="3">Command &quot;@&quot; for version.</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="3">The cable is specific since it contains an
+    interface box. You have to open the lid of the box set the 3
+    switches to position 0: HOST(PC) and 3: 2400 Baud and 0:
+    7bit, Even, CTS/DTR. These settings are written in bold type
+    in the cable manual.</font></p>
+</blockquote>
+
+<p><font size="3">PS: from April 1997 the Mettler balances also
+come with an ordinary serial cable! It is cheaper and easier to
+connect to the pc, <b>but......!!!!!</b></font></p>
+
+<p><font size="3">The different balances treat data differently:
+Typically a device would send a string like this to the pc:</font></p>
+
+<p><font size="3">S_D_____128.4 g</font></p>
+
+<p><font size="3">where S could mean Stable, D the sign: -/+ and
+g would, of course, be gram.</font></p>
+
+<p><font size="3">Unfortunately the different balances have
+different data formats. This makes it absolutely necessary to
+begin communication by reading the version of the device.
+Unfortunately the different balances have different standards for
+reading the version as well.</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

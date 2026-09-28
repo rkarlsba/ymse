@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Hitachi spektrofotometer, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Hitachi U-1100, U-2001</font></h2>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="Hitachi U-1000">Hitachi U-1000</a>, U-1100 spektrofotometer</font></h3>
+<font SIZE="3">
+
+<p>Menu i Datalyse:</p>
+<blockquote>
+  <dl>
+    <dt><b>Måling ved en bølgelængde</b></dt>
+    <dt><b>Bølgelængdescan</b></dt>
+    <dt><b>Basislinie</b></dt>
+    <dt><b>Nulstil absorbans</b></dt>
+  </dl>
+</blockquote>
+<p>Baudrate 4800, lige paritet, 2 stop, 7 databit.</font> <font SIZE="3">Ingen
+kommando for version.</p>
+<p>Bølgelængdeinterval:</p>
+<blockquote>
+  <dl>
+    <dt>U-1000: 325 nm - 1100 nm</dt>
+    <dt>U-1100: 200 nm - 1100 nm</dt>
+  </dl>
+</blockquote>
+<p>Man kan ikke fra pc'en se, om Hitachi er indstillet til at måle absorbans,
+transmittans eller koncentration. Vil man måle transmittans, må man manuelt
+indstille apparatet og rette enheden fra absorbans til transmittans i Datalyse.</p>
+<b>
+<p>Scan:</p>
+</b>
+<p>Hitachi U-1100 kan ikke scanne et spektrum, derfor gennemløbes
+bølgelængdeintervallet i Datalyse. Måles basislinie anbringes tallene i
+søjle C i tabellen. Når basis er målt, vil søjle C i tabellen automatisk
+blive fratrukket ved scan. Fås overflow (&gt;= 3.000) eller underflow
+(&lt;=-0.500) så fortynd opløsningen eller indskrænk bølgelængdeintervallet
+til fx [400 nm; 800 nm] og husk at en almindelig cuvette absorberer i
+UV-området.</p>
+<b>
+<p>Bemærkninger:</p>
+</b>
+<p>Hitachi benytter et null-modem kabel, det er 25 polet han ved apparatet.
+Kablet kan købes i handelen.</p>
+<p>Fås ikke forbindelse til Hitachi, så indstil baudrate, paritet, databit og
+stopbit, som beskrevet i manualen til det ovenfor anførte.</p>
+<p>Hitachi beeper, hvis det får en forkert kommando! Det kan forekomme ved
+indstilling af apparatet, da det fx tager 15 sekunder, at tænde uv-lampen og
+indtil 30 sekunder, at gå til en ny bølgelængde. Prøv igen! Tænd eventuelt
+selv UV-lampen.</p>
+<p>Datalyse indstiller apparatet til remote kontrol. Men kontrollen frigives
+efter hver måleserie.</p>
+<p>Datalyse tester om lamperne er tændt og tænder automatisk den visuelle
+lampe. UV-lampen tændes, hvis bølgelængden indstilles til mindre end 350 nm.
+Når lamperne tændes fra pc'en slukker Hitachi automatisk, når remote kontrol
+frigives efter endt måleserie.</p>
+<p>Hitachi U-1000 er ikke testet i Datalyse! Undgå bølgelænger under 325 nm!</p>
+<hr>
+</font>
+
+<h3><font color="#0000FF"><a name="Hitachi U-2001">Hitachi U-2001</a> spektrofotometer</font></h3>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Tabelmåling</strong></font></p>
+</blockquote>
+
+<p><font size="3">Hitachi U-2001 sender løbende til pc'en og Datalyse
+anbringer resultaterne i tabellen. </font></p>
+
+<p><font size="3">List interval indstilles i menuen <b>instr
+setup</b> på Hitachi. </font></p>
+
+<p><font size="3">Print format skal indstilles til ét sæt data
+på hver linie.</font></p>
+
+<p><font size="3">Et Wave-Length Scan sendes med de største
+bølgelængder først. Benyt funktion / Sorter i datalyse før
+graftegning.</font></p>
+
+<p><font size="3">Kablet er et standard null-model kabel, som kan købes i
+handelen.</font></p>
+
+<p><font size="3">Baudrate 4800, ingen paritet, 1 stop, 8
+databit.</font> <font size="3">Ingen kommando for version.</font></p>
+
+<p><font size="3">Modtag terminator skal sættes til CR (ikke
+CR+LF), Kommandoer til apparatet afsluttes med LF alene (ikke CR
+eller CR+LF).</font></p>
+
+<p><font size="3"><b>Auto serial output skal sættes til ON </b></font></p>
+
+<p><font size="3">Se kapitel 11 Calibration i manualen.</font></p>
+
+<p><font size="3">Remote Control benyttes ikke! Det er desværre
+noget hø! Prøv eventuelt selv, at eksperimentere med
+kommandoerne vha. Terminal-menuen i Datalyse eller vha. Windows-programmet Terminal. Det burde være muligt med en enkelt
+kommando at få sendt data hørende til en graf til pc'en, men
+det kan man ikke (eller jeg har ikke fundet fidusen).</font></p>
+
+<p><font size="3">Det er altså kun muligt at overføre data til
+pc'en under selve målingen.</font></p>
+<b><font SIZE="3">
+<p>Forbedring april 2005</p>
+</font></b><font SIZE="3">
+<p>Det er nu muligt at bruge Terminal menuen til at modtage et scan fra Hitachi
+og efterfølgende at kopiere resultaterne fra memoen til tabellen i Datalyse
+eller til Excel</p>
+</font>
+<hr>
+<p><font size="3">Af de to testede apparater er U-1100 velegnet til
+dataopsamling, mens U-2001 mindre velegnet.</font></p>
+</body>
+</html>

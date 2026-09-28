@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Elma: Sound Level Meter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">TES, Elma-1352 Sound Level Meter</font></h2>
+
+<hr>
+
+<p>Elma og TES og to identiske apparater.&nbsp;</p>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling<br>
+    </strong></font><a
+    href="lydmaler.htm#Sound Level Meter Kontrolpanel:"><font
+    size="3"><strong>Kontrolpanel</strong></font></a><font
+    size="3"><strong>...<br>
+    Læs log<br>
+    Slet log, </strong></font></p>
+</blockquote>
+
+<p><font size="3">Sound Level Meter kan måle lyd i området fra
+30 dB til 130 dB. Det har serielt interface og det har analog
+udgang. Benyttes den analoge udgang, kan apparatet bruges som
+mikrofon. Dvs. det kan bruges til fourieranalyse, fx i
+forbindelse med PCskop-kortet. og som mikrofon kan det registrere
+frekvenser over høregrænsen, hvilket er en behagelighed ved
+forsøg med bestemmelse af lydens hastighed i luft vha. et
+oscilloskop.</font></p>
+
+<p><font size="3">Apparatet har en log, som kan indeholde 4048
+målinger. </font></p>
+
+<p><font size="3">Kommunikationen er speciel: man sender et space
+uden CR, LF og metret svarer med 6 bytes.</font></p>
+
+<blockquote>
+    <dl>
+        <dt><font size="3">1. byte: #2, startbyte</font></dt>
+        <dt><font size="3">2. byte: område</font></dt>
+        <dt><font size="3">3,4. byte: cifre, punktum, fortegn
+            (eller fejlkode)</font></dt>
+        <dt><font size="3">5. byte: funktion</font></dt>
+        <dt><font size="3">5. byte: #3 stopbyte.</font></dt>
+        <dt>&nbsp;</dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 8
+databit.</font></p>
+
+<p><font size="3">RTS sættes lav i den serielle kommunikation. </font></p>
+
+<p><font size="3"><b>Importør og leverandør af elma:</b></font></p>
+
+<blockquote>
+    <dl>
+        <dt><font size="3">Elma A/S, Geminivej 32, Postbox 180,
+            DK-2670 Greve, tlf.: 70 22 10 00, fax.: 70 22 10 01</font></dt>
+        <dt><font size="3">email: </font><a
+            href="mailto:elma@elma.dk"><font size="3">elma@elma.dk</font></a></dt>
+        <dt><font size="3">Elma A/S har mange andre apparater af
+            interesse for fysik.</font></dt>
+        <dt><font size="3">Multimetre, energimetre,
+            trykmålere,... </font></dt>
+        <dt><font size="3">Fabrikant : </font><a
+            href="http://www.beha.de"><font size="3">http://www.beha.de</font></a></dt>
+    </dl>
+</blockquote>
+
+<p><strong>Leverandør af TES:</strong></p>
+
+<dl>
+    <dd>Atimco, Egsagervej 8, 8230 Aabyhøj, tlf.: 86 25 88 99</dd>
+    <dd>email: <a href="mailto:atimco@post4.tele.dk">atimco@post4.tele.dk</a></dd>
+    <dd>web: <a href="http://www.atimco.dk">www.atimco.dk</a></dd>
+</dl>
+
+<hr>
+
+<h3><a name="Sound Level Meter Kontrolpanel:"><font size="3">Sound
+Level Meter Kontrolpanel:</font></a></h3>
+
+<p><font size="3">Sound Level Metret kan også indstilles vha.
+knapperne på apparatet. Dog kan tid pr måling kun vælges i
+denne menu.</font></p>
+
+<p><font size="3"><b>Område</b><strong>t</strong> øverst til
+venstre har ikke nogen betydning. Metret måler korrekt - selv om
+visningen er uden for det valgte område. </font></p>
+
+<p><font size="3"><b>Indstillinger</b>:</font></p>
+
+<p><font size="3"><b>Max</b> hold, betyder, at metret viser den
+maksimale værdi</font></p>
+
+<p><font size="3"><b>Vægtning</b>: ved C-vægtning registreres
+lavfrekvent støj. Denne støj filtreres fra ved A-vægtning.</font></p>
+
+<p><font size="3"><b>Fast</b> anbefales til almindelige
+lydmålinger. Sætter man ikke kryds ved fast, viser metret slow
+og i denne indstilling fluktuerer målingerne mindre (midling).</font></p>
+
+<p><font size="3">Loggen startes og stoppes ved knappen Start
+(stop).</font></p>
+
+<p><font size="3">Man kan naturligvis også tage lydmåleren med
+i marken og optage målinger i loggen for så senere at overføre
+dem til pc'en til databehandling.</font></p>
+
+<p><font size="3">Det tager ca. 2 minutter at overføre en log
+til pc'en. Det føles som en meget lang tid!</font></p>
+
+<p><font size="3">Man kan starte og stoppe loggen og således
+optage flere lydserier, men de vil alle sammen have samme tid pr
+måling. Det anbefales derfor at slette loggen inden nye
+målinger optages og inden tidsbasis ændres.</font></p>
+</body>
+</html>

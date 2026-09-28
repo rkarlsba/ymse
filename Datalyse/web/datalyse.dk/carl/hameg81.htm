@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Hameg 8130 Function Generator, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Hameg 8130 Function Generator</font></h2>
+
+<hr>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Download data</strong> fra søjle 2
+    i tabellen.<br>
+    <strong>Læs Arbitrære</strong> data til søjle 2 i
+    tabellen.<br>
+    <strong>Reset</strong> indstillinger til default værdier<br>
+    <strong>Aktiver Sweep</strong> (husk også output ON)<br>
+    <strong>Afbryd Sweep</strong><br>
+    <strong>Trig</strong>, Sweep startes.</font></p>
+</blockquote>
+
+<p><font size="3">Baudrate 19200, ingen paritet, 1 stop, 8
+databit. Kommando &quot;#VR&quot; for version.</font></p>
+
+<p><font size="3">Hameg har automatisk baudrate detektion. Hameg
+forventer et space (#32) som det første tegn i den serielle
+kommunikation og beregner baudraten ud fra dette. Kablet er
+krydset, se Digital Meter, ældre udgave</font></p>
+
+<p><font size="3">Hameg 8130 Funktions generator har følgende
+specifikationer:</font></p>
+
+<dl>
+    <dd><font size="3"><b>Frekvens:</b> 10 mHz til 10 MHz</font></dd>
+    <dd><font size="3">Opløsning: 5 cifre med en nøjagtighed
+        på ±(1 ciffer + 5mHz)</font></dd>
+    <dd><font size="3"></font>&nbsp;</dd>
+    <dd><font size="3"><b>Bølgeformer:</b> sinus, firkant, puls,
+        rampe, trekant og arbitrær.</font></dd>
+    <dd><font size="3"><b>Input:</b> kontinuert, gate, trig</font></dd>
+    <dd><font size="3"><b>Output:</b> 50 ohm</font></dd>
+    <dd><font size="3"><b>DC Offset</b>: -7.5V til 7.5V</font></dd>
+    <dd><font size="3"><b>Trigger Output</b>: rampe (følger
+        sweep)</font></dd>
+    <dd><font size="3"><b>Sweep:</b> tid fra 20 ms til 100 s</font></dd>
+    <dd><font size="3"><b>Amplitude Modulation</b>: via eksternt
+        signal</font></dd>
+</dl>
+
+<p><font size="3">Den arbitrære bølgeform består af X: 1024;
+Y: 1024 (10 bit) punkter. Man kan altså lave sit helt eget
+signal og det huskes af Hameg, når apparatet slukkes.</font></p>
+
+<p><font size="3">Man kan downloade et signal på følgende
+måde:</font></p>
+
+<p><font size="3">I Datalyse vælges <b>Vis</b> | <b>Tabel</b>,
+og i tabellen vælges <b>Funktioner</b> | <b>Format. </b>Her
+vælges 1024 rækker. Disse udfyldes så med tal i søjle A fra 1
+til 1024. Anbring nu markøren i søjle B og vælg funktion, fx.
+0.4*a.</font></p>
+
+<p><font size="3">Man skal huske, at y-værdierne skal ligge
+mellem -511 og 512. (Datalyse vil automatisk klippe »bund« og
+»top« af søjle B, så man skal blot tænke på, at tallene
+ikke må være for små. Det vil være ret dårligt med sin(A),
+men det vil være ret godt med 500*sin(2*pi/360*A)</font></p>
+
+<p><font size="3">Hameg har også kommandoer til indstilling af
+frekvens og amplitude..., men det har jeg valgt ikke at lægge
+ind i Datalyse. Det er overflødigt, da panelet er logisk og nemt
+at betjene og da funktionerne som nævnt kun er til indstilling.</font></p>
+
+<p><font size="3">Trig funktionen kan benyttes til at starte et
+sweep på et bestemt tidspunkt. Så behøver man ikke at
+tilslutte et signal til Gate/Trig indgangen.</font></p>
+
+<p><font size="3">Det var ønskeligt om man kunne læse den
+øjeblikkelige frekvens ved et sweep, men det kan man ikke.
+Bemærk dog, at Hameg 8130 i Datalyse kan vælges sammen med et
+andet apparat. Her kan man så vælge retur for hver måling og
+på den måde få sammenhørende værdier af frekvens og en anden
+fysisk størrelse.</font></p>
+</body>
+</html>

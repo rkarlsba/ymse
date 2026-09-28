@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Titrering af phosphorsyre (cola), forsøg med Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Titrering af fosforsyre (cola)</font></h2>
+
+<hr>
+
+<h3><font color="#0000FF">Formål</font></h3>
+
+<p>At frembringe en titrerkurve for fosforsyre og at bestemme
+fosforsyreindholdet i en Coca Cola.</p>
+
+<h3><font color="#0000FF">Teori</font></h3>
+
+<p><i>Positivlisten</i> tillader en længere række
+tilsætningsstoffer i læskedrikke, herunder en gruppe »syrer,
+baser og salte«. De fleste colaer er tilsat fosforsyre og CO<sub>2</sub>.
+Sidstnævnte indgår i carbonsyreligevægtene: </p>
+
+<blockquote>
+
+<p>CO<sub>2</sub>(g) &lt;-&gt; CO<sub>2</sub>(aq)</p>
+
+<p>H<sub>2</sub>O + CO<sub>2</sub>(aq) &lt;-&gt; H<sub>2</sub>CO<sub>3</sub>
+(langt mod venstre)</p>
+
+</blockquote>
+
+<p>Ved at trække luft gennem colaen (eller ved at koge den) kan
+ligevægtene drives mod venstre, så colaen befries for
+»kulsyre«. Fosforsyren kan derefter titreres med stærk base.
+Ud fra fosforsyres protolysekonstanter kan vi se, at to
+ækvivalenspunkter kan registreres på titrerkurven, hvis vi
+titrerer med 0,1 mol/L NaOH(aq). I ækvivalenspunktet er
+stigningen i pH pr. tilsat mL NaOH(aq) størst, dette kan
+benyttes til at bestemme ækvivalenspunktets beliggenhed. </p>
+
+<h3><font color="#0000FF">Apparatur</font></h3>
+
+<p>Vaskeflaske, 250 mL bægerglas, burette, magnetomrører med
+magnet, 100 mL måleglas. pH-meter.</p>
+
+<p><b>Kemikalier</b> </p>
+
+<p>NaOH(aq) med kendt konc. omkring 0,1 mol/L. Pufferopløsninger
+til kalibrering af pH-meter. Opløsning af fosforsyre med 650
+mg/L. Coca Cola med indhold af fosforsyre (nogle colaer er tilsat
+citronsyre - de bør undgås).</p>
+
+<h3><font color="#0000FF">Fremgangsmåde</font></h3>
+
+<p>100 mL Cola afmåles i et måleglas og anbringes i en
+vaskeflaske. Luft suges ved hjælp af vandluftpumpe gennem colaen
+i 10 minutter. Herved fjerner vi (næsten alt) CO<sub>2</sub>/H<sub>2</sub>CO<sub>3</sub>
+fra colaen.</p>
+
+<p><i>Manuel måling:</i> </p>
+
+<p>I mellemtiden gøres en titreropstilling klar med 250 mL
+bægerglas på magnetomrører og kalibreret pH-meter. En burette
+fyldes med NaOH(aq) med kendt koncentration. 100 mL ren
+fosforsyreopløsning afmåles og anbringes i bægerglasset i
+titreropstillingen. pH i opløsningen måles, derefter tilsættes
+0,5 mL NaOH(aq) og pH måles igen. På denne måde måles
+sammenhørende værdier af volumen NaOH(aq) <i>V</i> og pH. Det
+er praktisk at tilsætte 0,5 ml NaOH(aq) ad gangen (aflæs
+nøjagtigt det samlede volumen NaOH(aq) efter hver tilsætning.
+Titreringen fortsætter indtil det andet ækvivalenspunkt er
+passeret med 5 mL NaOH(aq). </p>
+
+<p>Når afgasningen af colaen menes at være tilendebragt,
+titreres colaen på samme måde som den rene
+fosforsyreopløsning. </p>
+
+<p><i>Automatisk måling med Datalyse:</i> </p>
+
+<p>Der benyttes et pH-meter med serielt interface, som tilsluttes
+pc'en. Desuden benyttes en titrerpumpe. Når opstillingen er
+klar, tændes for pc'en og i Datalyse vælges det pågældende
+apparat. Så vælges grafisk måling (i apparatets menu øverst).
+</p>
+
+<p>I menuen »indstilling af måleparametre« vælges: </p>
+
+<p><b>tid pr måling</b>: fx 5 sekunder pr måling </p>
+
+<p><b>X-akse</b>: her angives enhed på x-aksen og
+pumpehastighed. </p>
+
+<p><b>Start pumpen samtidig med at du klikker på Start i
+Datalyse. </b></p>
+
+<h3><font color="#0000FF">Måleresultater og beregninger</font></h3>
+
+<p>Titrerkurver tegnes med pH som fkt. af volumen <i>V</i> af
+NaOH(aq). Tilvæksten i pH pr. mL NaOH(aq) er størst i
+ækvivalenspunktet. Det kan derfor være en hjælp at beregne <font
+face="Symbol">D</font>pH<font face="Symbol">/D</font>V, og
+afsætte denne størrelse som funktion af <i>V</i>. Kurven har
+maksimum i ækvivalenspunktet. </p>
+
+<p>Dette er meget enkelt i Datalyse, man vælger blot <b>Diff -
+ln</b> i menuen til venstre. Hvis grafen ikke er pæn, kan du
+glatte den ud! Vælg igen <b>Diff - ln</b> og vælg udglatning
+(fra 1-15). pKs-værdier beregnes, når du klikke på ikonen i
+panelet til venstre. Vælg igen <b>Diff - ln</b> og tegn den
+almindelige graf. Bemærk, at beregnede værdier skrives i
+Datalyses memo (Vis | Demo). </p>
+<div align="center"><center>
+
+<table border="1" cellpadding="2" cellspacing="0" width="90%"
+bordercolor="#000000">
+    <tr>
+        <td width="34%">&nbsp;</td>
+        <td width="34%">fosforsyre-opl.</td>
+        <td width="34%">Cola - anfør navn </td>
+    </tr>
+    <tr>
+        <td valign="top" width="34%">1. ækvp.</td>
+        <td valign="top" width="34%">&nbsp; </td>
+        <td valign="top" width="34%">&nbsp; </td>
+    </tr>
+    <tr>
+        <td valign="top" width="34%">2. ækvp.</td>
+        <td valign="top" width="34%">&nbsp; </td>
+        <td valign="top" width="34%">&nbsp; </td>
+    </tr>
+    <tr>
+        <td valign="top" width="34%">pKs1 aflæst</td>
+        <td valign="top" width="34%">&nbsp; </td>
+        <td valign="top" width="34%">&nbsp; </td>
+    </tr>
+    <tr>
+        <td valign="top" width="34%">pKs2 aflæst</td>
+        <td valign="top" width="34%">&nbsp; </td>
+        <td valign="top" width="34%">&nbsp; </td>
+    </tr>
+    <tr>
+        <td valign="top" width="34%">Indhold af fosforsyre</td>
+        <td width="34%">&nbsp; </td>
+        <td width="34%">&nbsp; </td>
+    </tr>
+</table>
+</center></div>
+
+<p><i>Fosforsyre-opløsningen</i> </p>
+
+<p>Beregn koncentrationen af H<sub>3</sub>PO<sub>4</sub> og
+aflæs pKs1 og pKs2 fra kurven. Kommenter værdierne. Ligger det
+1. og et 2. ækvivalenspunkt som forventet i forhold til
+hinanden? Beregn pH i den rene fosforsyre-opløsning og
+sammenlign med den målte pH. </p>
+
+<p><i>Coca Cola</i> </p>
+
+<p>Beregn colaens indhold af fosforsyre ud fra 1.
+ækvivalenspunkt. Sammenlign resultatet med Positivlistens norm.
+Colaens titrerkurve afviger på nogle punkter fra titrerkurven
+for ren fosforsyre. Hvilke forskelle kan du se og hvad kan
+årsagen til forskellene være? </p>
+
+<p>I rapportens teoriafsnit bør der være reaktionsskemaer for
+titrerreaktionerne.</p>
+
+<p><font size="3"><i>note:</i></font><font size="4"> </font></p>
+
+<blockquote>
+    <p><font size="3"><i>1: Man kunne evt. i stedet lade eleverne
+    titrere ren fosforsyre med indikator, så de med to
+    forskellige indikatorer fandt 1. og 2. ækv.punkt? </i></font></p>
+    <p><font size="3"><i>2: Måske kan ammonieret karamel i
+    colaen blive titreret med? Stoffet kunne måske fjernes ved
+    filtrering på aktivt kul, men det er besværligt og
+    tidskrævende. Måske er det CO</i><sub><i>2</i></sub><i>.
+    Kunne det måske være Mononatriumorthofosfat, som er tilladt
+    ifgl. positivlisten?</i></font><font size="4"> </font></p>
+    <p><font size="3"><i>3: pKs tabelværdier henfører til meget
+    fortyndede opløsninger. De aflæste pKs forventes derfor at
+    være mindre end tabelværdier på grund af opløsningens
+    ionstyrke.</i></font></p>
+</blockquote>
+</body>
+</html>

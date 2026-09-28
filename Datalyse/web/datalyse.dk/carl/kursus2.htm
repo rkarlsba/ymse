@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>kursus 2: Barium 137 ,databehandling med Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Kursus 2, Data-analyse ved hjælp af Datalyse</font></h2>
+
+<h3><font color="#0000FF">Halveringstid for g-henfald af Ba*-137</font></h3>
+
+<hr>
+
+<p>Når Datalyse til Windows er startet, ser man Datalysevinduet
+på skærmen. Herfra vælger man apparater, indstiller apparater
+og gennemfører grafisk dataanalyse. </p>
+
+<p>Fra Datalysevinduets menupunkt <i>VIS</i> kan man åbne/lukke
+tabelvinduet og memovinduet. </p>
+
+<h3><font color="#0000FF"><i>Denne vejledning er skrevet til datafilen Ba-137.dat.</i></font></h3>
+<ul>
+  <li><b>Emne</b>:
+    <ul>
+      <li><b>Handlinger:</b></li>
+    </ul>
+  </li>
+  <li>Opgaven <b>Ba137.dat</b> åbnes
+    <ul>
+      <li>Filer Hent opgave</li>
+    </ul>
+  </li>
+  <li>Vis tabel
+    <ul>
+      <li>Vis Tabel</li>
+    </ul>
+  </li>
+  <li>Fratræk baggrund
+    <ul>
+      <li>Sæt cursor i søjle C<br>
+        Vælg forskrift for søjle <b>b-23</b> </li>
+    </ul>
+  </li>
+  <li>Tegn graf
+    <ul>
+      <li>Vælg graf, X-akse: søjle A, Y-akse,
+        søjle C</li>
+    </ul>
+  </li>
+  <li>Slet datapunkterne [1:6] på grafen
+    <ul>
+      <li>Træk med musen en ramme om punkterne. Tryk
+        på Delete tasten</li>
+    </ul>
+  </li>
+  <li>Afbild aktiviteten på logaritmisk (ln) akse
+    <ul>
+      <li>Tryk på knappen Diff - ln<br>
+        anden akse
+        2: logaritmisk (ln)</li>
+    </ul>
+  </li>
+  <li>Beregn den bedste rette linie
+    <ul>
+      <li>Tryk på knappen Reg OK<br>
+        I Datalyses statuslinie kan nu læses:<br>
+        <br>
+        f(t)=1438*exp(-0.00437*t),<br>
+        <br>
+        dvs. henfaldskonstanten er k = 0.00437
+        s<sup>-1</sup> </li>
+    </ul>
+  </li>
+  <li>Datalyses <b><i>Memo</i></b><i>vindue</i>
+        åbnes
+    <ul>
+      <li>Vis Memo<br>
+        I memovinduet står:<br>
+        1: [ 1: 37] : [65.0:425.0] : f(t)=1438*exp(-0.00437*t)<br>
+        og<br>
+        a=0.99564, b=1437, T=159</li>
+    </ul>
+  </li>
+  <li>Rediger i memovinduet. Skriv også navne og dato
+    <ul>
+      <li>Så teksten ser nogenlunde sådan ud:<br>
+        Gammahenfald af Ba* udmalket fra
+          Minigenerator:<br>
+        Lineær regression på datapunkterne
+        [1: 37]<br>
+        f(t)=1438*exp(-0.00437*t)<br>
+        henfaldskonstant k = 0.00437 s<sup>-1</sup>, halveringstid T=159 s,<br>
+        konstanter i eksponentialfunktion:<br>
+        a=0.99564, b=1438</li>
+    </ul>
+  </li>
+  <li>Luk <i>Memovinduet</i>
+    <ul>
+      <li>Luk memovindue</li>
+    </ul>
+  </li>
+  <li>Udskriv graf + memo, en kopi til hver
+        holddeltager
+    <ul>
+      <li>I Datalyse vinduet vælges:<br>
+        Filer
+        udskriv Graf, <span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">og sæt </span><span style="mso-char-type: symbol; mso-symbol-font-family: Wingdings 2; font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Wingdings 2; mso-ascii-font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-hansi-font-family: Times New Roman; mso-bidi-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA">R</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:DA;mso-fareast-language:
+DA;mso-bidi-language:AR-SA"> ved udskriv memo.</span> </li>
+    </ul>
+  </li>
+</ul>
+<p><b>Ekstra:</b> </p>
+<ul>
+  <li>Tegn en modelkurve i
+        grafvinduet: f(t) = b · a^t&nbsp;&nbsp; = 1437 · 0.99564^t
+    <ul>
+      <li>Sæt X i lineær regression for
+        indsætning af forskrift for f(t).<br>
+        Vælg f(t) og tast
+        OK, så tegnes modelfunktionen.<br>
+        Vælg lineære akser, hvis du ikke allerede har
+        gjort det.</li>
+    </ul>
+  </li>
+  <li>Udskriv graf og memo, en kopi til hver
+        holddeltager
+    <ul>
+      <li>Graf kan kopieres til
+        klippebord og indsættes i WORD. Det samme gælder tabel
+        og memo.</li>
+    </ul>
+    <p>&nbsp;</li>
+</ul>
+
+<address>
+    Carl Hemmingsen 
+</address>
+</body>
+</html>

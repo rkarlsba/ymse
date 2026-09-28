@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Normalfordelingen</title>
+</head>
+
+<body>
+
+<h2>Normalfordelingen</h2>
+<hr>
+
+<p>Denne simulation kan benyttes til at undersøge om et givet
+datasæt er normalfordelt. Når simulationen vælges fås derfor en tabel, hvor
+man kan indtaste sine data eller hente data.</p>
+<table border="0" width="72%">
+  <tr>
+    <td width="35%">
+<img src="images/normal1.jpg" v:shapes="_x0000_i1025" width="178" height="232"></td>
+    <td width="65%">Betydningen af ikonerne i panelet til venstre i tabellen
+er:
+      <p><b>Tekst</b>: overskrifterne <i>x</i> og <i>y</i>/% kan redigeres.</p>
+      <p><b>Åben</b>: et datasæt hentes.</p>
+      <p><b>Gem</b>: datasættet gemmes.</p>
+      <p><b>Graf</b>: grafen tegnes.</td>
+  </tr>
+</table>
+<p>De tilsvarende funktioner kan også vælges i menuen,
+Filer…</p>
+<p>En typisk opgave kan være følgende (vejledende
+eksamensopgave 6.033):</p>
+<table border="1" width="34%">
+  <tr>
+    <td width="38%" align="center">Mertilvækst / m<sup>3</sup>/ha</td>
+    <td width="28%" align="center">frekvens /%</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right"><span style="font-family:Symbol">]-</span>56,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;
+      </span><span style="font-family:Symbol">-</span>20,5]</td>
+    <td width="28%" align="right">6</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right"><span style="font-family:Symbol">]-</span>20,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;
+      </span><span style="font-family:Symbol">-</span>11,5]</td>
+    <td width="28%" align="right">8</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right"><span style="mso-tab-count:1">&nbsp;]
+      </span><span style="font-family:Symbol">-</span>11,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;
+      </span><span style="font-family:Symbol">-</span>2,5]</td>
+    <td width="28%" align="right">21</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right"><span style="mso-tab-count:1">&nbsp;]
+      </span><span style="font-family:Symbol">-</span>2,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </span>6,5]</td>
+    <td width="28%" align="right">20</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right"><span style="mso-tab-count:1">&nbsp;]&nbsp; </span>6,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>15,5]</td>
+    <td width="28%" align="right">22</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right">]15,5;<span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>24,5]</td>
+    <td width="28%" align="right">13</td>
+  </tr>
+  <tr>
+    <td width="38%" align="right">]24,5; <span style="mso-tab-count:1">&nbsp;&nbsp;&nbsp;&nbsp; </span>51,5]</td>
+    <td width="28%" align="right">10</td>
+  </tr>
+</table>
+<p>Her indtastes intervallernes højre endepunkter i første søjle
+i tabellen. De kumulerede frekvenser beregnes og indtastes i anden søjle i
+tabellen.</p>
+<p>Da der ikke er værdier før første intervals venstre
+endepunkt, er den kumulerede frekvens 0% i dette punkt. Den kumulerede frekvens
+er 100% i sidste intervals højre endepunkt. Man indtaster derfor følgende data
+i tabellen:</p>
+<table border="1" width="30%">
+  <tr>
+    <td width="56%" align="center">Mertilvækst / m<sup>3</sup>/ha</td>
+    <td width="44%" align="center">Frekvens /%</td>
+  </tr>
+  <tr>
+    <td width="56%" align="right">-56,5</td>
+    <td width="44%" align="right">0</td>
+  </tr>
+  <tr>
+    <td width="56%" align="right">-20,5</td>
+    <td width="44%" align="right">6</td>
+  </tr>
+  <tr>
+    <td width="56%" align="right">-11,5</td>
+    <td width="44%" align="right">14</td>
+  </tr>
+  <tr>
+    <td width="56%" align="right">…</td>
+    <td width="44%" align="right">…</td>
+  </tr>
+  <tr>
+    <td width="56%" align="right">51,5</td>
+    <td width="44%" align="right">100</td>
+  </tr>
+</table>
+<p>Man kan nøjes med at indtaste to punkter (<i>x</i><sub>1</sub>,
+<i>y</i><sub>1</sub>) og (<i>x</i><sub>2</sub>, <i>y</i><sub>2</sub>). Det har
+man brug for i normalfordelingen, men så kan middeltal for sumkurven ikke
+beregnes.</p>
+<p>Når data er indtastet eller hentet, kan grafen tegnes:</p>
+<blockquote>
+<p>
+<img src="images/normal2.gif" v:shapes="_x0000_i1026" width="359" height="252"></p>
+</blockquote>
+<p>Herefter kan der i panelet foroven vælges forskellige
+visninger:</p>
+<blockquote>
+<p>
+<img src="images/normal3.jpg" v:shapes="_x0000_i1027" width="460" height="24"></p>
+</blockquote>
+<p>Middelværdi og spredning, normalfordeling, indtegning af
+gitter og valg af decimaler. Desuden kan områder markeres med musen og
+sandsynligheden for intervallet P(<i>x</i><sub>1</sub>,<i>x</i><sub>2</sub>)
+beregnes automatisk og skrives i statuspanelet.</p>
+<blockquote>
+<p>
+<img src="images/normal4.gif" v:shapes="_x0000_i1028" width="359" height="252"></p>
+</blockquote>
+<p>Her er indtegnet middelværdi og spredning.</p>
+<blockquote>
+<p>
+<img src="images/normal5.jpg" v:shapes="_x0000_i1029" width="352" height="20"></p>
+</blockquote>
+<p>Ved valg af normalfordeling fås en graf som vist herunder:</p>
+<p>&nbsp;
+</p>
+<blockquote>
+<p>
+<img src="images/normal6.gif" v:shapes="_x0000_i1030" width="359" height="252"></p>
+</blockquote>
+<p>Bemærk, at punkterne (<i>x</i>, 0%) og (<i>x</i>, 100%)
+ikke medtages!</p>
+<p>Vælges middelværdi og spredning indtegnes automatisk den
+bedste rette linie. Samtidigt skaleres <i>x</i>-aksen, så kumulerede
+sandsynligheder kan aflæses for alle sandsynligheder fra 0,1% til 99,9% vha.
+scrollbaren til venstre.</p>
+<blockquote>
+<p>
+<img src="images/normal7.gif" v:shapes="_x0000_i1031" width="359" height="252"><span style="mso-spacerun: yes">&nbsp;</span></p>
+</blockquote>
+<p>Markeres et område med musen beregnes sandsynligheden for
+intervallet vha. den indtegnede bedste rette linie. Ved beregning af middelværdi
+og spredning (og indtegning af linie) kan man medtage alle de afsatte punkter
+eller kun nogle af punkterne.</p>
+
+<h3>Indbygget lommeregner</h3>
+
+<p>Lommeregneres aktiveres ved at vælge Vis »Regner«.<span style="mso-spacerun: yes">&nbsp;
+</span>Datafelterne Middelværdi og Spredning i lommeregneren opdateres
+automatisk, men felterne kan også udfyldes manuelt. Dette muliggør beregning
+af sandsynligheden <i>P</i>(<i>X</i>&lt;<i>x</i>) eller af det tal, <i>x</i>,
+hvor <i>P</i>(<i>X</i>&lt;<i>x</i>) = en indtastet procent.</p>
+
+</body>
+
+</html>

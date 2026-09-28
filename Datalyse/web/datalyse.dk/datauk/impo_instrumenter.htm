@@ -1,0 +1,406 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>IMPI instrumenter</title>
+</head>
+
+<body>
+
+<h2>IMPO instruments</h2>
+
+<menu>
+  <li><a href="impo_instrumenter.htm#AC7E counter">AC7E counter</a></li>
+  <li><a href="impo_instrumenter.htm#DMI-24 multimeter">DMI-24 multimeter</a></li>
+  <li><a href="impo_instrumenter.htm#DMI4 multimeter">DMI4 multimeter</a></li>
+  <li><a href="impo_instrumenter.htm#DT4 temperature meter">DT4 temperature meter med datalog</a></li>
+  <li><a href="impo_instrumenter.htm#EM1 energy meter">EM1 energy meter with datalog</a></li>
+  <li><a href="impo_instrumenter.htm#FD4 function generator">FD4 function generator</a></li>
+  <li><a href="impo_instrumenter.htm#FD4E function generator">FD4E function generator</a></li>
+  <li><a href="impo_instrumenter.htm#MC24">MC24 counter</a></li>
+  <li><a href="impo_instrumenter.htm#MC24E">MC24E counter</a></li>
+  <li><a href="impo_instrumenter.htm#MI-multiinterface">MI-multiinterface</a></li>
+  <li><a href="impo_instrumenter.htm#mVolt Meter">mVolt Meter</a></li>
+  <li><a href="impo_instrumenter.htm#pH1000">pH1000</a></li>
+  <li><a href="impo_instrumenter.htm#PT2, PT200">PT2, PT200 thermometers</a></li>
+  <li><a href="impo_instrumenter.htm#RM2 ratemeter">RM2 ratemeter</a></li>
+  <li><a href="impo_instrumenter.htm#RM3 ratemeter">RM3 ratemeter with datalog</a></li>
+</menu>
+
+<hr>
+<h3><a name="AC7E counter">AC7E counter</a>, version 1.00</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Acceleration measuring<br>
+  e.g. free fall<br>
+  Half-time<br>
+  Halve-thickness<br>
+  Poisson distribution<br>
+  Radon measuring</strong></font></p>
+</blockquote>
+<p><font size="3">AC7E is a smaller version of MC24E since AC7E has some of the
+functions of MC24E.</font></p>
+<p><font size="3">Baud rate 1200, no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3"><b>AC7E Physics-/electronic counter with built-in intelligence
+and memory.</b></font></p>
+<p><font size="3">Smaller version of counter MC24.</font></p>
+<p><font size="3">Equipped with 7-digit LED display. Resolution as small as 10
+msek. on time measuring. Automatic sensitivity regulation and optimal noise
+removal with AGC regulated input step with hysteresis band in input A.</font></p>
+<hr>
+<h3><a name="DMI-24 multimeter">DMI-24 multimeter</a></h3>
+<p><font size="3">Menu in Datalyse</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong></font></p>
+</blockquote>
+<p><font size="3">Multimeter, thermometer and pHmeter all in one device. Minimum
+time 0.5 seconds.</font></p>
+<p><font size="3">You setup using the device buttons, Datalyse reads this setup
+and adapts the coordinate system.</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bit. Command
+&quot;V&quot; for version.</font></p>
+<hr>
+<h3><a name="DMI4 multimeter">DMI4 multimeter</a>, version 1.20</h3>
+<p>Menu in Datalyse</p>
+<dl>
+  <dd>Graphical measurement of a value.</dd>
+  <dd>Multitable of from 1 to 4 values.</dd>
+</dl>
+<p>The demonstration multimeter can measure current, voltage, resistance,
+frequency, temperature, pH and pressure.<br>
+There are four galvanically separated parts in the DMI4. This feature makes it
+possible to leave measurement probes connected while measuring something else.
+And it is possible to measure temperature, pH and pressure and
+Voltage/current/resistance/frequency at the same time when the device is
+connected to a computer.</p>
+<p>The 4 sections are as follows:</p>
+<ol>
+  <li>Temperature</li>
+  <li>pH</li>
+  <li>Pressure</li>
+  <li>Volt, current, resistance and frequency</li>
+</ol>
+<p>With Graphical measurement turn the central knob to the wanted function.</p>
+<p>With measurements in Multitable turn the central knob to Volt, current,
+resistance or frequency if yo want to measure one of these quantities.</p>
+<p>Baud rate 9600, no parity, 1 stop, 8 data bits. <font size="3">Command
+&quot;V&quot; for version.</font></p>
+<hr>
+<h3><a name="DT4 temperature meter">DT4 temperature meter</a> med datalog, version 1.10</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong> of one, chosen
+  parameter.<br>
+  <strong>Multitable</strong>, measuring from one to 4 parameters.<br>
+  <strong>Log reading</strong>. The device is available both with and without a
+  log.<br>
+  <strong>Setup the log</strong>.</font></p>
+</blockquote>
+<p><font size="3">DT4 means that the device has 4 inputs for temperature.</font></p>
+<p><font size="3">DT4 also has a relay which is controlled by the input 1
+temperature. This function will be usable in the next version of DT4 and of
+Datalyse.</font></p>
+<p><font size="3">The log may contain max. 250 lines. Datalyse converts the time
+stamp to a running time.</font></p>
+<p><font size="3">Baud rate 1200, no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3">When reading the log, the baud rate is set to 9600. This means
+reading the log is reduced to an acceptable 30 seconds.</font></p>
+<hr>
+<h3><a name="EM1 energy meter">EM1 energy meter</a> with datalog</h3>
+<p>Menu in Datalyse</p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong>.<br>
+  <strong>Multitable</strong> in which all parameters are measured and viewed in
+  a table.<br>
+  <strong>Summary</strong>. Measurements are not saved.<br>
+  <strong>Setup log</strong>. Setup of all parameters.<br>
+  <strong>Reading the log</strong>.</font></p>
+</blockquote>
+<p><font size="3">The log is written to the table, graphs can be made later on.</font></p>
+<p><font size="3">Baud rate 1200 (9600), no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3">The 9600 in brackets means that Datalyse sets this baud rate
+at startup. This reduces the log reading time to an acceptable 30 seconds.</font></p>
+<p><font size="3">Notice that there is no menu (command) for resetting the log;
+it is reset when beginning a new measurement after having setup the log.</font></p>
+<h3>Setup log</h3>
+<blockquote>
+<p><font size="3"><b>Start condition:</b></font></p>
+<dl>
+  <dd><font size="3"><b>1: manual</b></font></dd>
+  <dd><font size="3"><b>2: clock</b></font></dd>
+  <dd><font size="3"><b>3: power level</b></font></dd>
+</dl>
+<p><font size="3">The log is started manually by simultaneously pressing
+FUNCTION and RESET/SELECT buttons on the Energy Meter. If you choose clock, you
+do not have to specify a power level. If you choose power level, there is no
+need to specify a starting time.</font></p>
+<p><font size="3"><b>Log layout:</b></font></p>
+<dl>
+  <dd><font size="3"><b>1: automatic compression</b></font></dd>
+  <dd><font size="3"><b>2: preset time</b></font></dd>
+</dl>
+<p><font size="3">The log may hold 250 measurements.</font></p>
+<p><font size="3">Automatic compression means that every second measurement will
+be deleted when the log is full, making room for more measurements. If you
+choose preset time, the time between each measurement is calculated from the
+total logging time. Logging ends when the datalog is full.</font></p>
+<p><font size="3">During the log setup, the log will be readied for measuring.
+The datalog will not be deleted until the log is activated.</font></p>
+</blockquote>
+<hr>
+<h3><a name="FD4 function generator">FD4 function generator</a>, version 1.10</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement.</strong></font></p>
+</blockquote>
+<p><font size="3">Frequency measurements are possible.</font></p>
+<p><font size="3">This is an early version of the FD4E.</font></p>
+<p><font size="3">Be aware that measuring frequencies less than 1 Hz takes some
+time (several seconds).</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. Command
+&quot;V&quot; for version.</font></p>
+<hr>
+<h3><a name="FD4E function generator">FD4E function generator</a>, version 1.21</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong> of frequencies.<br>
+  <strong>FD4E setup</strong>, for control of all of FD4E's functions.</font></p>
+</blockquote>
+<p><font size="3">Baud rate 1200 (9600), no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3">The 9600 in brackets means that Datalyse sets this baud rate
+at startup. Otherwise, using the control panel with FD4E would be too slow.</font></p>
+<h3>control:</h3>
+<b><font SIZE="3">
+<blockquote>
+<p>Setup:</p>
+</font></b><font SIZE="3">
+<p>You can control the overtones of a standing cord. Enter the frequency and
+press »Overtones«. The device will be set to 1st overtone, 2nd overtone...9th
+overtone and again the base tone.</p>
+<p>Be aware that setting the FD4E to a certain frequency is much easier (faster)
+with the setup panel than the buttons on front of the device.</p>
+<b>
+<p>Guess a note:</p>
+</b>
+<p>Random provides you with a tone. Try guessing the frequency; press Answer to
+see the proper answer.</p>
+<b>
+<p>Sweep:</p>
+</b>
+<p>FD4E does not have a hardware sweep but you can make a sweep with Datalyse.
+The parameters are set here and the sweep is started from the main menu under
+»Start sweep«. Datalyse sends a frequency command to FD4E every time a time
+step has passed (minimum: 0,05s, maximum: 5,0 s). Before starting you have to
+set FD4E to Amplifier and an appropriate volume. If the pc has a soundcard the
+checkbox »Measure sound« will be active. This means that you can measure a
+sound signal as a function of frequency. E.g. you can show resonance in a
+cardboard tube.</p>
+<p>The pc's microphone has an interval of 16 bits [-32767; 32768]. While
+measuring Datalyse finds the minimum and the maximum of the microphone signal
+and calculates the amplitude in %.</p>
+</blockquote>
+</font>
+<hr>
+<h3><a name="MC24">MC24</a> counter, version 2.3</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Elastic and inelastic collision</strong>, see
+  collision experiments menu<br>
+  <strong>Start A, stop B, t AB</strong>, Acceleration measurements<br>
+  <strong>Start A, stop B<br>
+  Passage time at A<br>
+  Frequency<br>
+  half-life<br>
+  half-thickness<br>
+  Poisson distribution</strong></font></p>
+</blockquote>
+<p><font size="3">see also MC24E, which is newer, and for which all menu topics
+are available.</font></p>
+<p><font size="3">If you press both »function select« and »display result«
+when turning on MC24, the version is displayed. If the version number is less
+than 2.3, you should contact IMPO Electronic for a free upgrade to version 2.3.</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. No version
+command.</font></p>
+<hr>
+<h3><a name="MC24E">MC24E</a> counter, version 4.02</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Elastic and inelastic collisions</strong>, see
+  collision experiments menu<br>
+  <strong>Start A, stop B, t AB</strong>, Acceleration measurements.<br>
+  <strong>Start A, stop B<br>
+  Passage time A</strong>,<br>
+  <strong>Periods of Revolution at A</strong>, e.g. for circular motion<br>
+  <strong>Time of Oscillation at A</strong>, e.g. for the physical pendulum<br>
+  <strong>Frequency<br>
+  half-time<br>
+  half-thickness<br>
+  Poisson distribution<br>
+  radon measurements</strong></font></p>
+</blockquote>
+<p><font size="3">Notice that MC24E can function as an MC24. But that doesn't do
+it, you should choose MC24E, which it is, if the display at startup shows that
+it is at least version 4.02.</font></p>
+<p><font size="3">MC24E devices of version 3.0 should be upgraded, contact IMPO.</font></p>
+<p><font size="3">Notice that the front panel buttons of the MC24E are
+unavailable when the device is connected to a PC.</font></p>
+<p><font size="3">Baud rate 1200 (9600), no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3">The 9600 in brackets means that Datalyse sets this baud rate
+at startup.</font></p>
+<hr>
+<h3><a name="MI-multiinterface">MI-multiinterface</a></h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong> of one parameter.<br>
+  <strong>Multitable</strong>, a number of parameters are measured.<br>
+  <strong>Process scheme</strong> of 2 independent circuits.</font></p>
+</blockquote>
+<p><font size="3">MI-multiinterface is useful for process scheming, but only
+with a PC.</font></p>
+<p><font size="3"><b>Inputs:</b></font></p>
+<dl>
+  <dd><font size="3">One 0- 200 mV.</font></dd>
+  <dd><font size="3">One 0-2000 mV.</font></dd>
+  <dd><font size="3">Three digital inputs (0-5V).</font></dd>
+  <dd><font size="3">Two temperature inputs (-150 °C - 1400 °C).</font></dd>
+</dl>
+<p><font size="3"><b>Outputs:</b></font></p>
+<dl>
+  <dd><font size="3">Two digital outputs (0-5V) via opto-couplers.</font></dd>
+  <dd><font size="3">Two relay switches (0-250V) and max 5A</font></dd>
+</dl>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3"><strong>Process scheme:</strong></font></p>
+<blockquote>
+<p><font size="3">Circuit 1 outputs will be <b>high</b> until the temperature is
+above 30°C. Then the outputs will remain <b>low</b> until the temperature is
+below 22°C. Like a thermostat. In this picture, the temperature has been above
+30 °C.</font></p>
+<p><font size="3">As you see, in circuit 2, the first voltage is greater than
+the second. This has the opposite effect. The output will become <b>high</b>
+when the input is greater than the start value. The output will be <b>low</b>
+when the input goes below the stop value, and it will not be <b>high</b> again
+until the input is once again greater than the start value. Just like a
+refrigerator.</font></p>
+<p><font size="3">At least one input and one output must be chosen (in the same
+circuit).</font></p>
+<p><font size="3">Also notice the other information about high/min: 0.76 67%</font></p>
+<p><font size="3">and the total processing time.</font></p>
+</blockquote>
+<hr>
+<h3><a name="mVolt Meter">mVolt Meter</a></h3>
+<p><font size="3">Menu in Datalyse</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong> on one of 6 voltage
+  input.<br>
+  <strong>Multitable</strong> on 1-6 of the inputs.</font></p>
+</blockquote>
+<p><font size="3">There are 3 inputs (-199.9 mV - 199.9 mV) with an impedance of
+1 Mohm</font></p>
+<p><font size="3">and 3 inputs (-199.9 mV - 199.9 mV) with an impedance of 100
+kohm.</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. No version
+command.</font></p>
+<p><font size="3">At start-up, Datalyse sends a calibration command to the
+mV-meter.</font></p>
+<p><font size="3">The device is usable only with a PC, see also
+MI-Multiinterface.</font></p>
+<hr>
+<h3><a name="pH1000">pH1000</a>, version 1.10</h3>
+<p><font size="3">Menu in Datalyse</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong>, pH is measured.<br>
+  <strong>Multitable</strong>, pH and temperature is measured.</font></p>
+</blockquote>
+<p><font size="3">Baud rate 1200, no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<hr>
+<h3><a name="PT2, PT200">PT2, PT200</a> thermometers</h3>
+<p><font size="3">Menu in Datalyse</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong> of input 1.<br>
+  <strong>Multitable</strong>, table measurement of both input.</font></p>
+</blockquote>
+<p><font size="3">Datalyse can also measure with PT2 which has only one input.</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. No version
+command.</font></p>
+<p><font size="3">PT-200 sends &quot;PT200 thermometer&quot; to the PC when the
+device is turned on. This can be used to check the connection from the device to
+the computer.</font></p>
+<hr>
+<h3><a name="RM2 ratemeter">RM2 ratemeter</a>, version 1.10</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Half-thickness</strong>, slab thickness can be
+  entered before every measurement.<br>
+  <strong>Half-life</strong> (and other time dependent measurements).<br>
+  <strong>Poisson distribution</strong>, a preset time of 1 second.</font></p>
+</blockquote>
+<p><font size="3">RM2 has no datalog - RM3 has.</font></p>
+<p><font size="3">But it has an output for pulse measurement. This may be used
+with the MC24E.</font></p>
+<p><font size="3">Baud rate 1200, even parity, 1 stop, 7 data bits. Command
+&quot;V&quot; for version.</font></p>
+<hr>
+<h3><a name="RM3 ratemeter">RM3 ratemeter</a> with datalog, version 1.10</h3>
+<p><font size="3">Menu in Datalyse:</font></p>
+<blockquote>
+  <p><font size="3"><strong>Half-thickness</strong>, slab thickness may be
+  entered before each measurement.<br>
+  <strong>Half-time</strong> (and other time dependent measurements).<br>
+  <strong>Poisson distribution</strong>, a preset time of 1 second.<br>
+  <strong>Plateau</strong><br>
+  <strong>Read memory</strong>, max 50 measurements.<br>
+  <strong>Read datalog</strong>, max 250 measurements.<br>
+  <strong>Reset datalog.<br>
+  Start datalog.<br>
+  Reset memory</strong>.</font></p>
+</blockquote>
+<p><font size="3">Baud rate 1200 (9600), no parity, 1 stop, 8 data bits. Command
+&quot;V&quot; for version.</font></p>
+<p><font size="3">The 9600 in brackets means that this parameter is set by
+Datalyse at startup. Otherwise, reading the log would take too long, now it only
+takes 20 seconds.</font></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<blockquote>
+  <p>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<blockquote>
+  <p>&nbsp;</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+</body>
+
+</html>

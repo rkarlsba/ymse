@@ -1,0 +1,172 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Multilog DB526, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Multilog DB226</h2>
+
+<hr>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure 1-6 inputs<br>
+    Read log...</strong></font></p>
+</blockquote>
+
+<p><font size="3">You can connect 6 sensors for measuring
+temperature, voltage, light, pressure etc. to the Multilog.</font></p>
+
+<p><font size="3">The resolution is 10 bits and the memory is 104
+kb. The log can contain 100 different measuring series.</font></p>
+
+<p><font size="3">The Multilog is easy to set up when measuring
+off-line, and you can then transfer these measurings to a pc. You
+can measuring manually or using a trigger function.</font></p>
+
+<p><font size="3">When the log is opened in Datalyse, the
+measurings are written to the table and the graphs are drawn.
+Since the log can contain more measurings than you can paste into
+Datalyse, the log is copied to the clipboard as well.</font></p>
+
+<p><font size="3"><b>Read log...</b></font></p>
+
+<p><font size="3">A measuring series is transferred in packets of
+100 bytes. You can follow this on the display of the Multilog,
+and when the series has been transferred the display reads
+---Transfer ## -- END</font></p>
+
+<p><font size="3">If you select Read log again, the next series
+is transferred.</font></p>
+
+<hr>
+
+<p><font size="4"><strong>Multilog measuring parameters</strong></font></p>
+
+<p><font size="3">Note that the contents of the log are erased
+before each measuring. If you have saved any data in the log, you
+should transfer them to the pc before measuring online!</font></p>
+
+<p><font size="3"><img src="images/multiop.gif" width="475"
+height="317"></font></p>
+
+<p><font size="3">Tab sheet: <b>Times</b></font></p>
+
+<p><font size="3">The possible times are:</font></p>
+
+<dl>
+    <dd><font size="3">Manual, every hour, 30 minutes, 10 min, 1
+        minute,</font></dd>
+    <dd><font size="3">10 s, 1s, 0.1s, 0.04s, 0.02s, 0.01s,</font></dd>
+    <dd><font size="3">2 ms, 0.5ms, (0.0705 ms - 0. 489 ms,
+        depending on the number of probes)</font></dd>
+</dl>
+
+<p><font size="3">When measuring manually you have to press »<b>Samples</b>«
+on the multilog for each value.</font></p>
+
+<p><font size="3">When the time per measuring is greater than or
+equal to 0.01 second, the data is transferred as they are being
+measured. If the time is smaller, the data is written in the log
+and not transferred until measuring is over.</font></p>
+
+<p><font size="3">When measuring online in Datalyse, you can set
+the number of measurings in steps from 10 to 2000.</font></p>
+
+<p><font size="3">If you check »Measure regularly«, Datalyse
+will repeat the measuring series until you press »Stop
+measuring« in Datalyse. </font></p>
+
+<p><font size="3">Note that the first measuring in every series
+is wrong. If the first measurings in a series have been made at
+1s, 2s, 3s, ... it seems that the first measurement was made at
+0s.</font></p>
+
+<p><font size="3">Tab sheet: <b>Sensors</b></font></p>
+
+<p><font size="3">The Multilog has 3 sensor inputs, but you can
+connect a T-connector to every input and thus measure on 6 sensor
+simultaneously. </font></p>
+
+<p><font size="3">The sensor are read in the file
+»Multilog.ini« which contains a list of 40 sensors. The first
+30 are »built-in«, the last 10 are user definable. These could
+for instance be vernier-probes. The file Multilog.ini contains:</font></p>
+
+<blockquote>
+    <p><font size="3">No.\title\unit\minimum value\maximum
+    value\decimals in table</font></p>
+</blockquote>
+
+<p><font size="3">You add a probe by clicking on Multilog.ini in
+the explorer and typing in the information on the probe: Minimum
+is the value at 0 volt and maximum is the value at 10 volt.</font></p>
+
+<p><font size="3">Tab sheet: <b>Trigger</b></font></p>
+
+<p><font size="3">You can start measuring by trigging on one of
+the selected inputs. The trigging could be increasing value,
+decreasing value, event (measure times), control or timer.</font></p>
+
+<p><font size="3">Example: If discharging a capacitor, you could
+trig on decreasing and for instance 5 volt, and measuring begins
+when the voltage drops below 5 volt.</font></p>
+
+<p><font size="3"><i>Increasing/decreasing:</i></font></p>
+
+<blockquote>
+    <p><font size="3">Does not work satisfactorily! Measuring
+    begins when the trig condition is fulfilled, but the values
+    are wrong. There appears to be a delay of random length from
+    Trigstart until measuring begins.</font></p>
+</blockquote>
+
+<p><font size="3"><i>Event (measure times):</i></font></p>
+
+<blockquote>
+    <p><font size="3">Here the device measures times at which the
+    signal takes a specified value. The time is measured with an
+    accuracy of 0.01 second. The measurings are correct except
+    the first, which arrives too late.</font></p>
+</blockquote>
+
+<p><font size="3"><i>Control:</i></font></p>
+
+<blockquote>
+    <p><font size="3">For controlling external devices. This
+    function does not work.</font></p>
+</blockquote>
+
+<p><font size="3"><i>Timer:</i></font></p>
+
+<blockquote>
+    <p><font size="3">This function does not work, which is odd,
+    since it works when activated from control panel on the
+    multilog.</font></p>
+</blockquote>
+
+<p><font size="3"></font>&nbsp;</p>
+
+<p><font size="3"><b>Distributor in Denmark:</b> A/S S.
+Frederiksen</font></p>
+
+<p><font size="3">Fourier Systems, Israel</font></p>
+
+<p><font size="3">web: </font><a
+href="http://www.fourier-sys.com"><font size="3">www.fourier-sys.com</font></a></p>
+
+<p><font size="3">mail: </font><a
+href="mailto:four_mgs@netvision.net.il"><font size="3">four_mgs@netvision.net.il</font></a></p>
+
+<p><font size="3"></font>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

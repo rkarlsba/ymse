@@ -1,0 +1,249 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>LabPro, dataopsamling med Datalyse</title>
+</head>
+
+<body>
+
+<h2><font color="#0000FF">LabPro</font></h2>
+<p>
+<font size="3" color="#FF0000">
+LabPro måler med 12 bits nøjagtighed!</font></p>
+<hr>
+<font SIZE="3" COLOR="#0000ff">
+<p><a href="cbldata.htm">Forsøg med CBL, CBL 2, CBR og LabPro</a></p>
+</font><font SIZE="3">
+<p><a href="ti83.htm">Dataopsamling med TI83</a></p>
+<p><b>Menu i Datalyse</b></p>
+<dl>
+  <dd>Mål (t, f(t)) på 1 kanal</dd>
+  <dd>Frekvensmåling</dd>
+  <dd>Scan på flere kanaler</dd>
+  <dd>Skop på 1 kanal</dd>
+  <dd>Lydmålinger</dd>
+  <dd>Timer, passagetid, omløbstid og svingningstid</dd>
+  <dd><a href="ntpulley.htm">Two-way Pulley</a></dd>
+  <dd>Radioaktivitet T½</dd>
+  <dd>Radioaktivitet, X½</dd>
+  <dd>kontrol DIG out</dd>
+  <dd>Læs Scan (ONline) fra LabPro til Datalyse</dd>
+  <dd>Læs Liste (OFFline)</dd>
+  <dd>Læs Opsætning (status)</dd>
+  <dd>Læs sonde information</dd>
+</dl>
+</font><font SIZE="3">
+<p>LabPro forbindes til pc'en vha. et serielt kabel, som <b>medfølger</b>.
+Baudraten er 38400.</p>
+<p>Der kan måles på alle Vernier-sonder: spænding, temperatur, lystyrke,
+Range sensoren...</p>
+<p>LabPro har autodetect for nye Vernier-sonder. Gamle Vernier-sonder tilsluttes
+vha. et konverterkabel fra DIN til CBL. LabPro omregner automatisk sondens
+spænding til måling i korrekt enhed.</p>
+<b>
+<p>Ved løbende måling</b> er mindste tid 0.01 sekunder og maxantal 3000
+målinger. Dvs. man kan »<b>se</b>« bevægelser på skærmen.</p>
+<b>
+<p>Ved scan</b> er mindste tid 0,00010 s og maxantal er 3000.</p>
+<b>
+<p>Ved skop</b> er mindste tid 20 <font FACE="Symbol" SIZE="3">m</font><font SIZE="3">s
+og maxantal 2048 målinger.</p>
+</font>
+<p>LabPro har en række avancerede funktioner til behandling af data før disse
+sendes til pc'en. Disse omfatter:</p>
+<dl>
+  <dd>Udregning af d/dt og d²/dt²</dd>
+  <dd>Funktioner til udglatning (støjfilter)</dd>
+  <dd>Flere former for trigning</dd>
+  <dd>Fra 0% til 100% målinger før trigpunktet</dd>
+</dl>
+<b>
+<p>Læs Scan (Online)</p>
+</b>
+<p>I dette menupunkt overføres et scan til tabel og graf i Datalyse. Labpro
+sender en klartone, når scannet er færdigt. Undervejs, kan man i memoen se
+status og eventuelt stoppe scannet.</p>
+<b>
+<p>Læs Liste (Offline)</p>
+</b>
+<p>LabPro kan indstilles til at måle offline. Det gøres I Datalyse at vælge
+måling og indstille trigningen til <b>»Manual«.</b> Derpå startes
+målingerne i marken ved at trykke på Start/Stop-tasten på LabPro. Desværre
+gemmer LabPro ikke tilstrækkelig information om der fx er målt d/dt eller d²/dt².</p>
+<p>Det anbefales derfor, at vælge »Læs Liste«, for så læses kun én liste,
+og denne skrives i tabellen i Datalyse. Vælg atter Læs Liste indtil alle
+lister er læst, hvilket ses ved at sidste læste liste er identisk med første
+læste liste.</p>
+<p>Ved offline målinger anbefales det ligeledes at logge tiden.</p>
+<b>
+<p>Læs Opsætning, </b>eksempel:</p>
+<p>LabPro status:</p>
+<dl>
+  <dd>device code: 6.01120</dd>
+  <dd>last error: 0 se beskrivelsen i manualen</dd>
+  <dd>batteri: OK|lav|lav: 0</dd>
+  <dd>konstant ID: 8888</dd>
+  <dd>tid pr måling: 0.00100</dd>
+  <dd>trigger indstilling: 0</dd>
+  <dd>trigger kanal: 0</dd>
+  <dd>efterbehandling: 0</dd>
+  <dd>filter: 0</dd>
+  <dd>antal målinger: 1000</dd>
+  <dd>mål tid: 0|1|2 : 0</dd>
+  <dd>temperatur: 0</dd>
+  <dd>lyd: off|on: 1</dd>
+  <dd>Tilstand: 1|2|3|4|5|99: 36</dd>
+  <dd>data start: 1</dd>
+  <dd>data slut: 1000</dd>
+  <dd>ID : 0.00000</dd>
+</dl>
+<p>Oversigt: CBL, CBL 2 og LabPro</p>
+</font>
+
+<font SIZE="3"><b>
+<p>Læs sonde information, </b>eksempel<b>:</p>
+</b>
+<p>LabPro censor setup:</p>
+<table border="0" cellspacing="0">
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">\sonde</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">1</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">3</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">cbl 2 </font></font><font size="1"><sup>TM</sup></font></td>
+  <font SIZE="3">
+  <td>
+    <p style="margin-left: 5"><font SIZE="3">4.0</font></td>
+  <td>
+    <p style="margin-left: 5"><font SIZE="3">5.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">LabPro </font></font><font size="1"><sup>TM</sup></font><font SIZE="3"></font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">5.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">5.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">ymin</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">-10.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">ymax</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">10.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">5.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">yscale</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">2.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">1.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">rate</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.10000</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.10000</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">antal</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">180.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">180.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">kommando</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">2.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">14.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">ligning</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">-1.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">-1.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">varm op</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">k1</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">k2</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">1.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">1.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">k3</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">#sider</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0 </font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+  <tr>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">#aktiv side</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+    <td>
+      <p style="margin-left: 5"><font SIZE="3">0.0</font></td>
+  </tr>
+</table>
+<p>De fleste oplysninger er ikke relevante i Datalyse, men har sonden en
+opvarmningstid, bør man benytte delay ved målinger i Datalyse.</p>
+<p><font size="3"><a href="cbldata.htm#Oversigt">Oversigt: CBL, CBL 2 og Labpro</a></font></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Elma, TES: Sound Level Meter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>TES, Elma-1352: Sound Level Meter</h2>
+
+<hr>
+
+<p><i>TES and Elma are two identical devices&nbsp;</i></p>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement<br>
+    Control panel...<br>
+    Read log<br>
+    Delete log, </strong></font></p>
+</blockquote>
+
+<p><font size="3">Sound Level Meter can measure sound from 30 dB
+to 130 dB. It has a serial interface and an analog output. If you
+use the analog output, you can use the device as a microphone.
+I.e. you can use it for Fourier analysis, e.g. with the
+PCskop-card. And as a microphone it is capable of registering
+frequencies and the hearing limit, which is an advantage when
+experimenting with the speed of sound in air using an
+oscilloscope.</font></p>
+
+<p><font size="3">The device has a log, capable of containing
+4048 measurings. </font></p>
+
+<p><font size="3">The communication is specific: you send a space
+without CR, LF and the meter responds with 6 bytes.</font></p>
+
+<dl>
+    <dd><font size="3">1. byte: #2, start byte</font></dd>
+    <dd><font size="3">2. byte: area</font></dd>
+    <dd><font size="3">3,4. byte: digits, decimal point, sign (or
+        error code)</font></dd>
+    <dd><font size="3">5. byte: function</font></dd>
+    <dd><font size="3">5. byte: #3 stop byte.</font></dd>
+</dl>
+
+<p><font size="3">Baud rate 9600, no parity, 1 stop, 8 data bits.</font></p>
+
+<p><font size="3">RTS is set low for the serial communication. </font></p>
+
+<p><font size="3"><b>Elma Sound Level Meter:</b></font></p>
+
+<blockquote>
+    <p><font size="3"><b>Importer and distributor</b></font></p>
+    <p><font size="3">Elma A/S, Geminivej 32, Postbox 180, DK-2670 Greve.</font></p>
+    <p><font size="3">email: </font><a
+    href="mailto:elma@elma.dk"><font size="3">elma@elma.dk</font></a><font
+    size="3"></font></p>
+    <p><font size="3">Elpefa has many device of interest in
+    physics.</font></p>
+    <p><font size="3">Multimeters, energy meters, pressure
+    measurers,... </font></p>
+</blockquote>
+
+<p><font size="3"><b>TES Sound Level Meter:</b></font></p>
+
+<blockquote>
+    <p><font size="3">Distributor Atimco, Egsagervej 8, 8230 Aabyhøj.</font></p>
+</blockquote>
+
+<blockquote>
+    <dl>
+        <dt>&nbsp;</dt>
+    </dl>
+</blockquote>
+
+<hr>
+
+<p><font size="4">Sound Level Meter, control panel:</font></p>
+
+<blockquote>
+    <p><font size="4"><img src="images/smlkont.gif" width="336"
+    height="266"></font></p>
+</blockquote>
+
+<p><font size="3">You can also set up the Sound Level Meter with
+the buttons on the device. It is only possible to set time per
+measuring in this menu, though.</font></p>
+
+<p><font size="3">The <b>Area</b> in the upper left does not
+matter. The meter measures correctly - even when the reading is
+outside the selected area. </font></p>
+
+<p><font size="3"><b>Settings</b>:</font></p>
+
+<p><font size="3"><b>Max</b> hold, means that the meter displays
+the maximum value</font></p>
+
+<p><font size="3"><b>C-weighing</b>: at C-weighing low-frequency
+noise is registered. This noise is filtered out at A-weighing.</font></p>
+
+<p><font size="3"><b>Fast</b> is recommended for ordinary sound
+measuring. If you do not check fast, the meter reads slow and the
+values fluctuate less (they are average values).</font></p>
+
+<p><font size="3">The log is started and stopped by pressing
+Start (stop).</font></p>
+
+<p><font size="3">Of course you can bring the sound meter with
+you in the field and record measurings in the log and transfer
+the data to the for analysis later.</font></p>
+
+<p><font size="3">Transferring a log to the pc takes about 2
+minutes. It feels longer.</font></p>
+
+<p><font size="3">You can stop and restart the log and thus
+record several sound series, but they will all have the same time
+per measuring. Therefore it is recommended to erase the log
+before starting new measuring and before changing the time base.</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

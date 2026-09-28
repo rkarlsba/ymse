@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Elcanic instrumenter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Elcanic instrumenter</font></h2>
+
+<hr>
+<menu>
+  <li><a href="elcanic.htm#CNT150">CNT150 Counter</a></li>
+  <li><a href="elcanic.htm#Datalogger 755">Datalogger 755</a></li>
+  <li><a href="elcanic.htm#DM450">DM450 multimeter</a></li>
+  <li><a href="elcanic.htm#ENG110">ENG110 energimeter</a></li>
+  <li><a href="elcanic.htm#FNG120">FNG120 funktions generator</a></li>
+  <li><a href="elcanic.htm#pHTM105">pHTM105 pHmeter/termometer</a></li>
+  <li><a href="elcanic.htm#PTM100">PTM100 tryk og temperaturmåler</a></li>
+  <li><a href="elcanic.htm#RM400">RM400 Counter</a></li>
+</menu>
+<p>&nbsp;&nbsp;&nbsp; <a href="elcanic.htm#Kommunikation">Kommunikation med mere</a>,
+versioner</p>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="CNT150">CNT150</a> Counter, Version 1.02</font></h3>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Elastisk stød og uelastisk stød</strong>,
+    se stødforsøg menu<br>
+    <strong>Frekvens på indgang A<br>
+    Passagetid på indgang A<br>
+    Omløbstid på indgang A<br>
+    Svingningstid på indgang A<br>
+    Start A, stop B </strong><br>
+    <strong>Løb + passagetid</strong> (accelerationsmålinger)<br>
+    <strong>Impulstælling i tabel <br>
+    Impulstælling grafisk<br>
+    Halveringstid<br>
+    Halveringstykkelse</strong><br>
+    <strong>GM plateau</strong>, spændingskarakteristik</font></p>
+</blockquote>
+
+<p><font size="3">Ikke alle CNT150s funktioner udnyttes i
+Datalyse, modsat tilføjer Datalyse ny funktionalitet til
+tælleren! Denne sætning virker måske lidt kryptisk, men det er
+meget naturligt. CNT150 kan benyttes uden pc, idet den kan styres
+vha. nogle trykknapper, men ikke alle de hertil hørende
+funktioner er der brug for, når apparatet styres fra pc'en.</font></p>
+
+<p><font size="3">Når der er menupunkter både til
+impulstælling og til tælling med GM-rør, skyldes det, at
+tælleren har indgang til impulstælling på fronten og indgang
+til GM-rør på bagsiden. CNT150 har kun et interval på 10
+sekunder til kontinuerte tællinger, men i Datalyse kombineres
+disse til 10 s, 20 s, 30 s 60s, 120 s. Det betyder ikke noget at
+tællerens display stopper efter hver 10 sekunder i 5 sekunder.</font></p>
+
+<p><font size="3">Flere af menupunkterne i Datalyse indeholder
+omfattende beregninger på de målte data. Det gør det let at
+benytte tælleren til eksperimenter. Det gælder især
+stødforsøgene. </font></p>
+<hr>
+<h3><a name="Datalogger 755"><font color="#0000FF">Datalogger 755</font></a></h3>
+
+<p><font size="3"><strong>Menu i Datalyse</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Multitabel<br>
+    Opsætning af indgange og udgange...<br>
+    Læs log, loggen læses og skrives i tabellen.<br>
+    Slet log. </font></p>
+</blockquote>
+
+<p><font size="3">Dataloggeren har:</font></p>
+
+<dl>
+    <dd><font size="3">5 analog indgange: 0..10 V</font></dd>
+    <dd><font size="3">to temperaturindgange: -50°C ..250°C</font></dd>
+    <dd><font size="3">to frekvensindgange: 0Hz..22000 Hz</font></dd>
+    <dd><font size="3">1 tællerindgang: 0..65535, spænding ca.
+        6 volt peak to peak</font></dd>
+    <dd><font size="3">3 analoge udgange: 0.00 til 5.00 V</font></dd>
+    <dd><font size="3">3 relæer, max 5A, 50 V</font></dd>
+    <dd><font size="3">2 indgange til Verniersonder parallelt med
+        analog indgang 1 og 2 (ændret dec. 1998).</font></dd>
+</dl>
+
+<p><font size="3">Desuden har apparatet en datalog på 1948
+bytes. Da hver måleværdi fylder to bytes, kan der således
+logges i alt 974 værdier. Logges f.eks. 2 spændinger og 1
+temperatur bliver det til 1948/6 = 324 datasæt. Loggetiden kan
+indstilles i hele sekunder fra 1s til 1800 s.</font></p>
+
+<p><font size="3">Når apparatet er tilsluttet en pc, logges
+Online, dvs. data i apparatets log berøres ikke. Når apparatet
+skal benyttes i marken, forbinder man først apparatet til en pc
+og indstiller loggetid, vælger aktive indgange og relæer. Så
+slukkes for apparat og pc og man går i marken med apparatet Vel
+hjemkommet, kan data overføres til pc.</font></p>
+
+<hr>
+<h3><font color="#0000FF"><a name="DM450">DM450</a> multimeter</font></h3>
+<font SIZE="3">
+<p>Menu i Datalyse:</p>
+<blockquote>
+  <p><b>Grafisk måling<br>
+  Vis måling<br>
+  Opsætning...</b></p>
+</blockquote>
+<p>Demomultimeter fra M+S med følgende funktioner: multimeter, termometer,
+pH-meter og fjerndisplay.</p>
+<p>Fjerndisplay (remote display) kan indstilles til:</p>
+<b>
+<dl>
+  <dd>0: Ingen, </b>fjerndisplay kan ikke vælges.</dd>
+<b>
+<dd>1: Slave,</b> der kan skrives til DM450's display (pc-fjerndisplay)</dd>
+<b>
+<dd>2: Specielt instrument,</b> der kan måles Volt-Amp-ohm og der kan samtidigt
+skrives til displayet.</dd>
+<b>
+<dd>3: Elcanic instrument, </b>fjerndisplay for andre elcanic instrumenter.</dd>
+<b>
+<dd>4: Mettler PB3001S</dd>
+<dd>5: Sartorius LC4201</dd>
+</dl>
+<p>Tilfælde 1</b>: Slave. Det er muligt at skrive til DM450s display. Endnu
+ikke implementeret i Datalyse.</p>
+<b>
+<p>Tilfælde 2</b>: Specielt instrument er af særlig interesse i Datalyse i det
+tilfælde, hvor der måles på spændingen fra fx en Vernier-sonde. Det kan fx
+være en Force-sensor. Sonden sættes fx i en batteribox (2515.60 fra SF) og
+DM450 indstilles til at måle spænding Vdc, max 4 volt eller max 40 volt.</p>
+<p>Ved indstilling af Mål (t, f(t)) i Datalyse vælges sonde og Send Værdi til
+DM450. Herefter indstilles DM450 til Remote Display.</p>
+<p>Under målingerne vil Datalyse vise den korrekte kraft både på skærmen og
+på apparatet.</p>
+<b>
+<p>Tilfælde 3, 4 og 5</b>: Vha. det medfølgende krydsstik og det serie kabel
+til DM450 forbindes fx et andet elcanic instrument til DM450. I denne
+indstilling kan DM450 kun benyttes som fjerndisplay. Det kan ikke samtidigt
+tilsluttes en pc, da der kun er et serielt stik på apparatet.</p>
+<hr>
+</font>
+<h3><font color="#0000FF"><a name="ENG110">ENG110</a> energimeter</font></h3>
+
+<p><font size="3">Menu i Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling<br>
+    Vis måling</strong><br>
+    <strong>Multitabel</strong>, der måles en række parametre,
+    se nedenfor.<br>
+    <strong>Oversigt</strong>, viser alle målte parametre.<br>
+    <strong>Vis,</strong> undermenu til at skifte visning af
+    parameter.<br>
+    <strong>Indstil log</strong><br>
+    <strong>Læs log</strong>, loggen læses til tabellen i
+    Datalyse.<br>
+    <strong>Start / Stop log</strong><br>
+    <strong>Nulstil energi</strong><br>
+    <strong>Nulstil tid</strong></font></p>
+</blockquote>
+
+<p><font size="3">Energimetret måler effekt og energiforbrug.
+Samtidig kan det måle to temperaturer. Funktionstasterne »<b>up«</b>
+og »<b>ned«</b> skifter visning mellem:</font></p>
+
+<ul>
+    <li><font size="3">V sand RMS-spænding</font></li>
+    <li><font size="3">A sand RMS-strøm</font></li>
+    <li><font size="3">W sand effekt</font></li>
+    <li><font size="3"><i>VAr blind effekt</i></font></li>
+    <li><font size="3">VA tilsyneladende effekt</font></li>
+    <li><font size="3">Hz frekvens</font></li>
+    <li><font size="3" face="Symbol">j</font><font size="3">
+        målt fasevinkel</font></li>
+    <li><font size="3"><i>cos(</i></font><font size="3"
+        face="Symbol"><i>j</i></font><font size="3"><i>) cosinus
+        til fasevinklen</i></font></li>
+    <li><font size="3"><i>cosphi beregnet cosphi som W/VA</i></font></li>
+    <li><font size="3">Ws energi i Ws</font></li>
+    <li><font size="3"><i>Wh energi i Wh</i></font></li>
+    <li><font size="3">Tid tid for Ws/Wh i sekunder</font></li>
+    <li><font size="3">T1 temperatur 1</font></li>
+    <li><font size="3">T2 temperatur 2</font></li>
+</ul>
+
+<p><font size="3">Ved grafisk måling måles én af ovenstående
+parameter. Ved multitabel i Datalyse, har jeg valgt at se bort
+fra størrelser skrevet med kursiv i listen ovenfor. Ønsker man
+at tegne flere grafer i samme koordinatsystem, skal man vælge
+multitabel, og efter endt måling vælge graf i tabellen. Her kan
+afmærkes indtil 10 y-værdier til samme graf.</font></p>
+
+<p><font size="3"><strong>I version 2.0 er tilføjet:</strong></font></p>
+
+<dir>
+    <li><font size="3">Instrumentet starter i samme opsætning,
+        som da det blev slukket</font></li>
+    <li><font size="3">Det er muligt at starte (stoppe) log fra
+        pc'en</font></li>
+    <li><font size="3">Loggen kan indstilles til at starte på</font><dl>
+            <dd><font size="3">et bestemt tidspunkt</font></dd>
+            <dd><font size="3">ved en overskridelse af en bestemt
+                effekt</font></dd>
+            <dd><font size="3">ved overskridelse af en bestemt
+                temperatur (voksende eller aftagende)</font></dd>
+        </dl>
+    </li>
+    <li><font size="3">Energi og tid kan nulstilles uafhængigt</font></li>
+</dir>
+
+<hr>
+
+<p><font size="3">Loggen kan indeholde ca 31 kB. Antallet af
+datasæt afhænger derfor at, hvor mange parametre, der logges. </font></p>
+
+<p><font size="3"><strong>Indgange:</strong></font></p>
+
+<blockquote>
+    <p><img src="images/englog1.gif" width="322" height="329"></p>
+</blockquote>
+
+<p><font size="3">På billedet ovenfor, har jeg placeret
+funktionerne på samme måde som på apparatet. Men fasevinklen, </font><font
+size="3" face="Symbol">j</font><font size="3"> dækker over to
+parametre: </font><font size="3" face="Symbol">j</font><font
+size="3"> og cos(</font><font size="3" face="Symbol">j</font><font
+size="3">). </font></p>
+
+<p><font size="3">Hvert datasæt består af et tidsstempel og fra
+0 til 13 parametre. Det er selvfølgelig meningsløst at logge 0
+parametre, idet så kun tidsstemplet logges.</font></p>
+
+<p><font size="3">Logges alle parametre, kan loggen indeholde 534
+datasæt, loggen kun én parameter, kan loggen indeholde 3100
+datasæt.</font></p>
+
+<p><font size="3">Tid pr måling kan vælges fra 1 sekund til
+3600 sekunder.'</font></p>
+
+<p><font size="3"><strong>Kalibrer termosonder:</strong></font></p>
+
+<blockquote>
+    <p><img src="images/engtemp1.gif" width="321" height="329"></p>
+</blockquote>
+
+<p><font size="3">På dette faneblad, kan man indstille offset
+på de to temperaturindgange. Tallene kan variere fra -100 til
+100. Scroll langsomt op og ned vha. pilene, indtil energimetret
+viser den ønskede temperatur. </font></p>
+
+<p><font size="3">Bemærk, at indstillingen er momentan på dette
+faneblad, mens den på første faneblad først foretages, når OK
+vælges.</font></p>
+
+<p><font size="3"><b>Start logbetingelse</b>:</font></p>
+
+<blockquote>
+    <p><font size="3"><img src="images/engstart.gif" width="322" height="331"></font></p>
+</blockquote>
+
+<p><font size="3">Her kan forskellige betingelser for start af
+log vælges:</font></p>
+
+<table border="1" cellspacing="0" width="90%">
+    <tr>
+        <td width="25%"><font size="3"><b>Startmetode</b></font></td>
+        <td width="75%"><font size="3"><b>der startes når</b>:</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font size="3">Manuelt</font></td>
+        <td width="75%"><font size="3">Start/stop på apparat
+        eller i menuen i Datalyse</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font size="3">Tid</font></td>
+        <td width="75%"><font size="3">intern tid overskrider
+        valgt tid</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font size="3">Effekt</font></td>
+        <td width="75%"><font size="3">effektforbruget
+        overskrider valgt effekt</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font size="3">T1 over</font></td>
+        <td width="75%"><font size="3">temperaturen på indgang 1
+        er over valgt temperatur</font></td>
+    </tr>
+    <tr>
+        <td width="25%"><font size="3">T1 under</font></td>
+        <td width="75%"><font size="3">temperaturen på indgang 1
+        er under valgt temperatur</font></td>
+    </tr>
+</table>
+
+<p><font size="3">Betingelserne indstilles fra Datalyse og huskes
+naturligvis, når apparatet slukkes.</font></p>
+<hr>
+<h3><font color="#0000FF"><a name="FNG120">FNG120</a> funktions generator</font></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling<br>
+    Vis måling</strong><br>
+    <strong>Indstil parametre</strong><br>
+    <strong>Sweep</strong>: måling af mikrofonsignal, som
+    funktion af frekvens.</font></p>
+</blockquote>
+
+<p><font size="3">Tonegeneratoren er meget velegnet til forsøg
+med lyd.</font></p>
+
+<p><font size="3"><b>FNG120 har to indstillinger</b>:</font></p>
+
+<p><font size="3">En normal indstilling med frekvenser fra 0-130
+kHz, hvor kurveformen kan være sinus, firkant eller positiv
+firkant.</font></p>
+
+<p><font size="3">En speciel indstilling (blå farve) med
+frekvenser fra 0.10 til 20.00 Hz, hvor kurveformen kan være
+sinus eller trekant.</font></p>
+
+<p><font size="3"><b>Sweep:</b></font></p>
+
+<p><font size="3">Steppet kan indstilles til 1-10 kHz med en
+opløsning på 1 Hz og tidssteppet kan indstilles til 0.05 - 5.00
+s.</font></p>
+
+<p><font size="3">Når FNg120 foretager et sweep, sendes
+sammenhørende værdier af frekvens og mikrofonsignal løbende
+til pc'en.</font></p>
+<hr>
+<h3><font color="#0000FF"><a name="pHTM105">pHTM105</a> pHmeter/Termometer</font></h3>
+
+<p>Menu i Datalyse:</p>
+
+<blockquote>
+    <p><font size="3"><strong>Mål (t, pH)<br>
+    Vis måling<br>
+    Multitabel mål pH og temperatur.<br>
+    Indstil parametre</strong></font></p>
+</blockquote>
+
+<p><font size="3">pHTM105 sender hele tiden data til pc'en (ca.
+to gange i sekundet).&nbsp;</font></p>
+
+<p><font size="3">I menuen <strong>Indstil parametre</strong>
+vælges:</font></p>
+
+<p><font size="3"><b>Visning</b> på pH-metrets display:</font></p>
+
+<blockquote>
+    <p><font size="3">pH, t/°C eller T/K.</font></p>
+</blockquote>
+
+<p><font size="3"><b>pH-kompensering</b></font></p>
+
+<blockquote>
+  <ol>
+    <li><font size="3">Omgivelser: temperaturen måles internt i
+    metret.</font></li>
+    <li><font size="3">K-sonder: temperaturen måles med en
+    K-sonde.</font></li>
+    <li><font size="3">Fast temperatur: temperaturen indtastes.</font></li>
+  </ol>
+</blockquote>
+
+<p><font size="3">Fast temperatur kan kun vælges i denne menu.
+De andre indstillinger kan vælges ved at trykke på knapperne
+på apparatets front.</font></p>
+
+<p><font size="3">pH-metret kalibreres vha. to parametre:
+asymmetrispændingen og Nernsthældningen.</font></p>
+
+<p><font size="3"><strong>Asymmetrispændingen:</strong></font></p>
+
+<blockquote>
+    <p><font size="3">Fejlspænding fra pH-glaselektroden. Ideelt
+    vil pH-glaselektroden afgive 0 mV ved 7 pH. Fejlen
+    bortjusteres vha. knapperne »Buffer adj.« på pHTM105's
+    front.</font></p>
+</blockquote>
+
+<p><font size="3"><b>Nernst-hældning</b>:</font></p>
+
+<blockquote>
+    <p><font size="3">pH-glaselektrodens relative stejlhed
+    justeres i denne menu således:</font></p>
+    <ol>
+      <li><font size="3">metret indstilles til at vise pH og
+    pH-glaselektroden placeres i en buffer med pH = 7.</font></li>
+      <li><font size="3">Når visningen er stabil justeres
+    indstillingen vha. Buffer adj. til metret viser pH = 7.</font></li>
+      <li><font size="3">Herefter placeres elektroden i en anden
+    buffer fx pH = 4 og Nernst hældningen justeres indtil metret
+    viser pH = 4.00.</font></li>
+    </ol>
+</blockquote>
+
+<p><font size="3">Den viste Nernst-hældning overføres til
+metret og gemmes.</font></p>
+
+<p><font size="3"><b>Temperatur offset</b>:</font></p>
+
+<blockquote>
+    <p><font size="3">Hvis termosonden ikke viser korrekt
+    temperatur, kan offset indstilles her. Indstillingen
+    overføres til metret og gemmes.</font></p>
+</blockquote>
+<hr>
+<h3><font color="#0000FF"><a name="PTM100">PTM100</a> tryk og temperaturmåler</font></h3>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Grafisk måling<br>
+    Vis måling</strong><br>
+    <strong>Multitabel</strong>, der måles tryk og temperatur.<br>
+    <strong>Kalibrering</strong></font></p>
+</blockquote>
+
+<p><font size="3">PTM100 sender hele tiden data til pc'en (ca. to
+gange i sekundet).&nbsp;</font></p>
+
+<p><font size="3">Tryk kan vises i PTM100's display i området 0
+til 200 kPa. Ved 200 kPa skifter displayet til - - - - , men
+værdier lidt større end 200 kPa sendes korrekt til pc'en.</font></p>
+
+<p><font size="3">Temperaturer skal ifølge Elcanic ligge mellem
+0 og 250 °C, men displayet kan godt vise negative temperaturer
+og disse kan også godt måles fra pc'en. </font></p>
+
+<p><font size="3">Man kan således godt lave forsøg med en
+kuldeblanding.</font></p>
+
+<p><font size="3">Slangens indre diameter er 3 mm og dens længde
+er ca. 120 cm.</font></p>
+
+<p>ps: se øvelsesvejledninger.</p>
+<hr>
+<h3><font color="#0000FF"><a name="RM400">RM400</a> Counter</font></h3>
+
+<p><font size="3">Menu i Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Halveringstykkelse</strong>,
+    pladetykkelse kan indtastes før hver måling.<br>
+    <strong>Halveringstid</strong> (og andre tidsafhængige
+    målinger).<br>
+    <strong>Poissonfordeling</strong></font></p>
+</blockquote>
+
+<p><font size="3"><b>Version 1.02</b> mangler en kommando for at
+sende data fra apparat til pc, derfor man ikke benytte
+måletiderne 1 sekund og uendelig til dataopsamling.</font></p>
+
+<p><font size="3">RM400 er forsynet med en hukommelse, der kan
+indeholde 60 målinger. Hukommelsen kan ikke benyttes i
+forbindelse med dataopsamling.</font></p>
+
+<p><font size="3"><b>Version 1.03</b></font></p>
+
+<p><font size="3">Når måling stoppes i uendelig tid, sendes en
+måling til pc'en.</font></p>
+
+<p><font size="3">I automode kan måles i alle faste tider. Ved
+måling i 1 sekund vises hver 5. måling i RM400's display og
+alle målinger sendes til pc'en.</font></p>
+<hr>
+<h3><font color="#0000FF"><a name="Kommunikation">Kommunikation</a> med mere</font></h3>
+<p><font size="3">Baudrate 9600, ingen paritet, 1 stop, 8
+databit. Alle apparaterne har kommando for version. Kablet er hun i begge ender, men
+ellers et standardkabel. Data sendes pakket. Man kan derfor ikke
+benytte terminalprogrammet i Datalyse til dataopsamling!</font></p>
+<p>Elcanic, Gørtlervej 3, 5750 Ringe. <a href="http://www.elcanic.dk">www.elcanic.dk</a></p>
+<p>&nbsp;</p>
+<h3><a name="Nye versioner"><font color="#0000FF">Nye versioner</font></a></h3>
+<p>CNT150 opdateret til version 2.01 den 23/12 2002</p>
+<p>DM450 opdateret til version 2.00 den 17/10 2002</p>
+<p>FNG120 opdateret til version 1.21 den 17/10 2002</p>
+<p>PHTM105 opdateret til version 2.02 den 30/11 2002&nbsp;</p>
+<p>PTM100 opdateret til version 1.03 den 17/10 2002</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

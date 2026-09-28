@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Model af titrerkurver, analyse i Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Model af titrerkurver</font></h2>
+
+<hr>
+
+<p>Til målingerne er anvendt DMI-24 multimeter fra IMPO. Der er
+kalibreret på buffer 4.01. (Kun én buffer anvendt, der burde
+være 2 eller 3.) Ved hjælp af en pumpe, er der tilført 0.00129
+mL NaOH pr. sekund. Denne faktor er automatisk indlagt som X-akse
+faktor for x-aksen i Datalyse. Syrens volumen er 50,0 mL</p>
+
+<p>Se vejledningen til øvelsen »<a href="titrerin.htm">Titrer</a>«
+for nærmere oplysninger om forsøgets udførelse.</p>
+
+<p><img src="images/image42.gif" alt="Beregning af ækvivalenspunkter i Datalyse" width="623" height="380"></p>
+
+<p>Panelet til venstre indeholder knapper til behandling af
+titrerkurver.</p>
+
+<blockquote>
+    <p><b>Diff &#150; ln</b>: Giver menu til valg af logaritmiske
+    akser / differentieret graf. Her benyttes menuen til at
+    differentiere og udglatte titrerkurven. Den udglattede og
+    differentierede kurve bør have pæne symmetriske toppe uden
+    hakker.</p>
+    <p><b>Ækv</b>ivalens: Beregner ækvivalenspunkter på den
+    givne graf. Kan bruges i 1.g og naturfag. </p>
+    <p><b>Model</b>: Giver en menu, som benyttes til at beregne
+    en teoretisk titrerkurve, der kan sammenlignes med den
+    eksperimentelle kurve.</p>
+    <p><b>Popula</b>tion: Overfører populationsdata beregnet i
+    model til tabellen. Forståelse af modelberegningerne og
+    populationsdata forudsætter højt niveau i kemi.</p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<p><font size="4" color="#0000FF"><b>Ækvivalens:</b></font></p>
+
+<p>Ækvivalenspunkterne kan bestemmes forholdsvis enkelt. Man
+henter opgaven og klikker på knappen »<b>Ækv</b>«. Det går
+imidlertid kun godt, hvis målingen er »pæn«. Er omrøringen
+lidt mangelfuld, eller har man målt for ofte, fås falske
+ækvivalensværdier.</p>
+
+<p>Vælg derfor først »<b>Diff &#150; ln</b>« og vælg
+differentiation og udglat fx med en faktor 5. Man kan desuden
+markere et område med musen, som vist på billedet. Gør man
+det, vil ækvivalenspunkter kun blive beregnet i dette område. I
+det aktuelle tilfælde kun for volumen større end 1 mL og mindre
+end 6 mL og pH større end 2.3.</p>
+
+<p>&nbsp;</p>
+
+<p><img src="images/image43.gif" alt="Beregning af ækvivalenspunkter i Datalyse" width="563" height="373"></p>
+
+<p>Når ækvivalensværdierne er beregnet klikkes igen på »<b>Diff
+&#150; ln</b>« og pH-kurven tegnes som vist ovenfor. Desuden er
+»Vis Memo« valgt. Memo er en lille tekstbehandler, hvor du kan
+skrive kommentarer til dit forsøg, og hvor Datalyse skriver
+resultatet af udregninger i programmet. Bemærk, at memoen
+akkumulerer, så måske skal du slette nogle data før
+udskrivning eller før du gemmer opgaven.</p>
+
+<p><font size="4" color="#0000FF"><b>Model</b></font></p>
+
+<p>Bemærk, at der er trin for trin vejledning i online hjælp!</p>
+
+<p><img src="images/image44.gif" alt="phosphorsyretitrering" width="592" height="420"></p>
+
+<p><font size="3" face="Arial">Figur 1: En titrerkurve, opgave
+H3PO4.DAT</font></p>
+
+<p>&nbsp;</p>
+
+<p><img src="images/image45.gif" alt="phosphorsyretitrering, vol og konc tilpasset" width="427" height="294"></p>
+
+<p><font size="3" face="Arial">Figur 2: indtastning af volumen og
+koncentration:</font></p>
+
+<p>I øverste felt indtastes syrens volumen i mL. Dernæst
+trækkes scrollbaren for koncentration til en passende værdi.
+(Når koncentrationen ændres forskydes det lodrette stykke af
+den teoretiske grønne graf sig i vandret retning, de <b>lodrette</b>
+stykker skal falde sammen).</p>
+
+<p>Der er 4 scrollbarer for pks-værdier. For en monovalent syre
+skal man kun bruge den øverste. Her skal vi bruge 3, da H<sub>3</sub>PO<sub>4</sub>
+er en triprot syre. Start med den øverste. Træk knappen til
+venstre indtil det første <b>vandrette</b> stykke af kurverne
+falder sammen.</p>
+
+<p><font size="3" face="Arial"><img src="images/image46.gif" alt="phosphorsyre valgt" width="480" height="374"></font></p>
+
+<p><font size="3" face="Arial">Figur 3: Næsten færdigt fit.</font></p>
+
+<p>Det ses tydeligt, at syren er trivalent. Knappen pKs er nede,
+derfor vises pKs-værdier og ækvivalens-værdier. Men desværre
+er målingen ikke særlig god! Prøv at vælge phosphorsyre i
+listboksen »vælg syre«. Pks-værdierne er 2.15/7.20/12.12.</p>
+
+<p>Knappen Memo overfører alle relevante data til memoen. I
+memoen kan du skrive kommentarer til øvelsen og memoen kan
+udskrives sammen med grafen.</p>
+
+<p><font size="4"><b><img src="images/image47.gif" width="641"
+height="555" alt="populationsdiagram for phosporsyre"></b></font></p>
+
+<p><font size="4" color="#0000FF"><b>Population</b></font></p>
+
+<p><font size="3" face="Arial">Ovenstående populationsdiagram
+viser, at Datalyse kan samarbejde med Excel.</font></p>
+
+<p>Phosphorsyre betegnes i modellen med H3A (triprot syre). I
+vandig opløsning forekommer syren på formerne H<sub>3</sub>A, H<sub>2</sub>A<font
+face="Symbol"><sup>-</sup></font>, HA<font face="Symbol"><sup>-</sup></font><sup>2</sup>
+og A<font face="Symbol"><sup>-</sup></font><sup>3</sup>. De
+relative mængder afhænger af pH i opløsningen. Datalyse
+beregner fordelingen i % af de forskellige populationer som
+funktion af pH.</p>
+
+<p>Når man i Datalyse klikker på knappen population til venstre
+i panelet udregnes populationerne. Målt pH, beregnet pH og
+populationer overføres til tabellen. Populationerne beregnes
+vha. de beregnede pH-værdier. </p>
+
+<p><b>Tabel til Excel:</b></p>
+
+<ul>
+    <li>Klik på ikonet i tabellen for kopi til Excel.</li>
+    <li>Marker de ønskede søjler i Excel og tegn grafer. Vælg
+        xy diagram.</li>
+</ul>
+</body>
+</html>

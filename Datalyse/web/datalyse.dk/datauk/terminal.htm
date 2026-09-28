@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Terminal program in Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Terminal program</h2>
+
+<hr>
+
+<p><font size="3">The terminal can be used to test the connection
+to the device. </font></p>
+
+<blockquote>
+    <p><img src="images/Termmem1.gif" alt="Datalyse terminal window" width="583" height="207"></p>
+</blockquote>
+
+<ul>
+    <li><font size="3"><strong>Send</strong>: the command »D3«
+        is transmitted to the device</font></li>
+    <li><font size="3"><strong>Get</strong>: data in the COM-port
+        buffer is read and written in the memo</font></li>
+    <li><font size="3"><strong>Dialog</strong>: the command
+        »D3« is send, and data from the device is received.</font></li>
+    <li><font size="3"><strong>Status</strong>: shows the number of bytes in the COM-port buffer.</font></li>
+</ul>
+
+<p><font size="3">When Dialog is used Datalyse calculates the
+time since the first measurement, and measurement no., time and
+the value is written in the memo. You can copy the data to a spreadsheet or draw a graph.</font></p>
+
+<hr>
+
+<p><strong>Terminal</strong> | <strong>Setup</strong> serial
+interface</p>
+
+<blockquote>
+    <p><img src="images/Ftermind.gif" alt="Datalyse terminal interface setup" width="453" height="380"></p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<p><font size="3">Here you setup Baud rate, Data bits, Stop bits,
+Parity, Com port and DTR.</font></p>
+
+<p><font size="3">See also the information about baud rate etc.
+in the device descriptions.</font></p>
+
+<p><font size="3">^M equals CR (#13) and ^J equals LF(#10).</font></p>
+
+<p><font size="3">Be aware that Receive Term is one character,
+namely the last character sent by the device. Datalyse uses this
+as it tells that no more characters will be sent from the device.</font></p>
+
+<p><font size="3">A lot of devices only use ^M as Send Term. Some
+devices do not have a Send Term.</font></p>
+
+<p>&nbsp;</p>
+</body>
+</html>

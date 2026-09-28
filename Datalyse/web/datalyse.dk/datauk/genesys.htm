@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>ThermoSpectronic, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<ul>
+  <li><h2>ThermoSpectronic: Genesys 6, 8, 10, 20</h2>
+
+  </li>
+  <li><h2>Unicam Helios e</h2>
+
+  </li>
+  <li>
+
+<h2>Spectronic 301</h2>
+
+  </li>
+</ul>
+
+<hr>
+
+<h3><a name="Genesys 6">Genesys 6</a></h3>
+<font SIZE="3">
+<p>Menu in Datalyse</p>
+<dl>
+  <dd><b>Measure at one wavelength</b></dd>
+  <dd><b>Spectrum, wavelength scan</b></dd>
+  <dd><b>Baseline, wavelength scan</b></dd>
+  <dd><b>Zero value</b></dd>
+</dl>
+</font><font SIZE="3">
+<p>You can also use the terminal program in Datalyse with the spectrophotometer.</p>
+<p>Genesys 6 is connected to the pc with an ordinary serial cable, the cable
+must be 9 pin female at the device end though. You can buy a converter if
+necessary.</p>
+<p>Baud rate 19200, no parity, 1 stop, 8 data bits.</p>
+<p>Command <b>MODEL</b> for model and <b>REV</b> for software version.</p>
+<p>The command <b>»SAMPLE«</b> makes the spectrophotometer send the absorbance
+to the pc.</p>
+<p>Wavelength interval: 190 nm - 1100 nm</p>
+<p>It is possible to measure absorbance, transmittance and concentration.
+Spectral bandwidth 1.8 nm.</p>
+</font>
+<hr>
+
+<h3><span lang="EN-US" style="mso-ansi-language:EN-US"><a name="Genesys 8">Genesys 8</a>&nbsp;</span></h3>
+<p>Menu in Datalyse</p>
+<dl>
+  <dd><b>Measure at one wavelength</b></dd>
+  <dd><b>Spectrum, wavelength scan</b></dd>
+  <font SIZE="3">
+  <dd><b>Baseline, wavelength scan</b></dd>
+  <dd><b>Zero value</b></dd>
+  <dd><b>Release control</b></dd>
+  </dl>
+  <p>Spectronic 8 Genesys is connected to the pc with zero-modem cable, the
+  cable must be 9 pin mail- female. Baud rate 9600, no parity, 1 stop, 8 data
+  bits.</p>
+</font>
+<p class="Base"><span lang="EN-US" style="mso-ansi-language:EN-US">Genesys 8 can
+scan a spectrum when you use it off-line. For each scan you choose the first
+wavelength and the last wavelength. A scan consists of two processes, 1
+measuring the base line and 2 the actual scan. It is a little cumbersome and
+slow.</span></p>
+<p class="Base"><span lang="EN-US" style="mso-ansi-language:EN-US">Unfortunately
+the Genesys 8 does not have a command for scan. Hence Datalyse performs a scan
+by first measuring the base line. This scan is placed in column C in the table.
+At any following scan the base line is automatically subtracted. This method
+does however require that you measure at the same wavelengths as you did when
+measuring the base line. Genesys scans slowly this way. Choose large steps, e.g.
+10 nm.</span></p>
+<p class="Base"><span lang="EN-US" style="mso-ansi-language:EN-US">This method
+is not as good as a real scan and you might as well be using the cheaper device
+Genesys 20.</span></p>
+<hr>
+<p><font size="4"><a name="Genesys 10">Genesys 10</a></font></p>
+<font SIZE="3">
+<p>Menu in Datalyse</p>
+<blockquote>
+  <dl>
+    <dt><b>Measure at one wavelength</b></dt>
+    <dt><b>Spectrum, wavelength scan</b></dt>
+    <dt><b>Baseline, wavelength scan</b></dt>
+    <dt><b>Zero value</b></dt>
+  </dl>
+</blockquote>
+</font><font SIZE="3">
+<p>You can also use the terminal program in Datalyse with the spectrophotometer.</p>
+<p>Genesys 10 is connected to the pc with an ordinary serial cable, the cable
+must be 9 pin female at the device end though. You can buy a converter if
+necessary.</p>
+<p>Baud rate 19200, no parity, 1 stop, 8 data bits.</p>
+<p>Command <b>MODEL</b> for model and <b>REV</b> for software version.</p>
+<p>The command <b>»SAMPLE«</b> makes the spectrophotometer send the absorbance
+to the pc.</p>
+<p>Wavelength interval:</p>
+<dl>
+  <dd>Model UV: 190 nm - 1100 nm</dd>
+  <dd>Model VIS: 325 nm - 1100 nm</dd>
+</dl>
+<p>It is possible to measure absorbance, transmittance and concentration.
+Spectral bandwidth 5 nm.</p>
+<b>
+<p>Spectrum and baseline:</p>
+</b>
+<p>Genesys 10 does not have a command for scan. Hence Datalyse performs a scan
+by first measuring the base line. This scan is placed in column C in the table.
+At any following scan the base line is automatically subtracted. This method
+does however require that you measure at the same wavelengths as you did when
+measuring the base line.</p>
+<p>Scanning might be problematic, since the spectrophotometer often get out of
+range. If you experience problems, try reducing the wavelength interval to for
+instance [400 nm; 800 nm] and remember that an ordinary cuvette does absorb
+light in the UV-area.</p>
+</font>
+<hr>
+
+<p><b><font size="4"><a name="Genesys 20">Genesys 20</a></font><font size="3">, version 1,11</font></b></p>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure at one wavelength<br>
+    Spectrum, wavelength scan<br>
+    </strong><b>Baseline, wavelength scan<br>
+    Zero value</b></p>
+  </blockquote>
+</font>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with the spectrophotometer. </font></p>
+
+<p><font size="3">Genesys 20 is connected to the pc
+with an ordinary serial cable, the cable must be 9 pin female at
+the device end though. You can buy a converter if necessary.</font></p>
+
+<p><font size="3">Baud rate 9600, no parity, 1 stop, 8 data bits.</font></p>
+
+<p><font size="3">Command <b>MODEL</b> for model and <b>REV</b>
+for software version. </font></p>
+
+<p><font size="3">The command <b>»SND«</b> makes the
+spectrophotometer send the absorbance to the pc.</font></p>
+
+<font SIZE="3"><b>
+<p>Spectrum and baseline:</p>
+</b>
+<p>Genesys 20 does not have a command for scan. Hence Datalyse performs a scan
+by first measuring the base line. This scan is placed in column C in the table.
+At any following scan the base line is automatically subtracted. This method
+does however require that you measure at the same wavelengths as you did when
+measuring the base line. Genesys scans slowly this way. Choose large steps, e.g.
+10 nm.</p>
+</font>
+
+<p><font size="3">Unfortunately the device is only capable of
+sending the absorbance to the pc. There is not any command for
+reading the chosen wavelength either.</font></p>
+
+<p><font size="3">Spectronic 301 can do both! It would be quite
+easy to correct this software error!</font></p>
+
+<p><font size="3">Moreover the device has only one cell.</font></p>
+
+<p><font size="3">The codes for the serial communication are not
+documented in the manual, but they are available at </font>
+
+<font SIZE="3">
+ <a href="http://www.thermo.com">www.thermo.com</a>
+</font>
+</p>
+
+<hr>
+<p><font size="4"><b><a name="Unicam Helios">Unicam Helios</a> e</b>, </font><font size="3">version, 2.00</font></p>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Measure at one wavelength<br>
+    Spectrum, wavelength scan<br>
+    </strong><b>Baseline, wavelength scan<br>
+    Zero value</b></p>
+  </blockquote>
+</font>
+
+<font SIZE="1"></font><font SIZE="3">
+<p>You can also use the terminal program in Datalyse with the spectrophotometer.</p>
+<p>Unicam Helios e is connected to the pc with an ordinary serial cable, the
+cable must be 9 pin female at the device end though. You can buy a converter if
+necessary.</p>
+<p>Baud rate 9600, no parity, 1 stop, 8 data bits.</p>
+<p>Command <b>MODEL</b> for model and <b>REV</b> for software version.</p>
+<p>The command <b>»SND«</b> makes the spectrophotometer send the absorbance to
+the pc. Unfortunately the device is only capable of sending the absorbance to
+the pc. Moreover the device has only one cell.&nbsp;</p>
+<b>
+<p>Spectrum and baseline:</p>
+</b>
+<p>Unicam Helios e does not have a command for scan. Hence Datalyse performs a
+scan by first measuring the base line. This scan is placed in column C in the
+table. At any following scan the base line is automatically subtracted. This
+method does however require that you measure at the same wavelengths as you did
+when measuring the base line. Genesys scans slowly this way. Choose large steps,
+e.g. 10 nm.</p>
+</font>
+
+<hr>
+<p><font size="4"><a name="Spectronic 301">Spectronic 301</a>, </font>
+New driver 28/1 2003</p>
+
+<p>Menu in Datalyse:</p>
+
+<blockquote>
+    <dl>
+      <dt><font size="3"><strong>Measure at one wavelength<br>
+    Spectrum, wavelength scan</strong></font></dt>
+      <dt><font size="3"><strong>Baseline, wavelength scan</strong></font></dt>
+    </dl>
+</blockquote>
+
+<p><font size="3">You can also use the terminal program in
+Datalyse with the spectrophotometer. </font></p>
+
+<p><font size="3">Spectronic 301 is connected to the pc with an
+ordinary serial cable, the cable must be 9 pin female at the
+device end though. You can buy a converter if necessary.</font></p>
+
+<p><font size="3">Baud rate 1200, no parity, 1 stop, 8 data bits.</font> <font size="3">No version command.</font></p>
+
+<p><font size="3">The command <b>»SND«</b> makes the
+spectrophotometer send the absorbance to the pc. Datalyse uses
+this to test the connection to the device.</font></p>
+
+<b><font SIZE="3">
+<p>Spectrum and baseline:</p>
+</font></b><font SIZE="3">
+<p>Spectronic 301 does not have a command for scan. Hence Datalyse performs a
+scan by first measuring the base line. This scan is placed in column C in the
+table. At any following scan the base line is automatically subtracted. This
+method does however require that you measure at the same wavelengths as you did
+when measuring the base line. Spectronic 301 scans slowly this way. Choose large
+steps, e.g. 10 nm.</p>
+</font>
+
+<p><font size="3">Spectronic 301 is from 1992, so it is an
+»old« device. Contact Rungsted Gymnasium for
+additional information on the spectrophotometer. It is not dealt
+anymore!</font></p>
+
+<font SIZE="3">
+<hr>
+<p>Gilles Carpentiers Site: <a href="http://image.bio.methods.free.fr/TPS.html">Methods
+and Examples</a></p>
+<p>web: <a href="http://www.thermo.com">www.thermo.com</a></p>
+<p>Genesys is imported by VWR International, tel.: 42 94 88 22. <a href="http://www.vwr.com">www.vwr.com</a></p>
+<p>Helios is imported by Bie &amp; Berntsen A/S, Denmark, tel.: 42 94 88 22.</p>
+<p>&nbsp;</p>
+</font>
+</body>
+</html>

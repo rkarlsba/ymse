@@ -1,0 +1,107 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>CBL2, Datalyse</title>
+</head>
+
+<body>
+
+<h2><font color="#0000FF">CBL 2</font></h2>
+<hr>
+<font SIZE="3">
+<p><a href="cbldata.htm">Forsøg med CBL, CBL 2, CBR og LabPro</a></p>
+<p><span style="font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA"><a href="ti83.htm">Dataopsamling
+med TI83</a></span></p>
+<p>Menu i Datalyse</p>
+<dl>
+  <dd>Mål (t, f(t)) på 1 kanal</dd>
+  <dd>Frekvensmåling&nbsp;&nbsp;&nbsp;&nbsp;</dd>
+  <dd>Scan på flere kanaler</dd>
+  <dd>Timer, passagetid, omløbstid og svingningstid</dd>
+  <dd>Two-way timer</dd>
+  <dd>Radioaktivitet, T½</dd>
+  <dd>Radioaktivitet,
+    X½</dd>
+  <dd>kontrol DIG out</dd>
+  <dd>Læs Scan (ONline) fra CBL 2 til Datalyse</dd>
+  <dd>Læs Liste (OFFline)</dd>
+  <dd>Læs Opsætning (status)</dd>
+  <dd>Læs sonde information</dd>
+</dl>
+</font><font SIZE="3">
+<p>CBL 2 forbindes til pc'en vha. et TI-graph link kabel. <b>Kablet skal være
+gråt</b>, det sorte kabel kan ikke benyttes! Det sorte kabel kommunikerer bit
+for bit vha. dtr, dsr, cts og rts. Det kræver programmering, som ikke er
+nødvendigt med det grå kabel.</p>
+<p>Der kan måles på alle Vernier-sonder: spænding, temperatur, lystyrke,
+Range sensoren...</p>
+<p>CBL 2 har autodetect for nye Vernier-sonder. Gamle Vernier-sonder tilsluttes
+vha. et konverterkabel fra DIN til CBL. CBL 2 omregner automatisk sondens
+spænding til måling i korrekt enhed.</p>
+<b>
+<p>Ved løbende måling</b> er mindste tid 0.2 sekunder og maxantal 3000
+målinger.</p>
+<b>
+<p>Ved scan</b> er mindste tid 0,00010 s og maxantal er 3000.</p>
+<p>CBL 2 har en række avancerede funktioner til behandling af data før disse
+sendes til pc'en. Disse omfatter:</p>
+<dl>
+  <dd>Udregning af d/dt og d²/dt²</dd>
+  <dd>Funktioner til udglatning (støjfilter)</dd>
+  <dd>Flere former for trigning</dd>
+  <dd>Fra 0% til 100% målinger før trigpunktet</dd>
+</dl>
+<b>
+<p>Læs Scan (Online)</p>
+</b>
+<p>I dette menupunkt overføres et scan til tabel og graf i Datalyse. CBL 2
+sender en klartone, når scannet er færdigt. Undervejs, kan man i memoen se
+status og eventuelt stoppe scannet.</p>
+<b>
+<p>Læs Liste (Offline)</p>
+</b>
+<p>CBL 2 kan indstilles til at måle offline. Det gøres I Datalyse at vælge
+måling og indstille trigningen til <b>»Manual«.</b> Derpå startes
+målingerne i marken ved at trykke på Start/Stop-tasten på CBL 2. Desværre
+gemmer CBL 2 ikke tilstrækkelig information om der fx er målt d/dt eller d²/dt².</p>
+<p>Det anbefales derfor, at vælge »Læs Liste«, for så læses kun én liste,
+og denne skrives i tabellen i Datalyse. Vælg atter Læs Liste indtil alle
+lister er læst, hvilket ses ved at sidste læste liste er identisk med første
+læste liste.</p>
+<p>Ved offline målinger anbefales det ligeledes at logge tiden.</p>
+<b>
+<p>Læs Opsætning, </b>eksempel:</p>
+<b>
+<p>CBL 2</b> status:</p>
+<dl>
+  <dd>device code: 5.01120</dd>
+  <dd>last error: 0 se beskrivelsen i manualen</dd>
+  <dd>batteri: OK|lav|lav: 0</dd>
+  <dd>konstant ID: 8888</dd>
+  <dd>tid pr måling: 0.00100</dd>
+  <dd>trigger indstilling: 0</dd>
+  <dd>trigger kanal: 0</dd>
+  <dd>efterbehandling: 0</dd>
+  <dd>filter: 0</dd>
+  <dd>antal målinger: 1000</dd>
+  <dd>mål tid: 0|1|2 : 0</dd>
+  <dd>temperatur: 0</dd>
+  <dd>lyd: off|on: 1</dd>
+  <dd>Tilstand: 1|2|3|4|5|99: 36</dd>
+  <dd>data start: 1</dd>
+  <dd>data slut: 1000</dd>
+  <dd>ID : 0.00000</dd>
+</dl>
+<p>CBL 2 har autodetect af tilsluttede sonder, men gamle sonder kan også
+benyttes. Disses kalibreringsfaktorer læses fra filen »Vernier.ini«. Se også
+Kalibrering af sonder under CBL.</p>
+<p><a href="cbldata.htm#Oversigt">Oversigt, CBL, CBL 2, LabPro</a></p>
+</font>
+
+</body>
+
+</html>

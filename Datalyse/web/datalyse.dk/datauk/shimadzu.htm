@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Shimadzu spectrophotometer, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Shimadzu spectrophotometers</h2>
+
+<hr>
+
+<h3><b><font color="#0000A0" size="3">UVmini 1240</font></b></h3>
+
+<p>Menu in Datalyse</p>
+<dl>
+  <dd><b>Measure at one wavelength</b></dd>
+  <dd><b>Spectrum, wavelength scan</b></dd>
+  <font SIZE="3">
+  <dd><b>Baseline, wavelength scan</b></dd>
+  <dd><b>Zero value</b></dd>
+  </dl>
+  <p>The communication is special with many handshakes so the terminal program
+  in Datalyse cannot be used. No support for add-ons such as plug in cards and
+  multicell has been programmed into Datalyse.</p>
+  <p>UVmini must be in remote control otherwise Datalyse will be unable to
+  communicate with the device. This means that measurements performed locally
+  cannot be transferred to Datalyse!</p>
+  <p>However a baseline performed from UVmini will also be correct in remote
+  control.</p>
+  <p>Baud rate 9600, uneven parity, 1 stop, 7 data bits. No version command. The
+  cable is standard.</p>
+  <p>If the communication does not work, the reason might be that:</p>
+  <dl>
+    <dd>The device is busy, e.g. scanning.</dd>
+    <dd>The device is not in remote control, press F4 (PC Ctrl) on the display.</dd>
+  </dl>
+  <p>Turn off pc and device and start over.</p>
+  <hr>
+</font><p><b><font color="#0000A0" size="3">UV1201</font></b></p>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong>
+    (t, f(t))<br>
+    <strong>Absorbance</strong>, table measuring.<br>
+    <strong>Setup spectrum parameters</strong>: wavelength, step
+    values ...<br>
+    <strong>Read spectrum</strong>, transfer a spectrum to the
+    pc.<br>
+    <strong>Kinetics.</strong></font></p>
+</blockquote>
+
+<p><font size="3">Note that the device must have an expansion
+card for the serial communication to work. You can Datalyse with
+the spectrum card and the kinetics card. Note the names in the
+menu above.</font></p>
+
+<p><font size="3">There are several cards but you only need the
+spectrum card. The kinetics card can measure absorbance and
+transmittance as a function of time but this is also possible
+with the spectrum card.</font></p>
+
+<p><font size="3">Cable: (from meter to pc) 2-2, 3-3 and 7 - 5</font></p>
+
+<p><font size="3">on the pc end short circuit 4-6 and 7-8.</font></p>
+
+<p><font size="3">Ask about the price before ordering the cable!</font></p>
+
+<p><font size="3">The communication is unusual: </font></p>
+
+<dl>
+    <dd><font size="3"><strong>repeat</strong></font></dd>
+    <dd><font size="3">send #5</font></dd>
+    <dd><font size="3">receive answer</font></dd>
+    <dd><font size="3"><strong>until</strong> answer = #6</font></dd>
+    <dd><font size="3">send command { e.g. &quot;D&quot; }</font></dd>
+    <dd><font size="3">receive answer</font></dd>
+</dl>
+
+<p><font size="3">In spite of this, it is possible to use the
+terminal program in Datalyse, since Datalyse automatically sends
+the repeat - until loop before the command.</font></p>
+
+<p><font size="3">Baud rate 9600, no parity, 1 stop, 7 data bits.
+No version command.</font></p>
+
+<hr>
+
+<p><font size="4"><strong>Read spectrum:</strong></font></p>
+
+<p><font size="3">The data transfer only takes a moment. This is
+fortunate since you might have to transfer your data several
+times.</font></p>
+
+<p><font size="3">The reason is that you might not have gotten
+the number of measuring points per nm right. It depends on Scan
+Speed and Scanning Range:</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="9" cellspacing="0" width="472">
+    <tr>
+        <td width="20%">&nbsp;</td>
+        <td width="20%">&nbsp;</td>
+        <td width="20%"><font size="3"><b>Scanning </b></font></td>
+        <td width="20%"><font size="3"><b>range</b></font></td>
+        <td width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+        <td width="20%">&nbsp;</td>
+        <td width="20%">&nbsp;</td>
+        <td width="20%"><font size="3">&lt;= 200 nm</font></td>
+        <td width="20%"><font size="3">&lt;= 500 nm</font></td>
+        <td width="20%"><font size="3">&gt; 500 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font size="3"><b>Scan</b></font></td>
+        <td width="20%"><font size="3">fast</font></td>
+        <td width="20%"><font size="3">0.2 nm</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%"><font size="3"><b>Speed</b></font></td>
+        <td width="20%"><font size="3">medium</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">0.5 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+    <tr>
+        <td width="20%">&nbsp;</td>
+        <td width="20%"><font size="3">slow</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+        <td width="20%"><font size="3">1 nm</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font size="3">On the image above maximum - minimum = 600
+which is more than 500, therefore one measuring per nm. </font></p>
+
+<p><font size="3">Shimadzu transfers the data in reversed order, <em>f</em>(lambda
+max) ... <em>f</em>(lambda min).</font></p>
+
+<p><font size="3">If the spectrum contains for instance 401
+values and you have set Datalyse to transfer 601 values, you will
+get a spectrum beginning with 200 zeros. </font></p>
+
+<p><font size="4"><strong>Setup spectrum parameter:</strong></font></p>
+
+<p><font size="3">The Shimadzu spectrophotometer has not any
+commands for reading wavelength settings, measuring method or
+scan speed. Instead it is possible to set the values from the pc.
+This way the values are known already.</font></p>
+
+<p><font size="3">If the communication does not work, the reason
+might be that:</font></p>
+
+<dl>
+    <dd><font size="3">The cable is wrong.</font></dd>
+    <dd><font size="3">The device lacks an expansion card,
+        inserted up front.</font></dd>
+    <dd><font size="3">You have not selected any of the menu
+        topics.</font></dd>
+    <dd><font size="3">The device is busy, e.g. scanning.</font></dd>
+    <dd><font size="3">Turn off pc and device and start over.</font></dd>
+</dl>
+
+<p><font size="3">Shimadzu has been tested 14/11 1998 (and again
+20/1 1999). Some smaller corrections have been made in Datalyse
+and a problem concerning table measuring has been corrected. In
+this case Shimadzu sends data + char(17). This must be an error
+that arose when modifying the software in Shimadzu. If you get
+the error message &quot;Erroneous measuring&quot;, you should get
+an update of Datalyse.</font></p>
+
+<p><font size="3">Every device has advantages and disadvantages.
+Some are important for the programmer, some for the user as well.
+Shimadzu has the problem that a number of codes are missing. This
+makes it difficult for instance to transfer a spectrum correctly.</font></p>
+
+<p><font size="3">Contact the distributor: SpectraChrom,
+Vallensbækvej 35, DK-2605 Brøndby, Denmark, phone: 43 96 88 11,
+fax: 43 96 77 11, if you experience any problems with the device.</font></p>
+</body>
+</html>

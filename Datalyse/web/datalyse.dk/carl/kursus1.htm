@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>kursus 1 i brug af Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Kursus 1, generel brug af Datalyse</font></h2>
+
+<hr>
+
+<h3><font color="#0000FF">Grafisk behandling af
+måleresultater vha. Datalyse</font></h3>
+
+<p>Som eksempel tænker vi os, at vi har målt 5 sammenhørende
+værdier for spænding og strøm for en resistor:</p>
+
+<table border="1" cellpadding="4" cellspacing="0" width="524">
+    <tr>
+        <td valign="top" width="16%"><em>U</em>/V</td>
+        <td valign="top" width="17%">0.98</td>
+        <td valign="top" width="18%">2.00</td>
+        <td valign="top" width="16%">3.97</td>
+        <td valign="top" width="16%">5.02</td>
+        <td valign="top" width="18%">6.05</td>
+    </tr>
+    <tr>
+        <td valign="top" width="16%"><em>I</em>/A</td>
+        <td valign="top" width="17%">0.130</td>
+        <td valign="top" width="18%">0.287</td>
+        <td valign="top" width="16%">0.412</td>
+        <td valign="top" width="16%">0.543</td>
+        <td valign="top" width="18%">0.702</td>
+    </tr>
+</table>
+
+<p>Ved hjælp af programmet Datalyse vil vi afbilde
+målepunkterne i et koordinatsystem og tegne karakteristikken:</p>
+
+<h3><font color="#0000FF">Fremgangsmåde:</font></h3>
+
+<p>I Windows vælges programmet Datalyse.</p>
+
+<p>Når programmet er indlæst, kommer der et koordinatsystem
+frem på skærmen, og Datalyse er klar til brug:</p>
+
+<ul>
+    <li>Fra menuen vælges<b> Vis</b> | <b>Tabel</b>.</li>
+    <li>Til venstre i det vindue der herved åbnes, er der en
+        søjle med 6 ikoner. Lad musen hvile et øjeblik på
+        hver af dem efter tur. Man kan herved se, hvad deres
+        betydning er. </li>
+    <li>Klik på Format-ikonen og vælg 2 søjler og 5 rækker.
+        Vælg endvidere 2 decimaler for søjle A og 3 decimaler
+        for søjle B. Klik dernæst på OK-knappen. </li>
+    <li>Klik på musetools og vælg Editer direkte. </li>
+    <li>Indtast talværdierne for <i>U</i> i søjle A. Dette
+        gøres nemmest ved at klikke på cellen A1 og dernæst
+        indtaste den første værdi, 0.98 (husk decimal<i>punktum</i>).
+        Tryk på tasten &quot;<font face="Symbol">¯</font>&quot;
+        på tastaturet, og indtast næste værdi osv. Efter
+        indtastningen af den sidste værdi trykkes på <i>Enter</i>-tasten
+        på tastaturet. Anvend samme procedure ved indtastningen
+        af talværdierne for <i>I</i> i søjle B.</li>
+    <li>Klik dernæst på Lås hoved-ikonen (den med
+        hængelåsen), og skriv U/V over søjle A, og skriv I/A
+        over søjle B.</li>
+    <li>Klik nu på Graf-ikonen, og vælg (med museklik) U/V for X-aksen og I/A for
+      Y-aksen.</li>
+    <li>Til sidst lukkes tabelvinduet.</li>
+</ul>
+
+<p>På skærmen ses nu koordinatsystemet med de 5 målepunkter.
+De liniestykker, der forbinder punkterne skal fjernes. Det gør
+man ved at klikke på knappen <i>type</i> i søjlen af knapper
+til venstre på skærmen, og dernæst vælge <i>linietype</i> 6
+(usynlig linie) i det vindue, der åbnes. Vælg også <i>aksetype</i>
+4 (ubrudte akser) &#150; og luk vinduet med et klik på
+OK-knappen. Nu ses målepunkterne alene på skærmen. Evt. kan X-aksen flyttes, så den skærer
+Y-aksen i dennes nulpunkt. Dette
+gøres ved at klikke på <i>Skaler akser</i> og skrive 0 i
+origo-feltet for Y-aksen.</p>
+
+<p>For at få tegnet den bedste rette linie gennem (0, 0) klikkes
+på knappen <i>Reg</i> (Lineær regression). Da karakteristikken
+for en resistor skal gå gennem (0, 0) vælges <i>Type</i> ax i
+regressionsvinduet. Programmet tegner herved linien. Liniens
+ligning kan ses nederst på skærmen.</p>
+
+<p>Grafen kan udskrives på en printer, ved i menuen <b>Filer</b>
+at vælge <b>Udskriv Graf</b>. Hvis man klikker i feltet <i>Udskriv</i><b><i>
+</i></b><i>Memo</i><b> </b>i <i>udskriv graf</i> -vinduet, vil
+liniens ligning komme med på udskriften. Det kan dog være
+nødvendigt først at åbne memo-vinduet (<b>Vis</b> <font
+face="Symbol">|</font> <b>Memo</b>) og slette irrelevante
+oplysninger inden udskrivningen. Det er også muligt at tilføje
+en tekst i memo-vinduet, som ligeledes bliver udskrevet på
+printeren sammen med grafen.</p>
+
+<p>Til sidst skal det nævnes, at grafen kan kopieres over på
+klippebordet (<b>Rediger</b> <font face="Symbol">|</font> <b>Kopi</b>).
+Herved gemmer computeren en kopi af grafen, der kan kopieres ind
+i et tekstbehandlingsprogram, f.eks. WORD. Dette gøres inde fra
+tekstbehandlingsprogrammet ved at vælge <b>Rediger</b> | <b>Indsæt</b>.
+Grafen kan blive temmelig stor, men man kan formindske
+grafvinduet i Datalyse før kopiering til klippebordet. </p>
+
+<h3><font color="#0000FF">Opgave 1</font></h3>
+
+<blockquote>
+    <p>Følg nøje fremgangsmåden i de foregående afsnit og
+    udskriv til sidst grafen på printeren. Sammenlign med grafen
+    side 3.</p>
+</blockquote>
+
+<h3><font color="#0000FF">Opgave 2</font></h3>
+
+<blockquote>
+    <p>En væskes massefylde måles ved at hælde ca. 10 mL af
+    væsken i et måleglas og derpå veje måleglasset med
+    indholdet. Dernæst hældes yderligere ca. 10 mL væske i
+    måleglasset og en ny vejning foretages. Således
+    fortsættes. Antag, at resultatet bliver følgende:</p>
+</blockquote>
+<div align="center"><center>
+
+<table border="1" cellpadding="5" width="90%" cellspacing="0">
+    <tr>
+        <td valign="top" width="11%"><p align="center"><i>V</i>/mL</p>
+        </td>
+        <td valign="top" width="11%">9.9</td>
+        <td valign="top" width="11%">20.1</td>
+        <td valign="top" width="11%">30.0</td>
+        <td valign="top" width="11%">38.7</td>
+        <td valign="top" width="11%">50.5</td>
+        <td valign="top" width="11%">59.8</td>
+        <td valign="top" width="11%">71.0</td>
+        <td valign="top" width="11%">80.4</td>
+    </tr>
+    <tr>
+        <td valign="top" width="11%"><p align="center"><i>m</i>/g</p>
+        </td>
+        <td valign="top" width="11%">88.2</td>
+        <td valign="top" width="11%">96.3</td>
+        <td valign="top" width="11%">105.8</td>
+        <td valign="top" width="11%">110.0</td>
+        <td valign="top" width="11%">119.5</td>
+        <td valign="top" width="11%">125.1</td>
+        <td valign="top" width="11%">134.2</td>
+        <td valign="top" width="11%">143.6</td>
+    </tr>
+</table>
+</center></div>
+
+<blockquote>
+    <p>Brug Datalyse til at afbilde målepunkterne i et
+    koordinatsystem og tegne den bedste rette linie. Vælg en
+    brudt Y-akse, og vælg en passende minimumsværdi på aksen (S<i>kaler
+    akser</i>).</p>
+    <p>Besvar herved spørgsmålene: Hvad er væskens massefylde,
+    og hvad er massen af måleglasset? Udskriv grafen og dens
+    ligning på printeren.</p>
+</blockquote>
+
+<h3><font color="#0000FF">Opgave 3</font></h3>
+
+<blockquote>
+    <p>Et element belastes ved at lade det afgive strøm gennem
+    forskellige resistorer. Sammenhørende værdier af
+    strømstyrken og polspændingen måles. Resultatet er
+    følgende:</p>
+</blockquote>
+<div align="center"><center>
+
+<table border="1" cellpadding="5" width="90%" cellspacing="0">
+    <tr>
+        <td valign="top" width="14%"><i>I</i>/A</td>
+        <td valign="top" width="14%">0.105</td>
+        <td valign="top" width="14%">0.210</td>
+        <td valign="top" width="14%">0.291</td>
+        <td valign="top" width="14%">0.410</td>
+        <td valign="top" width="14%">0.503</td>
+        <td valign="top" width="14%">0.596</td>
+    </tr>
+    <tr>
+        <td valign="top" width="14%"><i>U</i>p/V</td>
+        <td valign="top" width="14%">1.476</td>
+        <td valign="top" width="14%">1.440</td>
+        <td valign="top" width="14%">1.408</td>
+        <td valign="top" width="14%">1.376</td>
+        <td valign="top" width="14%">1.342</td>
+        <td valign="top" width="14%">1.311</td>
+    </tr>
+</table>
+</center></div>
+
+<blockquote>
+    <p>Brug Datalyse til at afbilde målepunkterne i et
+    koordinatsystem og tegne den bedste rette linie. Vælg en
+    brudt Yakse, og vælg en passende maksimumsværdi på aksen (<i>Skaler
+    akser</i>).</p>
+    <p>Besvar herved spørgsmålene: Hvad er elementets
+    elektromotoriske kraft og indre resistans? Udskriv grafen og
+    dens ligning på printeren.<br>
+    Indtast liniens ligning i funktionsvinduet (klik først på
+    f(t)). Find funktionens nulpunkt og bestem herved elementets
+    maksimalstrøm.</p>
+</blockquote>
+
+<h3><font color="#0000FF">Opgave 4</font> </h3>
+
+<blockquote>
+    <p>Brydningsloven i en halvcirkelformet glasklods.</p>
+    <p>I et forsøg er målt følgende indfaldsvinkler <i>i</i>
+    og brydningsvinker <i>b</i>.</p>
+    <div align="center"><center><table border="1" cellpadding="4"
+    cellspacing="0" width="90%">
+        <tr>
+            <td valign="top" width="10%"><i>i</i>/°</td>
+            <td valign="top" width="13%">0</td>
+            <td valign="top" width="13%">10.0</td>
+            <td valign="top" width="13%">20.0</td>
+            <td valign="top" width="13%">30.0</td>
+            <td valign="top" width="13%">40.0</td>
+            <td valign="top" width="13%">50.0</td>
+            <td valign="top" width="13%">60.0</td>
+        </tr>
+        <tr>
+            <td valign="top" width="10%"><i>b</i>/°</td>
+            <td valign="top" width="13%">0</td>
+            <td valign="top" width="13%">6.5</td>
+            <td valign="top" width="13%">10.4</td>
+            <td valign="top" width="13%">20.0</td>
+            <td valign="top" width="13%">25.5</td>
+            <td valign="top" width="13%">31.0</td>
+            <td valign="top" width="13%">36.0</td>
+        </tr>
+    </table>
+    </center></div>
+</blockquote>
+
+<blockquote>
+    <p>Brug Datalyse til et bestemme glassets brydningsindeks.
+    Indtast først <i>i</i> og <i>b</i> i to søjler i tabellen i
+    Datalyse. </p>
+    <p>I søjle c beregnes sin(<i>i</i>). Husk, at Datalyse
+    regner i radianer. Forskriften skal altså være
+    sin(a*pi/180). Tilsvarende beregnes sin(<i>b</i>) i søjle d.</p>
+    <p>Herefter tegnes en graf for sin(<i>i</i>) som funktion af
+    sin(<i>b</i>) og vha. lineær regression beregnes
+    brydningsindekset.</p>
+</blockquote>
+
+<blockquote>
+    <p>&nbsp;</p>
+</blockquote>
+
+<h3><font color="#0000FF">Grafen til opgave 1:</font></h3>
+
+<hr>
+
+<blockquote>
+    <p><img src="images/image39.gif" alt="Graftegning i Datalyse" width="538" height="338"></p>
+    <p>&nbsp;</p>
+</blockquote>
+</body>
+</html>

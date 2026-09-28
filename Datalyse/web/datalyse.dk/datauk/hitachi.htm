@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Hitachi spectrophotometer</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Hitachi U-2001 spectrophotometer</h2>
+
+<hr>
+
+<h3><a name="Hitachi U-1000">Hitachi U-1000</a>, U-1100 spectrophotometers</h3>
+<p><span style="mso-ansi-language: EN-US" lang="EN-US">Menu in Datalyse</span></p>
+<blockquote>
+  <dl>
+    <dt><span lang="EN-US" style="mso-ansi-language:EN-US"><b>Measure at one wavelength</b></span></dt>
+    <dt><span lang="EN-US" style="mso-ansi-language:EN-US"><b>Spectrum, wavelength scan</b></span></dt>
+    <dt><span lang="EN-US" style="mso-ansi-language:EN-US"><b>Baseline, wavelength scan</b></span></dt>
+    <dt><span style="mso-ansi-language:EN-US"><b>Zero
+value absorbance</b></span></dt>
+  </dl>
+</blockquote>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Baud rate 4800, even
+parity, 2 stop, 7 data bits.</span> <span lang="EN-US" style="mso-ansi-language:EN-US">No command<span style="mso-spacerun: yes">&nbsp;
+</span>for version.</span></p>
+<p style="tab-stops:90.6pt"><span style="mso-ansi-language:
+EN-US">Wavelength interval:</span></p>
+<blockquote>
+  <dl>
+    <dt><span lang="EN-US" style="mso-ansi-language:EN-US">U-1000: 325 nm - 1100 nm</span></dt>
+    <dt><span style="mso-ansi-language: EN-US" lang="EN-US">U-1100: 200 nm - 1100 nm</span></dt>
+  </dl>
+</blockquote>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">It is possible to measure
+absorbance (transmittance and concentration).</span></p>
+<p><b><span lang="EN-US" style="mso-ansi-language:EN-US">Scan:</span></b></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Hitachi U-1100 cannot scan
+a spectrum, so Datalyse runs through the wavelength interval. The data from the
+baseline is placed in column C in the table. Once the baseline has been measured,
+column C in the table will automatically be subtracted at a scan. If you
+experience problems, try reducing the wavelength interval to for instance [400
+nm; 800 nm] and remember that an ordinary cuvette does absorb light in the
+UV-area.</span></p>
+<p><b><span style="mso-ansi-language:EN-US">Comments:</span></b></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">The cable is a standard
+null-modem cable, available in most computer shops.</span></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">You cannot tell from the
+pc if Hitachi is setup to measure absorbance, transmittance or concentration. If
+you want to measure transmittance you have to setup the device manually and
+change the unit from absorbance to transmittance in Datalyse.</span></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Hitachi will beep if it
+receives a wrong command! This can happen when you setup the device since it e.g.
+takes 15 seconds to turn on the UV-lamp and as much as 30 seconds to change the
+wavelength. Try again. If necessary you can turn the UV-lamp on yourself.</span></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Datalyse sets the device
+up for remote control. But the control is released after each series of
+measurements.</span></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Datalyse checks if the
+lamps are lit and will automatically turn the visual lamp on. The UV-lamp is lit
+if the wavelength is set below 350 nm. When the lamps are lit from the pc,
+Hitachi will turn off when the remote control is released after each series of
+measurements.</span></p>
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">Hitachi U-1000 has not
+been tested in Datalyse! Avoid using wavelengths below 325 nm!</span></p>
+<hr>
+
+<h3><a name="Hitachi U-2001">Hitachi U-2001</a> spectrophotometer</h3>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Table measuring</strong></font></p>
+</blockquote>
+
+<p><font size="3">Hitachi U-2001 sends data to the pc regularly and
+Datalyse writes the results to the table. </font></p>
+
+<p><font size="3">List interval is set in the menu <b>instr setup</b>
+on the Hitachi. </font></p>
+
+<p><font size="3">Print format must be set for one set of data
+for each line.</font></p>
+
+<p><font size="3">A Wave-Length Scan is send with the largest
+wavelengths first. Use Options / Sort in Datalyse before drawing
+the graph.</font></p>
+
+<p><span lang="EN-US" style="mso-ansi-language:EN-US">The cable is a standard
+null-modem cable, available in most computer shops.</span></p>
+
+<p><font size="3">Baud rate 4800, no parity, 1 stop, 8 data bits.</font></p>
+
+<p><font size="3">No version command.</font></p>
+
+<p><font size="3">Receive terminator must be CR (not CR+LF).
+Commands to the device are ended with LF (not CR or CR+LF).</font></p>
+
+<p><font size="3"><b>Auto serial output must be ON </b></font></p>
+
+<p><font size="3">See chapter 11 Calibration in the manual.</font></p>
+
+<p><font size="3">Remote Control is not used! Unfortunately it is
+poorly designed! If you wish, you can try experimenting with the
+commands on your own using the Terminal-menu in Datalyse or the
+windows-program Terminal. It should be possible to have data
+corresponding to a graph send to pc with one single command, but
+it is not (or I have not figured out how).</font></p>
+
+<p><font size="3">As a result it is only possible to transfer
+data to the pc while measuring them.</font></p>
+
+<b><font SIZE="3">
+<p>Improvement April 2005</p>
+</font></b><font SIZE="3">
+<p>It is now possible to use the Terminal menu to receive a scan from Hitachi
+and afterwards to copy the result from the memo to the table in Datalyse or to
+Excel.</p>
+</font>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

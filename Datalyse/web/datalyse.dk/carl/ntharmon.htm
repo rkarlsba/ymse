@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Harmoniske svingninger, forsøg med Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Harmoniske svingninger</font></h2>
+
+<hr>
+
+<h3><font color="#0000FF">Med LabPro, Two-way Pulley og Datalyse</font></h3>
+<h3><font color="#0000FF">Øvelsens formål</font></h3>
+<ol>
+  <li>
+    <p style="margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:14.2pt list 36.0pt">At eftervise Hookes lov for en fjeder.</li>
+  <li>
+    <p style="margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:14.2pt list 36.0pt">At eftervise, at svingningstiden er bestemt ved<span style="mso-spacerun: yes">&nbsp;
+<img SRC="images/ntharm1.gif" align="absmiddle" width="96" height="58"></span>.</li>
+  <li>
+    <p style="margin-left:36.0pt;text-indent:-18.0pt;mso-list:l0 level1 lfo2;
+tab-stops:14.2pt list 36.0pt">At undersøge dæmpningen i bevægelsen.</li>
+</ol>
+<h3>&nbsp;
+<img src="images/ntharm2.gif" align="right" hspace="19" vspace="19" v:shapes="_x0000_s1027" alt="Harmonisk svingning med two-way pulley" width="151" height="248"></h3>
+<h3><font color="#0000FF">Forsøgsopstilling</font></h3>
+<p style="margin-right:-1.7pt;tab-stops:14.2pt 10.0cm">Til øvelsen benyttes en
+LabPro og Two-way pulley fra A/S Frederiksen og programmet Datalyse.</p>
+<span style="mso-bidi-font-size: 10.0pt; mso-fareast-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA">Two-way
+pulley er forsynet med to lysveje, derfor kan den måle retning. Den er ideel
+til harmoniske svingninger</span>
+<h3><font color="#0000FF">Forsøgets udførelse</font></h3>
+<h4>Forsøg 1:</h4>
+<p class="MsoNormal">Fjederen belastes med forskellige lodder, og fjederforlængelsen
+måles. Foretag så mange målinger som muligt. I dette forsøg benyttes pc’en
+ikke!<b style="mso-bidi-font-weight:normal">&nbsp;</b></p>
+<h4>Forsøg 2:</h4>
+<p>Fjederen belastes med forskellige lodder, og for hver belastning måles
+svingningstiden. Se forsøgsopstilling til højre.</p>
+<p style="line-height:18.0pt">Start programmet Datalyse og vælg apparatet |
+LabPro og menuen for LabPro vælges Two-way pulley. Sæt antallet af målinger til
+2000, og vælg automatisk beregning af nulpunkt.</p>
+<p style="line-height:18.0pt">Sæt lodderne i bevægelse. Når (og hvis)
+systemet svinger pænt, startes dataopsamlingen.</p>
+<p style="line-height:18.0pt">Når målingen er afsluttet, ses en harmonisk
+svingning på skærmen. Nu klikker du blot på ikonen for bestemmelse af
+nulpunkter. Klik indtil alle nulpunkter er bestemt. Da afstanden mellem to
+nulpunkter er den halve svingningstid, fås herved en beregning af denne.
+Datalyse skriver udregninger i memoen, se denne.
+</p>
+<p style="line-height:18.0pt"><b style="mso-bidi-font-weight:
+normal">Et</b> <b style="mso-bidi-font-weight:normal">Fif</b>: Hvis lodderne
+begynder at svinge fra side til side, er det fordi fjederens svingningstid og
+pendulets svingningstid er omtrent ens, det afhjælpes ved at ændre
+snorlængden.
+</p>
+<h4>Forsøg 3: Dæmpning</h4>
+<p>En dæmpet harmonisk svingning er givet ved</p>
+<blockquote>
+  <p><img SRC="images/ntharm3.gif" align="absmiddle" width="248" height="51">, hvor</p>
+</blockquote>
+<p><i>A</i> er amplituden,<span style="mso-spacerun: yes">&nbsp; </span><i style="mso-bidi-font-style:normal">T</i><span style="mso-bidi-font-style:
+italic"> er</span> svingningstiden, <i style="mso-bidi-font-style:normal"><span style="font-family:Symbol">j
+</span></i>er begyndelsesfasen<span style="mso-spacerun: yes">&nbsp; </span>og <i style="mso-bidi-font-style:normal"><span style="font-family:Symbol">m
+</span></i>dæmpningskonstanten.</p>
+<p>I Datalyse vælges funktion <i>f</i>(<i>t</i>) i panelet til venstre og
+funktionen skrives således:</p>
+<blockquote>
+<p>f(t) =
+a1*sin(2*pi/(2*T½)*t+a2)*exp(-a3*t) + a4.</p>
+</blockquote>
+<p>Skriv passende værdier for konstanterne a1, a2, a3 og a4. (T½ = afstanden
+mellem nulpunkterne)</p>
+<p>Klik herefter på symbolet Fit til venstre og tilpas konstanterne a1, a2, a3
+og a4.</p>
+<p>&nbsp;
+</p>
+<h3><font color="#0000FF">Rapporten:</font></h3>
+<h4>Forsøg 1:</h4>
+<p style="line-height:18.0pt">Dine måleskemaer skal indeholde de direkte målte
+størrelser.</p>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1" width="90%">
+    <tr>
+      <td width="20%">Forsøg 1</td>
+      <td width="40%" colspan="2">målte størrelser</td>
+      <td width="40%" colspan="2">beregnede størrelser</td>
+    </tr>
+    <tr>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">position af lod</td>
+      <td width="20%">loddernes masse</td>
+      <td width="20%">fjederforlængelse</td>
+      <td width="20%">fjederkraft</td>
+    </tr>
+    <tr>
+      <td width="20%">tom holder</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%" bgcolor="#808080">&nbsp;</td>
+      <td width="20%" bgcolor="#808080">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="20%">1 lodder</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="20%">2 ..</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p style="line-height:18.0pt">Som det fremgår af skemaet, måles forlængelsen
+ud fra positionen af den tomme holder og fjederkraften er kraften på lodderne
+alene.</p>
+<p style="line-height:18.0pt">Gør rede for, hvordan fjederkraften beregnes. Der
+skal være en tegning, der viser hvilke kræfter, der virker på lodderne.</p>
+<p style="line-height:18.0pt">Afbild fjederkraften som funktion af fjederforlængelsen.</p>
+<p style="line-height:18.0pt">Hvordan kan man af grafen se, om Hookes lov er
+opfyldt.</p>
+<p style="line-height:18.0pt">Beregn fjederkonstanten <i>k</i> for fjederen. Vær
+omhyggelig, da <i>k</i> benyttes i forsøg 2.</p>
+<h4>Forsøg 2:</h4>
+<div align="center">
+  <center>
+  <table border="1" cellspacing="1" width="90%">
+    <tr>
+      <td width="20%">Forsøg 2</td>
+      <td width="40%" colspan="2">målte størrelser</td>
+      <td width="40%" colspan="2">beregnede størrelser</td>
+    </tr>
+    <tr>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">masse <i>m</i></td>
+      <td width="20%">½<i style="mso-bidi-font-style:normal">T</i>
+      (snit)</td>
+      <td width="20%"><i style="mso-bidi-font-style:normal">T</i></td>
+      <td width="20%"><i style="mso-bidi-font-style:normal">T </i><span style="font-size:7.0pt;
+  mso-bidi-font-size:10.0pt;mso-text-raise:3.0pt"><sup>2</sup></span></td>
+    </tr>
+    <tr>
+      <td width="20%">tom holder</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="20%">1 lodder</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="20%">2 ..</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+      <td width="20%">&nbsp;</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p style="margin-top:6.0pt">&nbsp;</p>
+<p style="margin-top:6.0pt">Afbild <i style="mso-bidi-font-style:
+normal">T</i><span style="mso-bidi-font-style: normal"> </span> <sup><span style="font-size:7.0pt;mso-bidi-font-size:10.0pt;mso-text-raise:
+3.0pt">2</span> </sup> som funktion af massen <i style="mso-bidi-font-style:normal">m</i>.</p>
+<p>Afbild i samme koordinatsystem »det teoretiske udtryk«&nbsp;<span style="mso-text-raise:-9.0pt">
+<img SRC="images/ntharm4.gif" align="absmiddle" width="106" height="55"></span> <span style="mso-spacerun: yes">&nbsp;</span>som funktion af massen <i style="mso-bidi-font-style:normal">m</i>.</p>
+<p style="line-height:18.0pt">Grafen for <i style="mso-bidi-font-style:
+normal">T </i><sup>2</sup> som funktion af <i style="mso-bidi-font-style:normal">m</i>
+vil ikke gå gennem (0,0)! Det skyldes, at en del af fjederens masse (og en del
+af trissens masse) bør medregnes i bevægelsen.</p>
+<h4>Forsøg 3:</h4>
+<p>Kopier en graf for en dæmpet harmonisk svingning fra Datalyse til din
+rapport og kopier også forskriften for bevægelsen. Er bevægelsen en dæmpet
+harmonisk svingning?</p>
+<h3><font color="#0000FF">Vurdering:</font></h3>
+<p style="line-height:18.0pt"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">Overvej nøjagtigheden
+i forsøget og angiv fejlkilder.</span></p>
+<h3><font color="#0000FF">Et forsøg:</font></h3>
+<blockquote>
+<p>
+<span style="mso-ignore:vglayout">
+<img src="images/ntharm5.gif" v:shapes="_x0000_s1026" alt="Dæmpet harmonisk svingning" width="462" height="316">
+  </blockquote>
+</span>
+<p>
+Det er bedst, hvis amplituden ikke er for lille, for der er en lille usikkerhed
+ved bestemmelse af stedet, når bevægelsen skifter retning.</p>
+
+<p>&nbsp;</p>
+
+</body>
+</html>

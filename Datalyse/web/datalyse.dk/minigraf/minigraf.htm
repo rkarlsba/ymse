@@ -1,0 +1,119 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="da">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Minigraf til Windows af Palle Skaarup</title>
+<style>
+<!--
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body>
+
+<h2>Minigraf</h2>
+<hr>
+<p>Minigraf er et program til løsning af differentialligninger. Det kan løse 1. 
+og højere ordens ligninger. Det kan løse koblede ligninger og det kan tegne 
+grafer. </p>
+<p>Det er velegnet til emnet differentialligninger og som værktøj til SRP 
+opgaver i 3.g Programmet er freeware. Det er udarbejdet af Palle Skaarup, 
+Frederikssund Gymnasium.</p>
+<p><a href="Minigraf.zip">Download Minigraf.</a></p>
+<hr>
+<p>Eksempler på opgaver:</p>
+<p><b>Eksempel 1: Radioaktivt henfald</b></p>
+<p>Dette er et simpelt eksempel på en første ordens differentialligning. 
+Programmet består af 3 dele: Konstanter, DifferentialLigninger og GrafVariable. 
+Bemærk, at &lt;1000&gt; er startværdi. </p>
+<dl>
+	<dd>Konstanter</dd>
+	<dd>k=0.001<br>
+&nbsp;</dd>
+	<dd>DifferentialLigninger</dd>
+	<dd>N'=-K*N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;1000&gt;<br>
+&nbsp;</dd>
+	<dd>GrafVariable</dd>
+	<dd>t,N,l1</dd>
+</dl>
+<blockquote>
+	<p><img border="0" src="minigraf1.gif" width="612" height="407"></p>
+</blockquote>
+<p><b>Eksempel 2: Hookes lov</b></p>
+<p>Dette er et eksempel på en 2. ordens ligning. Denne opdeles i 2 
+førsteordensligninger. </p>
+<p>Bemærk, at teksten mellem (* note *) ikke er en del af programmet. Der tegnes 
+2 grafer. Den ene som linie (type L1 til L3), den anden som mærke (type M1 til 
+M6)</p>
+<dl>
+	<dd>Konstanter</dd>
+	<dd>K = 50 (* N/m *);&nbsp; m = 0.250&nbsp; (* kg *)<br>
+&nbsp;</dd>
+	<dd>Differentialligning</dd>
+	<dd>x' = v&nbsp;&nbsp;&nbsp; &lt;0.1&gt;&nbsp;&nbsp;&nbsp;&nbsp; </dd>
+	<dd>v' = -K/m*x&nbsp; &lt;0&gt;<br>
+&nbsp;</dd>
+	<dd>Grafvariable</dd>
+	<dd>t,x,l1</dd>
+	<dd>t,v,m1</dd>
+</dl>
+<blockquote>
+	<p><img border="0" src="minigraf2.gif" width="602" height="438"></p>
+</blockquote>
+<p><b>Eksempel 3: Lorenz ligningerne</b></p>
+<p>Dette er dels et eksempel på koblede differentialligninger og så er det det 
+klassiske eksempel på kaos, idet en lille ændring i startbetingelser giver en 
+voldsom ændring i løsningerne.</p>
+<dl>
+	<dd><span lang="EN-GB">Konstanter</span></dd>
+	<dd><span lang="EN-GB">a=10</span></dd>
+	<dd><span lang="EN-GB">b=28</span></dd>
+	<dd><span lang="EN-GB">c=8/3<br>
+&nbsp;</span></dd>
+	<dd><span lang="EN-GB">DifferentialLigninger</span></dd>
+	<dd><span lang="EN-GB">x'= a*(y-x) &lt;0.0001&gt;</span></dd>
+	<dd><span lang="EN-GB">y'= x*(b-z)-y &lt;0.0001&gt;</span></dd>
+	<dd><span lang="EN-GB">z'= x*y - c*z &lt;0.0001&gt;<br>
+&nbsp;</span></dd>
+	<dd><span lang="EN-GB">GrafVariable</span></dd>
+	<dd>t,x,l1</dd>
+	<dd>t,y,l2</dd>
+	<dd>t,z,l3</dd>
+</dl>
+<blockquote>
+	<p><img border="0" src="minigraf3.gif" width="617" height="405"></p>
+</blockquote>
+<p><b>Eksempel 4, Barium 137 </b></p>
+<p>En simpel første ordens differentialligning. Målte tabelværdier er angivet 
+som en tabel, ved navn. Maling. En funktion y er defineret ud fra tabellen. 
+Denne funktion er så tegnet sammen med den numeriske løsning. Funktionen 
+interpolerer (og ekstrapolerer) i tabellen. </p>
+<dl>
+	<dd>KonstanterThalve =153</dd>
+	<dd>k=ln(2)/Thalve<br>
+&nbsp;</dd>
+	<dd>Tabeller</dd>
+	<dd>maling= &lt; (0, 5.3), (60, 4.0), (120, 3.1), (180, 2.4), (240, 1.8), (300, 
+	1.4), (360, 1.0), (420, 0.8) &gt;<br>
+&nbsp;</dd>
+	<dd>DifferentialLigninger</dd>
+	<dd>N'=-K*N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;5.3E9&gt;<br>
+&nbsp;</dd>
+	<dd>Funktioner</dd>
+	<dd>y=maling(t)*1E9<br>
+&nbsp;</dd>
+	<dd>GrafVariable</dd>
+	<dd>t,N,l1</dd>
+	<dd>t,y,m1</dd>
+</dl>
+<blockquote>
+	<p><img border="0" src="minigraf4.gif" width="612" height="407"></p>
+	<p>&nbsp;</p>
+</blockquote>
+
+</body>
+
+</html>

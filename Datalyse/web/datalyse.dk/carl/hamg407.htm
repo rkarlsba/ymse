@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Hameg HM407 oscilloskop, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Hameg oscilloskoper</font></h2>
+
+<hr>
+
+<h3><font color="#0000FF"><a name="HM407">HM407</a>, <a name="HM1507-2"> HM1507-2</a></font></h3>
+
+<p>Menu i Datalyse</p>
+
+<blockquote>
+    <p><strong>Enkelt skopbillede<br>
+    Løbende skopbillede</strong></p>
+</blockquote>
+
+<p><font size="3">Baudrate 38400, ingen paritet, 2 stop, 8
+databit. Kommando &quot;id?&quot; for version.</font></p>
+
+<p><font size="3">Hameg har automatisk baudrate detektion. Hameg
+forventer et space (#32) som det første tegn i den serielle
+kommunikation og beregner baudraten ud fra dette. </font></p>
+
+<p><font size="3">Når Datalyse læser et skopbillede, sendes
+først et space (#32) til Hameg, herved overtager Datalyse
+kontrollen. Så sendes en række kommandoer og data returneres.
+Der afsluttes med kommandoen &quot;RM0&quot;, som afbryder
+fjernkontrollen.</font></p>
+
+<p><font size="3">Hamegs frontpanel kan derfor ikke benyttes,
+medens en måling foretages. Ved »Løbende skop«, er der
+indlagt en pause på 2 sekunder mellem hvert billede. Det er nok
+til, at man kan indstille knapperne. Lysdioden &quot;RO&quot; ved
+siden af Autoset lyser, når Hameg er fjernbetjent.</font></p>
+
+<p><font size="3">Det digitale skopbillede består af 2048 bytes.
+Skærmen er 8 tern høj, og hver tern svarer til 25 bit. De 8
+tern svarer således til 200 bit. Det er faktisk gennemtænkt,
+for det betyder, at der ikke fås overløb (underløb) før
+funktionen går ovenud (nedenud) af billedet med mere end 1 tern.</font></p>
+
+<p><font size="3">I Datalyse slås de 2048 bytes sammen til 1024
+værdier og desuden foretages en udglatning, så hvert målepunkt
+er beregnet vha. 6 målte værdier (bytes).</font></p>
+
+<p><font size="3">Cursoren og offset og andre værdier på skopet
+er nøjagtigere bestemt, her er opløsningen 1000 bit pr tern.</font></p>
+
+<p><font size="3">Betjeningen er yderst logisk! Det er ikke
+muligt, at lave det bedre fra en pc. Men pc'en er vældig god som
+storskærm og til analyse af de målte data.</font></p>
+
+<p><font size="3">Hameg 407 100 Mhz/40MHz har Autoset, grafisk
+cursor, hukommelse til alle indstillinger og flere andre smarte
+finesser. </font></p>
+
+<p><font size="3">Hameg 1507-2 150Mhz/200MS/s har iøvrigt samme
+funktioner som 407.</font></p>
+
+<p><font size="3">Jeg har tidligere på dette sted skrevet om
+fejl i Hameg. Det var desværre min fejl. Denne fejl er nu rettet
+i Datalyse. (25/2 1999).</font></p>
+
+<p><b>Forslag til forbedring:</b></p>
+
+<p>Data for hver kanal indeholder 2048 bytes, man kan overføre
+en del af disse data, idet man kan angive start og antal bytes.</p>
+
+<p>Det kunne også være interessant, om man <i>kunne angive en
+tæthed</i>, således, at hver 2. byte (hver 10. byte)
+overføres. Tit kan man jo få et udmærket billede med færre
+punkter end 2048, og det tager nogen tid at overføre 2048 bytes
+for hver kanal. (jeg benytter 38400 baud). Kunne der overføres
+færre data, ville pc, bedre kunne bruges som skop.</p>
+<hr>
+<h3><a name="HM205-3"><font color="#0000FF">HM205-3</font></a></h3>
+<p>Menu i Datalyse:</p>
+<dl>
+  <dd>Enkelt skopbillede</dd>
+  <dd>Indstillinger</dd>
+</dl>
+<p>Baudrate 9600, ingen paritet,1 stop, 8 databit. Kommando &quot;id?&quot; for
+version. Der benyttes et standardkabel. Interfacet HO 79-4 er monteret på
+skopets bagside. Det er af ældre dato!</p>
+<p>HM205 har kun nogle få kommandoer til læsning af skopbilledet. Skopet kan
+ikke styres fra pc'en. Før læsning af et billede skal man:</p>
+<ul>
+  <li>aktivere <b>STORE</b>, time/ div skal være større end eller lig 10 us.</li>
+  <li>trykke <b>HOLD</b>, herved fryses skærmbilledet på skopet.</li>
+</ul>
+<p>Det digitale skopbillede består af 2048 bytes. En byte svarer til 9 tern.
+Skærmen er 8 tern høj, og hver tern svarer derfor til 28.4 bit. Det er faktisk
+gennemtænkt, for det betyder, at der ikke fås overløb (underløb) før
+funktionen går ovenud (nedenud) af billedet med mere end ½ tern.</p>
+<p>Skærmen er 10 tern bred og opløsninger er 200 bit pr tern. I Datalyse slås
+de 2048 bytes sammen til 1024 værdier og desuden foretages en udglatning, så
+hvert målepunkt er beregnet vha. 6 målte værdier (bytes).</p>
+<p>Da HM205 ikke har kommandoer til læsning af skopets indstillinger, må man
+vælge dem i Datalyse i menuen Indstillinger. Man kan vælge time/div og volts/div
+for hver kanal og man kan vælge, om man vil læse en eller begge kanaler.</p>
+</body>
+</html>

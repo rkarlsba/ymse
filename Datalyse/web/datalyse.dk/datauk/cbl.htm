@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>CBL and CBR, Datalyse</title>
+</head>
+
+<body>
+
+<h2>CBL and CBR</h2>
+<hr>
+<h3><a name="CBL logger">CBL logger</a></h3>
+<p>Menu in Datalyse</p>
+<blockquote>
+  <p><font SIZE="3"><b>Measure (t,f(t)) on 1 channel<br>
+  Scan on several channels<br>
+  Set the switches of the DIG-out unit<br>
+  Read Scan (Online) from the CBL into Datalyse<br>
+  Read List (Off-line)<br>
+  Read Setup (status)</b></p>
+  </blockquote>
+  <p>The CBL is connected to the pc with a TI-graph link cable. <b>The cable
+  must be gray</b>, the black cable will not work! The black cable communicates
+  bit wise using dtr, dsr, cts and rts. This requires extra programming not
+  needed for the gray cable.</p>
+  <p>You can measure on the probes that comes with the logger: voltage,
+  temperature, light irradiance and on the Range sensor and on <b>all
+  vernier-probes</b>. Vernier-probes are connected using a converter cable from
+  DIN to CBL. The CBL will automatically calculate the correct value from the
+  voltage of the probe.</p>
+  <b>
+  <p>When measuring normally</b> the minimum time is 0.2 seconds and max number
+  is 3000.</p>
+  <b>
+  <p>When scanning</b> the minimum time is 0,00010 s and max number 512, which
+  is more than the length of a list in a TI-83 calculator. The minimum time
+  depends on the number of selected channels and selected functions.</p>
+  <b>
+  <p>Read Scan (Online)</p>
+  </b>
+  <p>In this menu point a scan is transferred to table and graph in Datalyse. If
+  the total time for the scan is small the data will be transferred
+  automatically. If the time is larger than about 1 second you will have to
+  watch the CBL. When the panel reads DONE, you can click on »Read Scan« and
+  have the data transferred to Datalyse.</p>
+  <b>
+  <p>Read List (Offline)</p>
+  </b>
+  <p>The CBL can be set to measure offline. In Datalyse this is done by
+  selecting measuring and choosing the trigger setting <b>»Manual«.</b> Then
+  you start measuring in the field by pressing the Trigger-button on the CBL.
+  Unfortunately the CBL does not save sufficient information to tell if e.g. d/dt
+  or d²/dt² has been measured.</p>
+  <p>There it is recommended to select »Read List«, having one list read and
+  written to the table in Datalyse. Then select Read List again until every list
+  has been read, which is when the list read last is identical to the first.</p>
+  <p>When measuring offline it is recommended to log time as well. Otherwise you
+  will not be able to draw the data points as a function of time!</p>
+  <b>
+  <p>Read Setup, </b>example:</p>
+  <dl>
+    <dd>CBL status:</dd>
+    <dd>device code 1.06</dd>
+    <dd>last error 0.00 see description in the manual</dd>
+    <dd>R1/kohm 999.00 999 kohm means open channel / sensor not identified</dd>
+    <dd>R2/kohm 999.00</dd>
+    <dd>R3/kohm 999.00</dd>
+    <dd>R4/kohm 22.00 22 kohm: range sensor with the unit meter</dd>
+    <dd>active channel 11.00 11 is SONIC</dd>
+  </dl>
+  <p>PS:</p>
+  <p>You get far less information compared to the setup in the CBR. This makes
+  it problematic to transfer data measured offline. In the case above the
+  display of the CBL also reads</p>
+  <blockquote>
+    <p>SONIC m, d²/dt² and rec time</p>
+  </blockquote>
+  <p>i.e. the table will contain 4 lists:</p>
+  <blockquote>
+    <p>distance, velocity, acceleration and time.</p>
+  </blockquote>
+</font><font FACE="Times New Roman" SIZE="4"><font SIZE="3">
+<p>The CBL has a number of advanced functions for calculation of data before
+sending them to the pc. These include:</p>
+<ul>
+  <li>Calculation of d/dt and d²/dt²</li>
+  <li>Functions for smoothing (noise filtering)</li>
+  <li>Several types of trigging</li>
+  <li>From 0% to 100% measurings before the trigger point</li>
+</ul>
+</font><b>
+<hr>
+<h3><a name="CBR ranger">CBR ranger</a></h3>
+</b><font SIZE="3">
+<p>Menu in Datalyse</p>
+<blockquote>
+</font>
+<p><font SIZE="3"><b>Measure (t, f(t))<br>
+Scan measuring<br>
+Read scan from CBR to Datalyse<br>
+Read setup</b></p>
+</blockquote>
+<p>The CBR is connected to the pc with a TI-graph link cable. <b>The cable must
+be gray</b>, the black cable will not work! The black cable communicate bit wise
+using dtr, dsr, cts and rts. This requires additional programming, not needed
+for the gray cable.</p>
+<p><b>When measuring normally</b> the minimum time is 0.25 seconds and max
+number is 3000 measurings.</p>
+<p><b>At a scan</b> the minimum time is 0,02 s and max number is 512, which is
+more than the length of a list in a TI-83 calculator. The minimum time depends
+on the selected functions.</p>
+<p>The CBR has a number of advanced functions for processing data prior to
+sending them to the pc. These include:</p>
+<dl>
+  <dd>Calculation of d/dt and d²/dt²</dd>
+  <dd>Functions for smoothing (noise filtering)</dd>
+  <dd>Read Scan</dd>
+</dl>
+<p>A scan can contain from 1 to 4 columns depending on the setup: distance,
+velocity, acceleration and time.</p>
+<p>When a scan is read all data are transferred to the table in Datalyse. The
+user will then have to select one or more columns in the table for the graph.</p>
+<p>Since Setup contains all necessary information, there are no problems in
+transferring data measured offline to Datalyse.</p>
+<h3>Read Setup</h3>
+<p>When the menu topic is selected the setup is read and written to the memo in
+Datalyse. It can be helpful to read the setup, if the CBR won't start measuring.
+You can check if the battery is low while measuring and you can see whether the
+CBR is ready or not. The error codes are described in the cbl manual.</p>
+<p>CBR status:</p>
+<dl>
+  <dd>device code 10.01</dd>
+  <dd>last error 0.00 see the cbl manual</dd>
+  <dd>battery 0.00 0: OK, 1: low while measuring, 2: always low</dd>
+  <dd>sonic channel ID 11.00</dd>
+  <dd>time per measuring 0.04 in seconds</dd>
+  <dd>trigger setting 0.00 0: no trigger, 1: trigger, 2: waiting 10 seconds</dd>
+  <dd>channel 2.00</dd>
+  <dd>post-processing 1.00 0: none 1: d/dt, 2: d²/dt²</dd>
+  <dd>filter 0.00 0: none, 1..5 smoothing</dd>
+  <dd>no. of measurings 100.00 from 1 to 512</dd>
+  <dd>measure time 0.00 0: no time 1: absolute time 2: relative time</dd>
+  <dd>temperature 20.00 the speed of sound is calculated at this temperature</dd>
+  <dd>sound on/off 1.00 0: no sound, 1: sound</dd>
+  <dd>condition: 4.00 1: none, 2: ready, 3: measuring, 4: done</dd>
+  <dd>data start 1.00 first measurement send to the pc</dd>
+  <dd>data end 100.00 last measurement send to the pc</dd>
+  <dd>ID 0.00 user defined</dd>
+</dl>
+<p>When the CBR is selected the setup is read and
+</font></font><font size="3" face="Times New Roman">parameters</font><font FACE="Times New Roman" SIZE="4"><font SIZE="3">
+such as number of
+measurements and time per measurement are automatically setup in Datalyse.</p>
+<p><b>PS:</b></p>
+<p>The CBR can also be used as a probe for the CBL, but this is not recommended
+as you will lose some functionality.</p>
+<p>The CBL treats the CBR as it does its own range sensor (Motion Detector).</p>
+<p>The CBR has temperature compensation for distance determination, the CBL does
+not.</p>
+<p>The CBR has full status (see the setup above), the CBL does not. The CBL only
+gives information on active channels, not the measured data.</p>
+</font><b>
+<hr>
+<p>Calibrating probes</p>
+</b></font><font SIZE="3">
+<p>In the documentation for the Vernier probes the conversion factors from
+voltage are given. For the force sensor (±10N):</p>
+<p>Intercept (k0): 12,25N and Slope (k1): -4,90 N/volt.</p>
+<p>The calibration is made by burdening the probe with 2 known forces and
+measure the voltage in Datalyse. Select e.g. 100 measurings and calculate the
+average using linear regression.</p>
+<p>Example:</p>
+</font>
+<table border="1" cellpadding="2">
+  <tr>
+    <td><font FACE="Times New Roman" SIZE="3">Known force /N</font></td>
+    <td><font FACE="Times New Roman" SIZE="3">measured voltage /V</font></td>
+  </tr>
+  <tr>
+    <td><font FACE="Times New Roman" SIZE="3">0</font></td>
+    <td><font FACE="Times New Roman" SIZE="3">2,535</font></td>
+  </tr>
+  <tr>
+    <td><font FACE="Times New Roman" SIZE="3">1,963</font></td>
+    <td><font FACE="Times New Roman" SIZE="3">2,156</font></td>
+  </tr>
+</table>
+<font SIZE="3">
+<p>Then you calculate the straight line through the 2 points. Result:</p>
+<blockquote>
+  <p>F = -5,176 N/V·U + 13,12 N</p>
+</blockquote>
+<p>These values are now written to the file »Vernier.ini« Here is a section:</p>
+</font><font FACE="Times New Roman" SIZE="3">
+<dl>
+  <dd>Accelerometer, 5g&quot;a/m/s²&quot;22.72&quot;-57.02</dd>
+  <dd>Barometer 0..1.2 Bar&quot;P/Bar&quot;0.6997&quot;0.1357</dd>
+  <dd>CO2 Gas Sensor&quot;ppm&quot;2000.0&quot;0.00</dd>
+  <b>
+  <dd>Force sensor(±10N)&quot;F/N&quot;-5.176&quot;13.12</dd>
+  </b>
+  <dd>Force sensor(±50N)&quot;F/N&quot;-24.75&quot;62.22</dd>
+</dl>
+</font><b><font FACE="Times New Roman" SIZE="4">
+<p>Your own probes</p>
+</font></b><font SIZE="3">
+<p>You can make your own probes using a CBL connector (see the manual p. 62).
+Voltage 0-5 V is measured between pin 2 GND (black) and pin 6 Vin-low (blue).
+This can be useful as the probe that comes with the device measures ±10 volt</p>
+</font>
+
+<p><span style="mso-ansi-language: EN-US" lang="EN-US"><a href="file:///D:/WWWCHData/datauk/cbldata.htm">More
+information about cbl, cbl2 and labpro</a></span></p>
+<p>&nbsp;</p>
+
+</body>
+
+</html>

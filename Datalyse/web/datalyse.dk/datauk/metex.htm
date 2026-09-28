@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Metex multimeter, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Metex 3650, 3850, 4650, ME-31 roline and MAS-345</h2>
+
+<hr>
+
+<p><font size="3">Menu in Datalyse:</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong></font></p>
+</blockquote>
+
+<font SIZE="3"><b>
+<p>Mastech MAS-345</p>
+</b>
+<blockquote>
+  <p>MAS-345 has 3½ digits and auto range. MAS-345 can measure voltage,
+  resistance, diode test, temperature, capacitance and current. The cable is
+  somewhat fragile.</p>
+</blockquote>
+<b>
+<p>ME-31 roline</p>
+</b>
+<blockquote>
+  <p>ME-31 roline has 3½ digits and auto range. The meter uses a standard cable.</p>
+</blockquote>
+<b>
+<p>Metex M-3650D</p>
+</b>
+<blockquote>
+  <p>Metex M-3650 has 3½ digits and no thermo probe. It is the cheapest of the
+  tested devices.</p>
+</blockquote>
+</font><b><font SIZE="3">
+<p>Metex M-3850</p>
+</font></b><font SIZE="3">
+<blockquote>
+  <p>When measuring the temperature, no terminal character is send. This means
+  that I have to use the last character in the string, »C«, as terminal
+  character. It also means that when you are measuring the temperature, you have
+  to select the measuring area before selecting the device in Datalyse, and if
+  you later wish to measure other values, you have to reconnect the device!</p>
+</blockquote>
+<b>
+<p>Metex M-4650</p>
+</b>
+<blockquote>
+  <p>Metex M-4650 has 4½ digits but no thermo probe. This meter has no flaws,
+  just do not activate function /COM!</p>
+</blockquote>
+<b>
+<p>&nbsp;</p>
+<p>M-3650D, M-3850, M-4650:</p>
+</b>
+<blockquote>
+  <p>Baud rate 1200, even parity, 1 stop, 7 data bits.</p>
+  <p>The devices also use DTR (Data Terminal Ready) and RTS (Request To Send).
+  For this reason the terminal program in windows cannot communicate with Metex.
+  It is a shortcoming in the windows terminal program!</p>
+  <p>There is no version command and the cable is somewhat fragile.</p>
+  <p>Some Metex meters has a <b>COM-function</b>. Do not activate <b>function</b>
+  / <b>COM </b>on the device. According to the manual, this is a requirement for
+  COMmunication with a pc, but it makes Metex transmit data regularly. Datalyse
+  sends a »<b>D</b>« whenever a measuring is made.</p>
+</blockquote>
+<b>
+<p>MAS-345, ME-31:</p>
+</b>
+<blockquote>
+  <p>Baud rate 600, no parity, 2 stop, 7 data bits.</p>
+</blockquote>
+</font>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>kursus 3: Idotyl ,måling og databehandling med Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2 align="left"><font color="#0000FF">Kursus 3, Datafangst med Datalyse og efterfølgende
+analyse af data</font></h2>
+
+<h3><font color="#0000FF">Idotyl</font></h3>
+
+<hr>
+
+<h3><font color="#0000FF">Eksperiment:</font></h3>
+
+<p>En vægt blev forbundet med serielkabel til computeren og
+vægten blev tilsluttet via Datalyses apparatmenu. </p>
+
+<p>Et højt bægerglas blev anbragt på vægten, som blev
+nulstillet. </p>
+
+<p>Lidt mindre end 50 mL vand blev anbragt i glasset. </p>
+
+<p>Datalyse blev sat til at aflæse vægten (2 sekunders
+interval) </p>
+
+<p>En Idotyltablet blev kastet i vandet. Massen sprang svarende
+til tablettens begyndelsesmasse. På grund af reaktionen </p>
+
+<blockquote>
+    <p>HCO<font size="2"><sup>3<b><font face="Symbol">-</font></b></sup></font>(aq) + H<font
+    size="2"><sup>+</sup> </font>(aq) <span style="mso-char-type: symbol; mso-symbol-font-family: Symbol; font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-hansi-font-family: Times New Roman; mso-bidi-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA">®</span><font size="2">
+    </font>H<font size="2"><sub>2</sub></font>O(l)
+    + CO<font size="2"><sub>2</sub>(</font>g<font size="2">)</font> </p>
+</blockquote>
+
+<p>blev CO<sub>2</sub> afgivet fra systemet og massen aftog.
+Målinger blev foretaget indtil konstant masse. Målingerne blev
+gemt på disk under navnet IDOTYL.DAT</p>
+
+<h3><font color="#0000FF">Analyseresultat</font></h3>
+
+<p>Logaritmisk afbildning af CO<font size="2"><sub>2</sub></font>massen
+i tabletten som funktion af tiden. Der er tale om en første
+ordens reaktion i de første 2 minutter.</p>
+
+<p><img src="images/idoty901.gif" align="middle" alt="Brusetablet i vand" width="637" height="444"> </p>
+
+<p>På basis af målepunkter [1:58] findes regressionslinien</p>
+
+<blockquote>
+    <p><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">f(t) =
+    0.594*exp(-0.01882*t)</span> </p>
+</blockquote>
+
+<p>Hastighedskonstant k = 0.01882 s<sup>-1</sup>. Halveringstiden
+er er T=36.83 s. </p>
+
+<p>(Fra Datalyses Memo efter Regress på 58 målepunkter) </p>
+
+<h3><font color="#0000FF">Vejledning til analyse af data i IDOTYL.DAT</font></h3>
+
+<hr>
+<ul>
+  <li><b>Emne</b>:
+    <ul>
+      <li><b>Handling</b>:</li>
+    </ul>
+  </li>
+  <li><strong>Hent opgaven IDOTYL.DAT</strong>
+    <ul>
+      <li>Filer | Hent opgave</li>
+    </ul>
+  </li>
+  <li>Slet datapunkterne [1:2]
+    <ul>
+      <li>Musemarkér datapunkterne, tryk på
+        Delete tasten</li>
+    </ul>
+  </li>
+  <li>Er det en eksponentielt aftagende funktion?
+    <ul>
+      <li>Klik på Knappen Diff -ln, Vælg anden akse
+        2: logaritmisk (ln)</li>
+    </ul>
+  </li>
+  <li>&nbsp;Brug hjælp vedrørende tabel
+    <ul>
+      <li>i menuen klikkes på <i>Vis</i> | <i>Tabel</i> </li>
+    </ul>
+  </li>
+  <li>Tabellen altid øverst
+    <ul>
+      <li>Vis | Tabel og i tabel: Rediger | Altid øverst</li>
+    </ul>
+  </li>
+  <li>Søjle C skal rumme CO<sub>2</sub> massen
+        i tabletten
+    <ul>
+      <li>Klik i søjle C og anbring markøren i
+        formelruden, indtast formlen: b - 48.930 (slutmassen er 48.930g)</li>
+    </ul>
+  </li>
+  <li>Skriv overskrift
+    <ul>
+      <li>Klik på låsen, den grå række 1 bliver
+        nu hvid (ikke låst). Anbring markør i celle C1 og
+        skriv m/g. Klik atter på låsen og række 1 bliver atter grå
+        (låst)</li>
+    </ul>
+  </li>
+  <li>Sæt tre decimaler
+    <ul>
+      <li>Funktioner | Format | Decimaler (sættes til
+        3)</li>
+    </ul>
+  </li>
+  <li>De to første rækker markeres
+    <ul>
+      <li>MuseTools | Marker område tilladt</li>
+    </ul>
+  </li>
+  <li>og klippes bort
+    <ul>
+      <li>Musemarkér række 1:2 og vælg Rediger | Klip</li>
+    </ul>
+  </li>
+  <li>Nullerne i søjle C skal væk
+    <ul>
+      <li>Musemarkér rækkerne med nuller i søjle
+        C. Rediger | Klip</li>
+    </ul>
+  </li>
+  <li>Tegn graf hvor C er funktion af tiden
+    <ul>
+      <li>Funktioner | Graf. A som X-akse. C som Y-akse</li>
+    </ul>
+  </li>
+  <li>Minimer tabelvinduet/ luk tabel
+    <ul>
+      <li>Klik på den lille grå knap i øverste
+        højre hjørne</li>
+    </ul>
+  </li>
+  <li>Første ordens reaktion?
+    <ul>
+      <li>Klik på knappen Diff - ln og vælg logaritmisk (ln)
+          2.akse<br>
+        Datalyse melder fejl,
+        hvis der er negative tal eller nul i søjle C.<br>
+        Marker i givet fald med musen og slet fra grafen</li>
+    </ul>
+  </li>
+  <li>Hastighedskonstanten i første ordens
+        reaktion
+    <ul>
+      <li>Musemarkér den del af grafen, som skal
+        ligge til grund for regressionslinien<br>
+        Klik på knappen Regress | OK<br>
+        I statuslinien ses : <span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">f(t) =
+        0.594*exp(-0.01882*t)</span> </li>
+    </ul>
+  </li>
+  <li><p>Memovinduet gemmer oplysninger om
+        dataanalysen<br>
+    Bemærk Datalyses farvekodning af de
+        mest afvigende punkter på grafen
+        </p>
+    <ul>
+      <li>Vis | Memo. Der kunne f.eks. stå:
+          <p>1: [ 1: 58] : [4.0:118.0] : <span style="mso-bidi-font-size: 10.0pt; font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA">f(t)
+          = 0.594*exp(-0.01882*t)</span></p>
+        <p>a=0.981356, b=0.594, T=36.83
+        halveringstiden</p>
+        <p>(a og b er konstanter i modelfunktionen
+        y = b · a<sup>x</sup> )</p>
+      </li>
+    </ul>
+  </li>
+  <li>Editering i memovinduet
+    <ul>
+      <li>Skriv i memo så der kommer til at stå
+        noget lignende:<p>Opløsning af IDOTYL brusetablet </p>
+        <p>På basis af målepunkter [1:58] findes
+        regressionslinien </p>
+        <p><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">f(t) =
+        0.594*exp(-0.01882*t)</span> </p>
+        <p>Hastighedskonstant k = 0.01882 s<sup>-1</sup> . </p>
+        <p>Halveringstiden er T=36.83 s. </p>
+      </li>
+    </ul>
+  </li>
+  <li>Graf + memo udskrives
+    <ul>
+      <li>Filer | Udskriv graf, <span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA">sæt </span><span style="mso-char-type: symbol; mso-symbol-font-family: Wingdings 2; font-size: 12.0pt; mso-bidi-font-size: 10.0pt; font-family: Wingdings 2; mso-ascii-font-family: Times New Roman; mso-fareast-font-family: Times New Roman; mso-hansi-font-family: Times New Roman; mso-bidi-font-family: Times New Roman; mso-ansi-language: DA; mso-fareast-language: DA; mso-bidi-language: AR-SA">R</span><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;font-family:&quot;Times New Roman&quot;;
+mso-fareast-font-family:&quot;Times New Roman&quot;;mso-ansi-language:DA;mso-fareast-language:
+DA;mso-bidi-language:AR-SA"> ved udskriv memo</span>
+      </li>
+    </ul>
+  </li>
+  <li>Tabel + memo gemmes
+    <ul>
+      <li>Filer | Gem tabel som...</li>
+    </ul>
+    <p>&nbsp;</p>
+  </li>
+</ul>
+
+<h3><font color="#0000FF">Ekstra:</font></h3>
+
+<hr>
+
+<p>Skulle vi ikke lige indtegne en teoretisk model:</p>
+
+<p>Ved lineær regression sættes X for indsættelse af forskrift
+for f(t). Nu skal du blot vælge f(t) og taste OK. Vælg dernæst
+almindelige akser.</p>
+
+<p>Grafen skulle gerne se således ud:</p>
+
+<p><img src="images/idoty902.gif" align="middle" alt="Brusetablet i vand, eksponentielt fit" width="637" height="444"></p>
+
+<p>&nbsp;</p>
+
+<address>
+    H.C. Jensen, Frederikssund Gymnasium 
+</address>
+</body>
+</html>

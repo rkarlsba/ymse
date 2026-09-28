@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="Content-Language" content="en-gb">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Bosch balances, Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2>Bosch balances</h2>
+
+<dl>
+  <dd><a href="boschvgt.htm#Bosch BS, EP, DMS">Bosch BS, EP, DMS</a></dd>
+  <dd><a href="boschvgt.htm#Bosch SAE">Bosch SAE</a></dd>
+</dl>
+
+<h3><a name="Bosch BS, EP, DMS">Bosch BS, EP, DMS</a> balances</h3>
+
+<p><font size="3">Menu in Datalyse</font></p>
+
+<blockquote>
+    <p><font size="3"><strong>Graphical measurement</strong></font></p>
+</blockquote>
+
+<p><font color="#8000FF" size="3"><b>Bosch last updated: 5/12
+1998. </b></font></p>
+
+<p><font size="3">Bosch BS series: Baud rate 1200, no parity, 1
+stop, 8 data bits.</font></p>
+
+<p><font size="3">Bosch EP, DMS series: Baud rate 1200, no
+parity, 1 stop, 7 data bits.</font></p>
+
+<p><font size="3">Both types requires a special cable but it
+comes with the device. Datalyse first attempts connecting with 8
+data bits and 1 stop bit and, if it fails, with 7 data bits and 2
+stop bits.</font></p>
+
+<p><font size="3">Command for weighing is »<b>w</b>« or »<b>s</b>«.
+The balance responds with:</font></p>
+
+<blockquote>
+    <p><font size="3">NNNBBBBDDDDDDDDBUUUUCRLF </font></p>
+</blockquote>
+
+<p><font size="3">a total of 22 character. Datalyse cuts the
+first 3 characters and removes all non-numeric characters and
+converts the remaining to a number. The unit is read before each
+measuring series.</font></p>
+
+<p><font size="3">Note that the balance should be readied for
+communication with a pc first. Bosch has changed the default
+settings, e.g. baud rate, several times. The functions of the
+balances have also been changed. This makes it difficult to give
+a general description of the setting, but Datalyse assumes:</font></p>
+
+<dl>
+    <dd><font size="3"><b>Autoprint PC</b>: off</font></dd>
+    <dd><font size="3"><b>Baud rate: </b>1200</font></dd>
+    <dd><font size="3"><b>Fast</b> on</font></dd>
+    <dd><font size="3"><b>Numerator:</b> on</font></dd>
+    <dd><font size="3"><b>Print Clock</b>: off</font></dd>
+</dl>
+
+<p><font size="3">Note that Autoprint ON will have the balance
+send data to the pc regularly. This might cause errors in the
+communication and should therefore be off.</font></p>
+
+<hr>
+<h3><a name="Bosch SAE">Bosch SAE</a></h3>
+<p><font size="3">Menu in Datalyse</font></p>
+<blockquote>
+  <p><font size="3"><strong>Graphical measurement</strong></font></p>
+</blockquote>
+<p><font color="#8000FF" size="3"><b>Bosch SAE is identical with Sartorius.</b></font></p>
+<p><font size="3">Baud rate 9600, odd parity, 1 stop, 7 data bits.</font></p>
+<p><font size="3">The balance requires a special cable.</font></p>
+<p><font size="3">The balance should be setup for communication with a pc.</font></p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Vælg apparat, til dataopsamling i Datalyse</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h2><font color="#0000FF">Vælg apparat til dataopsamling</font></h2>
+
+<hr>
+
+<p>Der er over 100 apparater. De kan inddeles efter Firma eller
+efter Emne. Firma 0 (Emne 0) giver en liste over samtlige
+apparater i alfabetisk rækkefølge. I <a href="installa.htm">Datalyse.ini</a>
+sætter man de apparater OFF, som man ikke ønsker vist normalt.
+Afmærkes feltet <font face="Wingdings">þ</font> Vis alle
+apparatet, kan man alligevel vælge blandt samtlige apparatet.
+Datalyse viser alle ledige com-porte. Denne pc har et ekstra kort
+med 4 com-porte, der deler et IRQ.</p>
+
+<p>Her er valgt Firma og alle apparater og herunder EM1
+energimeter.</p>
+
+<blockquote>
+    <p><img src="images/valgap1.gif" width="444" height="425" alt="Datalyse, valg af apparat"></p>
+</blockquote>
+
+<p>Bemærk, at Datalyse tester forbindelsen til apparatet. Der er
+forbindelse, for apparatet har sendt: »EM1 dansk version 2.57 93
+S/N 932104« til pc'en. Den grønne farve symbolerer ok, (en rød
+farve symbolerer manglende forbindelse).</p>
+
+<p>Tast ok. (Du kan også dobbeltklikke på apparatet - den blå
+tekst i menuen Apparat:). Herunder vises den indsatte menu for
+IMPOs energimeter.</p>
+
+<blockquote>
+    <p><img border="0" src="images/valgap4.gif" width="461" height="207" alt="Menu for apparat"></p>
+</blockquote>
+
+<p>Apparatets menu er nu indsat i hovedmenuen i Datalyse og
+dataopsamlingen kan begynde. </p>
+
+<hr>
+
+<p><font size="4" color="#0000FF"><b>Vi vælger <a name="grafisk måling">grafisk måling</a>: graf (t,
+f(t))</b></font></p>
+
+<blockquote>
+    <p><img src="images/valgap3.gif" width="449" height="399" alt="indstilling af måleparametre"></p>
+</blockquote>
+
+<p><b>Måleparametre:</b></p>
+
+<p>Menuen indeholder 3 faneblade. Blad 1 Måleparametre
+indeholder en række valg. De simpleste er tid pr måling og
+antal målinger. Vi vælger spændingsmåling, menupunktet
+afhænger af apparatet. Bagatelgrænsen benyttes, hvis man vil
+måle over lang tid, men kun ønsker en måling, når der er sket
+en ændring. Måles fx på et køleskabs effekt, og sættes
+bagatelgrænsen til 2 (watt), vil man udgå målinger, når
+køleskabet er slukket, men så snart motoren går i gang, vil
+man få målinger.</p>
+
+<p>Sættes <font face="Wingdings">þ</font> ved »Retur« for
+hver måling, skal du trykke på en tast for hver måling. Hvis
+ikke foretages målingerne løbende.</p>
+
+<p><font face="Wingdings">þ</font> ved Autoscale betyder, at
+Datalyse automatisk tilpasser koordinatsystemet. Fx skaleres
+Yaksen til 0-250 Volt ved spændingsmåling, men fra 0-3 Ampere
+ved strømmåling. Det anbefales at sætte <font face="Wingdings">þ</font>
+ved første måling. Gentages målingen, kan man bevare
+indstillingen ved at fjerne krydset. </p>
+
+<p><font face="Wingdings">þ</font> ved Indsæt dato og tid
+indsætter YY-MM-DD og hh:mm:ss i de to første søjler i
+tabellen. Man kan så altid se, hvornår hver enkelt måling er
+foretaget.</p>
+
+<p><font face="Wingdings">þ</font> ved Gem data løbende vil
+sikre, at data gemmes løbende. Skulle pc'en gå død, vil data
+indtil dødstidspunktet være gemt. Datalyse beder om et filnavn.</p>
+
+<p><strong>Sonder og </strong><a name="Akser"><strong>Akser</strong></a><strong>:</strong></p>
+
+<blockquote>
+    <p><img src="images/valgap2.gif" width="447" height="397" alt="indstilling af parametre for sonder"></p>
+</blockquote>
+
+<p>Skalering af Xaksen bruges typisk ved pH-målinger, idet man
+så kan skrive V/mL og vælge en faktor til antal mL/s.</p>
+
+<p>Skalering af Yaksen bruges f.eks. i forbindelse med
+Vernier-sonder. Der findes mange forskellige sonder. Menuen viser
+et Teslameter. Sonden giver en spænding fra 0 - 5 volt, så den
+kan benyttes i forbindelse med et multimeter. Man kan selv
+indsætte sonder i filen »<a href="vernier.htm">vernier.ini</a>«.
+Hvordan det gøres, er forklaret i selve filen.</p>
+
+<p><strong>Trigning: </strong></p>
+
+<p>Trigning benyttes til at starte målingerne på et bestemt
+tidspunkt eller når den målte værdi overstiger en bestemt
+grænse&#133;</p>
+<hr>
+<p><a name="Vis"><font size="4" color="#0000FF"><b>Vis</b></font></a> <font size="4" color="#0000FF"><b> (t, f(t))</b></font></p>
+<font SIZE="3">
+<p>I Vis måling vælges tid pr måling og antal målinger. Men dataopsamlingen
+stopper ikke før brugeren klikker på knappen »Stop«. Vis måling kan vælges
+for næsten alle apparater, hvor man kan vælge »Mål (t, f(t))«.</p>
+<p>Sættes kryds i »Start forfra«, slettes grafen, når der er opsamlet det
+valgte antal målinger og der startes forfra.</p>
+<p>Sættes ikke kryds, scrolles målingerne til venstre, når det valgte antal
+målinger er opsamlet.</p>
+<p>Vis måling er velegnet til iagttagelse af variationer, fx ved måling af
+lydstyrke eller temperatur.</p>
+<p>Husk, at bruge adapter til apparater med batterier ved langtidsmålinger.</p>
+<blockquote>
+<p><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt;
+font-family:&quot;Times New Roman&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:DA;mso-fareast-language:DA;mso-bidi-language:AR-SA"><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:427.8pt;
+ height:278.4pt'>
+ <v:imagedata src="file:///C:/WINDOWS/TEMP/msoclip1/01/clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]-->
+<img src="images/valgap5.gif" v:shapes="_x0000_i1025" width="570" height="371" alt="måling med alarm aktiv"></span></p>
+</blockquote>
+</font>
+</body>
+</html>
