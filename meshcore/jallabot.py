@@ -10,8 +10,6 @@ import jallabot_secrets
 
 from meshcore import MeshCore, EventType
 
-host_identifier = "openhop.karlsbakk.net"
-
 
 HOST = "::1"
 PORT = 5234
@@ -26,9 +24,6 @@ CHANNELS = {
     6: "#3d",
     7: "#3dprinting",
 }
-
-USER_AGENT = f"jallabot/0.5 {host_identifier}"
-
 
 # ----------------------------------------------------------------------
 # Språk
@@ -78,6 +73,8 @@ WEATHER_WORDS = {
     "pogodę": "pl",
 
     # Finsk
+    "saa": "fi",
+    "saatila": "fi",
     "sää": "fi",
     "säätila": "fi",
 }
@@ -115,30 +112,30 @@ WEATHER_SYMBOLS = {
 
     "fair": {
         "nn": "fint vêr",
-        "no": "pent vær",
-        "sv": "mest klart",
-        "da": "mest klart",
-        "is": "bjart",
-        "en": "fair",
-        "sco": "fair",
-        "de": "heiter",
-        "nl": "vrij helder",
-        "pl": "pogodnie",
-        "fi": "melko selkeää",
+        "no": "fint vær",
+        "sv": "fint väder",
+        "da": "fint vejr",
+        "is": "gott veður",
+        "en": "nice weather",
+        "sco": "bonnie weather",
+        "de": "schönes Wetter",
+        "nl": "mooi weer",
+        "pl": "ładna pogoda",
+        "fi": "hyvä sää",
     },
 
     "partlycloudy": {
-        "nn": "delvis skya",
-        "no": "delvis skyet",
-        "sv": "halvklart",
-        "da": "delvist skyet",
-        "is": "hálfskýjað",
-        "en": "partly cloudy",
-        "sco": "pairtly cloodie",
-        "de": "teilweise bewölkt",
-        "nl": "gedeeltelijk bewolkt",
-        "pl": "częściowe zachmurzenie",
-        "fi": "puolipilvistä",
+        "nn": "litt skya",
+        "no": "litt skyet",
+        "sv": "lite molnigt",
+        "da": "lidt skyet",
+        "is": "smáskýjað",
+        "en": "a bit cloudy",
+        "sco": "a wee bit cloodie",
+        "de": "etwas bewölkt",
+        "nl": "een beetje bewolkt",
+        "pl": "trochę pochmurno",
+        "fi": "vähän pilvistä",
     },
 
     "cloudy": {
@@ -161,54 +158,54 @@ WEATHER_SYMBOLS = {
         "sv": "dimma",
         "da": "tåge",
         "is": "þoka",
-        "en": "fog",
+        "en": "foggy",
         "sco": "haar",
-        "de": "Nebel",
-        "nl": "mist",
-        "pl": "mgła",
-        "fi": "sumua",
+        "de": "neblig",
+        "nl": "mistig",
+        "pl": "mglisto",
+        "fi": "sumuista",
     },
 
     "rain": {
-        "nn": "regn",
-        "no": "regn",
-        "sv": "regn",
-        "da": "regn",
+        "nn": "regnvêr",
+        "no": "regnvær",
+        "sv": "regnigt",
+        "da": "regnvejr",
         "is": "rigning",
-        "en": "rain",
-        "sco": "rain",
-        "de": "Regen",
-        "nl": "regen",
-        "pl": "deszcz",
-        "fi": "sadetta",
+        "en": "rainy",
+        "sco": "rainy",
+        "de": "regnerisch",
+        "nl": "regenachtig",
+        "pl": "deszczowo",
+        "fi": "sateista",
     },
 
     "lightrain": {
-        "nn": "lett regn",
-        "no": "lett regn",
-        "sv": "lätt regn",
-        "da": "let regn",
-        "is": "lítil rigning",
-        "en": "light rain",
-        "sco": "licht rain",
-        "de": "leichter Regen",
-        "nl": "lichte regen",
-        "pl": "lekki deszcz",
-        "fi": "heikkoa sadetta",
+        "nn": "småregn",
+        "no": "småregn",
+        "sv": "småregn",
+        "da": "småregn",
+        "is": "smárigning",
+        "en": "a bit of rain",
+        "sco": "a wee bit o rain",
+        "de": "ein bisschen Regen",
+        "nl": "een beetje regen",
+        "pl": "trochę deszczu",
+        "fi": "vähän sadetta",
     },
 
     "heavyrain": {
-        "no": "kraftig regn (eller Bergen)",
-        "nn": "kraftig regn (eller Bergen)",
-        "sv": "kraftigt regn (eller Bergen)",
-        "da": "kraftig regn (eller Bergen)",
-        "is": "mikil rigning (eða Bergen)",
-        "en": "heavy rain (or Bergen)",
-        "sco": "gey heavy rain (or Bergen)",
-        "de": "starker Regen (oder Bergen)",
-        "nl": "zware regen (of Bergen)",
-        "pl": "silny deszcz (albo Bergen)",
-        "fi": "voimakasta sadetta (tai Bergen)",
+        "nn": "høljeregn (eller Bergen)",
+        "no": "høljeregn (eller Bergen)",
+        "sv": "ösregn (eller Bergen)",
+        "da": "øsregn (eller Bergen)",
+        "is": "hellirigning (eða Bergen)",
+        "en": "pouring rain (or Bergen)",
+        "sco": "pishin doon (or Bergen)",
+        "de": "strömender Regen (oder Bergen)",
+        "nl": "stortregen (of Bergen)",
+        "pl": "ulewa (albo Bergen)",
+        "fi": "kaatosade (tai Bergen)",
     },
 
     "sleet": {
@@ -389,7 +386,42 @@ def geocode_place_sync(place: str):
     country = address.get("country", "")
 
     # Bruk navnet Nominatim returnerer.
-    # Dermed kan "reykjavik" bli "Reykjaví
+    # Dermed kan "reykjavik" bli "Reykjavík".
+
+    display_name = (
+        item.get("name")
+        or item.get("display_name", "").split(",")[0]
+        or place
+    )
+
+    print(f"Nominatim: {display_name}, {country}")
+
+    return (
+        float(item["lat"]),
+        float(item["lon"]),
+        display_name,
+        country,
+    )
+
+
+async def geocode_place(place: str):
+    try:
+        return await asyncio.to_thread(
+            geocode_place_sync,
+            place,
+        )
+
+    except Exception as exc:
+        print(f"Geokoding feilet for {place!r}: {exc}")
+        return None
+
+
+# ----------------------------------------------------------------------
+# MET Locationforecast
+# ----------------------------------------------------------------------
+
+def fetch_weather_sync(lat: float, lon: float):
+    url = (
         "https://api.met.no/weatherapi/locationforecast/2.0/compact"
         f"?lat={lat:.4f}&lon={lon:.4f}"
     )
@@ -510,7 +542,31 @@ def format_weather(
         case "pl":
             if precipitation is not None:
                 bits.append(
-                    f"{precipitation:g} mm w ciągu najbliż
+                    f"{precipitation:g} mm w ciągu najbliższej godziny"
+                )
+            if wind is not None:
+                bits.append(f"wiatr {wind:g} m/s")
+
+        case "fi":
+            if precipitation is not None:
+                bits.append(
+                    f"{precipitation:g} mm seuraavan tunnin aikana"
+                )
+            if wind is not None:
+                bits.append(f"tuuli {wind:g} m/s")
+
+        case _:
+            if precipitation is not None:
+                bits.append(f"{precipitation:g} mm in the next hour")
+            if wind is not None:
+                bits.append(f"wind {wind:g} m/s")
+
+    return f"{place}: " + ", ".join(bits) + ". Yr/MET."
+
+
+async def get_weather(place: str, language: str):
+    location = await geocode_place(place)
+
     if location is None:
         return None
 
@@ -632,7 +688,14 @@ async def main():
 
         if result.type == EventType.ERROR:
             print(
-                f"TX-feil på
+                f"TX-feil på "
+                f"{CHANNELS[channel_idx]}: "
+                f"{result.payload}"
+            )
+        else:
+            print(
+                f"TX {CHANNELS[channel_idx]}: "
+                f"{text}"
             )
 
     async def on_channel_message(event):
@@ -676,7 +739,16 @@ async def main():
         )
 
         # --------------------------------------------------------------
-        # Væ
+        # Vær
+        # --------------------------------------------------------------
+
+        (
+            wants_weather,
+            place,
+            language,
+        ) = weather_request(command)
+
+        if wants_weather:
 
             if place is None:
                 await reply(
