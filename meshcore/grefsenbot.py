@@ -2,18 +2,21 @@
 
 import asyncio
 from collections import defaultdict, deque
+from datetime import date, datetime, time, timedelta
 import hashlib
 import json
 import re
 import urllib.parse
 import urllib.request
+from zoneinfo import ZoneInfo
 
-from wbot_secrets import USER_AGENT
+from grefsenbot_secrets import USER_AGENT
 from meshcore import MeshCore, EventType
 
 
 HOST = "::1"
 PORT = 5234
+LOCAL_TIMEZONE = ZoneInfo("Europe/Oslo")
 
 
 CHANNELS = {
@@ -24,7 +27,7 @@ CHANNELS = {
     4: "#goteborg",
     5: "#lillemesh",
     6: "#norge",
-    7: "#3d",
+    7: "#oslo",
     8: "#3dprinting",
 }
 
@@ -277,24 +280,13 @@ def place_quip(place: str):
     if not place:
         return None
 
-    # Dette gjør blant annet:
-    #
-    # Drammen          -> drammen
-    # DRAMMEN          -> drammen
-    # Drammen, Norge   -> drammen
-    #
-    # Først prøver vi hele navnet.
     key = place.strip().casefold()
-
     quips = PLACE_QUIPS.get(key)
 
     if quips:
         return quips[0]
 
-    # Tillat at brukeren har skrevet f.eks.
-    # "Drammen Norge" eller "Drammen, Norge".
     first = re.split(r"[,\s]+", key, maxsplit=1)[0]
-
     quips = PLACE_QUIPS.get(first)
 
     if not quips:
@@ -308,37 +300,16 @@ def place_quip(place: str):
 # ----------------------------------------------------------------------
 
 KICK_WORDS = {
-    # Norsk bokmål
     "spark": "no",
-
-    # Nynorsk
     "spark-ut": "nn",
-
-    # Svensk
     "sparka": "sv",
-
-    # Dansk
     "los": "da",
-
-    # Islandsk
     "sparkaðu": "is",
-
-    # Engelsk
     "kick": "en",
-
-    # Scots
     "skelp": "sco",
-
-    # Tysk
     "tritt": "de",
-
-    # Nederlandsk
     "schop": "nl",
-
-    # Polsk
     "kopnij": "pl",
-
-    # Finsk
     "potkaise": "fi",
 }
 
@@ -376,16 +347,7 @@ KICK_MISSING = {
 def kick_request(command: str):
     """
     Gjenkjenner sparkekommando og returnerer:
-
         (is_kick, target, language)
-
-    Eksempler:
-
-        ,spark Roy
-        ,sparka Roy
-        ,kick Roy
-        ,tritt Roy
-        ,kopnij Roy
     """
 
     words = command.strip().split(maxsplit=1)
@@ -393,9 +355,7 @@ def kick_request(command: str):
     if not words:
         return False, None, None
 
-    first = words[0].casefold()
-
-    language = KICK_WORDS.get(first)
+    language = KICK_WORDS.get(words[0].casefold())
 
     if language is None:
         return False, None, None
@@ -404,7 +364,6 @@ def kick_request(command: str):
         return True, None, language
 
     target = words[1].strip()
-
     return True, target or None, language
 
 
@@ -421,19 +380,7 @@ def hashtag_secret(name: str) -> bytes:
 # ----------------------------------------------------------------------
 
 def parse_command(message: str):
-    """
-    Bare komma som prefiks aktiverer kommandoer.
-
-    Eksempler:
-        ,ping
-        ,pang
-        ,kick someone
-        ,spark noen
-        ,vær Oslo
-        ,veður reykjavik
-        ,weather Edinburgh
-        ,wetter Berlin
-    """
+    """Bare komma som prefiks aktiverer kommandoer."""
 
     message = message.strip()
 
@@ -441,11 +388,187 @@ def parse_command(message: str):
         return None
 
     command = message[1:].strip()
+    return command or None
 
-    if not command:
-        return None
 
-    return command
+# ----------------------------------------------------------------------
+# Dato-/dagstolkning for værkommandoer
+# ----------------------------------------------------------------------
+
+WEEKDAYS = {
+    # Norsk bokmål og nynorsk
+    "mandag": 0,
+    "måndag": 0,
+    "tirsdag": 1,
+    "tysdag": 1,
+    "onsdag": 2,
+    "onsdag": 2,
+    "torsdag": 3,
+    "fredag": 4,
+    "lørdag": 5,
+    "laurdag": 5,
+    "søndag": 6,
+    "sundag": 6,
+
+    # Svensk og dansk
+    "tisdag": 1,
+    "onsdag": 2,
+    "torsdag": 3,
+    "lördag": 5,
+    "söndag": 6,
+
+    # Engelsk og Scots
+    "monday": 0,
+    "tuesday": 1,
+    "wednesday": 2,
+    "thursday": 3,
+    "friday": 4,
+    "saturday": 5,
+    "sunday": 6,
+
+    # Islandsk
+    "mánudagur": 0,
+    "þriðjudagur": 1,
+    "miðvikudagur": 2,
+    "fimmtudagur": 3,
+    "föstudagur": 4,
+    "laugardagur": 5,
+    "sunnudagur": 6,
+
+    # Tysk
+    "montag": 0,
+    "dienstag": 1,
+    "mittwoch": 2,
+    "donnerstag": 3,
+    "freitag": 4,
+    "samstag": 5,
+    "sonntag": 6,
+
+    # Nederlandsk
+    "maandag": 0,
+    "dinsdag": 1,
+    "woensdag": 2,
+    "donderdag": 3,
+    "vrijdag": 4,
+    "zaterdag": 5,
+    "zondag": 6,
+
+    # Polsk
+    "poniedziałek": 0,
+    "wtorek": 1,
+    "środa": 2,
+    "czwartek": 3,
+    "piątek": 4,
+    "sobota": 5,
+    "niedziela": 6,
+
+    # Finsk
+    "maanantai": 0,
+    "tiistai": 1,
+    "keskiviikko": 2,
+    "torstai": 3,
+    "perjantai": 4,
+    "lauantai": 5,
+    "sunnuntai": 6,
+}
+
+
+def parse_forecast_day(text: str):
+    """
+    Returnerer (stedsnavn, antall dager fram).
+
+    Eksempler:
+        Oslo i dag
+        Oslo i morgon
+        Oslo i morra
+        Oslo om 3 dagar
+        Oslo på fredag
+        Oslo tomorrow
+        Oslo in 3 days
+        Oslo jutro
+        Oslo huomenna
+        Oslo á morgun
+    """
+
+    text = text.strip()
+    folded = text.casefold()
+
+    today_phrases = (
+        "i dag", "idag",                  # norsk, svensk, dansk
+        "today",                          # engelsk, Scots
+        "heute",                          # tysk
+        "vandaag",                        # nederlandsk
+        "dzisiaj", "dziś",                # polsk
+        "tänään",                         # finsk
+        "í dag",                          # islandsk
+    )
+
+    for phrase in today_phrases:
+        if folded.endswith(phrase):
+            return text[:-len(phrase)].strip(" ,"), 0
+
+    tomorrow_phrases = (
+        "i morgon", "imorgon",            # nynorsk, svensk
+        "i morgen", "i morra",            # bokmål, dansk
+        "imorgen", "imorra",
+        "tomorrow", "tmrw",               # engelsk, Scots
+        "morgen",                         # tysk, nederlandsk
+        "jutro",                          # polsk
+        "huomenna",                       # finsk
+        "á morgun", "a morgun",           # islandsk
+    )
+
+    for phrase in tomorrow_phrases:
+        if folded.endswith(phrase):
+            return text[:-len(phrase)].strip(" ,"), 1
+
+    relative_day_patterns = (
+        # Norsk bokmål/nynorsk, svensk, dansk, engelsk, tysk, nederlandsk
+        r"\b(?:om|in)\s+(\d+)\s+"
+        r"(?:dag|dager|dagar|dagen|dagene|days?|tage|tagen)\s*$",
+
+        # Islandsk: eftir 3 daga
+        r"\beftir\s+(\d+)\s+daga\s*$",
+
+        # Polsk: za 3 dni
+        r"\bza\s+(\d+)\s+dni\s*$",
+
+        # Finsk: 3 päivän päästä / 3 päivää
+        r"\b(\d+)\s+(?:päivän\s+päästä|päivää)\s*$",
+    )
+
+    for pattern in relative_day_patterns:
+        match = re.search(pattern, folded)
+        if match:
+            days = int(match.group(1))
+            place = text[:match.start()].strip(" ,")
+            return place, days
+
+    weekday_names = "|".join(
+        re.escape(name)
+        for name in sorted(WEEKDAYS, key=len, reverse=True)
+    )
+
+    weekday_match = re.search(
+        rf"(?:\b(?:på|next|am|kommende|neste|"
+        rf"następny|następna|ensi)\s+)?"
+        rf"({weekday_names})\s*$",
+        folded,
+    )
+
+    if weekday_match:
+        weekday = WEEKDAYS[weekday_match.group(1)]
+        today = datetime.now(LOCAL_TIMEZONE).date().weekday()
+        days = (weekday - today) % 7
+
+        # En ukedag uten «i dag» betyr neste forekomst av den dagen.
+        if days == 0:
+            days = 7
+
+        place = text[:weekday_match.start()].strip(" ,")
+        return place, days
+
+    return text, None
 
 
 # ----------------------------------------------------------------------
@@ -456,35 +579,26 @@ def weather_request(command: str):
     words = command.strip().split()
 
     if not words:
-        return False, None, None
+        return False, None, None, None
 
-    first = words[0].lower()
+    first = words[0].casefold()
 
-    # Enkel form:
-    #
-    # ,vær Oslo
-    # ,weather Edinburgh
-    # ,veður reykjavik
-    # ,wetter Berlin
-    # ,weer Amsterdam
-    # ,pogoda Warszawa
-    # ,sää Helsinki
-
+    # Enkel form: ,vær Oslo i morgon / ,weather Edinburgh tomorrow
     if first in WEATHER_WORDS:
         language = WEATHER_WORDS[first]
-        place = " ".join(words[1:]).strip()
-
-        return True, place or None, language
+        place, forecast_day = parse_forecast_day(
+            " ".join(words[1:]).strip()
+        )
+        return True, place or None, language, forecast_day
 
     # Se etter et kjent værord inne i setningen.
-
     language = None
 
     for word in words:
         clean = re.sub(
             r"^[^\wæøåäöðþ]+|[^\wæøåäöðþ]+$",
             "",
-            word.lower(),
+            word.casefold(),
         )
 
         if clean in WEATHER_WORDS:
@@ -492,33 +606,23 @@ def weather_request(command: str):
             break
 
     if language is None:
-        return False, None, None
+        return False, None, None, None
 
-    # Skandinavisk:
-    # hvordan er været i Oslo
-
+    # For eksempel «hvordan er været i Oslo» eller
+    # «what is the weather in Edinburgh».
     match = re.search(
-        r"\bi\s+(.+)$",
+        r"\b(?:i|in)\s+(.+)$",
         command,
         re.IGNORECASE,
     )
 
     if match:
-        return True, match.group(1).strip(), language
+        place, forecast_day = parse_forecast_day(
+            match.group(1).strip()
+        )
+        return True, place or None, language, forecast_day
 
-    # Engelsk/Scots:
-    # what's the weather in Edinburgh
-
-    match = re.search(
-        r"\bin\s+(.+)$",
-        command,
-        re.IGNORECASE,
-    )
-
-    if match:
-        return True, match.group(1).strip(), language
-
-    return True, None, language
+    return True, None, language, None
 
 
 # ----------------------------------------------------------------------
@@ -546,22 +650,15 @@ def geocode_place_sync(place: str):
         },
     )
 
-    with urllib.request.urlopen(
-        request,
-        timeout=10,
-    ) as response:
+    with urllib.request.urlopen(request, timeout=10) as response:
         result = json.load(response)
 
     if not result:
         return None
 
     item = result[0]
-
     address = item.get("address", {})
     country = address.get("country", "")
-
-    # Forsøk å bruke et pent lokalt stedsnavn.
-    # Eksempel: "reykjavik" kan bli "Reykjavík".
 
     display_name = (
         item.get("name")
@@ -572,15 +669,6 @@ def geocode_place_sync(place: str):
         or address.get("municipality")
         or place
     )
-    # display_name = (
-    #     address.get("city")
-    #     or address.get("town")
-    #     or address.get("village")
-    #     or address.get("municipality")
-    #     or address.get("hamlet")
-    #     or item.get("name")
-    #     or place
-    # )
 
     lat = float(item["lat"])
     lon = float(item["lon"])
@@ -590,16 +678,10 @@ def geocode_place_sync(place: str):
 
 async def geocode_place(place: str):
     try:
-        return await asyncio.to_thread(
-            geocode_place_sync,
-            place,
-        )
+        return await asyncio.to_thread(geocode_place_sync, place)
 
     except Exception as exc:
-        print(
-            f"Geokoding feilet for "
-            f"{place!r}: {exc}"
-        )
+        print(f"Geokoding feilet for {place!r}: {exc}")
         return None
 
 
@@ -626,19 +708,12 @@ def fetch_weather_sync(lat: float, lon: float):
         },
     )
 
-    with urllib.request.urlopen(
-        request,
-        timeout=10,
-    ) as response:
+    with urllib.request.urlopen(request, timeout=10) as response:
         return json.load(response)
 
 
 def clean_symbol(symbol: str):
-    for suffix in (
-        "_day",
-        "_night",
-        "_polartwilight",
-    ):
+    for suffix in ("_day", "_night", "_polartwilight"):
         if symbol.endswith(suffix):
             return symbol.removesuffix(suffix)
 
@@ -647,16 +722,12 @@ def clean_symbol(symbol: str):
 
 def translate_symbol(symbol: str, language: str):
     symbol = clean_symbol(symbol)
-
     translations = WEATHER_SYMBOLS.get(symbol)
 
     if not translations:
         return None
 
-    return translations.get(
-        language,
-        translations.get("en"),
-    )
+    return translations.get(language, translations.get("en"))
 
 
 # ----------------------------------------------------------------------
@@ -677,132 +748,138 @@ def format_weather(
         bits.append(condition)
 
     match language:
-
-        case "nn":
+        case "nn" | "no":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm den neste timen"
-                )
-
+                bits.append(f"{precipitation:g} mm den neste timen")
             if wind is not None:
-                bits.append(
-                    f"vind {wind:g} m/s"
-                )
-
-        case "no":
-            if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm den neste timen"
-                )
-
-            if wind is not None:
-                bits.append(
-                    f"vind {wind:g} m/s"
-                )
+                bits.append(f"vind {wind:g} m/s")
 
         case "sv":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm nästa timme"
-                )
-
+                bits.append(f"{precipitation:g} mm nästa timme")
             if wind is not None:
-                bits.append(
-                    f"vind {wind:g} m/s"
-                )
+                bits.append(f"vind {wind:g} m/s")
 
         case "da":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm den næste time"
-                )
-
+                bits.append(f"{precipitation:g} mm den næste time")
             if wind is not None:
-                bits.append(
-                    f"vind {wind:g} m/s"
-                )
+                bits.append(f"vind {wind:g} m/s")
 
         case "is":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm næstu klukkustund"
-                )
-
+                bits.append(f"{precipitation:g} mm næstu klukkustund")
             if wind is not None:
-                bits.append(
-                    f"vindur {wind:g} m/s"
-                )
+                bits.append(f"vindur {wind:g} m/s")
 
         case "sco":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm in the neist oor"
-                )
-
+                bits.append(f"{precipitation:g} mm in the neist oor")
             if wind is not None:
-                bits.append(
-                    f"wind {wind:g} m/s"
-                )
+                bits.append(f"wind {wind:g} m/s")
 
         case "de":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm in der nächsten Stunde"
-                )
-
+                bits.append(f"{precipitation:g} mm in der nächsten Stunde")
             if wind is not None:
-                bits.append(
-                    f"Wind {wind:g} m/s"
-                )
+                bits.append(f"Wind {wind:g} m/s")
 
         case "nl":
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm in het komende uur"
-                )
-
+                bits.append(f"{precipitation:g} mm in het komende uur")
             if wind is not None:
-                bits.append(
-                    f"wind {wind:g} m/s"
-                )
+                bits.append(f"wind {wind:g} m/s")
 
         case "pl":
             if precipitation is not None:
                 bits.append(
                     f"{precipitation:g} mm w ciągu najbliższej godziny"
                 )
-
             if wind is not None:
-                bits.append(
-                    f"wiatr {wind:g} m/s"
-                )
+                bits.append(f"wiatr {wind:g} m/s")
 
         case "fi":
             if precipitation is not None:
                 bits.append(
                     f"{precipitation:g} mm seuraavan tunnin aikana"
                 )
-
             if wind is not None:
-                bits.append(
-                    f"tuuli {wind:g} m/s"
-                )
+                bits.append(f"tuuli {wind:g} m/s")
 
         case _:
             if precipitation is not None:
-                bits.append(
-                    f"{precipitation:g} mm in the next hour"
-                )
-
+                bits.append(f"{precipitation:g} mm in the next hour")
             if wind is not None:
-                bits.append(
-                    f"wind {wind:g} m/s"
-                )
+                bits.append(f"wind {wind:g} m/s")
 
     return f"{place}: " + ", ".join(bits)
 
 
-async def get_weather(place: str, language: str):
+def local_entry_date(entry):
+    timestamp = datetime.fromisoformat(
+        entry["time"].replace("Z", "+00:00")
+    )
+    return timestamp.astimezone(LOCAL_TIMEZONE).date()
+
+
+def format_daily_forecast(place, target_date, entries, language):
+    if not entries:
+        return None
+
+    noon = datetime.combine(
+        target_date,
+        time(12, 0),
+        tzinfo=LOCAL_TIMEZONE,
+    )
+
+    def local_entry_time(entry):
+        return datetime.fromisoformat(
+            entry["time"].replace("Z", "+00:00")
+        ).astimezone(LOCAL_TIMEZONE)
+
+    chosen = min(
+        entries,
+        key=lambda entry: abs(local_entry_time(entry) - noon),
+    )
+
+    data = chosen["data"]
+    instant = data["instant"]["details"]
+    temperature = instant.get("air_temperature")
+    wind = instant.get("wind_speed")
+
+    next_6_hours = data.get("next_6_hours", {})
+    symbol = next_6_hours.get("summary", {}).get("symbol_code")
+    precipitation = next_6_hours.get("details", {}).get(
+        "precipitation_amount"
+    )
+
+    parts = []
+
+    if temperature is not None:
+        parts.append(f"{temperature:g} °C")
+
+    if symbol:
+        condition = translate_symbol(symbol, language)
+        if condition:
+            parts.append(condition)
+
+    if precipitation is not None:
+        parts.append(f"{precipitation:g} mm / 6 t")
+
+    if wind is not None:
+        parts.append(f"vind {wind:g} m/s")
+
+    if not parts:
+        return None
+
+    return f"{place} {target_date.strftime('%d.%m')}: " + ", ".join(parts)
+
+
+async def get_weather(
+    place: str,
+    language: str,
+    forecast_day=None,
+):
     location = await geocode_place(place)
 
     if location is None:
@@ -816,50 +893,53 @@ async def get_weather(place: str, language: str):
     )
 
     try:
-        data = await asyncio.to_thread(
-            fetch_weather_sync,
-            lat,
-            lon,
-        )
+        data = await asyncio.to_thread(fetch_weather_sync, lat, lon)
+        timeseries = data["properties"]["timeseries"]
 
-        ts = data["properties"]["timeseries"][0]
+        if forecast_day is not None:
+            if not 0 <= forecast_day <= 7:
+                return None
 
+            target_date = (
+                datetime.now(LOCAL_TIMEZONE).date()
+                + timedelta(days=forecast_day)
+            )
+
+            day_entries = [
+                entry
+                for entry in timeseries
+                if local_entry_date(entry) == target_date
+            ]
+
+            daily = format_daily_forecast(
+                display_name,
+                target_date,
+                day_entries,
+                language,
+            )
+
+            if daily is None:
+                return None
+
+            return f"{daily} {country}"
+
+        ts = timeseries[0]
         instant = ts["data"]["instant"]["details"]
 
         temperature = instant["air_temperature"]
         wind = instant.get("wind_speed")
 
-        next_hour = ts["data"].get(
-            "next_1_hours",
-            {},
-        )
-
-        symbol = (
-            next_hour
-            .get("summary", {})
-            .get("symbol_code")
-        )
-
-        precipitation = (
-            next_hour
-            .get("details", {})
-            .get("precipitation_amount")
+        next_hour = ts["data"].get("next_1_hours", {})
+        symbol = next_hour.get("summary", {}).get("symbol_code")
+        precipitation = next_hour.get("details", {}).get(
+            "precipitation_amount"
         )
 
     except Exception as exc:
-        print(
-            f"Værdata feilet for "
-            f"{display_name!r}: {exc}"
-        )
+        print(f"Værdata feilet for {display_name!r}: {exc}")
         return None
 
-    condition = None
-
-    if symbol:
-        condition = translate_symbol(
-            symbol,
-            language,
-        )
+    condition = translate_symbol(symbol, language) if symbol else None
 
     weather = format_weather(
         display_name,
@@ -870,35 +950,23 @@ async def get_weather(place: str, language: str):
         wind,
     )
 
-    return (
-        f"{weather} "
-        f"{country}, "
-        f"{lat:.4f}, {lon:.4f}"
-    )
+    return f"{weather} {country}, {lat:.4f}, {lon:.4f}"
 
 
 # ----------------------------------------------------------------------
-# wbot
+# grefsenbot
 # ----------------------------------------------------------------------
 
 async def main():
-    print(
-        f"Kobler til openHop på "
-        f"[{HOST}]:{PORT} ..."
-    )
+    print(f"Kobler til openHop på [{HOST}]:{PORT} ...")
 
-    mc = await MeshCore.create_tcp(
-        HOST,
-        PORT,
-    )
+    mc = await MeshCore.create_tcp(HOST, PORT)
 
     print("Tilkoblet.")
 
     # Public på slot 0 røres ikke.
     # Hashtag-kanalene konfigureres eksplisitt.
-
     for channel_idx, channel_name in CHANNELS.items():
-
         if not channel_name.startswith("#"):
             continue
 
@@ -920,39 +988,31 @@ async def main():
         + "."
     )
 
-    # ------------------------------------------------------------------
-    # Send svar
-    # ------------------------------------------------------------------
-
     async def reply(channel_idx: int, text: str):
         result = await mc.commands.send_chan_msg(
             channel_idx,
             text,
         )
 
+        print(
+            f"DEBUG send result: channel={channel_idx}, "
+            f"type={result.type!r}, payload={result.payload!r}, "
+            f"text={text!r}"
+        )
+
         if result.type == EventType.ERROR:
             print(
-                f"TX-feil på "
-                f"{CHANNELS[channel_idx]}: "
+                f"TX-feil på {CHANNELS[channel_idx]}: "
                 f"{result.payload}"
             )
-
         else:
-            print(
-                f"TX {CHANNELS[channel_idx]}: "
-                f"{text}"
-            )
-
+            print(f"TX {CHANNELS[channel_idx]}: {text}")
             channel_history[channel_idx].append(
                 {
-                    "sender": "wbot",
+                    "sender": "grefsenbot",
                     "text": text,
                 }
             )
-
-    # ------------------------------------------------------------------
-    # Innkommende kanalmeldinger
-    # ------------------------------------------------------------------
 
     async def on_channel_message(event):
         payload = event.payload
@@ -967,20 +1027,10 @@ async def main():
 
         text = payload.get("text")
 
-        if not text:
+        if not text or ": " not in text:
             return
 
-        # openHop/MeshCore leverer f.eks.:
-        #
-        # Grefsenposten BLE: ,ping
-
-        if ": " not in text:
-            return
-
-        sender, message = text.split(
-            ": ",
-            1,
-        )
+        sender, message = text.split(": ", 1)
 
         channel_history[channel_idx].append(
             {
@@ -988,10 +1038,6 @@ async def main():
                 "text": message,
             }
         )
-
-        # --------------------------------------------------------------
-        # Vanlige komma-kommandoer
-        # --------------------------------------------------------------
 
         command = parse_command(message)
 
@@ -1003,16 +1049,10 @@ async def main():
             f"{sender!r}: {command!r}"
         )
 
-        # --------------------------------------------------------------
         # Spark / kick
-        # --------------------------------------------------------------
-
-        is_kick, target, kick_language = kick_request(
-            command
-        )
+        is_kick, target, kick_language = kick_request(command)
 
         if is_kick:
-
             if target is None:
                 await reply(
                     channel_idx,
@@ -1030,39 +1070,28 @@ async def main():
 
             await reply(
                 channel_idx,
-                template.format(
-                    target=target,
-                ),
+                template.format(target=target),
             )
-
             return
 
-        # --------------------------------------------------------------
         # Vær
-        # --------------------------------------------------------------
-
-        is_weather, place, language = weather_request(
+        is_weather, place, language, forecast_day = weather_request(
             command
         )
 
         if is_weather:
-
             if place is None:
                 await reply(
                     channel_idx,
-                    NO_LOCATION.get(
-                        language,
-                        NO_LOCATION["en"],
-                    ),
+                    NO_LOCATION.get(language, NO_LOCATION["en"]),
                 )
                 return
 
             forecast = await get_weather(
                 place,
                 language,
+                forecast_day,
             )
-
-            # Vet vi ikke, sier vi ingenting.
 
             if forecast:
                 quip = place_quip(place)
@@ -1070,21 +1099,14 @@ async def main():
                 if quip:
                     forecast = f"{forecast} {quip}"
 
-                await reply(
-                    channel_idx,
-                    forecast,
-                )
+                await reply(channel_idx, forecast)
 
             return
 
-        # --------------------------------------------------------------
         # Andre kommandoer
-        # --------------------------------------------------------------
-
         cmd = command.lower().strip()
 
         match cmd:
-
             case "teisen" | "theisen":
                 await reply(
                     channel_idx,
@@ -1092,101 +1114,62 @@ async def main():
                 )
 
             case "ping":
-                await reply(
-                    channel_idx,
-                    "pong",
-                )
+                await reply(channel_idx, "pong")
 
             case "pang":
-                await reply(
-                    channel_idx,
-                    "🔫💥",
-                )
+                await reply(channel_idx, "🔫💥")
 
             case "jalla":
-                await reply(
-                    channel_idx,
-                    "JALLA! JALLA!",
-                )
+                await reply(channel_idx, "JALLA! JALLA! https://www.imdb.com/title/tt0269389/")
 
             # Norsk
             case "hei" | "heisann" | "hallo":
-                await reply(
-                    channel_idx,
-                    f"Hei {sender}!",
-                )
+                await reply(channel_idx, f"Hei {sender}!")
 
             # Svensk
             case "hej" | "hallå":
-                await reply(
-                    channel_idx,
-                    f"Hej {sender}!",
-                )
+                await reply(channel_idx, f"Hej {sender}!")
 
             # Dansk
             case "dav" | "goddag":
-                await reply(
-                    channel_idx,
-                    f"Dav {sender}!",
-                )
+                await reply(channel_idx, f"Dav {sender}!")
 
             # Islandsk
             case "hæ" | "halló":
-                await reply(
-                    channel_idx,
-                    f"Halló {sender}!",
-                )
+                await reply(channel_idx, f"Halló {sender}!")
 
             # Engelsk
             case "hello" | "hi":
-                await reply(
-                    channel_idx,
-                    f"Hello {sender}!",
-                )
+                await reply(channel_idx, f"Hello {sender}!")
 
             # Scots
             case "hullo":
-                await reply(
-                    channel_idx,
-                    f"Hullo {sender}! Aye.",
-                )
+                await reply(channel_idx, f"Hullo {sender}! Aye.")
 
             # Tysk
             case "moin" | "guten tag":
-                await reply(
-                    channel_idx,
-                    f"Moin {sender}!",
-                )
+                await reply(channel_idx, f"Moin {sender}!")
 
             # Nederlandsk
             case "hoi" | "goedendag":
-                await reply(
-                    channel_idx,
-                    f"Hoi {sender}!",
-                )
+                await reply(channel_idx, f"Hoi {sender}!")
 
             # Polsk
             case "cześć" | "czesc" | "hejka":
-                await reply(
-                    channel_idx,
-                    f"Cześć {sender}!",
-                )
+                await reply(channel_idx, f"Cześć {sender}!")
 
             # Finsk
             case "moi" | "terve":
-                await reply(
-                    channel_idx,
-                    f"Moi {sender}!",
-                )
+                await reply(channel_idx, f"Moi {sender}!")
 
             case "help" | "hjelp":
                 await reply(
                     channel_idx,
-                    ",ping ,pang ,kick <navn> ,spark <navn> ,vær <sted>",
+                    ",ping ,pang ,kick <navn> ,spark <navn> ,vær <sted> "
+                    "[i dag/i morgon/ukedag/om N dagar]",
                 )
 
-            # Ukjent kommando. Vær stille.
-
+            # Ukjent kommando: vær stille.
             case _:
                 return
 
