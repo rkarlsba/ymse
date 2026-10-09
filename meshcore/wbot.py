@@ -8,8 +8,7 @@ import re
 import urllib.parse
 import urllib.request
 
-from wbot_secrets import USER_AGENT, GROQ_API_KEY
-
+from wbot_secrets import USER_AGENT
 from meshcore import MeshCore, EventType
 
 
@@ -31,87 +30,10 @@ CHANNELS = {
 
 
 # ----------------------------------------------------------------------
-# KI
+# Korttidshukommelse
 # ----------------------------------------------------------------------
 
-AI_URL = "https://api.openai.com/v1/chat/completions"
-AI_MODEL = "gpt-5-mini"
-
-# Kort er bra på LoRa.
-AI_MAX_REPLY_CHARS = 180
-
-# Hvor mange tidligere meldinger per kanal KI-en får se.
 AI_CONTEXT_MESSAGES = 6
-
-
-# wbot er det nye navnet, men jallabot skal fortsatt fungere.
-#
-# Treffer f.eks.:
-#
-#   @wbot hva mener du?
-#   wbot, hva mener du?
-#   wbot: hva mener du?
-#   wbot hva mener du?
-#   @jallabot hva mener du?
-#   jallabot, hva mener du?
-#
-# Treffer ikke:
-#
-#   jeg tror wbot er full
-#   det der var jallabot sin feil
-
-BOT_MENTION_RE = re.compile(
-    r"^\s*@?(?:wbot|jallabot)\b"
-    r"(?:\s*[:,;-]\s*|\s+)"
-    r"(.+?)\s*$",
-    re.IGNORECASE,
-)
-
-
-AI_SYSTEM_PROMPT = """
-Du er wbot, tidligere kjent som jallabot, på et MeshCore LoRa-nettverk.
-
-Du svarer når noen henvender seg direkte til wbot eller jallabot.
-
-Personlighet:
-- Du er lakonisk, tørr, ironisk og sarkastisk.
-- Du kan være småfrekk og lettere fornærmende.
-- Du kan erte brukeren når det passer naturlig.
-- Ikke vær hatefull, truende eller grovt nedsettende.
-- Bruk tidligere meldinger til å forstå konteksten.
-- Lag en relevant replikk til det som faktisk blir sagt.
-- Spill gjerne videre på vær, stedsnavn, dårlige valg og det som nettopp ble sagt.
-- Understatement er bedre enn overdreven humor.
-- Ikke prøv for hardt å være morsom.
-- Ikke forklar vitsen.
-- Ikke bruk markdown.
-- Unngå emoji med mindre det faktisk gjør svaret bedre.
-- Ikke si at du er en KI eller språkmodell med mindre du blir spurt direkte.
-- Ikke finn på faktiske opplysninger bare for å få til en vits.
-- Svar på samme språk som personen som henvender seg til deg.
-
-VIKTIG:
-Dette går over LoRa. Airtime er dyrt.
-Svar helst med én kort setning.
-Helst under 120 tegn og aldri mer enn 180 tegn.
-
-Eksempel:
-Værmelding: "Stokke: 5.6 °C, pissregn (eller Bergen), 1 mm neste timen."
-Bruker: 'Derfor bare "morgen" fra Stokke.'
-Svar: "Ja, men du er på feil sted!"
-""".strip()
-
-
-# Litt korttidshukommelse per kanal.
-#
-# Innhold:
-#
-# {
-#     3: deque([
-#         {"sender": "Benign", "text": ",vær Stokke"},
-#         {"sender": "wbot", "text": "Stokke: ..."},
-#     ])
-# }
 
 channel_history = defaultdict(
     lambda: deque(maxlen=AI_CONTEXT_MESSAGES)
@@ -218,8 +140,8 @@ WEATHER_SYMBOLS = {
     },
 
     "partlycloudy": {
-        "nn": "litt skya",
-        "no": "litt skyet",
+        "nn": "delvis skya",
+        "no": "delvis skyet",
         "sv": "lite molnigt",
         "da": "lidt skyet",
         "is": "smáskýjað",
@@ -332,6 +254,161 @@ WEATHER_SYMBOLS = {
 
 
 # ----------------------------------------------------------------------
+# Stedsvise visdomsord
+# ----------------------------------------------------------------------
+
+PLACE_QUIPS = {
+    "drammen": [
+        "Bedre med en dram i timen enn en time i Drammen.",
+    ],
+    "bergen": [
+        "Paraply er bekledning, ikke tilbehør.",
+    ],
+    "stokke": [
+        "Du kunne jo valgt et bedre sted.",
+    ],
+    "kongsvinger": [
+        "Flytt til byen!",
+    ],
+}
+
+
+def place_quip(place: str):
+    if not place:
+        return None
+
+    # Dette gjør blant annet:
+    #
+    # Drammen          -> drammen
+    # DRAMMEN          -> drammen
+    # Drammen, Norge   -> drammen
+    #
+    # Først prøver vi hele navnet.
+    key = place.strip().casefold()
+
+    quips = PLACE_QUIPS.get(key)
+
+    if quips:
+        return quips[0]
+
+    # Tillat at brukeren har skrevet f.eks.
+    # "Drammen Norge" eller "Drammen, Norge".
+    first = re.split(r"[,\s]+", key, maxsplit=1)[0]
+
+    quips = PLACE_QUIPS.get(first)
+
+    if not quips:
+        return None
+
+    return quips[0]
+
+
+# ----------------------------------------------------------------------
+# Spark / kick
+# ----------------------------------------------------------------------
+
+KICK_WORDS = {
+    # Norsk bokmål
+    "spark": "no",
+
+    # Nynorsk
+    "spark-ut": "nn",
+
+    # Svensk
+    "sparka": "sv",
+
+    # Dansk
+    "los": "da",
+
+    # Islandsk
+    "sparkaðu": "is",
+
+    # Engelsk
+    "kick": "en",
+
+    # Scots
+    "skelp": "sco",
+
+    # Tysk
+    "tritt": "de",
+
+    # Nederlandsk
+    "schop": "nl",
+
+    # Polsk
+    "kopnij": "pl",
+
+    # Finsk
+    "potkaise": "fi",
+}
+
+
+KICK_REPLIES = {
+    "nn": "Sparkar {target} i ræva. 🥾",
+    "no": "Sparker {target} i ræva. 🥾",
+    "sv": "Sparkar {target} i röven. 🥾",
+    "da": "Sparker {target} bagi. 🥾",
+    "is": "Sparka {target} í rassinn. 🥾",
+    "en": "Kicks {target} in the arse. 🥾",
+    "sco": "Gies {target} a boot up the erse. 🥾",
+    "de": "Tritt {target} in den Hintern. 🥾",
+    "nl": "Schopt {target} onder z'n kont. 🥾",
+    "pl": "Kopie {target} w tyłek. 🥾",
+    "fi": "Potkaisee käyttäjää {target} persuksille. 🥾",
+}
+
+
+KICK_MISSING = {
+    "nn": "Kven då? Eg er ein bot, ikkje tankelesar.",
+    "no": "Hvem da? Jeg er en bot, ikke tankeleser.",
+    "sv": "Vem då? Jag är en bot, inte tankeläsare.",
+    "da": "Hvem? Jeg er en bot, ikke tankelæser.",
+    "is": "Hvern þá? Ég er vélmenni, ekki hugsanalesari.",
+    "en": "Who? I'm a bot, not a mind reader.",
+    "sco": "Wha? Ah'm a bot, no a mind reader.",
+    "de": "Wen denn? Ich bin ein Bot, kein Gedankenleser.",
+    "nl": "Wie dan? Ik ben een bot, geen gedachtenlezer.",
+    "pl": "Kogo? Jestem botem, nie czytam w myślach.",
+    "fi": "Ketä? Olen botti, en ajatustenlukija.",
+}
+
+
+def kick_request(command: str):
+    """
+    Gjenkjenner sparkekommando og returnerer:
+
+        (is_kick, target, language)
+
+    Eksempler:
+
+        ,spark Roy
+        ,sparka Roy
+        ,kick Roy
+        ,tritt Roy
+        ,kopnij Roy
+    """
+
+    words = command.strip().split(maxsplit=1)
+
+    if not words:
+        return False, None, None
+
+    first = words[0].casefold()
+
+    language = KICK_WORDS.get(first)
+
+    if language is None:
+        return False, None, None
+
+    if len(words) == 1:
+        return True, None, language
+
+    target = words[1].strip()
+
+    return True, target or None, language
+
+
+# ----------------------------------------------------------------------
 # MeshCore-kanaler
 # ----------------------------------------------------------------------
 
@@ -350,6 +427,8 @@ def parse_command(message: str):
     Eksempler:
         ,ping
         ,pang
+        ,kick someone
+        ,spark noen
         ,vær Oslo
         ,veður reykjavik
         ,weather Edinburgh
@@ -367,111 +446,6 @@ def parse_command(message: str):
         return None
 
     return command
-
-
-# ----------------------------------------------------------------------
-# Direkte tiltale til wbot / jallabot
-# ----------------------------------------------------------------------
-
-def bot_mention(message: str):
-    match = BOT_MENTION_RE.match(message)
-
-    if not match:
-        return None
-
-    return match.group(1).strip()
-
-
-# ----------------------------------------------------------------------
-# KI
-# ----------------------------------------------------------------------
-
-def ask_ai_sync(sender: str, message: str, history):
-    messages = [
-        {
-            "role": "system",
-            "content": AI_SYSTEM_PROMPT,
-        }
-    ]
-
-    if history:
-        context = "\n".join(
-            f"{item['sender']}: {item['text']}"
-            for item in history
-        )
-
-        prompt = (
-            "Nylig samtale på MeshCore-kanalen:\n"
-            f"{context}\n\n"
-            f"{sender} henvender seg nå
-
-    else:
-        prompt = (
-            f"{sender} henvender seg direkte til deg:\n"
-            f"{message}"
-        )
-
-    messages.append(
-        {
-            "role": "user",
-            "content": prompt,
-        }
-    )
-
-    body = json.dumps(
-        {
-            "model": AI_MODEL,
-            "messages": messages,
-        }
-    ).encode("utf-8")
-
-    request = urllib.request.Request(
-        AI_URL,
-        data=body,
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-
-    with urllib.request.urlopen(
-        request,
-        timeout=20,
-    ) as response:
-        data = json.load(response)
-
-    answer = (
-        data["choices"][0]["message"]["content"]
-        .strip()
-        .replace("\n", " ")
-    )
-
-    # Ikke la språkmodellen holde foredrag over LoRa.
-
-    if len(answer) > AI_MAX_REPLY_CHARS:
-        shortened = answer[:AI_MAX_REPLY_CHARS]
-
-        if " " in shortened:
-            shortened = shortened.rsplit(" ", 1)[0]
-
-        answer = shortened.rstrip()
-
-    return answer
-
-
-async def ask_ai(sender: str, message: str, history):
-    try:
-        return await asyncio.to_thread(
-            ask_ai_sync,
-            sender,
-            message,
-            history,
-        )
-
-    except Exception as exc:
-        print(f"KI-kall feilet: {exc}")
-        return None
 
 
 # ----------------------------------------------------------------------
@@ -586,8 +560,63 @@ def geocode_place_sync(place: str):
     address = item.get("address", {})
     country = address.get("country", "")
 
-    # Bruk navnet Nominatim returnerer.
-    # Dermed kan "reykjavik" bli "Reykjaví
+    # Forsøk å bruke et pent lokalt stedsnavn.
+    # Eksempel: "reykjavik" kan bli "Reykjavík".
+
+    display_name = (
+        item.get("name")
+        or address.get("village")
+        or address.get("hamlet")
+        or address.get("town")
+        or address.get("city")
+        or address.get("municipality")
+        or place
+    )
+    # display_name = (
+    #     address.get("city")
+    #     or address.get("town")
+    #     or address.get("village")
+    #     or address.get("municipality")
+    #     or address.get("hamlet")
+    #     or item.get("name")
+    #     or place
+    # )
+
+    lat = float(item["lat"])
+    lon = float(item["lon"])
+
+    return lat, lon, display_name, country
+
+
+async def geocode_place(place: str):
+    try:
+        return await asyncio.to_thread(
+            geocode_place_sync,
+            place,
+        )
+
+    except Exception as exc:
+        print(
+            f"Geokoding feilet for "
+            f"{place!r}: {exc}"
+        )
+        return None
+
+
+# ----------------------------------------------------------------------
+# Vær via MET
+# ----------------------------------------------------------------------
+
+def fetch_weather_sync(lat: float, lon: float):
+    params = {
+        "lat": f"{lat:.4f}",
+        "lon": f"{lon:.4f}",
+    }
+
+    url = (
+        "https://api.met.no/weatherapi/locationforecast/2.0/compact?"
+        + urllib.parse.urlencode(params)
+    )
 
     request = urllib.request.Request(
         url,
@@ -740,7 +769,42 @@ def format_weather(
         case "pl":
             if precipitation is not None:
                 bits.append(
-                    f"{precipitation:g} mm w ciągu najbliż
+                    f"{precipitation:g} mm w ciągu najbliższej godziny"
+                )
+
+            if wind is not None:
+                bits.append(
+                    f"wiatr {wind:g} m/s"
+                )
+
+        case "fi":
+            if precipitation is not None:
+                bits.append(
+                    f"{precipitation:g} mm seuraavan tunnin aikana"
+                )
+
+            if wind is not None:
+                bits.append(
+                    f"tuuli {wind:g} m/s"
+                )
+
+        case _:
+            if precipitation is not None:
+                bits.append(
+                    f"{precipitation:g} mm in the next hour"
+                )
+
+            if wind is not None:
+                bits.append(
+                    f"wind {wind:g} m/s"
+                )
+
+    return f"{place}: " + ", ".join(bits)
+
+
+async def get_weather(place: str, language: str):
+    location = await geocode_place(place)
+
     if location is None:
         return None
 
@@ -879,9 +943,6 @@ async def main():
                 f"{text}"
             )
 
-            # Våre egne svar blir også del av korttidshukommelsen.
-            # Dermed kan KI-en se f.eks. værmeldingen wbot akkurat sendte.
-
             channel_history[channel_idx].append(
                 {
                     "sender": "wbot",
@@ -921,16 +982,6 @@ async def main():
             1,
         )
 
-        # Ta kopi av historikken før den nye meldingen legges inn.
-        # Dette er konteksten KI-en får.
-
-        history_before = list(
-            channel_history[channel_idx]
-        )
-
-        # Husk alle vanlige meldinger, ikke bare kommandoer.
-        # Det gjør at wbot kan forstå hva folk nettopp snakket om.
-
         channel_history[channel_idx].append(
             {
                 "sender": sender,
@@ -939,43 +990,10 @@ async def main():
         )
 
         # --------------------------------------------------------------
-        # Direkte tiltale til wbot / jallabot
-        # --------------------------------------------------------------
-
-        mention = bot_mention(message)
-
-        if mention is not None:
-
-            print(
-                f"RX {CHANNELS[channel_idx]} "
-                f"{sender!r} -> wbot: "
-                f"{mention!r}"
-            )
-
-            answer = await ask_ai(
-                sender,
-                mention,
-                history_before,
-            )
-
-            # Hvis KI/API feiler, hold kjeft på meshet.
-
-            if answer:
-                await reply(
-                    channel_idx,
-                    answer,
-                )
-
-            return
-
-        # --------------------------------------------------------------
         # Vanlige komma-kommandoer
         # --------------------------------------------------------------
 
         command = parse_command(message)
-
-        # Ikke komma-prefiks og ikke tiltale til oss.
-        # Hold kjeft.
 
         if command is None:
             return
@@ -986,7 +1004,48 @@ async def main():
         )
 
         # --------------------------------------------------------------
-        # Væ
+        # Spark / kick
+        # --------------------------------------------------------------
+
+        is_kick, target, kick_language = kick_request(
+            command
+        )
+
+        if is_kick:
+
+            if target is None:
+                await reply(
+                    channel_idx,
+                    KICK_MISSING.get(
+                        kick_language,
+                        KICK_MISSING["en"],
+                    ),
+                )
+                return
+
+            template = KICK_REPLIES.get(
+                kick_language,
+                KICK_REPLIES["en"],
+            )
+
+            await reply(
+                channel_idx,
+                template.format(
+                    target=target,
+                ),
+            )
+
+            return
+
+        # --------------------------------------------------------------
+        # Vær
+        # --------------------------------------------------------------
+
+        is_weather, place, language = weather_request(
+            command
+        )
+
+        if is_weather:
 
             if place is None:
                 await reply(
@@ -1006,6 +1065,11 @@ async def main():
             # Vet vi ikke, sier vi ingenting.
 
             if forecast:
+                quip = place_quip(place)
+
+                if quip:
+                    forecast = f"{forecast} {quip}"
+
                 await reply(
                     channel_idx,
                     forecast,
@@ -1020,6 +1084,12 @@ async def main():
         cmd = command.lower().strip()
 
         match cmd:
+
+            case "teisen" | "theisen":
+                await reply(
+                    channel_idx,
+                    "https://www.youtube.com/watch?v=cFP86wAvp-8",
+                )
 
             case "ping":
                 await reply(
@@ -1112,7 +1182,7 @@ async def main():
             case "help" | "hjelp":
                 await reply(
                     channel_idx,
-                    ",ping ,pang ,vær <sted>",
+                    ",ping ,pang ,kick <navn> ,spark <navn> ,vær <sted>",
                 )
 
             # Ukjent kommando. Vær stille.
@@ -1126,8 +1196,6 @@ async def main():
     )
 
     await mc.start_auto_message_fetching()
-
-    # Ingen startup-melding på mesh-et.
 
     try:
         while True:
