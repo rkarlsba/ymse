@@ -1,36 +1,102 @@
 #!/usr/bin/env python3
 
+# Dokumentasjon
+
+# Denne tar ei konfigfil, grefsenbot_secrets.py, eller hva du nå kaller den og følgende skal være satt der. Denne fila er lista opp i .gitignore, så endre der også hvis du endrer navn på denne
+#
+# HOST_IDENTIFIER = "botnavn.example.com"
+# USER_AGENT = "grefsenbot/0.6 openhop.example.com"
+# OPENAI_API_KEY = "lang-og-fin-nøkkel"
+# GROQ_API_KEY = "lang-og-fin-nøkkel"
+
+# Hvor vi skal kontakte openhop
+#
+# HOST = "::1"
+# PORT = 9090
+
+# Tidssone
+# LOCAL_TIMEZONE = ZoneInfo("Europe/Oslo")
+# 
+# Kanaler
+#
+# CHANNELS = {
+#     0: "Public",
+#     1: "#mybot",
+#     2: "#mytest",
+#     3: "#mytown",
+# }
+
+import argparse
 import asyncio
-from collections import defaultdict, deque
-from datetime import date, datetime, time, timedelta
 import hashlib
 import json
+import logging
+import logging.handlers
 import re
+import sys
 import urllib.parse
 import urllib.request
+from collections import defaultdict, deque
+from datetime import date, datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
-from grefsenbot_secrets import USER_AGENT
+from grefsenbot_secrets import USER_AGENT, HOST, PORT, LOCAL_TIMEZONE, CHANNELS
 from meshcore import MeshCore, EventType
 
+logger = logging.getLogger("grefsenbot")
 
-HOST = "::1"
-PORT = 5234
-LOCAL_TIMEZONE = ZoneInfo("Europe/Oslo")
+def configure_logging():
+    parser = argparse.ArgumentParser(description="Grefsenbot")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Vis loggmeldingar i terminalen",
+    )
+    parser.add_argument(
+        "--no-syslog",
+        action="store_true",
+        help="Ikkje send loggmeldingar til syslog",
+    )
+    args = parser.parse_args()
 
+    logger.setLevel(logging.DEBUG)
+    logger.handlers.clear()
+    logger.propagate = False
 
-CHANNELS = {
-    0: "Public",
-    1: "#bot",
-    2: "#roytest",
-    3: "#test",
-    4: "#goteborg",
-    5: "#lillemesh",
-    6: "#norge",
-    7: "#oslo",
-    8: "#3dprinting",
-}
+    formatter = logging.Formatter(
+        "grefsenbot[%(process)d] %(levelname)s: %(message)s"
+    )
 
+    if not args.no_syslog:
+        # macOS brukar vanlegvis /var/run/syslog, Linux ofte /dev/log.
+        syslog_addresses = ("/var/run/syslog", "/dev/log")
+
+        for address in syslog_addresses:
+            try:
+                handler = logging.handlers.SysLogHandler(address=address)
+                handler.setLevel(logging.DEBUG)
+                handler.setFormatter(formatter)
+                logger.addHandler(handler)
+                break
+            except OSError:
+                continue
+        else:
+            print(
+                "Kunne ikkje opprette syslog-handterar; "
+                "prøvde /var/run/syslog og /dev/log.",
+                file=sys.stderr,
+            )
+
+    if args.verbose:
+        console_handler = logging.StreamHandler(sys.stderr)
+        console_handler.setLevel(logging.DEBUG)
+        console_handler.setFormatter(
+            logging.Formatter("%(asctime)s %(levelname)s: %(message)s")
+        )
+        logger.addHandler(console_handler)
+
+    return args
 
 # ----------------------------------------------------------------------
 # Korttidshukommelse
@@ -49,7 +115,7 @@ channel_history = defaultdict(
 
 WEATHER_WORDS = {
     # Generell
-    "v": "en",
+    "w": "en",
 
     # Nynorsk, konservativ
     "ver": "nn",
@@ -681,7 +747,7 @@ async def geocode_place(place: str):
         return await asyncio.to_thread(geocode_place_sync, place)
 
     except Exception as exc:
-        print(f"Geokoding feilet for {place!r}: {exc}")
+        logger.exception("Geokoding feilet for %r", place)
         return None
 
 
@@ -887,7 +953,7 @@ async def get_weather(
 
     lat, lon, display_name, country = location
 
-    print(
+    logger.info(
         f"Geokoding: {place!r} -> {display_name!r}, "
         f"{country} ({lat:.4f}, {lon:.4f})"
     )
@@ -936,7 +1002,7 @@ async def get_weather(
         )
 
     except Exception as exc:
-        print(f"Værdata feilet for {display_name!r}: {exc}")
+        logger.exception("Værdata feilet for %r", display_name)
         return None
 
     condition = translate_symbol(symbol, language) if symbol else None
@@ -958,11 +1024,14 @@ async def get_weather(
 # ----------------------------------------------------------------------
 
 async def main():
-    print(f"Kobler til openHop på [{HOST}]:{PORT} ...")
+    logger.info("Kobler til openHop på [%s]:%s ...", HOST, PORT)
 
-    mc = await MeshCore.create_tcp(HOST, PORT)
-
-    print("Tilkoblet.")
+    try:
+        mc = await MeshCore.create_tcp(HOST, PORT)
+        logger.info("Tilkoblet")
+    except Exception as e:
+        logger.exception(f"Kunne ikke koble til openHop: {e}")
+        return
 
     # Public på slot 0 røres ikke.
     # Hashtag-kanalene konfigureres eksplisitt.
@@ -982,7 +1051,7 @@ async def main():
                 f"{channel_name}: {result.payload}"
             )
 
-    print(
+    logger.info(
         "Lytter diskré på "
         + ", ".join(CHANNELS.values())
         + "."
@@ -994,19 +1063,21 @@ async def main():
             text,
         )
 
-        print(
-            f"DEBUG send result: channel={channel_idx}, "
-            f"type={result.type!r}, payload={result.payload!r}, "
-            f"text={text!r}"
+        logger.debug(
+            "RX %s %r: %r",
+            CHANNELS[channel_idx],
+            sender,
+            command,
         )
 
         if result.type == EventType.ERROR:
-            print(
-                f"TX-feil på {CHANNELS[channel_idx]}: "
-                f"{result.payload}"
+            logger.error(
+                "TX-feil på %s: %r",
+                CHANNELS[channel_idx],
+                result.payload,
             )
         else:
-            print(f"TX {CHANNELS[channel_idx]}: {text}")
+            logger.debug("TX %s: %s", CHANNELS[channel_idx], text)
             channel_history[channel_idx].append(
                 {
                     "sender": "grefsenbot",
@@ -1044,7 +1115,7 @@ async def main():
         if command is None:
             return
 
-        print(
+        logger.info(
             f"RX {CHANNELS[channel_idx]} "
             f"{sender!r}: {command!r}"
         )
@@ -1189,9 +1260,10 @@ async def main():
 
 
 if __name__ == "__main__":
+    configure_logging()
     try:
         asyncio.run(main())
 
     except KeyboardInterrupt:
-        pass
+        logger.info("Stoppa med Ctrl-C")
 
