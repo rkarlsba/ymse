@@ -70,7 +70,10 @@ def configure_logging():
 
     if not args.no_syslog:
         # macOS brukar vanlegvis /var/run/syslog, Linux ofte /dev/log.
-        syslog_addresses = ("/var/run/syslog", "/dev/log")
+        syslog_addresses = (
+            "/dev/log",
+            "/var/run/syslog",
+        )
 
         for address in syslog_addresses:
             try:
@@ -1162,6 +1165,15 @@ async def main():
                 place,
                 language,
                 forecast_day,
+            )
+
+            logger.info(
+                "Værforespørsel frå %s i %s: stad=%r, dag=%r, svar=%r",
+                sender,
+                CHANNELS[channel_idx],
+                place,
+                forecast_day,
+                forecast,
             )
 
             if forecast:
